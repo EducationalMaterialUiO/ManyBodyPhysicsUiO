@@ -1,0 +1,783 @@
+<!--
+HTML file automatically generated from DocOnce source
+(https://github.com/doconce/doconce/)
+doconce format html week35.do.txt --pygments_html_style=perldoc --html_style=solarized3 --html_links_in_new_window --html_output=week35-solarized --no_mako
+-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocOnce: https://github.com/doconce/doconce/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Week 35: Ansatzes for fermions and bosons and second quantization">
+<title>Week 35: Ansatzes for fermions and bosons and second quantization</title>
+<link href="https://cdn.rawgit.com/doconce/doconce/master/bundled/html_styles/style_solarized_box/css/solarized_light_code.css" rel="stylesheet" type="text/css" title="light"/>
+<script src="https://cdn.rawgit.com/doconce/doconce/master/bundled/html_styles/style_solarized_box/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<link href="https://thomasf.github.io/solarized-css/solarized-light.min.css" rel="stylesheet">
+<style type="text/css">
+h1 {color: #b58900;}  /* yellow */
+/* h1 {color: #cb4b16;}  orange */
+/* h1 {color: #d33682;}  magenta, the original choice of thomasf */
+code { padding: 0px; background-color: inherit; }
+pre {
+  border: 0pt solid #93a1a1;
+  box-shadow: none;
+}
+div { text-align: justify; text-justify: inter-word; }
+.tab {
+  padding-left: 1.5em;
+}
+div.toc p,a {
+  line-height: 1.3;
+  margin-top: 1.1;
+  margin-bottom: 1.1;
+}
+</style>
+</head>
+
+<!-- tocinfo
+{'highest level': 2,
+ 'sections': [('Week 35', 2, None, 'week-35'),
+              ('Definitions and second quantization',
+               2,
+               None,
+               'definitions-and-second-quantization'),
+              ('Second quantization', 2, None, 'second-quantization'),
+              ('Commutation rules', 2, None, 'commutation-rules'),
+              ('More on commutation rules',
+               2,
+               None,
+               'more-on-commutation-rules'),
+              ('Hermitian conjugate', 2, None, 'hermitian-conjugate'),
+              ('Physical interpretation', 2, None, 'physical-interpretation'),
+              ('Two specific cases', 2, None, 'two-specific-cases'),
+              ('More derivations', 2, None, 'more-derivations'),
+              ('Even and odd permutations',
+               2,
+               None,
+               'even-and-odd-permutations'),
+              ('Even and odd permutations',
+               2,
+               None,
+               'even-and-odd-permutations'),
+              ('Annihilation operators', 2, None, 'annihilation-operators'),
+              ('Action of anti-commutator',
+               2,
+               None,
+               'action-of-anti-commutator'),
+              ('Anti-commutation rule for Fermions',
+               2,
+               None,
+               'anti-commutation-rule-for-fermions'),
+              ('Three possible outcomes', 2, None, 'three-possible-outcomes'),
+              ('Second case', 2, None, 'second-case'),
+              ('Third case', 2, None, 'third-case'),
+              ('Summarizing', 2, None, 'summarizing'),
+              ('Properties of creation and annihilation operators',
+               2,
+               None,
+               'properties-of-creation-and-annihilation-operators'),
+              ('Hermitian conjugate or just adjoint',
+               2,
+               None,
+               'hermitian-conjugate-or-just-adjoint'),
+              ('One-body operators in second quantization',
+               2,
+               None,
+               'one-body-operators-in-second-quantization'),
+              ('Getting started', 2, None, 'getting-started'),
+              ('The number operator', 2, None, 'the-number-operator'),
+              ('Preserving the number of particles',
+               2,
+               None,
+               'preserving-the-number-of-particles'),
+              ('One-body operator in second quantitazion',
+               2,
+               None,
+               'one-body-operator-in-second-quantitazion'),
+              ('Interchange particles $1$ and $2$',
+               2,
+               None,
+               'interchange-particles-1-and-2'),
+              ('Including all possible permutations',
+               2,
+               None,
+               'including-all-possible-permutations'),
+              ('More operations', 2, None, 'more-operations'),
+              ('Final expression for the one-body operator',
+               2,
+               None,
+               'final-expression-for-the-one-body-operator'),
+              ('Applying the new expression',
+               2,
+               None,
+               'applying-the-new-expression'),
+              ('Explicit results', 2, None, 'explicit-results')]}
+end of tocinfo -->
+
+<body>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+  }
+});
+</script>
+<script type="text/javascript" async
+ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<!-- ------------------- main content ---------------------- -->
+<center>
+<h1>Week 35: Ansatzes for fermions and bosons and second quantization</h1>
+</center>  <!-- document title -->
+
+<!-- author(s): Morten Hjorth-Jensen -->
+<center>
+<b>Morten Hjorth-Jensen</b> 
+</center>
+<!-- institution -->
+<center>
+<b>Department of Physics and Center for Computing in Science Education, University of Oslo, Norway</b>
+</center>
+<br>
+<center>
+<h4>Week 35, August 25-29</h4>
+</center> <!-- date -->
+<br>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="week-35">Week 35 </h2>
+
+<ul>
+<li> Topics to be covered
+<ol type="a"></li>
+ <li> Thursday: Fermion and Boson state functions and computation of expectation values in first quantization, continuation from last week (see slides from last week)</li>
+ <li> Video of lecture at <a href="https://youtu.be/ND3nkwTq_w0" target="_blank"><tt>https://youtu.be/ND3nkwTq_w0</tt></a></li>
+ <li> Whiteboard notes at <a href="https://github.com/ManyBodyPhysics/FYS4480/blob/master/doc/HandwrittenNotes/2025/FYS4480August28.pdf" target="_blank"><tt>https://github.com/ManyBodyPhysics/FYS4480/blob/master/doc/HandwrittenNotes/2025/FYS4480August28.pdf</tt></a></li>
+ <li> Friday: Second quantization</li>
+ <li> Video of lecture at <a href="https://youtu.be/XluUlE4uxjU" target="_blank"><tt>https://youtu.be/XluUlE4uxjU</tt></a></li>
+ <li> Whiteboard notes at <a href="https://github.com/ManyBodyPhysics/FYS4480/blob/master/doc/HandwrittenNotes/2025/FYS4480August29.pdf" target="_blank"><tt>https://github.com/ManyBodyPhysics/FYS4480/blob/master/doc/HandwrittenNotes/2025/FYS4480August29.pdf</tt></a></li>
+</ol>
+<li> Lecture Material: These slides, slides from week 34  and Szabo and Ostlund chapters 1 and 2.</li>
+<li> <a href="https://github.com/ManyBodyPhysics/FYS4480/blob/master/doc/Exercises/2025/ExercisesWeek35.pdf" target="_blank">Second exercise set</a></li>
+</ul>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="definitions-and-second-quantization">Definitions and second quantization </h2>
+
+<p>We introduce the time-independent  operators
+\( a_\alpha^{\dagger} \) and \( a_\alpha \)   which create and annihilate, respectively, a particle 
+in the single-particle state 
+\( \varphi_\alpha \). 
+We define the fermion creation operator
+\( a_\alpha^{\dagger} \) 
+</p>
+$$
+\begin{equation}
+	a_\alpha^{\dagger}|0\rangle \equiv  |\alpha\rangle  \label{eq:2-1a},
+\end{equation}
+$$
+
+<p>and</p>
+$$
+\begin{equation}
+	a_\alpha^{\dagger}|\alpha_1\dots \alpha_n\rangle_{\mathrm{AS}} \equiv  |\alpha\alpha_1\dots \alpha_n\rangle_{\mathrm{AS}} \label{eq:2-1b}
+\end{equation}
+$$
+
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="second-quantization">Second quantization </h2>
+
+<p>In Eq.&nbsp;\eqref{eq:2-1a} 
+the operator  \( a_\alpha^{\dagger} \)  acts on the vacuum state 
+\( |0\rangle \), which does not contain any particles. Alternatively, we could define  a closed-shell nucleus or atom as our new vacuum, but then
+we need to introduce the particle-hole  formalism, see the discussion to come. 
+</p>
+
+<p>In Eq.&nbsp;\eqref{eq:2-1b} \( a_\alpha^{\dagger} \) acts on an antisymmetric \( n \)-particle state and 
+creates an antisymmetric \( (n+1) \)-particle state, where the one-body state 
+\( \varphi_\alpha \) is occupied, under the condition that
+\( \alpha \ne \alpha_1, \alpha_2, \dots, \alpha_n \). 
+It follows that we can express an antisymmetric state as the product of the creation
+operators acting on the vacuum state.  
+</p>
+$$
+\begin{equation}
+	|\alpha_1\dots \alpha_n\rangle_{\mathrm{AS}} = a_{\alpha_1}^{\dagger} a_{\alpha_2}^{\dagger} \dots a_{\alpha_n}^{\dagger} |0\rangle \label{eq:2-2}
+\end{equation}
+$$
+
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="commutation-rules">Commutation rules </h2>
+
+<p>It is easy to derive the commutation and anticommutation rules  for the fermionic creation operators 
+\( a_\alpha^{\dagger} \). Using the antisymmetry of the states 
+\eqref{eq:2-2}
+</p>
+$$
+\begin{equation}
+	|\alpha_1\dots \alpha_i\dots \alpha_k\dots \alpha_n\rangle_{\mathrm{AS}} = 
+		- |\alpha_1\dots \alpha_k\dots \alpha_i\dots \alpha_n\rangle_{\mathrm{AS}} \label{eq:2-3a}
+\end{equation}
+$$
+
+<p>we obtain</p>
+$$
+\begin{equation}
+	 a_{\alpha_i}^{\dagger}  a_{\alpha_k}^{\dagger} = - a_{\alpha_k}^{\dagger} a_{\alpha_i}^{\dagger} \label{eq:2-3b}
+\end{equation}
+$$
+
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="more-on-commutation-rules">More on commutation rules </h2>
+
+<p>Using the Pauli principle</p>
+$$
+\begin{equation}
+	|\alpha_1\dots \alpha_i\dots \alpha_i\dots \alpha_n\rangle_{\mathrm{AS}} = 0 \label{eq:2-4a}
+\end{equation}
+$$
+
+<p>it follows that</p>
+$$
+\begin{equation}
+	a_{\alpha_i}^{\dagger}  a_{\alpha_i}^{\dagger} = 0. \label{eq:2-4b}
+\end{equation}
+$$
+
+<p>If we combine Eqs.&nbsp;\eqref{eq:2-3b} and \eqref{eq:2-4b}, we obtain the well-known anti-commutation rule</p>
+$$
+\begin{equation}
+	a_{\alpha}^{\dagger}  a_{\beta}^{\dagger} + a_{\beta}^{\dagger}  a_{\alpha}^{\dagger} \equiv 
+		\{a_{\alpha}^{\dagger},a_{\beta}^{\dagger}\} = 0 \label{eq:2-5}
+\end{equation}
+$$
+
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="hermitian-conjugate">Hermitian conjugate </h2>
+
+<p>The hermitian conjugate  of \( a_\alpha^{\dagger} \) is</p>
+$$
+\begin{equation}
+	a_{\alpha} = ( a_{\alpha}^{\dagger} )^{\dagger} \label{eq:2-6}
+\end{equation}
+$$
+
+<p>If we take the hermitian conjugate of Eq.&nbsp;\eqref{eq:2-5}, we arrive at </p>
+$$
+\begin{equation}
+	\{a_{\alpha},a_{\beta}\} = 0 \label{eq:2-7}
+\end{equation}
+$$
+
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="physical-interpretation">Physical interpretation </h2>
+
+<p>What is the physical interpretation of the operator \( a_\alpha \) and what is the effect of 
+\( a_\alpha \) on a given state \( |\alpha_1\alpha_2\dots\alpha_n\rangle_{\mathrm{AS}} \)? 
+Consider the following matrix element
+</p>
+$$
+\begin{equation}
+	\langle\alpha_1\alpha_2 \dots \alpha_n|a_\alpha|\alpha_1'\alpha_2' \dots \alpha_m'\rangle \label{eq:2-8}
+\end{equation}
+$$
+
+<p>where both sides are antisymmetric.</p>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="two-specific-cases">Two specific cases </h2>
+<p>We  distinguish between two cases. The first (1) is when
+\( \alpha \in \{\alpha_i\} \). Using the Pauli principle of Eq.&nbsp;\eqref{eq:2-4a} it follows
+</p>
+$$
+\begin{equation}
+		\langle\alpha_1\alpha_2 \dots \alpha_n|a_\alpha = 0 \label{eq:2-9a}
+\end{equation}
+$$
+
+<p>The second (2) case is when \( \alpha \notin \{\alpha_i\} \). It follows that an hermitian conjugation</p>
+$$
+\begin{equation}
+		\langle \alpha_1\alpha_2 \dots \alpha_n|a_\alpha = \langle\alpha\alpha_1\alpha_2 \dots \alpha_n|  \label{eq:2-9b}
+\end{equation}
+$$
+
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="more-derivations">More derivations </h2>
+<p>Eq.&nbsp;\eqref{eq:2-9b} holds for case (1) since the lefthand side is zero due to the Pauli principle. We write
+Eq.&nbsp;\eqref{eq:2-8} as
+</p>
+$$
+\begin{equation}
+	\langle\alpha_1\alpha_2 \dots \alpha_n|a_\alpha|\alpha_1'\alpha_2' \dots \alpha_m'\rangle = 
+	\langle \alpha_1\alpha_2 \dots \alpha_n|\alpha\alpha_1'\alpha_2' \dots \alpha_m'\rangle \label{eq:2-10}
+\end{equation}
+$$
+
+<p>Here we must have \( m = n+1 \) if Eq.&nbsp;\eqref{eq:2-10} has to be trivially different from zero.</p>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="even-and-odd-permutations">Even and odd permutations </h2>
+
+<p>For the last case, the minus and plus signs apply when the sequence 
+\( \alpha ,\alpha_1, \alpha_2, \dots, \alpha_n \) and 
+\( \alpha_1', \alpha_2', \dots, \alpha_{n+1}' \) are related to each other via even and odd permutations.
+If we assume that  \( \alpha \notin \{\alpha_i\} \) we obtain 
+</p>
+$$
+\begin{equation}
+	\langle\alpha_1\alpha_2 \dots \alpha_n|a_\alpha|\alpha_1'\alpha_2' \dots \alpha_{n+1}'\rangle = 0 \label{eq:2-12}
+\end{equation}
+$$
+
+<p>when \( \alpha \in \{\alpha_i'\} \). If \( \alpha \notin \{\alpha_i'\} \), we obtain</p>
+$$
+\begin{equation}
+	a_\alpha\underbrace{|\alpha_1'\alpha_2' \dots \alpha_{n+1}'}\rangle_{\neq \alpha} = 0 \label{eq:2-13a}
+\end{equation}
+$$
+
+<p>and in particular</p>
+$$
+\begin{equation}
+	a_\alpha |0\rangle = 0 \label{eq:2-13b}
+\end{equation}
+$$
+
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="even-and-odd-permutations">Even and odd permutations </h2>
+
+<p>If \( \{\alpha\alpha_i\} = \{\alpha_i'\} \), performing the right permutations, the sequence
+\( \alpha ,\alpha_1, \alpha_2, \dots, \alpha_n \) is identical with the sequence
+\( \alpha_1', \alpha_2', \dots, \alpha_{n+1}' \). This results in
+</p>
+$$
+\begin{equation}
+	\langle\alpha_1\alpha_2 \dots \alpha_n|a_\alpha|\alpha\alpha_1\alpha_2 \dots \alpha_{n}\rangle = 1 \label{eq:2-14}
+\end{equation}
+$$
+
+<p>and thus</p>
+$$
+\begin{equation}
+	a_\alpha |\alpha\alpha_1\alpha_2 \dots \alpha_{n}\rangle = |\alpha_1\alpha_2 \dots \alpha_{n}\rangle \label{eq:2-15}
+\end{equation}
+$$
+
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="annihilation-operators">Annihilation operators  </h2>
+
+<p>The action of the operator 
+\( a_\alpha \) from the left on a state vector  is to to remove  one particle in the state
+\( \alpha \). 
+If the state vector does not contain the single-particle state \( \alpha \), the outcome of the operation is zero.
+The operator  \( a_\alpha \) is normally called for a destruction or annihilation operator.
+</p>
+
+<p>The next step is to establish the  commutator algebra of \( a_\alpha^{\dagger} \) and
+\( a_\beta \). 
+</p>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="action-of-anti-commutator">Action of anti-commutator </h2>
+
+<p>The action of the anti-commutator 
+\( \{a_\alpha^{\dagger} \),$a_\alpha\}$ on a given \( n \)-particle state is
+</p>
+$$
+\begin{align}
+	a_\alpha^{\dagger} a_\alpha \underbrace{|\alpha_1\alpha_2 \dots \alpha_{n}\rangle}_{\neq \alpha} &= 0 \nonumber \\
+	a_\alpha a_\alpha^{\dagger} \underbrace{|\alpha_1\alpha_2 \dots \alpha_{n}\rangle}_{\neq \alpha} &=
+	a_\alpha \underbrace{|\alpha \alpha_1\alpha_2 \dots \alpha_{n}\rangle}_{\neq \alpha} = 
+	\underbrace{|\alpha_1\alpha_2 \dots \alpha_{n}\rangle}_{\neq \alpha} \label{eq:2-16a}
+\end{align}
+$$
+
+<p>if the single-particle state \( \alpha \) is not contained in the state.</p>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="anti-commutation-rule-for-fermions">Anti-commutation rule for Fermions </h2>
+
+<p> If it is present
+we arrive at
+</p>
+$$
+\begin{align}
+	a_\alpha^{\dagger} a_\alpha |\alpha_1\alpha_2 \dots \alpha_{k}\alpha \alpha_{k+1} \dots \alpha_{n-1}\rangle &=
+	a_\alpha^{\dagger} a_\alpha (-1)^k |\alpha \alpha_1\alpha_2 \dots \alpha_{n-1}\rangle \nonumber \\
+	= (-1)^k |\alpha \alpha_1\alpha_2 \dots \alpha_{n-1}\rangle &=
+	|\alpha_1\alpha_2 \dots \alpha_{k}\alpha \alpha_{k+1} \dots \alpha_{n-1}\rangle \nonumber \\
+	a_\alpha a_\alpha^{\dagger}|\alpha_1\alpha_2 \dots \alpha_{k}\alpha \alpha_{k+1} \dots \alpha_{n-1}\rangle &= 0 \label{eq:2-16b}
+\end{align}
+$$
+
+<p>From Eqs.&nbsp;\eqref{eq:2-16a} and  \eqref{eq:2-16b} we arrive at </p>
+$$
+\begin{equation}
+	\{a_\alpha^{\dagger} , a_\alpha \} = a_\alpha^{\dagger} a_\alpha + a_\alpha a_\alpha^{\dagger} = 1 \label{eq:2-17}
+\end{equation}
+$$
+
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="three-possible-outcomes">Three possible outcomes  </h2>
+
+<p>The action of \( \left\{a_\alpha^{\dagger}, a_\beta\right\} \), with 
+\( \alpha \ne \beta \) on a given state yields three possibilities. 
+The first case is a state vector which contains both \( \alpha \) and \( \beta \), then either 
+\( \alpha \) or \( \beta \) and finally none of them.
+</p>
+
+<p>The first case results in</p>
+$$
+\begin{align}
+	a_\alpha^{\dagger} a_\beta |\alpha\beta\alpha_1\alpha_2 \dots \alpha_{n-2}\rangle = 0 \nonumber \\
+	a_\beta a_\alpha^{\dagger} |\alpha\beta\alpha_1\alpha_2 \dots \alpha_{n-2}\rangle = 0 \label{eq:2-18a}
+\end{align}
+$$
+
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="second-case">Second case </h2>
+<p>The second case gives</p>
+$$
+\begin{align}
+	 a_\alpha^{\dagger} a_\beta |\beta \underbrace{\alpha_1\alpha_2 \dots \alpha_{n-1}}_{\neq \alpha}\rangle =& 
+	 	|\alpha \underbrace{\alpha_1\alpha_2 \dots \alpha_{n-1}}_{\neq  \alpha}\rangle \nonumber \\
+	a_\beta a_\alpha^{\dagger} |\beta \underbrace{\alpha_1\alpha_2 \dots \alpha_{n-1}}_{\neq \alpha}\rangle =&
+		a_\beta |\alpha\beta\underbrace{\beta \alpha_1\alpha_2 \dots \alpha_{n-1}}_{\neq \alpha}\rangle \nonumber \\
+	=& - |\alpha\underbrace{\alpha_1\alpha_2 \dots \alpha_{n-1}}_{\neq \alpha}\rangle \label{eq:2-18b}
+\end{align}
+$$
+
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="third-case">Third case </h2>
+
+<p>Finally if the state vector does not contain \( \alpha \) and \( \beta \)</p>
+$$
+\begin{align}
+	a_\alpha^{\dagger} a_\beta |\underbrace{\alpha_1\alpha_2 \dots \alpha_{n}}_{\neq \alpha,\beta}\rangle &=& 0 \nonumber \\
+	a_\beta a_\alpha^{\dagger} |\underbrace{\alpha_1\alpha_2 \dots \alpha_{n}}_{\neq \alpha,\beta}\rangle &=& 
+		a_\beta |\alpha \underbrace{\alpha_1\alpha_2 \dots \alpha_{n}}_{\neq \alpha,\beta}\rangle = 0 \label{eq:2-18c}
+\end{align}
+$$
+
+<p>For all three cases we have</p>
+$$
+\begin{equation}
+	\{a_\alpha^{\dagger},a_\beta \} = a_\alpha^{\dagger} a_\beta + a_\beta a_\alpha^{\dagger} = 0, \quad \alpha \neq \beta \label{eq:2-19}
+\end{equation}
+$$
+
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="summarizing">Summarizing </h2>
+
+<p>We can summarize  our findings in Eqs.&nbsp;\eqref{eq:2-17} and \eqref{eq:2-19} as </p>
+$$
+\begin{equation}
+	\{a_\alpha^{\dagger},a_\beta \} = \delta_{\alpha\beta} \label{eq:2-20}
+\end{equation}
+$$
+
+<p>with  \( \delta_{\alpha\beta} \) is the Kroenecker \( \delta \)-symbol.</p>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="properties-of-creation-and-annihilation-operators">Properties of creation and annihilation operators </h2>
+
+<p>The properties of the creation and annihilation operators can be summarized as (for fermions)</p>
+$$
+	a_\alpha^{\dagger}|0\rangle \equiv  |\alpha\rangle,
+$$
+
+<p>and</p>
+$$
+	a_\alpha^{\dagger}|\alpha_1\dots \alpha_n\rangle_{\mathrm{AS}} \equiv  |\alpha\alpha_1\dots \alpha_n\rangle_{\mathrm{AS}}. 
+$$
+
+<p>from which follows</p>
+$$
+        |\alpha_1\dots \alpha_n\rangle_{\mathrm{AS}} = a_{\alpha_1}^{\dagger} a_{\alpha_2}^{\dagger} \dots a_{\alpha_n}^{\dagger} |0\rangle.
+$$
+
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="hermitian-conjugate-or-just-adjoint">Hermitian conjugate or just adjoint </h2>
+
+<p>The hermitian conjugate has the folowing properties</p>
+$$
+        a_{\alpha} = ( a_{\alpha}^{\dagger} )^{\dagger}.
+$$
+
+<p>Finally we found </p>
+$$
+	a_\alpha\underbrace{|\alpha_1'\alpha_2' \dots \alpha_{n+1}'}\rangle_{\neq \alpha} = 0, \quad
+		\textrm{in particular } a_\alpha |0\rangle = 0,
+$$
+
+<p>and</p>
+$$
+ a_\alpha |\alpha\alpha_1\alpha_2 \dots \alpha_{n}\rangle = |\alpha_1\alpha_2 \dots \alpha_{n}\rangle,
+$$
+
+<p>and the corresponding commutator algebra</p>
+$$
+	\{a_{\alpha}^{\dagger},a_{\beta}^{\dagger}\} = \{a_{\alpha},a_{\beta}\} = 0 \hspace{0.5cm} 
+\{a_\alpha^{\dagger},a_\beta \} = \delta_{\alpha\beta}.
+$$
+
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="one-body-operators-in-second-quantization">One-body operators in second quantization </h2>
+
+<p>A very useful operator is the so-called number-operator.  Most physics
+cases we will study in this text conserve the total number of
+particles.  The number operator is therefore a useful quantity which
+allows us to test that our many-body formalism conserves the number of
+particles.  In for example \( (d,p) \) or \( (p,d) \) reactions it is
+important to be able to describe quantum mechanical states where
+particles get added or removed.  A creation operator
+\( a_\alpha^{\dagger} \) adds one particle to the single-particle state
+\( \alpha \) of a give many-body state vector, while an annihilation
+operator \( a_\alpha \) removes a particle from a single-particle state
+\( \alpha \).
+</p>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="getting-started">Getting started </h2>
+<p>Let us consider an operator proportional with \( a_\alpha^{\dagger} a_\beta \) and 
+\( \alpha=\beta \). It acts on an \( n \)-particle state 
+resulting in
+</p>
+$$
+\begin{equation}
+	a_\alpha^{\dagger} a_\alpha |\alpha_1\alpha_2 \dots \alpha_{n}\rangle = 
+	\begin{cases}
+		0  &\alpha \notin \{\alpha_i\} \\
+		\\
+		|\alpha_1\alpha_2 \dots \alpha_{n}\rangle & \alpha \in \{\alpha_i\}
+	\end{cases}
+\label{_auto1}
+\end{equation}
+$$
+
+<p>Summing over all possible one-particle states we arrive at</p>
+$$
+\begin{equation}
+	\left( \sum_\alpha a_\alpha^{\dagger} a_\alpha \right) |\alpha_1\alpha_2 \dots \alpha_{n}\rangle = 
+	n |\alpha_1\alpha_2 \dots \alpha_{n}\rangle \label{eq:2-21}
+\end{equation}
+$$
+
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="the-number-operator">The number operator </h2>
+
+<p>The operator </p>
+$$
+\begin{equation}
+	\hat{N} = \sum_\alpha a_\alpha^{\dagger} a_\alpha \label{eq:2-22}
+\end{equation}
+$$
+
+<p>is called the number operator since it counts the number of particles in a give state vector when it acts 
+on the different single-particle states.  It acts on one single-particle state at the time and falls 
+therefore under category one-body operators.
+Next we look at another important one-body operator, namely \( \hat{H}_0 \) and study its operator form in the 
+occupation number representation.
+</p>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="preserving-the-number-of-particles">Preserving the number of particles </h2>
+<p>We want to obtain an expression for a one-body operator which conserves the number of particles.
+Here we study the one-body operator for the kinetic energy plus an eventual external one-body potential.
+The action of this operator on a particular \( n \)-body state with its pertinent expectation value has already
+been studied in coordinate  space.
+In coordinate space the operator reads
+</p>
+$$
+\begin{equation}
+	\hat{H}_0 = \sum_i \hat{h}_0(x_i) \label{eq:2-23}
+\end{equation}
+$$
+
+<p>and the anti-symmetric \( n \)-particle Slater determinant is defined as </p>
+$$
+\Phi(x_1, x_2,\dots ,x_n,\alpha_1,\alpha_2,\dots, \alpha_n)= \frac{1}{\sqrt{n!}} \sum_p (-1)^p\hat{P}\psi_{\alpha_1}(x_1)\psi_{\alpha_2}(x_2) \dots \psi_{\alpha_n}(x_n).
+$$
+
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="one-body-operator-in-second-quantitazion">One-body operator in second quantitazion </h2>
+<p>Defining</p>
+$$
+\begin{equation}
+	\hat{h}_0(x_i) \psi_{\alpha_i}(x_i) = \sum_{\alpha_k'} \psi_{\alpha_k'}(x_i) \langle\alpha_k'|\hat{h}_0|\alpha_k\rangle \label{eq:2-25}
+\end{equation}
+$$
+
+<p>we can easily  evaluate the action of \( \hat{H}_0 \) on each product of one-particle functions in Slater determinant.
+From Eq.&nbsp;\eqref{eq:2-25}  we obtain the following result without  permuting any particle pair 
+</p>
+$$
+\begin{align}
+	&& \left( \sum_i \hat{h}_0(x_i) \right) \psi_{\alpha_1}(x_1)\psi_{\alpha_2}(x_2) \dots \psi_{\alpha_n}(x_n) \nonumber \\
+	& =&\sum_{\alpha_1'} \langle \alpha_1'|\hat{h}_0|\alpha_1\rangle 
+		\psi_{\alpha_1'}(x_1)\psi_{\alpha_2}(x_2) \dots \psi_{\alpha_n}(x_n) \nonumber \\
+	&+&\sum_{\alpha_2'} \langle \alpha_2'|\hat{h}_0|\alpha_2\rangle
+		\psi_{\alpha_1}(x_1)\psi_{\alpha_2'}(x_2) \dots \psi_{\alpha_n}(x_n) \nonumber \\
+	&+& \dots \nonumber \\
+	&+&\sum_{\alpha_n'} \langle \alpha_n'|\hat{h}_0|\alpha_n\rangle
+		\psi_{\alpha_1}(x_1)\psi_{\alpha_2}(x_2) \dots \psi_{\alpha_n'}(x_n) \label{eq:2-26}
+\end{align}
+$$
+
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="interchange-particles-1-and-2">Interchange particles \( 1 \) and \( 2 \) </h2>
+
+<p>If we interchange particles \( 1 \) and \( 2 \)  we obtain</p>
+$$
+\begin{align}
+	&& \left( \sum_i \hat{h}_0(x_i) \right) \psi_{\alpha_1}(x_2)\psi_{\alpha_1}(x_2) \dots \psi_{\alpha_n}(x_n) \nonumber \\
+	& =&\sum_{\alpha_2'} \langle \alpha_2'|\hat{h}_0|\alpha_2\rangle 
+		\psi_{\alpha_1}(x_2)\psi_{\alpha_2'}(x_1) \dots \psi_{\alpha_n}(x_n) \nonumber \\
+	&+&\sum_{\alpha_1'} \langle \alpha_1'|\hat{h}_0|\alpha_1\rangle
+		\psi_{\alpha_1'}(x_2)\psi_{\alpha_2}(x_1) \dots \psi_{\alpha_n}(x_n) \nonumber \\
+	&+& \dots \nonumber \\
+	&+&\sum_{\alpha_n'} \langle \alpha_n'|\hat{h}_0|\alpha_n\rangle
+		\psi_{\alpha_1}(x_2)\psi_{\alpha_1}(x_2) \dots \psi_{\alpha_n'}(x_n) \label{eq:2-27}
+\end{align}
+$$
+
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="including-all-possible-permutations">Including all possible permutations </h2>
+
+<p>We can continue by computing all possible permutations. 
+We rewrite also our Slater determinant in its second quantized form and skip the dependence on the quantum numbers \( x_i. \)
+Summing up all contributions and taking care of all phases
+\( (-1)^p \) we arrive at 
+</p>
+$$
+\begin{align}
+	\hat{H}_0|\alpha_1,\alpha_2,\dots, \alpha_n\rangle &=& \sum_{\alpha_1'}\langle \alpha_1'|\hat{h}_0|\alpha_1\rangle
+		|\alpha_1'\alpha_2 \dots \alpha_{n}\rangle \nonumber \\
+	&+& \sum_{\alpha_2'} \langle \alpha_2'|\hat{h}_0|\alpha_2\rangle
+		|\alpha_1\alpha_2' \dots \alpha_{n}\rangle \nonumber \\
+	&+& \dots \nonumber \\
+	&+& \sum_{\alpha_n'} \langle \alpha_n'|\hat{h}_0|\alpha_n\rangle
+		|\alpha_1\alpha_2 \dots \alpha_{n}'\rangle \label{eq:2-28}
+\end{align}
+$$
+
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="more-operations">More operations </h2>
+<p>In Eq.&nbsp;\eqref{eq:2-28} 
+we have expressed the action of the one-body operator
+of Eq.&nbsp;\eqref{eq:2-23} on the  \( n \)-body state in its second quantized form.
+This equation can be further manipulated if we use the properties of the creation and annihilation operator
+on each primed quantum number, that is
+</p>
+$$
+\begin{equation}
+	|\alpha_1\alpha_2 \dots \alpha_k' \dots \alpha_{n}\rangle = 
+		a_{\alpha_k'}^{\dagger}  a_{\alpha_k} |\alpha_1\alpha_2 \dots \alpha_k \dots \alpha_{n}\rangle \label{eq:2-29}
+\end{equation}
+$$
+
+<p>Inserting this in the right-hand side of Eq.&nbsp;\eqref{eq:2-28} results in</p>
+$$
+\begin{align}
+	\hat{H}_0|\alpha_1\alpha_2 \dots \alpha_{n}\rangle &=& \sum_{\alpha_1'}\langle \alpha_1'|\hat{h}_0|\alpha_1\rangle
+		a_{\alpha_1'}^{\dagger}  a_{\alpha_1} |\alpha_1\alpha_2 \dots \alpha_{n}\rangle \nonumber \\
+	&+& \sum_{\alpha_2'} \langle \alpha_2'|\hat{h}_0|\alpha_2\rangle
+		a_{\alpha_2'}^{\dagger}  a_{\alpha_2} |\alpha_1\alpha_2 \dots \alpha_{n}\rangle \nonumber \\
+	&+& \dots \nonumber \\
+	&+& \sum_{\alpha_n'} \langle \alpha_n'|\hat{h}_0|\alpha_n\rangle
+		a_{\alpha_n'}^{\dagger}  a_{\alpha_n} |\alpha_1\alpha_2 \dots \alpha_{n}\rangle \nonumber \\
+	&=& \sum_{\alpha, \beta} \langle \alpha|\hat{h}_0|\beta\rangle a_\alpha^{\dagger} a_\beta 
+		|\alpha_1\alpha_2 \dots \alpha_{n}\rangle \label{eq:2-30a}
+\end{align}
+$$
+
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="final-expression-for-the-one-body-operator">Final expression for the one-body operator </h2>
+<p>In the number occupation representation or second quantization we get the following expression for a one-body 
+operator which conserves the number of particles
+</p>
+$$
+\begin{equation}
+	\hat{H}_0 = \sum_{\alpha\beta} \langle \alpha|\hat{h}_0|\beta\rangle a_\alpha^{\dagger} a_\beta \label{eq:2-30b}
+\end{equation}
+$$
+
+<p>Obviously, \( \hat{H}_0 \) can be replaced by any other one-body  operator which preserved the number
+of particles. The stucture of the operator is therefore not limited to say the kinetic or single-particle energy only.
+</p>
+
+<p>The opearator \( \hat{H}_0 \) takes a particle from the single-particle state \( \beta \)  to the single-particle state \( \alpha \) 
+with a probability for the transition given by the expectation value \( \langle \alpha|\hat{h}_0|\beta\rangle \).
+</p>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="applying-the-new-expression">Applying the new expression </h2>
+<p>It is instructive to verify Eq.&nbsp;\eqref{eq:2-30b} by computing the expectation value of \( \hat{H}_0 \) 
+between two single-particle states
+</p>
+$$
+\begin{equation}
+	\langle \alpha_1|\hat{h}_0|\alpha_2\rangle = \sum_{\alpha\beta} \langle \alpha|\hat{h}_0|\beta\rangle
+		\langle 0|a_{\alpha_1}a_\alpha^{\dagger} a_\beta a_{\alpha_2}^{\dagger}|0\rangle \label{eq:2-30c}
+\end{equation}
+$$
+
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="explicit-results">Explicit results </h2>
+<p>Using the commutation relations for the creation and annihilation operators we have </p>
+$$
+\begin{equation}
+a_{\alpha_1}a_\alpha^{\dagger} a_\beta a_{\alpha_2}^{\dagger} = (\delta_{\alpha \alpha_1} - a_\alpha^{\dagger} a_{\alpha_1} )(\delta_{\beta \alpha_2} - a_{\alpha_2}^{\dagger} a_{\beta} ), \label{eq:2-30d}
+\end{equation}
+$$
+
+<p>which results in</p>
+$$
+\begin{equation}
+\langle 0|a_{\alpha_1}a_\alpha^{\dagger} a_\beta a_{\alpha_2}^{\dagger}|0\rangle = \delta_{\alpha \alpha_1} \delta_{\beta \alpha_2} \label{eq:2-30e}
+\end{equation}
+$$
+
+<p>and</p>
+$$
+\begin{equation}
+\langle \alpha_1|\hat{h}_0|\alpha_2\rangle = \sum_{\alpha\beta} \langle \alpha|\hat{h}_0|\beta\rangle\delta_{\alpha \alpha_1} \delta_{\beta \alpha_2} = \langle \alpha_1|\hat{h}_0|\alpha_2\rangle \label{eq:2-30f}
+\end{equation}
+$$
+
+
+<!-- ------------------- end of main content --------------- -->
+<center style="font-size:80%">
+<!-- copyright --> &copy; 1999-2026, Morten Hjorth-Jensen. Released under CC Attribution-NonCommercial 4.0 license
+</center>
+</body>
+</html>
+

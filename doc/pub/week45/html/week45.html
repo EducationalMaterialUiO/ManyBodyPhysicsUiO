@@ -1,0 +1,262 @@
+<!--
+HTML file automatically generated from DocOnce source
+(https://github.com/doconce/doconce/)
+doconce format html week45.do.txt --pygments_html_style=default --html_style=bloodish --html_links_in_new_window --html_output=week45 --no_mako
+-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocOnce: https://github.com/doconce/doconce/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Week 45: Many-body perturbation theory">
+<title>Week 45: Many-body perturbation theory</title>
+<style type="text/css">
+/* bloodish style */
+body {
+  font-family: Helvetica, Verdana, Arial, Sans-serif;
+  color: #404040;
+  background: #ffffff;
+}
+h1 { font-size: 1.8em; color: #8A0808; }
+h2 { font-size: 1.6em; color: #8A0808; }
+h3 { font-size: 1.4em; color: #8A0808; }
+h4 { font-size: 1.2em; color: #8A0808; }
+a { color: #8A0808; text-decoration:none; }
+tt { font-family: "Courier New", Courier; }
+p { text-indent: 0px; }
+hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+p.caption { width: 80%; font-style: normal; text-align: left; }
+hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa; }div.highlight {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    line-height: 1.21429em;
+}
+div.cell {
+    width: 100%;
+    padding: 5px 5px 5px 0;
+    margin: 0;
+    outline: none;
+}
+div.input {
+    page-break-inside: avoid;
+    box-orient: horizontal;
+    box-align: stretch;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+div.inner_cell {
+    box-orient: vertical;
+    box-align: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    box-flex: 1;
+    flex: 1;
+}
+div.input_area {
+    border: 1px solid #cfcfcf;
+    border-radius: 4px;
+    background: #f7f7f7;
+    line-height: 1.21429em;
+}
+div.input_area > div.highlight {
+    margin: .4em;
+    border: none;
+    padding: 0;
+    background-color: transparent;
+}
+div.output_wrapper {
+    position: relative;
+    box-orient: vertical;
+    box-align: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+.output {
+    box-orient: vertical;
+    box-align: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+div.output_area {
+    padding: 0;
+    page-break-inside: avoid;
+    box-orient: horizontal;
+    box-align: stretch;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+div.output_subarea {
+    padding: .4em .4em 0 .4em;
+    box-flex: 1;
+    flex: 1;
+}
+div.output_text {
+    text-align: left;
+    color: #000;
+    line-height: 1.21429em;
+}
+div { text-align: justify; text-justify: inter-word; }
+.tab {
+  padding-left: 1.5em;
+}
+div.toc p,a {
+  line-height: 1.3;
+  margin-top: 1.1;
+  margin-bottom: 1.1;
+}
+</style>
+</head>
+
+<!-- tocinfo
+{'highest level': 2,
+ 'sections': [('Week 45, November 3-7, 2025',
+               2,
+               None,
+               'week-45-november-3-7-2025'),
+              ('Second midterm', 2, None, 'second-midterm'),
+              ('Diagram rules, topological distinct diagrams',
+               2,
+               None,
+               'diagram-rules-topological-distinct-diagrams'),
+              ('Diagram rules: matrix elements',
+               2,
+               None,
+               'diagram-rules-matrix-elements'),
+              ('Diagram rules: phase factors',
+               2,
+               None,
+               'diagram-rules-phase-factors'),
+              ('Diagram rules: equivalent pairs',
+               2,
+               None,
+               'diagram-rules-equivalent-pairs'),
+              ('Diagram rules: energy denominators',
+               2,
+               None,
+               'diagram-rules-energy-denominators')]}
+end of tocinfo -->
+
+<body>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+  }
+});
+</script>
+<script type="text/javascript" async
+ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<!-- ------------------- main content ---------------------- -->
+<center>
+<h1>Week 45: Many-body perturbation theory</h1>
+</center>  <!-- document title -->
+
+<!-- author(s): Morten Hjorth-Jensen -->
+<center>
+<b>Morten Hjorth-Jensen</b> 
+</center>
+<!-- institution -->
+<center>
+<b>Department of Physics and Center for Computing in Science Education, University of Oslo, Norway</b>
+</center>
+<br>
+<center>
+<h4>November 3-7</h4>
+</center> <!-- date -->
+<br>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="week-45-november-3-7-2025">Week 45, November 3-7, 2025 </h2>
+<p>Topics to be covered</p>
+<ol>
+<li> Thursday:
+<ol type="a"></li>
+ <li> Time-independent perturbation theory: examples of contributions in perturbation theory and diagrammatic representations</li>
+ <li> Diagram rules and their derivations
+<!-- o Video of lecture at <a href="https://youtu.be/4L6Yhl9SIUI" target="_blank"><tt>https://youtu.be/4L6Yhl9SIUI</tt></a> -->
+<!-- o Whiteboard notes at <a href="https://github.com/ManyBodyPhysics/FYS4480/blob/master/doc/HandwrittenNotes/2024/NotesNovember7.pdf" target="_blank"><tt>https://github.com/ManyBodyPhysics/FYS4480/blob/master/doc/HandwrittenNotes/2024/NotesNovember7.pdf</tt></a> --></li>
+</ol>
+<li> Friday:
+<ol type="a<a href="https://youtu.be/VlMWXEPpoAA" target="_blank">></li>
+ <li> Diagram examples</li>
+ <li> Linked diagram theorem
+<!-- o Video of lecture at URL</a> -->
+<!-- o Whiteboard notes at <a href="https://github.com/ManyBodyPhysics/FYS4480/blob/master/doc/HandwrittenNotes/2024/NotesNovember8.pdf" target="_blank"><tt>https://github.com/ManyBodyPhysics/FYS4480/blob/master/doc/HandwrittenNotes/2024/NotesNovember8.pdf</tt></a> -->
+<!-- * Second midterm at <a href="https://github.com/ManyBodyPhysics/FYS4480/blob/master/doc/Exercises/2024/SecondMidterm.pdf" target="_blank"><tt>https://github.com/ManyBodyPhysics/FYS4480/blob/master/doc/Exercises/2024/SecondMidterm.pdf</tt></a> --></li>
+</ol>
+<li> Exercises week 45 at <a href="https://github.com/ManyBodyPhysics/FYS4480/blob/master/doc/Exercises/2025/Exercisesweek45.pdf" target="_blank"><tt>https://github.com/ManyBodyPhysics/FYS4480/blob/master/doc/Exercises/2025/Exercisesweek45.pdf</tt></a></li>
+<li> Lecture Material: Whiteboard notes (see above)  and Shavitt and Bartlett chapters 5-7</li>
+</ol>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="second-midterm">Second midterm </h2>
+<p>The second midterm will be available from Friday November 14 with deadline November 24. We hope this will not interfere too much with
+other activities.
+</p>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="diagram-rules-topological-distinct-diagrams">Diagram rules, topological distinct diagrams </h2>
+
+<p>Draw all topologically distinct diagrams by linking up particle and
+hole lines with various interaction vertices. Two diagrams can be made
+topologically equivalent by deformation of fermion lines under the
+restriction that the ordering of the vertices is not changed and
+particle lines and hole lines remain particle and\ hole lines.
+</p>
+
+<p>For the explicit evaluation of a diagram: Sum freely over all internal indices and label all lines.</p>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="diagram-rules-matrix-elements">Diagram rules: matrix elements </h2>
+<p>Extract matrix elements for the one-body operators (if present) as
+\( \langle \mathrm{out} |\hat{f}| \mathrm{in}\rangle \) and for the
+two-body operator (if \ present) as
+\( \langle \mathrm{left\hspace{0.1cm}out,
+right\hspace{0.1cm}out} \vert \hat{v}\vert \mathrm{left\hspace{0.1cm}in,
+right\hspace{0.1cm}in} \rangle \).
+</p>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="diagram-rules-phase-factors">Diagram rules: phase factors  </h2>
+
+<p>Calculate the phase factor: \( (-1)^{\mathrm{holelines} + \mathrm{loops}} \)</p>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="diagram-rules-equivalent-pairs">Diagram rules: equivalent pairs </h2>
+<p>Multiply by a factor of \( \frac{1}{2} \) for each equivalent pair of
+lines (particle lines or hole lines) that begin at the same
+interaction vertex and end at the same (yet different from the
+first) interaction vertex.
+</p>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="diagram-rules-energy-denominators">Diagram rules: energy denominators  </h2>
+<p>For each interval between successive interaction vertices with minimum
+one single-particle state above the Fermi level with \( n \) hole states
+and \( m \) particle stat\ es there is a factor
+!
+bt
+\[
+\frac{1}{\sum_i^n\epsilon_i-\sum_a^m\epsilon_a}.
+\]
+</p>
+$$
+
+<!-- ------------------- end of main content --------------- -->
+<center style="font-size:80%">
+<!-- copyright --> &copy; 1999-2025, Morten Hjorth-Jensen. Released under CC Attribution-NonCommercial 4.0 license
+</center>
+</body>
+</html>
+

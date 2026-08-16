@@ -1,0 +1,1275 @@
+<!--
+HTML file automatically generated from DocOnce source
+(https://github.com/doconce/doconce/)
+doconce format html week43.do.txt --pygments_html_style=perldoc --html_style=solarized3 --html_links_in_new_window --html_output=week43-solarized --no_mako
+-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocOnce: https://github.com/doconce/doconce/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Week 43: Density Functional Theory and start Many-body Perturbation Theory">
+<title>Week 43: Density Functional Theory and start Many-body Perturbation Theory</title>
+<link href="https://cdn.rawgit.com/doconce/doconce/master/bundled/html_styles/style_solarized_box/css/solarized_light_code.css" rel="stylesheet" type="text/css" title="light"/>
+<script src="https://cdn.rawgit.com/doconce/doconce/master/bundled/html_styles/style_solarized_box/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<link href="https://thomasf.github.io/solarized-css/solarized-light.min.css" rel="stylesheet">
+<style type="text/css">
+h1 {color: #b58900;}  /* yellow */
+/* h1 {color: #cb4b16;}  orange */
+/* h1 {color: #d33682;}  magenta, the original choice of thomasf */
+code { padding: 0px; background-color: inherit; }
+pre {
+  border: 0pt solid #93a1a1;
+  box-shadow: none;
+}
+.alert-text-small   { font-size: 80%;  }
+.alert-text-large   { font-size: 130%; }
+.alert-text-normal  { font-size: 90%;  }
+.alert {
+  padding:8px 35px 8px 14px; margin-bottom:18px;
+  text-shadow:0 1px 0 rgba(255,255,255,0.5);
+  border:1px solid #93a1a1;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  color: #555;
+  background-color: #eee8d5;
+  background-position: 10px 5px;
+  background-repeat: no-repeat;
+  background-size: 38px;
+  padding-left: 55px;
+  width: 75%;
+ }
+.alert-block {padding-top:14px; padding-bottom:14px}
+.alert-block > p, .alert-block > ul {margin-bottom:1em}
+.alert li {margin-top: 1em}
+.alert-block p+p {margin-top:5px}
+.alert-notice { background-image: url(https://cdn.rawgit.com/doconce/doconce/master/bundled/html_images/small_yellow_notice.png); }
+.alert-summary  { background-image:url(https://cdn.rawgit.com/doconce/doconce/master/bundled/html_images/small_yellow_summary.png); }
+.alert-warning { background-image: url(https://cdn.rawgit.com/doconce/doconce/master/bundled/html_images/small_yellow_warning.png); }
+.alert-question {background-image:url(https://cdn.rawgit.com/doconce/doconce/master/bundled/html_images/small_yellow_question.png); }
+div { text-align: justify; text-justify: inter-word; }
+.tab {
+  padding-left: 1.5em;
+}
+div.toc p,a {
+  line-height: 1.3;
+  margin-top: 1.1;
+  margin-bottom: 1.1;
+}
+</style>
+</head>
+
+<!-- tocinfo
+{'highest level': 2,
+ 'sections': [('Week 43, October 20-24, 2025',
+               2,
+               None,
+               'week-43-october-20-24-2025'),
+              ('Density Functional Theory (DFT)',
+               2,
+               None,
+               'density-functional-theory-dft'),
+              ('The many-particle equation',
+               2,
+               None,
+               'the-many-particle-equation'),
+              ('Born-Oppenheimer approximation',
+               2,
+               None,
+               'born-oppenheimer-approximation'),
+              ('Time-independent equation',
+               2,
+               None,
+               'time-independent-equation'),
+              ('Potential term', 2, None, 'potential-term'),
+              ('The one-body density', 2, None, 'the-one-body-density'),
+              ('One-body density', 2, None, 'one-body-density'),
+              ('More on the one-body density',
+               2,
+               None,
+               'more-on-the-one-body-density'),
+              ('Number of particles', 2, None, 'number-of-particles'),
+              ('Ground state function', 2, None, 'ground-state-function'),
+              ('Ground state expectation value',
+               2,
+               None,
+               'ground-state-expectation-value'),
+              ('Changing notation', 2, None, 'changing-notation'),
+              ('Density Functional Theory, definitions, twobody density',
+               2,
+               None,
+               'density-functional-theory-definitions-twobody-density'),
+              ('Hartree-Fock equations and density matrix',
+               2,
+               None,
+               'hartree-fock-equations-and-density-matrix'),
+              ('Hartree-Fock equations and density matrix',
+               2,
+               None,
+               'hartree-fock-equations-and-density-matrix'),
+              ('Hartree-Fock equations and density matrix',
+               2,
+               None,
+               'hartree-fock-equations-and-density-matrix'),
+              ('Density Functional Theory',
+               2,
+               None,
+               'density-functional-theory'),
+              ('Density Functional Theory',
+               2,
+               None,
+               'density-functional-theory'),
+              ('Density Functional Theory',
+               2,
+               None,
+               'density-functional-theory'),
+              ('Density Functional Theory',
+               2,
+               None,
+               'density-functional-theory'),
+              ('Theorem I', 2, None, 'theorem-i'),
+              ('Theorem II', 2, None, 'theorem-ii'),
+              ('Computing $E_{XC}$ from {\\em ab initio} calculations',
+               2,
+               None,
+               'computing-e-xc-from-em-ab-initio-calculations'),
+              ('Computing $E_{XC}$ from {\\em ab initio} calculations',
+               2,
+               None,
+               'computing-e-xc-from-em-ab-initio-calculations'),
+              ('Computing $E_{XC}$ from {\\em ab initio} calculations',
+               2,
+               None,
+               'computing-e-xc-from-em-ab-initio-calculations'),
+              ('The Kohn-Sham scheme', 2, None, 'the-kohn-sham-scheme'),
+              ('Exchange Energy and Correlation Energy',
+               2,
+               None,
+               'exchange-energy-and-correlation-energy'),
+              ('Many-body perturbation theory',
+               2,
+               None,
+               'many-body-perturbation-theory'),
+              ('Many-body perturbation theory',
+               2,
+               None,
+               'many-body-perturbation-theory'),
+              ('Many-body perturbation theory',
+               2,
+               None,
+               'many-body-perturbation-theory'),
+              ('Many-body perturbation theory',
+               2,
+               None,
+               'many-body-perturbation-theory'),
+              ('Many-body perturbation theory',
+               2,
+               None,
+               'many-body-perturbation-theory'),
+              ('Many-body perturbation theory',
+               2,
+               None,
+               'many-body-perturbation-theory'),
+              ('Many-body perturbation theory',
+               2,
+               None,
+               'many-body-perturbation-theory'),
+              ('Many-body perturbation theory',
+               2,
+               None,
+               'many-body-perturbation-theory'),
+              ('Many-body perturbation theory',
+               2,
+               None,
+               'many-body-perturbation-theory'),
+              ('Many-body perturbation theory',
+               2,
+               None,
+               'many-body-perturbation-theory'),
+              ('Many-body perturbation theory',
+               2,
+               None,
+               'many-body-perturbation-theory'),
+              ('Many-body perturbation theory',
+               2,
+               None,
+               'many-body-perturbation-theory'),
+              ('Many-body perturbation theory',
+               2,
+               None,
+               'many-body-perturbation-theory'),
+              ('Many-body perturbation theory',
+               2,
+               None,
+               'many-body-perturbation-theory'),
+              ('Many-body perturbation theory',
+               2,
+               None,
+               'many-body-perturbation-theory'),
+              ('Interpreting the correlation energy and the wave operator',
+               2,
+               None,
+               'interpreting-the-correlation-energy-and-the-wave-operator'),
+              ('Many-body perturbation theory',
+               2,
+               None,
+               'many-body-perturbation-theory'),
+              ('Many-body perturbation theory',
+               2,
+               None,
+               'many-body-perturbation-theory'),
+              ('Many-body perturbation theory',
+               2,
+               None,
+               'many-body-perturbation-theory'),
+              ('Many-body perturbation theory',
+               2,
+               None,
+               'many-body-perturbation-theory'),
+              ('Many-body perturbation theory',
+               2,
+               None,
+               'many-body-perturbation-theory'),
+              ('Many-body perturbation theory',
+               2,
+               None,
+               'many-body-perturbation-theory'),
+              ('Many-body perturbation theory',
+               2,
+               None,
+               'many-body-perturbation-theory'),
+              ('Many-body perturbation theory',
+               2,
+               None,
+               'many-body-perturbation-theory')]}
+end of tocinfo -->
+
+<body>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+  }
+});
+</script>
+<script type="text/javascript" async
+ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<!-- ------------------- main content ---------------------- -->
+<center>
+<h1>Week 43: Density Functional Theory and start Many-body Perturbation Theory</h1>
+</center>  <!-- document title -->
+
+<!-- author(s): Morten Hjorth-Jensen -->
+<center>
+<b>Morten Hjorth-Jensen</b> 
+</center>
+<!-- institution -->
+<center>
+<b>Department of Physics and Center for Computing in Science Education, University of Oslo, Norway</b>
+</center>
+<br>
+<center>
+<h4>Week 43, October 20-24</h4>
+</center> <!-- date -->
+<br>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="week-43-october-20-24-2025">Week 43, October 20-24, 2025 </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b>Thursday:</b>
+<p>
+<ol>
+<li> Density functional theory, the Hohenberg-Kohn theorems</li>
+<li> Kohn-Sham equations</li>
+<li> Video of lecture at <a href="https://youtu.be/ak2FQZf-Id4" target="_blank"><tt>https://youtu.be/ak2FQZf-Id4</tt></a></li>
+<li> Whiteboard notes at <a href="https://github.com/ManyBodyPhysics/FYS4480/blob/master/doc/HandwrittenNotes/2025/FYS4480October23.pdf" target="_blank"><tt>https://github.com/ManyBodyPhysics/FYS4480/blob/master/doc/HandwrittenNotes/2025/FYS4480October23.pdf</tt></a></li>    
+</ol>
+</div>
+
+
+<div class="alert alert-block alert-block alert-text-normal">
+<b>Friday:</b>
+<p>
+<ol>
+<li> Kohn-Sham equations and the local density approximation and links with Hartree-Fock theory</li>
+<li> Start many-body perturbation theory</li>
+<li> Linking FCI and Hartree-Fock theory with many-body perturbation theory</li>
+<li> Video of lecture at <a href="https://youtu.be/l9di94d108Y" target="_blank"><tt>https://youtu.be/l9di94d108Y</tt></a></li>
+<li> Whiteboard notes at <a href="https://github.com/ManyBodyPhysics/FYS4480/blob/master/doc/HandwrittenNotes/2025/FYS4480October24.pdf" target="_blank"><tt>https://github.com/ManyBodyPhysics/FYS4480/blob/master/doc/HandwrittenNotes/2025/FYS4480October24.pdf</tt></a></li>    
+</ol>
+</div>
+
+<p><b>Note:</b> No exercises this week.</p>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="density-functional-theory-dft">Density Functional Theory (DFT) </h2>
+
+<p>Hohenberg and Kohn proved that the total energy of a system including that of the many-body 
+effects of electrons (exchange and correlation) in the presence of static external potential (for example, the atomic nuclei) 
+is a unique functional of the charge density. The minimum value of the total energy functional 
+is the ground state energy of the system. The electronic charge density which yields this 
+minimum is then the exact single particle ground state energy.
+</p>
+
+<p>In Hartree-Fock theory  one works with large basis sets. This
+poses a problem for large systems. An alternative to the HF methods is
+DFT. DFT  takes into 
+account electron correlations but is less demanding computationally
+than full scale diagonalization, Coupled Cluster theory or say Monte Carlo methods.
+</p>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="the-many-particle-equation">The many-particle equation </h2>
+
+<p>Any material on earth, whether in crystals, amorphous solids,
+molecules or yourself, consists of nothing else than a bunch of atoms,
+ions and electrons bound together by electric forces. All these
+possible forms of matter can be explained by virtue of one simple
+equation: the many-particle Schr\"{o}dinger equation,
+</p>
+
+$$
+\begin{equation}
+	i \hbar \frac{\partial}{\partial t} \Phi( \boldsymbol{r} ; t) = 
+	\left( - \sum_{i}^N \frac{\hbar^2}{2m_i} \frac{\partial^2}{\partial \boldsymbol{r}_i^2}
+	+ \sum_{i < j}^N \frac{e^2 Z_i Z_j }{ | \boldsymbol{r}_i - \boldsymbol{r}_j| } \right)  \Phi( \boldsymbol{r} ; t).
+\label{_auto1}
+\end{equation}
+$$
+
+<p>Here \( \Phi(\boldsymbol{r} ; t) \) is the many-body wavefunction for \( N \) particles, where each particle has its own mass \( m_i \), charge \( Z_i \) and position \( \boldsymbol{r}_i \). The only interaction is the Coulomb interaction \( e^2/r \). </p>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="born-oppenheimer-approximation">Born-Oppenheimer approximation </h2>
+
+<p>In atomic and molecular physics, materials science and quantum chemsitry, the Born-Oppenheimer  approximation arises from the physical problem we want to
+study: the ground state of a collection of interacting ions and
+electrons. Because even the lightest ion is more than a thousand times
+heavier than an electron, we approximate our Hamiltonian  to not include  the dynamics of the
+ions all-together. This is known as the <b>Born-Oppenheimer</b>
+approximation.
+</p>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="time-independent-equation">Time-independent equation </h2>
+
+<p>We then write the time-independent Schr\"{o}dinger
+equation for a collection of \( N \) electrons subject to the
+electric potential created by the fixed ions, labeled \( v_{\mathrm{ext}}(\boldsymbol{r}) \),
+</p>
+
+$$
+	\left( \sum_{i}^N \left( - \frac{\hbar^2}{2m} \frac{\partial^2}{\partial \boldsymbol{r}_i^2}
+	+ v_{\mathrm{ext}}(\boldsymbol{r}_i) \right)
+	 + \sum_{i < j}^N \frac{e^2}{|\boldsymbol{r}_i - \boldsymbol{r}_j|} \right) \Psi(\boldsymbol{r}) = E_0  \Psi( \boldsymbol{r} ),
+$$
+
+<p>where \( \boldsymbol{r}_i \) are the positions of the electrons.</p>
+
+<p>We can replace the explicit Coulomb repulsion with a generic two-body interaction</p>
+$$
+	\sum_{i}^N \left( - \frac{\hbar^2}{2m} \frac{\partial^2}{\partial \boldsymbol{r}_i^2}
+	+ v_{\mathrm{ext}}(\boldsymbol{r}_i) \right)
+	 + \sum_{i < j}^N v(r_{ij}) = E_0  \Psi( \boldsymbol{r} ),
+$$
+
+<p>where \( r_{ij}=\vert \boldsymbol{r}_i-\boldsymbol{r}_j\vert \). </p>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="potential-term">Potential term </h2>
+<p>The potential
+\( v_{\mathrm{ext}}(\boldsymbol{r}_i) \) is created by the charged ions,
+</p>
+$$
+	v_{\mathrm{ext}}(\boldsymbol{r}_i) = - \sum_j \frac{e^2 Z_j}{| \boldsymbol{r}_i - \boldsymbol{R}_j|}
+$$
+
+<p>where \( \boldsymbol{R} \) is the (static) positions of the ions and \( Z_j \) their
+charge.
+</p>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="the-one-body-density">The one-body density </h2>
+
+<p>The one-body reduced density matrix of a many-body system at zero
+temperature gives direct access to many observables, such as the charge density,
+kinetic energy and occupation numbers. In a coordinate representation it is defined as
+as the expectation value of the number operator
+</p>
+$$
+\hat{n}(\boldsymbol{r})=\sum_{i=1}^N\delta(\boldsymbol{r}-\boldsymbol{r}_i),
+$$
+
+<p>resulting in </p>
+$$
+n(\boldsymbol{r})=\frac{\langle \Psi \vert \hat{n}(\boldsymbol{r}) \vert \Psi \rangle}{\langle \Psi\vert \Psi \rangle}.
+$$
+
+<p>Here \( \Psi \) can be any state. In the equations that follow we assume it has been normalized properly.</p>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="one-body-density">One-body density  </h2>
+
+<p>The one-body or just electronic density here, is thus obtained by integrating out all electron
+degrees of freedom except one, that is (setting \( \boldsymbol{r}=\boldsymbol{r}_1 \))
+</p>
+$$
+	n(\boldsymbol{r})=n(\boldsymbol{r}_1) = \int d^3 \boldsymbol{r}_2 \cdots d^3 \boldsymbol{r}_N
+		\left| \Psi (\boldsymbol{r}_1 \cdots \boldsymbol{r}_n) \right|^2.
+$$
+
+<p>If \( \Psi \) is a single reference Slater determinant defined in terms of the single-particle functions \( \psi_i \), then we have </p>
+$$
+	n(\boldsymbol{r})=\sum_{i=1}^N\vert \psi_i(\boldsymbol{r})\vert^2,
+$$
+
+<p>as derived earlier. </p>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="more-on-the-one-body-density">More on the one-body density </h2>
+
+<p>As defined above, 
+the one-body density in coordinate space is defined as 
+</p>
+$$
+\rho({\bf r}) = \sum_{i=1}^N \delta({\bf r}-{\bf r}_i).
+$$
+
+<p>In second quantization this becomes</p>
+$$
+\hat{\rho}({\bf r}) = \sum_{\alpha\beta}^{\infty}\rho_{\alpha,\beta}({\bf r}) a^{\dagger}_{\alpha}a_{\beta}.
+$$
+
+<p>where </p>
+$$
+\rho_{\alpha,\beta}({\bf r})= \psi^*_{\alpha}({\bf r})\psi_{\beta}({\bf r}).
+$$
+
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="number-of-particles">Number of particles  </h2>
+
+<p>The number of particles is \( N \) and the integral of the expectation value of the one-body density operator should give you \( N \) particles. 
+With an appropriate similarity transformation we can make this operator diagonal in the single-particle basis \( \psi_{\alpha} \). 
+That is
+</p>
+$$
+\hat{\rho}({\bf r}) = \sum_{\alpha=1}^{\infty} |\psi_{\alpha}({\bf r})|^2a^{\dagger}_{\alpha}a_{\alpha}=
+\hat{\rho}({\bf r}) = \sum_{\alpha=1}^{\infty}\rho_{\alpha\alpha}({\bf r}) a^{\dagger}_{\alpha}a_{\alpha}.
+$$
+
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="ground-state-function">Ground state function </h2>
+
+<p>The ground state wave function \( |\Psi_0\rangle \) is a linear combination of all \( D \) possible Slater determinants 
+\( |\Phi_i\rangle \)
+</p>
+$$
+|\Psi_0\rangle=\sum_{i=1}^DC_{0i}|\Phi_i\rangle,
+$$
+
+<p>where the  coefficients \( C_{0i} \) could arise from an FCI calculation using a given Slater determinant basis </p>
+$$
+|\Phi_i\rangle = a^{\dagger}_1a^{\dagger}_2\dots a^{\dagger}_N |0\rangle. 
+$$
+
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="ground-state-expectation-value">Ground state expectation value  </h2>
+
+<p>The ground state expectation value of the one-body density operator is</p>
+$$
+\langle\hat{\rho}({\bf r})\rangle = \langle \Psi_0|\sum_{\alpha=1}^{\infty} \rho_{\alpha,\alpha}({\bf r})a^{\dagger}_{\alpha}a_{\alpha}|\Psi_0\rangle,
+$$
+
+<p>which translates into</p>
+$$
+\langle\hat{\rho}({\bf r})\rangle = \sum_{ij=1}^DC^*_{0i}C_{0j}\langle \Phi_i|\sum_{\alpha=1}^{\infty} \rho_{\alpha,\alpha}({\bf r})a^{\dagger}_{\alpha}a_{\alpha}|\Phi_j\rangle.
+$$
+
+<p>Integrating</p>
+$$
+\int \langle\hat{\rho}({\bf r})\rangle d {\bf r},
+$$
+
+<p>gives us \( N \), the number of particles!</p>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="changing-notation">Changing notation </h2>
+
+<p>In order to simplify our notations we will define</p>
+$$
+n({\bf r})=\langle\hat{\rho}({\bf r})\rangle,
+$$
+
+<p>which is the notation we used last week for the onebody density.</p>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="density-functional-theory-definitions-twobody-density">Density Functional Theory, definitions, twobody density </h2>
+
+<p>The two-body densities is a simple extension of the one-body density</p>
+$$
+\rho({\bf r}_1, {\bf r}_2) = \sum_{ij=1}^N \delta({\bf r}_1-{\bf r}_i)\delta({\bf r}_2-{\bf r}_j),
+$$
+
+<p>which in second quantization becomes</p>
+$$
+\hat{\rho}({\bf r}_1, {\bf r}_2) = \sum_{\alpha\beta\gamma\delta}^{\infty}\rho_{\alpha,\gamma}({\bf r}_1)\rho_{\beta,\delta}({\bf r}_2)a^{\dagger}_{\alpha}a^{\dagger}_{\beta}a_{\delta}a_{\gamma},
+$$
+
+<p>meaning that the ground-state two-body density is </p>
+$$
+\langle\hat{\rho}({\bf r}_1, {\bf r}_2) \rangle = \sum_{ij=1}^DC^*_{0i}C_{0j}\langle \Phi_i|\sum_{\alpha\beta\gamma\delta}^{\infty}\rho_{\alpha,\gamma}({\bf r}_1)\rho_{\beta,\delta}({\bf r}_2)a^{\dagger}_{\alpha}a^{\dagger}_{\beta}a_{\delta}a_{\gamma}  |\Phi_j\rangle.
+$$
+
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="hartree-fock-equations-and-density-matrix">Hartree-Fock equations and density matrix </h2>
+
+<p>The Hartree-Fock algorithm can be broken down as follows. We recall that  our Hartree-Fock matrix  is </p>
+$$
+\hat{h}_{\alpha\beta}^{HF}=\langle \alpha \vert\hat{h}_0 \vert \beta \rangle+
+\sum_{j=1}^N\sum_{\gamma\delta} C^*_{j\gamma}C_{j\delta}\langle \alpha\gamma|V|\beta\delta\rangle_{AS}.
+$$
+
+<p>Normally we assume that the single-particle basis \( \vert\beta\rangle \)
+forms an eigenbasis for the operator \( \hat{h}_0 \), meaning that the
+Hartree-Fock matrix becomes
+</p>
+$$
+\hat{h}_{\alpha\beta}^{HF}=\epsilon_{\alpha}\delta_{\alpha,\beta}+
+\sum_{j=1}^N\sum_{\gamma\delta} C^*_{j\gamma}C_{j\delta}\langle \alpha\gamma|V|\beta\delta\rangle_{AS}.
+$$
+
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="hartree-fock-equations-and-density-matrix">Hartree-Fock equations and density matrix </h2>
+
+<p>The Hartree-Fock eigenvalue problem</p>
+$$
+\sum_{\beta}\hat{h}_{\alpha\beta}^{HF}C_{i\beta}=\epsilon_i^{\mathrm{HF}}C_{i\alpha},
+$$
+
+<p>can be written out in a more compact form as</p>
+$$
+\hat{h}^{HF}\hat{C}=\epsilon^{\mathrm{HF}}\hat{C}. 
+$$
+
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="hartree-fock-equations-and-density-matrix">Hartree-Fock equations and density matrix </h2>
+
+<p>The equations are often rewritten in terms of a so-called density matrix,
+which is defined as 
+</p>
+
+$$
+\rho_{\gamma\delta}=\sum_{i=1}^{N}\langle\gamma|i\rangle\langle i|\delta\rangle = \sum_{i=1}^{N}C_{i\gamma}C^*_{i\delta}.
+$$
+
+<p>It means that we can rewrite the Hartree-Fock Hamiltonian as</p>
+$$
+\hat{h}_{\alpha\beta}^{HF}=\epsilon_{\alpha}\delta_{\alpha,\beta}+
+\sum_{\gamma\delta} \rho_{\gamma\delta}\langle \alpha\gamma|V|\beta\delta\rangle_{AS}.
+$$
+
+<p>It is convenient to use the density matrix since we can precalculate in every iteration the product of two eigenvector components \( C \). </p>
+
+<p>Note that \( \langle \alpha\vert\hat{h}_0\vert\beta \rangle \) denotes the
+matrix elements of the one-body part of the starting hamiltonian.
+</p>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="density-functional-theory">Density Functional Theory </h2>
+
+<p>The electronic energy \( E \) is said to be a \emph{functional} of the
+electronic density, \( E[n] \), in the sense that for a given function
+\( n(r) \), there is a single corresponding energy. The  
+\emph{Hohenberg-Kohn theorem} confirms that such
+a functional exists, but does not tell us the form of the
+functional. As shown by Kohn and Sham, the exact ground-state energy
+\( E \) of an \( N \)-electron system can be written as
+</p>
+
+$$
+  E[n] = -\frac{1}{2} \sum_{i=1}^N\int
+  \Psi_i^*(\mathbf{r_1})\nabla_1^2 \Psi_i(\mathbf{r_1}) d\mathbf{r_1}
+  - \int \frac{Z}{r_1} n(\mathbf{r_1}) d\mathbf{r_1} +
+  \frac{1}{2} \int\frac{n(\mathbf{r_1})n(\mathbf{r_2})}{r_{12}}
+  d\mathbf{r_1}d\mathbf{r_2} + E_{XC}[n]
+$$
+
+<p>with \( \Psi_i \) the \emph{Kohn-Sham} (KS) \emph{orbitals}.
+Note that we have limited ourselves to atomic physics here.
+</p>
+
+<p>How do we arrive at the above equation? </p>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="density-functional-theory">Density Functional Theory </h2>
+
+<p>The ground-state charge density is given by</p>
+$$
+  n(\mathbf{r}) = \sum_{i=1}^N|\Psi_i(\mathbf{r})|^2, 
+$$
+
+<p>where the sum is over the occupied Kohn-Sham orbitals. The last term,
+\( E_{XC}[n] \), is the \emph{exchange-correlation energy} which in
+theory takes into account all non-classical electron-electron
+interaction. However, we do not know how to obtain this term exactly,
+and are forced to approximate it. The KS orbitals are found by solving
+the \emph{Kohn-Sham equations}, which can be found by applying a
+variational principle to the electronic energy \( E[n] \). This approach
+is similar to the one used for obtaining the HF equation.
+</p>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="density-functional-theory">Density Functional Theory </h2>
+
+<p>The KS equations reads</p>
+$$
+  \left\{ -\frac{1}{2}\nabla_1^2 - \frac{Z}{r_1} + \int 
+  \frac{n(\mathbf{r_2})}{r_{12}} d\mathbf{r_2} +
+  V_{XC}(\mathbf{r_1}) \right\} \Psi_i(\mathbf{r_1}) =
+  \epsilon_i \Psi_i(\mathbf{r_1})
+$$
+
+<p>where \( \epsilon_i \) are the KS orbital energies, and where the 
+\emph{exchange-correlation potential} is given by
+</p>
+
+$$
+  V_{XC}[n] = \frac{\delta E_{XC}[n]}{\delta n}.
+$$
+
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="density-functional-theory">Density Functional Theory </h2>
+
+<p>The KS equations are solved in a self-consistent fashion. A variety of
+basis set functions  can be used, and the experience gained in HF
+calculations are often useful. The computational time needed for a DFT
+calculation formally scales as the third power of the number of basis
+functions. 
+</p>
+
+<p>The main source of error in DFT usually arises from the approximate
+nature of \( E_{XC} \). In the \emph{local density approximation} (LDA) it
+is approximated as
+</p>
+$$
+  E_{XC} = \int n(\mathbf{r})\epsilon_{XC}[n(\mathbf{r})]
+  d\mathbf{r},
+$$
+
+<p>where \( \epsilon_{XC}[n(\mathbf{r})] \) is the exchange-correlation
+energy per electron in a homogeneous electron gas of constant density.
+The LDA approach is clearly an approximation as the charge is not
+continuously distributed. To account for the inhomogeneity of the
+electron density, a nonlocal correction involving the gradient of
+\( n \) is often added to the exchange-correlation energy.
+</p>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="theorem-i">Theorem I </h2>
+
+<p>We assume that there is a
+\( \mathcal{V}_{\mathrm{ext}} = \) set of external single-particle \alert{potentials} \( v \) so that
+</p>
+$$
+\begin{equation*}
+\hat{H}\vert \phi\rangle = \left(\hat{T}+\hat{V}_{\mathrm{ext}}+\hat{V}\right)=E\vert\phi\rangle,\qquad \hat{V}_{\mathrm{ext}}\in \mathcal{V}_{\mathrm{ext}},\nonumber
+\end{equation*} 
+$$
+
+<p>gives a \alert{non-degenerate} N-particle ground state \( \vert\Psi \rangle_0 \).
+For any system of interacting particles in an external potential 
+\( \mathcal{V}_{\mathrm{ext}} \), the potential \( \mathcal{V}_{\mathrm{ext}} \) is uniquely 
+determined (by a near constant) by the ground state density \( n_0 \).
+There is a corollary to this statement which states that since \( \hat{H} \) is determined, the many-body functions for all states are also determined. All properties of the system are determined via \( n_0 \).
+</p>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="theorem-ii">Theorem II </h2>
+
+<p>The density (assuming normalized state vectors)</p>
+$$
+\begin{equation*}
+  n(\mathbf{r})=\sum_{i}\int dx_{2}\dots \int dx_{N}\vert \Psi(\mathbf{r},x_{2},\dots ,x_{N})\vert^{2} \nonumber
+\end{equation*}
+$$
+
+<p>Theorem II states that a universal functional for the energy \( E[n] \) (function of \( n \)) can be defined for every external potential
+\( \mathcal{U}_{\mathrm{ext}} \). For a given external potential, the exact ground state energy of the system is a global minimum of this functional. The density which minimizes this functional is \( n_0 \).
+</p>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="computing-e-xc-from-em-ab-initio-calculations">Computing \( E_{XC} \) from {\em ab initio} calculations </h2>
+
+<p>Proof I
+Let us prove \( C:\mathcal{V}(C)\longrightarrow \Psi \)  injective:
+</p>
+
+$$
+\begin{equation*}
+  \hat{V}\neq \hat{V}'+\text{constant} \qquad \stackrel{{\LARGE ?}}{\Longrightarrow } \qquad \vert \Psi\rangle\neq \vert \Psi'\rangle, \nonumber
+\end{equation*}
+$$
+
+<p>where \( \hat{V}, \hat{V}' \in \mathcal{V} \)</p>
+
+<p>\textbf{\emph{Reductio ad absurdum}}: 
+Assume \( \vert \Psi\rangle=\vert \Psi'\rangle \) for some \( \hat{V}\neq \hat{V}'+\text{const} \), \( \hat{V}, \hat{V}' \in \mathcal{V} \) 
+</p>
+
+<p>\( \hat{T}\neq \hat{T}[V] \), $\hat{W}\neq \hat{W}[V] \quad \Longrightarrow $\footnote{Unique continuation theorem: \( \vert \Psi\rangle\neq 0 \) on a set of positive measure}</p>
+$$
+\begin{equation*}
+  \left(\hat{V}-\hat{V}'\right)\vert \Psi \rangle=\left(E_{gs}-E_{gs}'\right)\vert \Psi\rangle.\nonumber  
+\end{equation*}
+$$
+
+$$
+\begin{align}
+  \Longrightarrow \qquad & \hat{V}-\hat{V}'=E_{gs}-E_{gs}' \nonumber \\
+  \Longrightarrow \qquad & \hat{V}=\hat{V}'+\text{constant} \qquad \alert{\text{Contradiction!}}\nonumber
+\end{align}
+$$
+
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="computing-e-xc-from-em-ab-initio-calculations">Computing \( E_{XC} \) from {\em ab initio} calculations </h2>
+
+<p>Proof II: Let us prove \( D:\Psi \longrightarrow \mathcal{N} \) injective:</p>
+
+$$
+\begin{equation*}
+  \vert \Psi\rangle\neq \vert \Psi'\rangle \qquad \stackrel{{\LARGE ?}}{\Longrightarrow } \qquad n(\mathbf{r})\neq n'(\mathbf{r}) \nonumber
+\end{equation*}
+$$
+
+<p>\textbf{\emph{Reductio ad absurdum}}: 
+Assume \( n(\mathbf{r})=n'(\mathbf{r}) \) for some \( \vert \Psi\rangle\neq \vert \Psi'\rangle \) 
+</p>
+
+<p>Ritz principle \( \quad \Longrightarrow  \)</p>
+$$
+\begin{equation}
+  E_{gs}=\langle \Psi\vert \hat{H}\vert \Psi\rangle \langle\Psi'\vert \hat{H}\vert \Psi'\rangle.
+\label{_auto2}
+\end{equation}
+$$
+
+$$
+\begin{equation*}
+  \langle\Psi'\vert \hat{H}\vert \Psi'\rangle\langle\Psi'\vert\hat{H}'+\hat{V}-\hat{V}'\vert \Psi'\rangle=E_{gs}'+\int n'(\mathbf{r})[v(\mathbf{r})-v'(\mathbf{r})]d^{3}r \nonumber
+\end{equation*}
+$$
+
+$$
+\begin{equation*}
+  \Longrightarrow \qquad E_{gs}' < E_{gs}+\int n'(\mathbf{r})[v(\mathbf{r})-v'(\mathbf{r})]d^{3}r %\nonumber
+\end{equation*}
+$$
+
+<p>By symmetry</p>
+$$
+\begin{equation*}
+  \Longrightarrow \qquad E_{gs}< E_{gs}'+\int n'(\mathbf{r})[v'(\mathbf{r})-v(\mathbf{r})]d^{3}r %\nonumber
+\end{equation*}
+$$
+
+<!-- (\ref{eq:ineq1}) \& (\ref{eq:ineq2}) \( \qquad \Longrightarrow  \) -->
+$$
+\begin{equation*}
+  E_{gs}+E_{gs}' < E_{gs}+E_{gs}' \qquad \text{\alert{Contradiction!}} \nonumber
+\end{equation*}
+$$
+
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="computing-e-xc-from-em-ab-initio-calculations">Computing \( E_{XC} \) from {\em ab initio} calculations </h2>
+
+<p>Define</p>
+$$
+\begin{equation}
+  E_{v_{0}}[n]:=\langle \Psi[n]\vert \hat{T}+\hat{W}+\hat{V_{0}}\vert \Psi[n]\rangle
+\label{_auto3}
+\end{equation}
+$$
+
+<p>\( \hat{V_{0}} = \) external potential, \( n_{0}(\mathbf{r}) = \) corresponding GS density, \( E_{0} = \) GS energy</p>
+
+<p>Rayleigh-Ritz principle \( \quad \Longrightarrow \quad  \) \alert{second statement of H-K theorem}:</p>
+$$
+\begin{equation*}
+  E_{0}=\min_{n\in \mathcal{N}}E_{v_{0}}[n] \nonumber
+\end{equation*}
+$$
+
+<p>Last satement of H-K theorem:</p>
+$$
+\begin{equation}
+  F_{HK}[n]\equiv \langle\Psi[n]\vert\hat{T}+\hat{W}\vert \Psi[n]\rangle
+\label{_auto4}
+\end{equation}
+$$
+
+<p>is \emph{universal} (\( F_{HK}\neq F_{HK}[\hat{V_{0}}] \))</p>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="the-kohn-sham-scheme">The Kohn-Sham scheme </h2>
+
+<p>The classic Kohn-Sham scheme:</p>
+$$
+\left(-\frac{\hbar^{2}}{2m}\nabla^{2}+v_{s,0}(\mathbf{r})\right)\phi_{i,0}(\mathbf{r})=\varepsilon_{i}\phi_{i,0}(\mathbf{r}), \qquad \varepsilon_{1}\geq \varepsilon_{2} \geq \dots, 
+$$
+
+<p>where</p>
+$$
+  v_{s,0}(\mathbf{r})=v_{0}(\mathbf{r})+\int d^{3}r' w(\mathbf{r},\mathbf{r}')n_{0}(\mathbf{r}')+v_{\mathrm{XC}}([n_{0}];\mathbf{r})
+$$
+
+<p>The density is calculated as</p>
+$$
+  n_{0}(\mathbf{r})=\sum_{i=1}^{N}\vert \phi_{i,0}(\mathbf{r})\vert^{2}.
+$$
+
+<p>The equation is solved selfconsistently.
+The total energy
+</p>
+$$
+E=\sum_{i=1}^{N}\varepsilon_{i}-\frac{1}{2}\int d^{3}r d^{3}r'n(\mathbf{r})w(\mathbf{r},\mathbf{r}')n(\mathbf{r}')+E_{\mathrm{XC}}[n]-\int d^{3}r v_{\mathrm{XC}}([n];\mathbf{r})n(\mathbf{r})
+$$
+
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="exchange-energy-and-correlation-energy">Exchange Energy and Correlation Energy </h2>
+
+<div class="alert alert-block alert-block alert-text-normal">
+<b>The Hartree-Fock equation</b>
+<p>
+$$
+      \begin{align*}
+        \left(-\frac{\hbar^{2}}{2m}\nabla^{2}+v_{0}(\mathbf{r})+\int d^{3}r'w(\mathbf{r},\mathbf{r}')n(\mathbf{r}')\right)\phi_{k}(\mathbf{r})& \nonumber \\
+        \underbrace{-\sum_{l=1}^{N}\int d^{3}r'\phi_{l}^{*}(\mathbf{r}')w(\mathbf{r},\mathbf{r}')\phi_{k}(\mathbf{r}')\phi_{l}(\mathbf{r})}_{\text{exchange term}}
+        &=\varepsilon_{k}\phi_{k}(\mathbf{r}), \nonumber
+      \end{align*}
+$$
+</div>
+
+<div class="alert alert-block alert-block alert-text-normal">
+<b>Kohn-Sham equation:</b>
+<p>
+$$
+\left(-\frac{\hbar^{2}}{2m}\nabla^{2}+v_{0}(\mathbf{r})
++\int d^{3}r'w(\mathbf{r},\mathbf{r}')n(\mathbf{r}')
+ +\underbrace{v_{\mathrm{XC}}([n];\mathbf{r})}_{\text{exchange + correlation}}
+\right)\phi_{k}(\mathbf{r})=\varepsilon_{k}\phi_{k}(\mathbf{r}).
+$$
+</div>
+      
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="many-body-perturbation-theory">Many-body perturbation theory </h2>
+
+<p>We assume here that we are only interested in the ground state of the system and 
+expand the exact wave function in term of a series of Slater determinants
+</p>
+$$
+\vert \Psi_0\rangle = \vert \Phi_0\rangle + \sum_{m=1}^{\infty}C_m\vert \Phi_m\rangle,
+$$
+
+<p>where we have assumed that the true ground state is dominated by the 
+solution of the unperturbed problem, that is
+</p>
+$$
+\hat{H}_0\vert \Phi_0\rangle= W_0\vert \Phi_0\rangle.
+$$
+
+<p>The state \( \vert \Psi_0\rangle \) is not normalized, rather we have used an intermediate 
+normalization \( \langle \Phi_0 \vert \Psi_0\rangle=1 \) since we have \( \langle \Phi_0\vert \Phi_0\rangle=1 \). 
+</p>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="many-body-perturbation-theory">Many-body perturbation theory </h2>
+
+<p>The Schroedinger equation is</p>
+$$
+\hat{H}\vert \Psi_0\rangle = E\vert \Psi_0\rangle,
+$$
+
+<p>and multiplying the latter from the left with \( \langle \Phi_0\vert  \) gives</p>
+$$
+\langle \Phi_0\vert \hat{H}\vert \Psi_0\rangle = E\langle \Phi_0\vert \Psi_0\rangle=E,
+$$
+
+<p>and subtracting from this equation</p>
+$$
+\langle \Psi_0\vert \hat{H}_0\vert \Phi_0\rangle= W_0\langle \Psi_0\vert \Phi_0\rangle=W_0,
+$$
+
+<p>and using the fact that the both operators \( \hat{H} \) and \( \hat{H}_0 \) are hermitian 
+results in
+</p>
+$$
+\Delta E=E-W_0=\langle \Phi_0\vert \hat{H}_I\vert \Psi_0\rangle,
+$$
+
+<p>which is an exact result. We call this quantity the correlation energy.</p>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="many-body-perturbation-theory">Many-body perturbation theory </h2>
+
+<p>This equation forms the starting point for all perturbative derivations. However,
+as it stands it represents nothing but a mere formal rewriting of Schroedinger's equation and is not of much practical use. The exact wave function \( \vert \Psi_0\rangle \) is unknown. In order to obtain a perturbative expansion, we need to expand the exact wave function in terms of the interaction \( \hat{H}_I \). 
+</p>
+
+<p>Here we have assumed that our model space defined by the operator \( \hat{P} \) is one-dimensional, meaning that</p>
+$$
+\hat{P}= \vert \Phi_0\rangle \langle \Phi_0\vert ,
+$$
+
+<p>and</p>
+$$
+\hat{Q}=\sum_{m=1}^{\infty}\vert \Phi_m\rangle \langle \Phi_m\vert .
+$$
+
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="many-body-perturbation-theory">Many-body perturbation theory </h2>
+
+<p>We can thus rewrite the exact wave function as</p>
+$$
+\vert \Psi_0\rangle= (\hat{P}+\hat{Q})\vert \Psi_0\rangle=\vert \Phi_0\rangle+\hat{Q}\vert \Psi_0\rangle.
+$$
+
+<p>Going back to the Schr\"odinger equation, we can rewrite it as, adding and a subtracting a term \( \omega \vert \Psi_0\rangle \) as</p>
+$$
+\left(\omega-\hat{H}_0\right)\vert \Psi_0\rangle=\left(\omega-E+\hat{H}_I\right)\vert \Psi_0\rangle,
+$$
+
+<p>where \( \omega \) is an energy variable to be specified later. </p>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="many-body-perturbation-theory">Many-body perturbation theory </h2>
+
+<p>We assume also that the resolvent of \( \left(\omega-\hat{H}_0\right) \) exits, that is
+it has an inverse which defined the unperturbed Green's function as
+</p>
+$$
+\left(\omega-\hat{H}_0\right)^{-1}=\frac{1}{\left(\omega-\hat{H}_0\right)}.
+$$
+
+<p>We can rewrite Schroedinger's equation as</p>
+$$
+\vert \Psi_0\rangle=\frac{1}{\omega-\hat{H}_0}\left(\omega-E+\hat{H}_I\right)\vert \Psi_0\rangle,
+$$
+
+<p>and multiplying from the left with \( \hat{Q} \) results in</p>
+$$
+\hat{Q}\vert \Psi_0\rangle=\frac{\hat{Q}}{\omega-\hat{H}_0}\left(\omega-E+\hat{H}_I\right)\vert \Psi_0\rangle,
+$$
+
+<p>which is possible since we have defined the operator \( \hat{Q} \) in terms of the eigenfunctions of \( \hat{H} \).</p>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="many-body-perturbation-theory">Many-body perturbation theory </h2>
+
+<p>These operators commute meaning that</p>
+$$
+\hat{Q}\frac{1}{\left(\omega-\hat{H}_0\right)}\hat{Q}=\hat{Q}\frac{1}{\left(\omega-\hat{H}_0\right)}=\frac{\hat{Q}}{\left(\omega-\hat{H}_0\right)}.
+$$
+
+<p>With these definitions we can in turn define the wave function as </p>
+$$
+\vert \Psi_0\rangle=\vert \Phi_0\rangle+\frac{\hat{Q}}{\omega-\hat{H}_0}\left(\omega-E+\hat{H}_I\right)\vert \Psi_0\rangle.
+$$
+
+<p>This equation is again nothing but a formal rewrite of Schr\"odinger's equation
+and does not represent a practical calculational scheme.  
+It is a non-linear equation in two unknown quantities, the energy \( E \) and the exact
+wave function \( \vert \Psi_0\rangle \). We can however start with a guess for \( \vert \Psi_0\rangle \) on the right hand side of the last equation.
+</p>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="many-body-perturbation-theory">Many-body perturbation theory </h2>
+
+<p> The most common choice is to start with the function which is expected to exhibit the largest overlap with the wave function we are searching after, namely \( \vert \Phi_0\rangle \). This can again be inserted in the solution for \( \vert \Psi_0\rangle \) in an iterative fashion and if we continue along these lines we end up with</p>
+$$
+\vert \Psi_0\rangle=\sum_{i=0}^{\infty}\left\{\frac{\hat{Q}}{\omega-\hat{H}_0}\left(\omega-E+\hat{H}_I\right)\right\}^i\vert \Phi_0\rangle, 
+$$
+
+<p>for the wave function and</p>
+$$
+\Delta E=\sum_{i=0}^{\infty}\langle \Phi_0\vert \hat{H}_I\left\{\frac{\hat{Q}}{\omega-\hat{H}_0}\left(\omega-E+\hat{H}_I\right)\right\}^i\vert \Phi_0\rangle, 
+$$
+
+<p>which is now  a perturbative expansion of the exact energy in terms of the interaction
+\( \hat{H}_I \) and the unperturbed wave function \( \vert \Psi_0\rangle \).
+</p>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="many-body-perturbation-theory">Many-body perturbation theory </h2>
+
+<p>In our equations for \( \vert \Psi_0\rangle \) and \( \Delta E \) in terms of the unperturbed
+solutions \( \vert \Phi_i\rangle \)  we have still an undetermined parameter \( \omega \)
+and a dependecy on the exact energy \( E \). Not much has been gained thus from a practical computational point of view. 
+</p>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="many-body-perturbation-theory">Many-body perturbation theory </h2>
+
+<p>In Brilluoin-Wigner perturbation theory it is customary to set \( \omega=E \). This results in the following perturbative expansion for the energy \( \Delta E \)</p>
+$$
+\Delta E=\sum_{i=0}^{\infty}\langle \Phi_0\vert \hat{H}_I\left\{\frac{\hat{Q}}{\omega-\hat{H}_0}\left(\omega-E+\hat{H}_I\right)\right\}^i\vert \Phi_0\rangle=
+$$
+
+$$
+\langle \Phi_0\vert \left(\hat{H}_I+\hat{H}_I\frac{\hat{Q}}{E-\hat{H}_0}\hat{H}_I+
+\hat{H}_I\frac{\hat{Q}}{E-\hat{H}_0}\hat{H}_I\frac{\hat{Q}}{E-\hat{H}_0}\hat{H}_I+\dots\right)\vert \Phi_0\rangle. 
+$$
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="many-body-perturbation-theory">Many-body perturbation theory </h2>
+
+$$
+\Delta E=\sum_{i=0}^{\infty}\langle \Phi_0\vert \hat{H}_I\left\{\frac{\hat{Q}}{\omega-\hat{H}_0}\left(\omega-E+\hat{H}_I\right)\right\}^i\vert \Phi_0\rangle=$$
+
+$$
+\langle \Phi_0\vert \left(\hat{H}_I+\hat{H}_I\frac{\hat{Q}}{E-\hat{H}_0}\hat{H}_I+
+\hat{H}_I\frac{\hat{Q}}{E-\hat{H}_0}\hat{H}_I\frac{\hat{Q}}{E-\hat{H}_0}\hat{H}_I+\dots\right)\vert \Phi_0\rangle. 
+$$
+
+<p>This expression depends however on the exact energy \( E \) and is again not very convenient from a practical point of view. It can obviously be solved iteratively, by starting with a guess for  \( E \) and then solve till some kind of self-consistency criterion has been reached. </p>
+
+<p>Actually, the above expression is nothing but a rewrite again of the full Schr\"odinger equation. </p>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="many-body-perturbation-theory">Many-body perturbation theory </h2>
+
+<p>Defining \( e=E-\hat{H}_0 \) and recalling that \( \hat{H}_0 \) commutes with 
+\( \hat{Q} \) by construction and that \( \hat{Q} \) is an idempotent operator
+\( \hat{Q}^2=\hat{Q} \). 
+Using this equation in the above expansion for \( \Delta E \) we can write the denominator 
+</p>
+$$
+\hat{Q}\frac{1}{\hat{e}-\hat{Q}\hat{H}_I\hat{Q}}=
+$$
+
+$$
+\hat{Q}\left[\frac{1}{\hat{e}}+\frac{1}{\hat{e}}\hat{Q}\hat{H}_I\hat{Q}
+\frac{1}{\hat{e}}+\frac{1}{\hat{e}}\hat{Q}\hat{H}_I\hat{Q}
+\frac{1}{\hat{e}}\hat{Q}\hat{H}_I\hat{Q}\frac{1}{\hat{e}}+\dots\right]\hat{Q}.
+$$
+
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="many-body-perturbation-theory">Many-body perturbation theory </h2>
+
+<p>Inserted in the expression for \( \Delta E \) leads to </p>
+$$
+\Delta E=
+\langle \Phi_0\vert \hat{H}_I+\hat{H}_I\hat{Q}\frac{1}{E-\hat{H}_0-\hat{Q}\hat{H}_I\hat{Q}}\hat{Q}\hat{H}_I\vert \Phi_0\rangle. 
+$$
+
+<p>In RS perturbation theory we set \( \omega = W_0 \) and obtain the following expression for the energy difference</p>
+$$
+\Delta E=\sum_{i=0}^{\infty}\langle \Phi_0\vert \hat{H}_I\left\{\frac{\hat{Q}}{W_0-\hat{H}_0}\left(\hat{H}_I-\Delta E\right)\right\}^i\vert \Phi_0\rangle=
+$$
+
+$$
+\langle \Phi_0\vert \left(\hat{H}_I+\hat{H}_I\frac{\hat{Q}}{W_0-\hat{H}_0}(\hat{H}_I-\Delta E)+
+\hat{H}_I\frac{\hat{Q}}{W_0-\hat{H}_0}(\hat{H}_I-\Delta E)\frac{\hat{Q}}{W_0-\hat{H}_0}(\hat{H}_I-\Delta E)+\dots\right)\vert \Phi_0\rangle.
+$$
+
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="many-body-perturbation-theory">Many-body perturbation theory </h2>
+
+<p>Recalling that \( \hat{Q} \) commutes with \( \hat{H_0} \) and since \( \Delta E \) is a constant we obtain that</p>
+$$
+\hat{Q}\Delta E\vert \Phi_0\rangle = \hat{Q}\Delta E\vert \hat{Q}\Phi_0\rangle = 0.
+$$
+
+<p>Inserting this results in the expression for the energy results in</p>
+$$
+\Delta E=\langle \Phi_0\vert \left(\hat{H}_I+\hat{H}_I\frac{\hat{Q}}{W_0-\hat{H}_0}\hat{H}_I+
+\hat{H}_I\frac{\hat{Q}}{W_0-\hat{H}_0}(\hat{H}_I-\Delta E)\frac{\hat{Q}}{W_0-\hat{H}_0}\hat{H}_I+\dots\right)\vert \Phi_0\rangle.
+$$
+
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="many-body-perturbation-theory">Many-body perturbation theory </h2>
+
+<p>We can now this expression in terms of a perturbative expression in terms
+of \( \hat{H}_I \) where we iterate the last expression in terms of \( \Delta E \)
+</p>
+$$
+\Delta E=\sum_{i=1}^{\infty}\Delta E^{(i)}.
+$$
+
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="many-body-perturbation-theory">Many-body perturbation theory </h2>
+
+<p>We get the following expression for \( \Delta E^{(i)} \)</p>
+$$
+\Delta E^{(1)}=\langle \Phi_0\vert \hat{H}_I\vert \Phi_0\rangle,
+$$
+
+<p>which is just the contribution to first order in perturbation theory,</p>
+$$
+\Delta E^{(2)}=\langle\Phi_0\vert \hat{H}_I\frac{\hat{Q}}{W_0-\hat{H}_0}\hat{H}_I\vert \Phi_0\rangle, 
+$$
+
+<p>which is the contribution to second order.</p>
+
+$$
+\Delta E^{(3)}=\langle \Phi_0\vert \hat{H}_I\frac{\hat{Q}}{W_0-\hat{H}_0}\hat{H}_I\frac{\hat{Q}}{W_0-\hat{H}_0}\hat{H}_I\Phi_0\rangle-
+\langle\Phi_0\vert \hat{H}_I\frac{\hat{Q}}{W_0-\hat{H}_0}\langle \Phi_0\vert \hat{H}_I\vert \Phi_0\rangle\frac{\hat{Q}}{W_0-\hat{H}_0}\hat{H}_I\vert \Phi_0\rangle,
+$$
+
+<p>being the third-order contribution. </p>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="interpreting-the-correlation-energy-and-the-wave-operator">Interpreting the correlation energy and the wave operator </h2>
+
+<p>In the shell-model lectures we showed that we could rewrite the exact state function for say the ground state, as a linear expansion in terms of all possible Slater determinants. That is, we 
+define the ansatz for the ground state as 
+</p>
+$$
+|\Phi_0\rangle = \left(\prod_{i\le F}\hat{a}_{i}^{\dagger}\right)|0\rangle,
+$$
+
+<p>where the index \( i \) defines different single-particle states up to the Fermi level. We have assumed that we have \( N \) fermions. </p>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="many-body-perturbation-theory">Many-body perturbation theory </h2>
+
+<p>A given one-particle-one-hole (\( 1p1h \)) state can be written as</p>
+$$
+|\Phi_i^a\rangle = \hat{a}_{a}^{\dagger}\hat{a}_i|\Phi_0\rangle,
+$$
+
+<p>while a \( 2p2h \) state can be written as</p>
+$$
+|\Phi_{ij}^{ab}\rangle = \hat{a}_{a}^{\dagger}\hat{a}_{b}^{\dagger}\hat{a}_j\hat{a}_i|\Phi_0\rangle,
+$$
+
+<p>and a general \( ApAh \) state as </p>
+$$
+|\Phi_{ijk\dots}^{abc\dots}\rangle = \hat{a}_{a}^{\dagger}\hat{a}_{b}^{\dagger}\hat{a}_{c}^{\dagger}\dots\hat{a}_k\hat{a}_j\hat{a}_i|\Phi_0\rangle.
+$$
+
+<p>We use letters \( ijkl\dots \) for states below the Fermi level and \( abcd\dots \) for states above the Fermi level. A general single-particle state is given by letters \( pqrs\dots \).</p>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="many-body-perturbation-theory">Many-body perturbation theory </h2>
+
+<p>We can then expand our exact state function for the ground state 
+as
+</p>
+$$
+|\Psi_0\rangle=C_0|\Phi_0\rangle+\sum_{ai}C_i^a|\Phi_i^a\rangle+\sum_{abij}C_{ij}^{ab}|\Phi_{ij}^{ab}\rangle+\dots
+=(C_0+\hat{C})|\Phi_0\rangle,
+$$
+
+<p>where we have introduced the so-called correlation operator </p>
+$$
+\hat{C}=\sum_{ai}C_i^a\hat{a}_{a}^{\dagger}\hat{a}_i  +\sum_{abij}C_{ij}^{ab}\hat{a}_{a}^{\dagger}\hat{a}_{b}^{\dagger}\hat{a}_j\hat{a}_i+\dots
+$$
+
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="many-body-perturbation-theory">Many-body perturbation theory </h2>
+
+<p>Since the normalization of \( \Psi_0 \) is at our disposal and since \( C_0 \) is by hypothesis non-zero, we may arbitrarily set \( C_0=1 \) with 
+corresponding proportional changes in all other coefficients. Using this so-called intermediate normalization we have
+</p>
+$$
+\langle \Psi_0 | \Phi_0 \rangle = \langle \Phi_0 | \Phi_0 \rangle = 1, 
+$$
+
+<p>resulting in </p>
+$$
+|\Psi_0\rangle=(1+\hat{C})|\Phi_0\rangle.
+$$
+
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="many-body-perturbation-theory">Many-body perturbation theory </h2>
+
+<p>In an FCI calculation, the unknown coefficients in \( \hat{C} \) are the 
+eigenvectors which result from the diagonalization of the Hamiltonian matrix.
+</p>
+
+<p>How can we use perturbation theory to determine the same coefficients? Let us study the contributions to second order in the interaction, namely</p>
+$$
+\Delta E^{(2)}=\langle\Phi_0\vert \hat{H}_I\frac{\hat{Q}}{W_0-\hat{H}_0}\hat{H}_I\vert \Phi_0\rangle.
+$$
+
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="many-body-perturbation-theory">Many-body perturbation theory </h2>
+
+<p>The intermediate states given by \( \hat{Q} \) can at most be of a \( 2p-2h \) nature if we have a two-body Hamiltonian. This means that second order in the perturbation theory can have \( 1p-1h \) and \( 2p-2h \) at most as intermediate states. When we diagonalize, these contributions are included to infinite order. This means that higher-orders in perturbation theory bring in more complicated correlations. </p>
+
+<p>If we limit the attention to a Hartree-Fock basis, then we have that
+\( \langle\Phi_0\vert \hat{H}_I \vert 2p-2h\rangle \) is the only contribution and the contribution to the energy reduces to
+</p>
+$$
+\Delta E^{(2)}=\frac{1}{4}\sum_{abij}\langle ij\vert \hat{v}\vert ab\rangle \frac{\langle ab\vert \hat{v}\vert ij\rangle}{\epsilon_i+\epsilon_j-\epsilon_a-\epsilon_b}.
+$$
+
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="many-body-perturbation-theory">Many-body perturbation theory </h2>
+
+<p>If we compare this to the correlation energy obtained from full configuration interaction theory with a Hartree-Fock basis, we found that</p>
+$$
+E-E_0 =\Delta E=
+\sum_{abij}\langle ij | \hat{v}| ab \rangle C_{ij}^{ab},
+$$
+
+<p>where the energy \( E_0 \) is the reference energy and \( \Delta E \) defines the so-called correlation energy.</p>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="many-body-perturbation-theory">Many-body perturbation theory </h2>
+
+<p>We see that if we set</p>
+$$
+C_{ij}^{ab} =\frac{1}{4}\frac{\langle ab \vert \hat{v} \vert ij \rangle}{\epsilon_i+\epsilon_j-\epsilon_a-\epsilon_b},
+$$
+
+<p>we have a perfect agreement between FCI and MBPT. However, FCI includes such \( 2p-2h \) correlations to infinite order. In order to make a meaningful comparison we would at least need to sum such correlations to infinite order in perturbation theory. </p>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+<h2 id="many-body-perturbation-theory">Many-body perturbation theory </h2>
+
+<p>Summing up, we can see that</p>
+<ul>
+<li> MBPT introduces order-by-order specific correlations and we make comparisons with exact calculations like FCI</li>
+<li> At every order, we can calculate all contributions since they are well-known and either tabulated or calculated on the fly.</li>
+<li> MBPT is a non-variational theory and there is no guarantee that higher orders will improve the convergence.</li> 
+<li> However, since FCI calculations are limited by the size of the Hamiltonian matrices to diagonalize (today's most efficient codes can attach dimensionalities of ten billion basis states, MBPT can function as an approximative method which gives a straightforward (but tedious) calculation recipe.</li> 
+<li> MBPT has been widely used to compute effective interactions for the nuclear shell-model.</li>
+<li> But there are better methods which sum to infinite order important correlations. Coupled cluster theory is one of these methods.</li> 
+</ul>
+<!-- ------------------- end of main content --------------- -->
+<center style="font-size:80%">
+<!-- copyright --> &copy; 1999-2025, Morten Hjorth-Jensen. Released under CC Attribution-NonCommercial 4.0 license
+</center>
+</body>
+</html>
+

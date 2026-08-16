@@ -1,0 +1,1645 @@
+<!--
+HTML file automatically generated from DocOnce source
+(https://github.com/doconce/doconce/)
+doconce format html week40-reveal.html week40-reveal reveal --html_slide_theme=beige
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocOnce: https://github.com/doconce/doconce/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Week 40: Mean-field theories and Hartree-Fock equations">
+<title>Week 40: Mean-field theories and Hartree-Fock equations</title>
+
+<!-- reveal.js: https://lab.hakim.se/reveal-js/ -->
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+<link rel="stylesheet" href="reveal.js/css/reveal.css">
+<link rel="stylesheet" href="reveal.js/css/theme/beige.css" id="theme">
+<!--
+<link rel="stylesheet" href="reveal.js/css/reveal.css">
+<link rel="stylesheet" href="reveal.js/css/theme/beige.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/beigesmall.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/solarized.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/serif.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/night.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/moon.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/sky.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/darkgray.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/default.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/cbc.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/simula.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/black.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/white.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/league.css" id="theme">
+-->
+
+<!-- For syntax highlighting -->
+<link rel="stylesheet" href="reveal.js/lib/css/zenburn.css">
+
+<!-- Printing and PDF exports -->
+<script>
+var link = document.createElement( 'link' );
+link.rel = 'stylesheet';
+link.type = 'text/css';
+link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+document.getElementsByTagName( 'head' )[0].appendChild( link );
+</script>
+
+<style type="text/css">
+hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+p.caption { width: 80%; font-size: 60%; font-style: italic; text-align: left; }
+hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+.reveal .alert-text-small   { font-size: 80%;  }
+.reveal .alert-text-large   { font-size: 130%; }
+.reveal .alert-text-normal  { font-size: 90%;  }
+.reveal .alert {
+  padding:8px 35px 8px 14px; margin-bottom:18px;
+  text-shadow:0 1px 0 rgba(255,255,255,0.5);
+  border:5px solid #bababa;
+  -webkit-border-radius: 14px; -moz-border-radius: 14px;
+  border-radius:14px;
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  background-size: 38px;
+  padding-left: 30px; /* 55px; if icon */
+}
+.reveal .alert-block {padding-top:14px; padding-bottom:14px}
+.reveal .alert-block > p, .alert-block > ul {margin-bottom:1em}
+/*.reveal .alert li {margin-top: 1em}*/
+.reveal .alert-block p+p {margin-top:5px}
+/*.reveal .alert-notice { background-image: url(https://hplgit.github.io/doconce/bundled/html_images/small_gray_notice.png); }
+.reveal .alert-summary  { background-image:url(https://hplgit.github.io/doconce/bundled/html_images/small_gray_summary.png); }
+.reveal .alert-warning { background-image: url(https://hplgit.github.io/doconce/bundled/html_images/small_gray_warning.png); }
+.reveal .alert-question {background-image:url(https://hplgit.github.io/doconce/bundled/html_images/small_gray_question.png); } */
+/* Override reveal.js table border */
+.reveal table td {
+  border: 0;
+}
+
+<style type="text/css">
+/* Override h1, h2, ... styles */
+h1 { font-size: 2.8em; }
+h2 { font-size: 1.5em; }
+h3 { font-size: 1.4em; }
+h4 { font-size: 1.3em; }
+h1, h2, h3, h4 { font-weight: bold; line-height: 1.2; }
+body { overflow: auto; } /* vertical scrolling */
+hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+p.caption { width: 80%; font-size: 60%; font-style: italic; text-align: left; }
+hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+.slide .alert-text-small   { font-size: 80%;  }
+.slide .alert-text-large   { font-size: 130%; }
+.slide .alert-text-normal  { font-size: 90%;  }
+.slide .alert {
+  padding:8px 35px 8px 14px; margin-bottom:18px;
+  text-shadow:0 1px 0 rgba(255,255,255,0.5);
+  border:5px solid #bababa;
+    -webkit-border-radius:14px; -moz-border-radius:14px;
+  border-radius:14px
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  background-size: 38px;
+  padding-left: 30px; /* 55px; if icon */
+}
+.slide .alert-block {padding-top:14px; padding-bottom:14px}
+.slide .alert-block > p, .alert-block > ul {margin-bottom:0}
+/*.slide .alert li {margin-top: 1em}*/
+.deck .alert-block p+p {margin-top:5px}
+/*.slide .alert-notice { background-image: url(https://hplgit.github.io/doconce/
+bundled/html_images//small_gray_notice.png); }
+.slide .alert-summary  { background-image:url(https://hplgit.github.io/doconce/
+bundled/html_images//small_gray_summary.png); }
+.slide .alert-warning { background-image: url(https://hplgit.github.io/doconce/
+bundled/html_images//small_gray_warning.png); }
+.slide .alert-question {background-image:url(https://hplgit.github.io/doconce/
+bundled/html_images/small_gray_question.png); } */
+.dotable table, .dotable th, .dotable tr, .dotable tr td {
+  border: 2px solid black;
+  border-collapse: collapse;
+  padding: 2px;
+}
+</style>
+
+
+<!-- Styles for table layout of slides -->
+<style type="text/css">
+td.padding {
+  padding-top:20px;
+  padding-bottom:20px;
+  padding-right:50px;
+  padding-left:50px;
+}
+</style>
+
+</head>
+
+
+<body>
+<div class="reveal">
+<div class="slides">
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "none"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+  }
+});
+</script>
+<script type="text/javascript" async
+ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+
+<section>
+<!-- ------------------- main content ---------------------- -->
+<center>
+<h1 style="text-align: center;">Week 40: Mean-field theories and Hartree-Fock equations</h1>
+</center>  <!-- document title -->
+
+<!-- author(s): Morten Hjorth-Jensen -->
+<center>
+<b>Morten Hjorth-Jensen</b> 
+</center>
+<!-- institution -->
+<center>
+<b>Department of Physics and Center for Computing in Science Education, University of Oslo, Norway</b>
+</center>
+<br>
+<center>
+<h4>Week 40, September 29-October 3</h4>
+</center> <!-- date -->
+<br>
+
+
+<center style="font-size:80%">
+<!-- copyright --> &copy; 1999-2025, Morten Hjorth-Jensen. Released under CC Attribution-NonCommercial 4.0 license
+</center>
+</section>
+
+<section>
+<h2 id="week-40-september-29-october-3-2025">Week 40, September 29-October 3, 2025 </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b>Topics to be covered</b>
+<p>
+<p>Thursday:</p>
+<ol>
+<p><li> Deriving the Hartree-Fock equations</li>
+
+<p><li> Efficient ways of implementing the Hartree-Fock algorithm</li>
+<p><li> Video of lecture at <a href="https://youtu.be/Qkfm_OKLdb8" target="_blank"><tt>https://youtu.be/Qkfm_OKLdb8</tt></a></li>
+<p><li> Whiteboard notes at URL:https://github.com/ManyBodyPhysics/FYS4480/blob/master/doc/HandwrittenNotes/2025/FYS4480October2.pdf"</li>    
+</ol>
+<p>
+<p>Friday:</p>
+<ol>
+<p><li> Stability of Hartree-Fock equations and Thouless' theorem</li>
+<p><li> Video of lecture at <a href="https://youtu.be/GoamgpAOvxE" target="_blank"><tt>https://youtu.be/GoamgpAOvxE</tt></a></li>
+<p><li> Whiteboard notes at <a href="https://github.com/ManyBodyPhysics/FYS4480/blob/master/doc/HandwrittenNotes/2024/FYS4480October3.pdf" target="_blank"><tt>https://github.com/ManyBodyPhysics/FYS4480/blob/master/doc/HandwrittenNotes/2024/FYS4480October3.pdf</tt></a></li>
+
+<p><li> Lecture Material: These slides and Szabo and Ostlund, sections 3.1-3.4</li>
+<p><li> Seventh exercise set at <a href="https://github.com/ManyBodyPhysics/FYS4480/blob/master/doc/Exercises/2025/ExercisesWeek40.pdf" target="_blank"><tt>https://github.com/ManyBodyPhysics/FYS4480/blob/master/doc/Exercises/2025/ExercisesWeek40.pdf</tt></a></li>
+</ol>
+</div>
+</section>
+
+<section>
+<h2 id="why-hartree-fock">Why Hartree-Fock? </h2>
+
+<p>Hartree-Fock (HF) theory is an algorithm for finding an approximative expression for the ground state of a given Hamiltonian. The basic ingredients are</p>
+<ul>
+
+<p><li> Define a single-particle basis \( \{\psi_{\alpha}\} \) so that</li>
+</ul>
+<p>
+<p>&nbsp;<br>
+$$ 
+\hat{h}^{\mathrm{HF}}\psi_{\alpha} = \varepsilon_{\alpha}\psi_{\alpha}
+$$
+<p>&nbsp;<br>
+
+<p>with the Hartree-Fock Hamiltonian defined as</p>
+<p>&nbsp;<br>
+$$
+\hat{h}^{\mathrm{HF}}=\hat{t}+\hat{u}_{\mathrm{ext}}+\hat{u}^{\mathrm{HF}}
+$$
+<p>&nbsp;<br>
+</section>
+
+<section>
+<h2 id="why-hartree-fock">Why Hartree-Fock? </h2>
+
+<ol>
+<p><li> The term  \( \hat{u}^{\mathrm{HF}} \) is a single-particle potential to be determined by the HF algorithm.</li>
+<p><li> The HF algorithm means to choose \( \hat{u}^{\mathrm{HF}} \) in order to have</li> 
+</ol>
+<p>
+<p>&nbsp;<br>
+$$ \langle \hat{H} \rangle = E^{\mathrm{HF}}= \langle \Phi_0 | \hat{H}|\Phi_0 \rangle
+$$
+<p>&nbsp;<br>
+
+<p>that is to find a local minimum with a Slater determinant \( \Phi_0 \) being the ansatz for the ground state. </p>
+<ol>
+<p><li> The variational principle ensures that \( E^{\mathrm{HF}} \ge E_0 \), with \( E_0 \) the exact ground state energy.</li>
+</ol>
+</section>
+
+<section>
+<h2 id="why-hartree-fock-theory">Why Hartree-Fock theory  </h2>
+
+<p>We will show that the Hartree-Fock Hamiltonian \( \hat{h}^{\mathrm{HF}} \) equals our definition of the operator \( \hat{f} \) discussed in connection with the new definition of the normal-ordered Hamiltonian (see later lectures), that is we have, for a specific matrix element</p>
+<p>&nbsp;<br>
+$$
+\langle p |\hat{h}^{\mathrm{HF}}| q \rangle =\langle p |\hat{f}| q \rangle=\langle p|\hat{t}+\hat{u}_{\mathrm{ext}}|q \rangle +\sum_{i\le F} \langle pi | \hat{V} | qi\rangle_{AS},
+$$
+<p>&nbsp;<br>
+
+<p>meaning that</p>
+<p>&nbsp;<br>
+$$
+\langle p|\hat{u}^{\mathrm{HF}}|q\rangle = \sum_{i\le F} \langle pi | \hat{V} | qi\rangle_{AS}.
+$$
+<p>&nbsp;<br>
+</section>
+
+<section>
+<h2 id="why-hartree-fock-theory">Why Hartree-Fock theory  </h2>
+
+<p>The so-called Hartree-Fock potential \( \hat{u}^{\mathrm{HF}} \) brings an
+explicit medium dependence due to the summation over all
+single-particle states below the Fermi level \( F \). It brings also in an
+explicit dependence on the two-body interaction (in nuclear physics we
+can also have complicated three- or higher-body forces). The two-body
+interaction, with its contribution from the other bystanding fermions,
+creates an effective mean field in which a given fermion moves, in
+addition to the external potential \( \hat{u}_{\mathrm{ext}} \) which
+confines the motion of the fermion. For systems like nuclei, there is
+no external confining potential. Nuclei are examples of self-bound
+systems, where the binding arises due to the intrinsic nature of the
+strong force. For nuclear systems thus, there would be no external
+one-body potential in the Hartree-Fock Hamiltonian.
+</p>
+</section>
+
+<section>
+<h2 id="variational-calculus-and-lagrangian-multipliers">Variational Calculus and Lagrangian Multipliers  </h2>
+
+<p>The calculus of variations involves 
+problems where the quantity to be minimized or maximized is an integral. 
+</p>
+
+<p>In the general case we have an integral of the type</p>
+<p>&nbsp;<br>
+$$ 
+E[\Phi]= \int_a^b f(\Phi(x),\frac{\partial \Phi}{\partial x},x)dx,
+$$
+<p>&nbsp;<br>
+
+<p>where \( E \) is the quantity which is sought minimized or maximized.</p>
+</section>
+
+<section>
+<h2 id="variational-calculus-and-lagrangian-multipliers">Variational Calculus and Lagrangian Multipliers  </h2>
+
+<p>The problem is that although \( f \) is a function of the variables
+\( \Phi \), \( \partial \Phi/\partial x \) and \( x \), the exact dependence of
+\( \Phi \) on \( x \) is not known.  This means again that even though the
+integral has fixed limits \( a \) and \( b \), the path of integration is not
+known. In our case the unknown quantities are the single-particle wave
+functions and we wish to choose an integration path which makes the
+functional \( E[\Phi] \) stationary. This means that we want to find
+minima, or maxima or saddle points. In physics we search normally for
+minima.  Our task is therefore to find the minimum of \( E[\Phi] \) so
+that its variation \( \delta E \) is zero subject to specific
+constraints. In our case the constraints appear as the integral which
+expresses the orthogonality of the single-particle wave functions.
+The constraints can be treated via the technique of Lagrangian
+multipliers
+</p>
+</section>
+
+<section>
+<h2 id="variational-calculus-and-lagrangian-multipliers">Variational Calculus and Lagrangian Multipliers  </h2>
+
+<p>Let us specialize to the expectation value of the energy for one particle in three-dimensions.
+This expectation value reads
+</p>
+<p>&nbsp;<br>
+$$
+  E=\int dxdydz \psi^*(x,y,z) \hat{H} \psi(x,y,z),
+$$
+<p>&nbsp;<br>
+
+<p>with the constraint</p>
+<p>&nbsp;<br>
+$$
+ \int dxdydz \psi^*(x,y,z) \psi(x,y,z)=1,
+$$
+<p>&nbsp;<br>
+
+<p>and a Hamiltonian</p>
+<p>&nbsp;<br>
+$$
+\hat{H}=-\frac{1}{2}\nabla^2+V(x,y,z).
+$$
+<p>&nbsp;<br>
+</section>
+
+<section>
+<h2 id="variational-calculus-and-lagrangian-multipliers">Variational Calculus and Lagrangian Multipliers  </h2>
+
+<p>We will, for the sake of notational convenience,  skip the variables \( x,y,z \) below, and write for example \( V(x,y,z)=V \).</p>
+
+<p>The integral involving the kinetic energy can be written as, with the function \( \psi \) vanishing
+strongly for large values of \( x,y,z \) (given here by the limits \( a \) and \( b \)), 
+</p>
+<p>&nbsp;<br>
+$$
+  \int_a^b dxdydz \psi^* \left(-\frac{1}{2}\nabla^2\right) \psi dxdydz = \psi^*\nabla\psi|_a^b+\int_a^b dxdydz\frac{1}{2}\nabla\psi^*\nabla\psi.
+$$
+<p>&nbsp;<br>
+
+<p>We will drop the limits \( a \) and \( b \) in the remaining discussion. 
+Inserting this expression into the expectation value for the energy and taking the variational minimum  we obtain
+</p>
+<p>&nbsp;<br>
+$$
+\delta E = \delta \left\{\int dxdydz\left( \frac{1}{2}\nabla\psi^*\nabla\psi+V\psi^*\psi\right)\right\} = 0.
+$$
+<p>&nbsp;<br>
+</section>
+
+<section>
+<h2 id="variational-calculus-and-lagrangian-multipliers">Variational Calculus and Lagrangian Multipliers  </h2>
+
+<p>The constraint appears in integral form as </p>
+<p>&nbsp;<br>
+$$
+ \int dxdydz \psi^* \psi=\mathrm{constant},
+$$
+<p>&nbsp;<br>
+
+<p>and multiplying with a Lagrangian multiplier \( \lambda \) and taking the variational minimum we obtain the final variational equation</p>
+<p>&nbsp;<br>
+$$
+\delta \left\{\int dxdydz\left( \frac{1}{2}\nabla\psi^*\nabla\psi+V\psi^*\psi-\lambda\psi^*\psi\right)\right\} = 0.
+$$
+<p>&nbsp;<br>
+</section>
+
+<section>
+<h2 id="variational-calculus-and-lagrangian-multipliers">Variational Calculus and Lagrangian Multipliers  </h2>
+
+<p>We introduce the function  \( f \)</p>
+<p>&nbsp;<br>
+$$
+  f =  \frac{1}{2}\nabla\psi^*\nabla\psi+V\psi^*\psi-\lambda\psi^*\psi=
+\frac{1}{2}(\psi^*_x\psi_x+\psi^*_y\psi_y+\psi^*_z\psi_z)+V\psi^*\psi-\lambda\psi^*\psi,
+$$
+<p>&nbsp;<br>
+
+<p>where we have skipped the dependence on \( x,y,z \) and introduced the shorthand \( \psi_x \), \( \psi_y \) and \( \psi_z \)  for the various derivatives.</p>
+
+<p>For \( \psi^* \) the Euler-Lagrange  equations yield</p>
+<p>&nbsp;<br>
+$$
+\frac{\partial f}{\partial \psi^*}- \frac{\partial }{\partial x}\frac{\partial f}{\partial \psi^*_x}-\frac{\partial }{\partial y}\frac{\partial f}{\partial \psi^*_y}-\frac{\partial }{\partial z}\frac{\partial f}{\partial \psi^*_z}=0,
+$$
+<p>&nbsp;<br>
+
+<p>which results in </p>
+<p>&nbsp;<br>
+$$
+    -\frac{1}{2}(\psi_{xx}+\psi_{yy}+\psi_{zz})+V\psi=\lambda \psi.
+$$
+<p>&nbsp;<br>
+</section>
+
+<section>
+<h2 id="variational-calculus-and-lagrangian-multipliers">Variational Calculus and Lagrangian Multipliers  </h2>
+
+<p>We can then identify the  Lagrangian multiplier as the energy of the system. The last equation is 
+nothing but the standard 
+Schroedinger equation and the variational  approach discussed here provides 
+a powerful method for obtaining approximate solutions of the wave function.
+</p>
+</section>
+
+<section>
+<h2 id="deriving-the-hartree-fock-equations">Deriving the Hartree-Fock equations </h2>
+
+<p>We will derive the Hartree-Fock equations by expanding the single-particle functions in a
+known basis and vary the coefficients, that is, the new
+single-particle wave function is written as a linear expansion in
+terms of a fixed chosen orthogonal basis (for example the well-known
+harmonic oscillator functions or the hydrogen-like functions etc).  We
+define our new Hartree-Fock single-particle basis by performing a
+unitary transformation on our previous basis (labelled with greek
+indices) as
+</p>
+
+<p>&nbsp;<br>
+$$
+\begin{equation}
+\psi_p^{HF}  = \sum_{\lambda} C_{p\lambda}\phi_{\lambda}. \tag{1}
+\end{equation}
+$$
+<p>&nbsp;<br>
+
+<p>In this case we vary the coefficients \( C_{p\lambda} \). If the basis has infinitely many solutions, we need
+to truncate the above sum.  We assume that the basis \( \phi_{\lambda} \) is orthogonal.
+</p>
+</section>
+
+<section>
+<h2 id="hartree-fock-by-varying-the-coefficients-of-a-wave-function-expansion">Hartree-Fock by varying the coefficients of a wave function expansion </h2>
+
+<p>It is normal to choose a single-particle basis defined as the eigenfunctions
+of parts of the full Hamiltonian. The typical situation consists of the solutions of the one-body part of the Hamiltonian, that is we have
+</p>
+<p>&nbsp;<br>
+$$
+\hat{h}_0\phi_{\lambda}=\epsilon_{\lambda}\phi_{\lambda}.
+$$
+<p>&nbsp;<br>
+
+<p>The single-particle wave functions \( \phi_{\lambda}(\mathbf{r}) \), defined by the quantum numbers \( \lambda \) and \( \mathbf{r} \)
+are defined as the overlap 
+</p>
+<p>&nbsp;<br>
+$$
+   \phi_{\lambda}(\mathbf{r})  = \langle \mathbf{r} | \lambda \rangle .
+$$
+<p>&nbsp;<br>
+</section>
+
+<section>
+<h2 id="hartree-fock-by-varying-the-coefficients-of-a-wave-function-expansion">Hartree-Fock by varying the coefficients of a wave function expansion </h2>
+
+<p>In deriving the Hartree-Fock equations, we will expand the
+single-particle functions in a known basis and vary the coefficients,
+that is, the new single-particle wave function is written as a linear
+expansion in terms of a fixed chosen orthogonal basis (for example the
+well-known harmonic oscillator functions or the hydrogen-like
+functions etc).
+</p>
+
+<p>We stated that a unitary transformation keeps the orthogonality. To see this consider first a basis of vectors \( \mathbf{v}_i \),</p>
+<p>&nbsp;<br>
+$$
+\mathbf{v}_i = \begin{bmatrix} v_{i1} \\ \dots \\ \dots \\v_{in} \end{bmatrix}
+$$
+<p>&nbsp;<br>
+</section>
+
+<section>
+<h2 id="hartree-fock-by-varying-the-coefficients-of-a-wave-function-expansion">Hartree-Fock by varying the coefficients of a wave function expansion </h2>
+
+<p>We assume that the basis is orthogonal, that is </p>
+<p>&nbsp;<br>
+$$
+\mathbf{v}_j^T\mathbf{v}_i = \delta_{ij}.
+$$
+<p>&nbsp;<br>
+
+<p>An orthogonal or unitary transformation</p>
+<p>&nbsp;<br>
+$$
+\mathbf{w}_i=\mathbf{U}\mathbf{v}_i,
+$$
+<p>&nbsp;<br>
+
+<p>preserves the dot product and orthogonality since</p>
+<p>&nbsp;<br>
+$$
+\mathbf{w}_j^T\mathbf{w}_i=(\mathbf{U}\mathbf{v}_j)^T\mathbf{U}\mathbf{v}_i=\mathbf{v}_j^T\mathbf{U}^T\mathbf{U}\mathbf{v}_i= \mathbf{v}_j^T\mathbf{v}_i = \delta_{ij}.
+$$
+<p>&nbsp;<br>
+</section>
+
+<section>
+<h2 id="hartree-fock-by-varying-the-coefficients-of-a-wave-function-expansion">Hartree-Fock by varying the coefficients of a wave function expansion </h2>
+
+<p>This means that if the coefficients \( C_{p\lambda} \) belong to a unitary or orthogonal trasformation (using the Dirac bra-ket notation)</p>
+<p>&nbsp;<br>
+$$
+\vert p\rangle  = \sum_{\lambda} C_{p\lambda}\vert\lambda\rangle,
+$$
+<p>&nbsp;<br>
+
+<p>orthogonality is preserved, that is \( \langle \alpha \vert \beta\rangle = \delta_{\alpha\beta} \)
+and \( \langle p \vert q\rangle = \delta_{pq} \). 
+</p>
+
+<p>This propertry is extremely useful when we build up a basis of many-body Stater determinant based states. </p>
+
+<b>Note also that although a basis \( \vert \alpha\rangle \) contains an infinity of states, for practical calculations we have always to make some truncations.</b>
+</section>
+
+<section>
+<h2 id="hartree-fock-by-varying-the-coefficients-of-a-wave-function-expansion">Hartree-Fock by varying the coefficients of a wave function expansion </h2>
+
+<p>Before we develop the Hartree-Fock equations, there is another very
+useful property of determinants that we will use both in connection
+with Hartree-Fock calculations. This applies also to our previous
+discussion on full configuration interaction theory.
+</p>
+
+<p>Consider the following determinant</p>
+<p>&nbsp;<br>
+$$
+\left| \begin{array}{cc} \alpha_1b_{11}+\alpha_2sb_{12}& a_{12}\\
+                         \alpha_1b_{21}+\alpha_2b_{22}&a_{22}\end{array} \right|=\alpha_1\left|\begin{array}{cc} b_{11}& a_{12}\\
+                         b_{21}&a_{22}\end{array} \right|+\alpha_2\left| \begin{array}{cc} b_{12}& a_{12}\\b_{22}&a_{22}\end{array} \right|
+$$
+<p>&nbsp;<br>
+</section>
+
+<section>
+<h2 id="hartree-fock-by-varying-the-coefficients-of-a-wave-function-expansion">Hartree-Fock by varying the coefficients of a wave function expansion </h2>
+
+<p>We can generalize this to  an \( n\times n \) matrix and have </p>
+<p>&nbsp;<br>
+$$
+\left| \begin{array}{cccccc} a_{11}& a_{12} & \dots & \sum_{k=1}^n c_k b_{1k} &\dots & a_{1n}\\
+a_{21}& a_{22} & \dots & \sum_{k=1}^n c_k b_{2k} &\dots & a_{2n}\\
+\dots & \dots & \dots & \dots & \dots & \dots \\
+\dots & \dots & \dots & \dots & \dots & \dots \\
+a_{n1}& a_{n2} & \dots & \sum_{k=1}^n c_k b_{nk} &\dots & a_{nn}\end{array} \right|=
+\sum_{k=1}^n c_k\left| \begin{array}{cccccc} a_{11}& a_{12} & \dots &  b_{1k} &\dots & a_{1n}\\
+a_{21}& a_{22} & \dots &  b_{2k} &\dots & a_{2n}\\
+\dots & \dots & \dots & \dots & \dots & \dots\\
+\dots & \dots & \dots & \dots & \dots & \dots\\
+a_{n1}& a_{n2} & \dots &  b_{nk} &\dots & a_{nn}\end{array} \right| .
+$$
+<p>&nbsp;<br>
+
+<p>This is a property we will use in our Hartree-Fock discussions. </p>
+</section>
+
+<section>
+<h2 id="hartree-fock-by-varying-the-coefficients-of-a-wave-function-expansion">Hartree-Fock by varying the coefficients of a wave function expansion </h2>
+
+<p>We can generalize the previous results, now 
+with all elements \( a_{ij} \)  being given as functions of 
+linear combinations  of various coefficients \( c \) and elements \( b_{ij} \),
+</p>
+<p>&nbsp;<br>
+$$
+\left| \begin{array}{cccccc} \sum_{k=1}^n b_{1k}c_{k1}& \sum_{k=1}^n b_{1k}c_{k2} & \dots & \sum_{k=1}^n b_{1k}c_{kj}  &\dots & \sum_{k=1}^n b_{1k}c_{kn}\\
+\sum_{k=1}^n b_{2k}c_{k1}& \sum_{k=1}^n b_{2k}c_{k2} & \dots & \sum_{k=1}^n b_{2k}c_{kj} &\dots & \sum_{k=1}^n b_{2k}c_{kn}\\
+\dots & \dots & \dots & \dots & \dots & \dots \\
+\dots & \dots & \dots & \dots & \dots &\dots \\
+\sum_{k=1}^n b_{nk}c_{k1}& \sum_{k=1}^n b_{nk}c_{k2} & \dots & \sum_{k=1}^n b_{nk}c_{kj} &\dots & \sum_{k=1}^n b_{nk}c_{kn}\end{array} \right|=det(\mathbf{C})det(\mathbf{B}),
+$$
+<p>&nbsp;<br>
+
+<p>where \( det(\mathbf{C}) \) and \( det(\mathbf{B}) \) are the determinants of \( n\times n \) matrices
+with elements \( c_{ij} \) and \( b_{ij} \) respectively.  
+This is a property we will use in our Hartree-Fock discussions. Convince yourself about the correctness of the above expression by setting \( n=2 \). 
+</p>
+</section>
+
+<section>
+<h2 id="hartree-fock-by-varying-the-coefficients-of-a-wave-function-expansion">Hartree-Fock by varying the coefficients of a wave function expansion </h2>
+
+<p>With our definition of the new basis in terms of an orthogonal basis we have</p>
+<p>&nbsp;<br>
+$$
+\psi_p(x)  = \sum_{\lambda} C_{p\lambda}\phi_{\lambda}(x).
+$$
+<p>&nbsp;<br>
+
+<p>If the coefficients \( C_{p\lambda} \) belong to an orthogonal or unitary matrix, the new basis
+is also orthogonal. 
+Our Slater determinant in the new basis \( \psi_p(x) \) is written as
+</p>
+<p>&nbsp;<br>
+$$
+\frac{1}{\sqrt{N!}}
+\left| \begin{array}{ccccc} \psi_{p}(x_1)& \psi_{p}(x_2)& \dots & \dots & \psi_{p}(x_N)\\
+                            \psi_{q}(x_1)&\psi_{q}(x_2)& \dots & \dots & \psi_{q}(x_N)\\  
+                            \dots & \dots & \dots & \dots & \dots \\
+                            \dots & \dots & \dots & \dots & \dots \\
+                     \psi_{t}(x_1)&\psi_{t}(x_2)& \dots & \dots & \psi_{t}(x_N)\end{array} \right|=\frac{1}{\sqrt{N!}}
+\left| \begin{array}{ccccc} \sum_{\lambda} C_{p\lambda}\phi_{\lambda}(x_1)& \sum_{\lambda} C_{p\lambda}\phi_{\lambda}(x_2)& \dots & \dots & \sum_{\lambda} C_{p\lambda}\phi_{\lambda}(x_N)\\
+                            \sum_{\lambda} C_{q\lambda}\phi_{\lambda}(x_1)&\sum_{\lambda} C_{q\lambda}\phi_{\lambda}(x_2)& \dots & \dots & \sum_{\lambda} C_{q\lambda}\phi_{\lambda}(x_N)\\  
+                            \dots & \dots & \dots & \dots & \dots \\
+                            \dots & \dots & \dots & \dots & \dots \\
+                     \sum_{\lambda} C_{t\lambda}\phi_{\lambda}(x_1)&\sum_{\lambda} C_{t\lambda}\phi_{\lambda}(x_2)& \dots & \dots & \sum_{\lambda} C_{t\lambda}\phi_{\lambda}(x_N)\end{array} \right|,
+$$
+<p>&nbsp;<br>
+
+<p>which is nothing but \( det(\mathbf{C})det(\Phi) \), with \( det(\Phi) \) being the determinant given by the basis functions \( \phi_{\lambda}(x) \). </p>
+</section>
+
+<section>
+<h2 id="hartree-fock-by-varying-the-coefficients-of-a-wave-function-expansion">Hartree-Fock by varying the coefficients of a wave function expansion </h2>
+
+<p>In our discussions hereafter we will use our definitions of single-particle states above and below the Fermi (\( F \)) level given by the labels
+\( ijkl\dots \le F \) for so-called single-hole states and \( abcd\dots > F \) for so-called particle states.
+For general single-particle states we employ the labels \( pqrs\dots \). 
+</p>
+
+<p>We have</p>
+<p>&nbsp;<br>
+$$
+  E[\Phi] 
+  = \sum_{\mu=1}^N \langle \mu | h | \mu \rangle +
+  \frac{1}{2}\sum_{{\mu}=1}^N\sum_{{\nu}=1}^N \langle \mu\nu|\hat{v}|\mu\nu\rangle_{AS},
+$$
+<p>&nbsp;<br>
+
+<p>we found the expression for the energy functional in terms of the basis function \( \phi_{\lambda}(\mathbf{r}) \). We then  varied the above energy functional with respect to the basis functions \( |\mu \rangle \). </p>
+</section>
+
+<section>
+<h2 id="hartree-fock-by-varying-the-coefficients-of-a-wave-function-expansion">Hartree-Fock by varying the coefficients of a wave function expansion </h2>
+
+<p>Now we are interested in defining a new basis defined in terms of
+a chosen basis as defined in Eq.&nbsp;<a href="#mjx-eqn-1">(1)</a>. We can then rewrite the energy functional as
+</p>
+<p>&nbsp;<br>
+$$
+\begin{equation}
+  E[\Phi^{HF}] 
+  = \sum_{i=1}^N \langle i | h | i \rangle +
+  \frac{1}{2}\sum_{ij=1}^N\langle ij|\hat{v}|ij\rangle_{AS}, \tag{2}
+\end{equation}
+$$
+<p>&nbsp;<br>
+
+<p>where \( \Phi^{HF} \) is the new Slater determinant defined by the new basis of Eq.&nbsp;<a href="#mjx-eqn-1">(1)</a>. </p>
+</section>
+
+<section>
+<h2 id="hartree-fock-by-varying-the-coefficients-of-a-wave-function-expansion">Hartree-Fock by varying the coefficients of a wave function expansion </h2>
+
+<p>Using Eq.&nbsp;<a href="#mjx-eqn-1">(1)</a> we can rewrite Eq.&nbsp;<a href="#mjx-eqn-2">(2)</a> as </p>
+<p>&nbsp;<br>
+$$
+\begin{equation}
+  E[\Psi] 
+  = \sum_{i=1}^N \sum_{\alpha\beta} C^*_{i\alpha}C_{i\beta}\langle \alpha | h | \beta \rangle +
+  \frac{1}{2}\sum_{ij=1}^N\sum_{{\alpha\beta\gamma\delta}} C^*_{i\alpha}C^*_{j\beta}C_{i\gamma}C_{j\delta}\langle \alpha\beta|\hat{v}|\gamma\delta\rangle_{AS}. \tag{3}
+\end{equation}
+$$
+<p>&nbsp;<br>
+</section>
+
+<section>
+<h2 id="hartree-fock-by-varying-the-coefficients-of-a-wave-function-expansion">Hartree-Fock by varying the coefficients of a wave function expansion </h2>
+
+<p>We wish now to minimize the above functional. We introduce again a set of Lagrange multipliers, noting that
+since \( \langle i | j \rangle = \delta_{i,j} \) and \( \langle \alpha | \beta \rangle = \delta_{\alpha,\beta} \), 
+the coefficients \( C_{i\gamma} \) obey the relation
+</p>
+<p>&nbsp;<br>
+$$
+ \langle i | j \rangle=\delta_{i,j}=\sum_{\alpha\beta} C^*_{i\alpha}C_{i\beta}\langle \alpha | \beta \rangle=
+\sum_{\alpha} C^*_{i\alpha}C_{i\alpha},
+$$
+<p>&nbsp;<br>
+
+<p>which allows us to define a functional to be minimized that reads</p>
+<p>&nbsp;<br>
+$$
+\begin{equation}
+  F[\Phi^{HF}]=E[\Phi^{HF}] - \sum_{i=1}^N\epsilon_i\sum_{\alpha} C^*_{i\alpha}C_{i\alpha}.
+\tag{4}
+\end{equation}
+$$
+<p>&nbsp;<br>
+</section>
+
+<section>
+<h2 id="hartree-fock-by-varying-the-coefficients-of-a-wave-function-expansion">Hartree-Fock by varying the coefficients of a wave function expansion </h2>
+
+<p>Minimizing with respect to \( C^*_{i\alpha} \), remembering that the equations for \( C^*_{i\alpha} \) and \( C_{i\alpha} \)
+can be written as two  independent equations, we obtain
+</p>
+<p>&nbsp;<br>
+$$
+\frac{d}{dC^*_{i\alpha}}\left[  E[\Phi^{HF}] - \sum_{j}\epsilon_j\sum_{\alpha} C^*_{j\alpha}C_{j\alpha}\right]=0,
+$$
+<p>&nbsp;<br>
+
+<p>which yields for every single-particle state \( i \) and index \( \alpha \) (recalling that the coefficients \( C_{i\alpha} \) are matrix elements of a unitary (or orthogonal for a real symmetric matrix) matrix)
+the following Hartree-Fock equations
+</p>
+<p>&nbsp;<br>
+$$
+\sum_{\beta} C_{i\beta}\langle \alpha | h | \beta \rangle+
+\sum_{j=1}^N\sum_{\beta\gamma\delta} C^*_{j\beta}C_{j\delta}C_{i\gamma}\langle \alpha\beta|\hat{v}|\gamma\delta\rangle_{AS}=\epsilon_i^{HF}C_{i\alpha}.
+$$
+<p>&nbsp;<br>
+</section>
+
+<section>
+<h2 id="hartree-fock-by-varying-the-coefficients-of-a-wave-function-expansion">Hartree-Fock by varying the coefficients of a wave function expansion </h2>
+
+<p>We can rewrite this equation as (changing dummy variables)</p>
+<p>&nbsp;<br>
+$$
+\sum_{\beta} \left\{\langle \alpha | h | \beta \rangle+
+\sum_{j}^N\sum_{\gamma\delta} C^*_{j\gamma}C_{j\delta}\langle \alpha\gamma|\hat{v}|\beta\delta\rangle_{AS}\right\}C_{i\beta}=\epsilon_i^{HF}C_{i\alpha}.
+$$
+<p>&nbsp;<br>
+
+<p>Note that the sums over greek indices run over the number of basis set functions (in principle an infinite number).</p>
+</section>
+
+<section>
+<h2 id="hartree-fock-by-varying-the-coefficients-of-a-wave-function-expansion">Hartree-Fock by varying the coefficients of a wave function expansion </h2>
+
+<p>Defining </p>
+<p>&nbsp;<br>
+$$
+h_{\alpha\beta}^{HF}=\langle \alpha | h | \beta \rangle+
+\sum_{j=1}^N\sum_{\gamma\delta} C^*_{j\gamma}C_{j\delta}\langle \alpha\gamma|\hat{v}|\beta\delta\rangle_{AS},
+$$
+<p>&nbsp;<br>
+
+<p>we can rewrite the new equations as </p>
+<p>&nbsp;<br>
+$$
+\begin{equation}
+\sum_{\beta}h_{\alpha\beta}^{HF}C_{i\beta}=\epsilon_i^{HF}C_{i\alpha}. \tag{5}
+\end{equation}
+$$
+<p>&nbsp;<br>
+
+<p>The latter is nothing but a standard eigenvalue problem. </p>
+
+<p>We see that we do not need to compute any integrals in an iterative
+procedure for solving the equations.  It suffices to tabulate the
+matrix elements \( \langle \alpha | h | \beta \rangle \) and \( \langle
+\alpha\gamma|\hat{v}|\beta\delta\rangle_{AS} \) once and for
+all. Successive iterations require thus only a look-up in tables over
+one-body and two-body matrix elements. These details will be discussed
+below when we solve the Hartree-Fock equations numerical.
+</p>
+</section>
+
+<section>
+<h2 id="hartree-fock-algorithm">Hartree-Fock algorithm </h2>
+
+<p>Our Hartree-Fock matrix  is thus</p>
+<p>&nbsp;<br>
+$$
+\hat{h}_{\alpha\beta}^{HF}=\langle \alpha | \hat{h}_0 | \beta \rangle+
+\sum_{j=1}^N\sum_{\gamma\delta} C^*_{j\gamma}C_{j\delta}\langle \alpha\gamma|\hat{v}|\beta\delta\rangle_{AS}.
+$$
+<p>&nbsp;<br>
+
+<p>The Hartree-Fock equations are solved in an iterative waym starting with a guess for the coefficients \( C_{j\gamma}=\delta_{j,\gamma} \) and solving the equations by diagonalization till the new single-particle energies
+\( \epsilon_i^{\mathrm{HF}} \) do not change anymore by a prefixed quantity. 
+</p>
+</section>
+
+<section>
+<h2 id="hartree-fock-by-varying-the-coefficients-of-a-wave-function-expansion">Hartree-Fock by varying the coefficients of a wave function expansion </h2>
+
+<p>Normally we assume that the single-particle basis \( |\beta\rangle \) forms an eigenbasis for the operator
+\( \hat{h}_0 \), meaning that the Hartree-Fock matrix becomes  
+</p>
+<p>&nbsp;<br>
+$$
+\hat{h}_{\alpha\beta}^{HF}=\epsilon_{\alpha}\delta_{\alpha,\beta}+
+\sum_{j=1}^N\sum_{\gamma\delta} C^*_{j\gamma}C_{j\delta}\langle \alpha\gamma|\hat{v}|\beta\delta\rangle_{AS}.
+$$
+<p>&nbsp;<br>
+
+<p>The Hartree-Fock eigenvalue problem</p>
+<p>&nbsp;<br>
+$$
+\sum_{\beta}\hat{h}_{\alpha\beta}^{HF}C_{i\beta}=\epsilon_i^{\mathrm{HF}}C_{i\alpha},
+$$
+<p>&nbsp;<br>
+
+<p>can be written out in a more compact form as</p>
+<p>&nbsp;<br>
+$$
+\hat{h}^{HF}\hat{C}=\epsilon^{\mathrm{HF}}\hat{C}. 
+$$
+<p>&nbsp;<br>
+</section>
+
+<section>
+<h2 id="hartree-fock-by-varying-the-coefficients-of-a-wave-function-expansion">Hartree-Fock by varying the coefficients of a wave function expansion </h2>
+
+<p>The Hartree-Fock equations are, in their simplest form, solved in an
+iterative way, starting with a guess for the coefficients
+\( C_{i\alpha} \). We label the coefficients as \( C_{i\alpha}^{(n)} \), where
+the subscript \( n \) stands for iteration \( n \).  To set up the algorithm
+we can proceed as follows:
+</p>
+
+<ul>
+ <p><li> We start with a guess \( C_{i\alpha}^{(0)}=\delta_{i,\alpha} \). Alternatively, we could have used random starting values as long as the vectors are normalized. Another possibility is to give states below the Fermi level a larger weight.</li>
+ <p><li> The Hartree-Fock matrix simplifies then to (assuming that the coefficients \( C_{i\alpha}  \)  are real)</li>
+</ul>
+<p>
+<p>&nbsp;<br>
+$$
+\hat{h}_{\alpha\beta}^{HF}=\epsilon_{\alpha}\delta_{\alpha,\beta}+
+\sum_{j = 1}^N\sum_{\gamma\delta} C_{j\gamma}^{(0)}C_{j\delta}^{(0)}\langle \alpha\gamma|\hat{v}|\beta\delta\rangle_{AS}.
+$$
+<p>&nbsp;<br>
+</section>
+
+<section>
+<h2 id="hartree-fock-by-varying-the-coefficients-of-a-wave-function-expansion">Hartree-Fock by varying the coefficients of a wave function expansion </h2>
+
+<p>Solving the Hartree-Fock eigenvalue problem yields then new eigenvectors \( C_{i\alpha}^{(1)} \) and eigenvalues
+\( \epsilon_i^{HF(1)} \). 
+</p>
+<ul>
+ <p><li> With the new eigenvalues we can set up a new Hartree-Fock potential</li> 
+</ul>
+<p>
+<p>&nbsp;<br>
+$$
+\sum_{j = 1}^N\sum_{\gamma\delta} C_{j\gamma}^{(1)}C_{j\delta}^{(1)}\langle \alpha\gamma|\hat{v}|\beta\delta\rangle_{AS}.
+$$
+<p>&nbsp;<br>
+
+<p>The diagonalization with the new Hartree-Fock potential yields new eigenvectors and eigenvalues.
+This process is continued till for example
+</p>
+<p>&nbsp;<br>
+$$
+\frac{\sum_{p} |\epsilon_i^{(n)}-\epsilon_i^{(n-1)}|}{m} \le \lambda,  
+$$
+<p>&nbsp;<br>
+
+<p>where \( \lambda \) is a user prefixed quantity (\( \lambda \sim 10^{-8} \) or smaller) and \( p \) runs over all calculated single-particle
+energies and \( m \) is the number of single-particle states.
+</p>
+</section>
+
+<section>
+<h2 id="using-the-density-matrix">Using the density matrix </h2>
+
+<p>The equations are often rewritten in terms of a so-called density matrix,
+which is defined as 
+</p>
+<p>&nbsp;<br>
+$$
+\begin{equation}
+\rho_{\gamma\delta}=\sum_{i=1}^{N}\langle\gamma|i\rangle\langle i|\delta\rangle = \sum_{i=1}^{N}C_{i\gamma}C^*_{i\delta}.
+\tag{6}
+\end{equation}
+$$
+<p>&nbsp;<br>
+
+<p>It means that we can rewrite the Hartree-Fock Hamiltonian as</p>
+<p>&nbsp;<br>
+$$
+\hat{h}_{\alpha\beta}^{HF}=\epsilon_{\alpha}\delta_{\alpha,\beta}+
+\sum_{\gamma\delta} \rho_{\gamma\delta}\langle \alpha\gamma|V|\beta\delta\rangle_{AS}.
+$$
+<p>&nbsp;<br>
+
+<p>It is convenient to use the density matrix since we can precalculate in every iteration the product of two eigenvector components \( C \). </p>
+</section>
+
+<section>
+<h2 id="code-example">Code example </h2>
+
+
+<!-- code=python (!bc pycod) typeset with pygments style "perldoc" -->
+<div class="cell border-box-sizing code_cell rendered">
+  <div class="input">
+    <div class="inner_cell">
+      <div class="input_area">
+        <div class="highlight" style="background: #eeeedd">
+  <pre style="font-size: 80%; line-height: 125%;"><span style="color: #8B008B; font-weight: bold">import</span> <span style="color: #008b45; text-decoration: underline">numpy</span> <span style="color: #8B008B; font-weight: bold">as</span> <span style="color: #008b45; text-decoration: underline">np</span>
+<span style="color: #8B008B; font-weight: bold">class</span> <span style="color: #008b45; font-weight: bold">HartreeFock</span>:
+    <span style="color: #8B008B; font-weight: bold">def</span> <span style="color: #008b45">__init__</span>(<span style="color: #658b00">self</span>, num_electrons, num_orbitals):
+        <span style="color: #658b00">self</span>.num_electrons = num_electrons
+        <span style="color: #658b00">self</span>.num_orbitals = num_orbitals
+	<span style="color: #228B22"># You would need to replace these by proper integrals</span>
+        <span style="color: #658b00">self</span>.h = np.random.rand(num_orbitals, num_orbitals)  <span style="color: #228B22"># One-electron integrals</span>
+        <span style="color: #658b00">self</span>.coulomb = np.random.rand(num_orbitals, num_orbitals, num_orbitals, num_orbitals)  <span style="color: #228B22"># Two-electron integrals</span>
+    <span style="color: #8B008B; font-weight: bold">def</span> <span style="color: #008b45">build_fock_matrix</span>(<span style="color: #658b00">self</span>, density_matrix):
+        fock_matrix = <span style="color: #658b00">self</span>.h.copy()
+        <span style="color: #8B008B; font-weight: bold">for</span> i <span style="color: #8B008B">in</span> <span style="color: #658b00">range</span>(<span style="color: #658b00">self</span>.num_orbitals):
+            <span style="color: #8B008B; font-weight: bold">for</span> j <span style="color: #8B008B">in</span> <span style="color: #658b00">range</span>(<span style="color: #658b00">self</span>.num_orbitals):
+                fock_matrix[i, j] += np.sum(density_matrix * <span style="color: #658b00">self</span>.coulomb[i, j])
+        <span style="color: #8B008B; font-weight: bold">return</span> fock_matrix
+    <span style="color: #8B008B; font-weight: bold">def</span> <span style="color: #008b45">build_density_matrix</span>(<span style="color: #658b00">self</span>, coefficients):
+        density_matrix = np.zeros((<span style="color: #658b00">self</span>.num_orbitals, <span style="color: #658b00">self</span>.num_orbitals))
+        <span style="color: #8B008B; font-weight: bold">for</span> i <span style="color: #8B008B">in</span> <span style="color: #658b00">range</span>(<span style="color: #658b00">self</span>.num_electrons):
+            density_matrix += np.outer(coefficients[:, i], coefficients[:, i])
+        <span style="color: #8B008B; font-weight: bold">return</span> density_matrix
+    <span style="color: #8B008B; font-weight: bold">def</span> <span style="color: #008b45">diagonalize</span>(<span style="color: #658b00">self</span>, fock_matrix):
+        energy, coefficients = np.linalg.eigh(fock_matrix)
+        <span style="color: #8B008B; font-weight: bold">return</span> energy, coefficients
+    <span style="color: #8B008B; font-weight: bold">def</span> <span style="color: #008b45">run</span>(<span style="color: #658b00">self</span>, max_iter=<span style="color: #B452CD">100</span>, tol=<span style="color: #B452CD">1e-6</span>):
+        coeffs = np.zeros((<span style="color: #658b00">self</span>.num_orbitals, <span style="color: #658b00">self</span>.num_electrons))
+        density_matrix = np.zeros((<span style="color: #658b00">self</span>.num_orbitals, <span style="color: #658b00">self</span>.num_orbitals))
+        <span style="color: #8B008B; font-weight: bold">for</span> iteration <span style="color: #8B008B">in</span> <span style="color: #658b00">range</span>(max_iter):
+            fock_matrix = <span style="color: #658b00">self</span>.build_fock_matrix(density_matrix)
+            energies, coeffs = <span style="color: #658b00">self</span>.diagonalize(fock_matrix)
+            
+            new_density_matrix = <span style="color: #658b00">self</span>.build_density_matrix(coeffs)
+            <span style="color: #8B008B; font-weight: bold">if</span> np.linalg.norm(new_density_matrix - density_matrix) &lt; tol:
+                <span style="color: #658b00">print</span>(<span style="color: #CD5555">f&quot;Converged in {</span>iteration<span style="color: #CD5555">} iterations&quot;</span>)
+                <span style="color: #8B008B; font-weight: bold">break</span>
+            density_matrix = new_density_matrix
+        <span style="color: #8B008B; font-weight: bold">return</span> energies, coeffs
+<span style="color: #228B22"># Example usage</span>
+<span style="color: #8B008B; font-weight: bold">if</span> <span style="color: #00688B">__name__</span> == <span style="color: #CD5555">&quot;__main__&quot;</span>:
+    num_electrons = <span style="color: #B452CD">2</span>
+    num_orbitals = <span style="color: #B452CD">4</span>
+    hf = HartreeFock(num_electrons, num_orbitals)
+    energies, coefficients = hf.run()
+    <span style="color: #658b00">print</span>(<span style="color: #CD5555">&quot;Final energies:&quot;</span>, energies)
+    <span style="color: #658b00">print</span>(<span style="color: #CD5555">&quot;Final coefficients:&quot;</span>, coefficients)
+</pre>
+</div>
+      </div>
+    </div>
+  </div>
+  <div class="output_wrapper">
+    <div class="output">
+      <div class="output_area">
+        <div class="output_subarea output_stream output_stdout output_text">          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section>
+<h2 id="hartree-fock-in-second-quantization-and-stability-of-hf-solution">Hartree-Fock in second quantization and stability of HF solution </h2>
+
+<p>We wish now to derive the Hartree-Fock equations using our second-quantized formalism and study the stability of the equations. 
+Our ansatz for the ground state of the system is approximated as (this is our representation of a Slater determinant in second quantization)
+</p>
+<p>&nbsp;<br>
+$$   
+|\Phi_0\rangle = |c\rangle = a^{\dagger}_i a^{\dagger}_j \dots a^{\dagger}_l|0\rangle.
+$$
+<p>&nbsp;<br>
+
+<p>We wish to determine \( \hat{u}^{HF} \) so that 
+\( E_0^{HF}= \langle c|\hat{H}| c\rangle \) becomes a local minimum. 
+</p>
+
+<p>In our analysis here we will need Thouless' theorem, which states that
+an arbitrary Slater determinant \( |c'\rangle \) which is not orthogonal to a determinant
+\( | c\rangle ={\displaystyle\prod_{i=1}^{n}}
+a_{\alpha_{i}}^{\dagger}|0\rangle \), can be written as
+</p>
+<p>&nbsp;<br>
+$$
+|c'\rangle=exp\left\{\sum_{a>F}\sum_{i\le F}C_{ai}a_{a}^{\dagger}a_{i}\right\}| c\rangle 
+$$
+<p>&nbsp;<br>
+</section>
+
+<section>
+<h2 id="thouless-theorem">Thouless' theorem </h2>
+
+<p>Let us give a simple proof of Thouless' theorem. The theorem states that we can make a linear combination av particle-hole excitations  with respect to a given reference state \( \vert c\rangle \). With this linear combination, we can make a new Slater determinant \( \vert c'\rangle  \) which is not orthogonal to 
+\( \vert c\rangle \), that is
+</p>
+<p>&nbsp;<br>
+$$
+\langle c|c'\rangle \ne 0.
+$$
+<p>&nbsp;<br>
+
+<p>To show this we need some intermediate steps. The exponential product of two operators  \( \exp{\hat{A}}\times\exp{\hat{B}} \) is equal to \( \exp{(\hat{A}+\hat{B})} \) only if the two operators commute, that is</p>
+<p>&nbsp;<br>
+$$
+[\hat{A},\hat{B}] = 0.
+$$
+<p>&nbsp;<br>
+</section>
+
+<section>
+<h2 id="thouless-theorem">Thouless' theorem </h2>
+
+<p>If the operators do not commute, we need to resort to the <a href="http://www.encyclopediaofmath.org/index.php/Campbell%E2%80%93Hausdorff_formula" target="_blank">Baker-Campbell-Hauersdorf</a>. This relation states that</p>
+<p>&nbsp;<br>
+$$
+\exp{\hat{C}}=\exp{\hat{A}}\exp{\hat{B}},
+$$
+<p>&nbsp;<br>
+
+<p>with </p>
+<p>&nbsp;<br>
+$$
+\hat{C}=\hat{A}+\hat{B}+\frac{1}{2}[\hat{A},\hat{B}]+\frac{1}{12}[[\hat{A},\hat{B}],\hat{B}]-\frac{1}{12}[[\hat{A},\hat{B}],\hat{A}]+\dots
+$$
+<p>&nbsp;<br>
+</section>
+
+<section>
+<h2 id="thouless-theorem">Thouless' theorem </h2>
+
+<p>From these relations, we note that 
+in our expression  for \( |c'\rangle \) we have commutators of the type
+</p>
+<p>&nbsp;<br>
+$$
+[a_{a}^{\dagger}a_{i},a_{b}^{\dagger}a_{j}],
+$$
+<p>&nbsp;<br>
+
+<p>and it is easy to convince oneself that these commutators, or higher powers thereof, are all zero. This means that we can write out our new representation of a Slater determinant as</p>
+<p>&nbsp;<br>
+$$
+|c'\rangle=exp\left\{\sum_{a>F}\sum_{i\le F}C_{ai}a_{a}^{\dagger}a_{i}\right\}| c\rangle=\prod_{i}\left\{1+\sum_{a>F}C_{ai}a_{a}^{\dagger}a_{i}+\left(\sum_{a>F}C_{ai}a_{a}^{\dagger}a_{i}\right)^2+\dots\right\}| c\rangle
+$$
+<p>&nbsp;<br>
+</section>
+
+<section>
+<h2 id="thouless-theorem">Thouless' theorem </h2>
+
+<p>We note that</p>
+<p>&nbsp;<br>
+$$
+\prod_{i}\sum_{a>F}C_{ai}a_{a}^{\dagger}a_{i}\sum_{b>F}C_{bi}a_{b}^{\dagger}a_{i}| c\rangle =0,
+$$
+<p>&nbsp;<br>
+
+<p>and all higher-order powers of these combinations of creation and annihilation operators disappear 
+due to the fact that \( (a_i)^n| c\rangle =0 \) when \( n > 1 \). This allows us to rewrite the expression for \( |c'\rangle  \) as
+</p>
+<p>&nbsp;<br>
+$$
+|c'\rangle=\prod_{i}\left\{1+\sum_{a>F}C_{ai}a_{a}^{\dagger}a_{i}\right\}| c\rangle,
+$$
+<p>&nbsp;<br>
+
+<p>which we can rewrite as </p>
+<p>&nbsp;<br>
+$$
+|c'\rangle=\prod_{i}\left\{1+\sum_{a>F}C_{ai}a_{a}^{\dagger}a_{i}\right\}| a^{\dagger}_{i_1} a^{\dagger}_{i_2} \dots a^{\dagger}_{i_n}|0\rangle.
+$$
+<p>&nbsp;<br>
+</section>
+
+<section>
+<h2 id="thouless-theorem">Thouless' theorem </h2>
+
+<p>The last equation can be written as</p>
+<p>&nbsp;<br>
+$$
+\begin{align}
+|c'\rangle&=\prod_{i}\left\{1+\sum_{a>F}C_{ai}a_{a}^{\dagger}a_{i}\right\}| a^{\dagger}_{i_1} a^{\dagger}_{i_2} \dots a^{\dagger}_{i_n}|0\rangle=\left(1+\sum_{a>F}C_{ai_1}a_{a}^{\dagger}a_{i_1}\right)a^{\dagger}_{i_1} 
+\tag{7}\\
+& \times\left(1+\sum_{a>F}C_{ai_2}a_{a}^{\dagger}a_{i_2}\right)a^{\dagger}_{i_2} \dots |0\rangle=\prod_{i}\left(a^{\dagger}_{i}+\sum_{a>F}C_{ai}a_{a}^{\dagger}\right)|0\rangle.
+\tag{8}
+\end{align}
+$$
+<p>&nbsp;<br>
+</section>
+
+<section>
+<h2 id="new-operators">New operators </h2>
+
+<p>If we define a new creation operator </p>
+<p>&nbsp;<br>
+$$
+\begin{equation}
+b^{\dagger}_{i}=a^{\dagger}_{i}+\sum_{a>F}C_{ai}a_{a}^{\dagger}, \tag{9}
+\end{equation}
+$$
+<p>&nbsp;<br>
+
+<p>we have </p>
+<p>&nbsp;<br>
+$$
+|c'\rangle=\prod_{i}b^{\dagger}_{i}|0\rangle=\prod_{i}\left(a^{\dagger}_{i}+\sum_{a>F}C_{ai}a_{a}^{\dagger}\right)|0\rangle,
+$$
+<p>&nbsp;<br>
+
+<p>meaning that the new representation of the Slater determinant in second quantization, \( |c'\rangle \), looks like our previous ones. However, this representation is not general enough since we have a restriction on the sum over single-particle states in Eq.&nbsp;<a href="#mjx-eqn-9">(9)</a>. The single-particle states have all to be above the Fermi level.</p>
+</section>
+
+<section>
+<h2 id="thouless-theorem">Thouless' theorem </h2>
+
+<p>The question then is whether we can construct a general representation of a Slater determinant with a creation operator </p>
+<p>&nbsp;<br>
+$$
+\tilde{b}^{\dagger}_{i}=\sum_{p}f_{ip}a_{p}^{\dagger},
+$$
+<p>&nbsp;<br>
+
+<p>where \( f_{ip} \) is a matrix element of a unitary matrix which transforms our creation and annihilation operators
+\( a^{\dagger} \) and \( a \) to \( \tilde{b}^{\dagger} \) and \( \tilde{b} \). These new operators define a new representation of a Slater determinant as
+</p>
+<p>&nbsp;<br>
+$$
+|\tilde{c}\rangle=\prod_{i}\tilde{b}^{\dagger}_{i}|0\rangle.
+$$
+<p>&nbsp;<br>
+</section>
+
+<section>
+<h2 id="showing-that-tilde-c-rangle-c-rangle">Showing that \( |\tilde{c}\rangle= |c'\rangle \)  </h2>
+
+<p>We need to show that \( |\tilde{c}\rangle= |c'\rangle \). We need also to assume that the new state
+is not orthogonal to \( |c\rangle \), that is \( \langle c| \tilde{c}\rangle \ne 0 \). From this it follows that 
+</p>
+<p>&nbsp;<br>
+$$
+\langle c| \tilde{c}\rangle=\langle 0| a_{i_n}\dots a_{i_1}\left(\sum_{p=i_1}^{i_n}f_{i_1p}a_{p}^{\dagger} \right)\left(\sum_{q=i_1}^{i_n}f_{i_2q}a_{q}^{\dagger} \right)\dots \left(\sum_{t=i_1}^{i_n}f_{i_nt}a_{t}^{\dagger} \right)|0\rangle,
+$$
+<p>&nbsp;<br>
+
+<p>which is nothing but the determinant \( det(f_{ip}) \) which we can, using the intermediate normalization condition, 
+normalize to one, that is
+</p>
+<p>&nbsp;<br>
+$$
+det(f_{ip})=1,
+$$
+<p>&nbsp;<br>
+
+<p>meaning that \( f \) has an inverse defined as (since we are dealing with orthogonal, and in our case unitary as well, transformations)</p>
+<p>&nbsp;<br>
+$$
+\sum_{k} f_{ik}f^{-1}_{kj} = \delta_{ij},
+$$
+<p>&nbsp;<br>
+
+<p>and </p>
+<p>&nbsp;<br>
+$$
+\sum_{j} f^{-1}_{ij}f_{jk} = \delta_{ik}.
+$$
+<p>&nbsp;<br>
+</section>
+
+<section>
+<h2 id="thouless-theorem">Thouless' theorem </h2>
+
+<p>Using these relations we can then define the linear combination of creation (and annihilation as well) 
+operators as
+</p>
+<p>&nbsp;<br>
+$$
+\sum_{i}f^{-1}_{ki}\tilde{b}^{\dagger}_{i}=\sum_{i}f^{-1}_{ki}\sum_{p=i_1}^{\infty}f_{ip}a_{p}^{\dagger}=a_{k}^{\dagger}+\sum_{i}\sum_{p=i_{n+1}}^{\infty}f^{-1}_{ki}f_{ip}a_{p}^{\dagger}.
+$$
+<p>&nbsp;<br>
+
+<p>Defining </p>
+<p>&nbsp;<br>
+$$
+c_{kp}=\sum_{i \le F}f^{-1}_{ki}f_{ip},
+$$
+<p>&nbsp;<br>
+
+<p>we can redefine </p>
+<p>&nbsp;<br>
+$$
+a_{k}^{\dagger}+\sum_{i}\sum_{p=i_{n+1}}^{\infty}f^{-1}_{ki}f_{ip}a_{p}^{\dagger}=a_{k}^{\dagger}+\sum_{p=i_{n+1}}^{\infty}c_{kp}a_{p}^{\dagger}=b_k^{\dagger},
+$$
+<p>&nbsp;<br>
+
+<p>our starting point.</p>
+</section>
+
+<section>
+<h2 id="thouless-theorem">Thouless' theorem </h2>
+
+<p>We have shown that our general representation of a Slater determinant </p>
+<p>&nbsp;<br>
+$$
+|\tilde{c}\rangle=\prod_{i}\tilde{b}^{\dagger}_{i}|0\rangle=|c'\rangle=\prod_{i}b^{\dagger}_{i}|0\rangle,
+$$
+<p>&nbsp;<br>
+
+<p>with </p>
+<p>&nbsp;<br>
+$$
+b_k^{\dagger}=a_{k}^{\dagger}+\sum_{p=i_{n+1}}^{\infty}c_{kp}a_{p}^{\dagger}.
+$$
+<p>&nbsp;<br>
+</section>
+
+<section>
+<h2 id="thouless-theorem">Thouless' theorem </h2>
+
+<p>This means that we can actually write an ansatz for the ground state of the system as a linear combination of
+terms which contain the ansatz itself \( |c\rangle \) with  an admixture from an infinity of one-particle-one-hole states. The latter has important consequences when we wish to interpret the Hartree-Fock equations and their stability. We can rewrite the new representation as 
+</p>
+<p>&nbsp;<br>
+$$
+|c'\rangle = |c\rangle+|\delta c\rangle,
+$$
+<p>&nbsp;<br>
+
+<p>where \( |\delta c\rangle \) can now be interpreted as a small variation. If we approximate this term with 
+contributions from one-particle-one-hole (<em>1p-1h</em>) states only, we arrive at 
+</p>
+<p>&nbsp;<br>
+$$
+|c'\rangle = \left(1+\sum_{ai}\delta C_{ai}a_{a}^{\dagger}a_i\right)|c\rangle.
+$$
+<p>&nbsp;<br>
+</section>
+
+<section>
+<h2 id="thouless-theorem">Thouless' theorem </h2>
+
+<p>In our derivation of the Hartree-Fock equations we have shown that </p>
+<p>&nbsp;<br>
+$$
+\langle \delta c| \hat{H} | c\rangle =0,
+$$
+<p>&nbsp;<br>
+
+<p>which means that we have to satisfy</p>
+<p>&nbsp;<br>
+$$
+\langle c|\sum_{ai}\delta C_{ai}\left\{a_{a}^{\dagger}a_i\right\} \hat{H} | c\rangle =0.
+$$
+<p>&nbsp;<br>
+
+<p>With this as a background, we are now ready to study the stability of the Hartree-Fock equations.
+This is the topic for week 40.
+</p>
+</section>
+
+<section>
+<h2 id="hartree-fock-in-second-quantization-and-stability-of-hf-solution">Hartree-Fock in second quantization and stability of HF solution </h2>
+
+<p>The variational condition for deriving the Hartree-Fock equations
+guarantees only that the expectation value \( \langle c | \hat{H} | c
+\rangle \) has an extreme value, not necessarily a minimum. To figure
+out whether the extreme value we have found is a minimum, we can use
+second quantization to analyze our results and find a criterion for
+the above expectation value to a local minimum. We will use Thouless'
+theorem and show that
+</p>
+
+<p>&nbsp;<br>
+$$
+\frac{\langle c' |\hat{H} | c'\rangle}{\langle c' |c'\rangle} \ge \langle c |\hat{H} | c\rangle= E_0,
+$$
+<p>&nbsp;<br>
+
+<p>with</p>
+<p>&nbsp;<br>
+$$
+ {|c'\rangle} = {|c\rangle + |\delta c\rangle}.
+$$
+<p>&nbsp;<br>
+
+<p>Using Thouless' theorem we can write out \( |c'\rangle \) as</p>
+<p>&nbsp;<br>
+$$
+\begin{align}
+ {|c'\rangle}&=\exp\left\{\sum_{a > F}\sum_{i \le F}\delta C_{ai}a_{a}^{\dagger}a_{i}\right\}| c\rangle
+\tag{10}\\ 
+&=\left\{1+\sum_{a > F}\sum_{i \le F}\delta C_{ai}a_{a}^{\dagger}
+a_{i}+\frac{1}{2!}\sum_{ab > F}\sum_{ij \le F}\delta C_{ai}\delta C_{bj}a_{a}^{\dagger}a_{i}a_{b}^{\dagger}a_{j}+\dots\right\}
+\tag{11}
+\end{align}
+$$
+<p>&nbsp;<br>
+
+<p>where the amplitudes \( \delta C \) are small.</p>
+
+<p>The norm of \( |c'\rangle \) is given by (using the intermediate normalization condition \( \langle c' |c\rangle=1 \)) </p>
+<p>&nbsp;<br>
+$$
+\langle c' | c'\rangle = 1+\sum_{a>F}
+\sum_{i\le F}|\delta C_{ai}|^2+O(\delta C_{ai}^3).
+$$
+<p>&nbsp;<br>
+
+<p>The expectation value for the energy is now given by (using the Hartree-Fock condition)</p>
+<p>&nbsp;<br>
+$$
+\langle c' |\hat{H} | c'\rangle=\langle c |\hat{H} | c\rangle +
+\sum_{ab>F}
+\sum_{ij\le F}\delta C_{ai}^*\delta C_{bj}\langle c |a_{i}^{\dagger}a_{a}\hat{H}a_{b}^{\dagger}a_{j}|c\rangle+
+$$
+<p>&nbsp;<br>
+
+<p>&nbsp;<br>
+$$
+\frac{1}{2!}\sum_{ab>F}
+\sum_{ij\le F}\delta C_{ai}\delta C_{bj}\langle c |\hat{H}a_{a}^{\dagger}a_{i}a_{b}^{\dagger}a_{j}|c\rangle+\frac{1}{2!}\sum_{ab>F}
+\sum_{ij\le F}\delta C_{ai}^*\delta C_{bj}^*\langle c|a_{j}^{\dagger}a_{b}a_{i}^{\dagger}a_{a}\hat{H}|c\rangle
++\dots
+$$
+<p>&nbsp;<br>
+
+<p>We have already calculated the second term on the right-hand side of the previous equation</p>
+<p>&nbsp;<br>
+$$
+\begin{align}
+\langle c | \left(\{a^\dagger_i a_a\} \hat{H} \{a^\dagger_b a_j\} \right) | c\rangle&=\sum_{pq} \sum_{ijab}\delta C_{ai}^*\delta C_{bj} \langle p|\hat{h}_0 |q\rangle 
+            \langle c | \left(\{a^{\dagger}_i a_a\}\{a^{\dagger}_pa_q\} 
+             \{a^{\dagger}_b a_j\} \right)| c\rangle
+\tag{12}\\
+& +\frac{1}{4} \sum_{pqrs} \sum_{ijab}\delta C_{ai}^*\delta C_{bj} \langle pq| \hat{v}|rs\rangle 
+            \langle c | \left(\{a^\dagger_i a_a\}\{a^{\dagger}_p a^{\dagger}_q a_s  a_r\} \{a^{\dagger}_b a_j\} \right)| c\rangle ,
+\tag{13}
+\end{align}
+$$
+<p>&nbsp;<br>
+
+<p>resulting in</p>
+<p>&nbsp;<br>
+$$
+E_0\sum_{ai}|\delta C_{ai}|^2+\sum_{ai}|\delta C_{ai}|^2(\varepsilon_a-\varepsilon_i)-\sum_{ijab} \langle aj|\hat{v}| bi\rangle \delta C_{ai}^*\delta C_{bj}.
+$$
+<p>&nbsp;<br>
+
+<p>&nbsp;<br>
+$$
+\frac{1}{2!}\langle c |\left(\{a^\dagger_j a_b\} \{a^\dagger_i a_a\} \hat{V}_N  \right) | c\rangle  = 
+\frac{1}{2!}\langle c |\left( \hat{V}_N \{a^\dagger_a a_i\} \{a^\dagger_b a_j\} \right)^{\dagger} | c\rangle 
+$$
+<p>&nbsp;<br>
+
+<p>which is nothing but</p>
+<p>&nbsp;<br>
+$$
+\frac{1}{2!}\langle c |  \left( \hat{V}_N \{a^\dagger_a a_i\} \{a^\dagger_b a_j\} \right) | c\rangle^*
+=\frac{1}{2} \sum_{ijab} (\langle ij|\hat{v}|ab\rangle)^*\delta C_{ai}^*\delta C_{bj}^*
+$$
+<p>&nbsp;<br>
+
+<p>or </p>
+<p>&nbsp;<br>
+$$
+\frac{1}{2} \sum_{ijab} (\langle ab|\hat{v}|ij\rangle)\delta C_{ai}^*\delta C_{bj}^*
+$$
+<p>&nbsp;<br>
+
+<p>where we have used the relation</p>
+<p>&nbsp;<br>
+$$ 
+\langle a |\hat{A} | b\rangle =  (\langle b |\hat{A}^{\dagger} | a\rangle)^*
+$$
+<p>&nbsp;<br>
+
+<p>due to the hermiticity of \( \hat{H} \) and \( \hat{V} \).</p>
+
+<p>We define two matrix elements</p>
+<p>&nbsp;<br>
+$$
+A_{ai,bj}=-\langle aj|\hat{v} bi\rangle
+$$
+<p>&nbsp;<br>
+
+<p>and</p>
+<p>&nbsp;<br>
+$$
+B_{ai,bj}=\langle ab|\hat{v}|ij\rangle
+$$
+<p>&nbsp;<br>
+
+<p>both being anti-symmetrized.</p>
+
+<p>With these definitions we write out the energy as</p>
+<p>&nbsp;<br>
+$$
+\begin{align}
+\langle c'|H|c'\rangle& = \left(1+\sum_{ai}|\delta C_{ai}|^2\right)\langle c |H|c\rangle+\sum_{ai}|\delta C_{ai}|^2(\varepsilon_a^{HF}-\varepsilon_i^{HF})+\sum_{ijab}A_{ai,bj}\delta C_{ai}^*\delta C_{bj}+
+\tag{14}\\
+&\frac{1}{2} \sum_{ijab} B_{ai,bj}^*\delta C_{ai}\delta C_{bj}+\frac{1}{2} \sum_{ijab} B_{ai,bj}\delta C_{ai}^*\delta C_{bj}^*
++O(\delta C_{ai}^3),
+\tag{15}
+\end{align}
+$$
+<p>&nbsp;<br>
+
+<p>which can be rewritten as</p>
+<p>&nbsp;<br>
+$$
+\langle c'|H|c'\rangle = \left(1+\sum_{ai}|\delta C_{ai}|^2\right)\langle c |H|c\rangle+\Delta E+O(\delta C_{ai}^3),
+$$
+<p>&nbsp;<br>
+
+<p>and skipping higher-order terms we arrived</p>
+<p>&nbsp;<br>
+$$
+\frac{\langle c' |\hat{H} | c'\rangle}{\langle c' |c'\rangle} =E_0+\frac{\Delta E}{\left(1+\sum_{ai}|\delta C_{ai}|^2\right)}.
+$$
+<p>&nbsp;<br>
+
+<p>We have defined </p>
+<p>&nbsp;<br>
+$$
+\Delta E = \frac{1}{2} \langle \chi | \hat{M}| \chi \rangle
+$$
+<p>&nbsp;<br>
+
+<p>with the vectors </p>
+<p>&nbsp;<br>
+$$ 
+\chi = \left[ \delta C\hspace{0.2cm} \delta C^*\right]^T
+$$
+<p>&nbsp;<br>
+
+<p>and the matrix </p>
+<p>&nbsp;<br>
+$$
+\hat{M}=\left(\begin{array}{cc} \Delta + A & B \\ B^* & \Delta + A^*\end{array}\right),
+$$
+<p>&nbsp;<br>
+
+<p>with \( \Delta_{ai,bj} = (\varepsilon_a-\varepsilon_i)\delta_{ab}\delta_{ij} \).</p>
+
+<p>The condition</p>
+<p>&nbsp;<br>
+$$
+\Delta E = \frac{1}{2} \langle \chi | \hat{M}| \chi \rangle \ge 0
+$$
+<p>&nbsp;<br>
+
+<p>for an arbitrary  vector </p>
+<p>&nbsp;<br>
+$$ 
+\chi = \left[ \delta C\hspace{0.2cm} \delta C^*\right]^T
+$$
+<p>&nbsp;<br>
+
+<p>means that all eigenvalues of the matrix have to be larger than or equal zero. 
+A necessary (but no sufficient) condition is that the matrix elements (for all \( ai \) )
+</p>
+<p>&nbsp;<br>
+$$
+(\varepsilon_a-\varepsilon_i)\delta_{ab}\delta_{ij}+A_{ai,bj} \ge 0.
+$$
+<p>&nbsp;<br>
+
+<p>This equation can be used as a first test of the stability of the Hartree-Fock equation.</p>
+</section>
+
+
+
+</div> <!-- class="slides" -->
+</div> <!-- class="reveal" -->
+
+<script src="reveal.js/lib/js/head.min.js"></script>
+<script src="reveal.js/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+  // Display navigation controls in the bottom right corner
+  controls: true,
+
+  // Display progress bar (below the horiz. slider)
+  progress: true,
+
+  // Display the page number of the current slide
+  slideNumber: true,
+
+  // Push each slide change to the browser history
+  history: false,
+
+  // Enable keyboard shortcuts for navigation
+  keyboard: true,
+
+  // Enable the slide overview mode
+  overview: true,
+
+  // Vertical centering of slides
+  //center: true,
+  center: false,
+
+  // Enables touch navigation on devices with touch input
+  touch: true,
+
+  // Loop the presentation
+  loop: false,
+
+  // Change the presentation direction to be RTL
+  rtl: false,
+
+  // Turns fragments on and off globally
+  fragments: true,
+
+  // Flags if the presentation is running in an embedded mode,
+  // i.e. contained within a limited portion of the screen
+  embedded: false,
+
+  // Number of milliseconds between automatically proceeding to the
+  // next slide, disabled when set to 0, this value can be overwritten
+  // by using a data-autoslide attribute on your slides
+  autoSlide: 0,
+
+  // Stop auto-sliding after user input
+  autoSlideStoppable: true,
+
+  // Enable slide navigation via mouse wheel
+  mouseWheel: false,
+
+  // Hides the address bar on mobile devices
+  hideAddressBar: true,
+
+  // Opens links in an iframe preview overlay
+  previewLinks: false,
+
+  // Transition style
+  transition: 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+  // Transition speed
+  transitionSpeed: 'default', // default/fast/slow
+
+  // Transition style for full page slide backgrounds
+  backgroundTransition: 'default', // default/none/slide/concave/convex/zoom
+
+  // Number of slides away from the current that are visible
+  viewDistance: 3,
+
+  // Parallax background image
+    //parallaxBackgroundImage: '', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'"
+
+  // Parallax background size
+  //parallaxBackgroundSize: '' // CSS syntax, e.g. "2100px 900px"
+
+  theme: Reveal.getQueryHash().theme, // available themes are in reveal.js/css/theme
+    transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/none
+
+});
+
+Reveal.initialize({
+  dependencies: [
+      // Cross-browser shim that fully implements classList - https://github.com/eligrey/classList.js/
+      { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+
+      // Interpret Markdown in <section> elements
+      { src: 'reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+
+      // Syntax highlight for <code> elements
+      { src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+
+      // Zoom in and out with Alt+click
+      { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+
+      // Speaker notes
+      { src: 'reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+
+      // Remote control your reveal.js presentation using a touch device
+      //{ src: 'reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } },
+
+      // MathJax
+      //{ src: 'reveal.js/plugin/math/math.js', async: true }
+  ]
+});
+
+Reveal.initialize({
+
+  // The "normal" size of the presentation, aspect ratio will be preserved
+  // when the presentation is scaled to fit different resolutions. Can be
+  // specified using percentage units.
+  width: 1170,  // original: 960,
+  height: 700,
+
+  // Factor of the display size that should remain empty around the content
+  margin: 0.1,
+
+  // Bounds for smallest/largest possible scale to apply to content
+  minScale: 0.2,
+  maxScale: 1.0
+
+});
+</script>
+
+<!-- begin footer logo
+<div style="position: absolute; bottom: 0px; left: 0; margin-left: 0px">
+<img src="somelogo.png">
+</div>
+   end footer logo -->
+
+
+
+
+</body>
+</html>
