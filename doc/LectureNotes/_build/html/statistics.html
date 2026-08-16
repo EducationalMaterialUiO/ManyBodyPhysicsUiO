@@ -28,11 +28,11 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -50,7 +50,7 @@
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
@@ -214,6 +214,20 @@
 <li class="toctree-l1"><a class="reference internal" href="optimisation.html">15. Optimization and resampling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="diffusionmc.html">16. Diffusion Monte Carlo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="manybodymc.html">17. Applications to many-body systems: six electrons</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine learning approaches</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="boltzmannmachines.html">18. Boltzmann machines and generative models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pinns.html">19. Neural quantum states and physics-informed neural networks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum computing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="quantumfourier.html">20. The quantum Fourier transform and phase estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vqe.html">21. The variational quantum eigensolver</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Concluding remarks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="conclusions.html">22. Concluding remarks and perspectives</a></li>
 </ul>
 
     </div>
@@ -482,14 +496,19 @@ Metropolis algorithm.</p>
 calculation on the two-electron quantum dot of chapter 11.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;../BookManybody/BookMaterial/Programs&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">glob</span>
+<span class="c1"># the chapter programs live in BookPrograms/chapterNN; put them all on the path</span>
+<span class="k">for</span> <span class="n">_d</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;..&quot;</span><span class="p">,</span> <span class="s2">&quot;BookManybody&quot;</span><span class="p">,</span>
+                                        <span class="s2">&quot;BookPrograms&quot;</span><span class="p">,</span> <span class="s2">&quot;chapter*&quot;</span><span class="p">))):</span>
+    <span class="k">if</span> <span class="n">_d</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">_d</span><span class="p">)</span>
 
-<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-<span class="kn">import</span><span class="w"> </span><span class="nn">montecarlo</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mc</span>
+<span class="kn">import</span> <span class="nn">montecarlo</span> <span class="k">as</span> <span class="nn">mc</span>
 
 <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">2024</span><span class="p">)</span>
 </pre></div>
@@ -544,7 +563,7 @@ planes of the unit cube.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/e7e4120ddb6917c9f5eacda0938ebc9c12752bf15140e16f13b147c1653bc1ec.png" src="_images/e7e4120ddb6917c9f5eacda0938ebc9c12752bf15140e16f13b147c1653bc1ec.png" />
+<img alt="_images/914f5f1d2b5fe089e5f9422b71ffa573e905d270a18b71e720fafc0dc00440a4.png" src="_images/914f5f1d2b5fe089e5f9422b71ffa573e905d270a18b71e720fafc0dc00440a4.png" />
 </div>
 </div>
 </section>
@@ -584,7 +603,7 @@ That is the whole reason for using it on a many-body problem.</p>
   1000000      3.141857    0.000643    0.000264          0.6427
 </pre></div>
 </div>
-<img alt="_images/1d27a4963f07bffdc705cf0a8e83179149978a0432dbcdfd8b1d9196b41d47e7.png" src="_images/1d27a4963f07bffdc705cf0a8e83179149978a0432dbcdfd8b1d9196b41d47e7.png" />
+<img alt="_images/590c03f8510dabe8e79137b53b93f05323e6ae04cdaef80900d93a27d8c51767.png" src="_images/590c03f8510dabe8e79137b53b93f05323e6ae04cdaef80900d93a27d8c51767.png" />
 </div>
 </div>
 </section>
@@ -629,7 +648,7 @@ Box-Muller normal:   mean +0.0021 (exact 0), variance 0.9984 (exact 1)
 acceptance-rejection, int_0^3 exp(x) dx = 19.0354 +/- 0.0626   (exact 19.0855)
 </pre></div>
 </div>
-<img alt="_images/380aeec881f40aca0a8fefe318ddd49eecf373112bf5333f8878f07351dbae93.png" src="_images/380aeec881f40aca0a8fefe318ddd49eecf373112bf5333f8878f07351dbae93.png" />
+<img alt="_images/c13698f373aa1db996409794d1822d85f465317d6c9906349e8cfb2d8601301a.png" src="_images/c13698f373aa1db996409794d1822d85f465317d6c9906349e8cfb2d8601301a.png" />
 </div>
 </div>
 </section>
@@ -719,7 +738,7 @@ which is about as non-Gaussian as it gets.</p>
    50     0.500115     0.001676     0.001667   1.0055
 </pre></div>
 </div>
-<img alt="_images/a2dd53f4d5b4161c9a1ebf3d858fe2b030228631b7ed609174459c7316840293.png" src="_images/a2dd53f4d5b4161c9a1ebf3d858fe2b030228631b7ed609174459c7316840293.png" />
+<img alt="_images/c70f0cf7a096f7d815ad8724d03ec31f38c1e2e5f36f273650db1a568555f3b7.png" src="_images/c70f0cf7a096f7d815ad8724d03ec31f38c1e2e5f36f273650db1a568555f3b7.png" />
 </div>
 </div>
 </section>
@@ -772,7 +791,7 @@ corrected error   : 0.023879
 effective samples : 1678 of 100000
 </pre></div>
 </div>
-<img alt="_images/9e0cf3b9d1af764b02ed40b4ac0c3769b32f71a0bf5968e3fd152afeaaff34b4.png" src="_images/9e0cf3b9d1af764b02ed40b4ac0c3769b32f71a0bf5968e3fd152afeaaff34b4.png" />
+<img alt="_images/14b130b4c9034a058fd7d2be7c63da8b5a4222c6d522c2140dfb314d2aa6d393.png" src="_images/14b130b4c9034a058fd7d2be7c63da8b5a4222c6d522c2140dfb314d2aa6d393.png" />
 </div>
 </div>
 <p><strong>The practical rule.</strong>  Always report an error from the autocorrelation time
@@ -813,7 +832,7 @@ Schrödinger equation in imaginary time <em>is</em> a diffusion equation.</p>
     400    -0.2950    398.730    400.000   0.9968
 </pre></div>
 </div>
-<img alt="_images/d27dfbd9939dfa73516e791d8904a2b30a80b6604c1ac43f93afe007962eb713.png" src="_images/d27dfbd9939dfa73516e791d8904a2b30a80b6604c1ac43f93afe007962eb713.png" />
+<img alt="_images/b5fad727e8cc5f7f3eac08fe9c2c1a8bfe52f6edb0306367699e27bdc4bce656.png" src="_images/b5fad727e8cc5f7f3eac08fe9c2c1a8bfe52f6edb0306367699e27bdc4bce656.png" />
 </div>
 </div>
 <section id="equilibrium-and-entropy">
@@ -848,7 +867,7 @@ after  3000 steps: S = 4.5531
 uniform distribution: S = 4.6151
 </pre></div>
 </div>
-<img alt="_images/de0c7078b9cda5e9dc6b956e8ce51d6764ddb7e067baa7928aeda781037d523e.png" src="_images/de0c7078b9cda5e9dc6b956e8ce51d6764ddb7e067baa7928aeda781037d523e.png" />
+<img alt="_images/8845cf654c863c1e0699a9f73bcf8282d426e7fb5384c5207cc831eefc2b2158.png" src="_images/8845cf654c863c1e0699a9f73bcf8282d426e7fb5384c5207cc831eefc2b2158.png" />
 </div>
 </div>
 </section>
@@ -908,7 +927,7 @@ configuration is measured again.</p>
 looks.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">log_target</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">log_target</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="n">v</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
     <span class="k">return</span> <span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">v</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">v</span><span class="o">**</span><span class="mi">4</span>
 
@@ -952,7 +971,7 @@ looks.</p>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  32.0        4.0%     40.07      0.5988 +/- 0.0158
 </pre></div>
 </div>
-<img alt="_images/03ddcfa966626bb32160a13d942319c1b213fb97d68c76f1ea2b2fd8c0e7770a.png" src="_images/03ddcfa966626bb32160a13d942319c1b213fb97d68c76f1ea2b2fd8c0e7770a.png" />
+<img alt="_images/71d36a320d5f780840e46422f12173b54e9d4eece1a792fcfd4b6b557ccf7d1a.png" src="_images/71d36a320d5f780840e46422f12173b54e9d4eece1a792fcfd4b6b557ccf7d1a.png" />
 </div>
 </div>
 </section>

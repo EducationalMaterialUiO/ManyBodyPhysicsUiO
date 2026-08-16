@@ -28,11 +28,11 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -50,7 +50,7 @@
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
@@ -214,6 +214,20 @@
 <li class="toctree-l1"><a class="reference internal" href="optimisation.html">15. Optimization and resampling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="diffusionmc.html">16. Diffusion Monte Carlo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="manybodymc.html">17. Applications to many-body systems: six electrons</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine learning approaches</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="boltzmannmachines.html">18. Boltzmann machines and generative models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pinns.html">19. Neural quantum states and physics-informed neural networks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum computing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="quantumfourier.html">20. The quantum Fourier transform and phase estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vqe.html">21. The variational quantum eigensolver</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Concluding remarks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="conclusions.html">22. Concluding remarks and perspectives</a></li>
 </ul>
 
     </div>
@@ -473,14 +487,19 @@ enough to differentiate by hand, has the analytic answer <span class="math notra
 so the Monte Carlo result can be put on the same scale.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;../BookManybody/BookMaterial/Programs&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">glob</span>
+<span class="c1"># the chapter programs live in BookPrograms/chapterNN; put them all on the path</span>
+<span class="k">for</span> <span class="n">_d</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;..&quot;</span><span class="p">,</span> <span class="s2">&quot;BookManybody&quot;</span><span class="p">,</span>
+                                        <span class="s2">&quot;BookPrograms&quot;</span><span class="p">,</span> <span class="s2">&quot;chapter*&quot;</span><span class="p">))):</span>
+    <span class="k">if</span> <span class="n">_d</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">_d</span><span class="p">)</span>
 
-<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-<span class="kn">import</span><span class="w"> </span><span class="nn">vmc</span>
+<span class="kn">import</span> <span class="nn">vmc</span>
 </pre></div>
 </div>
 </div>
@@ -565,7 +584,7 @@ finite.  That cancellation <em>is</em> the cusp condition.</p>
    0.0001           2.600116       10002.00
 </pre></div>
 </div>
-<img alt="_images/1be502cc401860a105a0ed487b3b0ebe9e549d39270a756f1505861d5bd9d758.png" src="_images/1be502cc401860a105a0ed487b3b0ebe9e549d39270a756f1505861d5bd9d758.png" />
+<img alt="_images/78b5de4028afa66ba80e5fe4ca827b4d33463262e65d17e60957952113bb52e3.png" src="_images/78b5de4028afa66ba80e5fe4ca827b4d33463262e65d17e60957952113bb52e3.png" />
 </div>
 </div>
 </section>
@@ -692,7 +711,7 @@ Metropolis-Hastings with the Green’s function ratio.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/35c2552604c91c18187316260cee03de36341a5e6ab1ed0076f1155ea7b28f3b.png" src="_images/35c2552604c91c18187316260cee03de36341a5e6ab1ed0076f1155ea7b28f3b.png" />
+<img alt="_images/4ee9436fca7ca3e500fbd3063d50decb3194174e66cfe6f4d4a97d6ed2a93dab.png" src="_images/4ee9436fca7ca3e500fbd3063d50decb3194174e66cfe6f4d4a97d6ed2a93dab.png" />
 </div>
 </div>
 <p>Notice that the two curves do <strong>not</strong> share an optimal acceptance rate.  Brute
@@ -766,7 +785,7 @@ your answer, only in your error bar.</p>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>               correct      87.5%      3.000019   0.000343    1.20
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      terms multiplied      57.4%      3.000165   0.000476    2.43
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      terms multiplied      57.2%      3.000196   0.000491    2.59
 
 Both energies are right.  A wrong *local energy*, by contrast,
 would give a wrong number — which is why both are checked against
@@ -829,7 +848,7 @@ variance
  1.02   0.01187   0.00441   0.00426   0.00688   0.01489
 </pre></div>
 </div>
-<img alt="_images/c5e8f985f97df26cb1cff5dd278b196e8fd896274c7d1ff57ae414a20afe85d0.png" src="_images/c5e8f985f97df26cb1cff5dd278b196e8fd896274c7d1ff57ae414a20afe85d0.png" />
+<img alt="_images/34e3406af637e12fdd512688914f04e84324b73e19937e5d60da7f5c55615d9a.png" src="_images/34e3406af637e12fdd512688914f04e84324b73e19937e5d60da7f5c55615d9a.png" />
 </div>
 </div>
 </section>

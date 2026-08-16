@@ -28,11 +28,11 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -50,7 +50,7 @@
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
@@ -214,6 +214,20 @@
 <li class="toctree-l1"><a class="reference internal" href="optimisation.html">15. Optimization and resampling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="diffusionmc.html">16. Diffusion Monte Carlo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="manybodymc.html">17. Applications to many-body systems: six electrons</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine learning approaches</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="boltzmannmachines.html">18. Boltzmann machines and generative models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pinns.html">19. Neural quantum states and physics-informed neural networks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum computing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="quantumfourier.html">20. The quantum Fourier transform and phase estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vqe.html">21. The variational quantum eigensolver</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Concluding remarks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="conclusions.html">22. Concluding remarks and perspectives</a></li>
 </ul>
 
     </div>
@@ -468,7 +482,7 @@ document.write(`
 <h1><span class="section-number">11. </span>Coupled cluster theory<a class="headerlink" href="#coupled-cluster-theory" title="Link to this heading">#</a></h1>
 <p>Companion notebook to Chapter 10 of <em>Quantum mechanics for many-particle
 systems</em>.  Every number quoted in the chapter is produced here; the code is
-the same as in <code class="docutils literal notranslate"><span class="pre">BookManybody/BookMaterial/Programs/coupledcluster.py</span></code>.</p>
+the same as in <code class="docutils literal notranslate"><span class="pre">BookManybody/BookPrograms/chapter10/coupledcluster.py</span></code>.</p>
 <p>The ansatz is a single change from configuration interaction:</p>
 <div class="math notranslate nohighlight">
 \[|\Psi\rangle = e^{\hat T}|\Phi_0\rangle,
@@ -490,12 +504,17 @@ as an eigenstate gives</p>
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span><span class="o">,</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;..&quot;</span><span class="p">,</span> <span class="s2">&quot;BookManybody&quot;</span><span class="p">,</span> <span class="s2">&quot;BookMaterial&quot;</span><span class="p">,</span> <span class="s2">&quot;Programs&quot;</span><span class="p">))</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">coupledcluster</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cc</span>
+<span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">glob</span>
+<span class="c1"># the chapter programs live in BookPrograms/chapterNN; put them all on the path</span>
+<span class="k">for</span> <span class="n">_d</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;..&quot;</span><span class="p">,</span> <span class="s2">&quot;BookManybody&quot;</span><span class="p">,</span>
+                                        <span class="s2">&quot;BookPrograms&quot;</span><span class="p">,</span> <span class="s2">&quot;chapter*&quot;</span><span class="p">))):</span>
+    <span class="k">if</span> <span class="n">_d</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">_d</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">coupledcluster</span> <span class="k">as</span> <span class="nn">cc</span>
 
 <span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
 </pre></div>
@@ -526,19 +545,17 @@ chapters.  The pairing model against Table 4.2:
       g      E_ref       FCI here      chapter 4
   -1.00    3.00000     2.77987014     2.77987014
   -0.50    2.50000     2.43688426     2.43688426
+   0.00    2.00000     2.00000000     2.00000000
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   0.00    2.00000     2.00000000     2.00000000
-   0.50    1.50000     1.41677428     1.41677428
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   0.50    1.50000     1.41677428     1.41677428
    1.00    1.00000     0.63554847     0.63554847
 
 (ii) For the pairing model the interaction cannot connect the
 reference to a 1p-1h state, so the singles must vanish and CCSD
 must equal CCD exactly:
       g            E_CCD           E_CCSD    max |t1|
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   0.50    -0.0833623353    -0.0833623353    0.00e+00
+   0.50    -0.0833623353    -0.0833623353    0.00e+00
    1.00    -0.3695572464    -0.3695572464    0.00e+00
    2.00    -1.6095943999    -1.6095943999    0.00e+00
 
@@ -560,10 +577,10 @@ vanish.  For the pairing plus particle-hole model of chapter 7:
     g      f      E_ref        E_HF   max |f_ia|   FCI shift
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 0.50   0.25    1.00000     0.92862      4.4e-14     4.4e-16
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 0.50   0.25    1.00000     0.92862      4.2e-14     1.2e-15
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 1.00   0.50    0.00000    -0.26976      7.7e-14     2.2e-16
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 1.00   0.50    0.00000    -0.26976      9.7e-14     2.9e-15
 
 The Hartree-Fock energies agree with those of chapter 7, and the
 exact energy is invariant under the rotation, as it must be.
@@ -642,7 +659,7 @@ part is not negligible once the interaction is strong.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/958dfe9db98827dfcc0ce4846af063814a1e79594edcf5c7d8ed30c542b0a926.png" src="_images/958dfe9db98827dfcc0ce4846af063814a1e79594edcf5c7d8ed30c542b0a926.png" />
+<img alt="_images/9b37d068fe8875a837f83c4b67bb5268fb75b4bc49d9e600de8f3081809bfd56.png" src="_images/9b37d068fe8875a837f83c4b67bb5268fb75b4bc49d9e600de8f3081809bfd56.png" />
 </div>
 </div>
 </section>
@@ -712,8 +729,9 @@ Summing the expansion:
       sum of 16 orders = 0.6304406038
       CCD              = 0.6304427536
       FCI              = 0.6355484736
-
-   g = 1.5:  E_ref = 0.50000
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   g = 1.5:  E_ref = 0.50000
         order          term     partial sum
             2    -4.403e-01    0.0597402597
             3    -2.682e-01   -0.2084938438
@@ -752,7 +770,7 @@ within a restricted class of excitations.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/4b821bd5750366e6061c8f89c2280ec1b74471e495fa1bb4c54629f5309d7656.png" src="_images/4b821bd5750366e6061c8f89c2280ec1b74471e495fa1bb4c54629f5309d7656.png" />
+<img alt="_images/95f5a516016e824aa6bc94c9d1e56f90bb89cf05b869556cc4d6b198afa4b5bf.png" src="_images/95f5a516016e824aa6bc94c9d1e56f90bb89cf05b869556cc4d6b198afa4b5bf.png" />
 </div>
 </div>
 <p>The expansion converges back onto the CCD energy.  Solving the nonlinear
@@ -790,8 +808,8 @@ reference where Brillouin&#39;s theorem holds.
  1.00  0.050    0.4447429    0.4423659    0.4424119    0.4505823   1.7e-02   1.8e-03
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 0.50  0.250    0.6033126    0.5467210    0.5472745    0.5511916   8.4e-02   7.3e-03
- 1.00  0.500   -1.6764657   -1.7957374   -1.7805416   -1.6917367   1.0e-01   1.3e-02
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 0.50  0.250    0.6033126    0.5467210    0.5472745    0.5511916   8.4e-02   6.0e-03
+ 1.00  0.500   -1.6764657   -1.7957374   -1.7805416   -1.6917367   1.0e-01   1.5e-02
 
 Three things to read off.  The singles matter: at g = 0.5,
 f = 0.25 they move the energy from 0.6033 to 0.5467 against an
@@ -833,7 +851,7 @@ of reference determinant, only exact in the untruncated limit.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/37bd83371f88271b8d8008bc3688dbf82b253c21ad6cf6665b86047a123ba55e.png" src="_images/37bd83371f88271b8d8008bc3688dbf82b253c21ad6cf6665b86047a123ba55e.png" />
+<img alt="_images/9c54b51e52d0a5438041e3990d4f3e469481fcd36dc62b359d9e15c100b9b812.png" src="_images/9c54b51e52d0a5438041e3990d4f3e469481fcd36dc62b359d9e15c100b9b812.png" />
 </div>
 </div>
 </section>
@@ -958,7 +976,9 @@ For the pairing model the generators may be taken as pair
 excitations alone; adding the general doubles and singles changes
 nothing, because the interaction cannot use them:
         generators   amplitudes          E(UCC)
-        pairs only            4    0.6369869810
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>        pairs only            4    0.6369869810
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>           doubles           36    0.6369869810
@@ -1025,7 +1045,7 @@ not an accident.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/0ebc69274008a8021fb647ccc02ec871a4ed7d47927ac55f43585a87fbf6448b.png" src="_images/0ebc69274008a8021fb647ccc02ec871a4ed7d47927ac55f43585a87fbf6448b.png" />
+<img alt="_images/9c6f6b53717b53ac05a6cb454762f50961f38d609f39f465e510758f894e5d54.png" src="_images/9c6f6b53717b53ac05a6cb454762f50961f38d609f39f465e510758f894e5d54.png" />
 </div>
 </div>
 <p>The signed-error panel is the point: every UCCD error is positive, as the
@@ -1062,14 +1082,14 @@ how large n must be.
 Re-optimising the amplitudes for each Trotter number:
          n          E(UCCD)    error vs FCI
  exact exp     0.6369869810        1.44e-03
+         1     0.6369869810        1.44e-03
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         1     0.6369869810        1.44e-03
-         2     0.6369869810        1.44e-03
-         4     0.6369869810        1.44e-03
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         2     0.6369869810        1.44e-03
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         8     0.6369869810        1.44e-03
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         4     0.6369869810        1.44e-03
+         8     0.6369869810        1.44e-03
 
 Every Trotter number gives the same answer to ten digits, even
 n = 1.  This is not an error in the splitting: it is the
@@ -1085,7 +1105,7 @@ the Trotterised state at the same amplitudes:
     n   || psi_n - psi ||   ratio    energy error   ratio
     1           3.564e-03     nan       6.783e-05     nan
     2           1.139e-03    3.13       6.383e-06   10.63
-    4           4.556e-04    2.50       9.367e-07    6.81
+    4           4.556e-04    2.50       9.368e-07    6.81
     8           2.112e-04    2.16       1.930e-07    4.85
    16           1.034e-04    2.04       4.569e-08    4.23
    32           5.143e-05    2.01       1.126e-08    4.06
@@ -1136,7 +1156,7 @@ straightforward time evolution on near-term hardware.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/7c1ae34b5e1023e42eec4bcfb4c4e2dbf0c0b05ededfbc37e9b1c18823909de0.png" src="_images/7c1ae34b5e1023e42eec4bcfb4c4e2dbf0c0b05ededfbc37e9b1c18823909de0.png" />
+<img alt="_images/9da87b27231ea65446706ea800db808d02a247890c4010833e748dd15a42ffe7.png" src="_images/9da87b27231ea65446706ea800db808d02a247890c4010833e748dd15a42ffe7.png" />
 </div>
 </div>
 <p>Two lessons.  <strong>Re-optimising</strong> the amplitudes at each Trotter number gives the
@@ -1213,7 +1233,7 @@ one Chapter 11 will build on.</p>
 <section id="the-full-program">
 <h2><span class="section-number">11.10. </span>The full program<a class="headerlink" href="#the-full-program" title="Link to this heading">#</a></h2>
 <p>Everything above lives in
-<code class="docutils literal notranslate"><span class="pre">BookManybody/BookMaterial/Programs/coupledcluster.py</span></code>, which runs as a
+<code class="docutils literal notranslate"><span class="pre">BookManybody/BookPrograms/chapter10/coupledcluster.py</span></code>, which runs as a
 script and prints all six demonstrations of the chapter.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">

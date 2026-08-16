@@ -28,11 +28,11 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -50,7 +50,7 @@
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
@@ -214,6 +214,20 @@
 <li class="toctree-l1"><a class="reference internal" href="optimisation.html">15. Optimization and resampling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="diffusionmc.html">16. Diffusion Monte Carlo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="manybodymc.html">17. Applications to many-body systems: six electrons</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine learning approaches</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="boltzmannmachines.html">18. Boltzmann machines and generative models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pinns.html">19. Neural quantum states and physics-informed neural networks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum computing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="quantumfourier.html">20. The quantum Fourier transform and phase estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vqe.html">21. The variational quantum eigensolver</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Concluding remarks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="conclusions.html">22. Concluding remarks and perspectives</a></li>
 </ul>
 
     </div>
@@ -488,15 +502,20 @@ unitary coupled-cluster routines that were validated on the pairing model of
 chapter 10, applied here unchanged.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;../BookManybody/BookMaterial/Programs&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">glob</span>
+<span class="c1"># the chapter programs live in BookPrograms/chapterNN; put them all on the path</span>
+<span class="k">for</span> <span class="n">_d</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;..&quot;</span><span class="p">,</span> <span class="s2">&quot;BookManybody&quot;</span><span class="p">,</span>
+                                        <span class="s2">&quot;BookPrograms&quot;</span><span class="p">,</span> <span class="s2">&quot;chapter*&quot;</span><span class="p">))):</span>
+    <span class="k">if</span> <span class="n">_d</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">_d</span><span class="p">)</span>
 
-<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-<span class="kn">import</span><span class="w"> </span><span class="nn">quantumdot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">qd</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">coupledcluster</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span><span class="n">ccd</span><span class="p">,</span> <span class="n">ccsd</span><span class="p">,</span> <span class="n">hartree_fock</span><span class="p">,</span> <span class="n">mp2_energy</span><span class="p">,</span>
+<span class="kn">import</span> <span class="nn">quantumdot</span> <span class="k">as</span> <span class="nn">qd</span>
+<span class="kn">from</span> <span class="nn">coupledcluster</span> <span class="kn">import</span> <span class="p">(</span><span class="n">ccd</span><span class="p">,</span> <span class="n">ccsd</span><span class="p">,</span> <span class="n">hartree_fock</span><span class="p">,</span> <span class="n">mp2_energy</span><span class="p">,</span>
                             <span class="n">reference_energy</span><span class="p">,</span> <span class="n">UnitaryCC</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -675,7 +694,7 @@ CCSD correlation                     -0.14829527     -0.44701044
   total                               3.01362613     20.27324663
 
 N = 2: SCF 15 iterations, CCD 23, CCSD 23, max|t_1| = 5.70e-03
-N = 6: SCF 24 iterations, CCD 19, CCSD 28, max|t_1| = 1.01e-02
+N = 6: SCF 24 iterations, CCD 19, CCSD 28, max|t_1| = 8.38e-03
 </pre></div>
 </div>
 </div>
@@ -731,10 +750,12 @@ Coulomb cusp.</p>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>shells  orb   dim          E_HF          +MP2          +CCD         +CCSD         E_FCI  |CCSD-FCI|
      1    6    15    3.25331414    3.17856150    3.15232801    3.15232801    3.15232801     2.0e-13
      2   12    66    3.16269135    3.05797643    3.03904782    3.03860458    3.03860458     2.3e-13
-     3   20   190    3.16269135    3.04440370    3.02527309    3.02523058    3.02523058     2.1e-13
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     4   30   435    3.16192140    3.03341846    3.01794371    3.01760623    3.01760623     3.3e-13
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     3   20   190    3.16269135    3.04440370    3.02527309    3.02523058    3.02523058     2.1e-13
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     4   30   435    3.16192140    3.03341846    3.01794371    3.01760623    3.01760623     3.4e-13
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     5   42   861    3.16192140    3.02703812    3.01392232    3.01362613    3.01362613     3.5e-13
@@ -757,7 +778,7 @@ Coulomb cusp.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/51005eee96b86034c9a0132e44a3bb2db814bd90ba708ccdf746d31088c6cf28.png" src="_images/51005eee96b86034c9a0132e44a3bb2db814bd90ba708ccdf746d31088c6cf28.png" />
+<img alt="_images/50ca5be1c2a52d9d08ca29ee23682a27a26bcb5a5c93f2cd9c33746f30ad8079.png" src="_images/50ca5be1c2a52d9d08ca29ee23682a27a26bcb5a5c93f2cd9c33746f30ad8079.png" />
 </div>
 </div>
 </section>
@@ -858,14 +879,14 @@ an experimentalist can tune.</p>
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   0.25    0.500    1.04636728  -0.09401297  -0.11011613  -0.2015
-   0.50    1.000    1.79985638  -0.10709593  -0.12598399  -0.1575
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   1.00    2.000    3.16269135  -0.11828765  -0.13746077  -0.1182
-   2.00    4.000    5.67904776  -0.12736072  -0.14477375  -0.0862
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   0.50    1.000    1.79985638  -0.10709593  -0.12598399  -0.1575
+   1.00    2.000    3.16269135  -0.11828765  -0.13746077  -0.1182
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   4.00    8.000   10.41147018  -0.13444879  -0.14905150  -0.0618
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   2.00    4.000    5.67904776  -0.12736072  -0.14477375  -0.0862
+   4.00    8.000   10.41147018  -0.13444879  -0.14905150  -0.0618
 
 N = 6, shells 0-3
      hw      E_0          E_HF        E_MP2       E_CCSD    ratio
@@ -886,7 +907,7 @@ N = 6, shells 0-3
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   4.00   40.000   62.74380826  -0.35483723  -0.37145821  -0.0163
 </pre></div>
 </div>
-<img alt="_images/a0726f3d98326284e39229feacbe63971d4569d7f7c93b94376e929df394b4c1.png" src="_images/a0726f3d98326284e39229feacbe63971d4569d7f7c93b94376e929df394b4c1.png" />
+<img alt="_images/a61406569e5ea6cab1974c1df88437ef828621665af07ba1b3de0a1849c9b1c6.png" src="_images/a61406569e5ea6cab1974c1df88437ef828621665af07ba1b3de0a1849c9b1c6.png" />
 </div>
 </div>
 </section>
@@ -921,7 +942,9 @@ bites — which is what section 6 showed for six electrons.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>shells  orb  ampl           CCD          UCCD          CCSD         UCCSD           FCI
-     1    6    14    3.15232801    3.15232801    3.15232801    3.15232801    3.15232801
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     1    6    14    3.15232801    3.15232801    3.15232801    3.15232801    3.15232801
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     2   12    65    3.03904782    3.03904782    3.03860458    3.03860458    3.03860458
@@ -974,14 +997,16 @@ section 6.9.  The number of steps <span class="math notranslate nohighlight">\(n
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>exact exponential = 3.03864227
 
  steps         energy        error    ratio
-     1     3.03863183     1.04e-05       --
-     2     3.03863789     4.38e-06     2.38
-     4     3.03864044     1.83e-06     2.40
-     8     3.03864146     8.10e-07     2.26
-    16     3.03864189     3.77e-07     2.15
+     1     3.03863146     1.08e-05       --
+     2     3.03863778     4.49e-06     2.40
+     4     3.03864041     1.86e-06     2.42
 </pre></div>
 </div>
-<img alt="_images/bb4db26f538300ae0677876bd71adf245c491eeea388d4e4f0d5ad2a9201d154.png" src="_images/bb4db26f538300ae0677876bd71adf245c491eeea388d4e4f0d5ad2a9201d154.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     8     3.03864145     8.17e-07     2.27
+    16     3.03864189     3.79e-07     2.15
+</pre></div>
+</div>
+<img alt="_images/d0ca16507a614d15f4e7b8aff3c7a366565af40dfcbe5a9e841748c2f4dfc871.png" src="_images/d0ca16507a614d15f4e7b8aff3c7a366565af40dfcbe5a9e841748c2f4dfc871.png" />
 </div>
 </div>
 </section>

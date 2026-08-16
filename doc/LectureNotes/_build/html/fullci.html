@@ -28,11 +28,11 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -50,7 +50,7 @@
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
@@ -214,6 +214,20 @@
 <li class="toctree-l1"><a class="reference internal" href="optimisation.html">15. Optimization and resampling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="diffusionmc.html">16. Diffusion Monte Carlo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="manybodymc.html">17. Applications to many-body systems: six electrons</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine learning approaches</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="boltzmannmachines.html">18. Boltzmann machines and generative models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pinns.html">19. Neural quantum states and physics-informed neural networks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum computing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="quantumfourier.html">20. The quantum Fourier transform and phase estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vqe.html">21. The variational quantum eigensolver</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Concluding remarks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="conclusions.html">22. Concluding remarks and perspectives</a></li>
 </ul>
 
     </div>
@@ -458,6 +472,12 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-full-program">6.8. The full program</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#three-figures">6.9. 8. Three figures</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">6.9.1. 8.1 The exponential wall</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-a-truncation-degrades-with-the-coupling">6.9.2. 8.2 How a truncation degrades with the coupling</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">6.9.3. 8.3 Size consistency</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -473,7 +493,7 @@ document.write(`
 <h1><span class="section-number">6. </span>Full configuration interaction theory<a class="headerlink" href="#full-configuration-interaction-theory" title="Link to this heading">#</a></h1>
 <p>Companion notebook to Chapter 5 of <em>Quantum mechanics for many-particle
 systems</em>.  Every number quoted in the chapter is produced here.  The code is
-the same as in <code class="docutils literal notranslate"><span class="pre">BookManybody/BookMaterial/Programs/fci.py</span></code>; the notebook runs
+the same as in <code class="docutils literal notranslate"><span class="pre">BookManybody/BookPrograms/chapter05/fci.py</span></code>; the notebook runs
 it section by section.</p>
 <p>Contents:</p>
 <ol class="arabic simple">
@@ -491,11 +511,16 @@ it section by section.</p>
 drift apart.  Adjust the path if you have moved the programs.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span><span class="o">,</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;..&quot;</span><span class="p">,</span> <span class="s2">&quot;BookManybody&quot;</span><span class="p">,</span> <span class="s2">&quot;BookMaterial&quot;</span><span class="p">,</span> <span class="s2">&quot;Programs&quot;</span><span class="p">))</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">fci</span>
+<span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">glob</span>
+<span class="c1"># the chapter programs live in BookPrograms/chapterNN; put them all on the path</span>
+<span class="k">for</span> <span class="n">_d</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;..&quot;</span><span class="p">,</span> <span class="s2">&quot;BookManybody&quot;</span><span class="p">,</span>
+                                        <span class="s2">&quot;BookPrograms&quot;</span><span class="p">,</span> <span class="s2">&quot;chapter*&quot;</span><span class="p">))):</span>
+    <span class="k">if</span> <span class="n">_d</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">_d</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">fci</span>
 
 <span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
 </pre></div>
@@ -629,7 +654,7 @@ determinants by excitation level relative to the reference:
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ground-state energy, full 70-dimensional space : 0.63554847
 Table 4.2, seniority-zero subspace, g = 1      :  0.63554847
 
-largest amplitude on a broken-pair determinant : 1.11e-16
+largest amplitude on a broken-pair determinant : 5.55e-17
 </pre></div>
 </div>
 </div>
@@ -821,7 +846,9 @@ longer describes the state we set out to compute.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>U/t =  1.0   max |&lt;Phi_0|H|Phi_i^a&gt;| = 0.00e+00   E_ref = -6.500000   lowest singles eigenvalue = -4.858678
-U/t =  2.0   max |&lt;Phi_0|H|Phi_i^a&gt;| = 0.00e+00   E_ref = -5.000000   lowest singles eigenvalue = -3.758306
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>U/t =  2.0   max |&lt;Phi_0|H|Phi_i^a&gt;| = 0.00e+00   E_ref = -5.000000   lowest singles eigenvalue = -3.758306
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>U/t =  4.0   max |&lt;Phi_0|H|Phi_i^a&gt;| = 0.00e+00   E_ref = -2.000000   lowest singles eigenvalue = -1.632993
@@ -953,7 +980,7 @@ what makes a compressed representation possible.
 </section>
 <section id="the-full-program">
 <h2><span class="section-number">6.8. </span>The full program<a class="headerlink" href="#the-full-program" title="Link to this heading">#</a></h2>
-<p>Everything above lives in <code class="docutils literal notranslate"><span class="pre">BookManybody/BookMaterial/Programs/fci.py</span></code>, which
+<p>Everything above lives in <code class="docutils literal notranslate"><span class="pre">BookManybody/BookPrograms/chapter05/fci.py</span></code>, which
 runs as a script and prints all six demonstrations of the chapter.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1439,6 +1466,254 @@ if __name__ == &quot;__main__&quot;:
 </div>
 </div>
 </section>
+<section id="three-figures">
+<h2><span class="section-number">6.9. </span>8. Three figures<a class="headerlink" href="#three-figures" title="Link to this heading">#</a></h2>
+<p>The tables above contain every number the chapter quotes, but three of the
+statements are really statements about <em>curves</em>, and we plot them here: the
+growth of the dimension, the way a truncation deteriorates as the interaction
+is turned up, and the failure of size consistency.  Nothing new is computed –
+we simply call the same routines over a grid of parameters instead of at a
+handful of points.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id1">
+<h3><span class="section-number">6.9.1. </span>8.1 The exponential wall<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">fci.hilbert_growth</span></code> returns the landmarks that <code class="docutils literal notranslate"><span class="pre">fci.demo_exponential_wall</span></code>
+prints; we put them on the curve <span class="math notranslate nohighlight">\(\dim\mathcal H = \binom{n}{N}\)</span> as a
+function of the number of single-particle states <span class="math notranslate nohighlight">\(n\)</span>, for a few particle
+numbers and along the half-filled line <span class="math notranslate nohighlight">\(N = n/2\)</span>.  The binomial we use is the
+module’s own (<code class="docutils literal notranslate"><span class="pre">fci.comb</span></code>), and we check it against an explicitly enumerated
+<code class="docutils literal notranslate"><span class="pre">fci.SlaterBasis</span></code> for a case small enough to build.</p>
+<p>The two horizontal lines are the honest limits of the trade: dense
+diagonalisation is comfortable up to a dimension of about <span class="math notranslate nohighlight">\(10^{5}\)</span>, and
+Lanczos, which needs only matrix-vector products, reaches roughly <span class="math notranslate nohighlight">\(10^{10}\)</span> on
+the largest machines available today.  Everything above the upper line is
+territory that no exact diagonalisation will ever enter, and the fixed-<span class="math notranslate nohighlight">\(N\)</span>
+curves show how little it takes to get there: at half filling each new
+single-particle state doubles the dimension.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># the module&#39;s own binomial, checked against an enumerated basis</span>
+<span class="n">check</span> <span class="o">=</span> <span class="n">fci</span><span class="o">.</span><span class="n">SlaterBasis</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SlaterBasis(14, 7).dim =&quot;</span><span class="p">,</span> <span class="n">check</span><span class="o">.</span><span class="n">dim</span><span class="p">,</span>
+      <span class="s2">&quot; fci.comb(14, 7) =&quot;</span><span class="p">,</span> <span class="n">fci</span><span class="o">.</span><span class="n">comb</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+
+<span class="n">n_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">81</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">N</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">16</span><span class="p">):</span>
+    <span class="n">ns</span> <span class="o">=</span> <span class="n">n_grid</span><span class="p">[</span><span class="n">n_grid</span> <span class="o">&gt;=</span> <span class="n">N</span><span class="p">]</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ns</span><span class="p">,</span> <span class="p">[</span><span class="n">fci</span><span class="o">.</span><span class="n">comb</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">N</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">ns</span><span class="p">],</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.6</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;$N = </span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
+
+<span class="n">half</span> <span class="o">=</span> <span class="n">n_grid</span><span class="p">[</span><span class="n">n_grid</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">half</span><span class="p">,</span> <span class="p">[</span><span class="n">fci</span><span class="o">.</span><span class="n">comb</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">half</span><span class="p">],</span> <span class="s2">&quot;k--&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.6</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;half filling, $N = n/2$&quot;</span><span class="p">)</span>
+
+<span class="c1"># the landmarks of fci.hilbert_growth(), the table of demo_exponential_wall</span>
+<span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">n_sp</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">dim</span> <span class="ow">in</span> <span class="n">fci</span><span class="o">.</span><span class="n">hilbert_growth</span><span class="p">():</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n_sp</span><span class="p">,</span> <span class="n">dim</span><span class="p">,</span> <span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;0.15&quot;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">offset</span><span class="p">,</span> <span class="n">align</span> <span class="o">=</span> <span class="p">((</span><span class="o">-</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="s2">&quot;right&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">n_sp</span> <span class="o">&gt;=</span> <span class="mi">60</span> <span class="k">else</span> <span class="p">((</span><span class="mi">7</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="s2">&quot;left&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="p">(</span><span class="n">n_sp</span><span class="p">,</span> <span class="n">dim</span><span class="p">),</span> <span class="n">textcoords</span><span class="o">=</span><span class="s2">&quot;offset points&quot;</span><span class="p">,</span>
+                <span class="n">xytext</span><span class="o">=</span><span class="n">offset</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="n">align</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mf">7.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;0.15&quot;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">axhspan</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1e5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C2&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.10</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axhspan</span><span class="p">(</span><span class="mf">1e5</span><span class="p">,</span> <span class="mf">1e10</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C1&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.08</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mf">1e5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C2&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mf">1e10</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C1&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">89</span><span class="p">,</span> <span class="mf">3.0e5</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;dense diagonalisation, $\sim\!10^</span><span class="si">{5}</span><span class="s2">$&quot;</span><span class="p">,</span>
+        <span class="n">fontsize</span><span class="o">=</span><span class="mf">7.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C2&quot;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">89</span><span class="p">,</span> <span class="mf">3.0e10</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;Lanczos, $\sim\!10^</span><span class="si">{10}</span><span class="s2">$&quot;</span><span class="p">,</span>
+        <span class="n">fontsize</span><span class="o">=</span><span class="mf">7.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C1&quot;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yscale</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1e26</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;number of single-particle states $n$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;dimension of the full CI space $\binom</span><span class="si">{n}{N}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;The exponential wall: dimension of the full CI space&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;upper left&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SlaterBasis(14, 7).dim = 3432  fci.comb(14, 7) = 3432
+</pre></div>
+</div>
+<img alt="_images/9ebdb0ea8baf1425e15c696325ae2ab9531edb608c1e0a31639d4b8a3f4bc765.png" src="_images/9ebdb0ea8baf1425e15c696325ae2ab9531edb608c1e0a31639d4b8a3f4bc765.png" />
+</div>
+</div>
+</section>
+<section id="how-a-truncation-degrades-with-the-coupling">
+<h3><span class="section-number">6.9.2. </span>8.2 How a truncation degrades with the coupling<a class="headerlink" href="#how-a-truncation-degrades-with-the-coupling" title="Link to this heading">#</a></h3>
+<p>We follow <code class="docutils literal notranslate"><span class="pre">fci.demo_truncations</span></code>, but with six levels and six particles rather
+than four and four, so that the space is large enough (<span class="math notranslate nohighlight">\(\binom{12}{6} = 924\)</span>
+determinants, excitations up to <span class="math notranslate nohighlight">\(6p\)</span>-<span class="math notranslate nohighlight">\(6h\)</span>) for the quadruples to be a genuine
+truncation and not the whole space in disguise.  For each value of <span class="math notranslate nohighlight">\(g\)</span> we ask
+<code class="docutils literal notranslate"><span class="pre">energies</span></code> for the lowest eigenvalue in the subspace of determinants up to a
+given excitation level, and compare with the untruncated answer.</p>
+<p>The left panel shows the correlation energy <span class="math notranslate nohighlight">\(E - E_{\mathrm{ref}}\)</span> that each
+scheme recovers; the right panel shows what each of them misses, on a
+logarithmic scale.  At <span class="math notranslate nohighlight">\(g = 0.1\)</span> the doubles are already good to a part in
+<span class="math notranslate nohighlight">\(10^{4}\)</span> and the quadruples to a part in <span class="math notranslate nohighlight">\(10^{7}\)</span> – weak coupling is easy, and
+every scheme looks excellent.  By <span class="math notranslate nohighlight">\(g = 2\)</span> the doubles are wrong by more than
+half a unit of <span class="math notranslate nohighlight">\(\xi\)</span> and the quadruples by a few hundredths: the errors climb
+by several orders of magnitude while the truncation stays the same.  The
+singles do nothing at all, at any <span class="math notranslate nohighlight">\(g\)</span>, because the pairing interaction cannot
+break a pair.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">truncations</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;CIS&quot;</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;CISD&quot;</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;CISDTQ&quot;</span><span class="p">)]</span>
+
+<span class="n">energy</span> <span class="o">=</span> <span class="p">{</span><span class="n">label</span><span class="p">:</span> <span class="p">[]</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">truncations</span><span class="p">}</span>
+<span class="n">e_ref</span><span class="p">,</span> <span class="n">e_fci</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">g_grid</span><span class="p">:</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">fci</span><span class="o">.</span><span class="n">PairingFCI</span><span class="p">(</span><span class="n">levels</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">n_particles</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="n">g</span><span class="p">,</span> <span class="n">xi</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+    <span class="n">e_ref</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">reference_energy</span><span class="p">())</span>
+    <span class="n">e_fci</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">energies</span><span class="p">(</span><span class="kc">None</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">level</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">truncations</span><span class="p">:</span>
+        <span class="n">energy</span><span class="p">[</span><span class="n">label</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">energies</span><span class="p">(</span><span class="n">level</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="n">e_ref</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">e_ref</span><span class="p">)</span>
+<span class="n">e_fci</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">e_fci</span><span class="p">)</span>
+<span class="n">energy</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">energy</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;basis sizes at g = 1:&quot;</span><span class="p">)</span>
+<span class="n">m1</span> <span class="o">=</span> <span class="n">fci</span><span class="o">.</span><span class="n">PairingFCI</span><span class="p">(</span><span class="n">levels</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">n_particles</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">level</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">truncations</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   </span><span class="si">{</span><span class="n">label</span><span class="si">:</span><span class="s2">8s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">m1</span><span class="o">.</span><span class="n">energies</span><span class="p">(</span><span class="n">level</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">4d</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   </span><span class="si">{</span><span class="s1">&#39;FCI&#39;</span><span class="si">:</span><span class="s2">8s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">m1</span><span class="o">.</span><span class="n">basis</span><span class="o">.</span><span class="n">dim</span><span class="si">:</span><span class="s2">4d</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mf">3.2</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">truncations</span><span class="p">:</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">g_grid</span><span class="p">,</span> <span class="n">energy</span><span class="p">[</span><span class="n">label</span><span class="p">]</span> <span class="o">-</span> <span class="n">e_ref</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">g_grid</span><span class="p">,</span> <span class="n">e_fci</span> <span class="o">-</span> <span class="n">e_ref</span><span class="p">,</span> <span class="s2">&quot;k--&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;FCI&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;interaction strength $g$&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;correlation energy $E - E_{\mathrm</span><span class="si">{ref}</span><span class="s2">}$&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mf">7.5</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;lower left&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">truncations</span><span class="p">:</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">g_grid</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">energy</span><span class="p">[</span><span class="n">label</span><span class="p">]</span> <span class="o">-</span> <span class="n">e_fci</span><span class="p">,</span> <span class="mf">1e-16</span><span class="p">),</span>
+                 <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;interaction strength $g$&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;error $E - E_{\mathrm</span><span class="si">{FCI}</span><span class="s2">}$&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mf">7.5</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;lower right&quot;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Truncated CI against full CI for the pairing model, &quot;</span>
+             <span class="s2">&quot;six levels and six particles&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>basis sizes at g = 1:
+   CIS        37
+   CISD      262
+   CISDTQ    887
+   FCI       924
+</pre></div>
+</div>
+<img alt="_images/9275a3e9ce908010eb767be211f9c8cfaa8fcce7fdb93d4cee833a6cda95b9e5.png" src="_images/9275a3e9ce908010eb767be211f9c8cfaa8fcce7fdb93d4cee833a6cda95b9e5.png" />
+</div>
+</div>
+</section>
+<section id="id2">
+<h3><span class="section-number">6.9.3. </span>8.3 Size consistency<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">fci.NonInteractingCopies</span></code> builds <span class="math notranslate nohighlight">\(n\)</span> identical two-level pairing systems that
+do not talk to each other, so the exact energy of the assembly must be exactly
+<span class="math notranslate nohighlight">\(n\)</span> times the exact energy of one.  We plot the size-consistency error
+<span class="math notranslate nohighlight">\(E(n) - n\,E(1)\)</span>, computed for each scheme with its own one-copy energy, which
+is the only fair comparison.</p>
+<p>Full CI sits on zero to machine precision, as it must.  CID does not, and the
+reason is pure counting: two subsystems doubly excited at the same time form a
+<em>quadruple</em> excitation of the combined reference, and CID has no room for it.
+Allowing quadruples repairs the two-copy case exactly – there is nothing
+beyond quadruples to miss – but fails again at three copies, where six
+simultaneous excitations are needed.  Each new subsystem demands a higher
+truncation level, so the error of any fixed truncation grows without bound as
+the system does, and the right panel shows that it grows with the coupling as
+well.  This is why we say that truncated CI is not size extensive, and it is
+the defect that the exponential ansatz of coupled-cluster theory removes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">schemes</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;CID&quot;</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;CISDTQ&quot;</span><span class="p">),</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;FCI&quot;</span><span class="p">)]</span>
+<span class="n">copies</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+
+<span class="c1"># (a) against the number of copies, at fixed coupling</span>
+<span class="n">g_fixed</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">one</span> <span class="o">=</span> <span class="n">fci</span><span class="o">.</span><span class="n">NonInteractingCopies</span><span class="p">(</span><span class="n">g</span><span class="o">=</span><span class="n">g_fixed</span><span class="p">,</span> <span class="n">subsystems</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">error_vs_n</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">level</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">schemes</span><span class="p">:</span>
+    <span class="n">e_one</span> <span class="o">=</span> <span class="n">one</span><span class="o">.</span><span class="n">energies</span><span class="p">(</span><span class="n">level</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">error_vs_n</span><span class="p">[</span><span class="n">label</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">fci</span><span class="o">.</span><span class="n">NonInteractingCopies</span><span class="p">(</span><span class="n">g</span><span class="o">=</span><span class="n">g_fixed</span><span class="p">,</span> <span class="n">subsystems</span><span class="o">=</span><span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">energies</span><span class="p">(</span><span class="n">level</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="o">-</span> <span class="n">n</span> <span class="o">*</span> <span class="n">e_one</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">copies</span><span class="p">]</span>
+
+<span class="c1"># (b) three copies, against the coupling</span>
+<span class="n">g_grid3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+<span class="n">error_vs_g</span> <span class="o">=</span> <span class="p">{</span><span class="n">label</span><span class="p">:</span> <span class="p">[]</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">schemes</span><span class="p">}</span>
+<span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">g_grid3</span><span class="p">:</span>
+    <span class="n">one</span> <span class="o">=</span> <span class="n">fci</span><span class="o">.</span><span class="n">NonInteractingCopies</span><span class="p">(</span><span class="n">g</span><span class="o">=</span><span class="n">g</span><span class="p">,</span> <span class="n">subsystems</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">three</span> <span class="o">=</span> <span class="n">fci</span><span class="o">.</span><span class="n">NonInteractingCopies</span><span class="p">(</span><span class="n">g</span><span class="o">=</span><span class="n">g</span><span class="p">,</span> <span class="n">subsystems</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">level</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">schemes</span><span class="p">:</span>
+        <span class="n">error_vs_g</span><span class="p">[</span><span class="n">label</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">three</span><span class="o">.</span><span class="n">energies</span><span class="p">(</span><span class="n">level</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                                 <span class="o">-</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">one</span><span class="o">.</span><span class="n">energies</span><span class="p">(</span><span class="n">level</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;CID&quot;</span><span class="p">,</span> <span class="s2">&quot;CISDTQ&quot;</span><span class="p">,</span> <span class="s2">&quot;FCI&quot;</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">label</span><span class="si">:</span><span class="s2">8s</span><span class="si">}</span><span class="s2"> error at g = 1: &quot;</span>
+          <span class="o">+</span> <span class="s2">&quot;  &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;n=</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">:</span><span class="s2">+.2e</span><span class="si">}</span><span class="s2">&quot;</span>
+                      <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">e</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">copies</span><span class="p">,</span> <span class="n">error_vs_n</span><span class="p">[</span><span class="n">label</span><span class="p">])))</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mf">3.2</span><span class="p">))</span>
+<span class="n">marker</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;CID&quot;</span><span class="p">:</span> <span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="s2">&quot;CISDTQ&quot;</span><span class="p">:</span> <span class="s2">&quot;s&quot;</span><span class="p">,</span> <span class="s2">&quot;FCI&quot;</span><span class="p">:</span> <span class="s2">&quot;^&quot;</span><span class="p">}</span>
+
+<span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">schemes</span><span class="p">:</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">copies</span><span class="p">,</span> <span class="n">error_vs_n</span><span class="p">[</span><span class="n">label</span><span class="p">],</span> <span class="n">marker</span><span class="p">[</span><span class="n">label</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span>
+             <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;0.6&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">copies</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;number of non-interacting copies $n$&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$E(n) - n\,E(1)$&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;$g = </span><span class="si">{</span><span class="n">g_fixed</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mf">7.5</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;upper left&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">schemes</span><span class="p">:</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">g_grid3</span><span class="p">,</span> <span class="n">error_vs_g</span><span class="p">[</span><span class="n">label</span><span class="p">],</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;0.6&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;interaction strength $g$&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$E(3) - 3\,E(1)$&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;three copies&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mf">7.5</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;upper left&quot;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Size consistency: truncated CI drifts as copies are added, &quot;</span>
+             <span class="s2">&quot;full CI does not&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CID      error at g = 1: n=1: +0.00e+00  n=2: +1.13e-02  n=3: +3.12e-02
+CISDTQ   error at g = 1: n=1: +0.00e+00  n=2: -2.22e-16  n=3: +9.08e-04
+FCI      error at g = 1: n=1: +0.00e+00  n=2: -2.22e-16  n=3: -3.11e-15
+</pre></div>
+</div>
+<img alt="_images/7e9a7cab78241c11aae419386b7e6a15324a15affba8d46020574425151267f5.png" src="_images/7e9a7cab78241c11aae419386b7e6a15324a15affba8d46020574425151267f5.png" />
+</div>
+</div>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1523,6 +1798,12 @@ if __name__ == &quot;__main__&quot;:
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-full-program">6.8. The full program</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#three-figures">6.9. 8. Three figures</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">6.9.1. 8.1 The exponential wall</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-a-truncation-degrades-with-the-coupling">6.9.2. 8.2 How a truncation degrades with the coupling</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">6.9.3. 8.3 Size consistency</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

@@ -28,11 +28,11 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -50,7 +50,7 @@
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
@@ -214,6 +214,20 @@
 <li class="toctree-l1"><a class="reference internal" href="optimisation.html">15. Optimization and resampling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="diffusionmc.html">16. Diffusion Monte Carlo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="manybodymc.html">17. Applications to many-body systems: six electrons</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine learning approaches</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="boltzmannmachines.html">18. Boltzmann machines and generative models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pinns.html">19. Neural quantum states and physics-informed neural networks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum computing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="quantumfourier.html">20. The quantum Fourier transform and phase estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vqe.html">21. The variational quantum eigensolver</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Concluding remarks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="conclusions.html">22. Concluding remarks and perspectives</a></li>
 </ul>
 
     </div>
@@ -492,13 +506,13 @@ by the QL algorithm with implicit shifts;</p></li>
 <li><p>Schrödinger’s equation solved by diagonalisation.</p></li>
 </ol>
 <p>Everything is written with NumPy only.  The complete stand-alone programs live
-in <code class="docutils literal notranslate"><span class="pre">doc/BookManybody/BookMaterial/Programs</span></code>.</p>
+in <code class="docutils literal notranslate"><span class="pre">doc/BookManybody/BookPrograms,</span> <span class="pre">one</span> <span class="pre">directory</span> <span class="pre">per</span> <span class="pre">chapter</span></code>.</p>
 <p>Throughout, indices run from <span class="math notranslate nohighlight">\(0\)</span> to <span class="math notranslate nohighlight">\(n-1\)</span>, so the formulae of the text and the
 code carry the same indices.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">2026</span><span class="p">)</span>
@@ -521,7 +535,7 @@ the pivot – keeps all multipliers bounded by one and is what makes the method
 numerically safe.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">gaussian_elimination</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gaussian_elimination</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Solve A x = b by Gaussian elimination with partial pivoting.&quot;&quot;&quot;</span>
     <span class="n">n</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">M</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -552,10 +566,10 @@ side costs only <span class="math notranslate nohighlight">\(\mathcal{O}(n^2)\)<
 product of the diagonal elements of <span class="math notranslate nohighlight">\(\boldsymbol{U}\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">LUDecomposition</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">LUDecomposition</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Doolittle LU factorisation with partial pivoting, P A = L U.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">A</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">A</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="n">LU</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
         <span class="n">perm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">)</span>
@@ -571,14 +585,14 @@ product of the diagonal elements of <span class="math notranslate nohighlight">\
         <span class="bp">self</span><span class="o">.</span><span class="n">LU</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">perm</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sign</span> <span class="o">=</span> <span class="n">LU</span><span class="p">,</span> <span class="n">perm</span><span class="p">,</span> <span class="n">sign</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">L</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">L</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">tril</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">LU</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">)</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">U</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">U</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">triu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">LU</span><span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
         <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)[</span><span class="bp">self</span><span class="o">.</span><span class="n">perm</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">):</span>                        <span class="c1"># L y = P b</span>
             <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-=</span> <span class="bp">self</span><span class="o">.</span><span class="n">LU</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:</span><span class="n">i</span><span class="p">]</span> <span class="o">@</span> <span class="n">y</span><span class="p">[:</span><span class="n">i</span><span class="p">]</span>
@@ -587,10 +601,10 @@ product of the diagonal elements of <span class="math notranslate nohighlight">\
             <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">LU</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">:]</span> <span class="o">@</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">:])</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">LU</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">x</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">determinant</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">determinant</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sign</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">LU</span><span class="p">))</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">inverse</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">inverse</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">)])</span>
 </pre></div>
 </div>
@@ -622,7 +636,7 @@ product of the diagonal elements of <span class="math notranslate nohighlight">\
 LU decomposition       |x - x_exact| = 2.776e-17
                        |P A - L U|   = 9.506e-16
 determinant  ours +3.85798536e+04   numpy +3.85798536e+04
-inverse                |A^-1 A - I|  = 3.918e-16
+inverse                |A^-1 A - I|  = 4.270e-16
 </pre></div>
 </div>
 </div>
@@ -635,7 +649,7 @@ forward/backward sweep costs <span class="math notranslate nohighlight">\(\mathc
 more than any amount of tuning.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">tridiagonal_solve</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">f</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">tridiagonal_solve</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">f</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Solve a_i u_{i-1} + b_i u_i + c_i u_{i+1} = f_i in O(n) operations.&quot;&quot;&quot;</span>
     <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
     <span class="n">temp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
@@ -691,7 +705,7 @@ along directions that are conjugate,
 <span class="math notranslate nohighlight">\(\boldsymbol{p}_i^T\boldsymbol{A}\boldsymbol{p}_j=0\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">jacobi</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">100000</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">jacobi</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">100000</span><span class="p">):</span>
     <span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
     <span class="n">R</span> <span class="o">=</span> <span class="n">A</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
@@ -704,7 +718,7 @@ along directions that are conjugate,
     <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">hist</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">gauss_seidel</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">omega</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">100000</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">gauss_seidel</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">omega</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">100000</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;omega = 1 is Gauss-Seidel; 1 &lt; omega &lt; 2 is over-relaxation.&quot;&quot;&quot;</span>
     <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
@@ -719,7 +733,7 @@ along directions that are conjugate,
     <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">hist</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">conjugate_gradient</span><span class="p">(</span><span class="n">matvec</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">conjugate_gradient</span><span class="p">(</span><span class="n">matvec</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Only the product A p is used, so matvec may be matrix-free.&quot;&quot;&quot;</span>
     <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
     <span class="n">max_iter</span> <span class="o">=</span> <span class="n">n</span> <span class="k">if</span> <span class="n">max_iter</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">max_iter</span>
@@ -769,13 +783,11 @@ along directions that are conjugate,
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>method                   iterations      |x - exact|
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----------------------------------------------------
+----------------------------------------------------
 Jacobi                         4030        1.009e-09
 Gauss-Seidel                   2016        1.003e-09
 SOR, omega=1.8                  170        4.857e-10
-Conjugate gradient               16        2.168e-16
+Conjugate gradient               16        1.578e-16
 </pre></div>
 </div>
 </div>
@@ -797,7 +809,7 @@ Conjugate gradient               16        2.168e-16
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/34f85ed618a42e08d53f6becf2d1f3f2eebc3467fc3eef51f7c4cb72da4c5d21.png" src="_images/34f85ed618a42e08d53f6becf2d1f3f2eebc3467fc3eef51f7c4cb72da4c5d21.png" />
+<img alt="_images/5f0501389af2d5eb902a9ccea930d4b276c5f2fd5e1bb6855c7fd1b1d8299dca.png" src="_images/5f0501389af2d5eb902a9ccea930d4b276c5f2fd5e1bb6855c7fd1b1d8299dca.png" />
 </div>
 </div>
 </section>
@@ -817,7 +829,7 @@ suffers cancellation.  Second, the tridiagonal matrix is diagonalised by the
 QL algorithm with implicit Wilkinson shifts.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">householder_tridiagonalize</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-14</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">householder_tridiagonalize</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-14</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return (d, e, S) with S^T A S tridiagonal.&quot;&quot;&quot;</span>
     <span class="n">n</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">M</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -849,7 +861,7 @@ QL algorithm with implicit Wilkinson shifts.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">tqli</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_sweeps</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">tqli</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_sweeps</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;QL algorithm with implicit shifts for a symmetric tridiagonal matrix.&quot;&quot;&quot;</span>
     <span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
     <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
@@ -916,15 +928,15 @@ QL algorithm with implicit Wilkinson shifts.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>|S^T S - I|   = 9.806e-16
-|S T S^T - A| = 2.747e-15
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>|S^T S - I|   = 4.079e-16
+|S T S^T - A| = 2.372e-15
 
 eigenvalues, Householder + QL: [-4.28864482 -2.53848701 -1.05594757  0.28544745  0.61452604  1.6427293
   2.02230253  3.41003844]
 eigenvalues, numpy          : [-4.28864482 -2.53848701 -1.05594757  0.28544745  0.61452604  1.6427293
   2.02230253  3.41003844]
-max deviation     = 3.109e-15
-|A V - V diag(l)| = 5.190e-15
+max deviation     = 1.554e-15
+|A V - V diag(l)| = 4.459e-15
 </pre></div>
 </div>
 </div>
@@ -951,7 +963,7 @@ the Ritz values, converge rapidly to the extremal eigenvalues of
 <span class="math notranslate nohighlight">\(\boldsymbol{A}\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">lanczos</span><span class="p">(</span><span class="n">matvec</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">q0</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">reorthogonalize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-12</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">lanczos</span><span class="p">(</span><span class="n">matvec</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">q0</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">reorthogonalize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-12</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;m Lanczos steps; returns the tridiagonal elements and the basis.&quot;&quot;&quot;</span>
     <span class="n">q</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span> <span class="k">if</span> <span class="n">q0</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">q0</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
     <span class="n">q</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
@@ -984,7 +996,7 @@ the Ritz values, converge rapidly to the extremal eigenvalues of
     <span class="k">return</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">Q</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">ritz</span><span class="p">(</span><span class="n">matvec</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">reorthogonalize</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">ritz</span><span class="p">(</span><span class="n">matvec</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">reorthogonalize</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">Q</span> <span class="o">=</span> <span class="n">lanczos</span><span class="p">(</span><span class="n">matvec</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">reorthogonalize</span><span class="o">=</span><span class="n">reorthogonalize</span><span class="p">)</span>
     <span class="n">theta</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">tqli</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">theta</span><span class="p">,</span> <span class="n">Q</span> <span class="o">@</span> <span class="n">y</span><span class="p">,</span> <span class="n">Q</span>
@@ -1005,10 +1017,10 @@ is <span class="math notranslate nohighlight">\(\binom{L}{n}\)</span>.  Two conf
 coupled by <span class="math notranslate nohighlight">\(-g\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">itertools</span><span class="w"> </span><span class="kn">import</span> <span class="n">combinations</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">combinations</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">pairing_hamiltonian</span><span class="p">(</span><span class="n">levels</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">pairs</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">pairing_hamiltonian</span><span class="p">(</span><span class="n">levels</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">pairs</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
     <span class="n">basis</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">combinations</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">levels</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">pairs</span><span class="p">))</span>
     <span class="n">index</span> <span class="o">=</span> <span class="p">{</span><span class="n">c</span><span class="p">:</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">basis</span><span class="p">)}</span>
     <span class="n">dim</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">basis</span><span class="p">)</span>
@@ -1063,7 +1075,7 @@ exact ground-state energy      : 24.839172748451
   10        25.090067574237     2.51e-01      32.3434156367     4.44e+00
   20        24.839291576387     1.19e-04      27.9192438101     1.45e-02
   30        24.839172748614     1.63e-10      27.9047375614     2.08e-06
-  40        24.839172748451     3.55e-15      27.9047354807     6.07e-11
+  40        24.839172748451     3.55e-14      27.9047354807     6.07e-11
 ------------------------------------------------------------------------
 exact        24.839172748451                   27.9047354806
 </pre></div>
@@ -1084,7 +1096,7 @@ exact        24.839172748451                   27.9047354806
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/1ae1c0d5efb7700134670f3aa87b46308e54b55e0bb598d2ba33a5f6303f1ab7.png" src="_images/1ae1c0d5efb7700134670f3aa87b46308e54b55e0bb598d2ba33a5f6303f1ab7.png" />
+<img alt="_images/c5ea6616aa30036d9792cfa9a44f1b2dc03c052b846ba855e0501212446f3126.png" src="_images/c5ea6616aa30036d9792cfa9a44f1b2dc03c052b846ba855e0501212446f3126.png" />
 </div>
 </div>
 </section>
@@ -1107,8 +1119,8 @@ Compare the two runs below.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>reorthogonalize = True :  |Q^T Q - I| =  8.45e-15,   copies of the ground state: 1
-reorthogonalize = False:  |Q^T Q - I| =  5.05e+00,   copies of the ground state: 3
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>reorthogonalize = True :  |Q^T Q - I| =  7.79e-15,   copies of the ground state: 1
+reorthogonalize = False:  |Q^T Q - I| =  5.27e+00,   copies of the ground state: 3
 </pre></div>
 </div>
 </div>
@@ -1133,39 +1145,39 @@ equation</p>
 endpoints out of the matrix.  The exact eigenvalues are <span class="math notranslate nohighlight">\(2E_k = 2k+1\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">SchrodingerDiagonalization</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SchrodingerDiagonalization</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Discretise -u&#39;&#39; + V(x) u = 2E u and diagonalise the result.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">potential</span><span class="p">,</span> <span class="n">rmin</span><span class="o">=-</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">rmax</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">nsteps</span><span class="o">=</span><span class="mi">400</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">potential</span><span class="p">,</span> <span class="n">rmin</span><span class="o">=-</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">rmax</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">nsteps</span><span class="o">=</span><span class="mi">400</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">potential</span> <span class="o">=</span> <span class="n">potential</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">h</span> <span class="o">=</span> <span class="p">(</span><span class="n">rmax</span> <span class="o">-</span> <span class="n">rmin</span><span class="p">)</span> <span class="o">/</span> <span class="n">nsteps</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">rmin</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">h</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nsteps</span><span class="p">)</span>   <span class="c1"># interior points only</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">diagonal</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">diagonal</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="mf">2.0</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">potential</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">offdiagonal</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">offdiagonal</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">matvec</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">matvec</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Apply the Hamiltonian without ever forming the matrix.&quot;&quot;&quot;</span>
         <span class="n">w</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagonal</span> <span class="o">*</span> <span class="n">v</span>
         <span class="n">w</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-=</span> <span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="o">**</span><span class="mi">2</span>
         <span class="n">w</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">-=</span> <span class="n">v</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="o">**</span><span class="mi">2</span>
         <span class="k">return</span> <span class="n">w</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
         <span class="n">values</span><span class="p">,</span> <span class="n">vectors</span> <span class="o">=</span> <span class="n">tqli</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">diagonal</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">offdiagonal</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">values</span><span class="p">[:</span><span class="n">k</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">_normalise</span><span class="p">(</span><span class="n">vectors</span><span class="p">[:,</span> <span class="p">:</span><span class="n">k</span><span class="p">])</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">solve_lanczos</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">200</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">solve_lanczos</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">200</span><span class="p">):</span>
         <span class="n">theta</span><span class="p">,</span> <span class="n">vectors</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">ritz</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matvec</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">theta</span><span class="p">[:</span><span class="n">k</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">_normalise</span><span class="p">(</span><span class="n">vectors</span><span class="p">[:,</span> <span class="p">:</span><span class="n">k</span><span class="p">])</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">_normalise</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vectors</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_normalise</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vectors</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Trapezoidal rule: h * sum |u_i|^2 = 1.&quot;&quot;&quot;</span>
         <span class="n">vectors</span> <span class="o">=</span> <span class="n">vectors</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">h</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">vectors</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
         <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">vectors</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
@@ -1198,9 +1210,7 @@ endpoints out of the matrix.  The exact eigenvalues are <span class="math notran
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      N             2E_0             2E_1             2E_2    max error
 ------------------------------------------------------------------------
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    100     0.9974937026     2.9874430342     4.9672772610     1.04e-01
+    100     0.9974937026     2.9874430342     4.9672772610     1.04e-01
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    200     0.9993746086     2.9968714733     4.9918612670     2.57e-02
@@ -1234,9 +1244,9 @@ of the three-point formula, exactly as expected.
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  state        QL (direct)            Lanczos     difference
-      0       0.9998437256       0.9998437256       5.30e-13
-      1       2.9992185301       2.9992185301       4.59e-13
-      2       4.9979678946       4.9979678946       1.51e-11
+      0       0.9998437256       0.9998437256       1.60e-13
+      1       2.9992185301       2.9992185301       6.24e-13
+      2       4.9979678946       4.9979678946       1.48e-11
 </pre></div>
 </div>
 </div>
@@ -1261,7 +1271,7 @@ of the three-point formula, exactly as expected.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/73f7a53d26f7317e0b0c93a5f126095d84b458ec26d32f859cfdec855c3bcad7.png" src="_images/73f7a53d26f7317e0b0c93a5f126095d84b458ec26d32f859cfdec855c3bcad7.png" />
+<img alt="_images/af43baa952790a25005a071255e3211a6bb00d8345b323e2da3156bd8e9c19cd.png" src="_images/af43baa952790a25005a071255e3211a6bb00d8345b323e2da3156bd8e9c19cd.png" />
 </div>
 </div>
 </section>
@@ -1352,10 +1362,10 @@ called.</p>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     exact sigma         from SVD       from X^T X    rel. error
   1.00000000e+00   1.00000000e+00   1.00000000e+00      2.22e-16
-  6.57933225e-04   6.57933225e-04   6.57933225e-04      5.56e-13
-  1.87381742e-06   1.87381742e-06   1.87381780e-06      2.01e-07
-  4.32876128e-07   4.32876128e-07   4.32886254e-07      2.34e-05
-  1.00000000e-07   1.00000000e-07   9.99634486e-08      3.66e-04
+  6.57933225e-04   6.57933225e-04   6.57933225e-04      8.06e-12
+  1.87381742e-06   1.87381742e-06   1.87381802e-06      3.18e-07
+  4.32876128e-07   4.32876128e-07   4.32858470e-07      4.08e-05
+  1.00000000e-07   1.00000000e-07   9.99819498e-08      1.81e-04
 
 kappa(X)     = 1.00e+07
 kappa(X^T X) = 1.00e+14
@@ -1384,7 +1394,7 @@ involves <span class="math notranslate nohighlight">\(s_i^{-1/2}\)</span> and so
 tiny.  Canonical orthogonalisation discards those directions first.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">gaussian_basis</span><span class="p">(</span><span class="n">n_orb</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">n_grid</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">rmax</span><span class="o">=</span><span class="mf">4.0</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">1.4</span><span class="p">,</span> <span class="n">softening</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gaussian_basis</span><span class="p">(</span><span class="n">n_orb</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">n_grid</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">rmax</span><span class="o">=</span><span class="mf">4.0</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">1.4</span><span class="p">,</span> <span class="n">softening</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Overlap matrix and two-body matrix elements for overlapping Gaussians.&quot;&quot;&quot;</span>
     <span class="n">h</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">rmax</span> <span class="o">/</span> <span class="p">(</span><span class="n">n_grid</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">rmax</span><span class="p">,</span> <span class="n">rmax</span><span class="p">,</span> <span class="n">n_grid</span><span class="p">)</span>
@@ -1400,7 +1410,7 @@ tiny.  Canonical orthogonalisation discards those directions first.</p>
     <span class="k">return</span> <span class="n">S</span><span class="p">,</span> <span class="n">V</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">canonical_orthogonalization</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">canonical_orthogonalization</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;X = V s^{-1/2}, keeping only eigenvalues above threshold * s_max.&quot;&quot;&quot;</span>
     <span class="n">w</span><span class="p">,</span> <span class="n">V</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
     <span class="n">order</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">w</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
@@ -1423,9 +1433,9 @@ tiny.  Canonical orthogonalisation discards those directions first.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12 Gaussians, condition number of S: 1.061e+13
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12 Gaussians, condition number of S: 1.062e+13
 eigenvalues of S:
-  6.93e+00 3.61e+00 1.17e+00 2.43e-01 3.35e-02 3.19e-03 2.13e-04 1.01e-05 3.32e-07 7.37e-09 1.01e-10 6.54e-13
+  6.93e+00 3.61e+00 1.17e+00 2.43e-01 3.35e-02 3.19e-03 2.13e-04 1.01e-05 3.32e-07 7.37e-09 1.01e-10 6.53e-13
 
 threshold    0e+00:  kept 12 of 12   effective kappa =  1.06e+13
 threshold    1e-12:  kept 11 of 12   effective kappa =  6.87e+10
@@ -1461,27 +1471,27 @@ state.  The discarded weight <span class="math notranslate nohighlight">\(\sum_{
 truncation error, and <span class="math notranslate nohighlight">\(\chi\)</span> its bond dimension.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">SchmidtDecomposition</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SchmidtDecomposition</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;The SVD of a bipartitioned state vector.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">C</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">C</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">U</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Vt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">full_matrices</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">weights</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span>       <span class="c1"># normalised: sum_k sigma_k^2 = 1</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">schmidt_rank</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">schmidt_rank</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sigma</span> <span class="o">&gt;</span> <span class="n">tol</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">entanglement_entropy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">e</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">entanglement_entropy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">e</span><span class="p">):</span>
         <span class="n">w</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">weights</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">weights</span> <span class="o">&gt;</span> <span class="mf">1e-16</span><span class="p">]</span>
         <span class="n">entropy</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">w</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">w</span><span class="p">))</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">base</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">entropy</span><span class="p">)</span> <span class="k">if</span> <span class="n">entropy</span> <span class="o">&gt;</span> <span class="mf">0.0</span> <span class="k">else</span> <span class="mf">0.0</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">truncation_error</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">truncation_error</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Weight discarded when only k Schmidt states are kept.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">weights</span><span class="p">[</span><span class="n">k</span><span class="p">:]))</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">states_for</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tol</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">states_for</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tol</span><span class="p">):</span>
         <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">weights</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">tol</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -1496,7 +1506,7 @@ factorises into its part in <span class="math notranslate nohighlight">\(A\)</sp
 the cut.  This is exactly the object a DMRG sweep truncates.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">pairing_bipartition</span><span class="p">(</span><span class="n">levels</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">pairs</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">pairing_bipartition</span><span class="p">(</span><span class="n">levels</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">pairs</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Ground state of the pairing model as a coefficient matrix C[A, B].&quot;&quot;&quot;</span>
     <span class="n">H</span> <span class="o">=</span> <span class="n">pairing_hamiltonian</span><span class="p">(</span><span class="n">levels</span><span class="p">,</span> <span class="n">pairs</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span>
     <span class="n">values</span><span class="p">,</span> <span class="n">vectors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
@@ -1564,7 +1574,7 @@ largest Schmidt weights: [0.516901 0.408486 0.069164 0.00407  0.001193 0.000089 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/59a745ff505536617a6e9ee1514d494702ac77064f6aa15fb8e6c452507df840.png" src="_images/59a745ff505536617a6e9ee1514d494702ac77064f6aa15fb8e6c452507df840.png" />
+<img alt="_images/baa5827bb2cb3083db07ff40135a5b13809dcf62f51715eedaaf122b40d7105b.png" src="_images/baa5827bb2cb3083db07ff40135a5b13809dcf62f51715eedaaf122b40d7105b.png" />
 </div>
 </div>
 </section>
@@ -1586,7 +1596,7 @@ the rest zero; correlation depletes them.</p>
 repulsion, diagonalising the full two-particle problem on a grid.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">two_particles_in_a_trap</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">rmax</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">strength</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">softening</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">two_particles_in_a_trap</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">rmax</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">strength</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">softening</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Two particles in a 1D harmonic trap, solved in the product basis.&quot;&quot;&quot;</span>
     <span class="n">h</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">rmax</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="n">rmax</span> <span class="o">+</span> <span class="n">h</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
@@ -1627,7 +1637,7 @@ repulsion, diagonalising the full two-particle problem on a grid.</p>
 ----------------------------------------------------------------------------
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0.0     1.992536    0.000000   1.000000   0.000000   3.157e-30             1
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0.0     1.992536    0.000000   1.000000   0.000000   1.117e-29             1
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1.0     3.173866    0.040874   0.993528   0.006017   4.153e-04            10
@@ -1664,7 +1674,7 @@ At g = 0 the state is a product: one natural orbital, zero entropy.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/9c8c3a2a5026663f5f9d7726e09de11f0f71627279cba0a83146ca352266fe15.png" src="_images/9c8c3a2a5026663f5f9d7726e09de11f0f71627279cba0a83146ca352266fe15.png" />
+<img alt="_images/d297b4ecf2ece505da4966d813eb53ed58d31f74be4652f146622acb971b04ce.png" src="_images/d297b4ecf2ece505da4966d813eb53ed58d31f74be4652f146622acb971b04ce.png" />
 </div>
 </div>
 </section>
@@ -1690,7 +1700,7 @@ factorisation used to cut the term count in VQE and qubitisation Hamiltonians.</
 <span class="n">w</span><span class="p">,</span> <span class="n">U</span> <span class="o">=</span> <span class="n">w</span><span class="p">[</span><span class="n">order</span><span class="p">],</span> <span class="n">U</span><span class="p">[:,</span> <span class="n">order</span><span class="p">]</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">reconstruct</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">reconstruct</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
     <span class="n">L</span> <span class="o">=</span> <span class="p">(</span><span class="n">U</span><span class="p">[:,</span> <span class="p">:</span><span class="n">M</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">w</span><span class="p">[:</span><span class="n">M</span><span class="p">],</span> <span class="mf">0.0</span><span class="p">)))</span><span class="o">.</span><span class="n">T</span>
     <span class="k">return</span> <span class="n">L</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">L</span>
 
@@ -1734,7 +1744,7 @@ leading eigenvalues of the pair matrix:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/11640ee3e7631509d60950c4edc14dbd3ee1dfa0a5f5eb658d7da654e6ed703c.png" src="_images/11640ee3e7631509d60950c4edc14dbd3ee1dfa0a5f5eb658d7da654e6ed703c.png" />
+<img alt="_images/3e40582eaa6253883c0da17907658676a88213946aca5d9ea4910a446519cb13.png" src="_images/3e40582eaa6253883c0da17907658676a88213946aca5d9ea4910a446519cb13.png" />
 </div>
 </div>
 </section>

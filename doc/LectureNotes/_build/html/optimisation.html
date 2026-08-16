@@ -28,11 +28,11 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -50,7 +50,7 @@
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
@@ -214,6 +214,20 @@
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">15. Optimization and resampling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="diffusionmc.html">16. Diffusion Monte Carlo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="manybodymc.html">17. Applications to many-body systems: six electrons</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine learning approaches</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="boltzmannmachines.html">18. Boltzmann machines and generative models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pinns.html">19. Neural quantum states and physics-informed neural networks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum computing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="quantumfourier.html">20. The quantum Fourier transform and phase estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vqe.html">21. The variational quantum eigensolver</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Concluding remarks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="conclusions.html">22. Concluding remarks and perspectives</a></li>
 </ul>
 
     </div>
@@ -442,11 +456,30 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-gradient-of-the-energy">15.1. 1. The gradient of the energy</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-descent">15.2. 2. Gradient descent</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#three-optimisers">15.3. 3. Three optimisers</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-production-run">15.4. 4. The production run</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resampling">15.5. 5. Resampling</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-result">15.6. 6. The result</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-left">15.7. What is left</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quasi-newton-methods-the-secant-condition-broyden-and-bfgs">15.3. 3. Quasi-Newton methods: the secant condition, Broyden and BFGS</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#broyden-minimum-change-in-the-frobenius-norm">15.3.1. Broyden: minimum change in the Frobenius norm</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bfgs-symmetric-positive-definite-rank-two">15.3.2. BFGS: symmetric, positive definite, rank two</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#broyden-against-newton-on-a-nonlinear-system">15.3.3. Broyden against Newton on a nonlinear system</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-curvature-matters">15.4. 4. Why curvature matters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#derivative-free-optimisation-powell-s-method">15.5. 5. Derivative-free optimisation: Powell’s method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stochastic-reconfiguration">15.6. 6. Stochastic reconfiguration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-methods-compared-on-the-quantum-dot">15.7. 7. The methods compared on the quantum dot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-production-run">15.8. 8. The production run</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-exact-variance-of-a-correlated-mean">15.9. 9. The exact variance of a correlated mean</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#blocking-and-what-it-does-to-sigma">15.10. 10. Blocking, and what it does to <span class="math notranslate nohighlight">\(\Sigma\)</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-three-estimators-side-by-side">15.10.1. The three estimators side by side</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-bootstrap-properly">15.11. 11. The bootstrap, properly</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimators-that-are-not-means">15.12. 12. Estimators that are not means</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-the-blocks-matter">15.12.1. Why the blocks matter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#which-to-use">15.12.2. Which to use</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-result">15.13. 13. The result</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-left">15.14. What is left</a></li>
 </ul>
             </nav>
         </div>
@@ -474,29 +507,62 @@ Blocking, bootstrap or jackknife give the honest error.</p></li>
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;../BookManybody/BookMaterial/Programs&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">glob</span>
+<span class="c1"># the chapter programs live in BookPrograms/chapterNN; put them all on the path</span>
+<span class="k">for</span> <span class="n">_d</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;..&quot;</span><span class="p">,</span> <span class="s2">&quot;BookManybody&quot;</span><span class="p">,</span>
+                                        <span class="s2">&quot;BookPrograms&quot;</span><span class="p">,</span> <span class="s2">&quot;chapter*&quot;</span><span class="p">))):</span>
+    <span class="k">if</span> <span class="n">_d</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">_d</span><span class="p">)</span>
 
-<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-<span class="kn">import</span><span class="w"> </span><span class="nn">vmcoptimise</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">vo</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">vmc</span><span class="w"> </span><span class="kn">import</span> <span class="n">TAUT_ENERGY</span><span class="p">,</span> <span class="n">correlation_time</span>
+<span class="kn">import</span> <span class="nn">vmcoptimise</span> <span class="k">as</span> <span class="nn">vo</span>
+<span class="kn">from</span> <span class="nn">vmc</span> <span class="kn">import</span> <span class="n">TAUT_ENERGY</span><span class="p">,</span> <span class="n">correlation_time</span>
 </pre></div>
 </div>
 </div>
 </div>
 <section id="the-gradient-of-the-energy">
 <h2><span class="section-number">15.1. </span>1. The gradient of the energy<a class="headerlink" href="#the-gradient-of-the-energy" title="Link to this heading">#</a></h2>
+<p>Write the energy as a Rayleigh quotient and differentiate.  With
+<span class="math notranslate nohighlight">\(A=\int \psi\,H\psi\)</span> and <span class="math notranslate nohighlight">\(B=\int\psi^2\)</span>, so that <span class="math notranslate nohighlight">\(E=A/B\)</span>,</p>
 <div class="math notranslate nohighlight">
 \[
-\bar E_\theta = 2\left(\left\langle \frac{\bar\psi_\theta}{\psi} E_L\right\rangle
-- \left\langle \frac{\bar\psi_\theta}{\psi}\right\rangle\langle E_L\rangle\right)
+\partial_\theta B = 2\int \psi\,\partial_\theta\psi ,
+\qquad
+\partial_\theta A = 2\int (\partial_\theta\psi)\,H\psi ,
 \]</div>
-<p>It is a <strong>covariance</strong>: twice the covariance of the local energy with
-<span class="math notranslate nohighlight">\(O_\theta = \partial\ln\psi/\partial\theta\)</span>.  It needs only first derivatives
-of <span class="math notranslate nohighlight">\(\ln\psi\)</span>, no derivatives of <span class="math notranslate nohighlight">\(E_L\)</span>, and no extra sampling.</p>
+<p>the second using the hermiticity of <span class="math notranslate nohighlight">\(H\)</span> — which is the one assumption of the
+whole derivation, and the reason no derivative of <span class="math notranslate nohighlight">\(H\psi\)</span> is ever needed.
+Substituting into the quotient rule and using <span class="math notranslate nohighlight">\(A=EB\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[
+\partial_\theta E
+= 2\left[\frac{\int(\partial_\theta\psi)H\psi}{\int\psi^2}
+- E\,\frac{\int\psi\,\partial_\theta\psi}{\int\psi^2}\right] .
+\]</div>
+<p>Now multiply and divide the integrands by <span class="math notranslate nohighlight">\(\psi^2\)</span>.  What is left outside is
+<span class="math notranslate nohighlight">\(p(x)=\psi^2/\int\psi^2\)</span>, the density the Metropolis walk already samples, and
+inside are the local energy <span class="math notranslate nohighlight">\(E_L=(H\psi)/\psi\)</span> and the <strong>log-derivative</strong>
+<span class="math notranslate nohighlight">\(O_\theta = (\partial_\theta\psi)/\psi = \partial_\theta\ln\psi\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\boxed{\;\partial_\theta E
+= 2\left(\langle O_\theta E_L\rangle - \langle O_\theta\rangle\langle E_L\rangle\right)
+= 2\,\mathrm{Cov}(O_\theta, E_L)\;}
+\]</div>
+<p>Three integrals — <span class="math notranslate nohighlight">\(\langle O_\theta E_L\rangle\)</span>, <span class="math notranslate nohighlight">\(\langle O_\theta\rangle\)</span> and
+<span class="math notranslate nohighlight">\(\langle E_L\rangle\)</span> — all with respect to the <em>same</em> density, so one random
+walk delivers all of them.  It needs only first derivatives of <span class="math notranslate nohighlight">\(\ln\psi\)</span>, no
+derivatives of <span class="math notranslate nohighlight">\(E_L\)</span>, and no extra sampling.  For a complex <span class="math notranslate nohighlight">\(\psi\)</span> the same
+derivation gives
+$\partial_\theta E = 2,\Re\left(\langle O_\theta^{*}E_L\rangle</p>
+<ul class="simple">
+<li><p>\langle O_\theta^{*}\rangle\langle E_L\rangle\right)$.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
@@ -593,27 +659,441 @@ from the minimum.  Note the budget: 6000 cycles per step, far too few to
 converged to alpha = 1.0067, beta = 0.3564
 </pre></div>
 </div>
-<img alt="_images/14fe248b5277420b183e93bb794dc379ea60370d1d3ad22f4889e9539e35ece5.png" src="_images/14fe248b5277420b183e93bb794dc379ea60370d1d3ad22f4889e9539e35ece5.png" />
+<img alt="_images/7374dbc5d751ef718d92a4742265fbaf465f63460094c854e9624bbdf07d222b.png" src="_images/7374dbc5d751ef718d92a4742265fbaf465f63460094c854e9624bbdf07d222b.png" />
 </div>
 </div>
 </section>
-<section id="three-optimisers">
-<h2><span class="section-number">15.3. </span>3. Three optimisers<a class="headerlink" href="#three-optimisers" title="Link to this heading">#</a></h2>
-<p><strong>Momentum</strong> averages successive gradients — worth as much as the
-acceleration when the gradient is noisy.  <strong>Stochastic reconfiguration</strong>
-preconditions with the metric of the variational manifold,</p>
+<section id="quasi-newton-methods-the-secant-condition-broyden-and-bfgs">
+<h2><span class="section-number">15.3. </span>3. Quasi-Newton methods: the secant condition, Broyden and BFGS<a class="headerlink" href="#quasi-newton-methods-the-secant-condition-broyden-and-bfgs" title="Link to this heading">#</a></h2>
+<p>Newton’s method for <span class="math notranslate nohighlight">\(F(x)=0\)</span> linearises, <span class="math notranslate nohighlight">\(J_k s_k = -F(x_k)\)</span>, and needs the
+<span class="math notranslate nohighlight">\(n\times n\)</span> Jacobian at every step.  Quasi-Newton methods never form it.  From
+the step and the change in the function,</p>
 <div class="math notranslate nohighlight">
 \[
-S_{kl} = \langle O_k O_l\rangle - \langle O_k\rangle\langle O_l\rangle,
-\qquad
-\theta \leftarrow \theta - \eta (S+\varepsilon I)^{-1}\nabla_\theta E,
+s_k = x_{k+1}-x_k, \qquad y_k = F(x_{k+1})-F(x_k) \approx J s_k ,
 \]</div>
-<p>the quantum geometric tensor, so the step does not depend on how the
-parameters happen to be scaled.  This is the standard optimiser for
-neural-network wave functions.</p>
+<p>they require the new approximation to reproduce the observed change exactly —
+the <strong>secant condition</strong> <span class="math notranslate nohighlight">\(B_{k+1}s_k = y_k\)</span> — and fix the remaining <span class="math notranslate nohighlight">\(n^2-n\)</span>
+degrees of freedom by changing as little as possible.</p>
+<section id="broyden-minimum-change-in-the-frobenius-norm">
+<h3><span class="section-number">15.3.1. </span>Broyden: minimum change in the Frobenius norm<a class="headerlink" href="#broyden-minimum-change-in-the-frobenius-norm" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+\min_{\Delta B}\ \|\Delta B\|_F^2 \quad\text{s.t.}\quad \Delta B\,s = r,
+\qquad r = y - B s .
+\]</div>
+<p>With <span class="math notranslate nohighlight">\(\|X\|_F^2 = \mathrm{Tr}(X^TX)\)</span> (chapter 1) the Lagrangian is
+<span class="math notranslate nohighlight">\(\mathrm{Tr}(\Delta B^T\Delta B) + 2\lambda^T(\Delta B s - r)\)</span>, and
+<span class="math notranslate nohighlight">\(\partial\,\mathrm{Tr}(X^TX)/\partial X = 2X\)</span> gives <span class="math notranslate nohighlight">\(\Delta B = -\lambda s^T\)</span> —
+<strong>rank one before anything else is imposed</strong>.  The constraint fixes <span class="math notranslate nohighlight">\(\lambda\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\boxed{\;B_{k+1} = B_k + \frac{(y_k - B_k s_k)s_k^T}{s_k^Ts_k}\;}
+\qquad
+H_{k+1} = H_k + \frac{(s_k - H_k y_k)y_k^T}{y_k^Ty_k}
+\]</div>
+<p>the second being the same calculation for the inverse, <span class="math notranslate nohighlight">\(H_{k+1}y_k = s_k\)</span>.</p>
+</section>
+<section id="bfgs-symmetric-positive-definite-rank-two">
+<h3><span class="section-number">15.3.2. </span>BFGS: symmetric, positive definite, rank two<a class="headerlink" href="#bfgs-symmetric-positive-definite-rank-two" title="Link to this heading">#</a></h3>
+<p>For <em>minimisation</em> the matrix approximates a Hessian, so it must also be
+symmetric and positive definite.  A rank-one update cannot do that; a rank-two
+one can.  With <span class="math notranslate nohighlight">\(\rho = 1/(y^Ts)\)</span> and <span class="math notranslate nohighlight">\(V = I - \rho s y^T\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[
+\boxed{\;H_{k+1} = V H_k V^T + \rho\, s s^T\;}
+\qquad
+B_{k+1} = B_k - \frac{B_k s s^T B_k}{s^T B_k s} + \frac{y y^T}{y^T s}
+\]</div>
+<p>Symmetry is manifest.  <span class="math notranslate nohighlight">\(V^Ty = y - \rho y(s^Ty) = 0\)</span> gives the secant property
+<span class="math notranslate nohighlight">\(H_{+}y = s\)</span> in one line.  And
+<span class="math notranslate nohighlight">\(z^TH_{+}z = (V^Tz)^TH(V^Tz) + \rho(s^Tz)^2 &gt; 0\)</span> provided <span class="math notranslate nohighlight">\(H\succ0\)</span> and
+<span class="math notranslate nohighlight">\(\rho&gt;0\)</span>, i.e. provided the <strong>curvature condition</strong> <span class="math notranslate nohighlight">\(s^Ty&gt;0\)</span> holds — which is
+exactly what the second Wolfe condition of the line search enforces.  <em>The
+line search is not a convenience; it is what keeps the curvature model well
+posed.</em>  Remember that when we come to the Monte Carlo case.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;method&#39;</span><span class="si">:</span><span class="s2">&gt;28s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;steps&#39;</span><span class="si">:</span><span class="s2">&gt;6s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;alpha&#39;</span><span class="si">:</span><span class="s2">&gt;9s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;beta&#39;</span><span class="si">:</span><span class="s2">&gt;9s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;final E&#39;</span><span class="si">:</span><span class="s2">&gt;12s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">checks</span> <span class="o">=</span> <span class="n">vo</span><span class="o">.</span><span class="n">check_quasi_newton_algebra</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">n_trials</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">((</span><span class="s2">&quot;frobenius&quot;</span><span class="p">,</span>      <span class="s2">&quot;||A||_F^2 - Tr(A^T A)&quot;</span><span class="p">),</span>
+          <span class="p">(</span><span class="s2">&quot;vectorisation&quot;</span><span class="p">,</span>  <span class="s2">&quot;vec(A).vec(B) - Tr(A^T B)&quot;</span><span class="p">),</span>
+          <span class="p">(</span><span class="s2">&quot;broyden_secant&quot;</span><span class="p">,</span> <span class="s2">&quot;Broyden:  |B_new s - y|&quot;</span><span class="p">),</span>
+          <span class="p">(</span><span class="s2">&quot;broyden_minimal&quot;</span><span class="p">,</span><span class="s2">&quot;Broyden:  minimality margin (must be &gt;= 0)&quot;</span><span class="p">),</span>
+          <span class="p">(</span><span class="s2">&quot;bfgs_secant&quot;</span><span class="p">,</span>    <span class="s2">&quot;BFGS:     |H_new y - s|&quot;</span><span class="p">),</span>
+          <span class="p">(</span><span class="s2">&quot;bfgs_symmetry&quot;</span><span class="p">,</span>  <span class="s2">&quot;BFGS:     |H_new - H_new^T|&quot;</span><span class="p">),</span>
+          <span class="p">(</span><span class="s2">&quot;bfgs_inverse&quot;</span><span class="p">,</span>   <span class="s2">&quot;BFGS:     |B_new H_new - I|&quot;</span><span class="p">),</span>
+          <span class="p">(</span><span class="s2">&quot;dfp_secant&quot;</span><span class="p">,</span>     <span class="s2">&quot;DFP:      |H_new y - s|&quot;</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">labels</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">label</span><span class="si">:</span><span class="s2">&lt;44s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">checks</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;BFGS: smallest eigenvalue of H_new&#39;</span><span class="si">:</span><span class="s2">&lt;44s</span><span class="si">}</span><span class="s2"> &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">checks</span><span class="p">[</span><span class="s1">&#39;bfgs_smallest_eigenvalue&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>||A||_F^2 - Tr(A^T A)                        1.07e-14
+vec(A).vec(B) - Tr(A^T B)                    3.55e-15
+Broyden:  |B_new s - y|                      1.78e-15
+Broyden:  minimality margin (must be &gt;= 0)   5.03e-01
+BFGS:     |H_new y - s|                      3.74e-10
+BFGS:     |H_new - H_new^T|                  2.33e-10
+BFGS:     |B_new H_new - I|                  5.55e-08
+DFP:      |H_new y - s|                      5.17e-14
+BFGS: smallest eigenvalue of H_new           1.82e-03
+</pre></div>
+</div>
+</div>
+</div>
+<p>The minimality line deserves a word.  For each Broyden update the check builds
+random competitors</p>
+<div class="math notranslate nohighlight">
+\[
+\Delta B' = \Delta B + Z\left(I - \frac{s s^T}{s^Ts}\right),
+\]</div>
+<p>which satisfy the same secant condition because the projector annihilates <span class="math notranslate nohighlight">\(s\)</span>,
+and confirms that none of them is closer to <span class="math notranslate nohighlight">\(B_k\)</span>.  The two pieces are
+orthogonal in the Frobenius inner product, so this is just Pythagoras — and it
+is <em>why</em> the answer had to be rank one.</p>
+</section>
+<section id="broyden-against-newton-on-a-nonlinear-system">
+<h3><span class="section-number">15.3.3. </span>Broyden against Newton on a nonlinear system<a class="headerlink" href="#broyden-against-newton-on-a-nonlinear-system" title="Link to this heading">#</a></h3>
+<p><span class="math notranslate nohighlight">\(F(x,y) = (x^2+y^2-4,\ e^x+y-1)\)</span>, from <span class="math notranslate nohighlight">\((1,2)\)</span>.  Newton uses the analytic
+Jacobian; Broyden starts from <span class="math notranslate nohighlight">\(H_0 = I\)</span> and uses none.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">F</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mf">4.0</span><span class="p">,</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mf">1.0</span><span class="p">])</span>
+<span class="n">J</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">2</span><span class="o">*</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">2</span><span class="o">*</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="mf">1.0</span><span class="p">]])</span>
+
+<span class="n">_</span><span class="p">,</span> <span class="n">hn</span> <span class="o">=</span> <span class="n">vo</span><span class="o">.</span><span class="n">newton_root</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">J</span><span class="p">,</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">])</span>
+<span class="n">_</span><span class="p">,</span> <span class="n">hb</span> <span class="o">=</span> <span class="n">vo</span><span class="o">.</span><span class="n">broyden_root</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;iter&#39;</span><span class="si">:</span><span class="s2">&gt;5s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;|F| Newton&#39;</span><span class="si">:</span><span class="s2">&gt;13s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;|F| Broyden&#39;</span><span class="si">:</span><span class="s2">&gt;13s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">hn</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">hb</span><span class="p">))):</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">hn</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span><span class="si">:</span><span class="s2">13.3e</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">hn</span><span class="p">)</span> <span class="k">else</span> <span class="s2">&quot; &quot;</span> <span class="o">*</span> <span class="mi">13</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">hb</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span><span class="si">:</span><span class="s2">13.3e</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">hb</span><span class="p">)</span> <span class="k">else</span> <span class="s2">&quot; &quot;</span> <span class="o">*</span> <span class="mi">13</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">k</span><span class="si">:</span><span class="s2">5d</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Newton: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">hn</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="si">}</span><span class="s2"> iterations and </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">hn</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="si">}</span><span class="s2"> Jacobians.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Broyden: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">hb</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="si">}</span><span class="s2"> iterations and no Jacobian at all.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> iter    |F| Newton   |F| Broyden
+    0     3.850e+00     3.850e+00
+    1     3.443e+00     2.012e+00
+    2     4.891e+00     3.207e+00
+    3     7.506e-01     2.655e+00
+    4     3.093e-02     9.564e-01
+    5     5.919e-05     1.411e-01
+    6     2.185e-10     5.739e-02
+    7     0.000e+00     5.752e-03
+    8                   4.092e-04
+    9                   4.006e-06
+   10                   6.036e-09
+   11                   3.105e-11
+
+Newton: 7 iterations and 7 Jacobians.
+Broyden: 11 iterations and no Jacobian at all.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="why-curvature-matters">
+<h2><span class="section-number">15.4. </span>4. Why curvature matters<a class="headerlink" href="#why-curvature-matters" title="Link to this heading">#</a></h2>
+<p>For a quadratic <span class="math notranslate nohighlight">\(f = \tfrac12 x^TAx - b^Tx\)</span>, steepest descent with the optimal
+step obeys</p>
+<div class="math notranslate nohighlight">
+\[
+\|e_{k+1}\| \le \frac{\kappa-1}{\kappa+1}\|e_k\|,
+\qquad \kappa = \lambda_{\max}/\lambda_{\min},
+\]</div>
+<p>so the iteration count grows <strong>linearly with the condition number</strong> even when
+the step length is chosen perfectly at every step.  That is not a defect of
+the step size; it is a defect of the direction.  The gradient alone cannot
+tell a narrow valley from a round bowl.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;kappa&#39;</span><span class="si">:</span><span class="s2">&gt;8s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;steepest&#39;</span><span class="si">:</span><span class="s2">&gt;10s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;BFGS&#39;</span><span class="si">:</span><span class="s2">&gt;7s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;DFP&#39;</span><span class="si">:</span><span class="s2">&gt;7s</span><span class="si">}</span><span class="s2"> &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;Broyden&#39;</span><span class="si">:</span><span class="s2">&gt;9s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;Powell&#39;</span><span class="si">:</span><span class="s2">&gt;8s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">kappa</span> <span class="ow">in</span> <span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span> <span class="mf">1000.0</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="mi">6</span>
+    <span class="n">diag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">math</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">kappa</span><span class="p">),</span> <span class="n">n</span><span class="p">)</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="n">diag</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">b</span><span class="p">:</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">x</span> <span class="o">@</span> <span class="p">(</span><span class="n">d</span> <span class="o">*</span> <span class="n">x</span><span class="p">))</span> <span class="o">-</span> <span class="nb">float</span><span class="p">(</span><span class="n">b</span> <span class="o">@</span> <span class="n">x</span><span class="p">)</span>
+    <span class="n">g</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="n">diag</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">b</span><span class="p">:</span> <span class="n">d</span> <span class="o">*</span> <span class="n">x</span> <span class="o">-</span> <span class="n">b</span>
+    <span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">counts</span> <span class="o">=</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">vo</span><span class="o">.</span><span class="n">bfgs_minimise</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">,</span> <span class="n">update</span><span class="o">=</span><span class="n">u</span><span class="p">,</span>
+                                   <span class="n">max_iter</span><span class="o">=</span><span class="mi">2000</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span> <span class="o">-</span> <span class="mi">1</span>
+              <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;bfgs&quot;</span><span class="p">,</span> <span class="s2">&quot;dfp&quot;</span><span class="p">,</span> <span class="s2">&quot;broyden&quot;</span><span class="p">)]</span>
+    <span class="n">sd</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">vo</span><span class="o">.</span><span class="n">steepest_descent_minimise</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">pw</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">vo</span><span class="o">.</span><span class="n">powell_minimise</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-12</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">kappa</span><span class="p">,</span> <span class="n">sd</span><span class="p">,</span> <span class="o">*</span><span class="n">counts</span><span class="p">,</span> <span class="n">pw</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">kappa</span><span class="si">:</span><span class="s2">8.0f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">sd</span><span class="si">:</span><span class="s2">10d</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">counts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">7d</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">counts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">7d</span><span class="si">}</span><span class="s2"> &quot;</span>
+          <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">counts</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">:</span><span class="s2">9d</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">pw</span><span class="si">:</span><span class="s2">8d</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   kappa   steepest    BFGS     DFP   Broyden   Powell
+       1          1       1       1         1        2
+      10         68      11      10        24        2
+     100        600       9      11        68        2
+    1000       5244      10       9      1478        5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">))</span>
+<span class="n">kappas</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">column</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">style</span> <span class="ow">in</span> <span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;steepest descent&quot;</span><span class="p">,</span> <span class="s2">&quot;o-&quot;</span><span class="p">),</span>
+                             <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;BFGS&quot;</span><span class="p">,</span> <span class="s2">&quot;s-&quot;</span><span class="p">),</span>
+                             <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;DFP&quot;</span><span class="p">,</span> <span class="s2">&quot;^-&quot;</span><span class="p">),</span>
+                             <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;Broyden (rank one)&quot;</span><span class="p">,</span> <span class="s2">&quot;v-&quot;</span><span class="p">)):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">kappas</span><span class="p">,</span> <span class="p">[</span><span class="n">r</span><span class="p">[</span><span class="n">column</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">],</span> <span class="n">style</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;condition number $\kappa$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;iterations to $|</span><span class="se">\\</span><span class="s2">nabla f| &lt; 10^{-6}$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Six-dimensional quadratic&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/eec57e18950bcd989985d055a2475943a636e033c6b5864a14dfa815511a1778.png" src="_images/eec57e18950bcd989985d055a2475943a636e033c6b5864a14dfa815511a1778.png" />
+</div>
+</div>
+<p>The two rank-two updates are flat: about ten iterations whether the problem is
+round or stretched by a factor of a thousand.  That is what “learning the
+curvature” means in practice.  Broyden’s rank-one update satisfies the secant
+condition but neither symmetry nor positive definiteness, and as a <em>minimiser</em>
+it degrades — it is a root finder being used for the wrong job.</p>
+<p>Rosenbrock’s banana, which is not quadratic and has a curved valley, makes the
+same point more brutally.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rosen</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mf">100.0</span> <span class="o">*</span> <span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">rosen_grad</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="o">-</span><span class="mf">2.0</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">-</span> <span class="mf">400.0</span> <span class="o">*</span> <span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span>
+    <span class="mf">200.0</span> <span class="o">*</span> <span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)])</span>
+
+<span class="n">xb</span><span class="p">,</span> <span class="n">hist_b</span> <span class="o">=</span> <span class="n">vo</span><span class="o">.</span><span class="n">bfgs_minimise</span><span class="p">(</span><span class="n">rosen</span><span class="p">,</span> <span class="n">rosen_grad</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">)</span>
+<span class="n">xs</span><span class="p">,</span> <span class="n">hist_s</span> <span class="o">=</span> <span class="n">vo</span><span class="o">.</span><span class="n">steepest_descent_minimise</span><span class="p">(</span><span class="n">rosen</span><span class="p">,</span> <span class="n">rosen_grad</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span>
+                                          <span class="n">tol</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">)</span>
+<span class="n">xp</span><span class="p">,</span> <span class="n">hist_p</span> <span class="o">=</span> <span class="n">vo</span><span class="o">.</span><span class="n">powell_minimise</span><span class="p">(</span><span class="n">rosen</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-12</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;BFGS      </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">hist_b</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="si">:</span><span class="s2">6d</span><span class="si">}</span><span class="s2"> iterations   f = </span><span class="si">{</span><span class="n">hist_b</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span><span class="si">:</span><span class="s2">.3e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;steepest  </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">hist_s</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="si">:</span><span class="s2">6d</span><span class="si">}</span><span class="s2"> iterations   f = </span><span class="si">{</span><span class="n">hist_s</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span><span class="si">:</span><span class="s2">.3e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Powell    </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">hist_p</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="si">:</span><span class="s2">6d</span><span class="si">}</span><span class="s2"> cycles       f = </span><span class="si">{</span><span class="n">hist_p</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span><span class="si">:</span><span class="s2">.3e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">path</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">h</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">hist_b</span><span class="p">])</span>
+<span class="n">gx</span><span class="p">,</span> <span class="n">gy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">1.6</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">,</span> <span class="mi">300</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">,</span> <span class="mi">300</span><span class="p">))</span>
+<span class="n">gz</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">gx</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">100</span> <span class="o">*</span> <span class="p">(</span><span class="n">gy</span> <span class="o">-</span> <span class="n">gx</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">6.2</span><span class="p">,</span> <span class="mf">4.2</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">gx</span><span class="p">,</span> <span class="n">gy</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">gz</span> <span class="o">+</span> <span class="mf">1e-12</span><span class="p">),</span> <span class="n">levels</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;viridis&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">path</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">path</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;r.-&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;BFGS path&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;k*&quot;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;minimum&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;$x$&quot;</span><span class="p">);</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;$y$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;BFGS on Rosenbrock&#39;s banana&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>BFGS          35 iterations   f = 4.251e-21
+steepest   19376 iterations   f = 7.583e-17
+Powell       500 cycles       f = 2.174e-14
+</pre></div>
+</div>
+<img alt="_images/395febe28037dda99a60c947c5c348c401380e70efe115bb170f406c4c074de4.png" src="_images/395febe28037dda99a60c947c5c348c401380e70efe115bb170f406c4c074de4.png" />
+</div>
+</div>
+</section>
+<section id="derivative-free-optimisation-powell-s-method">
+<h2><span class="section-number">15.5. </span>5. Derivative-free optimisation: Powell’s method<a class="headerlink" href="#derivative-free-optimisation-powell-s-method" title="Link to this heading">#</a></h2>
+<p>Sometimes there is no gradient — a black-box simulation, or one so noisy that
+a finite difference is meaningless.  Powell’s method reduces the problem to a
+sequence of <strong>line minimisations</strong>,</p>
+<div class="math notranslate nohighlight">
+\[
+\phi(\alpha) = f(x + \alpha d), \qquad \alpha^{*} = \arg\min_\alpha \phi(\alpha),
+\]</div>
+<p>solved by golden-section search: keeping the interior points at
+<span class="math notranslate nohighlight">\(1 - 1/\varphi = 0.381966\ldots\)</span> makes the surviving bracket self-similar, so
+one point is reused and each iteration costs a single function evaluation
+while shrinking the bracket by <span class="math notranslate nohighlight">\(0.618\)</span>.</p>
+<p>Why choose the directions carefully?  On a quadratic, having minimised along
+<span class="math notranslate nohighlight">\(d_i\)</span> we have <span class="math notranslate nohighlight">\(d_i^T\nabla f = 0\)</span>; moving along <span class="math notranslate nohighlight">\(d_j\)</span> changes the gradient by
+<span class="math notranslate nohighlight">\(Ad_j\)</span> times the step, so the first minimisation survives if and only if</p>
+<div class="math notranslate nohighlight">
+\[
+d_i^T A\, d_j = 0 ,
+\]</div>
+<p>the <strong>conjugacy</strong> condition of the conjugate gradient method.  Powell’s
+insight is that conjugate directions can be <em>generated</em> from function values:
+minimise along each direction in turn, form the net displacement of the whole
+cycle <span class="math notranslate nohighlight">\(d_{\rm new} = x_n - x_0\)</span>, and substitute it for the direction that
+helped most.  On a quadratic the directions become conjugate and the method
+terminates in <span class="math notranslate nohighlight">\(n\)</span> cycles — which is the last column of the table above.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Golden section on a one-dimensional slice</span>
+<span class="n">phi</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">a</span><span class="p">:</span> <span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="mf">0.7</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mf">0.3</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">6</span> <span class="o">*</span> <span class="n">a</span><span class="p">)</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">20001</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;golden section: </span><span class="si">{</span><span class="n">vo</span><span class="o">.</span><span class="n">golden_section</span><span class="p">(</span><span class="n">phi</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.5</span><span class="p">,</span><span class="w"> </span><span class="n">tol</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">)</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;fine grid:      </span><span class="si">{</span><span class="n">grid</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">([</span><span class="n">phi</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">grid</span><span class="p">])]</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;(golden section assumes phi is unimodal on the bracket; this phi has&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot; several minima, so the bracket must be chosen with some care.)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="c1"># Powell&#39;s direction set on a badly scaled quadratic, cycle by cycle</span>
+<span class="n">diag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1000.0</span><span class="p">])</span>
+<span class="n">f2</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">x</span> <span class="o">@</span> <span class="p">(</span><span class="n">diag</span> <span class="o">*</span> <span class="n">x</span><span class="p">))</span> <span class="o">-</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">@</span> <span class="n">x</span><span class="p">)</span>
+<span class="n">xp</span><span class="p">,</span> <span class="n">hp</span> <span class="o">=</span> <span class="n">vo</span><span class="o">.</span><span class="n">powell_minimise</span><span class="p">(</span><span class="n">f2</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">],</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">it</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">fx</span><span class="p">,</span> <span class="n">evals</span> <span class="ow">in</span> <span class="n">hp</span><span class="p">[:</span><span class="mi">6</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;cycle </span><span class="si">{</span><span class="n">it</span><span class="si">}</span><span class="s2">:  x = (</span><span class="si">{</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">9.5f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">9.6f</span><span class="si">}</span><span class="s2">)   f = </span><span class="si">{</span><span class="n">fx</span><span class="si">:</span><span class="s2">12.8f</span><span class="si">}</span><span class="s2">   &quot;</span>
+          <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">evals</span><span class="si">}</span><span class="s2"> line minimisations&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">exact minimum: x = (1, 0.001), f = </span><span class="si">{</span><span class="n">f2</span><span class="p">(</span><span class="mf">1.0</span><span class="o">/</span><span class="n">diag</span><span class="p">)</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;converged in </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">hp</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="si">}</span><span class="s2"> cycles with no derivatives at all&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>golden section: 0.77204265
+fine grid:      0.77205000
+(golden section assumes phi is unimodal on the bracket; this phi has
+ several minima, so the bracket must be chosen with some care.)
+
+cycle 0:  x = ( -2.00000,  2.000000)   f = 2002.00000000   0 line minimisations
+cycle 1:  x = (  0.00100,  0.000000)   f =  -0.00099959   2 line minimisations
+cycle 2:  x = (  1.00000,  0.001000)   f =  -0.50050000   4 line minimisations
+cycle 3:  x = (  1.00000,  0.001000)   f =  -0.50050000   6 line minimisations
+
+exact minimum: x = (1, 0.001), f = -0.50050000
+converged in 3 cycles with no derivatives at all
+</pre></div>
+</div>
+</div>
+</div>
+<p>Two warnings.  A line minimisation locates the minimum of <span class="math notranslate nohighlight">\(\phi\)</span> only to
+<span class="math notranslate nohighlight">\(O(\sqrt{\epsilon_{\rm mach}})\)</span> in <span class="math notranslate nohighlight">\(\alpha\)</span>, because <span class="math notranslate nohighlight">\(\phi\)</span> is quadratic there
+and a quadratic is flat at its minimum.  And if <span class="math notranslate nohighlight">\(f\)</span> is <em>noisy</em>, golden section
+will happily converge on a fluctuation.  Both objections apply with full force
+to variational Monte Carlo.</p>
+</section>
+<section id="stochastic-reconfiguration">
+<h2><span class="section-number">15.6. </span>6. Stochastic reconfiguration<a class="headerlink" href="#stochastic-reconfiguration" title="Link to this heading">#</a></h2>
+<p>SR comes from a different direction entirely: not from approximating the
+Hessian of the energy, but from asking what imaginary-time evolution would do
+and doing as much of it as the variational manifold permits.</p>
+<p><strong>Imaginary time.</strong>  <span class="math notranslate nohighlight">\(|\Psi(\tau)\rangle = e^{-\tau H}|\Psi(0)\rangle =
+\sum_n c_n e^{-\tau E_n}|n\rangle \to c_0e^{-\tau E_0}|0\rangle\)</span>: every
+excited component is filtered out.  We cannot follow it, because
+<span class="math notranslate nohighlight">\((1-\delta\tau H)|\Psi(\alpha)\rangle\)</span> does not lie on the manifold
+<span class="math notranslate nohighlight">\(\mathcal{M} = \{|\Psi(\alpha)\rangle\}\)</span>.  So take the step and <strong>project
+back</strong>.</p>
+<p><strong>The step.</strong>  Use the shifted form
+<span class="math notranslate nohighlight">\(|\Psi'_{\rm exact}\rangle = [1-\delta\tau(H-E)]|\Psi\rangle\)</span>.  Since
+<span class="math notranslate nohighlight">\(\langle\Psi|(H-E)|\Psi\rangle = 0\)</span>, this moves the state <em>across</em> the ray it
+lies on rather than along it — it changes the physics, not the norm.</p>
+<p><strong>The projection.</strong>  Expand the variational side in the tangent vectors
+<span class="math notranslate nohighlight">\(|\Psi_k\rangle = \partial_{\alpha_k}|\Psi\rangle\)</span> and minimise the mismatch</p>
+<div class="math notranslate nohighlight">
+\[
+\mathcal{D} = \langle\Delta|\Delta\rangle,
+\qquad
+|\Delta\rangle = \sum_k\delta\alpha_k|\Psi_k\rangle + \delta\tau(H-E)|\Psi\rangle .
+\]</div>
+<p><span class="math notranslate nohighlight">\(\mathcal{D}\)</span> is quadratic in <span class="math notranslate nohighlight">\(\delta\alpha\)</span>, so stationarity is a linear
+system.  Written with the normalised state (to remove the redundant component
+along <span class="math notranslate nohighlight">\(|\Psi\rangle\)</span>) and turned into Monte Carlo averages over
+<span class="math notranslate nohighlight">\(P(x) = |\Psi(x)|^2/\langle\Psi|\Psi\rangle\)</span>, it becomes</p>
+<div class="math notranslate nohighlight">
+\[
+\boxed{\;S\,\delta\alpha = -\delta\tau\, g\;}
+\qquad
+S_{ij} = \langle O_iO_j\rangle - \langle O_i\rangle\langle O_j\rangle,
+\qquad
+g_i = \langle O_iE_L\rangle - \langle O_i\rangle\langle E_L\rangle
+= \tfrac12\partial_{\alpha_i}E .
+\]</div>
+<p><strong>Two readings.</strong>  <span class="math notranslate nohighlight">\(S\)</span> is the covariance of the log-derivatives, hence
+symmetric and positive <em>semi</em>definite, and singular exactly when the
+parameters are locally redundant.  It is also the metric of the manifold:
+<span class="math notranslate nohighlight">\(ds^2 = \sum_{ij}S_{ij}d\alpha_id\alpha_j\)</span> is the squared distance between
+nearby normalised states — the quantum geometric tensor, four times the
+quantum Fisher information.  Steepest descent in <em>that</em> metric is
+<span class="math notranslate nohighlight">\(\delta\alpha \propto -S^{-1}g\)</span>, Amari’s <strong>natural gradient</strong>.  Two
+derivations, one from imaginary-time projection and one from Riemannian
+geometry, giving the same update.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sr_report</span> <span class="o">=</span> <span class="n">vo</span><span class="o">.</span><span class="n">sr_metric_report</span><span class="p">(</span><span class="mf">1.00</span><span class="p">,</span> <span class="mf">0.40</span><span class="p">,</span> <span class="n">n_cycles</span><span class="o">=</span><span class="mi">40000</span><span class="p">)</span>
+<span class="n">S</span> <span class="o">=</span> <span class="n">sr_report</span><span class="p">[</span><span class="s2">&quot;metric&quot;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;S =&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">eigenvalues       </span><span class="si">{</span><span class="n">sr_report</span><span class="p">[</span><span class="s1">&#39;eigenvalues&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;condition number  </span><span class="si">{</span><span class="n">sr_report</span><span class="p">[</span><span class="s1">&#39;condition&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;gradient          </span><span class="si">{</span><span class="n">sr_report</span><span class="p">[</span><span class="s1">&#39;gradient&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;lambda&#39;</span><span class="si">:</span><span class="s2">&gt;10s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;|(S+lI)^-1 g|&#39;</span><span class="si">:</span><span class="s2">&gt;15s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;angle to g (deg)&#39;</span><span class="si">:</span><span class="s2">&gt;18s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">lam</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">angle</span> <span class="ow">in</span> <span class="n">sr_report</span><span class="p">[</span><span class="s2">&quot;regularisation&quot;</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">lam</span><span class="si">:</span><span class="s2">10.0e</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">length</span><span class="si">:</span><span class="s2">15.5f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">angle</span><span class="si">:</span><span class="s2">18.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>S =
+[[0.64780165 0.28617337]
+ [0.28617337 0.22599836]]
+
+eigenvalues       [0.08140781 0.7923922 ]
+condition number  9.7
+gradient          [0.02954761 0.01285379]
+
+    lambda   |(S+lI)^-1 g|   angle to g (deg)
+     1e-06         0.04654              25.97
+     1e-04         0.04652              25.95
+     1e-03         0.04636              25.71
+     1e-02         0.04492              23.52
+     1e-01         0.03747              12.52
+     1e+00         0.01803               2.16
+     1e+01         0.00299               0.23
+</pre></div>
+</div>
+</div>
+</div>
+<p><span class="math notranslate nohighlight">\(S\)</span> is positive semidefinite, and in a Monte Carlo estimate its <em>small</em>
+eigenvalues are the ones dominated by noise.  Inverting it as it stands
+amplifies that noise without limit, so one shifts,</p>
+<div class="math notranslate nohighlight">
+\[
+(S + \varepsilon I)\,\delta\alpha = -\delta\tau\, g ,
+\]</div>
+<p>which is Tikhonov regularisation and interpolates: at <span class="math notranslate nohighlight">\(\varepsilon\to0\)</span> the
+natural gradient, at <span class="math notranslate nohighlight">\(\varepsilon\to\infty\)</span> plain steepest descent with
+learning rate <span class="math notranslate nohighlight">\(\eta/\varepsilon\)</span>.  The table shows the crossover — the step
+shortens and rotates back towards the bare gradient.  Even with two parameters
+chosen by hand to do different things, the natural-gradient direction sits
+<span class="math notranslate nohighlight">\(26^{\circ}\)</span> away from the gradient.</p>
+<p>For large <span class="math notranslate nohighlight">\(p\)</span> one never forms <span class="math notranslate nohighlight">\(S\)</span>: <span class="math notranslate nohighlight">\(Sv = \langle O(O\cdot v)\rangle -
+\langle O\rangle\langle O\cdot v\rangle\)</span> costs one pass over the samples, and
+the system is solved by conjugate gradients.  That is what makes SR practical
+for neural-network wave functions with millions of parameters.</p>
+</section>
+<section id="the-methods-compared-on-the-quantum-dot">
+<h2><span class="section-number">15.7. </span>7. The methods compared on the quantum dot<a class="headerlink" href="#the-methods-compared-on-the-quantum-dot" title="Link to this heading">#</a></h2>
+<p>Same start, same budget per step.  The last two rows are the informative ones.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;method&#39;</span><span class="si">:</span><span class="s2">&gt;30s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;steps&#39;</span><span class="si">:</span><span class="s2">&gt;6s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;alpha&#39;</span><span class="si">:</span><span class="s2">&gt;9s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;beta&#39;</span><span class="si">:</span><span class="s2">&gt;9s</span><span class="si">}</span><span class="s2"> &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;final E&#39;</span><span class="si">:</span><span class="s2">&gt;12s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">routine</span><span class="p">,</span> <span class="n">kw</span> <span class="ow">in</span> <span class="p">(</span>
         <span class="p">(</span><span class="s2">&quot;gradient descent&quot;</span><span class="p">,</span> <span class="n">vo</span><span class="o">.</span><span class="n">gradient_descent</span><span class="p">,</span> <span class="nb">dict</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)),</span>
         <span class="p">(</span><span class="s2">&quot;with momentum&quot;</span><span class="p">,</span> <span class="n">vo</span><span class="o">.</span><span class="n">momentum_descent</span><span class="p">,</span>
@@ -621,35 +1101,73 @@ neural-network wave functions.</p>
         <span class="p">(</span><span class="s2">&quot;stochastic reconfiguration&quot;</span><span class="p">,</span> <span class="n">vo</span><span class="o">.</span><span class="n">stochastic_reconfiguration</span><span class="p">,</span>
          <span class="nb">dict</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.2</span><span class="p">))):</span>
     <span class="n">th</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="n">routine</span><span class="p">(</span><span class="mf">0.85</span><span class="p">,</span> <span class="mf">0.20</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">n_cycles</span><span class="o">=</span><span class="mi">4000</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">:</span><span class="s2">&gt;28s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">h</span><span class="p">)</span><span class="si">:</span><span class="s2">6d</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">th</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">9.5f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">th</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">9.5f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">h</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span><span class="si">:</span><span class="s2">12.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">For two parameters the choice hardly matters.  The reason to set&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;them up carefully is what comes later: thousands of parameters, no&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;grid conceivable, a non-convex surface and a stochastic gradient.&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">:</span><span class="s2">&gt;30s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">h</span><span class="p">)</span><span class="si">:</span><span class="s2">6d</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">th</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">9.5f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">th</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">9.5f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">h</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span><span class="si">:</span><span class="s2">12.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">th</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">skipped</span> <span class="o">=</span> <span class="n">vo</span><span class="o">.</span><span class="n">bfgs_descent</span><span class="p">(</span><span class="mf">0.85</span><span class="p">,</span> <span class="mf">0.20</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">n_cycles</span><span class="o">=</span><span class="mi">4000</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;BFGS, damped + trust radius&#39;</span><span class="si">:</span><span class="s2">&gt;30s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">h</span><span class="p">)</span><span class="si">:</span><span class="s2">6d</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">th</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">9.5f</span><span class="si">}</span><span class="s2"> &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">th</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">9.5f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">h</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span><span class="si">:</span><span class="s2">12.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">th2</span><span class="p">,</span> <span class="n">h2</span><span class="p">,</span> <span class="n">skipped2</span> <span class="o">=</span> <span class="n">vo</span><span class="o">.</span><span class="n">bfgs_descent</span><span class="p">(</span><span class="mf">0.85</span><span class="p">,</span> <span class="mf">0.20</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">n_cycles</span><span class="o">=</span><span class="mi">4000</span><span class="p">,</span>
+                                    <span class="n">damping</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">trust_radius</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;BFGS, no safeguards&#39;</span><span class="si">:</span><span class="s2">&gt;30s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">h2</span><span class="p">)</span><span class="si">:</span><span class="s2">6d</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">th2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">9.5f</span><span class="si">}</span><span class="s2"> &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">th2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">9.5f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">h2</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span><span class="si">:</span><span class="s2">12.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">th3</span><span class="p">,</span> <span class="n">h3</span><span class="p">,</span> <span class="n">calls</span> <span class="o">=</span> <span class="n">vo</span><span class="o">.</span><span class="n">powell_vmc</span><span class="p">(</span><span class="mf">0.85</span><span class="p">,</span> <span class="mf">0.20</span><span class="p">,</span> <span class="n">n_cycles</span><span class="o">=</span><span class="mi">4000</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;Powell, derivative free&#39;</span><span class="si">:</span><span class="s2">&gt;30s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">h3</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="si">:</span><span class="s2">6d</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">th3</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">9.5f</span><span class="si">}</span><span class="s2"> &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">th3</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">9.5f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">h3</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span><span class="si">:</span><span class="s2">12.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;BFGS rejected the curvature condition </span><span class="si">{</span><span class="n">skipped</span><span class="si">}</span><span class="s2"> times with the&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;safeguards and </span><span class="si">{</span><span class="n">skipped2</span><span class="si">}</span><span class="s2"> times without; Powell used </span><span class="si">{</span><span class="n">calls</span><span class="si">}</span><span class="s2"> energy&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;evaluations against 15 gradient evaluations, each of which also&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;delivered the energy.&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                      method  steps     alpha      beta      final E
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                        method  steps     alpha      beta      final E
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>            gradient descent     15   1.00411   0.34905     3.001162
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>              gradient descent     15   1.00411   0.34905     3.001162
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>               with momentum     15   1.00817   0.37283     3.000559
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                 with momentum     15   1.00817   0.37283     3.000559
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  stochastic reconfiguration     15   0.98820   0.39787     3.000394
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    stochastic reconfiguration     15   0.98820   0.39787     3.000394
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   BFGS, damped + trust radius     15   0.98807   0.39872     3.000381
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>           BFGS, no safeguards     15   1.24115 271.08137     3.473468
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       Powell, derivative free      3   1.00554   0.36432     3.001191
 
-For two parameters the choice hardly matters.  The reason to set
-them up carefully is what comes later: thousands of parameters, no
-grid conceivable, a non-convex surface and a stochastic gradient.
+BFGS rejected the curvature condition 0 times with the
+safeguards and 7 times without; Powell used 100 energy
+evaluations against 15 gradient evaluations, each of which also
+delivered the energy.
 </pre></div>
 </div>
 </div>
 </div>
+<p>Run BFGS on a Monte Carlo gradient the way one would run it on a
+deterministic function — no trust radius, no damped update — and it leaves the
+physical region.  The reason is the one anticipated above: curvature is
+inferred from <em>differences</em> of gradients, and near the minimum, where the true
+difference is small, that difference is pure noise.  The curvature condition
+<span class="math notranslate nohighlight">\(s^Ty&gt;0\)</span> then fails, and the ordinary repair, a line search, is unavailable
+because we cannot reliably test whether the energy has decreased.</p>
+<p>Powell’s method needs no gradient and does converge, but it spends an order of
+magnitude more energy evaluations to do it, and its line minimisations resolve
+fluctuations rather than curvature.</p>
+<p><strong>For two parameters the choice hardly matters.</strong>  The reason to set them up
+carefully is what comes later: thousands of parameters, no grid conceivable, a
+non-convex surface, a stochastic gradient, and no line search.  Of everything
+in this notebook, only a first-order update on the covariance gradient and
+stochastic reconfiguration survive that list.</p>
 </section>
 <section id="the-production-run">
-<h2><span class="section-number">15.4. </span>4. The production run<a class="headerlink" href="#the-production-run" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">15.8. </span>8. The production run<a class="headerlink" href="#the-production-run" title="Link to this heading">#</a></h2>
 <p>Nothing left to decide, only statistics to accumulate — and that parallelises
 perfectly, since the walkers are independent.</p>
 <div class="cell docutils container">
@@ -681,16 +1199,204 @@ analysis of chapter 12 is still needed.
 </div>
 </div>
 </section>
-<section id="resampling">
-<h2><span class="section-number">15.5. </span>5. Resampling<a class="headerlink" href="#resampling" title="Link to this heading">#</a></h2>
-<p><strong>Blocking</strong>: average neighbouring pairs repeatedly; the naive error grows
-then plateaus, and Jonsson’s <span class="math notranslate nohighlight">\(\chi^2\)</span> test finds the plateau automatically.
-<strong>Bootstrap</strong>: resample <em>in blocks</em> — resampling single points destroys the
-correlations and reproduces the naive error.  <strong>Jackknife</strong>: leave one block
-out at a time; exact for the mean, and its value is for non-linear estimators.</p>
+<section id="the-exact-variance-of-a-correlated-mean">
+<h2><span class="section-number">15.9. </span>9. The exact variance of a correlated mean<a class="headerlink" href="#the-exact-variance-of-a-correlated-mean" title="Link to this heading">#</a></h2>
+<p>The sample mean is a <strong>linear</strong> functional of the data, <span class="math notranslate nohighlight">\(\bar X = \bm{1}^T\bm{X}/N\)</span>,
+and for any deterministic <span class="math notranslate nohighlight">\(\bm{a}\)</span>, <span class="math notranslate nohighlight">\(\mathrm{Var}(\bm{a}^T\bm{X}) = \bm{a}^T\Sigma\bm{a}\)</span>
+with <span class="math notranslate nohighlight">\(\Sigma_{ij} = \mathrm{Cov}(X_i,X_j)\)</span>.  So, with no approximation at all,</p>
+<div class="math notranslate nohighlight">
+\[
+\boxed{\;\mathrm{Var}(\bar X) = \frac{1}{N^2}\bm{1}^T\Sigma\,\bm{1}
+= \frac{1}{N^2}\sum_{i,j}\mathrm{Cov}(X_i,X_j)\;}
+\]</div>
+<p>That is the whole problem in one line.  The familiar <span class="math notranslate nohighlight">\(\sigma^2/N\)</span> is what this
+becomes when <span class="math notranslate nohighlight">\(\Sigma\)</span> is diagonal, and a Markov chain never gives a diagonal
+<span class="math notranslate nohighlight">\(\Sigma\)</span>.</p>
+<p><strong>Stationarity.</strong>  After equilibration the chain is weakly stationary:
+<span class="math notranslate nohighlight">\(\langle X_i\rangle=\mu\)</span> and <span class="math notranslate nohighlight">\(\mathrm{Cov}(X_i,X_j)=C(|i-j|)\)</span> depends only on the
+lag.  Then <span class="math notranslate nohighlight">\(\Sigma\)</span> is <strong>Toeplitz</strong>, constant along its diagonals, and the <span class="math notranslate nohighlight">\(N^2\)</span>
+unknown entries collapse to <span class="math notranslate nohighlight">\(N\)</span> unknown functions <span class="math notranslate nohighlight">\(C(t)\)</span>.</p>
+<p><strong>Collecting by lag.</strong>  The lag <span class="math notranslate nohighlight">\(t=0\)</span> occurs <span class="math notranslate nohighlight">\(N\)</span> times in the <span class="math notranslate nohighlight">\(N\times N\)</span> array
+and each <span class="math notranslate nohighlight">\(t\ge1\)</span> occurs <span class="math notranslate nohighlight">\(2(N-t)\)</span> times, so</p>
+<div class="math notranslate nohighlight">
+\[
+\mathrm{Var}(\bar X) = \frac{C(0)}{N} + \frac{2}{N^2}\sum_{t=1}^{N-1}(N-t)C(t)
+= \frac{\sigma^2}{N}\left[1 + 2\sum_{t=1}^{N-1}\left(1-\frac{t}{N}\right)\rho(t)\right],
+\]</div>
+<p><strong>exact</strong> for a stationary series of finite length, with <span class="math notranslate nohighlight">\(\rho(t)=C(t)/C(0)\)</span>.
+The triangular weight <span class="math notranslate nohighlight">\(1-t/N\)</span> says that long lags are simply less represented
+in a finite sample.  Dropping it gives the large-<span class="math notranslate nohighlight">\(N\)</span> result of chapter 12,</p>
+<div class="math notranslate nohighlight">
+\[
+\mathrm{Var}(\bar X)\approx\frac{\sigma^2}{N}\tau,
+\qquad \tau = 1 + 2\sum_{t\ge1}\rho(t),
+\qquad N_{\rm eff} = \frac{N}{\tau}.
+\]</div>
+<p><strong>A warning about conventions.</strong>  Much of the lattice literature uses
+<span class="math notranslate nohighlight">\(\tau_{\rm int} = \tfrac12 + \sum_t\rho(t) = \tau/2\)</span> and writes
+<span class="math notranslate nohighlight">\(\mathrm{Var} = 2\tau_{\rm int}\sigma^2/N\)</span>.  Same statement, factor of two in the
+bookkeeping.  Check which one a paper or a code means before comparing numbers.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">report</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">label</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">exact</span> <span class="o">=</span> <span class="n">vo</span><span class="o">.</span><span class="n">variance_of_mean_exact</span><span class="p">(</span><span class="n">series</span><span class="p">,</span> <span class="n">rule</span><span class="o">=</span><span class="s2">&quot;first-negative&quot;</span><span class="p">)</span>
+<span class="n">sokal</span> <span class="o">=</span> <span class="n">vo</span><span class="o">.</span><span class="n">variance_of_mean_exact</span><span class="p">(</span><span class="n">series</span><span class="p">,</span> <span class="n">rule</span><span class="o">=</span><span class="s2">&quot;sokal&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;naive sqrt(sigma^2/N)                  &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">exact</span><span class="p">[</span><span class="s1">&#39;naive&#39;</span><span class="p">])</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;lag sum, weight (1-t/N), W = </span><span class="si">{</span><span class="n">exact</span><span class="p">[</span><span class="s1">&#39;window&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">&lt;3d</span><span class="si">}</span><span class="s2">      &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">exact</span><span class="p">[</span><span class="s1">&#39;lag_sum&#39;</span><span class="p">])</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;large-N limit (sigma^2/N) tau          &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">exact</span><span class="p">[</span><span class="s1">&#39;large_n&#39;</span><span class="p">])</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;same, Sokal&#39;s window W = </span><span class="si">{</span><span class="n">sokal</span><span class="p">[</span><span class="s1">&#39;window&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">&lt;3d</span><span class="si">}</span><span class="s2">          &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">sokal</span><span class="p">[</span><span class="s1">&#39;lag_sum&#39;</span><span class="p">])</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;(1/N^2) 1^T Sigma 1, EVERY lag         &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">exact</span><span class="p">[</span><span class="s1">&#39;quadratic_form&#39;</span><span class="p">])</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2">   &lt;-- nonsense&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;tau     = </span><span class="si">{</span><span class="n">exact</span><span class="p">[</span><span class="s1">&#39;tau&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;tau_int = </span><span class="si">{</span><span class="n">exact</span><span class="p">[</span><span class="s1">&#39;tau_int&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;N_eff   = </span><span class="si">{</span><span class="n">exact</span><span class="p">[</span><span class="s1">&#39;n_eff&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> out of </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">series</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>naive sqrt(sigma^2/N)                  0.00003276
+lag sum, weight (1-t/N), W = 2        0.00003689
+large-N limit (sigma^2/N) tau          0.00003689
+same, Sokal&#39;s window W = 4            0.00003639
+(1/N^2) 1^T Sigma 1, EVERY lag         0.00001850   &lt;-- nonsense
+
+tau     = 1.2687
+tau_int = 0.6343
+N_eff   = 1576.5 out of 2000
+</pre></div>
+</div>
+</div>
+</div>
+<p>The last line of that output is the point of this section.  The formula is
+exact, and evaluating it as written gives an answer <strong>smaller than the naive
+one</strong>, with <span class="math notranslate nohighlight">\(\tau\to0\)</span>.</p>
+<p>The reason is that we do not know <span class="math notranslate nohighlight">\(C(t)\)</span>, we estimate it, and each
+<span class="math notranslate nohighlight">\(\hat C(t)\)</span> carries an error of order <span class="math notranslate nohighlight">\(\sigma^2/\sqrt N\)</span> that does <em>not</em> shrink
+as <span class="math notranslate nohighlight">\(t\)</span> grows.  Adding <span class="math notranslate nohighlight">\(N\)</span> of them accumulates an error of order
+<span class="math notranslate nohighlight">\(\sigma^2\sqrt N\)</span> against a signal of order <span class="math notranslate nohighlight">\(\sigma^2\tau\)</span>.  So one truncates
+the sum at some window <span class="math notranslate nohighlight">\(W\)</span> — and the answer depends on where.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;window W&#39;</span><span class="si">:</span><span class="s2">&gt;10s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;tau&#39;</span><span class="si">:</span><span class="s2">&gt;9s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;error&#39;</span><span class="si">:</span><span class="s2">&gt;14s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">windows</span><span class="p">,</span> <span class="n">errors</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">W</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">series</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="n">e</span> <span class="o">=</span> <span class="n">vo</span><span class="o">.</span><span class="n">variance_of_mean_exact</span><span class="p">(</span><span class="n">series</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="n">W</span><span class="p">)</span>
+    <span class="n">err</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="s2">&quot;lag_sum&quot;</span><span class="p">],</span> <span class="mf">0.0</span><span class="p">))</span>
+    <span class="n">windows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">W</span><span class="p">);</span> <span class="n">errors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">W</span><span class="si">:</span><span class="s2">10d</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">e</span><span class="p">[</span><span class="s1">&#39;tau&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">9.3f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">err</span><span class="si">:</span><span class="s2">14.8f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">_</span><span class="p">,</span> <span class="n">blocked</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="n">vo</span><span class="o">.</span><span class="n">blocking</span><span class="p">(</span><span class="n">series</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;blocking&#39;</span><span class="si">:</span><span class="s2">&gt;10s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;--&#39;</span><span class="si">:</span><span class="s2">&gt;9s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">blocked</span><span class="si">:</span><span class="s2">14.8f</span><span class="si">}</span><span class="s2">   &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2"> transformations, no free parameter)&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">windows</span><span class="p">,</span> <span class="n">errors</span><span class="p">,</span> <span class="s2">&quot;o-&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;truncated lag sum&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">blocked</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;blocking&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">series</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">series</span><span class="p">)),</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s2">&quot;naive&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;summation window $W$&quot;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;estimated error&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;the answer depends on where you stop&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  window W       tau          error
+         1     1.228     0.00003630
+         2     1.269     0.00003689
+         5     1.226     0.00003626
+        10     1.175     0.00003550
+        20     1.367     0.00003828
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>        50     1.384     0.00003849
+       100     1.420     0.00003895
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       500     1.158     0.00003535
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      1999    -0.000     0.00001850
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  blocking        --     0.00004858   (1 transformations, no free parameter)
+</pre></div>
+</div>
+<img alt="_images/f876fafbec2bcef6d52a7de78860a81ab1f03ff2f9aeffde53fae1c9c68d5bcc.png" src="_images/f876fafbec2bcef6d52a7de78860a81ab1f03ff2f9aeffde53fae1c9c68d5bcc.png" />
+</div>
+</div>
+<p>Between <span class="math notranslate nohighlight">\(W=1\)</span> and <span class="math notranslate nohighlight">\(W=500\)</span> the error wanders by ten per cent, and at <span class="math notranslate nohighlight">\(W=N-1\)</span> it
+collapses.  <strong>This is the argument for blocking</strong>: the autocorrelation route
+needs a decision that changes the answer by more than the answer’s own
+precision, and offers no principle for making it.</p>
+</section>
+<section id="blocking-and-what-it-does-to-sigma">
+<h2><span class="section-number">15.10. </span>10. Blocking, and what it does to <span class="math notranslate nohighlight">\(\Sigma\)</span><a class="headerlink" href="#blocking-and-what-it-does-to-sigma" title="Link to this heading">#</a></h2>
+<div class="math notranslate nohighlight">
+\[
+X_i^{(k+1)} = \tfrac12\left(X_{2i-1}^{(k)}+X_{2i}^{(k)}\right),
+\qquad N_k = N/2^k .
+\]</div>
+<p>Blocking is a linear coarse-graining, so <span class="math notranslate nohighlight">\(\Sigma^{(k)}\)</span> is again Toeplitz, and
+each step moves weight from the off-diagonals onto the diagonal.  Once the
+blocks are longer than the correlation time,</p>
+<div class="math notranslate nohighlight">
+\[
+\Sigma^{(k)}\approx s_k^2 I ,
+\]</div>
+<p>the exact formula collapses to the independent-sample <span class="math notranslate nohighlight">\(s_k^2/N_k\)</span>, and the
+estimate stops rising.  That plateau is the whole method.  Watch it happen on
+the badly tuned run, where there is something to see.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bad</span> <span class="o">=</span> <span class="n">vo</span><span class="o">.</span><span class="n">production_run</span><span class="p">(</span><span class="mf">1.00</span><span class="p">,</span> <span class="mf">0.40</span><span class="p">,</span> <span class="n">n_walkers</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">n_steps</span><span class="o">=</span><span class="mi">4000</span><span class="p">,</span>
+                        <span class="n">time_step</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">rng</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">2024</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;k&#39;</span><span class="si">:</span><span class="s2">&gt;3s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;N_k&#39;</span><span class="si">:</span><span class="s2">&gt;7s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;s_k^2&#39;</span><span class="si">:</span><span class="s2">&gt;12s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;rho(1)&#39;</span><span class="si">:</span><span class="s2">&gt;8s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;rho(2)&#39;</span><span class="si">:</span><span class="s2">&gt;8s</span><span class="si">}</span><span class="s2"> &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;rho(3)&#39;</span><span class="si">:</span><span class="s2">&gt;8s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;sqrt(s_k^2/N_k)&#39;</span><span class="si">:</span><span class="s2">&gt;16s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">levels</span> <span class="o">=</span> <span class="n">vo</span><span class="o">.</span><span class="n">blocked_covariance</span><span class="p">(</span><span class="n">bad</span><span class="p">[</span><span class="s2">&quot;series&quot;</span><span class="p">],</span> <span class="n">levels</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">nk</span><span class="p">,</span> <span class="n">var_k</span><span class="p">,</span> <span class="n">rho</span> <span class="ow">in</span> <span class="n">levels</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">k</span><span class="si">:</span><span class="s2">3d</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">nk</span><span class="si">:</span><span class="s2">7d</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">var_k</span><span class="si">:</span><span class="s2">12.3e</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">rho</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">8.4f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">rho</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span><span class="si">:</span><span class="s2">8.4f</span><span class="si">}</span><span class="s2"> &quot;</span>
+          <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">rho</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span><span class="si">:</span><span class="s2">8.4f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">var_k</span><span class="o">/</span><span class="n">nk</span><span class="p">)</span><span class="si">:</span><span class="s2">16.8f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">nk</span><span class="p">,</span> <span class="n">var_k</span><span class="p">,</span> <span class="n">rho</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">levels</span><span class="p">[::</span><span class="mi">2</span><span class="p">]):</span>
+    <span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">rho</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;RdBu_r&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;$k=</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">$, $N_k=</span><span class="si">{</span><span class="n">nk</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([]);</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">,</span> <span class="n">fraction</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\rho^{(k)}(|i-j|)$&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;the correlation matrix becoming the identity&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">1.04</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  k     N_k        s_k^2   rho(1)   rho(2)   rho(3)  sqrt(s_k^2/N_k)
+  0    4000    4.561e-06   0.8242   0.6869   0.5801       0.00003377
+  1    2000    4.169e-06   0.7589   0.5402   0.3979       0.00004566
+  2    1000    3.683e-06   0.6310   0.3473   0.2211       0.00006069
+  3     500    3.023e-06   0.4635   0.1912   0.1267       0.00007776
+  4     250    2.166e-06   0.3517   0.0593  -0.0235       0.00009309
+  5     125    1.519e-06   0.1573   0.0041   0.0391       0.00011023
+  6      62    9.190e-07   0.0869  -0.1125   0.0539       0.00012175
+</pre></div>
+</div>
+<img alt="_images/ff6280a6a74b08fa1f52e98ff3bc9154b2dc090261cc8528720e5297f17dc054.png" src="_images/ff6280a6a74b08fa1f52e98ff3bc9154b2dc090261cc8528720e5297f17dc054.png" />
+</div>
+</div>
+<section id="the-three-estimators-side-by-side">
+<h3><span class="section-number">15.10.1. </span>The three estimators side by side<a class="headerlink" href="#the-three-estimators-side-by-side" title="Link to this heading">#</a></h3>
+<p>Blocking with Jonsson’s stopping rule, the block bootstrap and the block
+jackknife, on the well-tuned run and on the badly tuned one.  The plateau of
+the blocking curve below is the same plateau as the last column of the table
+above, plotted rather than tabulated.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">report</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">label</span><span class="p">):</span>
     <span class="n">naive</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
     <span class="n">tau</span> <span class="o">=</span> <span class="n">correlation_time</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
     <span class="n">_</span><span class="p">,</span> <span class="n">eb</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="n">vo</span><span class="o">.</span><span class="n">blocking</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
@@ -708,8 +1414,7 @@ out at a time; exact for the mean, and its value is for non-linear estimators.</
 
 <span class="n">error</span> <span class="o">=</span> <span class="n">report</span><span class="p">(</span><span class="n">series</span><span class="p">,</span> <span class="s2">&quot;well tuned, time step 0.5:&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">()</span>
-<span class="n">bad</span> <span class="o">=</span> <span class="n">vo</span><span class="o">.</span><span class="n">production_run</span><span class="p">(</span><span class="mf">1.00</span><span class="p">,</span> <span class="mf">0.40</span><span class="p">,</span> <span class="n">n_walkers</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">n_steps</span><span class="o">=</span><span class="mi">3000</span><span class="p">,</span>
-                        <span class="n">time_step</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">rng</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">2024</span><span class="p">))</span>
+<span class="c1"># `bad` is the badly tuned run built in the previous cell</span>
 <span class="n">report</span><span class="p">(</span><span class="n">bad</span><span class="p">[</span><span class="s2">&quot;series&quot;</span><span class="p">],</span> <span class="s2">&quot;badly tuned, time step 0.02:&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;With good sampling the naive estimate is only modestly wrong — but&quot;</span><span class="p">)</span>
@@ -727,16 +1432,15 @@ out at a time; exact for the mean, and its value is for non-linear estimators.</
    bootstrap, blocks of 2      0.00003486
    jackknife, blocks of 2      0.00003478
    resampled / naive               1.48
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>badly tuned, time step 0.02:
-   correlation time tau           16.04
-   naive sigma/sqrt(N)         0.00004752
-   sqrt(tau) x naive           0.00019030
-   blocking                    0.00021720  (5 transformations)
-   bootstrap, blocks of 32     0.00019338
-   jackknife, blocks of 32     0.00018116
-   resampled / naive               4.57
+
+badly tuned, time step 0.02:
+   correlation time tau           13.95
+   naive sigma/sqrt(N)         0.00003377
+   sqrt(tau) x naive           0.00012614
+   blocking                    0.00015405  (5 transformations)
+   bootstrap, blocks of 27     0.00010611
+   jackknife, blocks of 27     0.00010427
+   resampled / naive               4.56
 
 With good sampling the naive estimate is only modestly wrong — but
 there is no way to know that without measuring.  With bad sampling it
@@ -758,12 +1462,258 @@ is wrong by a factor of four, silently.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/126b39a748021d0928af66c3118eaaa7c258fca8937fcf13ba35fb316847f42d.png" src="_images/126b39a748021d0928af66c3118eaaa7c258fca8937fcf13ba35fb316847f42d.png" />
+<img alt="_images/71d3d82ad0384d00b3e654a33c9280617bc3c7787f60bfdb0ea625eb399f9c0a.png" src="_images/71d3d82ad0384d00b3e654a33c9280617bc3c7787f60bfdb0ea625eb399f9c0a.png" />
 </div>
 </div>
 </section>
+</section>
+<section id="the-bootstrap-properly">
+<h2><span class="section-number">15.11. </span>11. The bootstrap, properly<a class="headerlink" href="#the-bootstrap-properly" title="Link to this heading">#</a></h2>
+<p>Suppose the data come from an unknown <span class="math notranslate nohighlight">\(F\)</span> and we want the sampling
+distribution of some estimator <span class="math notranslate nohighlight">\(\hat\theta = f(X_1,\dots,X_N)\)</span>.  If we knew
+<span class="math notranslate nohighlight">\(F\)</span> we would simply repeat the experiment.  We do not — but we have the
+<strong>empirical distribution</strong></p>
+<div class="math notranslate nohighlight">
+\[
+\hat F_N(x) = \frac{1}{N}\sum_{i=1}^N \delta(x - X_i),
+\]</div>
+<p>which converges to <span class="math notranslate nohighlight">\(F\)</span> by Glivenko–Cantelli.  The <strong>plug-in principle</strong> says:
+do exactly what you would have done with <span class="math notranslate nohighlight">\(F\)</span>, using <span class="math notranslate nohighlight">\(\hat F_N\)</span> instead.
+Sampling from <span class="math notranslate nohighlight">\(\hat F_N\)</span> <em>is</em> resampling with replacement.</p>
+<p>For <span class="math notranslate nohighlight">\(b = 1,\dots,B\)</span> draw <span class="math notranslate nohighlight">\(X_1^*,\dots,X_N^*\)</span> and compute <span class="math notranslate nohighlight">\(\hat\theta_b^*\)</span>.
+Then</p>
+<div class="math notranslate nohighlight">
+\[
+\sigma_{\rm boot}^2 = \frac{1}{B-1}\sum_b (\hat\theta_b^* - \bar\theta^*)^2,
+\qquad
+\widehat{\rm Bias} = \bar\theta^* - \hat\theta,
+\]</div>
+<p>and the <strong>percentile interval</strong> at confidence <span class="math notranslate nohighlight">\(1-\alpha\)</span> is just the
+<span class="math notranslate nohighlight">\(\alpha/2\)</span> and <span class="math notranslate nohighlight">\(1-\alpha/2\)</span> quantiles of the replicates — no normality assumed
+anywhere.  The justification is that <span class="math notranslate nohighlight">\(\sqrt N(\hat\theta^*-\hat\theta)\)</span>, under
+resampling with the data held fixed, has the same limiting distribution as
+<span class="math notranslate nohighlight">\(\sqrt N(\hat\theta-\theta)\)</span> does under repetition of the experiment.</p>
+<p><strong>One assumption, which Monte Carlo data violate</strong>: resampling single points
+assumes the points are exchangeable.  They are not.  Resample <em>blocks</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chain</span> <span class="o">=</span> <span class="n">vo</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mf">1.00</span><span class="p">,</span> <span class="mf">0.40</span><span class="p">,</span> <span class="n">n_cycles</span><span class="o">=</span><span class="mi">200000</span><span class="p">,</span> <span class="n">time_step</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+                  <span class="n">rng</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">31</span><span class="p">),</span> <span class="n">keep_samples</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">e_local</span> <span class="o">=</span> <span class="n">chain</span><span class="p">[</span><span class="s2">&quot;samples&quot;</span><span class="p">]</span>
+<span class="n">tau_chain</span> <span class="o">=</span> <span class="n">correlation_time</span><span class="p">(</span><span class="n">e_local</span><span class="p">)</span>
+<span class="n">n_blocks</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">block</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">e_local</span><span class="p">)</span> <span class="o">//</span> <span class="n">n_blocks</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">e_local</span><span class="p">)</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> local energies, tau = </span><span class="si">{</span><span class="n">tau_chain</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">, &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">n_blocks</span><span class="si">}</span><span class="s2"> blocks of </span><span class="si">{</span><span class="n">block</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;each block is </span><span class="si">{</span><span class="n">block</span><span class="o">/</span><span class="n">tau_chain</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> correlation times long&quot;</span><span class="p">)</span>
+
+<span class="n">boot</span> <span class="o">=</span> <span class="n">vo</span><span class="o">.</span><span class="n">block_bootstrap</span><span class="p">(</span><span class="n">e_local</span><span class="p">,</span> <span class="n">n_resamples</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">n_blocks</span><span class="o">=</span><span class="n">n_blocks</span><span class="p">,</span>
+                          <span class="n">rng</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">low</span><span class="p">,</span> <span class="n">high</span> <span class="o">=</span> <span class="n">boot</span><span class="p">[</span><span class="s2">&quot;interval&quot;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">E                  </span><span class="si">{</span><span class="n">boot</span><span class="p">[</span><span class="s1">&#39;estimate&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;bootstrap error    </span><span class="si">{</span><span class="n">boot</span><span class="p">[</span><span class="s1">&#39;error&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;95% percentile     [</span><span class="si">{</span><span class="n">low</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">high</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;+/- 1.96 sigma     [</span><span class="si">{</span><span class="n">boot</span><span class="p">[</span><span class="s1">&#39;estimate&#39;</span><span class="p">]</span><span class="o">-</span><span class="mf">1.96</span><span class="o">*</span><span class="n">boot</span><span class="p">[</span><span class="s1">&#39;error&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">, &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">boot</span><span class="p">[</span><span class="s1">&#39;estimate&#39;</span><span class="p">]</span><span class="o">+</span><span class="mf">1.96</span><span class="o">*</span><span class="n">boot</span><span class="p">[</span><span class="s1">&#39;error&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">boot</span><span class="p">[</span><span class="s2">&quot;samples&quot;</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;steelblue&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">boot</span><span class="p">[</span><span class="s2">&quot;estimate&quot;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\hat\theta$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">low</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;95% percentile&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">high</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;bootstrap replicate of $E$&quot;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;density&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;the bootstrap distribution, B = </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">r</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;skewness of the replicates </span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">r</span><span class="o">-</span><span class="n">r</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span><span class="o">/</span><span class="n">r</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span><span class="si">:</span><span class="s2">+.3f</span><span class="si">}</span><span class="s2">&quot;</span>
+      <span class="s2">&quot;  (Gaussian, so the two intervals agree)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>200,000 local energies, tau = 1.25, 200 blocks of 1000
+each block is 799 correlation times long
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>E                  3.000569
+bootstrap error    0.000105
+95% percentile     [3.000373, 3.000773]
++/- 1.96 sigma     [3.000362, 3.000775]
+</pre></div>
+</div>
+<img alt="_images/ecfbf422752a1eecdb547c99a2e06e8b48cd66d14a1b2ecca74b8d158ee4ccac.png" src="_images/ecfbf422752a1eecdb547c99a2e06e8b48cd66d14a1b2ecca74b8d158ee4ccac.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>skewness of the replicates +0.013  (Gaussian, so the two intervals agree)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="estimators-that-are-not-means">
+<h2><span class="section-number">15.12. </span>12. Estimators that are not means<a class="headerlink" href="#estimators-that-are-not-means" title="Link to this heading">#</a></h2>
+<p>Blocking gives the error on a mean and on nothing else.  The natural
+non-linear estimator in VMC is the <strong>variance of the local energy</strong>: by the
+zero-variance argument it vanishes when <span class="math notranslate nohighlight">\(\Psi_T\)</span> is an exact eigenstate, so it
+measures directly how far we are from one — and no formula for its error
+exists.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;estimator&#39;</span><span class="si">:</span><span class="s2">&gt;20s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;value&#39;</span><span class="si">:</span><span class="s2">&gt;11s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;bootstrap&#39;</span><span class="si">:</span><span class="s2">&gt;11s</span><span class="si">}</span><span class="s2"> &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;jackknife&#39;</span><span class="si">:</span><span class="s2">&gt;11s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;blocking&#39;</span><span class="si">:</span><span class="s2">&gt;11s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;jack bias&#39;</span><span class="si">:</span><span class="s2">&gt;11s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">est</span> <span class="ow">in</span> <span class="p">((</span><span class="s2">&quot;mean, E&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">),</span>
+                  <span class="p">(</span><span class="s2">&quot;variance sigma^2&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">),</span>
+                  <span class="p">(</span><span class="s2">&quot;sigma&quot;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">a</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">a</span><span class="p">))),</span>
+                  <span class="p">(</span><span class="s2">&quot;ratio sigma / |E|&quot;</span><span class="p">,</span>
+                   <span class="k">lambda</span> <span class="n">a</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="nb">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">a</span><span class="p">))))):</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">vo</span><span class="o">.</span><span class="n">block_bootstrap</span><span class="p">(</span><span class="n">e_local</span><span class="p">,</span> <span class="n">estimator</span><span class="o">=</span><span class="n">est</span><span class="p">,</span> <span class="n">n_resamples</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+                           <span class="n">n_blocks</span><span class="o">=</span><span class="n">n_blocks</span><span class="p">,</span> <span class="n">rng</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">11</span><span class="p">))</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="n">vo</span><span class="o">.</span><span class="n">block_jackknife</span><span class="p">(</span><span class="n">e_local</span><span class="p">,</span> <span class="n">estimator</span><span class="o">=</span><span class="n">est</span><span class="p">,</span> <span class="n">n_blocks</span><span class="o">=</span><span class="n">n_blocks</span><span class="p">)</span>
+    <span class="n">blk</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">vo</span><span class="o">.</span><span class="n">blocking</span><span class="p">(</span><span class="n">e_local</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">11.6f</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">est</span> <span class="ow">is</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span> <span class="k">else</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;--&#39;</span><span class="si">:</span><span class="s2">&gt;11s</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">:</span><span class="s2">&gt;20s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">b</span><span class="p">[</span><span class="s1">&#39;estimate&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">11.6f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">b</span><span class="p">[</span><span class="s1">&#39;error&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">11.6f</span><span class="si">}</span><span class="s2"> &quot;</span>
+          <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">j</span><span class="p">[</span><span class="s1">&#39;error&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">11.6f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">blk</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">j</span><span class="p">[</span><span class="s1">&#39;bias&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">+11.2e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>           estimator       value   bootstrap   jackknife    blocking   jack bias
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>             mean, E    3.000569    0.000105    0.000105    0.000142   +8.84e-14
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    variance sigma^2    0.002195    0.000013    0.000014          --   -1.09e-08
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>               sigma    0.046851    0.000143    0.000144          --   -3.39e-07
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ratio sigma / |E|    0.015614    0.000048    0.000048          --   -1.12e-07
+</pre></div>
+</div>
+</div>
+</div>
+<p>Two things in the last column.  The jackknife bias for the <strong>mean</strong> is
+<span class="math notranslate nohighlight">\(10^{-13}\)</span>, that is, zero — and it has to be: for a linear estimator every
+leave-one-out value is an exact rearrangement of the same numbers, so there is
+nothing for the correction to find.  <em>Bias is a phenomenon of non-linear
+estimators.</em></p>
+<p>And for the variance there is a known answer to check against: <code class="docutils literal notranslate"><span class="pre">np.var</span></code> uses
+<span class="math notranslate nohighlight">\(1/N\)</span>, which is biased low by exactly <span class="math notranslate nohighlight">\(-\sigma^2/N\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bv</span> <span class="o">=</span> <span class="n">vo</span><span class="o">.</span><span class="n">block_bootstrap</span><span class="p">(</span><span class="n">e_local</span><span class="p">,</span> <span class="n">estimator</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">,</span> <span class="n">n_resamples</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+                        <span class="n">n_blocks</span><span class="o">=</span><span class="n">n_blocks</span><span class="p">,</span> <span class="n">rng</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">11</span><span class="p">))</span>
+<span class="n">jv</span> <span class="o">=</span> <span class="n">vo</span><span class="o">.</span><span class="n">block_jackknife</span><span class="p">(</span><span class="n">e_local</span><span class="p">,</span> <span class="n">estimator</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">,</span> <span class="n">n_blocks</span><span class="o">=</span><span class="n">n_blocks</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;sigma^2, the 1/N estimator   </span><span class="si">{</span><span class="n">bv</span><span class="p">[</span><span class="s1">&#39;estimate&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;exact bias, -sigma^2 / N     </span><span class="si">{</span><span class="o">-</span><span class="n">bv</span><span class="p">[</span><span class="s1">&#39;estimate&#39;</span><span class="p">]</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">e_local</span><span class="p">)</span><span class="si">:</span><span class="s2">+.3e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;jackknife bias estimate      </span><span class="si">{</span><span class="n">jv</span><span class="p">[</span><span class="s1">&#39;bias&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">+.3e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;bootstrap bias estimate      </span><span class="si">{</span><span class="n">bv</span><span class="p">[</span><span class="s1">&#39;bias&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">+.3e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;jackknife bias-corrected     </span><span class="si">{</span><span class="n">jv</span><span class="p">[</span><span class="s1">&#39;corrected&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;the 1/(N-1) estimator        </span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">e_local</span><span class="p">,</span><span class="w"> </span><span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The jackknife gets the bias to three digits knowing nothing about&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;what it is estimating.  The bootstrap estimate is an order of&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;magnitude too large -- a bias of 1e-8 read off B = 1000 replicates&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;each carrying an error of 1e-5 is noise.  Bias estimation needs a far&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;larger B than error estimation, and the jackknife, being&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;deterministic, does not have the problem at all.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sigma^2, the 1/N estimator   0.00219502
+exact bias, -sigma^2 / N     -1.098e-08
+jackknife bias estimate      -1.094e-08
+bootstrap bias estimate      -1.995e-07
+jackknife bias-corrected     0.00219503
+the 1/(N-1) estimator        0.00219503
+
+The jackknife gets the bias to three digits knowing nothing about
+what it is estimating.  The bootstrap estimate is an order of
+magnitude too large -- a bias of 1e-8 read off B = 1000 replicates
+each carrying an error of 1e-5 is noise.  Bias estimation needs a far
+larger B than error estimation, and the jackknife, being
+deterministic, does not have the problem at all.
+</pre></div>
+</div>
+</div>
+</div>
+<section id="why-the-blocks-matter">
+<h3><span class="section-number">15.12.1. </span>Why the blocks matter<a class="headerlink" href="#why-the-blocks-matter" title="Link to this heading">#</a></h3>
+<p>Resampling single points produces data sets that are independent <strong>by
+construction</strong>, whatever the original looked like, and returns <span class="math notranslate nohighlight">\(\sigma^2/N\)</span> —
+the naive answer, with every appearance of a careful calculation.  The effect
+is invisible when <span class="math notranslate nohighlight">\(\tau\approx1\)</span>, so here is a deliberately sticky chain.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sticky</span> <span class="o">=</span> <span class="n">vo</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mf">1.00</span><span class="p">,</span> <span class="mf">0.40</span><span class="p">,</span> <span class="n">n_cycles</span><span class="o">=</span><span class="mi">200000</span><span class="p">,</span> <span class="n">time_step</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span>
+                   <span class="n">rng</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">31</span><span class="p">),</span> <span class="n">keep_samples</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">e_sticky</span> <span class="o">=</span> <span class="n">sticky</span><span class="p">[</span><span class="s2">&quot;samples&quot;</span><span class="p">]</span>
+<span class="n">tau_s</span> <span class="o">=</span> <span class="n">correlation_time</span><span class="p">(</span><span class="n">e_sticky</span><span class="p">)</span>
+<span class="n">naive_s</span> <span class="o">=</span> <span class="n">e_sticky</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">e_sticky</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;tau = </span><span class="si">{</span><span class="n">tau_s</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">, so the honest error should be about &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;sqrt(tau) = </span><span class="si">{</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">tau_s</span><span class="p">)</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> x naive</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">lengths</span><span class="p">,</span> <span class="n">ratios</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;block length&#39;</span><span class="si">:</span><span class="s2">&gt;14s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;bootstrap error&#39;</span><span class="si">:</span><span class="s2">&gt;18s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;/ naive&#39;</span><span class="si">:</span><span class="s2">&gt;10s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="mi">2000</span><span class="p">):</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">vo</span><span class="o">.</span><span class="n">block_bootstrap</span><span class="p">(</span><span class="n">e_sticky</span><span class="p">,</span> <span class="n">n_resamples</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">block</span><span class="o">=</span><span class="n">b</span><span class="p">,</span>
+                             <span class="n">rng</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+    <span class="n">lengths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">b</span><span class="p">);</span> <span class="n">ratios</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="s2">&quot;error&quot;</span><span class="p">]</span><span class="o">/</span><span class="n">naive_s</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">b</span><span class="si">:</span><span class="s2">14d</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">out</span><span class="p">[</span><span class="s1">&#39;error&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">18.8f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">out</span><span class="p">[</span><span class="s1">&#39;error&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">naive_s</span><span class="si">:</span><span class="s2">10.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">_</span><span class="p">,</span> <span class="n">bs</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">vo</span><span class="o">.</span><span class="n">blocking</span><span class="p">(</span><span class="n">e_sticky</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;blocking&#39;</span><span class="si">:</span><span class="s2">&gt;14s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">bs</span><span class="si">:</span><span class="s2">18.8f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">bs</span><span class="o">/</span><span class="n">naive_s</span><span class="si">:</span><span class="s2">10.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">lengths</span><span class="p">,</span> <span class="n">ratios</span><span class="p">,</span> <span class="s2">&quot;o-&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;block bootstrap&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">bs</span><span class="o">/</span><span class="n">naive_s</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;blocking&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">tau_s</span><span class="p">),</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;g&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\sqrt{\tau}$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;naive&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;block length&quot;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;error / naive error&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;resample blocks, not points&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tau = 25.3, so the honest error should be about sqrt(tau) = 5.0 x naive
+
+  block length    bootstrap error    / naive
+             1         0.00010123       0.96
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>             2         0.00014264       1.36
+             8         0.00023298       2.22
+            32         0.00038435       3.66
+           128         0.00047516       4.53
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>           512         0.00055047       5.24
+          2000         0.00049401       4.71
+      blocking         0.00058775       5.60
+</pre></div>
+</div>
+<img alt="_images/c71352f2a10b17d2713ab9155108346396aca6bcb4bb89e54eeec7d7253e7580.png" src="_images/c71352f2a10b17d2713ab9155108346396aca6bcb4bb89e54eeec7d7253e7580.png" />
+</div>
+</div>
+</section>
+<section id="which-to-use">
+<h3><span class="section-number">15.12.2. </span>Which to use<a class="headerlink" href="#which-to-use" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>The mean of a Monte Carlo run</strong> — blocking with Jonsson’s rule.  No free
+parameters, no window, conservative.</p></li>
+<li><p><strong>Anything else</strong> — a variance, a ratio, a fitted or extrapolated parameter:
+block bootstrap or block jackknife.  They agree when both apply; the
+jackknife is deterministic and cheaper, the bootstrap gives the whole
+distribution and hence confidence intervals.</p></li>
+<li><p><strong>Bias</strong> — the jackknife, or the bootstrap with a large <span class="math notranslate nohighlight">\(B\)</span>.</p></li>
+<li><p><strong>Never</strong> <span class="math notranslate nohighlight">\(\sigma/\sqrt N\)</span> from a Markov chain, and never a bootstrap that
+resamples single points.  Both are wrong in the same direction and neither
+announces itself.</p></li>
+</ul>
+</section>
+</section>
 <section id="the-result">
-<h2><span class="section-number">15.6. </span>6. The result<a class="headerlink" href="#the-result" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">15.13. </span>13. The result<a class="headerlink" href="#the-result" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean</span> <span class="o">=</span> <span class="n">series</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
@@ -804,7 +1754,7 @@ and concluded, wrongly, that something was broken.
 </div>
 </section>
 <section id="what-is-left">
-<h2><span class="section-number">15.7. </span>What is left<a class="headerlink" href="#what-is-left" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">15.14. </span>What is left<a class="headerlink" href="#what-is-left" title="Link to this heading">#</a></h2>
 <p>Every result here is bounded above by what two parameters can express, and no
 amount of sampling or optimisation changes that.  Two ways out:</p>
 <ul class="simple">
@@ -884,11 +1834,30 @@ let the gradient and the stochastic-reconfiguration step do the rest.</p></li>
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-gradient-of-the-energy">15.1. 1. The gradient of the energy</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-descent">15.2. 2. Gradient descent</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#three-optimisers">15.3. 3. Three optimisers</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-production-run">15.4. 4. The production run</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resampling">15.5. 5. Resampling</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-result">15.6. 6. The result</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-left">15.7. What is left</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quasi-newton-methods-the-secant-condition-broyden-and-bfgs">15.3. 3. Quasi-Newton methods: the secant condition, Broyden and BFGS</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#broyden-minimum-change-in-the-frobenius-norm">15.3.1. Broyden: minimum change in the Frobenius norm</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bfgs-symmetric-positive-definite-rank-two">15.3.2. BFGS: symmetric, positive definite, rank two</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#broyden-against-newton-on-a-nonlinear-system">15.3.3. Broyden against Newton on a nonlinear system</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-curvature-matters">15.4. 4. Why curvature matters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#derivative-free-optimisation-powell-s-method">15.5. 5. Derivative-free optimisation: Powell’s method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stochastic-reconfiguration">15.6. 6. Stochastic reconfiguration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-methods-compared-on-the-quantum-dot">15.7. 7. The methods compared on the quantum dot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-production-run">15.8. 8. The production run</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-exact-variance-of-a-correlated-mean">15.9. 9. The exact variance of a correlated mean</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#blocking-and-what-it-does-to-sigma">15.10. 10. Blocking, and what it does to <span class="math notranslate nohighlight">\(\Sigma\)</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-three-estimators-side-by-side">15.10.1. The three estimators side by side</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-bootstrap-properly">15.11. 11. The bootstrap, properly</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimators-that-are-not-means">15.12. 12. Estimators that are not means</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-the-blocks-matter">15.12.1. Why the blocks matter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#which-to-use">15.12.2. Which to use</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-result">15.13. 13. The result</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-left">15.14. What is left</a></li>
 </ul>
   </nav></div>
 

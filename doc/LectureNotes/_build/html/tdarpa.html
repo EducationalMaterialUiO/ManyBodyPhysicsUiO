@@ -28,11 +28,11 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -50,7 +50,7 @@
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
@@ -214,6 +214,20 @@
 <li class="toctree-l1"><a class="reference internal" href="optimisation.html">15. Optimization and resampling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="diffusionmc.html">16. Diffusion Monte Carlo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="manybodymc.html">17. Applications to many-body systems: six electrons</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine learning approaches</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="boltzmannmachines.html">18. Boltzmann machines and generative models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pinns.html">19. Neural quantum states and physics-informed neural networks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum computing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="quantumfourier.html">20. The quantum Fourier transform and phase estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vqe.html">21. The variational quantum eigensolver</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Concluding remarks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="conclusions.html">22. Concluding remarks and perspectives</a></li>
 </ul>
 
     </div>
@@ -467,7 +481,7 @@ document.write(`
 <h1><span class="section-number">8. </span>Mean-field applications: TDA, RPA and QRPA<a class="headerlink" href="#mean-field-applications-tda-rpa-and-qrpa" title="Link to this heading">#</a></h1>
 <p>Companion notebook to Chapter 7 of <em>Quantum mechanics for many-particle
 systems</em>.  Every number quoted in the chapter is produced here; the code is
-the same as in <code class="docutils literal notranslate"><span class="pre">BookManybody/BookMaterial/Programs/rpa.py</span></code>.</p>
+the same as in <code class="docutils literal notranslate"><span class="pre">BookManybody/BookPrograms/chapter07/rpa.py</span></code>.</p>
 <p>The model has <span class="math notranslate nohighlight">\(L\)</span> doubly degenerate, equally spaced levels <span class="math notranslate nohighlight">\(p=1,\dots,L\)</span> with
 spin <span class="math notranslate nohighlight">\(\sigma=\pm\)</span>, holding <span class="math notranslate nohighlight">\(N\)</span> fermions:</p>
 <div class="math notranslate nohighlight">
@@ -492,12 +506,17 @@ term breaks pairs, which is what the pairing term cannot do.</p>
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span><span class="o">,</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;..&quot;</span><span class="p">,</span> <span class="s2">&quot;BookManybody&quot;</span><span class="p">,</span> <span class="s2">&quot;BookMaterial&quot;</span><span class="p">,</span> <span class="s2">&quot;Programs&quot;</span><span class="p">))</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">rpa</span>
+<span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">glob</span>
+<span class="c1"># the chapter programs live in BookPrograms/chapterNN; put them all on the path</span>
+<span class="k">for</span> <span class="n">_d</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;..&quot;</span><span class="p">,</span> <span class="s2">&quot;BookManybody&quot;</span><span class="p">,</span>
+                                        <span class="s2">&quot;BookPrograms&quot;</span><span class="p">,</span> <span class="s2">&quot;chapter*&quot;</span><span class="p">))):</span>
+    <span class="k">if</span> <span class="n">_d</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">_d</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">rpa</span>
 
 <span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
 </pre></div>
@@ -565,7 +584,7 @@ is no longer conserved and the whole S_z = 0 space is active.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/a03311f33bf6cc04bbec89d70ba997af2ca0ecb6d59320b65212d5050409a6bb.png" src="_images/a03311f33bf6cc04bbec89d70ba997af2ca0ecb6d59320b65212d5050409a6bb.png" />
+<img alt="_images/35c17ce7416a9604b62cff3aa3120282d0672077f719edd8791d712086a3038b.png" src="_images/35c17ce7416a9604b62cff3aa3120282d0672077f719edd8791d712086a3038b.png" />
 </div>
 </div>
 <p>The weak-<span class="math notranslate nohighlight">\(f\)</span> panel shows the near-degenerate pairs of the pairing model,
@@ -632,11 +651,11 @@ matrix construction.
   E_HF from &lt;HF|H|HF&gt;                    = 1.19708590
   E_HF from the self-consistent field    = 1.19708590
   max |&lt;HF|H|1p-1h&gt;|  (Brillouin)        = 3.99e-13
-  max |A - (H_1p1h - E_HF)|              = 3.11e-15
+  max |A - (H_1p1h - E_HF)|              = 5.33e-15
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  max |A - [(e_m-e_i)dd + vbar_mjin]|    = 5.28e-14
-  max |B - vbar_mnij|                    = 3.33e-16
+  max |B - vbar_mnij|                    = 3.89e-16
 
 The first identity is the important one: the Tamm-Dancoff matrix
 is literally the Hamiltonian restricted to the 1p-1h block,
@@ -673,19 +692,18 @@ truncation of chapter 5 applied to excited states, no more.
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0.70   0.050    1.19709     0.89759    0.96976    1.3992    1.3412     1.5972
+  1.00   0.050    0.89709     0.36862    0.45058    1.5492    1.4488     1.9425
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1.00   0.050    0.89709     0.36862    0.45058    1.5492    1.4488     1.9425
-  1.00   0.500   -0.26976    -1.73461   -1.69174    1.8111    1.6445     2.8596
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1.00   0.500   -0.26976    -1.73461   -1.69174    1.8111    1.6445     2.8596
 
 RPA lowers the energy below Hartree-Fock and overshoots the exact
 ground state: the quasiboson approximation, which replaces the
 exact commutator of two particle-hole operators by its expectation
 value in the reference, double counts the correlations.  The RPA
 root always lies below the TDA one, for the same reason.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dimension of the particle-hole space: 16 = (2L - N) x N = 4 x 4
+
+dimension of the particle-hole space: 16 = (2L - N) x N = 4 x 4
 Tr A = 38.423313, sum of RPA roots = 37.824314, E_corr = -0.299500
 
 For pure pairing the whole particle-hole problem collapses to a
@@ -693,17 +711,13 @@ two-by-two structure and both answers are closed forms,
    TDA:  w = xi + g/2,          RPA:  w = sqrt(xi^2 + g xi),
 the second being sqrt(A^2 - B^2) with A = xi + g/2 and B = g/2.
      g          TDA     xi + g/2          RPA    sqrt(1+g)
+  0.50   1.25000000   1.25000000   1.22474487   1.22474487
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0.50   1.25000000   1.25000000   1.22474487   1.22474487
-  1.00   1.50000000   1.50000000   1.41421356   1.41421356
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1.00   1.50000000   1.50000000   1.41421356   1.41421356
   2.00   2.00000000   2.00000000   1.73205081   1.73205081
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  3.00   2.50000000   2.50000000   2.00000000   2.00000000
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  5.00   3.50000000   3.50000000   2.44948974   2.44948974
+  3.00   2.50000000   2.50000000   2.00000000   2.00000000
+  5.00   3.50000000   3.50000000   2.44948974   2.44948974
 </pre></div>
 </div>
 </div>
@@ -737,7 +751,7 @@ the second being sqrt(A^2 - B^2) with A = xi + g/2 and B = g/2.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/b3a0e9161ceb1cbc4a125251891becbae6863c4d3c069e70cfe2f035f06b6b58.png" src="_images/b3a0e9161ceb1cbc4a125251891becbae6863c4d3c069e70cfe2f035f06b6b58.png" />
+<img alt="_images/045a3f926800919ae32805358ec0876852c2639e2fe23a7cd7519e6643649adc.png" src="_images/045a3f926800919ae32805358ec0876852c2639e2fe23a7cd7519e6643649adc.png" />
 </div>
 </div>
 <p>RPA lowers the energy below Hartree-Fock and overshoots the exact ground
@@ -773,7 +787,7 @@ never goes unstable.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/1f56bc39cff86a6d97ddc11fb52b59f73ab907e86f16992c3b461942001b4a3b.png" src="_images/1f56bc39cff86a6d97ddc11fb52b59f73ab907e86f16992c3b461942001b4a3b.png" />
+<img alt="_images/3ff06d18b2cba16f9b12eb09d6a039a97b893d567f3c5e1e3a94e9c66b1c1770.png" src="_images/3ff06d18b2cba16f9b12eb09d6a039a97b893d567f3c5e1e3a94e9c66b1c1770.png" />
 </div>
 </div>
 </section>
@@ -830,10 +844,10 @@ stability matrix stays positive at every coupling we consider:
      g       f   min eig M_stab   #imaginary
   1.00    0.00       1.00000000            0
   3.00    0.00       1.00000000            0
-  1.00    0.50       1.04428801            0
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  4.00    2.00       1.11547342            0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1.00    0.50       1.04428801            0
+  4.00    2.00       1.11547342            0
 The particle-hole channel is simply not where this model becomes
 collective.  Its instability is in the pairing channel, which is
 what BCS and QRPA are for.
@@ -864,7 +878,7 @@ what BCS and QRPA are for.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/4d2eb627e6062737da149ef6b94c6748affc83b2725691d38f33ac573ba7d250.png" src="_images/4d2eb627e6062737da149ef6b94c6748affc83b2725691d38f33ac573ba7d250.png" />
+<img alt="_images/66f93c6586850f61504e67d0619ec9c2847ee05c40c57a4cbc619047e942b0ff.png" src="_images/66f93c6586850f61504e67d0619ec9c2847ee05c40c57a4cbc619047e942b0ff.png" />
 </div>
 </div>
 </section>
@@ -890,15 +904,11 @@ closed form, and it turns out to depend on <span class="math notranslate nohighl
 6. BCS: the pairing mean field
 ==========================================================================
 The closed-form energy against the Fock-space expectation value:
+   g= 1.6 f= 0.0:  closed form   0.20451904   Fock space   0.20451904   difference 1.7e-16
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   g= 1.6 f= 0.0:  closed form   0.20451907   Fock space   0.20451907   difference 8.9e-16
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   g= 1.2 f= 0.1:  closed form   0.51568415   Fock space   0.51568415   difference 0.0e+00
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   g= 0.8 f= 0.3:  closed form   0.51568415   Fock space   0.51568415   difference 4.4e-16
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   g= 1.2 f= 0.1:  closed form   0.51568402   Fock space   0.51568402   difference 0.0e+00
+   g= 0.8 f= 0.3:  closed form   0.51568402   Fock space   0.51568402   difference 3.3e-16
 
 Note that the last two rows are identical.  Seen from the BCS
 vacuum only the q = r part of the particle-hole term survives, and
@@ -907,29 +917,25 @@ through the single combination g + 2f.
      g      f   g + 2f         E_BCS         gap
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1.40   0.00     1.40    0.51568415    0.789218
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1.40   0.00     1.40    0.51568402    0.789218
+  1.20   0.10     1.40    0.51568402    0.789218
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1.20   0.10     1.40    0.51568415    0.789218
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0.80   0.30     1.40    0.51568415    0.789218
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0.00   0.70     1.40    0.51568415    0.789218
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0.80   0.30     1.40    0.51568402    0.789218
+  0.00   0.70     1.40    0.51568402    0.789218
 
      g        gap     lambda       &lt;N&gt;   v^2
   0.40    0.00000     1.2500   4.00000   1.000  1.000  0.000  0.000
   0.60    0.00000     1.2500   4.00000   1.000  1.000  0.000  0.000
   0.80    0.00000     1.2500   4.00000   1.000  1.000  0.000  0.000
-  1.00    0.00000     1.2500   4.00000   1.000  1.000  0.000  0.000
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1.00    0.00000     1.2500   4.00000   1.000  1.000  0.000  0.000
   1.07    0.00000     1.2207   4.00000   1.000  1.000  0.000  0.000
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1.20    0.46716     1.2000   4.00000   0.984  0.925  0.075  0.016
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1.60    1.05608     1.1000   4.00000   0.934  0.783  0.217  0.066
+  1.60    1.05608     1.1000   4.00000   0.934  0.783  0.217  0.066
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  2.00    1.54088     1.0000   4.00000   0.887  0.709  0.291  0.113
@@ -976,7 +982,7 @@ energy of chapter 4 is perfectly smooth through g_c.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/4424f5f3ae16299accf3184e43853dba7c4fc946d24fa271a9d8357fe3af097f.png" src="_images/4424f5f3ae16299accf3184e43853dba7c4fc946d24fa271a9d8357fe3af097f.png" />
+<img alt="_images/b6d2539ddc287176e82cd52b0994f90a37d4e7fe1ec86efa7bf0968c39859f80.png" src="_images/b6d2539ddc287176e82cd52b0994f90a37d4e7fe1ec86efa7bf0968c39859f80.png" />
 </div>
 </div>
 <p>The BCS transition at <span class="math notranslate nohighlight">\(g_c = 1.07\)</span> is <em>sharp</em> even though the system is
@@ -1003,7 +1009,9 @@ since quasiparticles mix particle number.</p>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>==========================================================================
 7. Quasiparticle RPA
 ==========================================================================
-max || alpha_a |BCS&gt; ||  = 3.68e-17   (the BCS state is the
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>max || alpha_a |BCS&gt; ||  = 6.40e-17   (the BCS state is the
                                         quasiparticle vacuum)
 
 The number of two-quasiparticle operators is 2L(2L-1)/2 = 28.
@@ -1015,19 +1023,15 @@ overlap with the amplitudes built from the number operator.
      g       gap   |w_spurious|   overlap with N   #imaginary
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1.20   0.46716       2.05e-04         1.000000            0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1.20   0.46716       1.27e-04         1.000000            0
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1.40   0.78922       2.08e-05         1.000000            0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1.40   0.78922       9.16e-05         1.000000            0
+  1.60   1.05608       1.66e-04         1.000000            0
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1.60   1.05608       1.97e-04         1.000000            0
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1.80   1.30338       8.45e-05         1.000000            0
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  2.00   1.54088       2.01e-04         1.000000            0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1.80   1.30338       1.43e-04         1.000000            0
+  2.00   1.54088       2.52e-04         1.000000            0
 
 The overlap is one to six decimals: the near-zero root really is
 the number mode, and once it is removed the QRPA matrix has no
@@ -1042,12 +1046,12 @@ system; the others are pairing vibrations reaching towards N +/- 2.
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  g = 1.4:  exact excitation energies [2.3565 2.3565 2.676  3.3181]
        omega    &lt;Delta N&gt;   character
       1.3093      -0.0000   Delta N = 0
-      1.9084      -0.0000   Delta N = 0
-      1.9084      -0.0000   Delta N = 0
-      1.9084      -0.0000   Delta N = 0
-      1.9084      -0.0000   Delta N = 0
-      2.9094      -0.2339   pairing vibration
-      2.9094      -0.2339   pairing vibration
+      1.9084       0.0000   Delta N = 0
+      1.9084       0.0000   Delta N = 0
+      1.9084       0.0000   Delta N = 0
+      1.9084       0.0000   Delta N = 0
+      2.9094       0.2339   pairing vibration
+      2.9094       0.2339   pairing vibration
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  g = 2.0:  exact excitation energies [3.3274 3.3274 3.4897 4.2536]
@@ -1057,8 +1061,8 @@ system; the others are pairing vibrations reaching towards N +/- 2.
       2.9212      -0.0000   Delta N = 0
       2.9212      -0.0000   Delta N = 0
       2.9212      -0.0000   Delta N = 0
-      3.7879       0.3566   pairing vibration
-      3.7879       0.3566   pairing vibration
+      3.7879      -0.3566   pairing vibration
+      3.7879      -0.3566   pairing vibration
 </pre></div>
 </div>
 </div>
@@ -1086,11 +1090,13 @@ Pure pairing, f = 0.  E_ref is the unperturbed determinant, which
 for this interaction is also the Hartree-Fock energy.
      g     E_exact       E_HF      HF+RPA      E_BCS    BCS+QRPA
   0.40    1.548001    1.60000     1.51748    1.60000     1.46366
-  0.60    1.277449    1.40000     1.22390    1.40000     1.08964
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0.80    0.973552    1.20000     0.90179    1.20000     0.62540
-  1.00    0.635548    1.00000     0.55459    1.00000    -0.01157
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0.60    1.277449    1.40000     1.22390    1.40000     1.08964
+  0.80    0.973552    1.20000     0.90179    1.20000     0.62540
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1.00    0.635548    1.00000     0.55459    1.00000    -0.01157
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1.20    0.264504    0.80000     0.18506    0.78522    -0.40860
@@ -1149,7 +1155,7 @@ same machinery is far better behaved.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/60915c77e02b38a3ab9f1542376d38d2f1dee566c7fcea48d662ad176714e803.png" src="_images/60915c77e02b38a3ab9f1542376d38d2f1dee566c7fcea48d662ad176714e803.png" />
+<img alt="_images/dea230c15f16dc71e7ef648c3346ca86bb23599c82bcdd3f3547aa9c4d8fdac8.png" src="_images/dea230c15f16dc71e7ef648c3346ca86bb23599c82bcdd3f3547aa9c4d8fdac8.png" />
 </div>
 </div>
 <p>Particle-hole RPA tracks the exact curve closely and crosses it near
@@ -1163,7 +1169,7 @@ machinery is far better behaved.</p>
 </section>
 <section id="the-full-program">
 <h2><span class="section-number">8.9. </span>The full program<a class="headerlink" href="#the-full-program" title="Link to this heading">#</a></h2>
-<p>Everything above lives in <code class="docutils literal notranslate"><span class="pre">BookManybody/BookMaterial/Programs/rpa.py</span></code>, which
+<p>Everything above lives in <code class="docutils literal notranslate"><span class="pre">BookManybody/BookPrograms/chapter07/rpa.py</span></code>, which
 runs as a script and prints all eight demonstrations of the chapter.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">

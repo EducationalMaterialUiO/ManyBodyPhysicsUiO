@@ -1,0 +1,1224 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>20. The quantum Fourier transform and phase estimation &#8212; Quantum Mechanics for Many-Particle Systems: from standard methods to quantum computing and machine learning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'quantumfourier';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="21. The variational quantum eigensolver" href="vqe.html" />
+    <link rel="prev" title="19. Neural quantum states and physics-informed neural networks" href="pinns.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Quantum Mechanics for Many-Particle Systems: from standard methods to quantum computing and machine learning - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Quantum Mechanics for Many-Particle Systems: from standard methods to quantum computing and machine learning - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Quantum mechanics for many-particle systems
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">About the course</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="teachers.html">Instructor information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="textbooks.html">Textbooks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Foundations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="linearalgebra.html">1. Linear algebra and eigenvalue problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manybodybasics.html">2. From linear algebra to many-body physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wicktheorem.html">3. Wick’s theorem, verified by brute force</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jordanwigner.html">4. From fermions to qubits: the Jordan-Wigner transformation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">5. Physical systems and models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fullci.html">6. Full configuration interaction theory</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Mean-field and beyond</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="hartreefock.html">7. Mean-field approaches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tdarpa.html">8. Mean-field applications: TDA, RPA and QRPA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dft.html">9. Density functional theory</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Post Hartree-Fock methods</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="mbptheory.html">10. Many-body perturbation theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coupledcluster.html">11. Coupled cluster theory</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Applications and stochastic methods</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="quantumdots.html">12. Quantum dots: a realistic Hamiltonian</a></li>
+<li class="toctree-l1"><a class="reference internal" href="statistics.html">13. Elements from statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variationalmc.html">14. Variational Monte Carlo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimisation.html">15. Optimization and resampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diffusionmc.html">16. Diffusion Monte Carlo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manybodymc.html">17. Applications to many-body systems: six electrons</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine learning approaches</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="boltzmannmachines.html">18. Boltzmann machines and generative models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pinns.html">19. Neural quantum states and physics-informed neural networks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum computing</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">20. The quantum Fourier transform and phase estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vqe.html">21. The variational quantum eigensolver</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Concluding remarks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="conclusions.html">22. Concluding remarks and perspectives</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/ManyBodyPhysics/FYS4480/master?urlpath=lab/tree/doc/LectureNotes/quantumfourier.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ManyBodyPhysics/FYS4480" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ManyBodyPhysics/FYS4480/issues/new?title=Issue%20on%20page%20%2Fquantumfourier.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/quantumfourier.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>The quantum Fourier transform and phase estimation</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-quantum-fourier-transform">20.1. 1. The quantum Fourier transform</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-product-form">20.1.1. The product form</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-worked-example-mathrm-qft-8-101-rangle">20.1.2. The worked example: <span class="math notranslate nohighlight">\(\mathrm{QFT}_8|101\rangle\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cost-the-approximate-qft-and-bit-reversal">20.1.3. Cost, the approximate QFT, and bit reversal</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quantum-phase-estimation">20.2. 2. Quantum phase estimation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-phases-to-energies">20.3. 3. From phases to energies</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-chapter-4-models-as-qubit-hamiltonians">20.3.1. The chapter-4 models as qubit Hamiltonians</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-second-error-trotterisation">20.3.2. The second error: Trotterisation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-this-is-fatal-here-and-harmless-in-unitary-coupled-cluster">20.3.3. Why this is fatal here and harmless in unitary coupled cluster</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-state-you-start-from">20.4. 4. The state you start from</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="the-quantum-fourier-transform-and-phase-estimation">
+<h1><span class="section-number">20. </span>The quantum Fourier transform and phase estimation<a class="headerlink" href="#the-quantum-fourier-transform-and-phase-estimation" title="Link to this heading">#</a></h1>
+<p>Executable companion to chapter 19.</p>
+<p>Every method so far in this book has been classical, and several have run into
+the exponential wall.  A quantum computer does not remove the wall — it moves
+it, storing a state of <span class="math notranslate nohighlight">\(M\)</span> modes in <span class="math notranslate nohighlight">\(M\)</span> qubits rather than <span class="math notranslate nohighlight">\(2^M\)</span> complex
+numbers.  This notebook builds the two algorithms that let one extract an
+<em>eigenvalue</em> from such a register:</p>
+<ul class="simple">
+<li><p>the <strong>quantum Fourier transform</strong>, which converts phase information into
+computational-basis information;</p></li>
+<li><p><strong>quantum phase estimation</strong>, which uses it to read an eigenphase out in
+binary, to precision <span class="math notranslate nohighlight">\(2^{-m}\)</span> with <span class="math notranslate nohighlight">\(m\)</span> qubits.</p></li>
+</ul>
+<p>Then we apply it to the Lipkin, pairing, Heisenberg and Hubbard models of
+chapter 4.</p>
+<p>Nothing new is needed from the formalism.  Chapter 2 already set out the gate
+model in the language of chapter 1 — states in the computational basis
+evolving by unitary matrices, with measurement given by projection operators —
+and observed that quantum computing is <em>a restricted form of linear algebra:
+matrix–vector multiplications with special unitary matrices on exponentially
+large vectors</em>.  This notebook is that observation carried through to an
+algorithm, using the tensor product, the Pauli matrices, unitarity and the
+spectral decomposition of chapter 1, and the Trotter–Suzuki splitting of
+chapter 6.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">glob</span>
+<span class="c1"># the chapter programs live in BookPrograms/chapterNN; put them all on the path</span>
+<span class="k">for</span> <span class="n">_d</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;..&quot;</span><span class="p">,</span> <span class="s2">&quot;BookManybody&quot;</span><span class="p">,</span>
+                                        <span class="s2">&quot;BookPrograms&quot;</span><span class="p">,</span> <span class="s2">&quot;chapter*&quot;</span><span class="p">))):</span>
+    <span class="k">if</span> <span class="n">_d</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">_d</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">import</span> <span class="nn">qpe</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="the-quantum-fourier-transform">
+<h2><span class="section-number">20.1. </span>1. The quantum Fourier transform<a class="headerlink" href="#the-quantum-fourier-transform" title="Link to this heading">#</a></h2>
+<div class="math notranslate nohighlight">
+\[
+\boxed{\;\mathrm{QFT}_N|x\rangle = \frac{1}{\sqrt N}\sum_{k=0}^{N-1} e^{2\pi i xk/N}|k\rangle\;}
+\]</div>
+<p>the classical DFT matrix applied to the <em>amplitudes</em> of a state.  Two things at
+once.  <strong>The power:</strong> <span class="math notranslate nohighlight">\(\mathcal{O}(n^2)\)</span> gates for a transform on <span class="math notranslate nohighlight">\(N = 2^n\)</span>
+amplitudes.  <strong>The disappointment:</strong> the answer is in the amplitudes, which
+cannot be read out — measuring gives one basis state drawn from <span class="math notranslate nohighlight">\(|y_k|^2\)</span>.  So
+the QFT is useless for transforming <em>data</em> and invaluable inside algorithms
+that need one number out of the transform.</p>
+<section id="the-product-form">
+<h3><span class="section-number">20.1.1. </span>The product form<a class="headerlink" href="#the-product-form" title="Link to this heading">#</a></h3>
+<p>Write <span class="math notranslate nohighlight">\(k\)</span> in binary.  Then <span class="math notranslate nohighlight">\(xk/2^n = x\sum_m k_m/2^m\)</span>, so the phase factors,</p>
+<div class="math notranslate nohighlight">
+\[
+e^{2\pi i xk/2^n} = \prod_{m=1}^n e^{2\pi i x k_m/2^m},
+\]</div>
+<p>and since each <span class="math notranslate nohighlight">\(k_m \in \{0,1\}\)</span> the <em>sum</em> over all <span class="math notranslate nohighlight">\(k\)</span> factorises too:</p>
+<div class="math notranslate nohighlight">
+\[
+\boxed{\;\mathrm{QFT}_N|x_1\dots x_n\rangle = \frac{1}{2^{n/2}}
+\left(|0\rangle + e^{2\pi i\,0.x_n}|1\rangle\right)\otimes\cdots\otimes
+\left(|0\rangle + e^{2\pi i\,0.x_1x_2\dots x_n}|1\rangle\right)\;}
+\]</div>
+<p>using that only the <em>fractional</em> part of <span class="math notranslate nohighlight">\(x/2^m\)</span> survives in the exponential,
+and that fractional part is the binary fraction <span class="math notranslate nohighlight">\(0.x_{n-m+1}\dots x_n\)</span>.</p>
+<p>Three consequences: the output is a <strong>product state</strong> (no entanglement); the
+order is <strong>reversed</strong>; and each factor is a Hadamard plus a few controlled
+phase rotations — which is the circuit.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">checks</span> <span class="o">=</span> <span class="n">qpe</span><span class="o">.</span><span class="n">check_qft</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="p">((</span><span class="s2">&quot;matrix&quot;</span><span class="p">,</span> <span class="s2">&quot;circuit vs. the Fourier matrix&quot;</span><span class="p">),</span>
+                   <span class="p">(</span><span class="s2">&quot;product_form&quot;</span><span class="p">,</span> <span class="s2">&quot;circuit vs. the product form&quot;</span><span class="p">),</span>
+                   <span class="p">(</span><span class="s2">&quot;fft&quot;</span><span class="p">,</span> <span class="s2">&quot;circuit vs. numpy.fft&quot;</span><span class="p">),</span>
+                   <span class="p">(</span><span class="s2">&quot;inverse&quot;</span><span class="p">,</span> <span class="s2">&quot;inverse QFT o QFT = identity&quot;</span><span class="p">),</span>
+                   <span class="p">(</span><span class="s2">&quot;unitary&quot;</span><span class="p">,</span> <span class="s2">&quot;assembled circuit is unitary&quot;</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">label</span><span class="si">:</span><span class="s2">&lt;36s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">checks</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The second line is the one that matters: the product form is built&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;with no circuit at all, straight from the binary-fraction&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;factorisation, so agreement tests the derivation and not merely the&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;implementation&#39;s self-consistency.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>circuit vs. the Fourier matrix       3.78e-15
+circuit vs. the product form         1.89e-16
+circuit vs. numpy.fft                2.42e-16
+inverse QFT o QFT = identity         2.99e-16
+assembled circuit is unitary         6.66e-16
+
+The second line is the one that matters: the product form is built
+with no circuit at all, straight from the binary-fraction
+factorisation, so agreement tests the derivation and not merely the
+implementation&#39;s self-consistency.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="the-worked-example-mathrm-qft-8-101-rangle">
+<h3><span class="section-number">20.1.2. </span>The worked example: <span class="math notranslate nohighlight">\(\mathrm{QFT}_8|101\rangle\)</span><a class="headerlink" href="#the-worked-example-mathrm-qft-8-101-rangle" title="Link to this heading">#</a></h3>
+<p>Here <span class="math notranslate nohighlight">\(x_1=1, x_2=0, x_3=1\)</span>, so <span class="math notranslate nohighlight">\(x=5\)</span>, and the binary fractions are
+<span class="math notranslate nohighlight">\(0.1 = \tfrac12\)</span>, <span class="math notranslate nohighlight">\(0.01 = \tfrac14\)</span>, <span class="math notranslate nohighlight">\(0.101 = \tfrac58\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathrm{QFT}_8|101\rangle = \tfrac{1}{\sqrt8}
+(|0\rangle-|1\rangle)\otimes(|0\rangle+i|1\rangle)\otimes(|0\rangle+e^{5\pi i/4}|1\rangle).
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">state</span> <span class="o">=</span> <span class="n">qpe</span><span class="o">.</span><span class="n">qft</span><span class="p">(</span><span class="n">qpe</span><span class="o">.</span><span class="n">basis_state</span><span class="p">(</span><span class="s2">&quot;101&quot;</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;k&#39;</span><span class="si">:</span><span class="s2">&gt;5s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;amplitude&#39;</span><span class="si">:</span><span class="s2">&gt;26s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;|amp|&#39;</span><span class="si">:</span><span class="s2">&gt;9s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;phase/2pi&#39;</span><span class="si">:</span><span class="s2">&gt;11s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;5k/8 mod 1&#39;</span><span class="si">:</span><span class="s2">&gt;11s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">qpe</span><span class="o">.</span><span class="n">bitstring</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="si">:</span><span class="s2">&gt;5s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">a</span><span class="o">.</span><span class="n">real</span><span class="si">:</span><span class="s2">+11.6f</span><span class="si">}{</span><span class="n">a</span><span class="o">.</span><span class="n">imag</span><span class="si">:</span><span class="s2">+11.6f</span><span class="si">}</span><span class="s2">i &quot;</span>
+          <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">abs</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="si">:</span><span class="s2">9.6f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mf">1.0</span><span class="si">:</span><span class="s2">11.6f</span><span class="si">}</span><span class="s2"> &quot;</span>
+          <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="n">k</span><span class="o">/</span><span class="mi">8</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mf">1.0</span><span class="si">:</span><span class="s2">11.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;every modulus is 1/sqrt(8) = </span><span class="si">{</span><span class="mi">1</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">, and the phase of&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;|k&gt; is 5k/8 mod 1 -- the Fourier kernel with x = 5, as it must be.&quot;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">circle</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">Circle</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">1</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="n">fill</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_artist</span><span class="p">(</span><span class="n">circle</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">state</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">real</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">state</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">imag</span><span class="p">],</span> <span class="s2">&quot;-o&quot;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">qpe</span><span class="o">.</span><span class="n">bitstring</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="n">state</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">real</span><span class="o">*</span><span class="mf">1.15</span><span class="p">,</span> <span class="n">state</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">imag</span><span class="o">*</span><span class="mf">1.15</span><span class="p">),</span>
+                <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s2">&quot;equal&quot;</span><span class="p">);</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">);</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.5</span><span class="p">);</span> <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;amplitudes of $\mathrm</span><span class="si">{QFT}</span><span class="s2">_8|101\rangle$ in the complex plane&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    k                  amplitude     |amp|   phase/2pi  5k/8 mod 1
+  000   +0.353553  +0.000000i  0.353553    0.000000    0.000000
+  001   -0.250000  -0.250000i  0.353553    0.625000    0.625000
+  010   +0.000000  +0.353553i  0.353553    0.250000    0.250000
+  011   +0.250000  -0.250000i  0.353553    0.875000    0.875000
+  100   -0.353553  +0.000000i  0.353553    0.500000    0.500000
+  101   +0.250000  +0.250000i  0.353553    0.125000    0.125000
+  110   -0.000000  -0.353553i  0.353553    0.750000    0.750000
+  111   -0.250000  +0.250000i  0.353553    0.375000    0.375000
+
+every modulus is 1/sqrt(8) = 0.353553, and the phase of
+|k&gt; is 5k/8 mod 1 -- the Fourier kernel with x = 5, as it must be.
+</pre></div>
+</div>
+<img alt="_images/b3605fe2ea1e8367b9be45d71a911a85a23e76c74f8ca3382b6cfaea3e437213.png" src="_images/b3605fe2ea1e8367b9be45d71a911a85a23e76c74f8ca3382b6cfaea3e437213.png" />
+</div>
+</div>
+</section>
+<section id="cost-the-approximate-qft-and-bit-reversal">
+<h3><span class="section-number">20.1.3. </span>Cost, the approximate QFT, and bit reversal<a class="headerlink" href="#cost-the-approximate-qft-and-bit-reversal" title="Link to this heading">#</a></h3>
+<p><span class="math notranslate nohighlight">\(n\)</span> Hadamards, <span class="math notranslate nohighlight">\(n(n-1)/2\)</span> controlled rotations, <span class="math notranslate nohighlight">\(\lfloor n/2\rfloor\)</span> swaps —
+<span class="math notranslate nohighlight">\(\mathcal{O}(n^2)\)</span> against <span class="math notranslate nohighlight">\(\mathcal{O}(4^n)\)</span> for multiplying by the matrix it
+represents.  And <span class="math notranslate nohighlight">\(R_k\)</span> turns the phase by <span class="math notranslate nohighlight">\(2\pi/2^k\)</span>, which for large <span class="math notranslate nohighlight">\(k\)</span> is
+tiny, so dropping rotations with <span class="math notranslate nohighlight">\(k-j\ge d\)</span> gives the <em>approximate</em> QFT.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;n&#39;</span><span class="si">:</span><span class="s2">&gt;5s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;H&#39;</span><span class="si">:</span><span class="s2">&gt;5s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;controlled R&#39;</span><span class="si">:</span><span class="s2">&gt;14s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;swaps&#39;</span><span class="si">:</span><span class="s2">&gt;7s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;direct DFT&#39;</span><span class="si">:</span><span class="s2">&gt;13s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">):</span>
+    <span class="n">h</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="n">qpe</span><span class="o">.</span><span class="n">gate_counts</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">classical</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="mf">4.0</span><span class="o">**</span><span class="n">n</span><span class="si">:</span><span class="s2">.1e</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">10</span> <span class="k">else</span> <span class="s2">&quot;1.6e+60&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">n</span><span class="si">:</span><span class="s2">5d</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">h</span><span class="si">:</span><span class="s2">5d</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">r</span><span class="si">:</span><span class="s2">14d</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">s</span><span class="si">:</span><span class="s2">7d</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">classical</span><span class="si">:</span><span class="s2">&gt;13s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">()</span>
+<span class="n">ds</span><span class="p">,</span> <span class="n">errs</span><span class="p">,</span> <span class="n">rots</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">d</span><span class="p">,</span> <span class="n">rotations</span><span class="p">,</span> <span class="n">error</span> <span class="ow">in</span> <span class="n">qpe</span><span class="o">.</span><span class="n">approximation_error</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">37</span><span class="p">):</span>
+    <span class="n">ds</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">d</span><span class="p">);</span> <span class="n">errs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">error</span><span class="p">);</span> <span class="n">rots</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rotations</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;d = </span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">rotations</span><span class="si">:</span><span class="s2">2d</span><span class="si">}</span><span class="s2"> rotations, max amplitude error </span><span class="si">{</span><span class="n">error</span><span class="si">:</span><span class="s2">.3e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">rots</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">errs</span><span class="p">,</span> <span class="mf">1e-17</span><span class="p">),</span> <span class="s2">&quot;o-&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;controlled rotations kept&quot;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;max amplitude error&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;the approximate QFT, $n=6$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    n     H   controlled R   swaps    direct DFT
+    3     3              3       1       6.4e+01
+    6     6             15       3       4.1e+03
+   10    10             45       5       1.0e+06
+  100   100           4950      50       1.6e+60
+
+d = 1:  0 rotations, max amplitude error 2.497e-01
+d = 2:  5 rotations, max amplitude error 2.425e-01
+d = 3:  9 rotations, max amplitude error 1.285e-01
+d = 4: 12 rotations, max amplitude error 3.668e-02
+d = 5: 14 rotations, max amplitude error 1.227e-02
+d = 6: 15 rotations, max amplitude error 0.000e+00
+</pre></div>
+</div>
+<img alt="_images/ecf7f0fc97fe5c50e4c4ab679231017ee2d662fcae3b11bf159f30d1529cd79e.png" src="_images/ecf7f0fc97fe5c50e4c4ab679231017ee2d662fcae3b11bf159f30d1529cd79e.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Bit reversal: the commonest confusion in the subject.</span>
+<span class="n">without</span> <span class="o">=</span> <span class="n">qpe</span><span class="o">.</span><span class="n">qft</span><span class="p">(</span><span class="n">qpe</span><span class="o">.</span><span class="n">basis_state</span><span class="p">(</span><span class="s2">&quot;100&quot;</span><span class="p">),</span> <span class="mi">3</span><span class="p">,</span> <span class="n">swaps</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">reversed_input</span> <span class="o">=</span> <span class="n">qpe</span><span class="o">.</span><span class="n">qft</span><span class="p">(</span><span class="n">qpe</span><span class="o">.</span><span class="n">basis_state</span><span class="p">(</span><span class="s2">&quot;001&quot;</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;no-swap output of |100&gt; vs. with-swap output of the bit-reversed |001&gt;:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   difference </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">without</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">reversed_input</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">:</span><span class="s2">.1e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Many libraries omit the final swaps and document the reversed&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;convention instead, since a relabelling costs nothing classically.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The consequence is that a circuit copied between libraries can be&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;silently wrong.  When in doubt, transform |1&gt; and see where the phase&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;e^{i pi} ends up.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>no-swap output of |100&gt; vs. with-swap output of the bit-reversed |001&gt;:
+   difference 6.5e-01
+
+Many libraries omit the final swaps and document the reversed
+convention instead, since a relabelling costs nothing classically.
+The consequence is that a circuit copied between libraries can be
+silently wrong.  When in doubt, transform |1&gt; and see where the phase
+e^{i pi} ends up.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="quantum-phase-estimation">
+<h2><span class="section-number">20.2. </span>2. Quantum phase estimation<a class="headerlink" href="#quantum-phase-estimation" title="Link to this heading">#</a></h2>
+<p>Let <span class="math notranslate nohighlight">\(U|\psi\rangle = e^{2\pi i\phi}|\psi\rangle\)</span>.  Prepare <span class="math notranslate nohighlight">\(m\)</span> control qubits
+in <span class="math notranslate nohighlight">\(|0\rangle\)</span>, Hadamard them, then apply <span class="math notranslate nohighlight">\(U^{2^j}\)</span> controlled on qubit <span class="math notranslate nohighlight">\(j\)</span>.
+Since <span class="math notranslate nohighlight">\(|\psi\rangle\)</span> is an eigenstate the system register factors out and the
+control register is left in</p>
+<div class="math notranslate nohighlight">
+\[
+\boxed{\;\frac{1}{2^{m/2}}\sum_{k=0}^{2^m-1} e^{2\pi i k\phi}|k\rangle\;}
+\]</div>
+<p>Compare with the definition of the QFT.  If <span class="math notranslate nohighlight">\(\phi = m'/2^m\)</span> this is <em>exactly</em>
+<span class="math notranslate nohighlight">\(\mathrm{QFT}|m'\rangle\)</span> — so the <strong>inverse</strong> QFT returns <span class="math notranslate nohighlight">\(|m'\rangle\)</span> and
+measuring gives the binary digits of <span class="math notranslate nohighlight">\(\phi\)</span> with certainty.  That is the whole
+algorithm: step 2 writes the phase into a Fourier state, step 3 inverts the
+Fourier transform.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">exact</span> <span class="o">=</span> <span class="n">qpe</span><span class="o">.</span><span class="n">check_exact_phase</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="o">/</span><span class="mi">8</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;phi = 5/8 = 0.101, m = 3 control qubits:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   measured |</span><span class="si">{</span><span class="n">exact</span><span class="p">[</span><span class="s1">&#39;bits&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&gt; with probability </span><span class="si">{</span><span class="n">exact</span><span class="p">[</span><span class="s1">&#39;probability&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   estimate </span><span class="si">{</span><span class="n">exact</span><span class="p">[</span><span class="s1">&#39;estimate&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">, exact </span><span class="si">{</span><span class="n">exact</span><span class="p">[</span><span class="s1">&#39;exact&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;When the phase is not exactly representable -- which, for a&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hamiltonian eigenvalue, it never is -- the output is a distribution.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;m&#39;</span><span class="si">:</span><span class="s2">&gt;4s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;outcome&#39;</span><span class="si">:</span><span class="s2">&gt;12s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;p&#39;</span><span class="si">:</span><span class="s2">&gt;9s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;estimate&#39;</span><span class="si">:</span><span class="s2">&gt;11s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;error&#39;</span><span class="si">:</span><span class="s2">&gt;10s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">):</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">qpe</span><span class="o">.</span><span class="n">check_inexact_phase</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">m</span><span class="si">:</span><span class="s2">4d</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">out</span><span class="p">[</span><span class="s1">&#39;bits&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">&gt;12s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">out</span><span class="p">[</span><span class="s1">&#39;probability&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">9.4f</span><span class="si">}</span><span class="s2"> &quot;</span>
+          <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">out</span><span class="p">[</span><span class="s1">&#39;estimate&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">11.6f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="nb">abs</span><span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="s1">&#39;estimate&#39;</span><span class="p">]</span><span class="o">-</span><span class="mf">0.3</span><span class="p">)</span><span class="si">:</span><span class="s2">10.2e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>phi = 5/8 = 0.101, m = 3 control qubits:
+   measured |101&gt; with probability 1.000000
+   estimate 0.625, exact 0.625
+
+When the phase is not exactly representable -- which, for a
+Hamiltonian eigenvalue, it never is -- the output is a distribution.
+
+   m      outcome         p    estimate      error
+   3          010    0.5775    0.250000   5.00e-02
+   4         0101    0.8756    0.312500   1.25e-02
+   6       010011    0.8752    0.296875   3.12e-03
+   8     01001101    0.8751    0.300781   7.81e-04
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># the full distribution, and the Dirichlet kernel behind it</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mf">3.8</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">)):</span>
+    <span class="n">dist</span> <span class="o">=</span> <span class="n">qpe</span><span class="o">.</span><span class="n">phase_estimation</span><span class="p">(</span><span class="n">qpe</span><span class="o">.</span><span class="n">phase_unitary</span><span class="p">(</span><span class="mf">0.3</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="o">+</span><span class="mi">0</span><span class="n">j</span><span class="p">]),</span> <span class="n">m</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dist</span><span class="p">))</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">dist</span><span class="p">),</span> <span class="n">dist</span><span class="p">,</span>
+           <span class="n">width</span><span class="o">=</span><span class="mf">0.8</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">dist</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;steelblue&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\phi = 0.3$&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;estimated phase&quot;</span><span class="p">);</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;$m = </span><span class="si">{</span><span class="n">m</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;probability&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The envelope is the Dirichlet kernel&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;   P(m&#39;) = sin^2(pi 2^m delta) / (2^</span><span class="si">{2m}</span><span class="s2"> sin^2(pi delta)),&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;with delta the distance from phi to the representable value m&#39;/2^m.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Its worst case gives the standard bound 4/pi^2 = </span><span class="si">{</span><span class="mi">4</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">**</span><span class="mi">2</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/d73406d17874db49e116e71a0c272822c7fddfc1b17235cd4a4de76bbe6a5b49.png" src="_images/d73406d17874db49e116e71a0c272822c7fddfc1b17235cd4a4de76bbe6a5b49.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The envelope is the Dirichlet kernel
+   P(m&#39;) = sin^2(pi 2^m delta) / (2^{2m} sin^2(pi delta)),
+with delta the distance from phi to the representable value m&#39;/2^m.
+Its worst case gives the standard bound 4/pi^2 = 0.4053.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="from-phases-to-energies">
+<h2><span class="section-number">20.3. </span>3. From phases to energies<a class="headerlink" href="#from-phases-to-energies" title="Link to this heading">#</a></h2>
+<p>With <span class="math notranslate nohighlight">\(U(t) = e^{-i\hat H t}\)</span> and <span class="math notranslate nohighlight">\(\hat H|E\rangle = E|E\rangle\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[
+\boxed{\;\phi = -\frac{Et}{2\pi} \bmod 1\;}
+\]</div>
+<p>The modulus is not a formality: two energies differing by <span class="math notranslate nohighlight">\(2\pi/t\)</span> are
+indistinguishable — aliasing, exactly as in signal processing.  So <span class="math notranslate nohighlight">\(t\)</span> must
+satisfy <span class="math notranslate nohighlight">\(|E|t &lt; 2\pi\)</span> for every eigenvalue, which needs a bound on the
+spectrum.  On hardware the spectrum is exactly what one does <em>not</em> know, so
+the bound used is the 1-norm of the Pauli coefficients,
+<span class="math notranslate nohighlight">\(\Lambda = \sum_\alpha |h_\alpha| \ge \|\hat H\|\)</span>.  It is loose, and the
+looseness costs resolution.</p>
+<section id="the-chapter-4-models-as-qubit-hamiltonians">
+<h3><span class="section-number">20.3.1. </span>The chapter-4 models as qubit Hamiltonians<a class="headerlink" href="#the-chapter-4-models-as-qubit-hamiltonians" title="Link to this heading">#</a></h3>
+<p>The cost is set by three numbers: how many Pauli strings, their <strong>weight</strong>
+(which fixes the CNOT ladder length), and how many mutually <strong>commuting</strong>
+groups they fall into — terms in a group exponentiate together with no Trotter
+error at all.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">models</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;Lipkin, N = 2&quot;</span><span class="p">,</span> <span class="n">qpe</span><span class="o">.</span><span class="n">lipkin_qubit</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)),</span>
+          <span class="p">(</span><span class="s2">&quot;Lipkin, N = 4&quot;</span><span class="p">,</span> <span class="n">qpe</span><span class="o">.</span><span class="n">lipkin_qubit</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)),</span>
+          <span class="p">(</span><span class="s2">&quot;pairing, 3 levels&quot;</span><span class="p">,</span> <span class="n">qpe</span><span class="o">.</span><span class="n">pairing_pair_qubits</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)),</span>
+          <span class="p">(</span><span class="s2">&quot;Heisenberg, 3 sites&quot;</span><span class="p">,</span> <span class="n">qpe</span><span class="o">.</span><span class="n">heisenberg_qubit</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">J</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)),</span>
+          <span class="p">(</span><span class="s2">&quot;Heisenberg, 4 sites&quot;</span><span class="p">,</span> <span class="n">qpe</span><span class="o">.</span><span class="n">heisenberg_qubit</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">J</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)),</span>
+          <span class="p">(</span><span class="s2">&quot;Hubbard, 2 sites&quot;</span><span class="p">,</span> <span class="n">qpe</span><span class="o">.</span><span class="n">hubbard_qubit</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">U</span><span class="o">=</span><span class="mf">2.0</span><span class="p">))]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;model&#39;</span><span class="si">:</span><span class="s2">&gt;21s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;qubits&#39;</span><span class="si">:</span><span class="s2">&gt;7s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;terms&#39;</span><span class="si">:</span><span class="s2">&gt;7s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;max weight&#39;</span><span class="si">:</span><span class="s2">&gt;11s</span><span class="si">}</span><span class="s2"> &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;groups&#39;</span><span class="si">:</span><span class="s2">&gt;7s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;E_0&#39;</span><span class="si">:</span><span class="s2">&gt;11s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">H</span> <span class="ow">in</span> <span class="n">models</span><span class="p">:</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">qpe</span><span class="o">.</span><span class="n">model_summary</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">H</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">:</span><span class="s2">&gt;21s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">i</span><span class="p">[</span><span class="s1">&#39;n_qubits&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">7d</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">i</span><span class="p">[</span><span class="s1">&#39;n_terms&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">7d</span><span class="si">}</span><span class="s2"> &quot;</span>
+          <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="p">[</span><span class="s1">&#39;max_weight&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">11d</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">i</span><span class="p">[</span><span class="s1">&#39;groups&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">7d</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">i</span><span class="p">[</span><span class="s1">&#39;spectrum&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">11.5f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Lipkin and Heisenberg are weight two with no Jordan-Wigner tails, for&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;opposite reasons: the Lipkin levels are degenerate so the quasispin&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;operators are sums of single-qubit Paulis, and Heisenberg spins on&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;different sites simply commute.  Hubbard pays the fermionic price.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;check: 2-site Hubbard exact (U - sqrt(U^2+16t^2))/2 = &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="p">(</span><span class="mi">2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">4</span><span class="o">+</span><span class="mi">16</span><span class="p">))</span><span class="o">/</span><span class="mi">2</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;check: 4-site Heisenberg ring = -2J = -2.00000&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                model  qubits   terms  max weight  groups         E_0
+        Lipkin, N = 2       2       4           2       2    -1.41421
+        Lipkin, N = 4       4      16           2       4    -4.00000
+    pairing, 3 levels       3       9           2       4    -0.70530
+  Heisenberg, 3 sites       3       9           2       4    -0.75000
+  Heisenberg, 4 sites       4      12           2       2    -2.00000
+     Hubbard, 2 sites       4      10           3       2    -1.23607
+
+Lipkin and Heisenberg are weight two with no Jordan-Wigner tails, for
+opposite reasons: the Lipkin levels are degenerate so the quasispin
+operators are sums of single-qubit Paulis, and Heisenberg spins on
+different sites simply commute.  Hubbard pays the fermionic price.
+
+check: 2-site Hubbard exact (U - sqrt(U^2+16t^2))/2 = -1.23607
+check: 4-site Heisenberg ring = -2J = -2.00000
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Phase estimation on the models, exact ground state in, exact e^{-iHt}:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">H</span> <span class="ow">in</span> <span class="n">models</span><span class="p">[:</span><span class="mi">4</span><span class="p">]:</span>
+    <span class="n">spectrum</span><span class="p">,</span> <span class="n">vectors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">qpe</span><span class="o">.</span><span class="n">choose_time</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">:  exact E_0 = </span><span class="si">{</span><span class="n">spectrum</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">+.6f</span><span class="si">}</span><span class="s2">,  t = </span><span class="si">{</span><span class="n">t</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;&#39;</span><span class="si">:</span><span class="s2">&gt;4s</span><span class="si">}{</span><span class="s1">&#39;m&#39;</span><span class="si">:</span><span class="s2">&gt;4s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;outcome&#39;</span><span class="si">:</span><span class="s2">&gt;12s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;p&#39;</span><span class="si">:</span><span class="s2">&gt;8s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;E (QPE)&#39;</span><span class="si">:</span><span class="s2">&gt;12s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;error&#39;</span><span class="si">:</span><span class="s2">&gt;10s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">qpe</span><span class="o">.</span><span class="n">qpe_on_hamiltonian</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">vectors</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">t</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;&#39;</span><span class="si">:</span><span class="s2">&gt;4s</span><span class="si">}{</span><span class="n">m</span><span class="si">:</span><span class="s2">4d</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">out</span><span class="p">[</span><span class="s1">&#39;bits&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">&gt;12s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">out</span><span class="p">[</span><span class="s1">&#39;probability&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">8.4f</span><span class="si">}</span><span class="s2"> &quot;</span>
+              <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">out</span><span class="p">[</span><span class="s1">&#39;energy&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">+12.6f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="nb">abs</span><span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="s1">&#39;energy&#39;</span><span class="p">]</span><span class="o">-</span><span class="n">spectrum</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="si">:</span><span class="s2">10.2e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The accuracy is set entirely by the control register, not by the size&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;or nastiness of the physical system.  What the Hamiltonian controls is&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;the cost of each application of U.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Phase estimation on the models, exact ground state in, exact e^{-iHt}:
+
+Lipkin, N = 2:  exact E_0 = -1.414214,  t = 2.8274
+       m      outcome        p      E (QPE)      error
+       4         1010   0.8957    -1.388889   2.53e-02
+       6       101001   0.7811    -1.423611   9.40e-03
+       8     10100011   0.9778    -1.414931   7.17e-04
+      10   1010001100   0.6887    -1.414931   7.17e-04
+
+Lipkin, N = 4:  exact E_0 = -4.000000,  t = 0.7069
+       m      outcome        p      E (QPE)      error
+       4         0111   0.8756    -3.888889   1.11e-01
+       6       011101   0.8752    -4.027778   2.78e-02
+       8     01110011   0.8751    -3.993056   6.94e-03
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      10   0111001101   0.8751    -4.001736   1.74e-03
+
+pairing, 3 levels:  exact E_0 = -0.705303,  t = 1.3306
+       m      outcome        p      E (QPE)      error
+       4         0010   0.5913    -0.590278   1.15e-01
+       6       001010   0.5033    -0.737847   3.25e-02
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       8     00100110   0.8300    -0.700955   4.35e-03
+      10   0010011001   0.9893    -0.705566   2.63e-04
+
+Heisenberg, 3 sites:  exact E_0 = -0.750000,  t = 2.5133
+       m      outcome        p      E (QPE)      error
+       4         0101   0.8756    -0.781250   3.12e-02
+       6       010011   0.8752    -0.742188   7.81e-03
+       8     01001101   0.8751    -0.751953   1.95e-03
+      10   0100110011   0.8751    -0.749512   4.88e-04
+
+The accuracy is set entirely by the control register, not by the size
+or nastiness of the physical system.  What the Hamiltonian controls is
+the cost of each application of U.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="the-second-error-trotterisation">
+<h3><span class="section-number">20.3.2. </span>The second error: Trotterisation<a class="headerlink" href="#the-second-error-trotterisation" title="Link to this heading">#</a></h3>
+<p>On hardware <span class="math notranslate nohighlight">\(e^{-i\hat H t}\)</span> must itself be built from gates,</p>
+<div class="math notranslate nohighlight">
+\[
+e^{-i\hat Ht} \approx \Big(\prod_\alpha e^{-i h_\alpha P_\alpha t/r}\Big)^r,
+\]</div>
+<p>with a first-order error <span class="math notranslate nohighlight">\(\mathcal{O}(t^2/r)\)</span> controlled by the commutators.
+This has <strong>nothing to do</strong> with the size of the control register — and the two
+must be balanced.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">H</span> <span class="o">=</span> <span class="n">qpe</span><span class="o">.</span><span class="n">heisenberg_qubit</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">J</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">spectrum</span><span class="p">,</span> <span class="n">vectors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
+<span class="n">ground</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="n">vectors</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">qpe</span><span class="o">.</span><span class="n">choose_time</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
+
+<span class="n">coefficients</span> <span class="o">=</span> <span class="n">qpe</span><span class="o">.</span><span class="n">pauli_terms</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="n">l</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">coefficients</span> <span class="k">if</span> <span class="n">l</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s2">&quot;I&quot;</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">l</span><span class="p">)]</span>
+<span class="n">table</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;I&quot;</span><span class="p">:</span> <span class="n">qpe</span><span class="o">.</span><span class="n">I2</span><span class="p">,</span> <span class="s2">&quot;X&quot;</span><span class="p">:</span> <span class="n">qpe</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">:</span> <span class="n">qpe</span><span class="o">.</span><span class="n">Y</span><span class="p">,</span> <span class="s2">&quot;Z&quot;</span><span class="p">:</span> <span class="n">qpe</span><span class="o">.</span><span class="n">Z</span><span class="p">}</span>
+<span class="n">terms</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">qpe</span><span class="o">.</span><span class="n">commuting_groups</span><span class="p">(</span><span class="n">labels</span><span class="p">):</span>
+    <span class="n">block</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">group</span><span class="p">:</span>
+        <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">label</span><span class="p">:</span>
+            <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="n">table</span><span class="p">[</span><span class="n">letter</span><span class="p">])</span>
+        <span class="n">block</span> <span class="o">=</span> <span class="n">block</span> <span class="o">+</span> <span class="n">coefficients</span><span class="p">[</span><span class="n">label</span><span class="p">]</span> <span class="o">*</span> <span class="n">matrix</span>
+    <span class="n">terms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">block</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;the Hamiltonian splits into </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">terms</span><span class="p">)</span><span class="si">}</span><span class="s2"> commuting groups</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">exact_u</span> <span class="o">=</span> <span class="n">qpe</span><span class="o">.</span><span class="n">evolution_operator</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+<span class="n">rs</span><span class="p">,</span> <span class="n">e_err</span><span class="p">,</span> <span class="n">u_err</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;r&#39;</span><span class="si">:</span><span class="s2">&gt;5s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;E (QPE)&#39;</span><span class="si">:</span><span class="s2">&gt;12s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;energy error&#39;</span><span class="si">:</span><span class="s2">&gt;13s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;|U_trot - U|&#39;</span><span class="si">:</span><span class="s2">&gt;14s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">32</span><span class="p">):</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">qpe</span><span class="o">.</span><span class="n">qpe_on_hamiltonian</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">ground</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="n">terms</span><span class="o">=</span><span class="n">terms</span><span class="p">,</span> <span class="n">trotter_steps</span><span class="o">=</span><span class="n">r</span><span class="p">)</span>
+    <span class="n">approx</span> <span class="o">=</span> <span class="n">qpe</span><span class="o">.</span><span class="n">trotter_operator</span><span class="p">(</span><span class="n">terms</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+    <span class="n">rs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r</span><span class="p">);</span> <span class="n">e_err</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="s2">&quot;energy&quot;</span><span class="p">]</span><span class="o">-</span><span class="n">spectrum</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+    <span class="n">u_err</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">approx</span><span class="o">-</span><span class="n">exact_u</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">r</span><span class="si">:</span><span class="s2">5d</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">out</span><span class="p">[</span><span class="s1">&#39;energy&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">+12.6f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">e_err</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">13.2e</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">u_err</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">14.2e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">rs</span><span class="p">,</span> <span class="n">u_err</span><span class="p">,</span> <span class="s2">&quot;o-&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\|U_{\rm Trotter} - U\|$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">rs</span><span class="p">,</span> <span class="n">e_err</span><span class="p">,</span> <span class="s2">&quot;s-&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;energy error&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">rs</span><span class="p">,</span> <span class="p">[</span><span class="mf">2.0</span><span class="o">**-</span><span class="mi">8</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">rs</span><span class="p">),</span> <span class="s2">&quot;k--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$2^{-8}$ register floor&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Trotter steps $r$&quot;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;two errors, one budget&quot;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>the Hamiltonian splits into 4 commuting groups
+
+    r      E (QPE)  energy error   |U_trot - U|
+    1    -0.625000      1.25e-01       4.52e-01
+    2    -0.722656      2.73e-02       2.06e-01
+    4    -0.742188      7.81e-03       1.01e-01
+    8    -0.751953      1.95e-03       5.03e-02
+   16    -0.751953      1.95e-03       2.50e-02
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   32    -0.751953      1.95e-03       1.25e-02
+</pre></div>
+</div>
+<img alt="_images/0523fdf32eeadb0d6e96e2b5ea3ea1a56a0bec2008b46a7115a7fa8c6dcbfef7.png" src="_images/0523fdf32eeadb0d6e96e2b5ea3ea1a56a0bec2008b46a7115a7fa8c6dcbfef7.png" />
+</div>
+</div>
+<p>The operator error falls cleanly as <span class="math notranslate nohighlight">\(1/r\)</span> — the first-order rate.  The energy
+error follows it down <strong>and then stops</strong>, on the floor set by the 8-qubit
+register.  Beyond that point every extra Trotter step is wasted work.  The two
+errors must be balanced <em>against each other</em>, not minimised separately, and it
+is that balance which fixes the circuit depth of a real calculation.</p>
+</section>
+<section id="why-this-is-fatal-here-and-harmless-in-unitary-coupled-cluster">
+<h3><span class="section-number">20.3.3. </span>Why this is fatal here and harmless in unitary coupled cluster<a class="headerlink" href="#why-this-is-fatal-here-and-harmless-in-unitary-coupled-cluster" title="Link to this heading">#</a></h3>
+<p>Chapter 10 met exactly the same splitting.  Yet for the pairing model <em>every</em>
+Trotter number from <span class="math notranslate nohighlight">\(n=1\)</span> upwards gave the same UCC energy to ten digits — the
+crudest possible splitting cost nothing.  The reason is not that the error was
+small: it is that the UCC amplitudes are <strong>variational</strong>, so the optimiser
+absorbs the splitting error into them, finding whichever values are best for
+the parametrisation it is handed.</p>
+<p><strong>Nothing of the kind is available to phase estimation.</strong>  There is no
+parameter to re-optimise.  Trotterising <span class="math notranslate nohighlight">\(U\)</span> does not perturb the answer around
+the right one — it <em>changes the operator whose spectrum is being measured</em>, and
+QPE then reports the eigenvalue of the wrong operator to full precision.  That
+is the difference between the two algorithmic philosophies of this part of the
+book: a variational method has parameters that absorb the imperfections of its
+own circuit, a projective method has none.  What QPE gains in exchange is the
+exponential precision no variational method offers.</p>
+</section>
+</section>
+<section id="the-state-you-start-from">
+<h2><span class="section-number">20.4. </span>4. The state you start from<a class="headerlink" href="#the-state-you-start-from" title="Link to this heading">#</a></h2>
+<p>One assumption has been silent throughout: that the system register holds an
+eigenstate.  It need not.  Fed <span class="math notranslate nohighlight">\(|\psi\rangle = \sum_j c_j|E_j\rangle\)</span>,
+linearity carries every term through independently and measurement returns
+<span class="math notranslate nohighlight">\(E_j\)</span> with probability <span class="math notranslate nohighlight">\(|c_j|^2\)</span>.</p>
+<p><strong>QPE does not average and does not degrade gracefully.</strong>  It returns <em>one</em>
+eigenvalue, and the run that returns <span class="math notranslate nohighlight">\(E_0\)</span> returns it to full precision.  The
+overlap does not control the accuracy — it controls the number of repetitions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">H</span> <span class="o">=</span> <span class="n">qpe</span><span class="o">.</span><span class="n">lipkin_qubit</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="n">spectrum</span><span class="p">,</span> <span class="n">vectors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">qpe</span><span class="o">.</span><span class="n">choose_time</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
+<span class="n">ground</span><span class="p">,</span> <span class="n">excited</span> <span class="o">=</span> <span class="n">vectors</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">vectors</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">i0</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">qpe</span><span class="o">.</span><span class="n">qpe_on_hamiltonian</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">ground</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="mi">8</span><span class="p">)[</span><span class="s2">&quot;bits&quot;</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">i1</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">qpe</span><span class="o">.</span><span class="n">qpe_on_hamiltonian</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">excited</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="mi">8</span><span class="p">)[</span><span class="s2">&quot;bits&quot;</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;exact E_0 = </span><span class="si">{</span><span class="n">spectrum</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">+.6f</span><span class="si">}</span><span class="s2">, E_1 = </span><span class="si">{</span><span class="n">spectrum</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">+.6f</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;|c_0|^2&#39;</span><span class="si">:</span><span class="s2">&gt;9s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;p(E_0 bits)&#39;</span><span class="si">:</span><span class="s2">&gt;13s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;p(E_1 bits)&#39;</span><span class="si">:</span><span class="s2">&gt;13s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;modal E&#39;</span><span class="si">:</span><span class="s2">&gt;11s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">dists</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">mix</span> <span class="ow">in</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">):</span>
+    <span class="n">trial</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">mix</span><span class="p">)</span><span class="o">*</span><span class="n">ground</span> <span class="o">+</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mix</span><span class="p">)</span><span class="o">*</span><span class="n">excited</span>
+    <span class="n">trial</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">trial</span><span class="p">)</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">qpe</span><span class="o">.</span><span class="n">qpe_on_hamiltonian</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">trial</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+    <span class="n">dists</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="nb">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vdot</span><span class="p">(</span><span class="n">ground</span><span class="p">,</span> <span class="n">trial</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">out</span><span class="p">[</span><span class="s2">&quot;distribution&quot;</span><span class="p">]))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dists</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">9.4f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">out</span><span class="p">[</span><span class="s1">&#39;distribution&#39;</span><span class="p">][</span><span class="n">i0</span><span class="p">]</span><span class="si">:</span><span class="s2">13.4f</span><span class="si">}</span><span class="s2"> &quot;</span>
+          <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">out</span><span class="p">[</span><span class="s1">&#39;distribution&#39;</span><span class="p">][</span><span class="n">i1</span><span class="p">]</span><span class="si">:</span><span class="s2">13.4f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">out</span><span class="p">[</span><span class="s1">&#39;energy&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">+11.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="p">(</span><span class="n">overlap</span><span class="p">,</span> <span class="n">dist</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">dists</span><span class="p">):</span>
+    <span class="n">energies</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">qpe</span><span class="o">.</span><span class="n">energy_from_phase</span><span class="p">(</span><span class="n">k</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">dist</span><span class="p">),</span> <span class="n">t</span><span class="p">)</span>
+                         <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dist</span><span class="p">))])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">energies</span><span class="p">,</span> <span class="n">dist</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.06</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;steelblue&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">spectrum</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;g&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">spectrum</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">4.6</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.6</span><span class="p">);</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;$|c_0|^2 = </span><span class="si">{</span><span class="n">overlap</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;energy&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;probability&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>exact E_0 = -4.000000, E_1 = -3.162278
+
+  |c_0|^2   p(E_0 bits)   p(E_1 bits)     modal E
+   1.0000        0.8751        0.0001      -3.993
+   0.8000        0.7001        0.1965      -3.993
+   0.6000        0.5251        0.3930      -3.993
+   0.3000        0.2625        0.6876      -3.160
+</pre></div>
+</div>
+<img alt="_images/44b45d87cff39a8b0aec10af373e4360b04e3998ad7f7d6012e54b61c4233e3f.png" src="_images/44b45d87cff39a8b0aec10af373e4360b04e3998ad7f7d6012e54b61c4233e3f.png" />
+</div>
+</div>
+<p>The two peaks are the two eigenvalues and their weights are the overlaps.
+Below <span class="math notranslate nohighlight">\(|c_0|^2 \approx 0.5\)</span> the wrong peak becomes the taller one, and a
+single-shot experiment reporting the modal outcome is actively misleading.</p>
+<p>Two lessons.  The honest procedure is to accumulate the <strong>whole histogram</strong> and
+identify the peaks — the histogram <em>is</em> the spectrum, weighted by the overlaps,
+so it gives excited states too, which is something no variational method does.
+And a good approximate eigenstate is worth having even though QPE does not use
+it variationally, because it is what keeps the number of repetitions bounded.</p>
+<p>That is the hinge between this chapter and the next: the variational quantum
+eigensolver of chapter 20 prepares the state; phase estimation reads out the
+energy.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="pinns.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">19. </span>Neural quantum states and physics-informed neural networks</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="vqe.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">21. </span>The variational quantum eigensolver</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-quantum-fourier-transform">20.1. 1. The quantum Fourier transform</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-product-form">20.1.1. The product form</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-worked-example-mathrm-qft-8-101-rangle">20.1.2. The worked example: <span class="math notranslate nohighlight">\(\mathrm{QFT}_8|101\rangle\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cost-the-approximate-qft-and-bit-reversal">20.1.3. Cost, the approximate QFT, and bit reversal</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quantum-phase-estimation">20.2. 2. Quantum phase estimation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-phases-to-energies">20.3. 3. From phases to energies</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-chapter-4-models-as-qubit-hamiltonians">20.3.1. The chapter-4 models as qubit Hamiltonians</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-second-error-trotterisation">20.3.2. The second error: Trotterisation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-this-is-fatal-here-and-harmless-in-unitary-coupled-cluster">20.3.3. Why this is fatal here and harmless in unitary coupled cluster</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-state-you-start-from">20.4. 4. The state you start from</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Morten Hjorth-Jensen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

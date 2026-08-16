@@ -28,11 +28,11 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -50,7 +50,7 @@
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
@@ -214,6 +214,20 @@
 <li class="toctree-l1"><a class="reference internal" href="optimisation.html">15. Optimization and resampling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="diffusionmc.html">16. Diffusion Monte Carlo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="manybodymc.html">17. Applications to many-body systems: six electrons</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine learning approaches</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="boltzmannmachines.html">18. Boltzmann machines and generative models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pinns.html">19. Neural quantum states and physics-informed neural networks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum computing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="quantumfourier.html">20. The quantum Fourier transform and phase estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vqe.html">21. The variational quantum eigensolver</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Concluding remarks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="conclusions.html">22. Concluding remarks and perspectives</a></li>
 </ul>
 
     </div>
@@ -470,7 +484,7 @@ document.write(`
 <h1><span class="section-number">7. </span>Mean-field approaches<a class="headerlink" href="#mean-field-approaches" title="Link to this heading">#</a></h1>
 <p>Companion notebook to Chapter 6 of <em>Quantum mechanics for many-particle
 systems</em>.  Every number quoted in the chapter is produced here.  The code is
-the same as in <code class="docutils literal notranslate"><span class="pre">BookManybody/BookMaterial/Programs/hartreefock.py</span></code>.</p>
+the same as in <code class="docutils literal notranslate"><span class="pre">BookManybody/BookPrograms/chapter06/hartreefock.py</span></code>.</p>
 <p>Contents:</p>
 <ol class="arabic simple">
 <li><p>The self-consistent field loop, and Brillouin’s theorem</p></li>
@@ -483,12 +497,17 @@ the same as in <code class="docutils literal notranslate"><span class="pre">Book
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span><span class="o">,</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;..&quot;</span><span class="p">,</span> <span class="s2">&quot;BookManybody&quot;</span><span class="p">,</span> <span class="s2">&quot;BookMaterial&quot;</span><span class="p">,</span> <span class="s2">&quot;Programs&quot;</span><span class="p">))</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">hartreefock</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">hf</span>
+<span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">glob</span>
+<span class="c1"># the chapter programs live in BookPrograms/chapterNN; put them all on the path</span>
+<span class="k">for</span> <span class="n">_d</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;..&quot;</span><span class="p">,</span> <span class="s2">&quot;BookManybody&quot;</span><span class="p">,</span>
+                                        <span class="s2">&quot;BookPrograms&quot;</span><span class="p">,</span> <span class="s2">&quot;chapter*&quot;</span><span class="p">))):</span>
+    <span class="k">if</span> <span class="n">_d</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">_d</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">hartreefock</span> <span class="k">as</span> <span class="nn">hf</span>
 
 <span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
 </pre></div>
@@ -574,10 +593,10 @@ a unitary mixing among themselves.</p>
     14  E =  11.6230538468   mean |d eps| = 2.725e-09
     15  E =  11.6230538468   mean |d eps| = 7.649e-10
     16  E =  11.6230538468   mean |d eps| = 2.154e-10
-    17  E =  11.6230538468   mean |d eps| = 6.083e-11
+    17  E =  11.6230538468   mean |d eps| = 6.084e-11
 
-trace of rho          : 3.9999999999999982
-|rho^2 - rho|         : 9.992007221626409e-16
+trace of rho          : 3.9999999999999987
+|rho^2 - rho|         : 7.771561172376096e-16
 eigenvalues of rho    : [-0. -0.  0.  0.  1.  1.  1.  1.]
 
 max |f_ai| (Brillouin): 8.72e-11
@@ -602,7 +621,7 @@ max |f_ai| (Brillouin): 8.72e-11
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/e6fd2c7d6208b417975ed3f15d8b28fa903944e5340ffa652f4ba226f76a81fb.png" src="_images/e6fd2c7d6208b417975ed3f15d8b28fa903944e5340ffa652f4ba226f76a81fb.png" />
+<img alt="_images/ce15e547994ba73b0ae9ef780e1bac8436c6e8ab9389cbde3a1d47cb28804745.png" src="_images/ce15e547994ba73b0ae9ef780e1bac8436c6e8ab9389cbde3a1d47cb28804745.png" />
 </div>
 </div>
 </section>
@@ -761,7 +780,7 @@ frequency are the same statement.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/c8a98360d8bf2825b2c8e7ccc5ab98231f1ce4965d9310b927f907de51eccabf.png" src="_images/c8a98360d8bf2825b2c8e7ccc5ab98231f1ce4965d9310b927f907de51eccabf.png" />
+<img alt="_images/15b33bfb7a1b5b2cb2c48fd1b96184d3a069d1c32df9440e8b599d4471f23b05.png" src="_images/15b33bfb7a1b5b2cb2c48fd1b96184d3a069d1c32df9440e8b599d4471f23b05.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -786,7 +805,7 @@ frequency are the same statement.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/323b0ccde8f599d2b17e641d1d21d9bd2007e368fe81f1752f5e500d7d09411f.png" src="_images/323b0ccde8f599d2b17e641d1d21d9bd2007e368fe81f1752f5e500d7d09411f.png" />
+<img alt="_images/5803bf3972485eab261f01bc6c588249a5b1821808e20127f056ff54dad425b8.png" src="_images/5803bf3972485eab261f01bc6c588249a5b1821808e20127f056ff54dad425b8.png" />
 </div>
 </div>
 </section>
@@ -908,7 +927,7 @@ predict.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/f9b327285bcfc0b65ffbd6b8337c2e773446d5b2d012ba0282ef3e918464f903.png" src="_images/f9b327285bcfc0b65ffbd6b8337c2e773446d5b2d012ba0282ef3e918464f903.png" />
+<img alt="_images/ff13fe1c7ffc146d2704461f67e2bc0e2a9a13e89dd22c493193d3302764702f.png" src="_images/ff13fe1c7ffc146d2704461f67e2bc0e2a9a13e89dd22c493193d3302764702f.png" />
 </div>
 </div>
 </section>
@@ -1000,7 +1019,7 @@ method, even though the effective mass is qualitatively wrong.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/d8c66c7b3531b8a0c1e614207394526fbb015ee76428421094a07c6fc361ac99.png" src="_images/d8c66c7b3531b8a0c1e614207394526fbb015ee76428421094a07c6fc361ac99.png" />
+<img alt="_images/e89b5025ab1705ad8c06d82536b6acd96b7e3c9b58d2bb8c5d369c470def4ca6.png" src="_images/e89b5025ab1705ad8c06d82536b6acd96b7e3c9b58d2bb8c5d369c470def4ca6.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>band width, Hartree-Fock : 2.3260
 band width, free gas     : 1.0000
 Exchange more than doubles the width of the occupied band.
@@ -1036,7 +1055,7 @@ random-phase approximation.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/8705ea01c50d78831ba5f13afb4176a2e123beb43497068ac42b048fee1dbc6a.png" src="_images/8705ea01c50d78831ba5f13afb4176a2e123beb43497068ac42b048fee1dbc6a.png" />
+<img alt="_images/17a22e07085b2792acb6d57e4f2ddc7cb5fc47d9cd374c96424cc5137a530965.png" src="_images/17a22e07085b2792acb6d57e4f2ddc7cb5fc47d9cd374c96424cc5137a530965.png" />
 </div>
 </div>
 </section>
@@ -1072,7 +1091,7 @@ Hartree-Fock level, at a density in the range of the alkali metals.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/b1aa478462e0c7e887ae5c4100a0dd7912b00c6c124170aaf52b90987f72eb27.png" src="_images/b1aa478462e0c7e887ae5c4100a0dd7912b00c6c124170aaf52b90987f72eb27.png" />
+<img alt="_images/44a17ebfc0020c455f4b2bcb072e6da20af3ee6740462270b3cf18290bbbff7f.png" src="_images/44a17ebfc0020c455f4b2bcb072e6da20af3ee6740462270b3cf18290bbbff7f.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>equilibrium at r_s = 4.8253
 E_0/N = -0.094916 Ry = -1.2914 eV
 For comparison, the correlation energy near equilibrium is about
@@ -1086,7 +1105,7 @@ For comparison, the correlation energy near equilibrium is about
 <section id="the-full-program">
 <h2><span class="section-number">7.8. </span>The full program<a class="headerlink" href="#the-full-program" title="Link to this heading">#</a></h2>
 <p>Everything above lives in
-<code class="docutils literal notranslate"><span class="pre">BookManybody/BookMaterial/Programs/hartreefock.py</span></code>, which runs as a script
+<code class="docutils literal notranslate"><span class="pre">BookManybody/BookPrograms/chapter06/hartreefock.py</span></code>, which runs as a script
 and prints all seven demonstrations of the chapter.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">

@@ -28,11 +28,11 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -50,7 +50,7 @@
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
@@ -214,6 +214,20 @@
 <li class="toctree-l1"><a class="reference internal" href="optimisation.html">15. Optimization and resampling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="diffusionmc.html">16. Diffusion Monte Carlo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="manybodymc.html">17. Applications to many-body systems: six electrons</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine learning approaches</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="boltzmannmachines.html">18. Boltzmann machines and generative models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pinns.html">19. Neural quantum states and physics-informed neural networks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum computing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="quantumfourier.html">20. The quantum Fourier transform and phase estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vqe.html">21. The variational quantum eigensolver</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Concluding remarks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="conclusions.html">22. Concluding remarks and perspectives</a></li>
 </ul>
 
     </div>
@@ -447,6 +461,8 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-the-particle-hole-term-costs">4.5. 5. What the particle-hole term costs</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nothing-is-lost-in-translation">4.6. 6. Nothing is lost in translation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#where-this-leads">4.7. Where this leads</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-weight-spectrum-of-the-pairing-hamiltonian">4.8. The weight spectrum of the pairing Hamiltonian</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-the-seniority-zero-encoding-saves">4.9. What the seniority-zero encoding saves</a></li>
 </ul>
             </nav>
         </div>
@@ -484,9 +500,16 @@ a_p = \left(\prod_{j&lt;p} Z_j\right)\frac{X_p + iY_p}{2}.
 on trust.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">itertools</span><span class="w"> </span><span class="kn">import</span> <span class="n">product</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">glob</span>
+<span class="c1"># the chapter programs live in BookPrograms/chapterNN; put them all on the path</span>
+<span class="k">for</span> <span class="n">_d</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;..&quot;</span><span class="p">,</span> <span class="s2">&quot;BookManybody&quot;</span><span class="p">,</span>
+                                        <span class="s2">&quot;BookPrograms&quot;</span><span class="p">,</span> <span class="s2">&quot;chapter*&quot;</span><span class="p">))):</span>
+    <span class="k">if</span> <span class="n">_d</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">_d</span><span class="p">)</span>
 
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">product</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="n">I2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
@@ -495,22 +518,22 @@ on trust.</p>
 <span class="n">PAULI</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;I&quot;</span><span class="p">:</span> <span class="n">I2</span><span class="p">,</span> <span class="s2">&quot;X&quot;</span><span class="p">:</span> <span class="n">X</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">:</span> <span class="n">Y</span><span class="p">,</span> <span class="s2">&quot;Z&quot;</span><span class="p">:</span> <span class="n">Z</span><span class="p">}</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">kron</span><span class="p">(</span><span class="n">matrices</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">kron</span><span class="p">(</span><span class="n">matrices</span><span class="p">):</span>
     <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.0</span> <span class="o">+</span> <span class="mi">0</span><span class="n">j</span><span class="p">]])</span>
     <span class="k">for</span> <span class="n">matrix</span> <span class="ow">in</span> <span class="n">matrices</span><span class="p">:</span>
         <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">matrix</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">out</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">pauli_string</span><span class="p">(</span><span class="n">label</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">pauli_string</span><span class="p">(</span><span class="n">label</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">kron</span><span class="p">([</span><span class="n">PAULI</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">label</span><span class="p">])</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">single</span><span class="p">(</span><span class="n">op</span><span class="p">,</span> <span class="n">site</span><span class="p">,</span> <span class="n">n_qubits</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">single</span><span class="p">(</span><span class="n">op</span><span class="p">,</span> <span class="n">site</span><span class="p">,</span> <span class="n">n_qubits</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">kron</span><span class="p">([</span><span class="n">op</span> <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="n">site</span> <span class="k">else</span> <span class="n">I2</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_qubits</span><span class="p">)])</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">decompose</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">decompose</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;H = sum_P c_P P with c_P = Tr(P H)/2^M -- exact, by orthogonality.&quot;&quot;&quot;</span>
     <span class="n">dim</span> <span class="o">=</span> <span class="n">matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">n_qubits</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">dim</span><span class="p">)))</span>
@@ -523,12 +546,12 @@ on trust.</p>
     <span class="k">return</span> <span class="n">out</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">show</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="s2">&quot;   &quot;</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">show</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="s2">&quot;   &quot;</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">kv</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="nb">abs</span><span class="p">(</span><span class="n">kv</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">kv</span><span class="p">[</span><span class="mi">0</span><span class="p">])):</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">indent</span><span class="si">}{</span><span class="n">c</span><span class="si">:</span><span class="s2">+.6f</span><span class="si">}</span><span class="s2">  </span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">weight</span><span class="p">(</span><span class="n">label</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">weight</span><span class="p">(</span><span class="n">label</span><span class="p">):</span>
     <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">1</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">label</span> <span class="k">if</span> <span class="n">c</span> <span class="o">!=</span> <span class="s2">&quot;I&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -536,29 +559,29 @@ on trust.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">JordanWigner</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">JordanWigner</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Fermion operators on n modes, as 2^n x 2^n qubit matrices.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_modes</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_modes</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="n">n_modes</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dim</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">n_modes</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">_string</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_string</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">kron</span><span class="p">([</span><span class="n">Z</span> <span class="k">if</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">p</span> <span class="k">else</span> <span class="n">I2</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">)])</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_string</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">@</span> <span class="n">single</span><span class="p">((</span><span class="n">X</span> <span class="o">-</span> <span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">Y</span><span class="p">)</span><span class="o">/</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">annihilate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">annihilate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span><span class="o">.</span><span class="n">T</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">number</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">number</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">annihilate</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">identity</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">identity</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dim</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">term</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">coefficient</span><span class="p">,</span> <span class="n">creators</span><span class="p">,</span> <span class="n">annihilators</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">term</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">coefficient</span><span class="p">,</span> <span class="n">creators</span><span class="p">,</span> <span class="n">annihilators</span><span class="p">):</span>
         <span class="n">out</span> <span class="o">=</span> <span class="n">coefficient</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">identity</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">creators</span><span class="p">:</span>
             <span class="n">out</span> <span class="o">=</span> <span class="n">out</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
@@ -566,7 +589,7 @@ on trust.</p>
             <span class="n">out</span> <span class="o">=</span> <span class="n">out</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">annihilate</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">out</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">anticommutator_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">anticommutator_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">worst</span><span class="p">,</span> <span class="n">eye</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">identity</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">):</span>
             <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">):</span>
@@ -719,7 +742,7 @@ distinct Pauli strings grows as <span class="math notranslate nohighlight">\(O(M
 whole register because of the parity chains.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">one_body</span><span class="p">(</span><span class="n">jw</span><span class="p">,</span> <span class="n">h</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">one_body</span><span class="p">(</span><span class="n">jw</span><span class="p">,</span> <span class="n">h</span><span class="p">):</span>
     <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">jw</span><span class="o">.</span><span class="n">dim</span><span class="p">,</span> <span class="n">jw</span><span class="o">.</span><span class="n">dim</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">jw</span><span class="o">.</span><span class="n">n</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">jw</span><span class="o">.</span><span class="n">n</span><span class="p">):</span>
@@ -727,7 +750,7 @@ whole register because of the parity chains.</p>
     <span class="k">return</span> <span class="n">out</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">two_body</span><span class="p">(</span><span class="n">jw</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">two_body</span><span class="p">(</span><span class="n">jw</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
     <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">jw</span><span class="o">.</span><span class="n">dim</span><span class="p">,</span> <span class="n">jw</span><span class="o">.</span><span class="n">dim</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">jw</span><span class="o">.</span><span class="n">n</span><span class="p">),</span> <span class="n">repeat</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">v</span><span class="p">[</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">s</span><span class="p">]</span> <span class="o">!=</span> <span class="mf">0.0</span><span class="p">:</span>
@@ -777,7 +800,7 @@ whole register because of the parity chains.</p>
 <span class="math notranslate nohighlight">\((1_+, 1_-, 2_+, 2_-, \dots)\)</span>.  With <span class="math notranslate nohighlight">\(L\)</span> levels that is <span class="math notranslate nohighlight">\(2L\)</span> qubits.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">pairing_full_space</span><span class="p">(</span><span class="n">levels</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">xi</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">pairing_full_space</span><span class="p">(</span><span class="n">levels</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">xi</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
     <span class="n">jw</span> <span class="o">=</span> <span class="n">JordanWigner</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">levels</span><span class="p">)</span>
     <span class="n">H</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">jw</span><span class="o">.</span><span class="n">dim</span><span class="p">,</span> <span class="n">jw</span><span class="o">.</span><span class="n">dim</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">levels</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
@@ -790,7 +813,7 @@ whole register because of the parity chains.</p>
     <span class="k">return</span> <span class="n">H</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">pairing_ph_full_space</span><span class="p">(</span><span class="n">levels</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">xi</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">pairing_ph_full_space</span><span class="p">(</span><span class="n">levels</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">xi</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
     <span class="n">jw</span> <span class="o">=</span> <span class="n">JordanWigner</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">levels</span><span class="p">)</span>
     <span class="n">H</span> <span class="o">=</span> <span class="n">pairing_full_space</span><span class="p">(</span><span class="n">levels</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">xi</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">levels</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
@@ -843,7 +866,7 @@ so its state is one bit and not two.  With the local quasispin operators
 inhomogeneous field.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">pairing_pair_qubits</span><span class="p">(</span><span class="n">levels</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">xi</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">pairing_pair_qubits</span><span class="p">(</span><span class="n">levels</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">xi</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
     <span class="n">dim</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">levels</span>
     <span class="n">H</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">dim</span><span class="p">,</span> <span class="n">dim</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
     <span class="n">plus</span> <span class="o">=</span> <span class="p">[</span><span class="n">single</span><span class="p">((</span><span class="n">X</span> <span class="o">-</span> <span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">Y</span><span class="p">)</span><span class="o">/</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">levels</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">levels</span><span class="p">)]</span>
@@ -857,10 +880,10 @@ inhomogeneous field.</p>
     <span class="k">return</span> <span class="n">H</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">closed_form</span><span class="p">(</span><span class="n">levels</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">xi</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">closed_form</span><span class="p">(</span><span class="n">levels</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">xi</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
     <span class="n">out</span> <span class="o">=</span> <span class="p">{}</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="n">out</span><span class="p">[</span><span class="n">label</span><span class="p">]</span> <span class="o">=</span> <span class="n">out</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span> <span class="o">+</span> <span class="n">value</span>
 
     <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">levels</span><span class="p">):</span>
@@ -905,7 +928,7 @@ inhomogeneous field.</p>
 is exactly the seniority-zero part of the full one, at fixed particle number.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">seniority_zero_indices</span><span class="p">(</span><span class="n">levels</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">seniority_zero_indices</span><span class="p">(</span><span class="n">levels</span><span class="p">):</span>
     <span class="n">keep</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">levels</span><span class="p">)):</span>
         <span class="k">if</span> <span class="nb">all</span><span class="p">(((</span><span class="n">state</span> <span class="o">&gt;&gt;</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">p</span><span class="p">))</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="p">((</span><span class="n">state</span> <span class="o">&gt;&gt;</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span>
@@ -914,7 +937,7 @@ is exactly the seniority-zero part of the full one, at fixed particle number.</p
     <span class="k">return</span> <span class="n">keep</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">particle_number</span><span class="p">(</span><span class="n">n_modes</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">particle_number</span><span class="p">(</span><span class="n">n_modes</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">bin</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s2">&quot;1&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">n_modes</span><span class="p">)])</span>
 
 
@@ -990,7 +1013,9 @@ f = 0.1:  27 Pauli strings, weights {0: 1, 1: 4, 2: 6, 3: 4, 4: 12}
         largest element out of the seniority-zero space: 0.0500
 
                  model   qubits   strings   max weight
-  pairing, pair qubits        2         5            2
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  pairing, pair qubits        2         5            2
    pairing, full space        4        15            4
    pairing + p-h, full        4        27            4
 </pre></div>
@@ -1014,7 +1039,7 @@ give the energies of chapter 4 exactly.  <span class="math notranslate nohighlig
 <span class="math notranslate nohighlight">\(S_z = 0\)</span> sector:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">two_sz</span><span class="p">(</span><span class="n">levels</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">two_sz</span><span class="p">(</span><span class="n">levels</span><span class="p">):</span>
     <span class="n">out</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">levels</span><span class="p">)):</span>
         <span class="n">up</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">((</span><span class="n">state</span> <span class="o">&gt;&gt;</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">p</span><span class="p">))</span> <span class="o">&amp;</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">levels</span><span class="p">))</span>
@@ -1070,6 +1095,143 @@ strings is the circuit depth and the weight of each is its entangling cost.</p><
 <p>Both counts are what the tables above are really about, and both are the
 reason it pays to exploit a symmetry — the seniority here — <em>before</em> choosing
 an encoding rather than after.</p>
+</section>
+<section id="the-weight-spectrum-of-the-pairing-hamiltonian">
+<h2><span class="section-number">4.8. </span>The weight spectrum of the pairing Hamiltonian<a class="headerlink" href="#the-weight-spectrum-of-the-pairing-hamiltonian" title="Link to this heading">#</a></h2>
+<p>Since the number of Pauli strings and their weights are what a quantum
+algorithm has to pay for, it is worth looking at the whole distribution rather
+than at the two summary numbers of the tables above.  The figure below counts
+the strings of the Jordan-Wigner transformed pairing Hamiltonian by weight,
+for one, two and three levels in the full <span class="math notranslate nohighlight">\(2L\)</span>-qubit encoding.  We take the
+decomposition straight from the program, so every coefficient is obtained by
+the exact trace <span class="math notranslate nohighlight">\(c_P = {\rm Tr}(PH)/2^M\)</span>; that costs <span class="math notranslate nohighlight">\(4^M\)</span> traces, which is
+why we stop at six qubits.</p>
+<p>The shape is the same in every case and it is easy to account for.  There is
+always the single identity string, which carries the constant part of the
+Hamiltonian.  The <span class="math notranslate nohighlight">\(2L\)</span> strings of weight one are the <span class="math notranslate nohighlight">\(Z_p\)</span>’s coming from the
+single-particle energies and from the diagonal part of the pairing
+interaction, and the <span class="math notranslate nohighlight">\(L\)</span> strings of weight two are the <span class="math notranslate nohighlight">\(Z_pZ_q\)</span>’s produced by
+the <span class="math notranslate nohighlight">\(p=q\)</span> pair-transfer terms.  Everything else has weight four: each of the
+<span class="math notranslate nohighlight">\(L(L-1)/2\)</span> pairs of distinct levels contributes eight strings such as <span class="math notranslate nohighlight">\(XXXX\)</span>
+and <span class="math notranslate nohighlight">\(XXYY\)</span>, and those weight-four strings quickly dominate the count.
+There is nothing of weight three, because the pair-transfer operator always
+moves two particles at a time and touches four spin-orbitals at once.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">import</span> <span class="nn">jordanwigner</span>
+
+<span class="n">full_levels</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">full_decompositions</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">L</span><span class="p">:</span> <span class="n">jordanwigner</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">jordanwigner</span><span class="o">.</span><span class="n">pairing_full_space</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="mf">1.0</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">L</span> <span class="ow">in</span> <span class="n">full_levels</span>
+<span class="p">}</span>
+
+<span class="n">weights</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">width</span> <span class="o">=</span> <span class="mf">0.26</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">position</span><span class="p">,</span> <span class="n">L</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">full_levels</span><span class="p">):</span>
+    <span class="n">counts</span> <span class="o">=</span> <span class="p">[</span><span class="nb">sum</span><span class="p">(</span><span class="mi">1</span> <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">full_decompositions</span><span class="p">[</span><span class="n">L</span><span class="p">]</span>
+                  <span class="k">if</span> <span class="n">jordanwigner</span><span class="o">.</span><span class="n">weight</span><span class="p">(</span><span class="n">label</span><span class="p">)</span> <span class="o">==</span> <span class="n">w</span><span class="p">)</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">weights</span><span class="p">]</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">([</span><span class="n">w</span> <span class="o">+</span> <span class="p">(</span><span class="n">position</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">width</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">weights</span><span class="p">],</span> <span class="n">counts</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span>
+           <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;$L = </span><span class="si">{</span><span class="n">L</span><span class="si">}</span><span class="s2">$ levels (</span><span class="si">{</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">L</span><span class="si">}</span><span class="s2"> qubits)&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">w</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span> <span class="n">counts</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">count</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">w</span> <span class="o">+</span> <span class="p">(</span><span class="n">position</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">width</span><span class="p">,</span> <span class="n">count</span> <span class="o">+</span> <span class="mf">0.3</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">count</span><span class="p">),</span>
+                    <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">&quot;bottom&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Pauli weight (number of non-identity factors)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;number of Pauli strings&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Pauli strings of the pairing Hamiltonian, &quot;</span>
+             <span class="s2">&quot;full $2L$-qubit encoding&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">weights</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">27</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/65b6e7bb46ad0041bde1b7c4596e97412d787548169364b2064fcbb0a46cd92e.png" src="_images/65b6e7bb46ad0041bde1b7c4596e97412d787548169364b2064fcbb0a46cd92e.png" />
+</div>
+</div>
+</section>
+<section id="what-the-seniority-zero-encoding-saves">
+<h2><span class="section-number">4.9. </span>What the seniority-zero encoding saves<a class="headerlink" href="#what-the-seniority-zero-encoding-saves" title="Link to this heading">#</a></h2>
+<p>The comparison that matters for a variational calculation is between the two
+encodings of the same physics, and it is a comparison of three quantities at
+once: how many qubits the register needs, how many Pauli strings have to be
+measured, and how long the longest of those strings is.  The left panel counts
+the strings against the number of levels <span class="math notranslate nohighlight">\(L\)</span>, the right panel gives the
+largest weight, and the register size is in the legend.  We can push the
+compact encoding to six levels because it only ever needs <span class="math notranslate nohighlight">\(L\)</span> qubits, whereas
+the full encoding already costs <span class="math notranslate nohighlight">\(4^8\)</span> traces at <span class="math notranslate nohighlight">\(L = 4\)</span> and is left at three.</p>
+<p>The compact encoding wins on all three counts, and it wins by a widening
+margin.  It halves the register, from <span class="math notranslate nohighlight">\(2L\)</span> qubits to <span class="math notranslate nohighlight">\(L\)</span>.  Its string count
+is <span class="math notranslate nohighlight">\(L^2+1\)</span>, one identity, <span class="math notranslate nohighlight">\(L\)</span> single <span class="math notranslate nohighlight">\(Z\)</span>’s and the <span class="math notranslate nohighlight">\(X_pX_q\)</span> and <span class="math notranslate nohighlight">\(Y_pY_q\)</span>
+couplings of the <span class="math notranslate nohighlight">\(XY\)</span> form, against the <span class="math notranslate nohighlight">\(4L(L-1)+3L+1\)</span> of the full encoding —
+a factor of four in the leading term.  And its longest strings have weight two rather
+than four, so each term is a two-qubit rotation instead of a four-qubit one.
+None of this is an approximation: as we checked above, the compact spectrum is
+exactly the seniority-zero part of the full one.  The saving comes entirely
+from having imposed the symmetry before choosing the encoding rather than
+asking the quantum computer to discover it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pair_levels</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">pair_decompositions</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">L</span><span class="p">:</span> <span class="n">jordanwigner</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">jordanwigner</span><span class="o">.</span><span class="n">pairing_pair_qubits</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="mf">1.0</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">L</span> <span class="ow">in</span> <span class="n">pair_levels</span>
+<span class="p">}</span>
+
+
+<span class="k">def</span> <span class="nf">summarise</span><span class="p">(</span><span class="n">decompositions</span><span class="p">):</span>
+    <span class="n">levels</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">decompositions</span><span class="p">)</span>
+    <span class="n">terms</span> <span class="o">=</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">decompositions</span><span class="p">[</span><span class="n">L</span><span class="p">])</span> <span class="k">for</span> <span class="n">L</span> <span class="ow">in</span> <span class="n">levels</span><span class="p">]</span>
+    <span class="n">heaviest</span> <span class="o">=</span> <span class="p">[</span><span class="nb">max</span><span class="p">(</span><span class="n">jordanwigner</span><span class="o">.</span><span class="n">weight</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">decompositions</span><span class="p">[</span><span class="n">L</span><span class="p">])</span> <span class="k">for</span> <span class="n">L</span> <span class="ow">in</span> <span class="n">levels</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">levels</span><span class="p">,</span> <span class="n">terms</span><span class="p">,</span> <span class="n">heaviest</span>
+
+
+<span class="n">encodings</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="p">(</span><span class="s2">&quot;full space, $2L$ qubits&quot;</span><span class="p">,</span> <span class="n">full_decompositions</span><span class="p">,</span> <span class="s2">&quot;o-&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;pair qubits, $L$ qubits&quot;</span><span class="p">,</span> <span class="n">pair_decompositions</span><span class="p">,</span> <span class="s2">&quot;s-&quot;</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mf">3.2</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">decompositions</span><span class="p">,</span> <span class="n">style</span> <span class="ow">in</span> <span class="n">encodings</span><span class="p">:</span>
+    <span class="n">levels</span><span class="p">,</span> <span class="n">terms</span><span class="p">,</span> <span class="n">heaviest</span> <span class="o">=</span> <span class="n">summarise</span><span class="p">(</span><span class="n">decompositions</span><span class="p">)</span>
+    <span class="n">left</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">levels</span><span class="p">,</span> <span class="n">terms</span><span class="p">,</span> <span class="n">style</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
+    <span class="n">right</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">levels</span><span class="p">,</span> <span class="n">heaviest</span><span class="p">,</span> <span class="n">style</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
+
+<span class="n">left</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;number of levels $L$&quot;</span><span class="p">)</span>
+<span class="n">left</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;number of Pauli strings&quot;</span><span class="p">)</span>
+<span class="n">left</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Terms to be measured&quot;</span><span class="p">)</span>
+<span class="n">left</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">pair_levels</span><span class="p">))</span>
+<span class="n">left</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">left</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+
+<span class="n">right</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;number of levels $L$&quot;</span><span class="p">)</span>
+<span class="n">right</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;largest Pauli weight&quot;</span><span class="p">)</span>
+<span class="n">right</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Length of the longest string&quot;</span><span class="p">)</span>
+<span class="n">right</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">pair_levels</span><span class="p">))</span>
+<span class="n">right</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+<span class="n">right</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">right</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">right</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;lower right&quot;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/e21e67358a521df179fc507bd3c7c5a81a96d22bf3c66d225244ed10dd2496a4.png" src="_images/e21e67358a521df179fc507bd3c7c5a81a96d22bf3c66d225244ed10dd2496a4.png" />
+</div>
+</div>
 </section>
 </section>
 
@@ -1144,6 +1306,8 @@ an encoding rather than after.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-the-particle-hole-term-costs">4.5. 5. What the particle-hole term costs</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nothing-is-lost-in-translation">4.6. 6. Nothing is lost in translation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#where-this-leads">4.7. Where this leads</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-weight-spectrum-of-the-pairing-hamiltonian">4.8. The weight spectrum of the pairing Hamiltonian</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-the-seniority-zero-encoding-saves">4.9. What the seniority-zero encoding saves</a></li>
 </ul>
   </nav></div>
 

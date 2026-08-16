@@ -1,0 +1,1321 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>19. Neural quantum states and physics-informed neural networks &#8212; Quantum Mechanics for Many-Particle Systems: from standard methods to quantum computing and machine learning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'pinns';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="20. The quantum Fourier transform and phase estimation" href="quantumfourier.html" />
+    <link rel="prev" title="18. Boltzmann machines and generative models" href="boltzmannmachines.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Quantum Mechanics for Many-Particle Systems: from standard methods to quantum computing and machine learning - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Quantum Mechanics for Many-Particle Systems: from standard methods to quantum computing and machine learning - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Quantum mechanics for many-particle systems
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">About the course</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="teachers.html">Instructor information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="textbooks.html">Textbooks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Foundations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="linearalgebra.html">1. Linear algebra and eigenvalue problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manybodybasics.html">2. From linear algebra to many-body physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wicktheorem.html">3. Wick’s theorem, verified by brute force</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jordanwigner.html">4. From fermions to qubits: the Jordan-Wigner transformation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">5. Physical systems and models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fullci.html">6. Full configuration interaction theory</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Mean-field and beyond</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="hartreefock.html">7. Mean-field approaches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tdarpa.html">8. Mean-field applications: TDA, RPA and QRPA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dft.html">9. Density functional theory</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Post Hartree-Fock methods</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="mbptheory.html">10. Many-body perturbation theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coupledcluster.html">11. Coupled cluster theory</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Applications and stochastic methods</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="quantumdots.html">12. Quantum dots: a realistic Hamiltonian</a></li>
+<li class="toctree-l1"><a class="reference internal" href="statistics.html">13. Elements from statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variationalmc.html">14. Variational Monte Carlo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimisation.html">15. Optimization and resampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diffusionmc.html">16. Diffusion Monte Carlo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manybodymc.html">17. Applications to many-body systems: six electrons</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine learning approaches</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="boltzmannmachines.html">18. Boltzmann machines and generative models</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">19. Neural quantum states and physics-informed neural networks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum computing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="quantumfourier.html">20. The quantum Fourier transform and phase estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vqe.html">21. The variational quantum eigensolver</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Concluding remarks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="conclusions.html">22. Concluding remarks and perspectives</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/ManyBodyPhysics/FYS4480/master?urlpath=lab/tree/doc/LectureNotes/pinns.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ManyBodyPhysics/FYS4480" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ManyBodyPhysics/FYS4480/issues/new?title=Issue%20on%20page%20%2Fpinns.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/pinns.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Neural quantum states and physics-informed neural networks</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#automatic-differentiation-done-by-hand">19.1. 1. Automatic differentiation, done by hand</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#does-a-pinn-respect-the-variational-principle">19.2. 2. Does a PINN respect the variational principle?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#and-without-normalisation-worse">19.2.1. And without normalisation, worse</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-ansatz-and-an-exact-reference">19.3. 3. The ansatz, and an exact reference</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#backflow">19.4. 4. Backflow</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-backflow-does-to-the-nodes-and-where-it-cannot">19.4.1. What backflow does to the nodes — and where it cannot</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-left">19.5. What is left</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#three-pictures">19.6. Three pictures</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-two-objectives-on-the-same-parameter-axis">19.6.1. The two objectives on the same parameter axis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-amplitude-collapse">19.6.2. The amplitude collapse</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#where-backflow-can-move-a-node-and-where-it-cannot">19.6.3. Where backflow can move a node, and where it cannot</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="neural-quantum-states-and-physics-informed-neural-networks">
+<h1><span class="section-number">19. </span>Neural quantum states and physics-informed neural networks<a class="headerlink" href="#neural-quantum-states-and-physics-informed-neural-networks" title="Link to this heading">#</a></h1>
+<p>Executable companion to chapter 18.</p>
+<p>Chapter 17 ended with a Boltzmann machine that reached 3.082 where the exact
+answer is 3, and with a diagnosis: no physics in the ansatz, no cusp, and a
+local-energy variance of three.  The two-parameter Padé–Jastrow function of
+chapter 13 did a hundred and fifty times better.  The conclusion was to
+<em>combine</em> them, and this notebook does that.</p>
+<p>Two ideas must be kept apart:</p>
+<ul class="simple">
+<li><p>the <strong>ansatz</strong> — what functional form we allow, and how much known physics
+(antisymmetry, the cusp, symmetry) is built in <em>exactly</em> rather than learned;</p></li>
+<li><p>the <strong>training objective</strong> — what we minimise.  Chapters 13–14 minimised the
+energy, which is variational.  A PINN may instead minimise the residual of
+the Schrödinger equation, which is a different thing, and the difference
+matters a great deal.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">glob</span>
+<span class="c1"># the chapter programs live in BookPrograms/chapterNN; put them all on the path</span>
+<span class="k">for</span> <span class="n">_d</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;..&quot;</span><span class="p">,</span> <span class="s2">&quot;BookManybody&quot;</span><span class="p">,</span>
+                                        <span class="s2">&quot;BookPrograms&quot;</span><span class="p">,</span> <span class="s2">&quot;chapter*&quot;</span><span class="p">))):</span>
+    <span class="k">if</span> <span class="n">_d</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">_d</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">import</span> <span class="nn">pinn</span>
+<span class="kn">from</span> <span class="nn">vmcoptimise</span> <span class="kn">import</span> <span class="n">blocking</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="automatic-differentiation-done-by-hand">
+<h2><span class="section-number">19.1. </span>1. Automatic differentiation, done by hand<a class="headerlink" href="#automatic-differentiation-done-by-hand" title="Link to this heading">#</a></h2>
+<p>A PINN needs second derivatives of a network with respect to its <strong>inputs</strong>.
+For layers <span class="math notranslate nohighlight">\(a' = \varphi(Wa+b)\)</span> the forward-mode recursion is</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial z}{\partial u_k} = W\frac{\partial a}{\partial u_k},
+\qquad
+\frac{\partial a'}{\partial u_k} = \varphi'(z)\frac{\partial z}{\partial u_k},
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial^2 a'}{\partial u_k\partial u_l}
+= \varphi'(z)\frac{\partial^2 z}{\partial u_k\partial u_l}
++ \varphi''(z)\frac{\partial z}{\partial u_k}\frac{\partial z}{\partial u_l},
+\]</div>
+<p>with <span class="math notranslate nohighlight">\(\varphi'=1-t^2\)</span> and <span class="math notranslate nohighlight">\(\varphi''=-2t(1-t^2)\)</span> for <span class="math notranslate nohighlight">\(t=\tanh z\)</span>.  That is all
+an AD framework does; writing it out makes the cost visible — each derivative
+order multiplies the work by the number of inputs.</p>
+<p><strong>Note <span class="math notranslate nohighlight">\(\varphi''\)</span> in that formula.</strong>  ReLU has <span class="math notranslate nohighlight">\(\varphi''=0\)</span> almost
+everywhere, so it is <em>unusable</em> for any second-order operator, the Laplacian
+included.  Smooth activations are not a matter of taste here.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">checks</span> <span class="o">=</span> <span class="n">pinn</span><span class="o">.</span><span class="n">check_autodiff</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;network with </span><span class="si">{</span><span class="n">checks</span><span class="p">[</span><span class="s1">&#39;n_parameters&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> parameters&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;gradient   d f / d u_k          </span><span class="si">{</span><span class="n">checks</span><span class="p">[</span><span class="s1">&#39;gradient&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hessian    d2 f / d u_k d u_l   </span><span class="si">{</span><span class="n">checks</span><span class="p">[</span><span class="s1">&#39;hessian&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;parameters d f / d theta        </span><span class="si">{</span><span class="n">checks</span><span class="p">[</span><span class="s1">&#39;parameters&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">(the Hessian line is limited by the finite difference, not by the&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot; analytic result)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>network with 205 parameters
+gradient   d f / d u_k          5.96e-12
+Hessian    d2 f / d u_k d u_l   3.98e-08
+parameters d f / d theta        3.31e-11
+
+(the Hessian line is limited by the finite difference, not by the
+ analytic result)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="does-a-pinn-respect-the-variational-principle">
+<h2><span class="section-number">19.2. </span>2. Does a PINN respect the variational principle?<a class="headerlink" href="#does-a-pinn-respect-the-variational-principle" title="Link to this heading">#</a></h2>
+<p>For any admissible trial state,</p>
+<div class="math notranslate nohighlight">
+\[
+E[\psi_\theta] = \frac{\langle\psi_\theta|H|\psi_\theta\rangle}{\langle\psi_\theta|\psi_\theta\rangle} \ge E_0,
+\]</div>
+<p>which is what makes a variational number <em>meaningful</em>: it can be compared with
+another upper bound, and lower is better.  There are two ways to train a PINN:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>loss</p></th>
+<th class="head"><p>bound?</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>variational</strong></p></td>
+<td><p><span class="math notranslate nohighlight">\(\langle\psi_\theta|H|\psi_\theta\rangle/\|\psi_\theta\|^2\)</span></p></td>
+<td><p><strong>yes</strong>, <span class="math notranslate nohighlight">\(E_\theta \ge E_0\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>residual</strong></p></td>
+<td><p><span class="math notranslate nohighlight">\(\|(H-E)\psi_\theta\|^2\)</span></p></td>
+<td><p>no guarantee</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Let us settle it numerically on the quartic oscillator
+<span class="math notranslate nohighlight">\(H = -\tfrac12 d^2/dx^2 + \tfrac12 x^4\)</span>, whose spectrum we get to machine
+precision from a grid, using a one-parameter family <span class="math notranslate nohighlight">\(e^{-ax^2/2}\)</span> that cannot
+represent the exact state — so <strong>both</strong> methods must be wrong.  The question
+is <em>how</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spectrum</span> <span class="o">=</span> <span class="n">pinn</span><span class="o">.</span><span class="n">quartic_exact</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;exact:  E_0 = </span><span class="si">{</span><span class="n">spectrum</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">   E_1 = </span><span class="si">{</span><span class="n">spectrum</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">   &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;E_2 = </span><span class="si">{</span><span class="n">spectrum</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">a_star</span> <span class="o">=</span> <span class="mf">3.0</span><span class="o">**</span><span class="p">(</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">3.0</span><span class="p">)</span>
+<span class="n">e_var</span> <span class="o">=</span> <span class="n">pinn</span><span class="o">.</span><span class="n">quartic_variational</span><span class="p">(</span><span class="n">a_star</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">variational:  a* = </span><span class="si">{</span><span class="n">a_star</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">   E = </span><span class="si">{</span><span class="n">e_var</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">   &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;E - E_0 = </span><span class="si">{</span><span class="n">e_var</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">spectrum</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">+.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">residual at uniform collocation points on [-L, L]:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;L&#39;</span><span class="si">:</span><span class="s2">&gt;6s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;a*&#39;</span><span class="si">:</span><span class="s2">&gt;9s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;E*&#39;</span><span class="si">:</span><span class="s2">&gt;13s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;E* - E_0&#39;</span><span class="si">:</span><span class="s2">&gt;13s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">Ls</span><span class="p">,</span> <span class="n">Es</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">L</span> <span class="ow">in</span> <span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">):</span>
+    <span class="n">loss</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">energy</span> <span class="o">=</span> <span class="n">pinn</span><span class="o">.</span><span class="n">quartic_residual_optimum</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
+    <span class="n">Ls</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">L</span><span class="p">);</span> <span class="n">Es</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">energy</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">L</span><span class="si">:</span><span class="s2">6.1f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">a</span><span class="si">:</span><span class="s2">9.4f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">energy</span><span class="si">:</span><span class="s2">13.6f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">energy</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">spectrum</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">+13.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">6.2</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Ls</span><span class="p">,</span> <span class="n">Es</span><span class="p">,</span> <span class="s2">&quot;o-&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;residual-trained $E^*$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">spectrum</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;exact $E_0$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">e_var</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;g&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;variational (same family)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;collocation half-width $L$&quot;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;reported energy&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;residual minimisation is not energy minimisation&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>exact:  E_0 = 0.530181   E_1 = 1.899833   E_2 = 3.727839
+
+variational:  a* = 1.4422   E = 0.540844   E - E_0 = +0.010663
+
+residual at uniform collocation points on [-L, L]:
+     L        a*            E*      E* - E_0
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   2.0    1.8531      0.238116     -0.292065
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   3.0    2.7795     -2.094219     -2.624400
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   4.0    3.7059     -9.156153     -9.686334
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   6.0    5.5568    -52.812539    -53.342719
+</pre></div>
+</div>
+<img alt="_images/acbbee1c21c0cd8fd0928800cf534a792e283963d964e0e6a61b955b576df148.png" src="_images/acbbee1c21c0cd8fd0928800cf534a792e283963d964e0e6a61b955b576df148.png" />
+</div>
+</div>
+<p>Every residual-trained energy lies <strong>below</strong> the exact ground state, and the
+deficit grows without bound as the collocation domain is enlarged.</p>
+<p>The reason is in the formula.  Dividing the residual by <span class="math notranslate nohighlight">\(\psi\)</span> (which one does
+to stop the amplitude collapsing — see below), the optimal <span class="math notranslate nohighlight">\(E\)</span> at fixed <span class="math notranslate nohighlight">\(a\)</span> is
+the <em>unweighted mean</em> of the local energy over the collocation points.  That is
+not a Rayleigh quotient: the measure is the collocation measure, not
+<span class="math notranslate nohighlight">\(|\psi|^2\)</span>, and nothing bounds it below.</p>
+<p>This is not a pathological construction.  It is what you get by writing the
+obvious PINN loss for the Schrödinger equation and sampling collocation points
+uniformly over a box — the default in most PINN tutorials.</p>
+<section id="and-without-normalisation-worse">
+<h3><span class="section-number">19.2.1. </span>And without normalisation, worse<a class="headerlink" href="#and-without-normalisation-worse" title="Link to this heading">#</a></h3>
+<p>The raw residual <span class="math notranslate nohighlight">\(\|(H-E)\psi\|^2\)</span> has a trivial global minimum at <span class="math notranslate nohighlight">\(\psi = 0\)</span>,
+for <strong>any</strong> <span class="math notranslate nohighlight">\(E\)</span> whatever.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;amplitude&#39;</span><span class="si">:</span><span class="s2">&gt;11s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;residual&#39;</span><span class="si">:</span><span class="s2">&gt;14s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;apparent E&#39;</span><span class="si">:</span><span class="s2">&gt;13s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">scale</span> <span class="ow">in</span> <span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">):</span>
+    <span class="n">loss</span><span class="p">,</span> <span class="n">energy</span> <span class="o">=</span> <span class="n">pinn</span><span class="o">.</span><span class="n">amplitude_collapse</span><span class="p">(</span><span class="n">scale</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">scale</span><span class="si">:</span><span class="s2">11.3f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">loss</span><span class="si">:</span><span class="s2">14.3e</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">energy</span><span class="si">:</span><span class="s2">13.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The residual falls as the square of the amplitude while the energy is&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;untouched.  A training curve showing the loss drop six orders of&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;magnitude looks, to the casual eye, like spectacular convergence.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  amplitude       residual    apparent E
+      1.000      1.598e-02      0.540844
+      0.100      1.598e-04      0.540844
+      0.010      1.598e-06      0.540844
+      0.001      1.598e-08      0.540844
+
+The residual falls as the square of the amplitude while the energy is
+untouched.  A training curve showing the loss drop six orders of
+magnitude looks, to the casual eye, like spectacular convergence.
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Conclusion.</strong> Make the energy quotient the primary objective — the
+normalisation cancels in it identically — and use the residual, if at all, for
+<em>pretraining</em>.  That is exactly the pipeline in the results section of the
+chapter: residual pretraining to get quickly into the right region, then a
+stochastic-reconfiguration tail on the energy to restore the bound.</p>
+</section>
+</section>
+<section id="the-ansatz-and-an-exact-reference">
+<h2><span class="section-number">19.3. </span>3. The ansatz, and an exact reference<a class="headerlink" href="#the-ansatz-and-an-exact-reference" title="Link to this heading">#</a></h2>
+<div class="math notranslate nohighlight">
+\[
+\Psi_{\theta,\beta}(R) = \underbrace{\mathrm{SD}(R')}_{\text{antisymmetry}}
+\exp\Bigl(\underbrace{U(R)}_{\text{analytic cusp}} + \underbrace{W_\theta(R)}_{\text{neural}}\Bigr),
+\qquad R' = R + \underbrace{\Delta_\beta(R)}_{\text{backflow}}
+\]</div>
+<p>Each layer does one job, and the ones that can be made exact are made exact
+rather than learned.</p>
+<p>For <span class="math notranslate nohighlight">\(N=2\)</span> in a spin singlet the spatial part is symmetric, the determinant is a
+constant, and there is a <strong>closed-form answer</strong>.  Separating into
+centre-of-mass and relative coordinates and inserting
+<span class="math notranslate nohighlight">\(e^{-\omega r^2/4}(1+ar)\)</span> into the relative equation, the <span class="math notranslate nohighlight">\(1/r\)</span> term cancels
+only if <span class="math notranslate nohighlight">\(a=1\)</span>, and matching the rest gives <span class="math notranslate nohighlight">\(E_{\rm rel}=2\omega\)</span> <em>and</em>
+<span class="math notranslate nohighlight">\(\omega=1\)</span>.  Hence Taut’s solution</p>
+<div class="math notranslate nohighlight">
+\[
+\boxed{\;\Psi_{\rm exact} = e^{-(r_1^2+r_2^2)/2}\,(1+r_{12}),\qquad E = 3\;}
+\]</div>
+<p>whose local energy must be exactly 3 at <strong>every</strong> configuration.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">taut</span> <span class="o">=</span> <span class="n">pinn</span><span class="o">.</span><span class="n">check_taut</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;mean E_L over 2000 random configurations = </span><span class="si">{</span><span class="n">taut</span><span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.12f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;spread                                    = </span><span class="si">{</span><span class="n">taut</span><span class="p">[</span><span class="s1">&#39;spread&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;That is a zero-variance check on every derivative in the code.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mean E_L over 2000 random configurations = 3.000000000000
+spread                                    = 7.11e-15
+
+That is a zero-variance check on every derivative in the code.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Written logarithmically, <span class="math notranslate nohighlight">\(\ln\Psi_{\rm exact} = -s/2 + \ln(1+r_{12})\)</span> with
+<span class="math notranslate nohighlight">\(s = r_1^2+r_2^2\)</span> — a function of the same two permutation-invariant features
+the neural correlator is given.  <strong>The ansatz contains the exact state</strong>, at
+<span class="math notranslate nohighlight">\(\alpha=1\)</span> and <span class="math notranslate nohighlight">\(W = \ln(1+r_{12}) - r_{12}/(1+\beta r_{12})\)</span>.</p>
+<p>The Padé factor is a rational approximation to that logarithm: both behave as
+<span class="math notranslate nohighlight">\(r_{12}\)</span> at the origin — which <em>is</em> the cusp condition — and they part company
+further out.  So the network has something well defined to learn, and the
+residual variance measures the optimisation rather than the form.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">6.2</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">log1p</span><span class="p">(</span><span class="n">r</span><span class="p">),</span> <span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;exact:  $\ln(1+r_</span><span class="si">{12}</span><span class="s2">)$&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">beta</span> <span class="ow">in</span> <span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.36</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">r</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">beta</span><span class="o">*</span><span class="n">r</span><span class="p">),</span> <span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s2">&quot;Padé, $\beta=</span><span class="si">{</span><span class="n">beta</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$r_</span><span class="si">{12}</span><span class="s2">$&quot;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Jastrow exponent&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;what the neural correlator has to repair&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;All curves have unit slope at the origin -- every beta satisfies the&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;cusp condition.  What beta controls is how the correlation hole closes&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;further out, and that is where the Pade form cannot follow.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/872eac90ea8c3e9cc05cc1981730fa79ebf550ed3ae5187c86b75ccb864d2cc8.png" src="_images/872eac90ea8c3e9cc05cc1981730fa79ebf550ed3ae5187c86b75ccb864d2cc8.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>All curves have unit slope at the origin -- every beta satisfies the
+cusp condition.  What beta controls is how the correlation hole closes
+further out, and that is where the Pade form cannot follow.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">use_network</span> <span class="ow">in</span> <span class="p">((</span><span class="s2">&quot;Pade-Jastrow only (ch. 13)&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+                           <span class="p">(</span><span class="s2">&quot;Pade-Jastrow x neural&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">pinn</span><span class="o">.</span><span class="n">SlaterJastrowNeural</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+                                     <span class="n">rng</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span>
+                                     <span class="n">scale</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span> <span class="n">widths</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span>
+                                     <span class="n">use_network</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">optimise</span><span class="p">(</span><span class="n">rates</span><span class="o">=</span><span class="p">(</span><span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">),</span> <span class="n">stage</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">n_cycles</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">n_walkers</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">use_network</span><span class="p">:</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">use_network</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">optimise</span><span class="p">(</span><span class="n">rates</span><span class="o">=</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">),</span> <span class="n">stage</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">n_cycles</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+                       <span class="n">n_walkers</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">77</span><span class="p">)</span>
+    <span class="n">final</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n_cycles</span><span class="o">=</span><span class="mi">3000</span><span class="p">,</span> <span class="n">n_walkers</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span>
+                         <span class="n">rng</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">99</span><span class="p">),</span> <span class="n">keep_samples</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">err</span> <span class="o">=</span> <span class="n">blocking</span><span class="p">(</span><span class="n">final</span><span class="p">[</span><span class="s2">&quot;samples&quot;</span><span class="p">])[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">results</span><span class="p">[</span><span class="n">label</span><span class="p">]</span> <span class="o">=</span> <span class="n">final</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   parameters: 2 + </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">get_parameters</span><span class="p">())</span><span class="o">-</span><span class="mi">2</span><span class="si">}</span><span class="s2"> network&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   E = </span><span class="si">{</span><span class="n">final</span><span class="p">[</span><span class="s1">&#39;energy&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">err</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">   &quot;</span>
+          <span class="sa">f</span><span class="s2">&quot;variance </span><span class="si">{</span><span class="n">final</span><span class="p">[</span><span class="s1">&#39;variance&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">   &quot;</span>
+          <span class="sa">f</span><span class="s2">&quot;E - exact = </span><span class="si">{</span><span class="n">final</span><span class="p">[</span><span class="s1">&#39;energy&#39;</span><span class="p">]</span><span class="o">-</span><span class="mf">3.0</span><span class="si">:</span><span class="s2">+.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">plain</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s2">&quot;Pade-Jastrow only (ch. 13)&quot;</span><span class="p">]</span>
+<span class="n">hybrid</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s2">&quot;Pade-Jastrow x neural&quot;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">variance reduction: &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="mi">100</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">hybrid</span><span class="p">[</span><span class="s1">&#39;variance&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">plain</span><span class="p">[</span><span class="s1">&#39;variance&#39;</span><span class="p">])</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> per cent&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Compare the RBM of chapter 17: 3.082, variance 3, no physics built in.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Putting the cusp back is worth more than any amount of flexibility --&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;and once it is back, the network improves on the two analytic&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;parameters alone.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pade-Jastrow only (ch. 13)
+   parameters: 2 + 0 network
+   E = 3.001323 +/- 0.000072   variance 0.005390   E - exact = +0.001323
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pade-Jastrow x neural
+   parameters: 2 + 105 network
+   E = 3.000477 +/- 0.000048   variance 0.002651   E - exact = +0.000477
+
+variance reduction: 51 per cent
+Compare the RBM of chapter 17: 3.082, variance 3, no physics built in.
+Putting the cusp back is worth more than any amount of flexibility --
+and once it is back, the network improves on the two analytic
+parameters alone.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="backflow">
+<h2><span class="section-number">19.4. </span>4. Backflow<a class="headerlink" href="#backflow" title="Link to this heading">#</a></h2>
+<p>The Jastrow factor <span class="math notranslate nohighlight">\(e^J\)</span> is symmetric and <strong>positive</strong>.  It can reshape the
+wave function anywhere but cannot change where it <em>vanishes</em>: the nodes of
+<span class="math notranslate nohighlight">\(\Psi\)</span> are the nodes of the determinant, wherever <span class="math notranslate nohighlight">\(J\)</span> puts its weight.  Since
+the nodal surface sets the fixed-node error of DMC and floors the variational
+energy, this is a hard ceiling.  Backflow raises it by modifying the
+coordinates <em>before</em> they enter the determinant,</p>
+<div class="math notranslate nohighlight">
+\[
+\tilde{\mathbf r}_i = \mathbf r_i + \mathbf F_{i,\theta}(\mathbf R),
+\qquad
+\widetilde M_{ia} = \phi_a(\tilde{\mathbf r}_i(\mathbf R)).
+\]</div>
+<p>Every row now depends on the <strong>full</strong> configuration.  That looks as though it
+must destroy antisymmetry, and it does — unless the map is
+<strong>permutation-equivariant</strong>, in which case exchanging <span class="math notranslate nohighlight">\(i \leftrightarrow j\)</span>
+exchanges two rows and <span class="math notranslate nohighlight">\(D \mapsto -D\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">ratio</span> <span class="ow">in</span> <span class="n">pinn</span><span class="o">.</span><span class="n">check_backflow_antisymmetry</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">verdict</span> <span class="o">=</span> <span class="s2">&quot;antisymmetric&quot;</span> <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">ratio</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-10</span> <span class="k">else</span> <span class="s2">&quot;NOT antisymmetric&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">:</span><span class="s2">&lt;26s</span><span class="si">}</span><span class="s2"> D(swap)/D = </span><span class="si">{</span><span class="n">ratio</span><span class="si">:</span><span class="s2">+.6f</span><span class="si">}</span><span class="s2">   </span><span class="si">{</span><span class="n">verdict</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The last line is the warning.  Feed a network the particle index, or&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;sort the particles before passing them in, and equivariance is gone.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The object that comes out is not a fermionic wave function, whatever&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;energy it reports -- and nothing in a training curve will tell you.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>no backflow                D(swap)/D = -1.000000   antisymmetric
+equivariant backflow       D(swap)/D = -1.000000   antisymmetric
+non-equivariant map        D(swap)/D = -452000.265547   NOT antisymmetric
+
+The last line is the warning.  Feed a network the particle index, or
+sort the particles before passing them in, and equivariance is gone.
+The object that comes out is not a fermionic wave function, whatever
+energy it reports -- and nothing in a training curve will tell you.
+</pre></div>
+</div>
+</div>
+</div>
+<section id="what-backflow-does-to-the-nodes-and-where-it-cannot">
+<h3><span class="section-number">19.4.1. </span>What backflow does to the nodes — and where it cannot<a class="headerlink" href="#what-backflow-does-to-the-nodes-and-where-it-cannot" title="Link to this heading">#</a></h3>
+<p>Drag one particle of a three-electron configuration along a line and locate
+the first zero of the determinant.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;orbitals&#39;</span><span class="si">:</span><span class="s2">&gt;26s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;plain&#39;</span><span class="si">:</span><span class="s2">&gt;10s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;x Jastrow&#39;</span><span class="si">:</span><span class="s2">&gt;11s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;+ backflow&#39;</span><span class="si">:</span><span class="s2">&gt;12s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">degenerate</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="p">((</span><span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;different widths&quot;</span><span class="p">),</span>
+                          <span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;common Gaussian factor&quot;</span><span class="p">)):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">pinn</span><span class="o">.</span><span class="n">backflow_moves_the_nodes</span><span class="p">(</span><span class="n">degenerate</span><span class="o">=</span><span class="n">degenerate</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">label</span><span class="si">:</span><span class="s2">&gt;26s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">n</span><span class="p">[</span><span class="s1">&#39;plain&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">10.5f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">n</span><span class="p">[</span><span class="s1">&#39;jastrow&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">11.5f</span><span class="si">}</span><span class="s2"> &quot;</span>
+          <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">n</span><span class="p">[</span><span class="s1">&#39;backflow&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">12.5f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                  orbitals      plain   x Jastrow   + backflow
+          different widths   -0.63242    -0.63242     -0.58680
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    common Gaussian factor    1.72630     1.72630      1.72630
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The Jastrow column never moves: that is the whole reason backflow exists.</p>
+<p>But look at the <strong>second row</strong>.  With three orbitals sharing one Gaussian
+factor, <span class="math notranslate nohighlight">\(\{1,x,y\}e^{-r^2/2}\)</span>, that factor comes out of the determinant and</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\det M = g(r_1)g(r_2)g(r_3)\,\det\begin{pmatrix}1&amp;x_1&amp;y_1\\1&amp;x_2&amp;y_2\\1&amp;x_3&amp;y_3\end{pmatrix},
+\end{split}\]</div>
+<p>so the node is exactly the condition that the three effective positions be
+<strong>collinear</strong>.  But at a collinear configuration every difference vector
+<span class="math notranslate nohighlight">\(\mathbf r_i - \mathbf r_j\)</span> already lies along the line, so a displacement
+built out of those vectors — which is precisely what
+<span class="math notranslate nohighlight">\(\boldsymbol\xi_i = \sum_{j\ne i}\eta(r_{ij})(\mathbf r_i-\mathbf r_j)\)</span> is —
+keeps all three points on it.  <strong>The node cannot move, for any <span class="math notranslate nohighlight">\(\eta\)</span>.</strong></p>
+<p>That is not a numerical accident but a structural limit of the analytic
+pairwise form: the restriction lies in the functional form, not in its
+parameters, so no amount of optimisation escapes it.  A learned many-body map,</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf h_i = \phi_\theta(\mathbf r_i),\quad
+\mathbf h_{ij} = \psi_\theta(\mathbf r_i,\mathbf r_j),\quad
+\mathbf H_i = \sum_{j\ne i}\mathbf h_{ij},\quad
+\tilde{\mathbf r}_i = \mathbf r_i + \mathbf g_\theta(\mathbf h_i, \mathbf H_i),
+\]</div>
+<p>decodes the displacement from an <em>aggregate</em> rather than assembling it from
+pair vectors, and is not so restricted.  This is what “limited expressivity”
+means concretely — and why the extra parameters of a CTNN backflow buy
+something a better-tuned <span class="math notranslate nohighlight">\(\eta\)</span> cannot.</p>
+</section>
+</section>
+<section id="what-is-left">
+<h2><span class="section-number">19.5. </span>What is left<a class="headerlink" href="#what-is-left" title="Link to this heading">#</a></h2>
+<p>The chapter benchmarks this machinery on quantum dots with <span class="math notranslate nohighlight">\(N = 2\)</span> to <span class="math notranslate nohighlight">\(20\)</span>
+electrons across five orders of magnitude in confinement, against diffusion
+Monte Carlo and exact diagonalisation, with agreement to <span class="math notranslate nohighlight">\(\lesssim 0.05\%\)</span> and
+the learned backflow systematically ahead of the pairwise one from <span class="math notranslate nohighlight">\(N=6\)</span>
+upwards.  Those runs are far beyond what a notebook can reproduce; what this
+notebook establishes is the machinery underneath them, and the two facts that
+decide whether such a calculation means anything:</p>
+<ul class="simple">
+<li><p><strong>the objective</strong> decides whether the answer is a bound;</p></li>
+<li><p><strong>the ansatz</strong> decides how good that bound can be.</p></li>
+</ul>
+</section>
+<section id="three-pictures">
+<h2><span class="section-number">19.6. </span>Three pictures<a class="headerlink" href="#three-pictures" title="Link to this heading">#</a></h2>
+<p>Three claims carry this notebook: that the residual objective is not
+variational, that an unnormalised residual can be driven to zero by doing
+nothing whatever to the physics, and that backflow moves a node where a Jastrow
+factor cannot.  Each was settled above by a table, and each is worth a picture.
+None of them involves sampling, so all three cells run in a few seconds.</p>
+<section id="the-two-objectives-on-the-same-parameter-axis">
+<h3><span class="section-number">19.6.1. </span>The two objectives on the same parameter axis<a class="headerlink" href="#the-two-objectives-on-the-same-parameter-axis" title="Link to this heading">#</a></h3>
+<p>We stay with the quartic oscillator and the one-parameter family
+<span class="math notranslate nohighlight">\(\psi_a = e^{-ax^2/2}\)</span>, and we plot both objectives against the <em>same</em> <span class="math notranslate nohighlight">\(a\)</span>:
+the Rayleigh quotient <span class="math notranslate nohighlight">\(E(a) = a/4 + 3/(8a^2)\)</span>, and the energy <span class="math notranslate nohighlight">\(E^*(a)\)</span> that the
+collocation residual reports, which is the unweighted mean of the local energy
+over the collocation points.  The residual <span class="math notranslate nohighlight">\(L(a)\)</span> itself is drawn against the
+right-hand axis, so that its minimum can be read off and followed down to the
+energy it corresponds to.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">E0</span> <span class="o">=</span> <span class="n">pinn</span><span class="o">.</span><span class="n">quartic_exact</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">half_width</span> <span class="o">=</span> <span class="mf">3.0</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
+<span class="n">variational</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">pinn</span><span class="o">.</span><span class="n">quartic_variational</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">a</span><span class="p">])</span>
+<span class="n">scan</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">pinn</span><span class="o">.</span><span class="n">quartic_residual</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">half_width</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">a</span><span class="p">])</span>
+<span class="n">loss</span><span class="p">,</span> <span class="n">reported</span> <span class="o">=</span> <span class="n">scan</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">scan</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">i_res</span><span class="p">,</span> <span class="n">i_var</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">loss</span><span class="p">)),</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">variational</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;exact          E_0 = </span><span class="si">{</span><span class="n">E0</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;variational    a* = </span><span class="si">{</span><span class="n">a</span><span class="p">[</span><span class="n">i_var</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">   E = </span><span class="si">{</span><span class="n">variational</span><span class="p">[</span><span class="n">i_var</span><span class="p">]</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">   &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">variational</span><span class="p">[</span><span class="n">i_var</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">E0</span><span class="si">:</span><span class="s2">+.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;residual, L=</span><span class="si">{</span><span class="n">half_width</span><span class="si">}</span><span class="s2">  a* = </span><span class="si">{</span><span class="n">a</span><span class="p">[</span><span class="n">i_res</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">   E = </span><span class="si">{</span><span class="n">reported</span><span class="p">[</span><span class="n">i_res</span><span class="p">]</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">   &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">reported</span><span class="p">[</span><span class="n">i_res</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">E0</span><span class="si">:</span><span class="s2">+.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">7.0</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axhspan</span><span class="p">(</span><span class="o">-</span><span class="mf">3.5</span><span class="p">,</span> <span class="n">E0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;0.9&quot;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">variational</span><span class="p">,</span> <span class="s2">&quot;C0-&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;variational  $E(a)=\langle H\rangle/\langle 1\rangle$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">reported</span><span class="p">,</span> <span class="s2">&quot;C3-&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;residual-optimal  $E^*(a)$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">E0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.2</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+           <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s2">&quot;exact  $E_0 = </span><span class="si">{</span><span class="n">E0</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i_var</span><span class="p">],</span> <span class="n">variational</span><span class="p">[</span><span class="n">i_var</span><span class="p">],</span> <span class="s2">&quot;C0o&quot;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i_res</span><span class="p">],</span> <span class="n">reported</span><span class="p">[</span><span class="n">i_res</span><span class="p">],</span> <span class="s2">&quot;C3*&quot;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;variational minimum</span><span class="se">\n</span><span class="si">{</span><span class="n">variational</span><span class="p">[</span><span class="n">i_var</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i_var</span><span class="p">],</span> <span class="n">variational</span><span class="p">[</span><span class="n">i_var</span><span class="p">]),</span> <span class="n">textcoords</span><span class="o">=</span><span class="s2">&quot;offset points&quot;</span><span class="p">,</span>
+            <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C0&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;residual minimum</span><span class="se">\n</span><span class="si">{</span><span class="n">reported</span><span class="p">[</span><span class="n">i_res</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i_res</span><span class="p">],</span> <span class="n">reported</span><span class="p">[</span><span class="n">i_res</span><span class="p">]),</span> <span class="n">textcoords</span><span class="o">=</span><span class="s2">&quot;offset points&quot;</span><span class="p">,</span>
+            <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">88</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C3&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.45</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.3</span><span class="p">,</span> <span class="s2">&quot;no variational estimate may enter this band&quot;</span><span class="p">,</span>
+        <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;0.35&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">3.5</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Gaussian width parameter $a$  in  $\psi_a = e^{-ax^2/2}$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;energy reported by the objective&quot;</span><span class="p">)</span>
+<span class="n">twin</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
+<span class="n">twin</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">loss</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;0.55&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.6</span><span class="p">,</span>
+              <span class="n">label</span><span class="o">=</span><span class="s2">&quot;collocation residual $L(a)$&quot;</span><span class="p">)</span>
+<span class="n">twin</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;collocation residual $L(a)$ (log)&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;0.4&quot;</span><span class="p">)</span>
+<span class="n">twin</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s2">&quot;0.4&quot;</span><span class="p">)</span>
+<span class="n">handles</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_legend_handles_labels</span><span class="p">()</span>
+<span class="n">extra_handles</span><span class="p">,</span> <span class="n">extra_labels</span> <span class="o">=</span> <span class="n">twin</span><span class="o">.</span><span class="n">get_legend_handles_labels</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">handles</span> <span class="o">+</span> <span class="n">extra_handles</span><span class="p">,</span> <span class="n">labels</span> <span class="o">+</span> <span class="n">extra_labels</span><span class="p">,</span>
+          <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;lower right&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;The variational curve never dips below $E_0$; &quot;</span>
+             <span class="s2">&quot;the residual minimum does&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>exact          E_0 = 0.530181
+variational    a* = 1.4378   E = 0.540849   +0.010668
+residual, L=3.0  a* = 2.7840   E = -2.129089   -2.659270
+</pre></div>
+</div>
+<img alt="_images/87709bdc12a9e502e3fd25a1311a9ef35d3afa4127bbaecc91b197c1e72da330.png" src="_images/87709bdc12a9e502e3fd25a1311a9ef35d3afa4127bbaecc91b197c1e72da330.png" />
+</div>
+</div>
+<p>The blue curve touches the dashed line and turns back: that is the variational
+principle, and it holds at <em>every</em> <span class="math notranslate nohighlight">\(a\)</span>, not only at the minimum.  The red curve
+walks straight through it.  The dotted residual has a perfectly respectable
+minimum – a training curve would show it converging beautifully – and the
+energy sitting under that minimum is more than two units below the true ground
+state.</p>
+<p>The mechanism is visible in the local energy itself,
+<span class="math notranslate nohighlight">\(E_L(x) = a/2 - a^2x^2/2 + x^4/2\)</span>.  What the residual asks for is that <span class="math notranslate nohighlight">\(E_L\)</span> be
+as <em>flat</em> as possible across the box, in the unweighted least-squares sense, and
+narrowing the Gaussian buys flatness cheaply: a larger <span class="math notranslate nohighlight">\(a\)</span> deepens the middle
+term until it cancels the quartic over most of the interval.  That the resulting
+<span class="math notranslate nohighlight">\(\psi\)</span> has almost no amplitude where the cancellation is being arranged is
+invisible to the loss, and the unweighted mean of <span class="math notranslate nohighlight">\(E_L\)</span> has no reason to lie
+above <span class="math notranslate nohighlight">\(E_0\)</span>.  Nothing in the objective knows that the measure should have been
+<span class="math notranslate nohighlight">\(|\psi|^2\)</span>.</p>
+</section>
+<section id="the-amplitude-collapse">
+<h3><span class="section-number">19.6.2. </span>The amplitude collapse<a class="headerlink" href="#the-amplitude-collapse" title="Link to this heading">#</a></h3>
+<p>The other failure mode needs no optimiser at all.  The raw residual
+<span class="math notranslate nohighlight">\(\|(H-E)\psi\|^2\)</span> of an unnormalised trial function has a global minimum at
+<span class="math notranslate nohighlight">\(\psi = 0\)</span> for any <span class="math notranslate nohighlight">\(E\)</span> whatever, so a network can reduce its loss by orders of
+magnitude while changing nothing about the state it represents.  Here we simply
+multiply a fixed Gaussian by a constant <span class="math notranslate nohighlight">\(c\)</span> and recompute.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scales</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">5.0</span><span class="p">,</span> <span class="mi">41</span><span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">pinn</span><span class="o">.</span><span class="n">amplitude_collapse</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">scales</span><span class="p">])</span>
+<span class="n">residual</span><span class="p">,</span> <span class="n">apparent</span> <span class="o">=</span> <span class="n">out</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">out</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;amplitude </span><span class="si">{</span><span class="n">scales</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">8.1e</span><span class="si">}</span><span class="s2">: residual </span><span class="si">{</span><span class="n">residual</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.3e</span><span class="si">}</span><span class="s2">   &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;apparent E </span><span class="si">{</span><span class="n">apparent</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;amplitude </span><span class="si">{</span><span class="n">scales</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">8.1e</span><span class="si">}</span><span class="s2">: residual </span><span class="si">{</span><span class="n">residual</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.3e</span><span class="si">}</span><span class="s2">   &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;apparent E </span><span class="si">{</span><span class="n">apparent</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;the loss falls by </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">residual</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">residual</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> orders of &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;magnitude; the energy moves by </span><span class="si">{</span><span class="nb">abs</span><span class="p">(</span><span class="n">apparent</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">apparent</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="si">:</span><span class="s2">.1e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">7.0</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">scales</span><span class="p">,</span> <span class="n">residual</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">scales</span> <span class="o">/</span> <span class="n">scales</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;0.6&quot;</span><span class="p">,</span>
+          <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\propto c^</span><span class="si">{2}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">scales</span><span class="p">,</span> <span class="n">residual</span><span class="p">,</span> <span class="s2">&quot;C0o-&quot;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+          <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;raw residual  $\|(H-E)\psi\|^2$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;overall amplitude $c$ of $\psi = c\,e^{-ax^2/2}$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;unnormalised collocation residual&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">invert_xaxis</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">)</span>
+<span class="n">twin</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
+<span class="n">twin</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">scales</span><span class="p">,</span> <span class="n">apparent</span><span class="p">,</span> <span class="s2">&quot;C3s-&quot;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;apparent energy&quot;</span><span class="p">)</span>
+<span class="n">twin</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">E0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+             <span class="n">label</span><span class="o">=</span><span class="sa">fr</span><span class="s2">&quot;exact $E_0 = </span><span class="si">{</span><span class="n">E0</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="n">twin</span><span class="o">.</span><span class="n">set_xscale</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>
+<span class="n">twin</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="n">twin</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;apparent energy&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C3&quot;</span><span class="p">)</span>
+<span class="n">twin</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s2">&quot;C3&quot;</span><span class="p">)</span>
+<span class="n">handles</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_legend_handles_labels</span><span class="p">()</span>
+<span class="n">extra_handles</span><span class="p">,</span> <span class="n">extra_labels</span> <span class="o">=</span> <span class="n">twin</span><span class="o">.</span><span class="n">get_legend_handles_labels</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">handles</span> <span class="o">+</span> <span class="n">extra_handles</span><span class="p">,</span> <span class="n">labels</span> <span class="o">+</span> <span class="n">extra_labels</span><span class="p">,</span>
+          <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;lower left&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;An unnormalised residual collapses with the amplitude</span><span class="se">\n</span><span class="s2">&quot;</span>
+             <span class="s2">&quot;while the energy it reports never moves&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>amplitude  1.0e+00: residual 1.598e-02   apparent E 0.540844
+amplitude  1.0e-05: residual 1.598e-12   apparent E 0.540844
+the loss falls by 10 orders of magnitude; the energy moves by 3.3e-16
+</pre></div>
+</div>
+<img alt="_images/9d7122c498423ea175a576c3876610bc023c6d7590f14a0b6ad11d0e8e504a98.png" src="_images/9d7122c498423ea175a576c3876610bc023c6d7590f14a0b6ad11d0e8e504a98.png" />
+</div>
+</div>
+<p>Ten orders of magnitude in the loss, and not one digit of the energy.  The
+<span class="math notranslate nohighlight">\(c^2\)</span> guide line is exactly on top of the data, because that is all that is
+happening.  A loss curve is not a convergence diagnostic unless the quantity
+being minimised is invariant under the symmetries of the ansatz, and the
+overall scale of a wave function is the most trivial such symmetry there is.
+The energy quotient is invariant under it identically, which is the practical
+argument for making the energy the primary objective.</p>
+</section>
+<section id="where-backflow-can-move-a-node-and-where-it-cannot">
+<h3><span class="section-number">19.6.3. </span>Where backflow can move a node, and where it cannot<a class="headerlink" href="#where-backflow-can-move-a-node-and-where-it-cannot" title="Link to this heading">#</a></h3>
+<p>Finally the nodes.  We drag one electron of a three-electron configuration along
+a line, locate the first zero of the determinant, and watch that zero as the
+backflow strength is turned up from nothing,</p>
+<div class="math notranslate nohighlight">
+\[
+\boldsymbol\xi_i = \sum_{j\neq i}\eta(r_{ij})(\mathbf r_i - \mathbf r_j),
+\qquad \eta(r) = \eta_0\,e^{-r^2/w^2}.
+\]</div>
+<p>Two sets of orbitals are compared: three orbitals of different widths, and the
+degenerate set <span class="math notranslate nohighlight">\(\{1, x, y\}e^{-r^2/2}\)</span> whose common Gaussian factor leaves the
+node as the bare condition that the three effective positions be collinear.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">strengths</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">curves</span><span class="p">,</span> <span class="n">jastrow_drift</span> <span class="o">=</span> <span class="p">{},</span> <span class="mf">0.0</span>
+<span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">degenerate</span><span class="p">,</span> <span class="n">width</span> <span class="ow">in</span> <span class="p">(</span>
+        <span class="p">(</span><span class="s2">&quot;different widths, backflow range $w=2$&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;different widths, backflow range $w=1$&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;common Gaussian factor (collinear node)&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)):</span>
+    <span class="n">shifts</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">eta</span> <span class="ow">in</span> <span class="n">strengths</span><span class="p">:</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="n">pinn</span><span class="o">.</span><span class="n">backflow_moves_the_nodes</span><span class="p">(</span><span class="n">n_grid</span><span class="o">=</span><span class="mi">801</span><span class="p">,</span> <span class="n">strength</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">eta</span><span class="p">),</span>
+                                             <span class="n">width</span><span class="o">=</span><span class="n">width</span><span class="p">,</span> <span class="n">degenerate</span><span class="o">=</span><span class="n">degenerate</span><span class="p">)</span>
+        <span class="n">shifts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node</span><span class="p">[</span><span class="s2">&quot;backflow&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">node</span><span class="p">[</span><span class="s2">&quot;plain&quot;</span><span class="p">])</span>
+        <span class="n">jastrow_drift</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">jastrow_drift</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="n">node</span><span class="p">[</span><span class="s2">&quot;jastrow&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">node</span><span class="p">[</span><span class="s2">&quot;plain&quot;</span><span class="p">]))</span>
+    <span class="n">curves</span><span class="p">[</span><span class="n">label</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">shifts</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">label</span><span class="si">:</span><span class="s2">&lt;42s</span><span class="si">}</span><span class="s2"> largest shift </span><span class="si">{</span><span class="n">curves</span><span class="p">[</span><span class="n">label</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">+.5f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;largest shift produced by the Jastrow factor, anywhere: &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">jastrow_drift</span><span class="si">:</span><span class="s2">.1e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">7.0</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">))</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">shift</span><span class="p">),</span> <span class="n">style</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">curves</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="p">(</span><span class="s2">&quot;C0o-&quot;</span><span class="p">,</span> <span class="s2">&quot;C1s-&quot;</span><span class="p">,</span> <span class="s2">&quot;C3^-&quot;</span><span class="p">)):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">strengths</span><span class="p">,</span> <span class="n">shift</span><span class="p">,</span> <span class="n">style</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">strengths</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">strengths</span><span class="p">),</span> <span class="s2">&quot;k--&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.2</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="s2">&quot;any Jastrow factor, either orbital set&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;backflow strength $\eta_0$  in  $\eta(r)=\eta_0\,e^{-r^2/w^2}$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;displacement of the first node along the line&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Backflow moves a node that a Jastrow factor cannot,</span><span class="se">\n</span><span class="s2">&quot;</span>
+             <span class="s2">&quot;except where the node is collinearity&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;upper left&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>different widths, backflow range $w=2$     largest shift +0.07129
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>different widths, backflow range $w=1$     largest shift +0.01625
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>common Gaussian factor (collinear node)    largest shift +0.00000
+largest shift produced by the Jastrow factor, anywhere: 0.0e+00
+</pre></div>
+</div>
+<img alt="_images/a3a33d617958c39a76496ba472561ec3987df8747f903aacdd91968980809ae9.png" src="_images/a3a33d617958c39a76496ba472561ec3987df8747f903aacdd91968980809ae9.png" />
+</div>
+</div>
+<p>The dashed line is the Jastrow factor, and it is a dashed line by construction:
+a positive symmetric factor multiplies the determinant and cannot shift its
+zeros, so the displacement is zero to machine precision for every configuration
+we tried.  The blue and orange curves are backflow doing the one thing a Jastrow
+factor cannot, and doing more of it when its range <span class="math notranslate nohighlight">\(w\)</span> is comparable with the
+spacing of the particles.</p>
+<p>The red curve is the interesting one.  It lies exactly on zero, not
+approximately: with a common Gaussian factor the node <em>is</em> the collinearity of
+the three effective positions, at a collinear configuration every difference
+vector <span class="math notranslate nohighlight">\(\mathbf r_i - \mathbf r_j\)</span> already lies along the line, and a
+displacement assembled out of those vectors keeps all three points on it.  No
+<span class="math notranslate nohighlight">\(\eta_0\)</span>, no <span class="math notranslate nohighlight">\(w\)</span>, no amount of optimisation escapes it, because the restriction
+is in the functional form rather than in its parameters.  That is the concrete
+content of “limited expressivity”, and the reason the chapter replaces the
+pairwise sum by a learned map that decodes the displacement from an aggregate
+instead of assembling it from pair vectors.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="boltzmannmachines.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">18. </span>Boltzmann machines and generative models</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="quantumfourier.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">20. </span>The quantum Fourier transform and phase estimation</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#automatic-differentiation-done-by-hand">19.1. 1. Automatic differentiation, done by hand</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#does-a-pinn-respect-the-variational-principle">19.2. 2. Does a PINN respect the variational principle?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#and-without-normalisation-worse">19.2.1. And without normalisation, worse</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-ansatz-and-an-exact-reference">19.3. 3. The ansatz, and an exact reference</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#backflow">19.4. 4. Backflow</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-backflow-does-to-the-nodes-and-where-it-cannot">19.4.1. What backflow does to the nodes — and where it cannot</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-left">19.5. What is left</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#three-pictures">19.6. Three pictures</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-two-objectives-on-the-same-parameter-axis">19.6.1. The two objectives on the same parameter axis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-amplitude-collapse">19.6.2. The amplitude collapse</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#where-backflow-can-move-a-node-and-where-it-cannot">19.6.3. Where backflow can move a node, and where it cannot</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Morten Hjorth-Jensen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

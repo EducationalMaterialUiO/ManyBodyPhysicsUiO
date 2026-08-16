@@ -28,11 +28,11 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -50,7 +50,7 @@
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
@@ -214,6 +214,20 @@
 <li class="toctree-l1"><a class="reference internal" href="optimisation.html">15. Optimization and resampling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="diffusionmc.html">16. Diffusion Monte Carlo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="manybodymc.html">17. Applications to many-body systems: six electrons</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine learning approaches</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="boltzmannmachines.html">18. Boltzmann machines and generative models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pinns.html">19. Neural quantum states and physics-informed neural networks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum computing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="quantumfourier.html">20. The quantum Fourier transform and phase estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vqe.html">21. The variational quantum eigensolver</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Concluding remarks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="conclusions.html">22. Concluding remarks and perspectives</a></li>
 </ul>
 
     </div>
@@ -466,7 +480,7 @@ document.write(`
 <h1><span class="section-number">10. </span>Many-body perturbation theory<a class="headerlink" href="#many-body-perturbation-theory" title="Link to this heading">#</a></h1>
 <p>Companion notebook to Chapter 9 of <em>Quantum mechanics for many-particle
 systems</em>.  Every number quoted in the chapter is produced here; the code is
-the same as in <code class="docutils literal notranslate"><span class="pre">BookManybody/BookMaterial/Programs/mbpt.py</span></code>.</p>
+the same as in <code class="docutils literal notranslate"><span class="pre">BookManybody/BookPrograms/chapter09/mbpt.py</span></code>.</p>
 <p>Everything is done in the determinant basis of Chapter 5, where <span class="math notranslate nohighlight">\(\hat H_0\)</span> is
 diagonal and the perturbation is the rest of the matrix.  With
 <span class="math notranslate nohighlight">\(\hat R = \hat Q/(W_0-\hat H_0)\)</span> the Rayleigh-Schrödinger series follows from</p>
@@ -492,12 +506,17 @@ continues to any order.</p>
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span><span class="o">,</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;..&quot;</span><span class="p">,</span> <span class="s2">&quot;BookManybody&quot;</span><span class="p">,</span> <span class="s2">&quot;BookMaterial&quot;</span><span class="p">,</span> <span class="s2">&quot;Programs&quot;</span><span class="p">))</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">mbpt</span>
+<span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">glob</span>
+<span class="c1"># the chapter programs live in BookPrograms/chapterNN; put them all on the path</span>
+<span class="k">for</span> <span class="n">_d</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;..&quot;</span><span class="p">,</span> <span class="s2">&quot;BookManybody&quot;</span><span class="p">,</span>
+                                        <span class="s2">&quot;BookPrograms&quot;</span><span class="p">,</span> <span class="s2">&quot;chapter*&quot;</span><span class="p">))):</span>
+    <span class="k">if</span> <span class="n">_d</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">_d</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">mbpt</span>
 
 <span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
 </pre></div>
@@ -573,14 +592,14 @@ chapter 6: the mean field does nothing for this interaction.
 
      g      E_ref          +E2          +E3          FCI          CID       HF+RPA
   0.25    1.75000   1.73177083   1.73046875   1.73045985   1.73050700   1.71634735
-  0.50    1.50000   1.42708333   1.41666667   1.41677428   1.41759645   1.37450235
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1.00    1.00000   0.70833333   0.62500000   0.63554847   0.64890655   0.55458933
-  1.50    0.50000  -0.15625000  -0.43750000  -0.34819051  -0.29113175  -0.40624787
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0.50    1.50000   1.42708333   1.41666667   1.41677428   1.41759645   1.37450235
+  1.00    1.00000   0.70833333   0.62500000   0.63554847   0.64890655   0.55458933
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  2.00    0.00000  -1.16666667  -1.83333333  -1.48965216  -1.35208670  -1.47622319
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1.50    0.50000  -0.15625000  -0.43750000  -0.34819051  -0.29113175  -0.40624787
+  2.00    0.00000  -1.16666667  -1.83333333  -1.48965216  -1.35208670  -1.47622319
 
 Second order already recovers most of the correlation energy and
 third order improves on it, but the series is not variational:
@@ -594,8 +613,8 @@ contributions to all orders.
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">rpa</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">rpamod</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">fci</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">rpa</span> <span class="k">as</span> <span class="nn">rpamod</span>
+<span class="kn">import</span> <span class="nn">fci</span>
 
 <span class="n">gs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">2.2</span><span class="p">,</span> <span class="mi">22</span><span class="p">)</span>
 <span class="n">fock</span> <span class="o">=</span> <span class="n">rpamod</span><span class="o">.</span><span class="n">FockSpace</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
@@ -631,7 +650,7 @@ contributions to all orders.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/6599fe87c12e31a10b3cc2c32704f23673987a5be59c35a28d661c2de7b8f771.png" src="_images/6599fe87c12e31a10b3cc2c32704f23673987a5be59c35a28d661c2de7b8f771.png" />
+<img alt="_images/284535e134e38a4577b084134f5ce96415c93625d739806e84d2c01454e22e34.png" src="_images/284535e134e38a4577b084134f5ce96415c93625d739806e84d2c01454e22e34.png" />
 </div>
 </div>
 <p>The error panel is the interesting one.  At small <span class="math notranslate nohighlight">\(g\)</span> third-order perturbation
@@ -703,7 +722,7 @@ interaction deteriorate in chapter 5, seen from a third direction.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/822d63668e6676cfab5a08da6dfe8c5c15512ec1e3236595d00987b5e0533ad2.png" src="_images/822d63668e6676cfab5a08da6dfe8c5c15512ec1e3236595d00987b5e0533ad2.png" />
+<img alt="_images/e2a567042434ecbf0f35ad71a9f4eab065c08246168c0143ec5001dcbebef5f9.png" src="_images/e2a567042434ecbf0f35ad71a9f4eab065c08246168c0143ec5001dcbebef5f9.png" />
 </div>
 </div>
 <p>At <span class="math notranslate nohighlight">\(g=0.5\)</span> and <span class="math notranslate nohighlight">\(g=1\)</span> the terms fall away steadily.  At <span class="math notranslate nohighlight">\(g=2\)</span> they grow without
@@ -843,7 +862,7 @@ Wigner theory is not used for many-body problems.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/e0f65aabd02382617c0961cb5954e92e61b2bb7a05003bf4ed88cdf6ac02592b.png" src="_images/e0f65aabd02382617c0961cb5954e92e61b2bb7a05003bf4ed88cdf6ac02592b.png" />
+<img alt="_images/7574f65a91f911677bc52b366753e93702c1814b8bca8be56c5d6c5cb9e77eef.png" src="_images/7574f65a91f911677bc52b366753e93702c1814b8bca8be56c5d6c5cb9e77eef.png" />
 </div>
 </div>
 </section>
@@ -909,11 +928,15 @@ plane-wave determinant is the Hartree-Fock solution and the
 first-order energy is the Hartree shift U N_up N_dn / L.
 
    U/t      E_ref          +E2          +E3          +E4          FCI          CID
-   1.0   -6.50000  -6.60069444  -6.60069444  -6.60117251  -6.60115829  -6.59980159
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   1.0   -6.50000  -6.60069444  -6.60069444  -6.60117251  -6.60115829  -6.59980159
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   2.0   -5.00000  -5.40277778  -5.40277778  -5.41042685  -5.40945685  -5.38877703
-   4.0   -2.00000  -3.61111111  -3.61111111  -3.73349623  -3.66870618  -3.41192866
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   4.0   -2.00000  -3.61111111  -3.61111111  -3.73349623  -3.66870618  -3.41192866
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   8.0    4.00000  -2.44444444  -2.44444444  -4.40260631  -2.04813089  -0.36779217
@@ -1007,7 +1030,9 @@ choices of H_0 differ by a constant, which cancels in every
 energy denominator.
 
          model   spread of diag(V)
-       pairing            1.000000
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       pairing            1.000000
         Lipkin            0.000000
        Hubbard            0.000000
  pairing + p-h            2.000000
@@ -1018,7 +1043,9 @@ complete pair and the number of complete pairs differs from one
 determinant to the next.  There the two partitions do disagree:
 
     g      f   one-body: +E2          +E3     E-N: +E2          +E3          FCI
- 0.50   0.25      0.60208333   0.51930556   0.62435065   0.51885823   0.55119157
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 0.50   0.25      0.60208333   0.51930556   0.62435065   0.51885823   0.55119157
  1.00   0.50     -1.59166667  -2.25388889  -1.44791667  -2.25694444  -1.69173670
  1.50   0.75     -4.58125000  -6.81625000  -4.17225275  -6.82273352  -4.34336785
 
@@ -1055,11 +1082,11 @@ system every chapter has now treated.
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0.50    1.50000    1.427083    1.416667    1.417596    1.374502    1.416774
-  1.00    1.00000    0.708333    0.625000    0.648907    0.554589    0.635548
-  1.50    0.50000   -0.156250   -0.437500   -0.291132   -0.406248   -0.348191
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  2.00    0.00000   -1.166667   -1.833333   -1.352087   -1.476223   -1.489652
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1.00    1.00000    0.708333    0.625000    0.648907    0.554589    0.635548
+  1.50    0.50000   -0.156250   -0.437500   -0.291132   -0.406248   -0.348191
+  2.00    0.00000   -1.166667   -1.833333   -1.352087   -1.476223   -1.489652
 
 The same table as errors, which is where the interest lies:
      g       MBPT2       MBPT3         CID      HF+RPA
@@ -1086,7 +1113,7 @@ answer, and it alone degrades gracefully.
 </section>
 <section id="the-full-program">
 <h2><span class="section-number">10.11. </span>The full program<a class="headerlink" href="#the-full-program" title="Link to this heading">#</a></h2>
-<p>Everything above lives in <code class="docutils literal notranslate"><span class="pre">BookManybody/BookMaterial/Programs/mbpt.py</span></code>, which
+<p>Everything above lives in <code class="docutils literal notranslate"><span class="pre">BookManybody/BookPrograms/chapter09/mbpt.py</span></code>, which
 runs as a script and prints all ten demonstrations of the chapter.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
