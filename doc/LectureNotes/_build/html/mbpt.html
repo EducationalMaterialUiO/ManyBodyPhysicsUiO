@@ -1,0 +1,798 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>6. Many-body perturbation theory &#8212; Quantum Mechanics for Many-Particle Systems; from standard methods to quantum computing and machine learning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'mbpt';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="7. The Coupled Cluster Method" href="cc.html" />
+    <link rel="prev" title="4. Hartree-Fock theory" href="hfock.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Quantum Mechanics for Many-Particle Systems; from standard methods to quantum computing and machine learning - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Quantum Mechanics for Many-Particle Systems; from standard methods to quantum computing and machine learning - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Quantum mechanics for many-particle systems
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">About the course</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="teachers.html">Instructor information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="textbooks.html">Textbooks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Basics of Many-Body Physics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="notation.html">1. Introduction to many-body physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="secondquant.html">2. Introduction to  second quantization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fci.html">3. Full configuration interaction theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hfock.html">4. Hartree-Fock theory</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Post Hartree-Fock Methods</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">6. Many-body perturbation theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cc.html">7. The Coupled Cluster Method</a></li>
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/mbpt.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/mbpt.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Many-body perturbation theory</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">6.1. Many-body perturbation theory</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-the-correlation-energy-and-the-wave-operator">6.2. Interpreting the correlation energy and the wave operator</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <!-- HTML file automatically generated from DocOnce source (https://github.com/doconce/doconce/)
+doconce format html mbpt.do.txt  --><section class="tex2jax_ignore mathjax_ignore" id="many-body-perturbation-theory">
+<h1><span class="section-number">6. </span>Many-body perturbation theory<a class="headerlink" href="#many-body-perturbation-theory" title="Link to this heading">#</a></h1>
+<section id="id1">
+<h2><span class="section-number">6.1. </span>Many-body perturbation theory<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>We assume here that we are only interested in the ground state of the system and
+expand the exact wave function in term of a series of Slater determinants</p>
+<div class="math notranslate nohighlight">
+\[
+\vert \Psi_0\rangle = \vert \Phi_0\rangle + \sum_{m=1}^{\infty}C_m\vert \Phi_m\rangle,
+\]</div>
+<p>where we have assumed that the true ground state is dominated by the
+solution of the unperturbed problem, that is</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{H}_0\vert \Phi_0\rangle= W_0\vert \Phi_0\rangle.
+\]</div>
+<p>The state <span class="math notranslate nohighlight">\(\vert \Psi_0\rangle\)</span> is not normalized, rather we have used an intermediate
+normalization <span class="math notranslate nohighlight">\(\langle \Phi_0 \vert \Psi_0\rangle=1\)</span> since we have <span class="math notranslate nohighlight">\(\langle \Phi_0\vert \Phi_0\rangle=1\)</span>.</p>
+<p>The Schroedinger equation is</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{H}\vert \Psi_0\rangle = E\vert \Psi_0\rangle,
+\]</div>
+<p>and multiplying the latter from the left with <span class="math notranslate nohighlight">\(\langle \Phi_0\vert \)</span> gives</p>
+<div class="math notranslate nohighlight">
+\[
+\langle \Phi_0\vert \hat{H}\vert \Psi_0\rangle = E\langle \Phi_0\vert \Psi_0\rangle=E,
+\]</div>
+<p>and subtracting from this equation</p>
+<div class="math notranslate nohighlight">
+\[
+\langle \Psi_0\vert \hat{H}_0\vert \Phi_0\rangle= W_0\langle \Psi_0\vert \Phi_0\rangle=W_0,
+\]</div>
+<p>and using the fact that the both operators <span class="math notranslate nohighlight">\(\hat{H}\)</span> and <span class="math notranslate nohighlight">\(\hat{H}_0\)</span> are hermitian
+results in</p>
+<div class="math notranslate nohighlight">
+\[
+\Delta E=E-W_0=\langle \Phi_0\vert \hat{H}_I\vert \Psi_0\rangle,
+\]</div>
+<p>which is an exact result. We call this quantity the correlation energy.</p>
+<p>This equation forms the starting point for all perturbative derivations. However,
+as it stands it represents nothing but a mere formal rewriting of Schroedinger’s equation and is not of much practical use. The exact wave function <span class="math notranslate nohighlight">\(\vert \Psi_0\rangle\)</span> is unknown. In order to obtain a perturbative expansion, we need to expand the exact wave function in terms of the interaction <span class="math notranslate nohighlight">\(\hat{H}_I\)</span>.</p>
+<p>Here we have assumed that our model space defined by the operator <span class="math notranslate nohighlight">\(\hat{P}\)</span> is one-dimensional, meaning that</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{P}= \vert \Phi_0\rangle \langle \Phi_0\vert ,
+\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{Q}=\sum_{m=1}^{\infty}\vert \Phi_m\rangle \langle \Phi_m\vert .
+\]</div>
+<p>We can thus rewrite the exact wave function as</p>
+<div class="math notranslate nohighlight">
+\[
+\vert \Psi_0\rangle= (\hat{P}+\hat{Q})\vert \Psi_0\rangle=\vert \Phi_0\rangle+\hat{Q}\vert \Psi_0\rangle.
+\]</div>
+<p>Going back to the Schr”odinger equation, we can rewrite it as, adding and a subtracting a term <span class="math notranslate nohighlight">\(\omega \vert \Psi_0\rangle\)</span> as</p>
+<div class="math notranslate nohighlight">
+\[
+\left(\omega-\hat{H}_0\right)\vert \Psi_0\rangle=\left(\omega-E+\hat{H}_I\right)\vert \Psi_0\rangle,
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\omega\)</span> is an energy variable to be specified later.</p>
+<p>We assume also that the resolvent of <span class="math notranslate nohighlight">\(\left(\omega-\hat{H}_0\right)\)</span> exits, that is
+it has an inverse which defined the unperturbed Green’s function as</p>
+<div class="math notranslate nohighlight">
+\[
+\left(\omega-\hat{H}_0\right)^{-1}=\frac{1}{\left(\omega-\hat{H}_0\right)}.
+\]</div>
+<p>We can rewrite Schroedinger’s equation as</p>
+<div class="math notranslate nohighlight">
+\[
+\vert \Psi_0\rangle=\frac{1}{\omega-\hat{H}_0}\left(\omega-E+\hat{H}_I\right)\vert \Psi_0\rangle,
+\]</div>
+<p>and multiplying from the left with <span class="math notranslate nohighlight">\(\hat{Q}\)</span> results in</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{Q}\vert \Psi_0\rangle=\frac{\hat{Q}}{\omega-\hat{H}_0}\left(\omega-E+\hat{H}_I\right)\vert \Psi_0\rangle,
+\]</div>
+<p>which is possible since we have defined the operator <span class="math notranslate nohighlight">\(\hat{Q}\)</span> in terms of the eigenfunctions of <span class="math notranslate nohighlight">\(\hat{H}\)</span>.</p>
+<p>These operators commute meaning that</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{Q}\frac{1}{\left(\omega-\hat{H}_0\right)}\hat{Q}=\hat{Q}\frac{1}{\left(\omega-\hat{H}_0\right)}=\frac{\hat{Q}}{\left(\omega-\hat{H}_0\right)}.
+\]</div>
+<p>With these definitions we can in turn define the wave function as</p>
+<div class="math notranslate nohighlight">
+\[
+\vert \Psi_0\rangle=\vert \Phi_0\rangle+\frac{\hat{Q}}{\omega-\hat{H}_0}\left(\omega-E+\hat{H}_I\right)\vert \Psi_0\rangle.
+\]</div>
+<p>This equation is again nothing but a formal rewrite of Schr”odinger’s equation
+and does not represent a practical calculational scheme.<br />
+It is a non-linear equation in two unknown quantities, the energy <span class="math notranslate nohighlight">\(E\)</span> and the exact
+wave function <span class="math notranslate nohighlight">\(\vert \Psi_0\rangle\)</span>. We can however start with a guess for <span class="math notranslate nohighlight">\(\vert \Psi_0\rangle\)</span> on the right hand side of the last equation.</p>
+<p>The most common choice is to start with the function which is expected to exhibit the largest overlap with the wave function we are searching after, namely <span class="math notranslate nohighlight">\(\vert \Phi_0\rangle\)</span>. This can again be inserted in the solution for <span class="math notranslate nohighlight">\(\vert \Psi_0\rangle\)</span> in an iterative fashion and if we continue along these lines we end up with</p>
+<div class="math notranslate nohighlight">
+\[
+\vert \Psi_0\rangle=\sum_{i=0}^{\infty}\left\{\frac{\hat{Q}}{\omega-\hat{H}_0}\left(\omega-E+\hat{H}_I\right)\right\}^i\vert \Phi_0\rangle,
+\]</div>
+<p>for the wave function and</p>
+<div class="math notranslate nohighlight">
+\[
+\Delta E=\sum_{i=0}^{\infty}\langle \Phi_0\vert \hat{H}_I\left\{\frac{\hat{Q}}{\omega-\hat{H}_0}\left(\omega-E+\hat{H}_I\right)\right\}^i\vert \Phi_0\rangle,
+\]</div>
+<p>which is now  a perturbative expansion of the exact energy in terms of the interaction
+<span class="math notranslate nohighlight">\(\hat{H}_I\)</span> and the unperturbed wave function <span class="math notranslate nohighlight">\(\vert \Psi_0\rangle\)</span>.</p>
+<p>In our equations for <span class="math notranslate nohighlight">\(\vert \Psi_0\rangle\)</span> and <span class="math notranslate nohighlight">\(\Delta E\)</span> in terms of the unperturbed
+solutions <span class="math notranslate nohighlight">\(\vert \Phi_i\rangle\)</span>  we have still an undetermined parameter <span class="math notranslate nohighlight">\(\omega\)</span>
+and a dependecy on the exact energy <span class="math notranslate nohighlight">\(E\)</span>. Not much has been gained thus from a practical computational point of view.</p>
+<p>In Brilluoin-Wigner perturbation theory it is customary to set <span class="math notranslate nohighlight">\(\omega=E\)</span>. This results in the following perturbative expansion for the energy <span class="math notranslate nohighlight">\(\Delta E\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+\Delta E=\sum_{i=0}^{\infty}\langle \Phi_0\vert \hat{H}_I\left\{\frac{\hat{Q}}{\omega-\hat{H}_0}\left(\omega-E+\hat{H}_I\right)\right\}^i\vert \Phi_0\rangle=
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\langle \Phi_0\vert \left(\hat{H}_I+\hat{H}_I\frac{\hat{Q}}{E-\hat{H}_0}\hat{H}_I+
+\hat{H}_I\frac{\hat{Q}}{E-\hat{H}_0}\hat{H}_I\frac{\hat{Q}}{E-\hat{H}_0}\hat{H}_I+\dots\right)\vert \Phi_0\rangle.
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\Delta E=\sum_{i=0}^{\infty}\langle \Phi_0\vert \hat{H}_I\left\{\frac{\hat{Q}}{\omega-\hat{H}_0}\left(\omega-E+\hat{H}_I\right)\right\}^i\vert \Phi_0\rangle=
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\langle \Phi_0\vert \left(\hat{H}_I+\hat{H}_I\frac{\hat{Q}}{E-\hat{H}_0}\hat{H}_I+
+\hat{H}_I\frac{\hat{Q}}{E-\hat{H}_0}\hat{H}_I\frac{\hat{Q}}{E-\hat{H}_0}\hat{H}_I+\dots\right)\vert \Phi_0\rangle.
+\]</div>
+<p>This expression depends however on the exact energy <span class="math notranslate nohighlight">\(E\)</span> and is again not very convenient from a practical point of view. It can obviously be solved iteratively, by starting with a guess for  <span class="math notranslate nohighlight">\(E\)</span> and then solve till some kind of self-consistency criterion has been reached.</p>
+<p>Actually, the above expression is nothing but a rewrite again of the full Schr”odinger equation.</p>
+<p>Defining <span class="math notranslate nohighlight">\(e=E-\hat{H}_0\)</span> and recalling that <span class="math notranslate nohighlight">\(\hat{H}_0\)</span> commutes with
+<span class="math notranslate nohighlight">\(\hat{Q}\)</span> by construction and that <span class="math notranslate nohighlight">\(\hat{Q}\)</span> is an idempotent operator
+<span class="math notranslate nohighlight">\(\hat{Q}^2=\hat{Q}\)</span>.
+Using this equation in the above expansion for <span class="math notranslate nohighlight">\(\Delta E\)</span> we can write the denominator</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{Q}\frac{1}{\hat{e}-\hat{Q}\hat{H}_I\hat{Q}}=
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\hat{Q}\left[\frac{1}{\hat{e}}+\frac{1}{\hat{e}}\hat{Q}\hat{H}_I\hat{Q}
+\frac{1}{\hat{e}}+\frac{1}{\hat{e}}\hat{Q}\hat{H}_I\hat{Q}
+\frac{1}{\hat{e}}\hat{Q}\hat{H}_I\hat{Q}\frac{1}{\hat{e}}+\dots\right]\hat{Q}.
+\]</div>
+<p>Inserted in the expression for <span class="math notranslate nohighlight">\(\Delta E\)</span> leads to</p>
+<div class="math notranslate nohighlight">
+\[
+\Delta E=
+\langle \Phi_0\vert \hat{H}_I+\hat{H}_I\hat{Q}\frac{1}{E-\hat{H}_0-\hat{Q}\hat{H}_I\hat{Q}}\hat{Q}\hat{H}_I\vert \Phi_0\rangle.
+\]</div>
+<p>In RS perturbation theory we set <span class="math notranslate nohighlight">\(\omega = W_0\)</span> and obtain the following expression for the energy difference</p>
+<div class="math notranslate nohighlight">
+\[
+\Delta E=\sum_{i=0}^{\infty}\langle \Phi_0\vert \hat{H}_I\left\{\frac{\hat{Q}}{W_0-\hat{H}_0}\left(\hat{H}_I-\Delta E\right)\right\}^i\vert \Phi_0\rangle=
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\langle \Phi_0\vert \left(\hat{H}_I+\hat{H}_I\frac{\hat{Q}}{W_0-\hat{H}_0}(\hat{H}_I-\Delta E)+
+\hat{H}_I\frac{\hat{Q}}{W_0-\hat{H}_0}(\hat{H}_I-\Delta E)\frac{\hat{Q}}{W_0-\hat{H}_0}(\hat{H}_I-\Delta E)+\dots\right)\vert \Phi_0\rangle.
+\]</div>
+<p>Recalling that <span class="math notranslate nohighlight">\(\hat{Q}\)</span> commutes with <span class="math notranslate nohighlight">\(\hat{H_0}\)</span> and since <span class="math notranslate nohighlight">\(\Delta E\)</span> is a constant we obtain that</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{Q}\Delta E\vert \Phi_0\rangle = \hat{Q}\Delta E\vert \hat{Q}\Phi_0\rangle = 0.
+\]</div>
+<p>Inserting this results in the expression for the energy results in</p>
+<div class="math notranslate nohighlight">
+\[
+\Delta E=\langle \Phi_0\vert \left(\hat{H}_I+\hat{H}_I\frac{\hat{Q}}{W_0-\hat{H}_0}\hat{H}_I+
+\hat{H}_I\frac{\hat{Q}}{W_0-\hat{H}_0}(\hat{H}_I-\Delta E)\frac{\hat{Q}}{W_0-\hat{H}_0}\hat{H}_I+\dots\right)\vert \Phi_0\rangle.
+\]</div>
+<p>We can now this expression in terms of a perturbative expression in terms
+of <span class="math notranslate nohighlight">\(\hat{H}_I\)</span> where we iterate the last expression in terms of <span class="math notranslate nohighlight">\(\Delta E\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+\Delta E=\sum_{i=1}^{\infty}\Delta E^{(i)}.
+\]</div>
+<p>We get the following expression for <span class="math notranslate nohighlight">\(\Delta E^{(i)}\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+\Delta E^{(1)}=\langle \Phi_0\vert \hat{H}_I\vert \Phi_0\rangle,
+\]</div>
+<p>which is just the contribution to first order in perturbation theory,</p>
+<div class="math notranslate nohighlight">
+\[
+\Delta E^{(2)}=\langle\Phi_0\vert \hat{H}_I\frac{\hat{Q}}{W_0-\hat{H}_0}\hat{H}_I\vert \Phi_0\rangle,
+\]</div>
+<p>which is the contribution to second order.</p>
+<div class="math notranslate nohighlight">
+\[
+\Delta E^{(3)}=\langle \Phi_0\vert \hat{H}_I\frac{\hat{Q}}{W_0-\hat{H}_0}\hat{H}_I\frac{\hat{Q}}{W_0-\hat{H}_0}\hat{H}_I\Phi_0\rangle-
+\langle\Phi_0\vert \hat{H}_I\frac{\hat{Q}}{W_0-\hat{H}_0}\langle \Phi_0\vert \hat{H}_I\vert \Phi_0\rangle\frac{\hat{Q}}{W_0-\hat{H}_0}\hat{H}_I\vert \Phi_0\rangle,
+\]</div>
+<p>being the third-order contribution.</p>
+</section>
+<section id="interpreting-the-correlation-energy-and-the-wave-operator">
+<h2><span class="section-number">6.2. </span>Interpreting the correlation energy and the wave operator<a class="headerlink" href="#interpreting-the-correlation-energy-and-the-wave-operator" title="Link to this heading">#</a></h2>
+<p>In the shell-model lectures we showed that we could rewrite the exact state function for say the ground state, as a linear expansion in terms of all possible Slater determinants. That is, we
+define the ansatz for the ground state as</p>
+<div class="math notranslate nohighlight">
+\[
+|\Phi_0\rangle = \left(\prod_{i\le F}\hat{a}_{i}^{\dagger}\right)|0\rangle,
+\]</div>
+<p>where the index <span class="math notranslate nohighlight">\(i\)</span> defines different single-particle states up to the Fermi level. We have assumed that we have <span class="math notranslate nohighlight">\(N\)</span> fermions.
+A given one-particle-one-hole (<span class="math notranslate nohighlight">\(1p1h\)</span>) state can be written as</p>
+<div class="math notranslate nohighlight">
+\[
+|\Phi_i^a\rangle = \hat{a}_{a}^{\dagger}\hat{a}_i|\Phi_0\rangle,
+\]</div>
+<p>while a <span class="math notranslate nohighlight">\(2p2h\)</span> state can be written as</p>
+<div class="math notranslate nohighlight">
+\[
+|\Phi_{ij}^{ab}\rangle = \hat{a}_{a}^{\dagger}\hat{a}_{b}^{\dagger}\hat{a}_j\hat{a}_i|\Phi_0\rangle,
+\]</div>
+<p>and a general <span class="math notranslate nohighlight">\(ApAh\)</span> state as</p>
+<div class="math notranslate nohighlight">
+\[
+|\Phi_{ijk\dots}^{abc\dots}\rangle = \hat{a}_{a}^{\dagger}\hat{a}_{b}^{\dagger}\hat{a}_{c}^{\dagger}\dots\hat{a}_k\hat{a}_j\hat{a}_i|\Phi_0\rangle.
+\]</div>
+<p>We use letters <span class="math notranslate nohighlight">\(ijkl\dots\)</span> for states below the Fermi level and <span class="math notranslate nohighlight">\(abcd\dots\)</span> for states above the Fermi level. A general single-particle state is given by letters <span class="math notranslate nohighlight">\(pqrs\dots\)</span>.</p>
+<p>We can then expand our exact state function for the ground state
+as</p>
+<div class="math notranslate nohighlight">
+\[
+|\Psi_0\rangle=C_0|\Phi_0\rangle+\sum_{ai}C_i^a|\Phi_i^a\rangle+\sum_{abij}C_{ij}^{ab}|\Phi_{ij}^{ab}\rangle+\dots
+=(C_0+\hat{C})|\Phi_0\rangle,
+\]</div>
+<p>where we have introduced the so-called correlation operator</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{C}=\sum_{ai}C_i^a\hat{a}_{a}^{\dagger}\hat{a}_i  +\sum_{abij}C_{ij}^{ab}\hat{a}_{a}^{\dagger}\hat{a}_{b}^{\dagger}\hat{a}_j\hat{a}_i+\dots
+\]</div>
+<p>Since the normalization of <span class="math notranslate nohighlight">\(\Psi_0\)</span> is at our disposal and since <span class="math notranslate nohighlight">\(C_0\)</span> is by hypothesis non-zero, we may arbitrarily set <span class="math notranslate nohighlight">\(C_0=1\)</span> with
+corresponding proportional changes in all other coefficients. Using this so-called intermediate normalization we have</p>
+<div class="math notranslate nohighlight">
+\[
+\langle \Psi_0 | \Phi_0 \rangle = \langle \Phi_0 | \Phi_0 \rangle = 1,
+\]</div>
+<p>resulting in</p>
+<div class="math notranslate nohighlight">
+\[
+|\Psi_0\rangle=(1+\hat{C})|\Phi_0\rangle.
+\]</div>
+<p>In a shell-model calculation, the unknown coefficients in <span class="math notranslate nohighlight">\(\hat{C}\)</span> are the
+eigenvectors which result from the diagonalization of the Hamiltonian matrix.</p>
+<p>How can we use perturbation theory to determine the same coefficients? Let us study the contributions to second order in the interaction, namely</p>
+<div class="math notranslate nohighlight">
+\[
+\Delta E^{(2)}=\langle\Phi_0\vert \hat{H}_I\frac{\hat{Q}}{W_0-\hat{H}_0}\hat{H}_I\vert \Phi_0\rangle.
+\]</div>
+<p>The intermediate states given by <span class="math notranslate nohighlight">\(\hat{Q}\)</span> can at most be of a <span class="math notranslate nohighlight">\(2p-2h\)</span> nature if we have a two-body Hamiltonian. This means that second order in the perturbation theory can have <span class="math notranslate nohighlight">\(1p-1h\)</span> and <span class="math notranslate nohighlight">\(2p-2h\)</span> at most as intermediate states. When we diagonalize, these contributions are included to infinite order. This means that higher-orders in perturbation theory bring in more complicated correlations.</p>
+<p>If we limit the attention to a Hartree-Fock basis, then we have that
+<span class="math notranslate nohighlight">\(\langle\Phi_0\vert \hat{H}_I \vert 2p-2h\rangle\)</span> is the only contribution and the contribution to the energy reduces to</p>
+<div class="math notranslate nohighlight">
+\[
+\Delta E^{(2)}=\frac{1}{4}\sum_{abij}\langle ij\vert \hat{v}\vert ab\rangle \frac{\langle ab\vert \hat{v}\vert ij\rangle}{\epsilon_i+\epsilon_j-\epsilon_a-\epsilon_b}.
+\]</div>
+<p>If we compare this to the correlation energy obtained from full configuration interaction theory with a Hartree-Fock basis, we found that</p>
+<div class="math notranslate nohighlight">
+\[
+E-E_0 =\Delta E=
+\sum_{abij}\langle ij | \hat{v}| ab \rangle C_{ij}^{ab},
+\]</div>
+<p>where the energy <span class="math notranslate nohighlight">\(E_0\)</span> is the reference energy and <span class="math notranslate nohighlight">\(\Delta E\)</span> defines the so-called correlation energy.</p>
+<p>We see that if we set</p>
+<div class="math notranslate nohighlight">
+\[
+C_{ij}^{ab} =\frac{1}{4}\frac{\langle ab \vert \hat{v} \vert ij \rangle}{\epsilon_i+\epsilon_j-\epsilon_a-\epsilon_b},
+\]</div>
+<p>we have a perfect agreement between FCI and MBPT. However, FCI includes such <span class="math notranslate nohighlight">\(2p-2h\)</span> correlations to infinite order. In order to make a meaningful comparison we would at least need to sum such correlations to infinite order in perturbation theory.</p>
+<p>Summing up, we can see that</p>
+<ul class="simple">
+<li><p>MBPT introduces order-by-order specific correlations and we make comparisons with exact calculations like FCI</p></li>
+<li><p>At every order, we can calculate all contributions since they are well-known and either tabulated or calculated on the fly.</p></li>
+<li><p>MBPT is a non-variational theory and there is no guarantee that higher orders will improve the convergence.</p></li>
+<li><p>However, since FCI calculations are limited by the size of the Hamiltonian matrices to diagonalize (today’s most efficient codes can attach dimensionalities of ten billion basis states, MBPT can function as an approximative method which gives a straightforward (but tedious) calculation recipe.</p></li>
+<li><p>MBPT has been widely used to compute effective interactions for the nuclear shell-model.</p></li>
+<li><p>But there are better methods which sum to infinite order important correlations. Coupled cluster theory is one of these methods.</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="hfock.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Hartree-Fock theory</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="cc.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">7. </span>The Coupled Cluster Method</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">6.1. Many-body perturbation theory</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-the-correlation-energy-and-the-wave-operator">6.2. Interpreting the correlation energy and the wave operator</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Morten Hjorth-Jensen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

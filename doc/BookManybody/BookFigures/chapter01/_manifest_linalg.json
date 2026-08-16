@@ -1,0 +1,159 @@
+[
+ {
+  "base": "linalg_fig01",
+  "cell": 12,
+  "size": [
+   7.0,
+   4.2
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "Convergence for the discretised second derivative, n = 30",
+    "xlabel": "iteration",
+    "ylabel": "$\\|b - Ax\\|_2$",
+    "xscale": "linear",
+    "yscale": "log",
+    "nlines": 4,
+    "labels": [
+     "Jacobi",
+     "Gauss-Seidel",
+     "SOR, omega=1.8",
+     "Conjugate gradient"
+    ],
+    "legend": [
+     "Jacobi",
+     "Gauss-Seidel",
+     "SOR, omega=1.8",
+     "Conjugate gradient"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "linalg_fig02",
+  "cell": 22,
+  "size": [
+   7.0,
+   4.2
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "Lanczos convergence, pairing model of dimension 924",
+    "xlabel": "number of Lanczos steps $m$",
+    "ylabel": "error in the ground-state energy",
+    "xscale": "linear",
+    "yscale": "log",
+    "nlines": 1,
+    "labels": []
+   }
+  ]
+ },
+ {
+  "base": "linalg_fig03",
+  "cell": 29,
+  "size": [
+   7.0,
+   4.2
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "Harmonic oscillator eigenfunctions from diagonalisation",
+    "xlabel": "$x$",
+    "ylabel": "$u(x)$",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 4,
+    "labels": [
+     "$u_0$,  $2E=0.9998$",
+     "$u_1$,  $2E=2.9992$",
+     "$u_2$,  $2E=4.9980$",
+     "exact $u_0=\\pi^{-1/4}e^{-x^2/2}$"
+    ],
+    "legend": [
+     "$u_0$,  $2E=0.9998$",
+     "$u_1$,  $2E=2.9992$",
+     "$u_2$,  $2E=4.9980$",
+     "exact $u_0=\\pi^{-1/4}e^{-x^2/2}$"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "linalg_fig04",
+  "cell": 40,
+  "size": [
+   7.0,
+   4.2
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "Schmidt spectrum of the pairing-model ground state across a cut",
+    "xlabel": "Schmidt index $k$",
+    "ylabel": "$\\sigma_k^2$",
+    "xscale": "linear",
+    "yscale": "log",
+    "nlines": 1,
+    "labels": []
+   }
+  ]
+ },
+ {
+  "base": "linalg_fig05",
+  "cell": 43,
+  "size": [
+   7.0,
+   4.2
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "Natural orbitals of two interacting particles in a trap, $g=5$",
+    "xlabel": "$x$",
+    "ylabel": "$\\chi_k(x)$",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 3,
+    "labels": [
+     "$\\chi_0$,  $n_0=0.8218$",
+     "$\\chi_1$,  $n_1=0.1681$",
+     "$\\chi_2$,  $n_2=0.0101$"
+    ],
+    "legend": [
+     "$\\chi_0$,  $n_0=0.8218$",
+     "$\\chi_1$,  $n_1=0.1681$",
+     "$\\chi_2$,  $n_2=0.0101$"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "linalg_fig06",
+  "cell": 46,
+  "size": [
+   7.0,
+   4.2
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "Eigenvalues of the two-body matrix in the pair index",
+    "xlabel": "$\\gamma$",
+    "ylabel": "$\\lambda_\\gamma$",
+    "xscale": "linear",
+    "yscale": "log",
+    "nlines": 1,
+    "labels": []
+   }
+  ]
+ }
+]

@@ -1,0 +1,89 @@
+# Jupyter Book configuration for the executable companion to
+# *Quantum Mechanics for Many-Particle Systems*.
+#
+# Build with
+#     jupyter-book build .
+# and open _build/html/index.html.  The first build executes every notebook
+# and caches the results in _build/.jupyter_cache, so later builds are fast;
+# use `jupyter-book build --all .` to force a full re-execution.
+
+#######################################################################################
+# Book settings
+title: >-
+  Quantum Mechanics for Many-Particle Systems: from standard methods to
+  quantum computing and machine learning
+author: Morten Hjorth-Jensen
+copyright: "2026"
+logo: logo.png
+only_build_toc_files: true
+
+#######################################################################################
+# Execution settings
+execute:
+  execute_notebooks: cache   # run once, then reuse the cached outputs
+  cache: ""                  # defaults to _build/.jupyter_cache
+  timeout: 900               # seconds per cell; quantumdots.ipynb needs minutes
+  allow_errors: false        # a failing cell should fail the build
+  stderr_output: show
+  run_in_temp: false         # notebooks resolve ../BookManybody/... relatively
+  exclude_patterns: []
+
+#######################################################################################
+# Parse and render settings
+parse:
+  myst_enable_extensions:
+    - amsmath                # \begin{align} etc. in markdown cells
+    - dollarmath             # $...$ and $$...$$
+    - colon_fence
+    - deflist
+    - linkify
+    - substitution
+  myst_url_schemes: [mailto, http, https]
+  myst_dmath_double_inline: true
+
+#######################################################################################
+# HTML-specific settings
+html:
+  favicon: ""
+  home_page_in_navbar: true
+  use_edit_page_button: false
+  use_repository_button: true
+  use_issues_button: true
+  baseurl: ""
+  extra_navbar: Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+  extra_footer: ""
+  comments:
+    hypothesis: false
+    utterances: false
+
+#######################################################################################
+# LaTeX-specific settings
+latex:
+  latex_engine: pdflatex
+  latex_documents:
+    targetname: lecturenotes.tex
+
+#######################################################################################
+# Bibliography
+bibtex_bibfiles:
+  - references.bib
+
+#######################################################################################
+# Launch button settings
+launch_buttons:
+  notebook_interface: jupyterlab
+  binderhub_url: https://mybinder.org
+  thebe: false
+
+#######################################################################################
+# Repository
+repository:
+  url: https://github.com/ManyBodyPhysics/FYS4480
+  path_to_book: doc/LectureNotes
+  branch: master
+
+#######################################################################################
+# Sphinx
+sphinx:
+  config:
+    html_show_copyright: true

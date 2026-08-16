@@ -1,0 +1,70 @@
+[
+ {
+  "base": "dmc_fig01",
+  "cell": 8,
+  "size": [
+   11.0,
+   3.6
+  ],
+  "npanels": 2,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "",
+    "xlabel": "step",
+    "ylabel": "$\\langle E_L\\rangle$ over the population",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 2,
+    "labels": [
+     "exact"
+    ],
+    "legend": [
+     "exact"
+    ]
+   },
+   {
+    "title": "",
+    "xlabel": "step",
+    "ylabel": "number of walkers",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 2,
+    "labels": [
+     "target"
+    ],
+    "legend": [
+     "target"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "dmc_fig02",
+  "cell": 12,
+  "size": [
+   7.0,
+   4.2
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "",
+    "xlabel": "$\\Delta\\tau$",
+    "ylabel": "energy",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 9,
+    "labels": [
+     "exact"
+    ],
+    "legend": [
+     "exact",
+     "plain dt",
+     "dt_eff"
+    ]
+   }
+  ]
+ }
+]

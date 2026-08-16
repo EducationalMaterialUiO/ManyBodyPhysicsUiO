@@ -1,0 +1,180 @@
+[
+ {
+  "base": "pinn_fig01",
+  "cell": 5,
+  "size": [
+   6.2,
+   4.0
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "residual minimisation is not energy minimisation",
+    "xlabel": "collocation half-width $L$",
+    "ylabel": "reported energy",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 3,
+    "labels": [
+     "residual-trained $E^*$",
+     "exact $E_0$",
+     "variational (same family)"
+    ],
+    "legend": [
+     "residual-trained $E^*$",
+     "exact $E_0$",
+     "variational (same family)"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "pinn_fig02",
+  "cell": 11,
+  "size": [
+   6.2,
+   4.0
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "what the neural correlator has to repair",
+    "xlabel": "$r_{12}$",
+    "ylabel": "Jastrow exponent",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 4,
+    "labels": [
+     "exact:  $\\ln(1+r_{12})$",
+     "Pad\u00e9, $\\beta=0.2$",
+     "Pad\u00e9, $\\beta=0.36$",
+     "Pad\u00e9, $\\beta=0.6$"
+    ],
+    "legend": [
+     "exact:  $\\ln(1+r_{12})$",
+     "Pad\u00e9, $\\beta=0.2$",
+     "Pad\u00e9, $\\beta=0.36$",
+     "Pad\u00e9, $\\beta=0.6$"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "pinn_fig03",
+  "cell": 19,
+  "size": [
+   7.0,
+   4.5
+  ],
+  "npanels": 2,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "The variational curve never dips below $E_0$; the residual minimum does",
+    "xlabel": "Gaussian width parameter $a$  in  $\\psi_a = e^{-ax^2/2}$",
+    "ylabel": "energy reported by the objective",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 5,
+    "labels": [
+     "variational  $E(a)=\\langle H\\rangle/\\langle 1\\rangle$",
+     "residual-optimal  $E^*(a)$",
+     "exact  $E_0 = 0.5302$"
+    ],
+    "legend": [
+     "variational  $E(a)=\\langle H\\rangle/\\langle 1\\rangle$",
+     "residual-optimal  $E^*(a)$",
+     "exact  $E_0 = 0.5302$",
+     "collocation residual $L(a)$"
+    ]
+   },
+   {
+    "title": "",
+    "xlabel": "",
+    "ylabel": "collocation residual $L(a)$ (log)",
+    "xscale": "linear",
+    "yscale": "log",
+    "nlines": 1,
+    "labels": [
+     "collocation residual $L(a)$"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "pinn_fig04",
+  "cell": 21,
+  "size": [
+   7.0,
+   4.5
+  ],
+  "npanels": 2,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "An unnormalised residual collapses with the amplitude\nwhile the energy it reports never moves",
+    "xlabel": "overall amplitude $c$ of $\\psi = c\\,e^{-ax^2/2}$",
+    "ylabel": "unnormalised collocation residual",
+    "xscale": "log",
+    "yscale": "log",
+    "nlines": 2,
+    "labels": [
+     "$\\propto c^{2}$",
+     "raw residual  $\\|(H-E)\\psi\\|^2$"
+    ],
+    "legend": [
+     "$\\propto c^{2}$",
+     "raw residual  $\\|(H-E)\\psi\\|^2$",
+     "apparent energy",
+     "exact $E_0 = 0.5302$"
+    ]
+   },
+   {
+    "title": "",
+    "xlabel": "",
+    "ylabel": "apparent energy",
+    "xscale": "log",
+    "yscale": "linear",
+    "nlines": 2,
+    "labels": [
+     "apparent energy",
+     "exact $E_0 = 0.5302$"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "pinn_fig05",
+  "cell": 23,
+  "size": [
+   7.0,
+   4.5
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "Backflow moves a node that a Jastrow factor cannot,\nexcept where the node is collinearity",
+    "xlabel": "backflow strength $\\eta_0$  in  $\\eta(r)=\\eta_0\\,e^{-r^2/w^2}$",
+    "ylabel": "displacement of the first node along the line",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 4,
+    "labels": [
+     "different widths, backflow range $w=2$",
+     "different widths, backflow range $w=1$",
+     "common Gaussian factor (collinear node)",
+     "any Jastrow factor, either orbital set"
+    ],
+    "legend": [
+     "different widths, backflow range $w=2$",
+     "different widths, backflow range $w=1$",
+     "common Gaussian factor (collinear node)",
+     "any Jastrow factor, either orbital set"
+    ]
+   }
+  ]
+ }
+]

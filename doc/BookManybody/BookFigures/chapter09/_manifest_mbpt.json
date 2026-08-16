@@ -1,0 +1,118 @@
+[
+ {
+  "base": "mbpt_fig01",
+  "cell": 6,
+  "size": [
+   12.0,
+   4.4
+  ],
+  "npanels": 2,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "",
+    "xlabel": "$g$",
+    "ylabel": "ground-state energy",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 6,
+    "labels": [
+     "exact (FCI)",
+     "Hartree-Fock",
+     "MBPT2",
+     "MBPT3",
+     "CID",
+     "HF + RPA"
+    ],
+    "legend": [
+     "exact (FCI)",
+     "Hartree-Fock",
+     "MBPT2",
+     "MBPT3",
+     "CID",
+     "HF + RPA"
+    ]
+   },
+   {
+    "title": "no method wins everywhere",
+    "xlabel": "$g$",
+    "ylabel": "|error|",
+    "xscale": "linear",
+    "yscale": "log",
+    "nlines": 4,
+    "labels": [
+     "MBPT2",
+     "MBPT3",
+     "CID",
+     "HF + RPA"
+    ],
+    "legend": [
+     "MBPT2",
+     "MBPT3",
+     "CID",
+     "HF + RPA"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "mbpt_fig02",
+  "cell": 10,
+  "size": [
+   7.5,
+   4.6
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "convergent below, divergent above",
+    "xlabel": "order $n$",
+    "ylabel": "$|\\Delta E^{(n)}|$",
+    "xscale": "linear",
+    "yscale": "log",
+    "nlines": 4,
+    "labels": [
+     "$g = 0.5$",
+     "$g = 1.0$",
+     "$g = 1.5$",
+     "$g = 2.0$"
+    ],
+    "legend": [
+     "$g = 0.5$",
+     "$g = 1.0$",
+     "$g = 1.5$",
+     "$g = 2.0$"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "mbpt_fig03",
+  "cell": 16,
+  "size": [
+   7.0,
+   4.2
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "size-extensivity error",
+    "xlabel": "$g$",
+    "ylabel": "|E(AB) - 2 E(A)|",
+    "xscale": "linear",
+    "yscale": "log",
+    "nlines": 2,
+    "labels": [
+     "Rayleigh-Schr\u00f6dinger",
+     "Brillouin-Wigner (2nd order)"
+    ],
+    "legend": [
+     "Rayleigh-Schr\u00f6dinger",
+     "Brillouin-Wigner (2nd order)"
+    ]
+   }
+  ]
+ }
+]

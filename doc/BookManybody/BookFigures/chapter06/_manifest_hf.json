@@ -1,0 +1,203 @@
+[
+ {
+  "base": "hf_fig01",
+  "cell": 6,
+  "size": [
+   11.0,
+   3.6
+  ],
+  "npanels": 2,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "energy",
+    "xlabel": "iteration",
+    "ylabel": "$E^{\\rm HF}$",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 1,
+    "labels": []
+   },
+   {
+    "title": "convergence",
+    "xlabel": "iteration",
+    "ylabel": "mean $|\\Delta\\varepsilon|$",
+    "xscale": "linear",
+    "yscale": "log",
+    "nlines": 1,
+    "labels": []
+   }
+  ]
+ },
+ {
+  "base": "hf_fig02",
+  "cell": 14,
+  "size": [
+   7.0,
+   4.0
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "Lipkin mean-field energy surface",
+    "xlabel": "$\\alpha$",
+    "ylabel": "$E(\\alpha)/N$",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 6,
+    "labels": [
+     "$\\chi = 0.5$",
+     "$\\chi = 1.0$",
+     "$\\chi = 1.5$",
+     "$\\chi = 2.5$"
+    ],
+    "legend": [
+     "$\\chi = 0.5$",
+     "$\\chi = 1.0$",
+     "$\\chi = 1.5$",
+     "$\\chi = 2.5$"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "hf_fig03",
+  "cell": 15,
+  "size": [
+   7.0,
+   4.0
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "",
+    "xlabel": "$\\chi$",
+    "ylabel": "lowest eigenvalue",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 4,
+    "labels": [
+     "$\\lambda_{\\min}(\\hat M)$",
+     "$\\varepsilon(1-\\chi)$"
+    ],
+    "legend": [
+     "$\\lambda_{\\min}(\\hat M)$",
+     "$\\varepsilon(1-\\chi)$"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "hf_fig04",
+  "cell": 21,
+  "size": [
+   7.0,
+   4.0
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "",
+    "xlabel": "number of Trotter steps $N$",
+    "ylabel": "$\\|U_{\\rm trot} - U_{\\rm exact}\\|$",
+    "xscale": "log",
+    "yscale": "log",
+    "nlines": 4,
+    "labels": [
+     "first order",
+     "second order",
+     "$\\propto 1/N$",
+     "$\\propto 1/N^2$"
+    ],
+    "legend": [
+     "first order",
+     "second order",
+     "$\\propto 1/N$",
+     "$\\propto 1/N^2$"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "hf_fig05",
+  "cell": 24,
+  "size": [
+   7.0,
+   4.5
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "single-particle energy",
+    "xlabel": "$k/k_F$",
+    "ylabel": "$\\varepsilon_k / \\varepsilon_0^F$",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 3,
+    "labels": [
+     "Hartree-Fock, $r_s/a_0 = 4$",
+     "free electrons"
+    ],
+    "legend": [
+     "Hartree-Fock, $r_s/a_0 = 4$",
+     "free electrons"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "hf_fig06",
+  "cell": 26,
+  "size": [
+   7.0,
+   4.0
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "the Hartree-Fock effective mass vanishes at the Fermi surface",
+    "xlabel": "$1 - k/k_F$",
+    "ylabel": "$m^*_{\\rm HF} / m$",
+    "xscale": "log",
+    "yscale": "linear",
+    "nlines": 1,
+    "labels": []
+   }
+  ]
+ },
+ {
+  "base": "hf_fig07",
+  "cell": 28,
+  "size": [
+   7.0,
+   4.5
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "",
+    "xlabel": "$r_s = r_0/a_0$",
+    "ylabel": "energy per electron [Ry]",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 5,
+    "labels": [
+     "$E_0/N$",
+     "kinetic",
+     "exchange"
+    ],
+    "legend": [
+     "$E_0/N$",
+     "kinetic",
+     "exchange"
+    ]
+   }
+  ]
+ }
+]

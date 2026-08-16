@@ -1,0 +1,197 @@
+[
+ {
+  "base": "cc_fig01",
+  "cell": 6,
+  "size": [
+   12.0,
+   4.4
+  ],
+  "npanels": 2,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "",
+    "xlabel": "$g$",
+    "ylabel": "ground-state energy",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 4,
+    "labels": [
+     "exact (FCI)",
+     "Hartree-Fock",
+     "MP2",
+     "CCD"
+    ],
+    "legend": [
+     "exact (FCI)",
+     "Hartree-Fock",
+     "MP2",
+     "CCD"
+    ]
+   },
+   {
+    "title": "CCD is exact to four parts in a million at weak coupling",
+    "xlabel": "$g$",
+    "ylabel": "|error|",
+    "xscale": "linear",
+    "yscale": "log",
+    "nlines": 2,
+    "labels": [
+     "MP2",
+     "CCD"
+    ],
+    "legend": [
+     "MP2",
+     "CCD"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "cc_fig02",
+  "cell": 9,
+  "size": [
+   7.5,
+   4.6
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "the perturbative content of CCD",
+    "xlabel": "order in the interaction",
+    "ylabel": "$|\\Delta E^{(n)}|$",
+    "xscale": "linear",
+    "yscale": "log",
+    "nlines": 3,
+    "labels": [
+     "$g = 0.5$",
+     "$g = 1.0$",
+     "$g = 1.5$"
+    ],
+    "legend": [
+     "$g = 0.5$",
+     "$g = 1.0$",
+     "$g = 1.5$"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "cc_fig03",
+  "cell": 13,
+  "size": [
+   12.0,
+   4.2
+  ],
+  "npanels": 2,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "$g = 0.5$",
+    "xlabel": "$f$",
+    "ylabel": "ground-state energy",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 3,
+    "labels": [
+     "exact",
+     "CCD",
+     "CCSD"
+    ],
+    "legend": [
+     "exact",
+     "CCD",
+     "CCSD"
+    ]
+   },
+   {
+    "title": "the singles grow with the pair-breaking term",
+    "xlabel": "$f$",
+    "ylabel": "$\\max|t_1|$",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 1,
+    "labels": []
+   }
+  ]
+ },
+ {
+  "base": "cc_fig04",
+  "cell": 20,
+  "size": [
+   12.0,
+   4.4
+  ],
+  "npanels": 2,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "",
+    "xlabel": "$g$",
+    "ylabel": "ground-state energy",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 3,
+    "labels": [
+     "exact (FCI)",
+     "CCD",
+     "UCCD"
+    ],
+    "legend": [
+     "exact (FCI)",
+     "CCD",
+     "UCCD"
+    ]
+   },
+   {
+    "title": "UCCD stays above, CCD below",
+    "xlabel": "$g$",
+    "ylabel": "signed error",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 3,
+    "labels": [
+     "CCD",
+     "UCCD"
+    ],
+    "legend": [
+     "CCD",
+     "UCCD"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "cc_fig05",
+  "cell": 24,
+  "size": [
+   7.0,
+   4.4
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "amplitudes frozen at their exact-exponential values",
+    "xlabel": "Trotter steps $n$",
+    "ylabel": "error",
+    "xscale": "log",
+    "yscale": "log",
+    "nlines": 4,
+    "labels": [
+     "$\\|\\Psi_n - \\Psi\\|$",
+     "energy error",
+     "$\\propto 1/n$",
+     "$\\propto 1/n^2$"
+    ],
+    "legend": [
+     "$\\|\\Psi_n - \\Psi\\|$",
+     "energy error",
+     "$\\propto 1/n$",
+     "$\\propto 1/n^2$"
+    ]
+   }
+  ]
+ }
+]

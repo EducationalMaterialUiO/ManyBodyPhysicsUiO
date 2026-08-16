@@ -1,0 +1,144 @@
+[
+ {
+  "base": "models_fig01",
+  "cell": 5,
+  "size": [
+   10.0,
+   4.0
+  ],
+  "npanels": 2,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "Lipkin ground-state energy",
+    "xlabel": "$-V$",
+    "ylabel": "$E_0$",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 1,
+    "labels": []
+   },
+   {
+    "title": "Weight of the unperturbed configuration",
+    "xlabel": "$-V$",
+    "ylabel": "$|\\langle 2,-2|\\psi_0\\rangle|^2$",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 1,
+    "labels": []
+   }
+  ]
+ },
+ {
+  "base": "models_fig02",
+  "cell": 8,
+  "size": [
+   6.0,
+   3.9
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "Pairing model: correlation energy against coupling",
+    "xlabel": "$g$",
+    "ylabel": "correlation energy",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 3,
+    "labels": [
+     "L = 4, n = 2",
+     "L = 6, n = 3",
+     "L = 8, n = 4"
+    ],
+    "legend": [
+     "L = 4, n = 2",
+     "L = 6, n = 3",
+     "L = 8, n = 4"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "models_fig03",
+  "cell": 15,
+  "size": [
+   6.0,
+   4.0
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "Pairing plus particle-hole, $L=4$, $N=4$, $g=1$",
+    "xlabel": "particle-hole strength $f$",
+    "ylabel": "energy",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 2,
+    "labels": [
+     "$E_{\\rm ref}$",
+     "$E_0$ (exact)"
+    ],
+    "legend": [
+     "$E_{\\rm ref}$",
+     "$E_0$ (exact)"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "models_fig04",
+  "cell": 19,
+  "size": [
+   6.5,
+   4.0
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "The Hubbard ring becomes the Heisenberg antiferromagnet",
+    "xlabel": "$U/t$",
+    "ylabel": "$E_0 / J$",
+    "xscale": "log",
+    "yscale": "linear",
+    "nlines": 2,
+    "labels": [
+     "$-3$ (Heisenberg limit)"
+    ],
+    "legend": [
+     "$-3$ (Heisenberg limit)"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "models_fig05",
+  "cell": 25,
+  "size": [
+   6.0,
+   4.0
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "Heisenberg ring: finite-size scaling",
+    "xlabel": "$1/N^2$",
+    "ylabel": "$E_0/(NJ)$",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 2,
+    "labels": [
+     "$E_0/(NJ)$",
+     "$1/4-\\ln 2$"
+    ],
+    "legend": [
+     "$E_0/(NJ)$",
+     "$1/4-\\ln 2$"
+    ]
+   }
+  ]
+ }
+]

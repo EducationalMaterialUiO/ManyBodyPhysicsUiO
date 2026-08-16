@@ -1,0 +1,79 @@
+[
+ {
+  "base": "qdot_fig01",
+  "cell": 13,
+  "size": [
+   6.0,
+   4.0
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "Basis-set convergence, two electrons at $\\hbar\\omega=1$",
+    "xlabel": "number of spin-orbitals $M$",
+    "ylabel": "$E_{\\rm FCI}(M) - 3$",
+    "xscale": "log",
+    "yscale": "log",
+    "nlines": 1,
+    "labels": []
+   }
+  ]
+ },
+ {
+  "base": "qdot_fig02",
+  "cell": 17,
+  "size": [
+   6.0,
+   4.0
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "Correlation weakens as the trap steepens",
+    "xlabel": "$\\hbar\\omega$",
+    "ylabel": "$|E_{\\rm CCSD}| / (E_{\\rm HF}-E_0)$",
+    "xscale": "log",
+    "yscale": "linear",
+    "nlines": 2,
+    "labels": [
+     "$N=2$",
+     "$N=6$"
+    ],
+    "legend": [
+     "$N=2$",
+     "$N=6$"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "qdot_fig03",
+  "cell": 21,
+  "size": [
+   6.0,
+   4.0
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "First-order Trotter error",
+    "xlabel": "Trotter steps $n$",
+    "ylabel": "error",
+    "xscale": "log",
+    "yscale": "log",
+    "nlines": 2,
+    "labels": [
+     "measured",
+     "$1/n$"
+    ],
+    "legend": [
+     "measured",
+     "$1/n$"
+    ]
+   }
+  ]
+ }
+]

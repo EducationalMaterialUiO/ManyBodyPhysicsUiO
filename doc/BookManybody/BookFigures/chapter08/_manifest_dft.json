@@ -1,0 +1,185 @@
+[
+ {
+  "base": "dft_fig01",
+  "cell": 4,
+  "size": [
+   7.0,
+   4.2
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "the exchange functional against the electron-gas result",
+    "xlabel": "$r_s$",
+    "ylabel": "$\\epsilon_x$  [Ry]",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 2,
+    "labels": [
+     "LDA: $\\epsilon_x(n(r_s))$",
+     "chapter 6: $-0.916/r_s$"
+    ],
+    "legend": [
+     "LDA: $\\epsilon_x(n(r_s))$",
+     "chapter 6: $-0.916/r_s$"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "dft_fig02",
+  "cell": 7,
+  "size": [
+   12.0,
+   4.2
+  ],
+  "npanels": 2,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "pair correlation function",
+    "xlabel": "$k_F s$",
+    "ylabel": "$g(s)$",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 3,
+    "labels": []
+   },
+   {
+    "title": "the sum-rule integrand",
+    "xlabel": "$k_F s$",
+    "ylabel": "$y^2\\,[g(y)-1]$",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 2,
+    "labels": []
+   }
+  ]
+ },
+ {
+  "base": "dft_fig03",
+  "cell": 10,
+  "size": [
+   7.0,
+   4.2
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "the exchange functional we just built",
+    "xlabel": "$n$",
+    "ylabel": "",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 3,
+    "labels": [
+     "$\\epsilon_x(n)$",
+     "$v_x(n) = d(n\\epsilon_x)/dn$",
+     "tabulated points"
+    ],
+    "legend": [
+     "$\\epsilon_x(n)$",
+     "$v_x(n) = d(n\\epsilon_x)/dn$",
+     "tabulated points"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "dft_fig04",
+  "cell": 13,
+  "size": [
+   12.0,
+   4.4
+  ],
+  "npanels": 2,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "densities, $N = 4$",
+    "xlabel": "$x$",
+    "ylabel": "$n(x)$",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 3,
+    "labels": [
+     "Kohn-Sham",
+     "Hartree-Fock",
+     "non-interacting"
+    ],
+    "legend": [
+     "Kohn-Sham",
+     "Hartree-Fock",
+     "non-interacting"
+    ]
+   },
+   {
+    "title": "self-consistency",
+    "xlabel": "iteration",
+    "ylabel": "max $|\\Delta n|$",
+    "xscale": "linear",
+    "yscale": "log",
+    "nlines": 1,
+    "labels": []
+   }
+  ]
+ },
+ {
+  "base": "dft_fig05",
+  "cell": 19,
+  "size": [
+   6.5,
+   4.0
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "the local approximation improves as the density smooths out",
+    "xlabel": "$N$",
+    "ylabel": "$E_x^{\\rm local} / E_x^{\\rm exact}$",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 2,
+    "labels": []
+   }
+  ]
+ },
+ {
+  "base": "dft_fig06",
+  "cell": 22,
+  "size": [
+   12.0,
+   4.2
+  ],
+  "npanels": 2,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "Thomas-Fermi kinetic energy",
+    "xlabel": "$N$",
+    "ylabel": "$T_{\\rm TF} / T_{\\rm exact}$",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 2,
+    "labels": []
+   },
+   {
+    "title": "the shell structure Thomas-Fermi cannot produce",
+    "xlabel": "$x$",
+    "ylabel": "$n(x)$",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 1,
+    "labels": [
+     "exact (orbitals)"
+    ],
+    "legend": [
+     "exact (orbitals)"
+    ]
+   }
+  ]
+ }
+]

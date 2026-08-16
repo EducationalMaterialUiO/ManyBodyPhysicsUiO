@@ -1,0 +1,106 @@
+[
+ {
+  "base": "mbbasics_fig01",
+  "cell": 4,
+  "size": [
+   7.0,
+   4.2
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "The single-particle basis",
+    "xlabel": "$x$",
+    "ylabel": "$\\phi_n(x)$",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 4,
+    "labels": [
+     "$\\phi_0$,  $\\varepsilon=0.5$",
+     "$\\phi_1$,  $\\varepsilon=1.5$",
+     "$\\phi_2$,  $\\varepsilon=2.5$",
+     "$\\phi_3$,  $\\varepsilon=3.5$"
+    ],
+    "legend": [
+     "$\\phi_0$,  $\\varepsilon=0.5$",
+     "$\\phi_1$,  $\\varepsilon=1.5$",
+     "$\\phi_2$,  $\\varepsilon=2.5$",
+     "$\\phi_3$,  $\\varepsilon=3.5$"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "mbbasics_fig02",
+  "cell": 12,
+  "size": [
+   7.0,
+   4.2
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "Eigenvalues of the two-body matrix in the pair index",
+    "xlabel": "$\\eta$",
+    "ylabel": "$\\lambda_\\eta$",
+    "xscale": "linear",
+    "yscale": "log",
+    "nlines": 1,
+    "labels": []
+   }
+  ]
+ },
+ {
+  "base": "mbbasics_fig03",
+  "cell": 19,
+  "size": [
+   10.0,
+   4.0
+  ],
+  "npanels": 2,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "Correlation energy",
+    "xlabel": "interaction strength $g$",
+    "ylabel": "$-E_{\\rm corr}$",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 1,
+    "labels": []
+   },
+   {
+    "title": "Departure from a single determinant",
+    "xlabel": "interaction strength $g$",
+    "ylabel": "weight in the leading determinant",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 1,
+    "labels": []
+   }
+  ]
+ },
+ {
+  "base": "mbbasics_fig04",
+  "cell": 29,
+  "size": [
+   7.0,
+   4.2
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "The condition number diverges at the nodal surface",
+    "xlabel": "separation of the two particles",
+    "ylabel": "$\\kappa_2(\\boldsymbol{D})$",
+    "xscale": "log",
+    "yscale": "log",
+    "nlines": 1,
+    "labels": []
+   }
+  ]
+ }
+]

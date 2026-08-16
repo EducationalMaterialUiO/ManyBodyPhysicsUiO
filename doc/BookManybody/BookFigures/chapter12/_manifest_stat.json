@@ -1,0 +1,225 @@
+[
+ {
+  "base": "stat_fig01",
+  "cell": 4,
+  "size": [
+   10.0,
+   4.5
+  ],
+  "npanels": 2,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "RANDU",
+    "xlabel": "$x_n$",
+    "ylabel": "$x_{n+1}$",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 0,
+    "labels": []
+   },
+   {
+    "title": "PCG64",
+    "xlabel": "$x_n$",
+    "ylabel": "$x_{n+1}$",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 0,
+    "labels": []
+   }
+  ]
+ },
+ {
+  "base": "stat_fig02",
+  "cell": 6,
+  "size": [
+   6.0,
+   4.0
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "",
+    "xlabel": "$N$",
+    "ylabel": "error",
+    "xscale": "log",
+    "yscale": "log",
+    "nlines": 2,
+    "labels": [
+     "measured",
+     "$1/\\sqrt{N}$"
+    ],
+    "legend": [
+     "measured",
+     "$1/\\sqrt{N}$"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "stat_fig03",
+  "cell": 8,
+  "size": [
+   10.0,
+   3.6
+  ],
+  "npanels": 2,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "exponential",
+    "xlabel": "",
+    "ylabel": "",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 1,
+    "labels": []
+   },
+   {
+    "title": "Box-Muller normal",
+    "xlabel": "",
+    "ylabel": "",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 1,
+    "labels": []
+   }
+  ]
+ },
+ {
+  "base": "stat_fig04",
+  "cell": 13,
+  "size": [
+   6.0,
+   4.0
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "",
+    "xlabel": "average of $m$ uniform samples",
+    "ylabel": "density",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 0,
+    "labels": [],
+    "legend": [
+     "m=1",
+     "m=2",
+     "m=5",
+     "m=20"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "stat_fig05",
+  "cell": 15,
+  "size": [
+   11.0,
+   3.8
+  ],
+  "npanels": 2,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "",
+    "xlabel": "lag $d$",
+    "ylabel": "$\\kappa_d$",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 2,
+    "labels": []
+   },
+   {
+    "title": "",
+    "xlabel": "block size",
+    "ylabel": "naive error of blocks",
+    "xscale": "log",
+    "yscale": "linear",
+    "nlines": 2,
+    "labels": [
+     "$\\sqrt{\\tau}\\,\\sigma/\\sqrt{n}$"
+    ],
+    "legend": [
+     "$\\sqrt{\\tau}\\,\\sigma/\\sqrt{n}$"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "stat_fig06",
+  "cell": 18,
+  "size": [
+   6.0,
+   4.0
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "the walk spreads as $\\sqrt{t}$ and tends to a Gaussian",
+    "xlabel": "$x$",
+    "ylabel": "density",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 0,
+    "labels": [],
+    "legend": [
+     "25 steps",
+     "100 steps",
+     "400 steps"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "stat_fig07",
+  "cell": 20,
+  "size": [
+   6.0,
+   4.0
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "",
+    "xlabel": "time steps",
+    "ylabel": "$S$",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 2,
+    "labels": [
+     "$\\ln 101$"
+    ],
+    "legend": [
+     "$\\ln 101$"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "stat_fig08",
+  "cell": 24,
+  "size": [
+   6.0,
+   4.0
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "both extremes are slow; aim for ~50% acceptance",
+    "xlabel": "proposal step",
+    "ylabel": "$\\tau$",
+    "xscale": "log",
+    "yscale": "log",
+    "nlines": 1,
+    "labels": []
+   }
+  ]
+ }
+]

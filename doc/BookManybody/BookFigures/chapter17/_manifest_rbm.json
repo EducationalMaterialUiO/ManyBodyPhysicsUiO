@@ -1,0 +1,339 @@
+[
+ {
+  "base": "rbm_fig01",
+  "cell": 3,
+  "size": [
+   12.0,
+   3.8
+  ],
+  "npanels": 3,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "direct draws",
+    "xlabel": "",
+    "ylabel": "",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 1,
+    "labels": []
+   },
+   {
+    "title": "the Gibbs path (120 sweeps)",
+    "xlabel": "",
+    "ylabel": "",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 3,
+    "labels": []
+   },
+   {
+    "title": "Gibbs samples",
+    "xlabel": "",
+    "ylabel": "",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 1,
+    "labels": []
+   }
+  ]
+ },
+ {
+  "base": "rbm_fig02",
+  "cell": 5,
+  "size": [
+   5.5,
+   3.8
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "Gibbs mixes badly on correlated targets",
+    "xlabel": "$\\rho$",
+    "ylabel": "correlation time $\\tau$",
+    "xscale": "linear",
+    "yscale": "log",
+    "nlines": 1,
+    "labels": []
+   }
+  ]
+ },
+ {
+  "base": "rbm_fig03",
+  "cell": 11,
+  "size": [
+   7.5,
+   3.8
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "",
+    "xlabel": "",
+    "ylabel": "probability",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 0,
+    "labels": [],
+    "legend": [
+     "exact $p(x)$",
+     "block Gibbs"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "rbm_fig04",
+  "cell": 13,
+  "size": [
+   8.0,
+   2.6
+  ],
+  "npanels": 14,
+  "suptitle": "the whole data set",
+  "axes": [
+   {
+    "title": "",
+    "xlabel": "",
+    "ylabel": "",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 0,
+    "labels": []
+   },
+   {
+    "title": "",
+    "xlabel": "",
+    "ylabel": "",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 0,
+    "labels": []
+   },
+   {
+    "title": "",
+    "xlabel": "",
+    "ylabel": "",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 0,
+    "labels": []
+   },
+   {
+    "title": "",
+    "xlabel": "",
+    "ylabel": "",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 0,
+    "labels": []
+   },
+   {
+    "title": "",
+    "xlabel": "",
+    "ylabel": "",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 0,
+    "labels": []
+   },
+   {
+    "title": "",
+    "xlabel": "",
+    "ylabel": "",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 0,
+    "labels": []
+   },
+   {
+    "title": "",
+    "xlabel": "",
+    "ylabel": "",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 0,
+    "labels": []
+   },
+   {
+    "title": "",
+    "xlabel": "",
+    "ylabel": "",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 0,
+    "labels": []
+   },
+   {
+    "title": "",
+    "xlabel": "",
+    "ylabel": "",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 0,
+    "labels": []
+   },
+   {
+    "title": "",
+    "xlabel": "",
+    "ylabel": "",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 0,
+    "labels": []
+   },
+   {
+    "title": "",
+    "xlabel": "",
+    "ylabel": "",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 0,
+    "labels": []
+   },
+   {
+    "title": "",
+    "xlabel": "",
+    "ylabel": "",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 0,
+    "labels": []
+   },
+   {
+    "title": "",
+    "xlabel": "",
+    "ylabel": "",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 0,
+    "labels": []
+   },
+   {
+    "title": "",
+    "xlabel": "",
+    "ylabel": "",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 0,
+    "labels": []
+   }
+  ]
+ },
+ {
+  "base": "rbm_fig05",
+  "cell": 14,
+  "size": [
+   6.5,
+   4.0
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "the two criteria differ by a constant",
+    "xlabel": "epoch",
+    "ylabel": "",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 3,
+    "labels": [
+     "log-likelihood $\\mathcal{L}$",
+     "$-\\mathrm{KL}(f\\|p)$",
+     "perfect model"
+    ],
+    "legend": [
+     "log-likelihood $\\mathcal{L}$",
+     "$-\\mathrm{KL}(f\\|p)$",
+     "perfect model"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "rbm_fig06",
+  "cell": 17,
+  "size": [
+   6.5,
+   4.0
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "a mixture of $2^N$ Gaussians of equal width",
+    "xlabel": "$x$",
+    "ylabel": "density",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 9,
+    "labels": [
+     "$p_{GB}(x)$"
+    ],
+    "legend": [
+     "$p_{GB}(x)$"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "rbm_fig07",
+  "cell": 22,
+  "size": [
+   6.5,
+   4.0
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "training the neural quantum state",
+    "xlabel": "gradient step",
+    "ylabel": "energy",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 4,
+    "labels": [
+     "$N=2$",
+     "$N=4$",
+     "$N=8$",
+     "exact"
+    ],
+    "legend": [
+     "$N=2$",
+     "$N=4$",
+     "$N=8$",
+     "exact"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "rbm_fig08",
+  "cell": 23,
+  "size": [
+   6.5,
+   4.0
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "no cusp $\\Rightarrow$ a long tail in $E_L$",
+    "xlabel": "walker-averaged local energy",
+    "ylabel": "density",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 1,
+    "labels": [
+     "exact"
+    ],
+    "legend": [
+     "exact"
+    ]
+   }
+  ]
+ }
+]

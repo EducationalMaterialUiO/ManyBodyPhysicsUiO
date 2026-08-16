@@ -1,0 +1,58 @@
+format: jb-book
+root: intro
+
+parts:
+  - caption: About the course
+    chapters:
+      - file: teachers
+      - file: textbooks
+
+  - caption: Foundations
+    numbered: true
+    chapters:
+      - file: linearalgebra.ipynb        # chapter 1
+      - file: manybodybasics.ipynb       # chapter 2
+      - file: wicktheorem.ipynb          # chapter 3
+      - file: jordanwigner.ipynb         # chapter 3, last section
+      - file: models.ipynb               # chapter 4
+      - file: fullci.ipynb               # chapter 5
+
+  - caption: Mean-field and beyond
+    numbered: true
+    chapters:
+      - file: hartreefock.ipynb          # chapter 6
+      - file: tdarpa.ipynb               # chapter 7
+      - file: dft.ipynb                  # chapter 8
+
+  - caption: Post Hartree-Fock methods
+    numbered: true
+    chapters:
+      - file: mbptheory.ipynb            # chapter 9
+      - file: coupledcluster.ipynb       # chapter 10
+
+  - caption: Applications and stochastic methods
+    numbered: true
+    chapters:
+      - file: quantumdots.ipynb          # chapter 11
+      - file: statistics.ipynb           # chapter 12
+      - file: variationalmc.ipynb        # chapter 13
+      - file: optimisation.ipynb         # chapter 14
+      - file: diffusionmc.ipynb          # chapter 15
+      - file: manybodymc.ipynb           # chapter 16
+
+  - caption: Machine learning approaches
+    numbered: true
+    chapters:
+      - file: boltzmannmachines.ipynb    # chapter 17
+      - file: pinns.ipynb                # chapter 18
+
+  - caption: Quantum computing
+    numbered: true
+    chapters:
+      - file: quantumfourier.ipynb        # chapter 19
+      - file: vqe.ipynb                  # chapter 20
+
+  - caption: Concluding remarks
+    numbered: true
+    chapters:
+      - file: conclusions.ipynb          # chapter 21

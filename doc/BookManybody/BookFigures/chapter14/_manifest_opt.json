@@ -1,0 +1,263 @@
+[
+ {
+  "base": "opt_fig01",
+  "cell": 6,
+  "size": [
+   6.0,
+   4.5
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "the descent path",
+    "xlabel": "$\\beta$",
+    "ylabel": "$\\alpha$",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 3,
+    "labels": [
+     "start",
+     "end"
+    ],
+    "legend": [
+     "start",
+     "end"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "opt_fig02",
+  "cell": 13,
+  "size": [
+   6.0,
+   4.0
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "Six-dimensional quadratic",
+    "xlabel": "condition number $\\kappa$",
+    "ylabel": "iterations to $|\\nabla f| < 10^{-6}$",
+    "xscale": "log",
+    "yscale": "log",
+    "nlines": 4,
+    "labels": [
+     "steepest descent",
+     "BFGS",
+     "DFP",
+     "Broyden (rank one)"
+    ],
+    "legend": [
+     "steepest descent",
+     "BFGS",
+     "DFP",
+     "Broyden (rank one)"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "opt_fig03",
+  "cell": 15,
+  "size": [
+   6.2,
+   4.2
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "BFGS on Rosenbrock's banana",
+    "xlabel": "$x$",
+    "ylabel": "$y$",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 2,
+    "labels": [
+     "BFGS path",
+     "minimum"
+    ],
+    "legend": [
+     "BFGS path",
+     "minimum"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "opt_fig04",
+  "cell": 29,
+  "size": [
+   6.0,
+   4.0
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "the answer depends on where you stop",
+    "xlabel": "summation window $W$",
+    "ylabel": "estimated error",
+    "xscale": "log",
+    "yscale": "linear",
+    "nlines": 3,
+    "labels": [
+     "truncated lag sum",
+     "blocking",
+     "naive"
+    ],
+    "legend": [
+     "truncated lag sum",
+     "blocking",
+     "naive"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "opt_fig05",
+  "cell": 31,
+  "size": [
+   11.0,
+   3.0
+  ],
+  "npanels": 5,
+  "suptitle": "the correlation matrix becoming the identity",
+  "axes": [
+   {
+    "title": "$k=0$, $N_k=4000$",
+    "xlabel": "",
+    "ylabel": "",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 0,
+    "labels": []
+   },
+   {
+    "title": "$k=2$, $N_k=1000$",
+    "xlabel": "",
+    "ylabel": "",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 0,
+    "labels": []
+   },
+   {
+    "title": "$k=4$, $N_k=250$",
+    "xlabel": "",
+    "ylabel": "",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 0,
+    "labels": []
+   },
+   {
+    "title": "$k=6$, $N_k=62$",
+    "xlabel": "",
+    "ylabel": "",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 0,
+    "labels": []
+   },
+   {
+    "title": "",
+    "xlabel": "",
+    "ylabel": "$\\rho^{(k)}(|i-j|)$",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 0,
+    "labels": []
+   }
+  ]
+ },
+ {
+  "base": "opt_fig06",
+  "cell": 34,
+  "size": [
+   6.0,
+   4.0
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "the blocking curve",
+    "xlabel": "block size",
+    "ylabel": "naive error of the blocked data",
+    "xscale": "log",
+    "yscale": "linear",
+    "nlines": 2,
+    "labels": [
+     "blocking estimate"
+    ],
+    "legend": [
+     "blocking estimate"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "opt_fig07",
+  "cell": 36,
+  "size": [
+   6.0,
+   4.0
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "the bootstrap distribution, B = 2000",
+    "xlabel": "bootstrap replicate of $E$",
+    "ylabel": "density",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 3,
+    "labels": [
+     "$\\hat\\theta$",
+     "95% percentile"
+    ],
+    "legend": [
+     "$\\hat\\theta$",
+     "95% percentile"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "opt_fig08",
+  "cell": 42,
+  "size": [
+   6.0,
+   4.0
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "resample blocks, not points",
+    "xlabel": "block length",
+    "ylabel": "error / naive error",
+    "xscale": "log",
+    "yscale": "linear",
+    "nlines": 4,
+    "labels": [
+     "block bootstrap",
+     "blocking",
+     "$\\sqrt{\\tau}$",
+     "naive"
+    ],
+    "legend": [
+     "block bootstrap",
+     "blocking",
+     "$\\sqrt{\\tau}$",
+     "naive"
+    ]
+   }
+  ]
+ }
+]

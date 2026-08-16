@@ -1,0 +1,1554 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>1. Introduction to many-body physics &#8212; Quantum Mechanics for Many-Particle Systems; from standard methods to quantum computing and machine learning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notation';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="2. Introduction to second quantization" href="secondquant.html" />
+    <link rel="prev" title="Textbooks" href="textbooks.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Quantum Mechanics for Many-Particle Systems; from standard methods to quantum computing and machine learning - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Quantum Mechanics for Many-Particle Systems; from standard methods to quantum computing and machine learning - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Quantum mechanics for many-particle systems
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">About the course</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="teachers.html">Instructor information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="textbooks.html">Textbooks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Basics of Many-Body Physics</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">1. Introduction to many-body physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="secondquant.html">2. Introduction to  second quantization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fci.html">3. Full configuration interaction theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hfock.html">4. Hartree-Fock theory</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Post Hartree-Fock Methods</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="mbpt.html">6. Many-body perturbation theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cc.html">7. The Coupled Cluster Method</a></li>
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/notation.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/notation.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Introduction to many-body physics</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-the-course">1.1. Introduction to the course</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#important-matrix-and-vector-handling-packages">1.2. Important Matrix and vector handling packages</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-matrix-features">1.3. Basic Matrix Features</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy-and-arrays">1.4. Numpy and arrays</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-matrix-and-vector-operations">1.5. Other Matrix and Vector Operations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definitions-and-vector-and-matrix-operations">1.6. Definitions and vector and matrix operations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tensor-products">1.6.1. Tensor products</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#representation-of-states">1.6.2. Representation of states</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-for-later-studies-varying-the-coefficients-of-a-wave-function-expansion-and-orthogonal-transformations">1.7. Preparing for later studies: varying the coefficients of a wave function expansion and orthogonal transformations</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <!-- HTML file automatically generated from DocOnce source (https://github.com/doconce/doconce/)
+doconce format html notation.do.txt  --><section class="tex2jax_ignore mathjax_ignore" id="introduction-to-many-body-physics">
+<h1><span class="section-number">1. </span>Introduction to many-body physics<a class="headerlink" href="#introduction-to-many-body-physics" title="Link to this heading">#</a></h1>
+<section id="introduction-to-the-course">
+<h2><span class="section-number">1.1. </span>Introduction to the course<a class="headerlink" href="#introduction-to-the-course" title="Link to this heading">#</a></h2>
+<p>These lecture notes aim at giving an introduction to the quantum
+mechanics of many-body systems and the methods relevant for many-body
+problems in such diverse areas as atomic, molecular, solid-state and
+nuclear physics, chemistry and materials science. A theoretical
+understanding of the behavior of quantum-mechanical many-body systems,
+that is, systems containing many interacting particles - is a
+considerable challenge in that, normally, no exact solution can be
+found.  Instead, reliable methods are needed for approximate but
+accurate simulations of such systems.</p>
+<p>These notes cover central many-body methods used in a variety of
+fields in physics. Starting with basic definitions and second
+quantization and Wick’s theorems for systems of fermions and bosons,
+we move on to the introduction of Feynman diagrams and many-body
+methods like full configuration interaction theory and various mean
+field approaches like Hartree-Fock theory and density functional
+theory. Thereafter, so-called post Hartree-Fock methods like many-body
+perturbation theory, coupled cluster theory (standard and unitary) and
+other methods will be discussed.  Finally, algorithms from quantum
+computing for solving quantum mechanical many-body problems will be
+discussed. The present set of notes contain more material than covered
+by a regular course and some of these notes can be used for
+self-studies or advanced many-body topics. Depending on the interest
+of the participants, selected methods can be emphasized over other
+ones.</p>
+<p>This chapter serves the aim of reminding the reader of some basic
+properties of quantum mechanics, in addition to providing a brief
+review of linear algebra, which lays the foundations for most of our
+mathematical formalism. It plays a central role in our studies and
+together with computational methods and various linear algebra
+libraries, it provides us with the tools to study complicated systems
+of many interacting particles. Our short reminder on linear algebra
+allows us to catch more than one bird with a stone, we take the
+liberty of introducing some basic notations and definitions used
+throughout these lectures.</p>
+</section>
+<section id="important-matrix-and-vector-handling-packages">
+<h2><span class="section-number">1.2. </span>Important Matrix and vector handling packages<a class="headerlink" href="#important-matrix-and-vector-handling-packages" title="Link to this heading">#</a></h2>
+<p>Linear algebra plays a central role in many-body physics, as it does
+in many other mathematical descriptions of problems in physics and in
+Science in general.  There are several central software packages for
+linear algebra and eigenvalue problems. Several of the more popular
+ones have been wrapped into ofter software packages like those from
+the widely used text <strong>Numerical Recipes</strong>. The original source codes in
+many of the available packages are often taken from the widely used
+software package LAPACK, which follows two other popular packages
+developed in the 1970s, namely EISPACK and LINPACK.  We describe them
+shortly here.</p>
+<ul class="simple">
+<li><p>LINPACK: package for linear equations and least square problems.</p></li>
+<li><p>LAPACK:package for solving symmetric, unsymmetric and generalized eigenvalue problems. From LAPACK’s website <a class="reference external" href="http://www.netlib.org">http://www.netlib.org</a> it is possible to download for free all source codes from this library. Both C/C++ and Fortran versions are available.</p></li>
+<li><p>BLAS (I, II and III): (Basic Linear Algebra Subprograms) are routines that provide standard building blocks for performing basic vector and matrix operations. Blas I is vector operations, II vector-matrix operations and III matrix-matrix operations. Highly parallelized and efficient codes, all available for download from <a class="reference external" href="http://www.netlib.org">http://www.netlib.org</a>.</p></li>
+</ul>
+<p>When dealing with matrices and vectors a central issue is memory
+handling and allocation. If our code is written in Python the way we
+declare these objects and the way they are handled, interpreted and
+used by say a linear algebra library, requires codes that interface
+our Python program with such libraries. For Python programmers,
+<strong>Numpy</strong> is by now the standard Python package for numerical arrays in
+Python as well as the source of functions which act on these
+arrays. These functions span from eigenvalue solvers to functions that
+compute the mean value, variance or the covariance matrix. If you are
+not familiar with how arrays are handled in say Python or compiled
+languages like C++ and Fortran, the sections in this chapter may be
+useful. For C++ programmer, <strong>Armadillo</strong> is widely used library for
+linear algebra and eigenvalue problems. In addition it offers a
+convenient way to handle and organize arrays. We discuss this library
+as well.  Before we proceed we believe it may be convenient to repeat
+some basic features of vectors, matrices, tensors etc. For systems of
+fermions, our ansatz for encoding the needed antisymmetry of the wave
+function, is to assume that we can build a many-body state based on
+physically relevant single-particle states. This leads the so-called
+Salter determinant.</p>
+</section>
+<section id="basic-matrix-features">
+<h2><span class="section-number">1.3. </span>Basic Matrix Features<a class="headerlink" href="#basic-matrix-features" title="Link to this heading">#</a></h2>
+<p>Matrix properties reminder</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{A} =
+      \begin{bmatrix} a_{11} &amp; a_{12} &amp; a_{13} &amp; a_{14} \\
+                                 a_{21} &amp; a_{22} &amp; a_{23} &amp; a_{24} \\
+                                   a_{31} &amp; a_{32} &amp; a_{33} &amp; a_{34} \\
+                                  a_{41} &amp; a_{42} &amp; a_{43} &amp; a_{44}
+             \end{bmatrix}\qquad
+\mathbf{I} =
+      \begin{bmatrix} 1 &amp; 0 &amp; 0 &amp; 0 \\
+                                 0 &amp; 1 &amp; 0 &amp; 0 \\
+                                 0 &amp; 0 &amp; 1 &amp; 0 \\
+                                 0 &amp; 0 &amp; 0 &amp; 1
+             \end{bmatrix}
+\end{split}\]</div>
+<p>The inverse of a matrix is defined by</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{A}^{-1} \cdot \mathbf{A} = I
+\]</div>
+<table class="dotable" border="1">
+<thead>
+<tr><th align="center">              Relations               </th> <th align="center">      Name     </th> <th align="center">                            matrix elements                            </th> </tr>
+</thead>
+<tbody>
+<tr><td align="center">   $A = A^{T}$                               </td> <td align="center">   symmetric          </td> <td align="center">   $a_{ij} = a_{ji}$                                                          </td> </tr>
+<tr><td align="center">   $A = \left (A^{T} \right )^{-1}$          </td> <td align="center">   real orthogonal    </td> <td align="center">   $\sum_k a_{ik} a_{jk} = \sum_k a_{ki} a_{kj} = \delta_{ij}$                </td> </tr>
+<tr><td align="center">   $A = A^{ * }$                             </td> <td align="center">   real matrix        </td> <td align="center">   $a_{ij} = a_{ij}^{ * }$                                                    </td> </tr>
+<tr><td align="center">   $A = A^{\dagger}$                         </td> <td align="center">   hermitian          </td> <td align="center">   $a_{ij} = a_{ji}^{ * }$                                                    </td> </tr>
+<tr><td align="center">   $A = \left (A^{\dagger} \right )^{-1}$    </td> <td align="center">   unitary            </td> <td align="center">   $\sum_k a_{ik} a_{jk}^{ * } = \sum_k a_{ki}^{ * } a_{kj} = \delta_{ij}$    </td> </tr>
+</tbody>
+</table>
+<p>Some famous Matrices we often encounter in many-body physics are</p>
+<ul class="simple">
+<li><p>Diagonal if <span class="math notranslate nohighlight">\(a_{ij}=0\)</span> for <span class="math notranslate nohighlight">\(i\ne j\)</span></p></li>
+<li><p>Upper triangular if <span class="math notranslate nohighlight">\(a_{ij}=0\)</span> for <span class="math notranslate nohighlight">\(i &gt; j\)</span></p></li>
+<li><p>Lower triangular if <span class="math notranslate nohighlight">\(a_{ij}=0\)</span> for <span class="math notranslate nohighlight">\(i &lt; j\)</span></p></li>
+<li><p>Upper Hessenberg if <span class="math notranslate nohighlight">\(a_{ij}=0\)</span> for <span class="math notranslate nohighlight">\(i &gt; j+1\)</span></p></li>
+<li><p>Lower Hessenberg if <span class="math notranslate nohighlight">\(a_{ij}=0\)</span> for <span class="math notranslate nohighlight">\(i &lt; j+1\)</span></p></li>
+<li><p>Tridiagonal if <span class="math notranslate nohighlight">\(a_{ij}=0\)</span> for <span class="math notranslate nohighlight">\(|i -j| &gt; 1\)</span></p></li>
+<li><p>Lower banded with bandwidth <span class="math notranslate nohighlight">\(p\)</span>: <span class="math notranslate nohighlight">\(a_{ij}=0\)</span> for <span class="math notranslate nohighlight">\(i &gt; j+p\)</span></p></li>
+<li><p>Upper banded with bandwidth <span class="math notranslate nohighlight">\(p\)</span>: <span class="math notranslate nohighlight">\(a_{ij}=0\)</span> for <span class="math notranslate nohighlight">\(i &lt; j+p\)</span></p></li>
+<li><p>Banded, block upper triangular, block lower triangular….</p></li>
+</ul>
+<p>Furthermore, for an <span class="math notranslate nohighlight">\(N\times N\)</span> matrix  <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> the following properties are all equivalent</p>
+<ul class="simple">
+<li><p>If the inverse of <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> exists, <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is nonsingular.</p></li>
+<li><p>The equation <span class="math notranslate nohighlight">\(\mathbf{Ax}=0\)</span> implies <span class="math notranslate nohighlight">\(\mathbf{x}=0\)</span>.</p></li>
+<li><p>The rows of <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> form a basis of <span class="math notranslate nohighlight">\(R^N\)</span>.</p></li>
+<li><p>The columns of <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> form a basis of <span class="math notranslate nohighlight">\(R^N\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is a product of elementary matrices.</p></li>
+<li><p><span class="math notranslate nohighlight">\(0\)</span> is not eigenvalue of <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>.</p></li>
+</ul>
+</section>
+<section id="numpy-and-arrays">
+<h2><span class="section-number">1.4. </span>Numpy and arrays<a class="headerlink" href="#numpy-and-arrays" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="http://www.numpy.org/">Numpy</a> provides an easy way to handle arrays in Python. The standard way to import this library is as</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-1.04012373  0.59213074 -0.42727087  0.52525017 -0.57844297  0.67027552
+ -0.98198033 -0.61513114  0.30259076  0.33647795]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here we have defined a vector <span class="math notranslate nohighlight">\(x\)</span> with <span class="math notranslate nohighlight">\(n=10\)</span> elements with its values given by the Normal distribution <span class="math notranslate nohighlight">\(N(0,1)\)</span>.
+Another alternative is to declare a vector as follows</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1 2 3]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here we have defined a vector with three elements, with <span class="math notranslate nohighlight">\(x_0=1\)</span>, <span class="math notranslate nohighlight">\(x_1=2\)</span> and <span class="math notranslate nohighlight">\(x_2=3\)</span>. Note that both Python and C++
+start numbering array elements from <span class="math notranslate nohighlight">\(0\)</span> and on. This means that a vector with <span class="math notranslate nohighlight">\(n\)</span> elements has a sequence of entities <span class="math notranslate nohighlight">\(x_0, x_1, x_2, \dots, x_{n-1}\)</span>. We could also let (recommended) Numpy to compute the logarithms of a specific array as</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.38629436 1.94591015 2.07944154]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here we have used Numpy’s unary function <span class="math notranslate nohighlight">\(np.log\)</span>. This function is
+highly tuned to compute array elements since the code is vectorized
+and does not require looping. We normaly recommend that you use the
+Numpy intrinsic functions instead of the corresponding <strong>log</strong> function
+from Python’s <strong>math</strong> module. The looping is done explicitely by the
+<strong>np.log</strong> function. The alternative, and slower way to compute the
+logarithms of a vector would be to write</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">log</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)):</span>
+    <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">log</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1 1 2]
+</pre></div>
+</div>
+</div>
+</div>
+<p>We note that our code is much longer already and we need to import the <strong>log</strong> function from the <strong>math</strong> module.
+The attentive reader will also notice that the output is <span class="math notranslate nohighlight">\([1, 1, 2]\)</span>. Python interprets automacally our numbers as integers (like the <strong>automatic</strong> keyword in C++). To change this we could define our array elements to be double precision numbers as</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span> <span class="n">dtype</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.38629436 1.94591015 2.07944154]
+</pre></div>
+</div>
+</div>
+</div>
+<p>or simply write them as double precision numbers (Python uses 64 bits as default for floating point type variables), that is</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">4.0</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.38629436 1.94591015 2.07944154]
+</pre></div>
+</div>
+</div>
+</div>
+<p>To check the number of bytes (remember that one byte contains eight bits for double precision variables), you can use simple use the <strong>itemsize</strong> functionality (the array <span class="math notranslate nohighlight">\(x\)</span> is actually an object which inherits the functionalities defined in Numpy) as</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">4.0</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">itemsize</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8
+</pre></div>
+</div>
+</div>
+</div>
+<p>Having defined vectors, we are now ready to try out matrices. We can define a <span class="math notranslate nohighlight">\(3 \times 3 \)</span> real matrix <span class="math notranslate nohighlight">\(\hat{A}\)</span>
+as (recall that we user lowercase letters for vectors and uppercase letters for matrices)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="p">[</span><span class="mf">4.0</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">11.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">4.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">]</span> <span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1.38629436 1.94591015 2.07944154]
+ [1.09861229 2.30258509 2.39789527]
+ [1.38629436 1.60943791 1.94591015]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we use the <strong>shape</strong> function we would get <span class="math notranslate nohighlight">\((3, 3)\)</span> as output, that is verifying that our matrix is a <span class="math notranslate nohighlight">\(3\times 3\)</span> matrix. We can slice the matrix and print for example the first column (Python organized matrix elements in a row-major order, see below) as</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="p">[</span><span class="mf">4.0</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">11.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">4.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">]</span> <span class="p">]))</span>
+<span class="c1"># print the first column, row-major order and elements start with 0</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.38629436 1.09861229 1.38629436]
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can continue this was by printing out other columns or rows. The example here prints out the second column</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="p">[</span><span class="mf">4.0</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">11.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">4.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">]</span> <span class="p">]))</span>
+<span class="c1"># print the first column, row-major order and elements start with 0</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">,:])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.09861229 2.30258509 2.39789527]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Numpy contains many other functionalities that allow us to slice, subdivide etc etc arrays. We strongly recommend that you look up the <a class="reference external" href="http://www.numpy.org/">Numpy website for more details</a>. Useful functions when defining a matrix are the <strong>np.zeros</strong> function which declares a matrix of a given dimension and sets all elements to zero</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="c1"># define a matrix of dimension 10 x 10 and set all elements to zero</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>or initializing all elements to</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="c1"># define a matrix of dimension 10 x 10 and set all elements to one</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1. 1. 1. 1. 1. 1. 1. 1. 1. 1.]
+ [1. 1. 1. 1. 1. 1. 1. 1. 1. 1.]
+ [1. 1. 1. 1. 1. 1. 1. 1. 1. 1.]
+ [1. 1. 1. 1. 1. 1. 1. 1. 1. 1.]
+ [1. 1. 1. 1. 1. 1. 1. 1. 1. 1.]
+ [1. 1. 1. 1. 1. 1. 1. 1. 1. 1.]
+ [1. 1. 1. 1. 1. 1. 1. 1. 1. 1.]
+ [1. 1. 1. 1. 1. 1. 1. 1. 1. 1.]
+ [1. 1. 1. 1. 1. 1. 1. 1. 1. 1.]
+ [1. 1. 1. 1. 1. 1. 1. 1. 1. 1.]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>or as unitarily distributed random numbers (see the material on random number generators in the statistics part)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="c1"># define a matrix of dimension 10 x 10 and set all elements to random numbers with x \in [0, 1]</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.99611123 0.29470802 0.39579807 0.20825922 0.8644125  0.08352428
+  0.05907663 0.08347592 0.20060478 0.75228107]
+ [0.3511082  0.56405006 0.61550444 0.58177508 0.7678591  0.21830775
+  0.49617085 0.39510296 0.76704203 0.96220654]
+ [0.487118   0.14441343 0.57090836 0.58723483 0.4128582  0.17826859
+  0.8456327  0.44151083 0.47793263 0.39048817]
+ [0.56430695 0.72632017 0.83437011 0.14483543 0.80872405 0.00145803
+  0.76981754 0.909523   0.8470203  0.98497071]
+ [0.54919292 0.55571518 0.73985351 0.01993346 0.59465843 0.05474078
+  0.12576794 0.49757614 0.85994834 0.53998337]
+ [0.09031764 0.8739598  0.44139831 0.51902282 0.93675257 0.68872155
+  0.11193207 0.5529691  0.27407283 0.86800159]
+ [0.77459655 0.84570081 0.43006891 0.87562216 0.05136003 0.45525788
+  0.19658516 0.98046349 0.94452339 0.30578655]
+ [0.37908076 0.2154036  0.70451603 0.75363787 0.05347397 0.03986563
+  0.52666518 0.05328454 0.7475559  0.27459753]
+ [0.43560773 0.48810143 0.28261906 0.02755244 0.17638859 0.54834856
+  0.49432714 0.83715299 0.39952449 0.11216109]
+ [0.35318502 0.86973797 0.4084802  0.61180315 0.65476846 0.48891815
+  0.82031199 0.34177489 0.15916515 0.10573068]]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="other-matrix-and-vector-operations">
+<h2><span class="section-number">1.5. </span>Other Matrix and Vector Operations<a class="headerlink" href="#other-matrix-and-vector-operations" title="Link to this heading">#</a></h2>
+<p>The following examples show how to compute various quantities like the
+<strong>mean</strong> value of a matrix or a vector and how to use functions like
+<strong>reshape</strong> and <strong>ravel</strong>. These are all useful quantities when scaling
+the data and preparing the data for various machine learning
+algorithms and when calculating quantities like the mean squared error
+or the variance.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Simple code that tests various numpy functions</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="c1"># Simple test-matrix of dim 3 x 4</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">],[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">]],</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The test matrix:</span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1"># This is the total mean summed over all elements, which here has to be 6.5</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;This is the total mean summed over all elements:</span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1"># This is the mean for each column, it returns an array with the mean values for each column. It returns a row-like vector</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;This is the mean for each column:</span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1"># This is the mean value for each row, it returns an array via the keepdims option which is a column-like vector if</span>
+<span class="c1"># keepdims=True. Else it return a row-like vector</span>
+<span class="c1"># Try setting keepdims=False</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;This is the mean value for each row:</span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1"># We print then the mean value for each row by  setting keepdims=False</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;This is the mean value for each row with keepdims false:</span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">keepdims</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Ravel return a contiguous flattened array.</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Flatten  the matrix:</span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1"># It is the same as reshaping the matrix into a one-dimensional array</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Reshape the matrix to a one-dim array:</span><span class="si">{</span><span class="n">a</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1">#  ‘C’ means to index the elements in row-major, C-style order, with the last axis index changing fastest, back to the first axis index changing slowest.</span>
+<span class="c1"># ‘F’ means to index the elements in column-major, Fortran-style order, with the first index changing fastest, and the last index changing slowest </span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">))</span>
+<span class="c1"># When order is ‘A’, it will preserve the array’s ‘C’ or ‘F’ ordering</span>
+<span class="c1"># ‘A’ means to read the elements in Fortran-like index order if a is Fortran contiguous in memory, C-like order otherwise.</span>
+<span class="c1"># ‘K’ means to read the elements in the order they occur in memory, except for reversing the data when strides are negative. By default, ‘C’ index order is used.</span>
+<span class="c1"># Transposing it</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">T</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The test matrix:[[ 1.  2.  3.]
+ [ 4.  5.  6.]
+ [ 7.  8.  9.]
+ [10. 11. 12.]]
+This is the total mean summed over all elements:6.5
+This is the mean for each column:[[5.5 6.5 7.5]]
+This is the mean value for each row:[[ 2.]
+ [ 5.]
+ [ 8.]
+ [11.]]
+This is the mean value for each row with keepdims false:[ 2.  5.  8. 11.]
+Flatten  the matrix:[ 1.  2.  3.  4.  5.  6.  7.  8.  9. 10. 11. 12.]
+Reshape the matrix to a one-dim array:[ 1.  2.  3.  4.  5.  6.  7.  8.  9. 10. 11. 12.]
+[ 1.  4.  7. 10.  2.  5.  8. 11.  3.  6.  9. 12.]
+[ 1.  4.  7. 10.  2.  5.  8. 11.  3.  6.  9. 12.]
+[ 1.  2.  3.  4.  5.  6.  7.  8.  9. 10. 11. 12.]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="definitions-and-vector-and-matrix-operations">
+<h2><span class="section-number">1.6. </span>Definitions and vector and matrix operations<a class="headerlink" href="#definitions-and-vector-and-matrix-operations" title="Link to this heading">#</a></h2>
+<p>We use this section to define some central quantities as well as
+presenting our notations for single-particle and many-body states. We will
+normally tend to label vectors and states with the so-called Dirac
+<strong>bra-ket</strong> notation.  In general we will use lower-case and boldfaced
+letters for vectors and upper-case boldfaced letters for matrices. These ways to represent vectors will however be replaced
+with the above-mentioned Dirac <strong>bra-ket</strong> notation.  As example, consider the vector <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> defined here</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\boldsymbol{x} = \vert x \rangle = \begin{bmatrix} x_0 \\ x_1 \\ x_2 \\ \dots \\ x_{n-2} \\ x_{n-1} \end{bmatrix} \in \mathbb{C}^{n} ,
+\end{split}\]</div>
+<p>and its hermitian conjugate</p>
+<div class="math notranslate nohighlight">
+\[
+\langle x \vert = \vert x \rangle^{\dagger}=\begin{bmatrix} x_0^* &amp; x_1^* &amp;  x_2^* &amp; \dots &amp; x_{n-2}^* &amp; x_{n-1}^* \end{bmatrix}.
+\]</div>
+<p>The norm of two vectors is defined as (assuming they are not orthogonal</p>
+<div class="math notranslate nohighlight">
+\[
+\langle x \vert y \rangle =\sum_ix_i^*y_i,
+\]</div>
+<p>and for an orthonormal (normalized and orthogonal) basis we have</p>
+<div class="math notranslate nohighlight">
+\[
+\langle x_j \vert x_i \rangle =\delta_{ij}.
+\]</div>
+<p>We can also use this orthonormal basis to define the completeness relation as</p>
+<div class="math notranslate nohighlight">
+\[
+\boldsymbol{I}=\sum_{i=0}^{\infty}\vert x_i \rangle \langle _i \vert,
+\]</div>
+<p>where we have defined the outer product</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\vert x \rangle \langle y \vert  = \begin{bmatrix} x_0y_0^* &amp; x_0y_1^* &amp;  x_0y_2^* &amp; \dots &amp; x_0y_{n-2}^* &amp; x_0y_{n-1}^* \\
+                                                   x_1y_0^* &amp; x_1y_1^* &amp;  x_1y_2^* &amp; \dots &amp; x_1y_{n-2}^* &amp; x_1y_{n-1}^* \\
+						   \dots    &amp; \dots    &amp; \dots     &amp; \dots &amp; \dots        &amp; \dots \\                                           						         \dots    &amp; \dots    &amp; \dots     &amp; \dots &amp; \dots        &amp; \dots \\
+						   x_{n-2}y_0^* &amp; x_{n-2}y_1^* &amp;  x_{n-2}y_2^* &amp; \dots &amp; x_{n-2}y_{n-2}^* &amp; x_{n-2}y_{n-1}^* \\
+						   x_{n-1}y_0^* &amp; x_{n-1}y_1^* &amp;  x_{n-1}y_2^* &amp; \dots &amp; x_{n-1}y_{n-2}^* &amp; x_{n-1}y_{n-1}^* \\
+\end{bmatrix}.
+\end{split}\]</div>
+<p>The outer product defined here is going to play an important role in
+these studies as it can be used to define important projection
+operators. Since the basis of orthonormal states is, normally,
+infinite, the above sum runs over an infinite basis. However, for all
+practical reasons, unless we can find analytical solutions to a
+quantum mechanical problem, the above sum needs to be truncated.</p>
+<p>An orthonormal basis can in turn be used to define a new basis set <span class="math notranslate nohighlight">\(\vert \phi_i \rangle\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+\vert \phi_i \rangle \sum_j C_{ij} \vert x_j\rangle,
+\]</div>
+<p>where the coefficients <span class="math notranslate nohighlight">\(C_{ij}=\langle \phi_i\vert x_j\rangle\)</span> are the
+matrix elements of a transformation from a basis set <span class="math notranslate nohighlight">\(\vert \boldsymbol{x}
+\rangle\)</span> to a new basis set <span class="math notranslate nohighlight">\(\vert \boldsymbol{\phi}\rangle\)</span>. The matrix
+<span class="math notranslate nohighlight">\(\boldsymbol{C}\)</span> is normally a unitary matrix.</p>
+<p>With the outer product we can define projection operators <span class="math notranslate nohighlight">\(\hat{P}\)</span> and <span class="math notranslate nohighlight">\(\hat{Q}\)</span>.
+Consider for example the two orthonormal states</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\vert x_0 \rangle = \begin{bmatrix} 1 \\ 0 \end{bmatrix},
+\end{split}\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\vert x_1 \rangle = \begin{bmatrix} 0 \\ 1 \end{bmatrix}.
+\end{split}\]</div>
+<p>We can easily define a new basis which is a linear combination of the two</p>
+<div class="math notranslate nohighlight">
+\[
+\vert \phi \rangle = \alpha \vert x_0 \rangle +\beta \vert x_1 \rangle
+\]</div>
+<section id="tensor-products">
+<h3><span class="section-number">1.6.1. </span>Tensor products<a class="headerlink" href="#tensor-products" title="Link to this heading">#</a></h3>
+<p>Consider now two vectors with length <span class="math notranslate nohighlight">\(n=2\)</span>, with elements</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\vert x \rangle = \begin{bmatrix} x_0 \\ x_1 \end{bmatrix},
+\end{split}\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\vert x \rangle = \begin{bmatrix} y_0 \\ y_1 \end{bmatrix},
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\vert x \rangle \otimes \vert y \rangle = \vert xy \rangle  = \begin{bmatrix} x_0y_0 \\ x_0y_1 \\ x_1y_0 \\ x_1y_1 \end{bmatrix},
+\end{split}\]</div>
+<p>which is now a vector of length <span class="math notranslate nohighlight">\(4\)</span>.
+The tensor product of two matrices is defined as</p>
+</section>
+<section id="representation-of-states">
+<h3><span class="section-number">1.6.2. </span>Representation of states<a class="headerlink" href="#representation-of-states" title="Link to this heading">#</a></h3>
+<p>Before we proceed we need several definitions.  Throughout these
+lectures we will assume that the interacting part of the Hamiltonian
+can be approximated by a two-body interaction.  This means that our
+Hamiltonian can be written as the sum of a onebody part, which
+includes kinetic energy and an eventual external field, and a twobody
+interaction</p>
+<!-- Equation labels as ordinary links -->
+<div id="Hnuclei"></div>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+    \hat{H} = \hat{H}_0 + \hat{H}_I 
+    = \sum_{i=1}^A \hat{h}_0(x_i) + \sum_{i &lt; j}^A \hat{v}(r_{ij}),
+\label{Hnuclei} \tag{1}
+\end{equation}
+\]</div>
+<p>with</p>
+<!-- Equation labels as ordinary links -->
+<div id="hinuclei"></div>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+  H_0=\sum_{i=1}^A \hat{h}_0(x_i).
+\label{hinuclei} \tag{2}
+\end{equation}
+\]</div>
+<p>The onebody part <span class="math notranslate nohighlight">\(u_{\mathrm{ext}}(x_i)\)</span> is normally approximated by a
+harmonic oscillator potential or the Coulomb interaction an electron
+feels from the nucleus. However, other potentials are fully possible,
+such as one derived from the self-consistent solution of the
+Hartree-Fock equations to be discussed here.</p>
+<p>Our Hamiltonian is invariant under the permutation (interchange) of
+two particles.  Since we deal with fermions however, the total wave
+function is antisymmetric.  Let <span class="math notranslate nohighlight">\(\hat{P}\)</span> be an operator which
+interchanges two particles.  Due to the symmetries we have ascribed to
+our Hamiltonian, this operator commutes with the total Hamiltonian,</p>
+<div class="math notranslate nohighlight">
+\[
+[\hat{H},\hat{P}] = 0,
+\]</div>
+<p>meaning that <span class="math notranslate nohighlight">\(\Psi_{\lambda}(x_1, x_2, \dots , x_A)\)</span> is an eigenfunction of
+<span class="math notranslate nohighlight">\(\hat{P}\)</span> as well, that is</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{P}_{ij}\Psi_{\lambda}(x_1, x_2, \dots,x_i,\dots,x_j,\dots,x_A)=
+\beta\Psi_{\lambda}(x_1, x_2, \dots,x_i,\dots,x_j,\dots,x_A),
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\beta\)</span> is the eigenvalue of <span class="math notranslate nohighlight">\(\hat{P}\)</span>. We have introduced the suffix <span class="math notranslate nohighlight">\(ij\)</span> in order to indicate that we permute particles <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>.
+The Pauli principle tells us that the total wave function for a system of fermions
+has to be antisymmetric, resulting in the eigenvalue <span class="math notranslate nohighlight">\(\beta = -1\)</span>.</p>
+<p>In our case we assume that  we can approximate the exact eigenfunction with a Slater determinant</p>
+<!-- Equation labels as ordinary links -->
+<div id="eq:HartreeFockDet"></div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation}
+   \Phi(x_1, x_2,\dots ,x_A,\alpha,\beta,\dots, \sigma)=\frac{1}{\sqrt{A!}}
+\left| \begin{array}{ccccc} \psi_{\alpha}(x_1)&amp; \psi_{\alpha}(x_2)&amp; \dots &amp; \dots &amp; \psi_{\alpha}(x_A)\\
+                            \psi_{\beta}(x_1)&amp;\psi_{\beta}(x_2)&amp; \dots &amp; \dots &amp; \psi_{\beta}(x_A)\\  
+                            \dots &amp; \dots &amp; \dots &amp; \dots &amp; \dots \\
+                            \dots &amp; \dots &amp; \dots &amp; \dots &amp; \dots \\
+                     \psi_{\sigma}(x_1)&amp;\psi_{\sigma}(x_2)&amp; \dots &amp; \dots &amp; \psi_{\sigma}(x_A)\end{array} \right|, \label{eq:HartreeFockDet} \tag{3}
+\end{equation}
+\end{split}\]</div>
+<p>where  <span class="math notranslate nohighlight">\(x_i\)</span>  stand for the coordinates and spin values of a particle <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(\alpha,\beta,\dots, \gamma\)</span>
+are quantum numbers needed to describe remaining quantum numbers.</p>
+<p>Since we will deal with Fermions (identical and indistinguishable particles) we will
+form an ansatz for a given state in terms of so-called Slater determinants determined
+by a chosen basis of single-particle functions.</p>
+<p>For a given <span class="math notranslate nohighlight">\(n\times n\)</span> matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> we can write its determinant</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+det(\mathbf{A})=|\mathbf{A}|=
+\left| \begin{array}{ccccc} a_{11}&amp; a_{12}&amp; \dots &amp; \dots &amp; a_{1n}\\
+                            a_{21}&amp;a_{22}&amp; \dots &amp; \dots &amp; a_{2n}\\  
+                            \dots &amp; \dots &amp; \dots &amp; \dots &amp; \dots \\
+                            \dots &amp; \dots &amp; \dots &amp; \dots &amp; \dots \\
+                            a_{n1}&amp; a_{n2}&amp; \dots &amp; \dots &amp; a_{nn}\end{array} \right|,
+\end{split}\]</div>
+<p>in a more compact form as</p>
+<div class="math notranslate nohighlight">
+\[
+|\mathbf{A}|= \sum_{i=1}^{n!}(-1)^{p_i}\hat{P}_i a_{11}a_{22}\dots a_{nn},
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\hat{P}_i\)</span> is a permutation operator which permutes the column indices <span class="math notranslate nohighlight">\(1,2,3,\dots,n\)</span>
+and the sum runs over all <span class="math notranslate nohighlight">\(n!\)</span> permutations.  The quantity <span class="math notranslate nohighlight">\(p_i\)</span> represents the number of transpositions of column indices that are needed in order to bring a given permutation back to its initial ordering, in our case given by <span class="math notranslate nohighlight">\(a_{11}a_{22}\dots a_{nn}\)</span> here.</p>
+<p>A simple <span class="math notranslate nohighlight">\(2\times 2\)</span> determinant illustrates this. We have</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+det(\mathbf{A})=
+\left| \begin{array}{cc} a_{11}&amp; a_{12}\\
+                            a_{21}&amp;a_{22}\end{array} \right|= (-1)^0a_{11}a_{22}+(-1)^1a_{12}a_{21},
+\end{split}\]</div>
+<p>where in the last term we have interchanged the column indices <span class="math notranslate nohighlight">\(1\)</span> and <span class="math notranslate nohighlight">\(2\)</span>. The natural ordering we have chosen is <span class="math notranslate nohighlight">\(a_{11}a_{22}\)</span>.</p>
+<p>The single-particle function <span class="math notranslate nohighlight">\(\psi_{\alpha}(x_i)\)</span>  are eigenfunctions of the onebody
+Hamiltonian <span class="math notranslate nohighlight">\(h_i\)</span>, that is</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{h}_0(x_i)=\hat{t}(x_i) + \hat{u}_{\mathrm{ext}}(x_i),
+\]</div>
+<p>with eigenvalues</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{h}_0(x_i) \psi_{\alpha}(x_i)=\left(\hat{t}(x_i) + \hat{u}_{\mathrm{ext}}(x_i)\right)\psi_{\alpha}(x_i)=\varepsilon_{\alpha}\psi_{\alpha}(x_i).
+\]</div>
+<p>The energies <span class="math notranslate nohighlight">\(\varepsilon_{\alpha}\)</span> are the so-called non-interacting single-particle energies, or unperturbed energies.
+The total energy is in this case the sum over all  single-particle energies, if no two-body or more complicated
+many-body interactions are present.</p>
+<p>Let us denote the ground state energy by <span class="math notranslate nohighlight">\(E_0\)</span>. According to the
+variational principle we have</p>
+<div class="math notranslate nohighlight">
+\[
+E_0 \le E[\Phi] = \int \Phi^*\hat{H}\Phi d\mathbf{\tau}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\Phi\)</span> is a trial function which we assume to be normalized</p>
+<div class="math notranslate nohighlight">
+\[
+\int \Phi^*\Phi d\mathbf{\tau} = 1,
+\]</div>
+<p>where we have used the shorthand <span class="math notranslate nohighlight">\(d\mathbf{\tau}=dx_1dr_2\dots dr_A\)</span>.</p>
+<p>In the Hartree-Fock method the trial function is the Slater
+determinant of Eq. (<a class="reference internal" href="#eq:HartreeFockDet"><span class="xref myst">3</span></a>) which can be rewritten as</p>
+<div class="math notranslate nohighlight">
+\[
+\Phi(x_1,x_2,\dots,x_A,\alpha,\beta,\dots,\nu) = \frac{1}{\sqrt{A!}}\sum_{P} (-)^P\hat{P}\psi_{\alpha}(x_1)
+    \psi_{\beta}(x_2)\dots\psi_{\nu}(x_A)=\sqrt{A!}\hat{A}\Phi_H,
+\]</div>
+<p>where we have introduced the antisymmetrization operator <span class="math notranslate nohighlight">\(\hat{A}\)</span> defined by the
+summation over all possible permutations of two particles.</p>
+<p>It is defined as</p>
+<!-- Equation labels as ordinary links -->
+<div id="antiSymmetryOperator"></div>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+  \hat{A} = \frac{1}{A!}\sum_{p} (-)^p\hat{P},
+\label{antiSymmetryOperator} \tag{4}
+\end{equation}
+\]</div>
+<p>with <span class="math notranslate nohighlight">\(p\)</span> standing for the number of permutations. We have introduced for later use the so-called
+Hartree-function, defined by the simple product of all possible single-particle functions</p>
+<div class="math notranslate nohighlight">
+\[
+\Phi_H(x_1,x_2,\dots,x_A,\alpha,\beta,\dots,\nu) =
+  \psi_{\alpha}(x_1)
+    \psi_{\beta}(x_2)\dots\psi_{\nu}(x_A).
+\]</div>
+<p>Both <span class="math notranslate nohighlight">\(\hat{H}_0\)</span> and <span class="math notranslate nohighlight">\(\hat{H}_I\)</span> are invariant under all possible permutations of any two particles
+and hence commute with <span class="math notranslate nohighlight">\(\hat{A}\)</span></p>
+<!-- Equation labels as ordinary links -->
+<div id="commutionAntiSym"></div>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+  [H_0,\hat{A}] = [H_I,\hat{A}] = 0. \label{commutionAntiSym} \tag{5}
+\end{equation}
+\]</div>
+<p>Furthermore, <span class="math notranslate nohighlight">\(\hat{A}\)</span> satisfies</p>
+<!-- Equation labels as ordinary links -->
+<div id="AntiSymSquared"></div>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+  \hat{A}^2 = \hat{A},  \label{AntiSymSquared} \tag{6}
+\end{equation}
+\]</div>
+<p>since every permutation of the Slater
+determinant reproduces it.</p>
+<p>The expectation value of <span class="math notranslate nohighlight">\(\hat{H}_0\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+\int \Phi^*\hat{H}_0\Phi d\mathbf{\tau} 
+  = A! \int \Phi_H^*\hat{A}\hat{H}_0\hat{A}\Phi_H d\mathbf{\tau}
+\]</div>
+<p>is readily reduced to</p>
+<div class="math notranslate nohighlight">
+\[
+\int \Phi^*\hat{H}_0\Phi d\mathbf{\tau} 
+  = A! \int \Phi_H^*\hat{H}_0\hat{A}\Phi_H d\mathbf{\tau},
+\]</div>
+<p>where we have used Eqs. (<a class="reference internal" href="#commutionAntiSym"><span class="xref myst">5</span></a>) and
+(<a class="reference internal" href="#AntiSymSquared"><span class="xref myst">6</span></a>). The next step is to replace the antisymmetrization
+operator by its definition and to
+replace <span class="math notranslate nohighlight">\(\hat{H}_0\)</span> with the sum of one-body operators</p>
+<div class="math notranslate nohighlight">
+\[
+\int \Phi^*\hat{H}_0\Phi  d\mathbf{\tau}
+  = \sum_{i=1}^A \sum_{p} (-)^p\int 
+  \Phi_H^*\hat{h}_0\hat{P}\Phi_H d\mathbf{\tau}.
+\]</div>
+<p>The integral vanishes if two or more particles are permuted in only one
+of the Hartree-functions <span class="math notranslate nohighlight">\(\Phi_H\)</span> because the individual single-particle wave functions are
+orthogonal. We obtain then</p>
+<div class="math notranslate nohighlight">
+\[
+\int \Phi^*\hat{H}_0\Phi  d\mathbf{\tau}= \sum_{i=1}^A \int \Phi_H^*\hat{h}_0\Phi_H  d\mathbf{\tau}.
+\]</div>
+<p>Orthogonality of the single-particle functions allows us to further simplify the integral, and we
+arrive at the following expression for the expectation values of the
+sum of one-body Hamiltonians</p>
+<!-- Equation labels as ordinary links -->
+<div id="H1Expectation"></div>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+  \int \Phi^*\hat{H}_0\Phi  d\mathbf{\tau}
+  = \sum_{\mu=1}^A \int \psi_{\mu}^*(x)\hat{h}_0\psi_{\mu}(x)dx
+  d\mathbf{r}.
+\label{H1Expectation} \tag{7}
+\end{equation}
+\]</div>
+<p>We introduce the following shorthand for the above integral</p>
+<div class="math notranslate nohighlight">
+\[
+\langle \mu | \hat{h}_0 | \mu \rangle = \int \psi_{\mu}^*(x)\hat{h}_0\psi_{\mu}(x)dx,
+\]</div>
+<p>and rewrite Eq. (<a class="reference internal" href="#H1Expectation"><span class="xref myst">7</span></a>) as</p>
+<!-- Equation labels as ordinary links -->
+<div id="H1Expectation1"></div>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+  \int \Phi^*\hat{H}_0\Phi  d\tau
+  = \sum_{\mu=1}^A \langle \mu | \hat{h}_0 | \mu \rangle.
+\label{H1Expectation1} \tag{8}
+\end{equation}
+\]</div>
+<p>The expectation value of the two-body part of the Hamiltonian is obtained in a
+similar manner. We have</p>
+<div class="math notranslate nohighlight">
+\[
+\int \Phi^*\hat{H}_I\Phi d\mathbf{\tau} 
+  = A! \int \Phi_H^*\hat{A}\hat{H}_I\hat{A}\Phi_H d\mathbf{\tau},
+\]</div>
+<p>which reduces to</p>
+<div class="math notranslate nohighlight">
+\[
+\int \Phi^*\hat{H}_I\Phi d\mathbf{\tau} 
+  = \sum_{i\le j=1}^A \sum_{p} (-)^p\int 
+  \Phi_H^*\hat{v}(r_{ij})\hat{P}\Phi_H d\mathbf{\tau},
+\]</div>
+<p>by following the same arguments as for the one-body
+Hamiltonian.</p>
+<p>Because of the dependence on the inter-particle distance <span class="math notranslate nohighlight">\(r_{ij}\)</span>,  permutations of
+any two particles no longer vanish, and we get</p>
+<div class="math notranslate nohighlight">
+\[
+\int \Phi^*\hat{H}_I\Phi d\mathbf{\tau} 
+  = \sum_{i &lt; j=1}^A \int  
+  \Phi_H^*\hat{v}(r_{ij})(1-P_{ij})\Phi_H d\mathbf{\tau}.
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(P_{ij}\)</span> is the permutation operator that interchanges
+particle <span class="math notranslate nohighlight">\(i\)</span> and particle <span class="math notranslate nohighlight">\(j\)</span>. Again we use the assumption that the single-particle wave functions
+are orthogonal.</p>
+<p>We obtain</p>
+<!-- Equation labels as ordinary links -->
+<div id="_auto1"></div>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+  \int \Phi^*\hat{H}_I\Phi d\mathbf{\tau} 
+  = \frac{1}{2}\sum_{\mu=1}^A\sum_{\nu=1}^A
+    \left[ \int \psi_{\mu}^*(x_i)\psi_{\nu}^*(x_j)\hat{v}(r_{ij})\psi_{\mu}(x_i)\psi_{\nu}(x_j)
+    dx_idx_j \right.
+\label{_auto1} \tag{9}
+\end{equation}
+\]</div>
+<!-- Equation labels as ordinary links -->
+<div id="H2Expectation"></div>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation} 
+  \left.
+  - \int \psi_{\mu}^*(x_i)\psi_{\nu}^*(x_j)
+  \hat{v}(r_{ij})\psi_{\nu}(x_i)\psi_{\mu}(x_j)
+  dx_idx_j
+  \right]. \label{H2Expectation} \tag{10}
+\end{equation}
+\]</div>
+<p>The first term is the so-called direct term. It is frequently also called the  Hartree term,
+while the second is due to the Pauli principle and is called
+the exchange term or just the Fock term.
+The factor  <span class="math notranslate nohighlight">\(1/2\)</span> is introduced because we now run over
+all pairs twice.</p>
+<p>The last equation allows us to  introduce some further definitions.<br />
+The single-particle wave functions <span class="math notranslate nohighlight">\(\psi_{\mu}(x)\)</span>, defined by the quantum numbers <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(x\)</span>
+are defined as the overlap</p>
+<div class="math notranslate nohighlight">
+\[
+\psi_{\alpha}(x)  = \langle x | \alpha \rangle .
+\]</div>
+<p>We introduce the following shorthands for the above two integrals</p>
+<div class="math notranslate nohighlight">
+\[
+\langle \mu\nu|\hat{v}|\mu\nu\rangle =  \int \psi_{\mu}^*(x_i)\psi_{\nu}^*(x_j)\hat{v}(r_{ij})\psi_{\mu}(x_i)\psi_{\nu}(x_j)
+    dx_idx_j,
+\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[
+\langle \mu\nu|\hat{v}|\nu\mu\rangle = \int \psi_{\mu}^*(x_i)\psi_{\nu}^*(x_j)
+  \hat{v}(r_{ij})\psi_{\nu}(x_i)\psi_{\mu}(x_j)
+  dx_idx_j.
+\]</div>
+</section>
+</section>
+<section id="preparing-for-later-studies-varying-the-coefficients-of-a-wave-function-expansion-and-orthogonal-transformations">
+<h2><span class="section-number">1.7. </span>Preparing for later studies: varying the coefficients of a wave function expansion and orthogonal transformations<a class="headerlink" href="#preparing-for-later-studies-varying-the-coefficients-of-a-wave-function-expansion-and-orthogonal-transformations" title="Link to this heading">#</a></h2>
+<p>It is common to  expand the single-particle functions in a known basis  and vary the coefficients,
+that is, the new single-particle wave function is written as a linear expansion
+in terms of a fixed chosen orthogonal basis (for example the well-known harmonic oscillator functions or the hydrogen-like functions etc).
+We define our new single-particle basis (this is a normal approach for Hartree-Fock theory) by performing a unitary transformation
+on our previous basis (labelled with greek indices) as</p>
+<!-- Equation labels as ordinary links -->
+<div id="eq:newbasis"></div>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+\psi_p^{new}  = \sum_{\lambda} C_{p\lambda}\phi_{\lambda}. \label{eq:newbasis} \tag{11}
+\end{equation}
+\]</div>
+<p>In this case we vary the coefficients <span class="math notranslate nohighlight">\(C_{p\lambda}\)</span>. If the basis has infinitely many solutions, we need
+to truncate the above sum.  We assume that the basis <span class="math notranslate nohighlight">\(\phi_{\lambda}\)</span> is orthogonal.</p>
+<p>It is normal to choose a single-particle basis defined as the eigenfunctions
+of parts of the full Hamiltonian. The typical situation consists of the solutions of the one-body part of the Hamiltonian, that is we have</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{h}_0\phi_{\lambda}=\epsilon_{\lambda}\phi_{\lambda}.
+\]</div>
+<p>The single-particle wave functions <span class="math notranslate nohighlight">\(\phi_{\lambda}(\mathbf{r})\)</span>, defined by the quantum numbers <span class="math notranslate nohighlight">\(\lambda\)</span> and <span class="math notranslate nohighlight">\(\mathbf{r}\)</span>
+are defined as the overlap</p>
+<div class="math notranslate nohighlight">
+\[
+\phi_{\lambda}(\mathbf{r})  = \langle \mathbf{r} | \lambda \rangle .
+\]</div>
+<p>In deriving the Hartree-Fock equations, we  will expand the single-particle functions in a known basis  and vary the coefficients,
+that is, the new single-particle wave function is written as a linear expansion
+in terms of a fixed chosen orthogonal basis (for example the well-known harmonic oscillator functions or the hydrogen-like functions etc).</p>
+<p>We stated that a unitary transformation keeps the orthogonality. To see this consider first a basis of vectors <span class="math notranslate nohighlight">\(\mathbf{v}_i\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{v}_i = \begin{bmatrix} v_{i1} \\ \dots \\ \dots \\v_{in} \end{bmatrix}
+\end{split}\]</div>
+<p>We assume that the basis is orthogonal, that is</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{v}_j^T\mathbf{v}_i = \delta_{ij}.
+\]</div>
+<p>An orthogonal or unitary transformation</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{w}_i=\mathbf{U}\mathbf{v}_i,
+\]</div>
+<p>preserves the dot product and orthogonality since</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{w}_j^T\mathbf{w}_i=(\mathbf{U}\mathbf{v}_j)^T\mathbf{U}\mathbf{v}_i=\mathbf{v}_j^T\mathbf{U}^T\mathbf{U}\mathbf{v}_i= \mathbf{v}_j^T\mathbf{v}_i = \delta_{ij}.
+\]</div>
+<p>This means that if the coefficients <span class="math notranslate nohighlight">\(C_{p\lambda}\)</span> belong to a unitary or orthogonal trasformation (using the Dirac bra-ket notation)</p>
+<div class="math notranslate nohighlight">
+\[
+\vert p\rangle  = \sum_{\lambda} C_{p\lambda}\vert\lambda\rangle,
+\]</div>
+<p>orthogonality is preserved, that is <span class="math notranslate nohighlight">\(\langle \alpha \vert \beta\rangle = \delta_{\alpha\beta}\)</span>
+and <span class="math notranslate nohighlight">\(\langle p \vert q\rangle = \delta_{pq}\)</span>.</p>
+<p>This propertry is extremely useful when we build up a basis of many-body Stater determinant based states.</p>
+<p><strong>Note also that although a basis <span class="math notranslate nohighlight">\(\vert \alpha\rangle\)</span> contains an infinity of states, for practical calculations we have always to make some truncations.</strong></p>
+<p>Before we develop for example the Hartree-Fock equations, there is another very useful property of determinants that we will use both in connection with Hartree-Fock calculations and later shell-model calculations.</p>
+<p>Consider the following determinant</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\left| \begin{array}{cc} \alpha_1b_{11}+\alpha_2sb_{12}&amp; a_{12}\\
+                         \alpha_1b_{21}+\alpha_2b_{22}&amp;a_{22}\end{array} \right|=\alpha_1\left|\begin{array}{cc} b_{11}&amp; a_{12}\\
+                         b_{21}&amp;a_{22}\end{array} \right|+\alpha_2\left| \begin{array}{cc} b_{12}&amp; a_{12}\\b_{22}&amp;a_{22}\end{array} \right|
+\end{split}\]</div>
+<p>We can generalize this to  an <span class="math notranslate nohighlight">\(n\times n\)</span> matrix and have</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\left| \begin{array}{cccccc} a_{11}&amp; a_{12} &amp; \dots &amp; \sum_{k=1}^n c_k b_{1k} &amp;\dots &amp; a_{1n}\\
+a_{21}&amp; a_{22} &amp; \dots &amp; \sum_{k=1}^n c_k b_{2k} &amp;\dots &amp; a_{2n}\\
+\dots &amp; \dots &amp; \dots &amp; \dots &amp; \dots &amp; \dots \\
+\dots &amp; \dots &amp; \dots &amp; \dots &amp; \dots &amp; \dots \\
+a_{n1}&amp; a_{n2} &amp; \dots &amp; \sum_{k=1}^n c_k b_{nk} &amp;\dots &amp; a_{nn}\end{array} \right|=
+\sum_{k=1}^n c_k\left| \begin{array}{cccccc} a_{11}&amp; a_{12} &amp; \dots &amp;  b_{1k} &amp;\dots &amp; a_{1n}\\
+a_{21}&amp; a_{22} &amp; \dots &amp;  b_{2k} &amp;\dots &amp; a_{2n}\\
+\dots &amp; \dots &amp; \dots &amp; \dots &amp; \dots &amp; \dots\\
+\dots &amp; \dots &amp; \dots &amp; \dots &amp; \dots &amp; \dots\\
+a_{n1}&amp; a_{n2} &amp; \dots &amp;  b_{nk} &amp;\dots &amp; a_{nn}\end{array} \right| .
+\end{split}\]</div>
+<p>This is a property we will use in our Hartree-Fock discussions.</p>
+<p>We can generalize the previous results, now
+with all elements <span class="math notranslate nohighlight">\(a_{ij}\)</span>  being given as functions of
+linear combinations  of various coefficients <span class="math notranslate nohighlight">\(c\)</span> and elements <span class="math notranslate nohighlight">\(b_{ij}\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\left| \begin{array}{cccccc} \sum_{k=1}^n b_{1k}c_{k1}&amp; \sum_{k=1}^n b_{1k}c_{k2} &amp; \dots &amp; \sum_{k=1}^n b_{1k}c_{kj}  &amp;\dots &amp; \sum_{k=1}^n b_{1k}c_{kn}\\
+\sum_{k=1}^n b_{2k}c_{k1}&amp; \sum_{k=1}^n b_{2k}c_{k2} &amp; \dots &amp; \sum_{k=1}^n b_{2k}c_{kj} &amp;\dots &amp; \sum_{k=1}^n b_{2k}c_{kn}\\
+\dots &amp; \dots &amp; \dots &amp; \dots &amp; \dots &amp; \dots \\
+\dots &amp; \dots &amp; \dots &amp; \dots &amp; \dots &amp;\dots \\
+\sum_{k=1}^n b_{nk}c_{k1}&amp; \sum_{k=1}^n b_{nk}c_{k2} &amp; \dots &amp; \sum_{k=1}^n b_{nk}c_{kj} &amp;\dots &amp; \sum_{k=1}^n b_{nk}c_{kn}\end{array} \right|=det(\mathbf{C})det(\mathbf{B}),
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(det(\mathbf{C})\)</span> and <span class="math notranslate nohighlight">\(det(\mathbf{B})\)</span> are the determinants of <span class="math notranslate nohighlight">\(n\times n\)</span> matrices
+with elements <span class="math notranslate nohighlight">\(c_{ij}\)</span> and <span class="math notranslate nohighlight">\(b_{ij}\)</span> respectively.<br />
+This is a property we will use in our Hartree-Fock discussions. Convince yourself about the correctness of the above expression by setting <span class="math notranslate nohighlight">\(n=2\)</span>.</p>
+<p>With our definition of the new basis in terms of an orthogonal basis we have</p>
+<div class="math notranslate nohighlight">
+\[
+\psi_p(x)  = \sum_{\lambda} C_{p\lambda}\phi_{\lambda}(x).
+\]</div>
+<p>If the coefficients <span class="math notranslate nohighlight">\(C_{p\lambda}\)</span> belong to an orthogonal or unitary matrix, the new basis
+is also orthogonal.
+Our Slater determinant in the new basis <span class="math notranslate nohighlight">\(\psi_p(x)\)</span> is written as</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\frac{1}{\sqrt{A!}}
+\left| \begin{array}{ccccc} \psi_{p}(x_1)&amp; \psi_{p}(x_2)&amp; \dots &amp; \dots &amp; \psi_{p}(x_A)\\
+                            \psi_{q}(x_1)&amp;\psi_{q}(x_2)&amp; \dots &amp; \dots &amp; \psi_{q}(x_A)\\  
+                            \dots &amp; \dots &amp; \dots &amp; \dots &amp; \dots \\
+                            \dots &amp; \dots &amp; \dots &amp; \dots &amp; \dots \\
+                     \psi_{t}(x_1)&amp;\psi_{t}(x_2)&amp; \dots &amp; \dots &amp; \psi_{t}(x_A)\end{array} \right|=\frac{1}{\sqrt{A!}}
+\left| \begin{array}{ccccc} \sum_{\lambda} C_{p\lambda}\phi_{\lambda}(x_1)&amp; \sum_{\lambda} C_{p\lambda}\phi_{\lambda}(x_2)&amp; \dots &amp; \dots &amp; \sum_{\lambda} C_{p\lambda}\phi_{\lambda}(x_A)\\
+                            \sum_{\lambda} C_{q\lambda}\phi_{\lambda}(x_1)&amp;\sum_{\lambda} C_{q\lambda}\phi_{\lambda}(x_2)&amp; \dots &amp; \dots &amp; \sum_{\lambda} C_{q\lambda}\phi_{\lambda}(x_A)\\  
+                            \dots &amp; \dots &amp; \dots &amp; \dots &amp; \dots \\
+                            \dots &amp; \dots &amp; \dots &amp; \dots &amp; \dots \\
+                     \sum_{\lambda} C_{t\lambda}\phi_{\lambda}(x_1)&amp;\sum_{\lambda} C_{t\lambda}\phi_{\lambda}(x_2)&amp; \dots &amp; \dots &amp; \sum_{\lambda} C_{t\lambda}\phi_{\lambda}(x_A)\end{array} \right|,
+\end{split}\]</div>
+<p>which is nothing but <span class="math notranslate nohighlight">\(det(\mathbf{C})det(\Phi)\)</span>, with <span class="math notranslate nohighlight">\(det(\Phi)\)</span> being the determinant given by the basis functions <span class="math notranslate nohighlight">\(\phi_{\lambda}(x)\)</span>.</p>
+<p>In our discussions hereafter we will use our definitions of single-particle states above and below the Fermi (<span class="math notranslate nohighlight">\(F\)</span>) level given by the labels
+<span class="math notranslate nohighlight">\(ijkl\dots \le F\)</span> for so-called single-hole states and <span class="math notranslate nohighlight">\(abcd\dots &gt; F\)</span> for so-called particle states.
+For general single-particle states we employ the labels <span class="math notranslate nohighlight">\(pqrs\dots\)</span>.</p>
+<p>The energy functional is</p>
+<div class="math notranslate nohighlight">
+\[
+E[\Phi] 
+  = \sum_{\mu=1}^A \langle \mu | h | \mu \rangle +
+  \frac{1}{2}\sum_{{\mu}=1}^A\sum_{{\nu}=1}^A \langle \mu\nu|\hat{v}|\mu\nu\rangle_{AS},
+\]</div>
+<p>we found the expression for the energy functional in terms of the basis function <span class="math notranslate nohighlight">\(\phi_{\lambda}(\mathbf{r})\)</span>. We then  varied the above energy functional with respect to the basis functions <span class="math notranslate nohighlight">\(|\mu \rangle\)</span>.
+Now we are interested in defining a new basis defined in terms of
+a chosen basis as defined in Eq. (<a class="reference internal" href="#eq:newbasis"><span class="xref myst">11</span></a>). We can then rewrite the energy functional as</p>
+<!-- Equation labels as ordinary links -->
+<div id="FunctionalEPhi2"></div>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+  E[\Phi^{New}] 
+  = \sum_{i=1}^A \langle i | h | i \rangle +
+  \frac{1}{2}\sum_{ij=1}^A\langle ij|\hat{v}|ij\rangle_{AS}, \label{FunctionalEPhi2} \tag{12}
+\end{equation}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\Phi^{New}\)</span> is the new Slater determinant defined by the new basis of Eq. (<a class="reference internal" href="#eq:newbasis"><span class="xref myst">11</span></a>).</p>
+<p>Using Eq. (<a class="reference internal" href="#eq:newbasis"><span class="xref myst">11</span></a>) we can rewrite Eq. (<a class="reference internal" href="#FunctionalEPhi2"><span class="xref myst">12</span></a>) as</p>
+<!-- Equation labels as ordinary links -->
+<div id="FunctionalEPhi3"></div>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+  E[\Psi] 
+  = \sum_{i=1}^A \sum_{\alpha\beta} C^*_{i\alpha}C_{i\beta}\langle \alpha | h | \beta \rangle +
+  \frac{1}{2}\sum_{ij=1}^A\sum_{{\alpha\beta\gamma\delta}} C^*_{i\alpha}C^*_{j\beta}C_{i\gamma}C_{j\delta}\langle \alpha\beta|\hat{v}|\gamma\delta\rangle_{AS}. \label{FunctionalEPhi3} \tag{13}
+\end{equation}
+\]</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="textbooks.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Textbooks</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="secondquant.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Introduction to  second quantization</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-the-course">1.1. Introduction to the course</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#important-matrix-and-vector-handling-packages">1.2. Important Matrix and vector handling packages</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-matrix-features">1.3. Basic Matrix Features</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy-and-arrays">1.4. Numpy and arrays</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-matrix-and-vector-operations">1.5. Other Matrix and Vector Operations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definitions-and-vector-and-matrix-operations">1.6. Definitions and vector and matrix operations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tensor-products">1.6.1. Tensor products</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#representation-of-states">1.6.2. Representation of states</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-for-later-studies-varying-the-coefficients-of-a-wave-function-expansion-and-orthogonal-transformations">1.7. Preparing for later studies: varying the coefficients of a wave function expansion and orthogonal transformations</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Morten Hjorth-Jensen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

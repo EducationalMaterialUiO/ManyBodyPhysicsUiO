@@ -1,0 +1,80 @@
+[
+ {
+  "base": "wick_fig01",
+  "cell": 31,
+  "size": [
+   7.0,
+   4.5
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "The cost of $\\langle 0|\\,\\cdots\\,|0\\rangle$ for $2n$ operators",
+    "xlabel": "number of operators $2n$",
+    "ylabel": "number of terms or recursive calls",
+    "xscale": "linear",
+    "yscale": "log",
+    "nlines": 3,
+    "labels": [
+     "anticommutation: recursive calls",
+     "Wick: pairings $(2n-1)!!$",
+     "Wick: surviving terms ($=n!$)"
+    ],
+    "legend": [
+     "anticommutation: recursive calls",
+     "Wick: pairings $(2n-1)!!$",
+     "Wick: surviving terms ($=n!$)"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "wick_fig02",
+  "cell": 33,
+  "size": [
+   7.0,
+   3.2
+  ],
+  "npanels": 2,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "How many pairings",
+    "xlabel": "number of normal-ordered groups $k$",
+    "ylabel": "number of full contractions",
+    "xscale": "linear",
+    "yscale": "log",
+    "nlines": 4,
+    "labels": [
+     "all pairings, groups of 2",
+     "between groups, groups of 2",
+     "all pairings, groups of 4",
+     "between groups, groups of 4"
+    ],
+    "legend": [
+     "all pairings, groups of 2",
+     "between groups, groups of 2",
+     "all pairings, groups of 4",
+     "between groups, groups of 4"
+    ]
+   },
+   {
+    "title": "Fraction joining different groups",
+    "xlabel": "number of normal-ordered groups $k$",
+    "ylabel": "surviving fraction",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 2,
+    "labels": [
+     "groups of 2",
+     "groups of 4"
+    ],
+    "legend": [
+     "groups of 2",
+     "groups of 4"
+    ]
+   }
+  ]
+ }
+]

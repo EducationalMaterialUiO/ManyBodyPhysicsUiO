@@ -1,0 +1,122 @@
+[
+ {
+  "base": "vmc_fig01",
+  "cell": 5,
+  "size": [
+   6.0,
+   4.0
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "the Coulomb singularity, opposed and unopposed",
+    "xlabel": "$r_{12}$",
+    "ylabel": "$|E_L|$",
+    "xscale": "log",
+    "yscale": "log",
+    "nlines": 2,
+    "labels": [
+     "with Jastrow",
+     "without"
+    ],
+    "legend": [
+     "with Jastrow",
+     "without"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "vmc_fig02",
+  "cell": 10,
+  "size": [
+   11.0,
+   4.0
+  ],
+  "npanels": 2,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "",
+    "xlabel": "step length / time step",
+    "ylabel": "$\\tau$",
+    "xscale": "log",
+    "yscale": "linear",
+    "nlines": 2,
+    "labels": [
+     "brute force",
+     "importance sampling"
+    ],
+    "legend": [
+     "brute force",
+     "importance sampling"
+    ]
+   },
+   {
+    "title": "",
+    "xlabel": "acceptance rate",
+    "ylabel": "$\\tau$",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 2,
+    "labels": [
+     "brute force",
+     "importance sampling"
+    ],
+    "legend": [
+     "brute force",
+     "importance sampling"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "vmc_fig03",
+  "cell": 17,
+  "size": [
+   11.0,
+   4.0
+  ],
+  "npanels": 4,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "energy",
+    "xlabel": "$\\beta$",
+    "ylabel": "$\\alpha$",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 0,
+    "labels": []
+   },
+   {
+    "title": "log$_{10}$ variance",
+    "xlabel": "$\\beta$",
+    "ylabel": "$\\alpha$",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 0,
+    "labels": []
+   },
+   {
+    "title": "",
+    "xlabel": "",
+    "ylabel": "",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 0,
+    "labels": []
+   },
+   {
+    "title": "",
+    "xlabel": "",
+    "ylabel": "",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 0,
+    "labels": []
+   }
+  ]
+ }
+]
