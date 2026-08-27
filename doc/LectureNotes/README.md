@@ -41,7 +41,7 @@ rm -rf _build && jupyter-book build .
 
 | Notebook | Chapter | Companion program |
 |---|---|---|
-| `linearalgebra.ipynb` | 1, linear algebra and eigenvalue problems | `direct_solvers.py`, `iterative_solvers.py`, `householder.py`, `lanczos.py`, `svd.py` |
+| `linearalgebra.ipynb` | 1, the spectral decomposition and its physics, linear algebra and eigenvalue problems | `spectral.py`, `direct_solvers.py`, `iterative_solvers.py`, `householder.py`, `lanczos.py`, `svd.py` |
 | `manybodybasics.ipynb` | 2, Slater determinants and the energy functional | `slaterdeterminant.py`, `slater_update.py` |
 | `wicktheorem.ipynb` | 3, Wick's theorem and its generalisation | `wick.py` |
 | `jordanwigner.ipynb` | 3, from fermions to qubits | `jordanwigner.py` |
@@ -54,6 +54,7 @@ rm -rf _build && jupyter-book build .
 | `coupledcluster.ipynb` | 10, coupled cluster and unitary CC | `coupledcluster.py` |
 | `quantumdots.ipynb` | 11, the two-dimensional quantum dot | `quantumdot.py` |
 | `statistics.ipynb` | 12, statistics, random walks and Metropolis | `montecarlo.py` |
+| `fam.ipynb` | Appendix A, Project 1: the finite amplitude method | `appendixA/fam.py` (with `rpa.py`) |
 
 ## Regenerating the book's figures
 
@@ -63,7 +64,7 @@ matplotlib figure as `<tag>_figNN.pdf` and `<tag>_figNN.png` together with a
 `_manifest_<tag>.json` recording the axis labels, legends and producing cell.
 The harness
 
-* puts every `../BookManybody/BookPrograms/chapter*` directory on `sys.path`;
+* puts every `../BookManybody/BookPrograms/chapter*` and `appendix*` directory on `sys.path`;
 * sets print-quality `rcParams` (serif, 10 pt, `savefig.dpi = 300`,
   `bbox_inches = "tight"`);
 * strips the in-figure title of a single-panel figure, because in the book the

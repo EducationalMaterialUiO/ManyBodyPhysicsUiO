@@ -56,3 +56,8 @@ parts:
     numbered: true
     chapters:
       - file: conclusions.ipynb          # chapter 21
+
+  - caption: Projects
+    numbered: false
+    chapters:
+      - file: fam.ipynb                  # appendix A, project 1

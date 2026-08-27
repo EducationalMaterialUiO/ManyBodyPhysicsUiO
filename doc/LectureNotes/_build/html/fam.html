@@ -1,0 +1,1131 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Project: the finite amplitude method for the RPA &#8212; Quantum Mechanics for Many-Particle Systems: from standard methods to quantum computing and machine learning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'fam';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="22. Concluding remarks and perspectives" href="conclusions.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Quantum Mechanics for Many-Particle Systems: from standard methods to quantum computing and machine learning - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Quantum Mechanics for Many-Particle Systems: from standard methods to quantum computing and machine learning - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Quantum mechanics for many-particle systems
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">About the course</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="teachers.html">Instructor information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="textbooks.html">Textbooks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Foundations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="linearalgebra.html">1. Linear algebra and eigenvalue problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manybodybasics.html">2. From linear algebra to many-body physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wicktheorem.html">3. Wick’s theorem, verified by brute force</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jordanwigner.html">4. From fermions to qubits: the Jordan-Wigner transformation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">5. Physical systems and models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fullci.html">6. Full configuration interaction theory</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Mean-field and beyond</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="hartreefock.html">7. Mean-field approaches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tdarpa.html">8. Mean-field applications: TDA, RPA and QRPA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dft.html">9. Density functional theory</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Post Hartree-Fock methods</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="mbptheory.html">10. Many-body perturbation theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coupledcluster.html">11. Coupled cluster theory</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Applications and stochastic methods</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="quantumdots.html">12. Quantum dots: a realistic Hamiltonian</a></li>
+<li class="toctree-l1"><a class="reference internal" href="statistics.html">13. Elements from statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variationalmc.html">14. Variational Monte Carlo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimisation.html">15. Optimization and resampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diffusionmc.html">16. Diffusion Monte Carlo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manybodymc.html">17. Applications to many-body systems: six electrons</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine learning approaches</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="boltzmannmachines.html">18. Boltzmann machines and generative models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pinns.html">19. Neural quantum states and physics-informed neural networks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum computing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="quantumfourier.html">20. The quantum Fourier transform and phase estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vqe.html">21. The variational quantum eigensolver</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Concluding remarks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="conclusions.html">22. Concluding remarks and perspectives</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Project: the finite amplitude method for the RPA</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/ManyBodyPhysics/FYS4480/master?urlpath=lab/tree/doc/LectureNotes/fam.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ManyBodyPhysics/FYS4480" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ManyBodyPhysics/FYS4480/issues/new?title=Issue%20on%20page%20%2Ffam.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/fam.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Project: the finite amplitude method for the RPA</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-mean-field-and-the-particle-hole-space">1. The mean field and the particle-hole space</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-induced-field-by-finite-differences">2. The induced field by finite differences</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#strength-functions-exact-matrix-rpa-and-fam">3. Strength functions: exact, matrix RPA and FAM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sum-rules-and-poles-by-contour-integration">4. Sum rules and poles by contour integration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-cost-iterations-against-frequency-and-smoothing">5. The cost: iterations against frequency and smoothing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-to-do-next">What to do next</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="project-the-finite-amplitude-method-for-the-rpa">
+<h1>Project: the finite amplitude method for the RPA<a class="headerlink" href="#project-the-finite-amplitude-method-for-the-rpa" title="Link to this heading">#</a></h1>
+<p>Companion notebook to Appendix A, Project 1, of <em>Quantum mechanics for
+many-particle systems</em>.  The code is the same as in
+<code class="docutils literal notranslate"><span class="pre">BookManybody/BookPrograms/appendixA/fam.py</span></code>, which builds on the
+chapter-7 program <code class="docutils literal notranslate"><span class="pre">rpa.py</span></code>.</p>
+<p>The random-phase approximation of Chapter 7 was solved by constructing the
+matrices <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> and diagonalising
+<span class="math notranslate nohighlight">\(\begin{pmatrix}A &amp; B\\ -B^* &amp; -A^*\end{pmatrix}\)</span>.  The <strong>finite amplitude
+method</strong> of Nakatsukasa, Inakura and Yabana, Phys. Rev. C <strong>76</strong>, 024318
+(2007), solves the same linear-response problem without ever forming <span class="math notranslate nohighlight">\(A\)</span> and
+<span class="math notranslate nohighlight">\(B\)</span>: it needs only the mean-field routine <span class="math notranslate nohighlight">\(h[\rho]\)</span> of a static Hartree-Fock
+code, evaluated for a density built from <em>independent</em> bra and ket orbitals.</p>
+<p>For a fixed, in general complex, frequency <span class="math notranslate nohighlight">\(\omega\)</span> and an external one-body
+field <span class="math notranslate nohighlight">\(\hat F\)</span>, the forward and backward amplitudes <span class="math notranslate nohighlight">\(X_{mi}(\omega)\)</span> and
+<span class="math notranslate nohighlight">\(Y_{mi}(\omega)\)</span> satisfy</p>
+<div class="math notranslate nohighlight">
+\[(\omega-\varepsilon_m+\varepsilon_i)\,X_{mi}-\delta h_{mi}(\omega)=F_{mi},
+\qquad
+(-\omega-\varepsilon_m+\varepsilon_i)\,Y_{mi}-\delta h_{im}(\omega)=F_{im},\]</div>
+<p>where the induced field is evaluated as the finite difference</p>
+<div class="math notranslate nohighlight">
+\[\delta h(\omega)=\frac{1}{\eta}\Big(h\big[\langle\psi'|,|\psi\rangle\big]-h_0\Big),
+\qquad
+|\psi_i\rangle=|\phi_i\rangle+\eta|X_i\rangle,\quad
+\langle\psi'_i|=\langle\phi_i|+\eta\langle Y_i|,\]</div>
+<p>with <span class="math notranslate nohighlight">\(\rho=\sum_i|\psi_i\rangle\langle\psi'_i|\)</span> non-Hermitian.  The strength
+function follows from the amplitudes,</p>
+<div class="math notranslate nohighlight">
+\[S(F;\omega)=\sum_i\Big(\langle\phi_i|\hat F^\dagger|X_i\rangle
+  +\langle Y_i|\hat F^\dagger|\phi_i\rangle\Big),\qquad
+\frac{dB(F;\omega)}{d\omega}=-\frac{1}{\pi}\,{\rm Im}\,S(F;\omega+i\Gamma/2).\]</div>
+<p>The paper applies this to the deformed nucleus <span class="math notranslate nohighlight">\(^{20}\)</span>Ne with the BKN
+functional on a three-dimensional mesh.  That calculation needs a
+coordinate-space Hartree-Fock code the book does not have; every
+<em>methodological</em> result of the paper, however, can be reproduced on the
+pairing plus particle-hole model of Chapter 7 – and, because the model can
+be diagonalised exactly, compared with the exact response as well.</p>
+<p>Contents:</p>
+<ol class="arabic simple">
+<li><p>The mean field and the particle-hole space</p></li>
+<li><p>The induced field by finite differences: the <span class="math notranslate nohighlight">\(\eta\)</span> trade-off</p></li>
+<li><p>Strength functions: exact, matrix RPA and FAM</p></li>
+<li><p>Sum rules and poles by contour integration</p></li>
+<li><p>The cost: iterations against frequency and smoothing</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">glob</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># the chapter programs live in BookPrograms/chapterNN and the project</span>
+<span class="c1"># programs in BookPrograms/appendixA; put them all on the path</span>
+<span class="k">for</span> <span class="n">_pattern</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;chapter*&quot;</span><span class="p">,</span> <span class="s2">&quot;appendix*&quot;</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">_d</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;..&quot;</span><span class="p">,</span> <span class="s2">&quot;BookManybody&quot;</span><span class="p">,</span>
+                                            <span class="s2">&quot;BookPrograms&quot;</span><span class="p">,</span> <span class="n">_pattern</span><span class="p">))):</span>
+        <span class="k">if</span> <span class="n">_d</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">_d</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">rpa</span>
+<span class="kn">import</span> <span class="nn">fam</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="the-mean-field-and-the-particle-hole-space">
+<h2>1. The mean field and the particle-hole space<a class="headerlink" href="#the-mean-field-and-the-particle-hole-space" title="Link to this heading">#</a></h2>
+<p>The class <code class="docutils literal notranslate"><span class="pre">MeanField</span></code> plays the role of the static Hartree-Fock program: it
+knows how to build <span class="math notranslate nohighlight">\(h[\rho]=t+\sum_{cd}\bar v_{acbd}\rho_{dc}\)</span> from a one-body
+density and nothing about the RPA.  The single extension the finite amplitude
+method asks for is <code class="docutils literal notranslate"><span class="pre">h_braket(bra,</span> <span class="pre">ket)</span></code>, which accepts independent bra and ket
+orbitals.  We work at <span class="math notranslate nohighlight">\(g=1\)</span>, <span class="math notranslate nohighlight">\(f=0.5\)</span>, the most strongly coupled case of
+Chapter 7, where the residual interaction shifts the lowest particle-hole
+energy by about ten per cent.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fam</span><span class="o">.</span><span class="n">demo_setup</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>==========================================================================
+1. The mean field and the particle-hole space
+==========================================================================
+L = 4 levels, N = 4 particles, g = 1.0, f = 0.5
+E_HF = -0.269764
+HF single-particle energies: -1.5052  -1.5052   0.1194   0.1194   1.9305   1.9305   2.9534   2.9534
+particle-hole pairs: 16, unperturbed energies [1.8111 2.834  3.4357 4.4586]
+
+h[rho] returns the HF energies when fed the HF density:
+  max |h0 - diag(eps)| = 9.5e-14
+and it is linear in rho, so the finite difference is exact up to
+the quadratic term of rho = sum |psi&gt;&lt;psi&#39;| and to round-off.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="the-induced-field-by-finite-differences">
+<h2>2. The induced field by finite differences<a class="headerlink" href="#the-induced-field-by-finite-differences" title="Link to this heading">#</a></h2>
+<p>Because <span class="math notranslate nohighlight">\(h[\rho]\)</span> is linear in <span class="math notranslate nohighlight">\(\rho\)</span> for this model, <span class="math notranslate nohighlight">\(\delta h\)</span> could be
+evaluated exactly as <span class="math notranslate nohighlight">\((\partial h/\partial\rho)\,\delta\rho\)</span> – the
+conventional route, which the class <code class="docutils literal notranslate"><span class="pre">MatrixResponse</span></code> follows with the <span class="math notranslate nohighlight">\(A\)</span> and
+<span class="math notranslate nohighlight">\(B\)</span> of Chapter 7.  The finite difference of the paper is nevertheless not
+exact: the density built from the perturbed bra and ket orbitals,</p>
+<div class="math notranslate nohighlight">
+\[\rho_\eta=\rho_0+\eta\,\delta\rho+\eta^2\sum_i|X_i\rangle\langle Y_i|,\]</div>
+<p>carries a quadratic term, so the forward difference has an <span class="math notranslate nohighlight">\(O(\eta)\)</span> error,
+and the round-off in <span class="math notranslate nohighlight">\(h[\rho_\eta]-h_0\)</span> grows as <span class="math notranslate nohighlight">\(1/\eta\)</span>.  A central
+difference removes the quadratic term.  The demonstration below checks all of
+this against the explicit <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> and then solves the FAM equations at two
+frequencies with three different solvers.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fam</span><span class="o">.</span><span class="n">demo_validation</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>==========================================================================
+2. FAM against the RPA matrix, one frequency at a time
+==========================================================================
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The induced field from finite differences against (dh/drho) drho,
+for a random amplitude vector:
+  max |dh(linear) - (A - Delta)X - BY| = 1.0e-13
+  forward  eta = 1e-02:  max |dh - dh(linear)| = 1.4e-02
+  forward  eta = 1e-04:  max |dh - dh(linear)| = 1.4e-04
+  forward  eta = 1e-06:  max |dh - dh(linear)| = 1.4e-06
+  forward  eta = 1e-08:  max |dh - dh(linear)| = 9.5e-08
+  central  eta = 1e-02:  max |dh - dh(linear)| = 3.5e-14
+  central  eta = 1e-04:  max |dh - dh(linear)| = 4.3e-12
+  central  eta = 1e-06:  max |dh - dh(linear)| = 5.3e-10
+  central  eta = 1e-08:  max |dh - dh(linear)| = 5.9e-08
+
+The forward difference carries the O(eta) error of the term
+eta^2 sum_i |X_i&gt;&lt;Y_i| in the density; the central difference
+cancels it, and both eventually lose to round-off, which grows as
+1/eta.  This is the finite-difference trade-off of the paper.
+
+
+Strength function at omega = (1.7+0.05j):
+  RPA matrix, linear solve      S = 0.1874033580-0.5563584970j
+  RPA matrix, spectral sum      S = 0.1874033580-0.5563584970j
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">fam</span><span class="o">.</span><span class="n">demo_validation</span><span class="p">()</span>
+
+<span class="nn">File ~/Teaching/ManyBodyPhysics/doc/LectureNotes/../BookManybody/BookPrograms/appendixA/fam.py:608,</span> in <span class="ni">demo_validation</span><span class="nt">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">605</span> <span class="k">for</span> <span class="n">scheme</span><span class="p">,</span> <span class="n">method</span> <span class="ow">in</span> <span class="p">((</span><span class="s2">&quot;forward&quot;</span><span class="p">,</span> <span class="s2">&quot;gmres&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;forward&quot;</span><span class="p">,</span> <span class="s2">&quot;bicgstab&quot;</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">606</span>                        <span class="p">(</span><span class="s2">&quot;forward&quot;</span><span class="p">,</span> <span class="s2">&quot;fixed&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;central&quot;</span><span class="p">,</span> <span class="s2">&quot;gmres&quot;</span><span class="p">)):</span>
+<span class="g g-Whitespace">    </span><span class="mi">607</span>     <span class="n">fam</span> <span class="o">=</span> <span class="n">FiniteAmplitudeMethod</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="n">scheme</span><span class="o">=</span><span class="n">scheme</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">608</span>     <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">it</span><span class="p">,</span> <span class="n">res</span> <span class="o">=</span> <span class="n">fam</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">omega</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">609</span>     <span class="n">S</span> <span class="o">=</span> <span class="n">fam</span><span class="o">.</span><span class="n">space</span><span class="o">.</span><span class="n">strength</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">610</span>     <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">res</span><span class="p">):</span>
+
+<span class="nn">File ~/Teaching/ManyBodyPhysics/doc/LectureNotes/../BookManybody/BookPrograms/appendixA/fam.py:393,</span> in <span class="ni">FiniteAmplitudeMethod.solve</span><span class="nt">(self, F_hf, omega, method, tol, maxiter, mixing, x0)</span>
+<span class="g g-Whitespace">    </span><span class="mi">391</span> <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;gmres&quot;</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">392</span>     <span class="n">restart</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">n</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">393</span>     <span class="n">z</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">gmres</span><span class="p">(</span><span class="n">op</span><span class="p">,</span> <span class="n">rhs</span><span class="p">,</span> <span class="n">x0</span><span class="o">=</span><span class="n">x0</span><span class="p">,</span> <span class="n">rtol</span><span class="o">=</span><span class="n">tol</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">394</span>                     <span class="n">restart</span><span class="o">=</span><span class="n">restart</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">395</span>                     <span class="n">maxiter</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">maxiter</span> <span class="o">//</span> <span class="n">restart</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">396</span>                     <span class="n">callback</span><span class="o">=</span><span class="n">callback</span><span class="p">,</span> <span class="n">callback_type</span><span class="o">=</span><span class="s2">&quot;pr_norm&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">397</span> <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;bicgstab&quot;</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">398</span>     <span class="n">z</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">bicgstab</span><span class="p">(</span><span class="n">op</span><span class="p">,</span> <span class="n">rhs</span><span class="p">,</span> <span class="n">x0</span><span class="o">=</span><span class="n">x0</span><span class="p">,</span> <span class="n">rtol</span><span class="o">=</span><span class="n">tol</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">399</span>                        <span class="n">maxiter</span><span class="o">=</span><span class="n">maxiter</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">callback</span><span class="p">)</span>
+
+<span class="ne">TypeError</span>: gmres() got an unexpected keyword argument &#39;rtol&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fock</span><span class="p">,</span> <span class="n">mf</span> <span class="o">=</span> <span class="n">fam</span><span class="o">.</span><span class="n">setup</span><span class="p">()</span>
+<span class="n">matrix</span> <span class="o">=</span> <span class="n">fam</span><span class="o">.</span><span class="n">MatrixResponse</span><span class="p">(</span><span class="n">mf</span><span class="p">)</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">n</span> <span class="o">=</span> <span class="n">matrix</span><span class="o">.</span><span class="n">space</span><span class="o">.</span><span class="n">size</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+<span class="n">dh_lin</span> <span class="o">=</span> <span class="n">fam</span><span class="o">.</span><span class="n">FiniteAmplitudeMethod</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="n">scheme</span><span class="o">=</span><span class="s2">&quot;linear&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">induced_field</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+<span class="n">etas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">12</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">49</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">3.9</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">scheme</span><span class="p">,</span> <span class="n">marker</span> <span class="ow">in</span> <span class="p">((</span><span class="s2">&quot;forward&quot;</span><span class="p">,</span> <span class="s2">&quot;o&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;central&quot;</span><span class="p">,</span> <span class="s2">&quot;s&quot;</span><span class="p">)):</span>
+    <span class="n">err</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">fam</span><span class="o">.</span><span class="n">FiniteAmplitudeMethod</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="n">eta</span><span class="p">,</span> <span class="n">scheme</span><span class="o">=</span><span class="n">scheme</span><span class="p">)</span>
+                  <span class="o">.</span><span class="n">induced_field</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span> <span class="o">-</span> <span class="n">dh_lin</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="k">for</span> <span class="n">eta</span> <span class="ow">in</span> <span class="n">etas</span><span class="p">]</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">etas</span><span class="p">,</span> <span class="n">err</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="n">marker</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mf">3.5</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">scheme</span> <span class="o">+</span> <span class="s2">&quot; difference&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">etas</span><span class="p">,</span> <span class="mf">1.4</span> <span class="o">*</span> <span class="n">etas</span><span class="p">,</span> <span class="s2">&quot;k:&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\propto\eta$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">etas</span><span class="p">,</span> <span class="mf">5e-16</span> <span class="o">/</span> <span class="n">etas</span><span class="p">,</span> <span class="s2">&quot;k--&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\propto\epsilon_{\rm mach}/\eta$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;finite-amplitude parameter $\eta$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\max\,|\delta h_{\rm FAM}-\delta h_{\rm exact}|$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;error of the finite-difference induced field, $g=1$, $f=0.5$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;upper center&quot;</span><span class="p">,</span> <span class="n">ncol</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/599cc5513d89b3a901373fa00a0f5dc7a34e49670057f317e08dad76c10b1984.png" src="_images/599cc5513d89b3a901373fa00a0f5dc7a34e49670057f317e08dad76c10b1984.png" />
+</div>
+</div>
+<p>The forward difference is what the paper uses, with <span class="math notranslate nohighlight">\(\eta=10^{-5}\)</span>: the
+error is then of order <span class="math notranslate nohighlight">\(10^{-5}\)</span>, which is the origin of the “three to four
+digits” of agreement between FAM and RPA reported there.  The central
+difference is exact down to round-off for a Hamiltonian linear in the density;
+for a density-dependent functional such as BKN or Skyrme it would still leave
+an <span class="math notranslate nohighlight">\(O(\eta^2)\)</span> error, at the price of two evaluations of <span class="math notranslate nohighlight">\(h\)</span> per iteration.</p>
+</section>
+<section id="strength-functions-exact-matrix-rpa-and-fam">
+<h2>3. Strength functions: exact, matrix RPA and FAM<a class="headerlink" href="#strength-functions-exact-matrix-rpa-and-fam" title="Link to this heading">#</a></h2>
+<p>Two external fields are natural in the model: the level operator
+<span class="math notranslate nohighlight">\(\hat Q_0=\sum_{p\sigma}(p-1)\,\hat n_{p\sigma}=\hat H_0/\xi\)</span>, the discrete
+analogue of a monopole field, and the hopping operator
+<span class="math notranslate nohighlight">\(\hat Q_1=\sum_{p\sigma}(\hat a^\dagger_{p+1\sigma}\hat a_{p\sigma}+{\rm h.c.})\)</span>,
+the analogue of a dipole field, which breaks pairs.  For each we compute
+<span class="math notranslate nohighlight">\(dB/d\omega\)</span> with a smoothing <span class="math notranslate nohighlight">\(\Gamma=0.1\)</span> from the exact eigenstates of the
+<span class="math notranslate nohighlight">\(N=4\)</span> system, from the RPA matrix, and from the finite amplitude method.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fam</span><span class="o">.</span><span class="n">demo_strength</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>==========================================================================
+3. Strength functions: exact, RPA matrix and FAM
+==========================================================================
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>smoothing Gamma = 0.1, i.e. omega -&gt; omega + i Gamma/2
+
+  level operator Q_0
+   omega        exact          RPA          FAM  |FAM-RPA|  iter
+    0.50     0.001546     0.000966     0.000966    1.1e-08    16
+    1.00     0.003517     0.003208     0.003208    3.4e-08    16
+    1.50     0.006756     0.043601     0.043601    5.8e-07    16
+    1.70     0.008868     0.177094     0.177094    4.5e-07    16
+    2.00     0.014082     0.012197     0.012197    1.8e-08    16
+    2.50     0.044676     0.024760     0.024760    1.6e-07    16
+    3.00     1.036885     0.131015     0.131013    1.5e-06    16
+    3.50     0.099828     0.044469     0.044469    1.5e-07    16
+  RPA roots       : [1.6445 2.7279 3.176  4.2588]
+  exact excitations with strength &gt; 1e-3: [ 2.8596  3.0986  3.7301  4.2292  4.5498  5.2405  5.8731  5.944   6.552   8.0838  8.1885  8.2764  8.5887  9.1274
+  9.2594 10.1426 10.7073]
+
+  hopping operator Q_1
+   omega        exact          RPA          FAM  |FAM-RPA|  iter
+    0.50     0.003580     0.023513     0.023513    9.3e-08    16
+    1.00     0.008501     0.096700     0.096700    4.0e-07    16
+    1.50     0.017851     1.824193     1.824177    1.6e-05    16
+    1.70     0.024820     7.650046     7.650008    3.8e-05    16
+    2.00     0.044855     0.330853     0.330853    4.2e-07     8
+    2.50     0.240834     0.065427     0.065427    5.8e-09     8
+    3.00     1.433951     0.129912     0.129911    9.1e-07    16
+    3.50     0.118611     0.044335     0.044335    1.8e-09     8
+  RPA roots       : [1.6445 2.7279 3.176  4.2588]
+  exact excitations with strength &gt; 1e-3: [ 2.8596  3.0986  3.7301  4.2292  4.5498  5.2405  5.8731  5.944   6.552   7.6917  8.0838  8.1885  8.2764  8.5887
+  9.1274  9.2594 10.1426 10.7073]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fock</span><span class="p">,</span> <span class="n">mf</span> <span class="o">=</span> <span class="n">fam</span><span class="o">.</span><span class="n">setup</span><span class="p">()</span>
+<span class="n">matrix</span> <span class="o">=</span> <span class="n">fam</span><span class="o">.</span><span class="n">MatrixResponse</span><span class="p">(</span><span class="n">mf</span><span class="p">)</span>
+<span class="n">exact</span> <span class="o">=</span> <span class="n">fam</span><span class="o">.</span><span class="n">ExactResponse</span><span class="p">(</span><span class="n">fock</span><span class="p">,</span> <span class="n">mf</span><span class="o">.</span><span class="n">N</span><span class="p">,</span> <span class="n">mf</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">mf</span><span class="o">.</span><span class="n">f</span><span class="p">)</span>
+<span class="n">fam_fwd</span> <span class="o">=</span> <span class="n">fam</span><span class="o">.</span><span class="n">FiniteAmplitudeMethod</span><span class="p">(</span><span class="n">mf</span><span class="p">)</span>
+<span class="n">gamma</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">omegas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">,</span> <span class="mi">601</span><span class="p">)</span>
+<span class="n">omegas_fam</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">,</span> <span class="mi">120</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mf">4.2</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">panel</span><span class="p">,</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">F0</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(((</span><span class="s2">&quot;$</span><span class="se">\\</span><span class="s2">hat Q_0$ (level operator)&quot;</span><span class="p">,</span> <span class="n">fam</span><span class="o">.</span><span class="n">field_level</span><span class="p">(</span><span class="n">fock</span><span class="o">.</span><span class="n">L</span><span class="p">)),</span>
+                                    <span class="p">(</span><span class="s2">&quot;$</span><span class="se">\\</span><span class="s2">hat Q_1$ (hopping operator)&quot;</span><span class="p">,</span> <span class="n">fam</span><span class="o">.</span><span class="n">field_hopping</span><span class="p">(</span><span class="n">fock</span><span class="o">.</span><span class="n">L</span><span class="p">)))):</span>
+    <span class="n">F</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">to_hf_basis</span><span class="p">(</span><span class="n">F0</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">panel</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">omegas</span><span class="p">,</span> <span class="n">fam</span><span class="o">.</span><span class="n">strength_curve</span><span class="p">(</span><span class="n">exact</span><span class="o">.</span><span class="n">strength</span><span class="p">,</span> <span class="n">F0</span><span class="p">,</span> <span class="n">omegas</span><span class="p">,</span> <span class="n">gamma</span><span class="p">),</span>
+                   <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C2&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.4</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;exact&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">panel</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">omegas</span><span class="p">,</span> <span class="n">fam</span><span class="o">.</span><span class="n">strength_curve</span><span class="p">(</span><span class="n">matrix</span><span class="o">.</span><span class="n">strength</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">omegas</span><span class="p">,</span> <span class="n">gamma</span><span class="p">),</span>
+                   <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C0&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.4</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;RPA matrix&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">panel</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">omegas_fam</span><span class="p">,</span> <span class="n">fam</span><span class="o">.</span><span class="n">strength_curve</span><span class="p">(</span><span class="n">fam_fwd</span><span class="o">.</span><span class="n">strength</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">omegas_fam</span><span class="p">,</span> <span class="n">gamma</span><span class="p">),</span>
+                   <span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C3&quot;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">mfc</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;FAM&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">matrix</span><span class="o">.</span><span class="n">omega</span><span class="p">,</span> <span class="mi">6</span><span class="p">)):</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">panel</span><span class="p">]</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C0&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">panel</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\omega$ [units of $\xi$]&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">panel</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$dB(F;\omega)/d\omega$&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">panel</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">rf</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">, $\Gamma=</span><span class="si">{</span><span class="n">gamma</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">panel</span><span class="p">]</span><span class="o">.</span><span class="n">set_yscale</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">);</span> <span class="n">ax</span><span class="p">[</span><span class="n">panel</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">1e-4</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">panel</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;upper left&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/8f546410c3ef1f96b527cacbc6e3ab0a077e77ad7ee85cbe55df771bbae0d171.png" src="_images/8f546410c3ef1f96b527cacbc6e3ab0a077e77ad7ee85cbe55df771bbae0d171.png" />
+</div>
+</div>
+<p>The FAM points sit on the matrix-RPA curve to the accuracy of the finite
+difference, at every frequency and for both operators: this is the content of
+Fig. 1 of the paper, reproduced on a system where nothing is hidden.  The
+dotted vertical lines mark the four distinct RPA roots (each is four-fold
+degenerate in this model).</p>
+<p>The exact response is another matter.  At <span class="math notranslate nohighlight">\(g=1\)</span>, <span class="math notranslate nohighlight">\(f=0.5\)</span> the exact ground
+state is strongly correlated – Chapter 7 found the RPA correlation energy far
+from the exact one here – and its strength sits at higher energies and is
+spread over many states that RPA, with its single particle-hole pair, cannot
+reach.  The finite amplitude method reproduces the RPA, no more and no less;
+whether the RPA is adequate is a separate question, and the model answers it
+honestly.</p>
+</section>
+<section id="sum-rules-and-poles-by-contour-integration">
+<h2>4. Sum rules and poles by contour integration<a class="headerlink" href="#sum-rules-and-poles-by-contour-integration" title="Link to this heading">#</a></h2>
+<p>The energy-weighted sum rule <span class="math notranslate nohighlight">\(m_1=\sum_\nu\omega_\nu|\langle\nu|\hat F|0\rangle|^2
+=\tfrac12\langle 0|[\hat F,[\hat H,\hat F]]|0\rangle\)</span> holds for the exact
+states, and – Thouless’ theorem – for the self-consistent RPA with the
+Hartree-Fock state on the right-hand side.  Both double commutators are
+evaluated with the <code class="docutils literal notranslate"><span class="pre">build_AB</span></code> routine of Chapter 7.</p>
+<p>The strength function is a meromorphic function of <span class="math notranslate nohighlight">\(\omega\)</span> with simple poles
+at the RPA roots, so its contour integrals return the moments of the enclosed
+poles,</p>
+<div class="math notranslate nohighlight">
+\[\frac{1}{2\pi i}\oint_C S(F;\omega)\,d\omega=\sum_{\nu\in C}|\langle\nu|\hat F|0\rangle|^2,
+\qquad
+\frac{1}{2\pi i}\oint_C \omega\,S(F;\omega)\,d\omega=\sum_{\nu\in C}\omega_\nu|\langle\nu|\hat F|0\rangle|^2,\]</div>
+<p>and the ratio locates a single enclosed pole.  Each quadrature point is one
+FAM solution at a complex frequency, with no smoothing at all.</p>
+<p>The same idea gives the RPA correlation energy of Chapter 7,
+<span class="math notranslate nohighlight">\(E^{\rm RPA}_{\rm corr}=\tfrac12(\sum_\nu\omega_\nu-{\rm Tr}\,A)\)</span>, without
+the matrix <span class="math notranslate nohighlight">\(A\)</span>: for the unit field <span class="math notranslate nohighlight">\(\hat F_K=\hat a^\dagger_m\hat a_i\)</span> the
+strength function has the residue <span class="math notranslate nohighlight">\(|X^\nu_K|^2\)</span> at <span class="math notranslate nohighlight">\(+\omega_\nu\)</span> and
+<span class="math notranslate nohighlight">\(-|Y^\nu_K|^2\)</span> at <span class="math notranslate nohighlight">\(-\omega_\nu\)</span>, so that, with a circle <span class="math notranslate nohighlight">\(C_+\)</span> around the
+positive roots and its mirror image <span class="math notranslate nohighlight">\(C_-\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[\sum_\nu\omega_\nu=\sum_K\Big[\frac{1}{2\pi i}\oint_{C_+}\omega S(F_K;\omega)\,d\omega
+-\frac{1}{2\pi i}\oint_{C_-}\omega S(F_K;\omega)\,d\omega\Big]\]</div>
+<p>by the normalisation <span class="math notranslate nohighlight">\(\sum_K(|X^\nu_K|^2-|Y^\nu_K|^2)=1\)</span>, while
+<span class="math notranslate nohighlight">\(A_{KK}=\Delta_K+\delta h_K[X=e_K,Y=0]\)</span> is one induced field per pair.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fam</span><span class="o">.</span><span class="n">demo_sum_rules</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>==========================================================================
+4. Sum rules and the poles by contour integration
+==========================================================================
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  field Q_0
+    RPA   m0 = 0.58342157  m1 = 1.98184275   (1/2)&lt;HF|[F,[H,F]]|HF&gt; = 1.98184275
+    exact m0 = 3.58821259  m1 = 18.35650026   (1/2)&lt;0|[F,[H,F]]|0&gt;   = 18.35650026
+    contour around omega_1 with  8 points: m0 = 0.06117085, m1/m0 = 1.64452806   (omega_1 = 1.64448414)
+    contour around omega_1 with 16 points: m0 = 0.06116866, m1/m0 = 1.64448506   (omega_1 = 1.64448414)
+    contour around omega_1 with 32 points: m0 = 0.06116866, m1/m0 = 1.64448506   (omega_1 = 1.64448414)
+    the same with the central difference:    m0 = 0.06116884, m1/m0 = 1.64448414
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    contour enclosing every positive root:  m0 = 0.58342072  m1 = 1.98184263
+  field Q_1
+    RPA   m0 = 2.91761894  m1 = 5.15401024   (1/2)&lt;HF|[F,[H,F]]|HF&gt; = 5.15401024
+    exact m0 = 5.66687100  m1 = 27.80182051   (1/2)&lt;0|[F,[H,F]]|0&gt;   = 27.80182051
+    contour around omega_1 with  8 points: m0 = 2.68386483, m1/m0 = 1.64448482   (omega_1 = 1.64448414)
+    contour around omega_1 with 16 points: m0 = 2.68386410, m1/m0 = 1.64448442   (omega_1 = 1.64448414)
+    contour around omega_1 with 32 points: m0 = 2.68386415, m1/m0 = 1.64448443   (omega_1 = 1.64448414)
+    the same with the central difference:    m0 = 2.68386470, m1/m0 = 1.64448414
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    contour enclosing every positive root:  m0 = 2.91761644  m1 = 5.15401130
+
+The RPA correlation energy from contour integrals of the FAM
+strength functions of the sixteen unit fields a^+_m a_i:
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  forward  sum omega = 47.22841931  Tr A = 50.15811508  E_corr = -1.46484789
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  central  sum omega = 47.22841931  Tr A = 50.15811508  E_corr = -1.46484789
+  chapter 7 sum omega = 47.22841931  Tr A = 50.15811508  E_corr = -1.46484788
+
+Thouless&#39; theorem holds for the self-consistent RPA: the energy-
+weighted sum of the RPA strengths equals the double commutator in
+the Hartree-Fock state.  The contour integrals of the FAM strength
+function return both moments without any smoothing, and the ratio
+of the two locates the pole -- to the accuracy of the finite
+difference, and to ten digits with the central one -- from a
+solver that has never seen the matrices A and B.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fock</span><span class="p">,</span> <span class="n">mf</span> <span class="o">=</span> <span class="n">fam</span><span class="o">.</span><span class="n">setup</span><span class="p">()</span>
+<span class="n">matrix</span> <span class="o">=</span> <span class="n">fam</span><span class="o">.</span><span class="n">MatrixResponse</span><span class="p">(</span><span class="n">mf</span><span class="p">)</span>
+<span class="n">F</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">to_hf_basis</span><span class="p">(</span><span class="n">fam</span><span class="o">.</span><span class="n">field_hopping</span><span class="p">(</span><span class="n">fock</span><span class="o">.</span><span class="n">L</span><span class="p">))</span>
+<span class="n">w1</span> <span class="o">=</span> <span class="n">matrix</span><span class="o">.</span><span class="n">omega</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">t_all</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">matrix</span><span class="o">.</span><span class="n">transition_amplitudes</span><span class="p">(</span><span class="n">F</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">t1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">t_all</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">matrix</span><span class="o">.</span><span class="n">omega</span> <span class="o">-</span> <span class="n">w1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-6</span><span class="p">])</span>
+<span class="n">npts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">48</span><span class="p">])</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">3.9</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">scheme</span><span class="p">,</span> <span class="n">marker</span> <span class="ow">in</span> <span class="p">((</span><span class="s2">&quot;forward&quot;</span><span class="p">,</span> <span class="s2">&quot;o&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;central&quot;</span><span class="p">,</span> <span class="s2">&quot;s&quot;</span><span class="p">)):</span>
+    <span class="n">solver</span> <span class="o">=</span> <span class="n">fam</span><span class="o">.</span><span class="n">FiniteAmplitudeMethod</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="n">scheme</span><span class="o">=</span><span class="n">scheme</span><span class="p">)</span>
+    <span class="n">err_w</span><span class="p">,</span> <span class="n">err_m</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">npt</span> <span class="ow">in</span> <span class="n">npts</span><span class="p">:</span>
+        <span class="n">m0</span><span class="p">,</span> <span class="n">m1</span> <span class="o">=</span> <span class="n">fam</span><span class="o">.</span><span class="n">contour_moments</span><span class="p">(</span><span class="k">lambda</span> <span class="n">z</span><span class="p">:</span> <span class="n">solver</span><span class="o">.</span><span class="n">strength</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">z</span><span class="p">),</span>
+                                     <span class="n">center</span><span class="o">=</span><span class="n">w1</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">npoints</span><span class="o">=</span><span class="n">npt</span><span class="p">)</span>
+        <span class="n">err_w</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">abs</span><span class="p">((</span><span class="n">m1</span> <span class="o">/</span> <span class="n">m0</span><span class="p">)</span><span class="o">.</span><span class="n">real</span> <span class="o">-</span> <span class="n">w1</span><span class="p">))</span>
+        <span class="n">err_m</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">m0</span><span class="o">.</span><span class="n">real</span> <span class="o">-</span> <span class="n">t1</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">npts</span><span class="p">,</span> <span class="n">err_w</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="n">marker</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.2</span><span class="p">,</span>
+                <span class="n">label</span><span class="o">=</span><span class="sa">rf</span><span class="s2">&quot;$|\omega_1^</span><span class="se">{{</span><span class="s2">\rm contour</span><span class="se">}}</span><span class="s2">-\omega_1|$, </span><span class="si">{</span><span class="n">scheme</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">npts</span><span class="p">,</span> <span class="n">err_m</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="n">marker</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.2</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
+                <span class="n">label</span><span class="o">=</span><span class="sa">rf</span><span class="s2">&quot;$|m_0^</span><span class="se">{{</span><span class="s2">\rm contour</span><span class="se">}}</span><span class="s2">-|\langle 1|\hat Q_1|0\rangle|^2|$, </span><span class="si">{</span><span class="n">scheme</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;quadrature points on the circle&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;error&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">1e-12</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;locating the lowest RPA root by contour integration, $\hat Q_1$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;upper right&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/e515265182230ecbcd12e242c6713c3199d48f894a4b317b6730d8d95f8832d1.png" src="_images/e515265182230ecbcd12e242c6713c3199d48f894a4b317b6730d8d95f8832d1.png" />
+</div>
+</div>
+<p>The trapezoidal rule on a circle converges exponentially, and the floor it
+reaches is set by the finite difference: about <span class="math notranslate nohighlight">\(10^{-6}\)</span> for the forward
+scheme with <span class="math notranslate nohighlight">\(\eta=10^{-5}\)</span>, round-off for the central one.  This is how the
+finite amplitude method is used in practice to extract discrete RPA modes and
+their transition strengths without a diagonalisation (Hinohara, Kortelainen
+and Nazarewicz, Phys. Rev. C <strong>87</strong>, 064309 (2013)).</p>
+</section>
+<section id="the-cost-iterations-against-frequency-and-smoothing">
+<h2>5. The cost: iterations against frequency and smoothing<a class="headerlink" href="#the-cost-iterations-against-frequency-and-smoothing" title="Link to this heading">#</a></h2>
+<p>The FAM equations are linear in <span class="math notranslate nohighlight">\((X,Y)\)</span> and are solved iteratively.  The
+paper uses a bi-conjugate-gradient solver and reports that the number of
+iterations grows with <span class="math notranslate nohighlight">\(\omega\)</span> and with decreasing <span class="math notranslate nohighlight">\(\Gamma\)</span>.  In the model the
+unknowns number <span class="math notranslate nohighlight">\(2\times16\)</span>, so a Krylov solver converges in a handful of
+steps whatever <span class="math notranslate nohighlight">\(\omega\)</span> is; the plain iteration
+<span class="math notranslate nohighlight">\(X\leftarrow(F+\delta h)/(\omega-\Delta)\)</span> with mixing, on the other hand,
+shows the trend of the paper clearly – it slows down as the frequency
+approaches a pole and as <span class="math notranslate nohighlight">\(\Gamma\)</span> shrinks, and it can fail altogether.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fam</span><span class="o">.</span><span class="n">demo_iterations</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>==========================================================================
+5. The cost: iterations against frequency and smoothing
+==========================================================================
+ omega   gmres G=0.5   fixed G=0.5    gmres G=0.2   fixed G=0.2    gmres G=0.05  fixed G=0.05
+  0.50             16           48              16           49              16           49 
+  1.00             16           54              16           56              16           56 
+  1.50             16           78              16          105              16          115 
+  1.65             16           92 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>             16          360 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>             16         3000*
+  2.00              8           44               8           43               8           38 
+  2.70              8           55               8          102               8          202 
+  3.20              8          153 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>             16         3000*             16          643*
+  4.00              8           52               8           59               8           61 
+  6.00              8           21               8           21               8           21 
+(* : not converged in 3000 iterations, or diverged)
+
+The Krylov solver needs at most as many iterations as there are
+unknowns, 2 x 16 here, and is insensitive to Gamma.  The plain
+iteration is driven by the size of the residual interaction
+relative to |omega - Delta|, so it slows down or fails near a pole
+and for small Gamma.  The paper reports the same trend for the
+coordinate-space case, where the unknowns number in the millions
+and a Krylov solver is the only option.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fock</span><span class="p">,</span> <span class="n">mf</span> <span class="o">=</span> <span class="n">fam</span><span class="o">.</span><span class="n">setup</span><span class="p">()</span>
+<span class="n">solver</span> <span class="o">=</span> <span class="n">fam</span><span class="o">.</span><span class="n">FiniteAmplitudeMethod</span><span class="p">(</span><span class="n">mf</span><span class="p">)</span>
+<span class="n">matrix</span> <span class="o">=</span> <span class="n">fam</span><span class="o">.</span><span class="n">MatrixResponse</span><span class="p">(</span><span class="n">mf</span><span class="p">)</span>
+<span class="n">F</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">to_hf_basis</span><span class="p">(</span><span class="n">fam</span><span class="o">.</span><span class="n">field_hopping</span><span class="p">(</span><span class="n">fock</span><span class="o">.</span><span class="n">L</span><span class="p">))</span>
+<span class="n">omegas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mi">97</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">3.9</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="p">((</span><span class="mf">0.5</span><span class="p">,</span> <span class="s2">&quot;C0&quot;</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="s2">&quot;C1&quot;</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="s2">&quot;C3&quot;</span><span class="p">)):</span>
+    <span class="n">its</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">omegas</span><span class="p">:</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">it</span><span class="p">,</span> <span class="n">res</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">w</span> <span class="o">+</span> <span class="mf">0.5</span><span class="n">j</span> <span class="o">*</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;fixed&quot;</span><span class="p">,</span>
+                                     <span class="n">tol</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">,</span> <span class="n">mixing</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="mi">2000</span><span class="p">)</span>
+        <span class="n">its</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">it</span> <span class="k">if</span> <span class="n">res</span> <span class="o">&lt;</span> <span class="mf">1e-6</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">omegas</span><span class="p">,</span> <span class="n">its</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.4</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">rf</span><span class="s2">&quot;plain iteration, $\Gamma=</span><span class="si">{</span><span class="n">gamma</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="n">its</span> <span class="o">=</span> <span class="p">[</span><span class="n">solver</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">w</span> <span class="o">+</span> <span class="mf">0.25</span><span class="n">j</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;gmres&quot;</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">)[</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">omegas</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">omegas</span><span class="p">,</span> <span class="n">its</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.2</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;GMRES, $\Gamma=0.5$&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">matrix</span><span class="o">.</span><span class="n">omega</span><span class="p">,</span> <span class="mi">6</span><span class="p">)):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\omega$ [units of $\xi$]&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;iterations to a relative residual of $10^{-6}$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;cost of the FAM solution, $\hat Q_1$, $g=1$, $f=0.5$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;lower left&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/c178ffeeb71b689e9373abb16870fdc1b1e37d93cbed5feb108bd15fde771b0f.png" src="_images/c178ffeeb71b689e9373abb16870fdc1b1e37d93cbed5feb108bd15fde771b0f.png" />
+</div>
+</div>
+<p>Gaps in the plain-iteration curves are frequencies at which the iteration
+diverges.  The dotted lines are the RPA roots.  Whether the plain iteration
+converges at all is decided by the spectral radius of the iteration map, which
+is set by the residual interaction divided by <span class="math notranslate nohighlight">\(|\omega-\Delta_{mi}|\)</span>; a Krylov
+solver has no such restriction, which is why the paper – with millions of
+unknowns – uses one.</p>
+</section>
+<section id="what-to-do-next">
+<h2>What to do next<a class="headerlink" href="#what-to-do-next" title="Link to this heading">#</a></h2>
+<p>The tasks of Project 1 in Appendix A start from here: vary <span class="math notranslate nohighlight">\(\eta\)</span> and the
+difference scheme, change the external field, follow the lowest pole as a
+function of <span class="math notranslate nohighlight">\(f\)</span> by contour integration alone, and then move on to the two
+open-ended parts – the Nambu-Goldstone mode of the number operator in the
+QRPA of Chapter 7, and a coordinate-space Hartree-Fock code that would allow
+the <span class="math notranslate nohighlight">\(^{20}\)</span>Ne calculation of the paper itself.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="conclusions.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">22. </span>Concluding remarks and perspectives</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-mean-field-and-the-particle-hole-space">1. The mean field and the particle-hole space</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-induced-field-by-finite-differences">2. The induced field by finite differences</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#strength-functions-exact-matrix-rpa-and-fam">3. Strength functions: exact, matrix RPA and FAM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sum-rules-and-poles-by-contour-integration">4. Sum rules and poles by contour integration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-cost-iterations-against-frequency-and-smoothing">5. The cost: iterations against frequency and smoothing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-to-do-next">What to do next</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Morten Hjorth-Jensen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
