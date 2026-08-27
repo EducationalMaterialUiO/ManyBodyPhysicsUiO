@@ -458,31 +458,39 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#direct-solvers">1.1. 1. Direct solvers</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#structure-pays-the-tridiagonal-solver">1.1.1. Structure pays: the tridiagonal solver</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-spectral-decomposition-and-what-it-means">1.1. 1. The spectral decomposition, and what it means</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eigenvalues-are-outcomes-projectors-are-the-states-of-each-outcome">1.1.1. Eigenvalues are outcomes, projectors are the states of each outcome</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-of-an-observable-and-why-the-projector-is-what-matters-when-eigenvalues-are-degenerate">1.1.2. Functions of an observable, and why the projector is what matters when eigenvalues are degenerate</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-hamiltonian-stationary-states-and-the-time-evolution">1.1.3. The Hamiltonian: stationary states and the time evolution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-harmonic-oscillator-projectors-count-quanta-and-the-thermal-state-is-boltzmann-weighting">1.1.4. The harmonic oscillator: projectors count quanta, and the thermal state is Boltzmann weighting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#density-matrices-eigenvalues-as-statistical-weights-and-the-spectrum-of-a-reduced-state-as-a-measure-of-entanglement">1.1.5. Density matrices: eigenvalues as statistical weights, and the spectrum of a reduced state as a measure of entanglement</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iterative-solvers">1.2. 2. Iterative solvers</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-eigenvalue-problem-householder-and-ql">1.3. 3. The eigenvalue problem: Householder and QL</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lanczos-algorithm">1.4. 4. The Lanczos algorithm</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-many-body-test-case-the-pairing-model">1.4.1. A many-body test case: the pairing model</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#loss-of-orthogonality">1.4.2. Loss of orthogonality</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#direct-solvers">1.2. 2. Direct solvers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#structure-pays-the-tridiagonal-solver">1.2.1. Structure pays: the tridiagonal solver</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#schrodinger-s-equation-by-diagonalisation">1.5. 5. Schrödinger’s equation by diagonalisation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-singular-value-decomposition">1.6. 6. The singular value decomposition</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#never-form-boldsymbol-x-t-boldsymbol-x">1.6.1. Never form <span class="math notranslate nohighlight">\(\boldsymbol{X}^T\boldsymbol{X}\)</span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rank-the-pseudoinverse-and-near-linearly-dependent-bases">1.6.2. Rank, the pseudoinverse and near-linearly-dependent bases</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#low-rank-approximation-and-the-schmidt-decomposition">1.6.3. Low-rank approximation and the Schmidt decomposition</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-pairing-model-across-a-cut">1.6.3.1. The pairing model across a cut</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iterative-solvers">1.3. 3. Iterative solvers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-eigenvalue-problem-householder-and-ql">1.4. 4. The eigenvalue problem: Householder and QL</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lanczos-algorithm">1.5. 5. The Lanczos algorithm</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-many-body-test-case-the-pairing-model">1.5.1. A many-body test case: the pairing model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#loss-of-orthogonality">1.5.2. Loss of orthogonality</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#natural-orbitals-and-occupation-numbers">1.6.4. Natural orbitals and occupation numbers</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#low-rank-factorisation-of-the-two-body-interaction">1.6.5. Low-rank factorisation of the two-body interaction</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-the-singular-values-were-telling-us">1.6.6. What the singular values were telling us</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#schrodinger-s-equation-by-diagonalisation">1.6. 6. Schrödinger’s equation by diagonalisation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-singular-value-decomposition">1.7. 7. The singular value decomposition</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#never-form-boldsymbol-x-t-boldsymbol-x">1.7.1. Never form <span class="math notranslate nohighlight">\(\boldsymbol{X}^T\boldsymbol{X}\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rank-the-pseudoinverse-and-near-linearly-dependent-bases">1.7.2. Rank, the pseudoinverse and near-linearly-dependent bases</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#low-rank-approximation-and-the-schmidt-decomposition">1.7.3. Low-rank approximation and the Schmidt decomposition</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-pairing-model-across-a-cut">1.7.3.1. The pairing model across a cut</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#where-this-leads">1.7. Where this leads</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#natural-orbitals-and-occupation-numbers">1.7.4. Natural orbitals and occupation numbers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#low-rank-factorisation-of-the-two-body-interaction">1.7.5. Low-rank factorisation of the two-body interaction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-the-singular-values-were-telling-us">1.7.6. What the singular values were telling us</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#where-this-leads">1.8. Where this leads</a></li>
 </ul>
             </nav>
         </div>
@@ -500,6 +508,9 @@ document.write(`
 for Many-particle Systems</em>.  It contains the algorithms discussed there, in a
 form you can run and modify:</p>
 <ol class="arabic simple">
+<li><p>the spectral decomposition of a Hermitian operator and what it means
+physically – outcomes, projectors, probabilities, time evolution,
+density matrices and entanglement;</p></li>
 <li><p>direct solvers for linear systems – Gaussian elimination, LU, Cholesky and
 the tridiagonal algorithm;</p></li>
 <li><p>iterative solvers – Jacobi, Gauss-Seidel, successive over-relaxation and
@@ -507,7 +518,8 @@ the conjugate gradient method;</p></li>
 <li><p>the algebraic eigenvalue problem – Householder tridiagonalisation followed
 by the QL algorithm with implicit shifts;</p></li>
 <li><p>the Lanczos algorithm, applied to a pairing-model Hamiltonian;</p></li>
-<li><p>Schrödinger’s equation solved by diagonalisation.</p></li>
+<li><p>Schrödinger’s equation solved by diagonalisation;</p></li>
+<li><p>the singular value decomposition and its many-body readings.</p></li>
 </ol>
 <p>Everything is written with NumPy only.  The complete stand-alone programs live
 in <code class="docutils literal notranslate"><span class="pre">doc/BookManybody/BookPrograms,</span> <span class="pre">one</span> <span class="pre">directory</span> <span class="pre">per</span> <span class="pre">chapter</span></code>.</p>
@@ -524,8 +536,347 @@ code carry the same indices.</p>
 </div>
 </div>
 </div>
+<section id="the-spectral-decomposition-and-what-it-means">
+<h2><span class="section-number">1.1. </span>1. The spectral decomposition, and what it means<a class="headerlink" href="#the-spectral-decomposition-and-what-it-means" title="Link to this heading">#</a></h2>
+<p>A Hermitian matrix <span class="math notranslate nohighlight">\(\boldsymbol{A}=\boldsymbol{A}^\dagger\)</span> can be written as</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{A}=\sum_\alpha a_\alpha\,\boldsymbol{P}_\alpha ,\]</div>
+<p>with real eigenvalues <span class="math notranslate nohighlight">\(a_\alpha\)</span> and orthogonal projectors
+<span class="math notranslate nohighlight">\(\boldsymbol{P}_\alpha\)</span> onto the eigenspaces – one projector per <em>distinct</em>
+eigenvalue, so that a degenerate eigenvalue has a projector of rank larger
+than one.  The projectors are idempotent, mutually orthogonal and complete.
+In quantum mechanics every piece of this formula has a physical meaning:
+<span class="math notranslate nohighlight">\(a_\alpha\)</span> is a possible value of the observable, <span class="math notranslate nohighlight">\(\boldsymbol{P}_\alpha\)</span> is
+the part of Hilbert space that has that value, and
+<span class="math notranslate nohighlight">\(\langle\psi|\boldsymbol{P}_\alpha|\psi\rangle\)</span> is the probability of
+observing it.  This section makes each reading concrete; the code is the
+same as in <code class="docutils literal notranslate"><span class="pre">BookPrograms/chapter01/spectral.py</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">I2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
+<span class="n">SX</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
+<span class="n">SY</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="n">j</span><span class="p">,</span> <span class="mi">0</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
+<span class="n">SZ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">ket</span><span class="p">(</span><span class="o">*</span><span class="n">amplitudes</span><span class="p">):</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">amplitudes</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">v</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">projector</span><span class="p">(</span><span class="o">*</span><span class="n">vectors</span><span class="p">):</span>
+    <span class="n">P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">vectors</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">vectors</span><span class="p">[</span><span class="mi">0</span><span class="p">])),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">vectors</span><span class="p">:</span>
+        <span class="n">P</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">v</span><span class="o">.</span><span class="n">conj</span><span class="p">())</span>
+    <span class="k">return</span> <span class="n">P</span>
+
+
+<span class="k">class</span> <span class="nc">Observable</span><span class="p">:</span>
+    <span class="c1"># a Hermitian matrix with its spectral decomposition A = sum_a a P_a</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">matrix</span><span class="p">,</span> <span class="n">degeneracy_tol</span><span class="o">=</span><span class="mf">1e-9</span><span class="p">):</span>
+        <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">A</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span><span class="o">.</span><span class="n">T</span><span class="p">),</span> <span class="s2">&quot;not Hermitian&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">A</span> <span class="o">=</span> <span class="n">A</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">eigenvalues</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">eigenvectors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">projectors</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+        <span class="n">k</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">eigenvalues</span><span class="p">)</span>
+        <span class="k">while</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>                        <span class="c1"># group degenerate eigenvalues</span>
+            <span class="n">j</span> <span class="o">=</span> <span class="n">k</span>
+            <span class="k">while</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="ow">and</span> <span class="nb">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">eigenvalues</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">eigenvalues</span><span class="p">[</span><span class="n">k</span><span class="p">])</span> <span class="o">&lt;</span> <span class="n">degeneracy_tol</span><span class="p">:</span>
+                <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">eigenvalues</span><span class="p">[</span><span class="n">k</span><span class="p">:</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">projectors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">projector</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">eigenvectors</span><span class="p">[:,</span> <span class="n">m</span><span class="p">]</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]))</span>
+            <span class="n">k</span> <span class="o">=</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">probabilities</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">psi</span><span class="p">):</span>           <span class="c1"># p_a = &lt;psi|P_a|psi&gt;</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">vdot</span><span class="p">(</span><span class="n">psi</span><span class="p">,</span> <span class="n">P</span> <span class="o">@</span> <span class="n">psi</span><span class="p">)</span><span class="o">.</span><span class="n">real</span> <span class="k">for</span> <span class="n">P</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">projectors</span><span class="p">])</span>
+
+    <span class="k">def</span> <span class="nf">function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f</span><span class="p">):</span>                  <span class="c1"># f(A) = sum_a f(a) P_a</span>
+        <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">*</span> <span class="n">P</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">P</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">projectors</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">variance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">psi</span><span class="p">):</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">probabilities</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">p</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span> <span class="o">*</span> <span class="n">p</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">collapse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">psi</span><span class="p">,</span> <span class="n">alpha</span><span class="p">):</span>         <span class="c1"># the state after the outcome a_alpha</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">projectors</span><span class="p">[</span><span class="n">alpha</span><span class="p">]</span> <span class="o">@</span> <span class="n">psi</span>
+        <span class="k">return</span> <span class="n">v</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">idem</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">P</span> <span class="o">@</span> <span class="n">P</span> <span class="o">-</span> <span class="n">P</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="k">for</span> <span class="n">P</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">projectors</span><span class="p">)</span>
+        <span class="n">comp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">projectors</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="p">)))</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+        <span class="n">rec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">P</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">P</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">projectors</span><span class="p">))</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">idem</span><span class="p">,</span> <span class="n">comp</span><span class="p">,</span> <span class="n">rec</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="eigenvalues-are-outcomes-projectors-are-the-states-of-each-outcome">
+<h3><span class="section-number">1.1.1. </span>Eigenvalues are outcomes, projectors are the states of each outcome<a class="headerlink" href="#eigenvalues-are-outcomes-projectors-are-the-states-of-each-outcome" title="Link to this heading">#</a></h3>
+<p>For <span class="math notranslate nohighlight">\(S_z=\tfrac12\sigma_z\)</span> the two terms of the decomposition are the two
+beams of a Stern-Gerlach magnet.  A state
+<span class="math notranslate nohighlight">\(|\psi\rangle=\cos(\pi/8)|0\rangle+\sin(\pi/8)|1\rangle\)</span> measured along
+<span class="math notranslate nohighlight">\(z\)</span> and along <span class="math notranslate nohighlight">\(x\)</span> gives, by coincidence of this particular angle, the same
+two probabilities – but they answer two different questions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sz</span> <span class="o">=</span> <span class="n">Observable</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">SZ</span><span class="p">)</span>
+<span class="n">sx</span> <span class="o">=</span> <span class="n">Observable</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">SX</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;checks (idempotent, complete, rebuilds S_z):&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;</span><span class="si">%.1e</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">sz</span><span class="o">.</span><span class="n">check</span><span class="p">()])</span>
+<span class="n">psi</span> <span class="o">=</span> <span class="n">ket</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">8</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">8</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">obs</span> <span class="ow">in</span> <span class="p">((</span><span class="s2">&quot;S_z&quot;</span><span class="p">,</span> <span class="n">sz</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;S_x&quot;</span><span class="p">,</span> <span class="n">sx</span><span class="p">)):</span>
+    <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">obs</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">obs</span><span class="o">.</span><span class="n">probabilities</span><span class="p">(</span><span class="n">psi</span><span class="p">)):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">a</span><span class="si">:</span><span class="s2">+.1f</span><span class="si">}</span><span class="s2">  with probability </span><span class="si">{</span><span class="n">p</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   &lt;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&gt; = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">obs</span><span class="o">.</span><span class="n">values</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">obs</span><span class="o">.</span><span class="n">probabilities</span><span class="p">(</span><span class="n">psi</span><span class="p">))</span><span class="si">:</span><span class="s2">+.6f</span><span class="si">}</span><span class="s2">,&quot;</span>
+          <span class="sa">f</span><span class="s2">&quot;  variance = </span><span class="si">{</span><span class="n">obs</span><span class="o">.</span><span class="n">variance</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;state after the outcome S_z = +1/2:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">sz</span><span class="o">.</span><span class="n">collapse</span><span class="p">(</span><span class="n">psi</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">6</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>checks (idempotent, complete, rebuilds S_z): [&#39;0.0e+00&#39;, &#39;0.0e+00&#39;, &#39;0.0e+00&#39;]
+S_z = -0.5  with probability 0.146447
+S_z = +0.5  with probability 0.853553
+   &lt;S_z&gt; = +0.353553,  variance = 0.125000
+S_x = -0.5  with probability 0.146447
+S_x = +0.5  with probability 0.853553
+   &lt;S_x&gt; = +0.353553,  variance = 0.125000
+state after the outcome S_z = +1/2: [1.+0.j 0.+0.j]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="functions-of-an-observable-and-why-the-projector-is-what-matters-when-eigenvalues-are-degenerate">
+<h3><span class="section-number">1.1.2. </span>Functions of an observable, and why the projector is what matters when eigenvalues are degenerate<a class="headerlink" href="#functions-of-an-observable-and-why-the-projector-is-what-matters-when-eigenvalues-are-degenerate" title="Link to this heading">#</a></h3>
+<p><span class="math notranslate nohighlight">\(f(\boldsymbol{A})=\sum_\alpha f(a_\alpha)\boldsymbol{P}_\alpha\)</span> is how every
+matrix function in this book is computed.  For a degenerate eigenvalue the
+eigenvectors can be rotated freely inside the eigenspace, but the projector
+onto it cannot change – which is why the decomposition is written with
+projectors.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">factorial</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">Observable</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">]]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;eigenvalues&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">eigenvalues</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="s2">&quot;-&gt; distinct&quot;</span><span class="p">,</span> <span class="n">A</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;max |A^2(spectral) - A A|         = </span><span class="si">%.1e</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="k">lambda</span> <span class="n">a</span><span class="p">:</span> <span class="n">a</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="n">A</span><span class="o">.</span><span class="n">A</span> <span class="o">@</span> <span class="n">A</span><span class="o">.</span><span class="n">A</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+<span class="n">series</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">matrix_power</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">A</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="o">/</span> <span class="n">factorial</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">40</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;max |exp(A)(spectral) - Taylor|   = </span><span class="si">%.1e</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">)</span> <span class="o">-</span> <span class="n">series</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+<span class="n">v1</span><span class="p">,</span> <span class="n">v2</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">eigenvectors</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">A</span><span class="o">.</span><span class="n">eigenvectors</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span>      <span class="c1"># the degenerate pair</span>
+<span class="n">theta</span> <span class="o">=</span> <span class="mf">0.7</span>
+<span class="n">w1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">*</span> <span class="n">v1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">*</span> <span class="n">v2</span>
+<span class="n">w2</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">*</span> <span class="n">v1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">*</span> <span class="n">v2</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;max |P(rotated basis) - P|        = </span><span class="si">%.1e</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">projector</span><span class="p">(</span><span class="n">w1</span><span class="p">,</span> <span class="n">w2</span><span class="p">)</span> <span class="o">-</span> <span class="n">A</span><span class="o">.</span><span class="n">projectors</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>eigenvalues [1. 3. 3.] -&gt; distinct [1. 3.]
+max |A^2(spectral) - A A|         = 8.9e-16
+max |exp(A)(spectral) - Taylor|   = 7.1e-15
+max |P(rotated basis) - P|        = 0.0e+00
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="the-hamiltonian-stationary-states-and-the-time-evolution">
+<h3><span class="section-number">1.1.3. </span>The Hamiltonian: stationary states and the time evolution<a class="headerlink" href="#the-hamiltonian-stationary-states-and-the-time-evolution" title="Link to this heading">#</a></h3>
+<p>With <span class="math notranslate nohighlight">\(f(E)=e^{-iEt/\hbar}\)</span> the spectral decomposition of <span class="math notranslate nohighlight">\(\boldsymbol{H}\)</span> gives
+the evolution operator directly,
+<span class="math notranslate nohighlight">\(e^{-i\boldsymbol{H}t/\hbar}=\sum_n e^{-iE_nt/\hbar}|E_n\rangle\langle E_n|\)</span>.
+Each energy component only acquires a phase, so the populations are
+constant; the <em>relative</em> phase <span class="math notranslate nohighlight">\(e^{-i(E_1-E_0)t/\hbar}\)</span> is what rotates the
+state and makes <span class="math notranslate nohighlight">\(\langle\sigma_x\rangle\)</span> oscillate at the Bohr frequency –
+a Ramsey fringe.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">TwoLevelSystem</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">E0</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">E1</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">E0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">E1</span> <span class="o">=</span> <span class="n">E0</span><span class="p">,</span> <span class="n">E1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">H</span> <span class="o">=</span> <span class="n">Observable</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">([</span><span class="n">E0</span><span class="p">,</span> <span class="n">E1</span><span class="p">]))</span>
+
+    <span class="k">def</span> <span class="nf">evolution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>                          <span class="c1"># U(t) = sum_n exp(-i E_n t) |E_n&gt;&lt;E_n|</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">H</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="k">lambda</span> <span class="n">E</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">E</span> <span class="o">*</span> <span class="n">t</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">evolve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">psi0</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">evolution</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">@</span> <span class="n">psi0</span>
+
+
+<span class="n">sys2</span> <span class="o">=</span> <span class="n">TwoLevelSystem</span><span class="p">(</span><span class="n">E0</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">E1</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">psi0</span> <span class="o">=</span> <span class="n">ket</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
+<span class="n">states</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">sys2</span><span class="o">.</span><span class="n">evolve</span><span class="p">(</span><span class="n">psi0</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">times</span><span class="p">])</span>
+<span class="n">pop0</span><span class="p">,</span> <span class="n">pop1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">states</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">states</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">sx_t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">vdot</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">SX</span> <span class="o">@</span> <span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">real</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">states</span><span class="p">])</span>
+<span class="n">sz_t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">vdot</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">SZ</span> <span class="o">@</span> <span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">real</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">states</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mf">4.2</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">pop0</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$|\langle 0|\psi(t)\rangle|^2$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">pop1</span><span class="p">,</span> <span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$|\langle 1|\psi(t)\rangle|^2$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">sx_t</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\langle\sigma_x\rangle(t)$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">((</span><span class="n">sys2</span><span class="o">.</span><span class="n">E1</span> <span class="o">-</span> <span class="n">sys2</span><span class="o">.</span><span class="n">E0</span><span class="p">)</span> <span class="o">*</span> <span class="n">times</span><span class="p">),</span> <span class="s2">&quot;k:&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\cos((E_1-E_0)t/\hbar)$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">sz_t</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\langle\sigma_z\rangle(t)$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$t$  [units of $\hbar/(E_1-E_0)$]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;populations and expectation values&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Two-level system: $(|0\rangle+|1\rangle)/\sqrt</span><span class="si">{2}</span><span class="s2">$ under $H=E_0|0\rangle\langle 0|+E_1|1\rangle\langle 1|$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.15</span><span class="p">,</span> <span class="mf">1.15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;upper center&quot;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.16</span><span class="p">),</span> <span class="n">ncol</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">U</span> <span class="o">=</span> <span class="n">sys2</span><span class="o">.</span><span class="n">evolution</span><span class="p">(</span><span class="mf">0.37</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;U(t) unitary: max |U^+U - I| = </span><span class="si">%.1e</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">U</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">U</span> <span class="o">-</span> <span class="n">I2</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/06430a16f882d7b51370e8f5e1a962d32e329f12fedd21915d4a0af7ebc782a2.png" src="_images/06430a16f882d7b51370e8f5e1a962d32e329f12fedd21915d4a0af7ebc782a2.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>U(t) unitary: max |U^+U - I| = 2.2e-17
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="the-harmonic-oscillator-projectors-count-quanta-and-the-thermal-state-is-boltzmann-weighting">
+<h3><span class="section-number">1.1.4. </span>The harmonic oscillator: projectors count quanta, and the thermal state is Boltzmann weighting<a class="headerlink" href="#the-harmonic-oscillator-projectors-count-quanta-and-the-thermal-state-is-boltzmann-weighting" title="Link to this heading">#</a></h3>
+<p><span class="math notranslate nohighlight">\(H=\sum_n\hbar\omega(n+\tfrac12)|n\rangle\langle n|\)</span>: each projector selects
+the sector with <span class="math notranslate nohighlight">\(n\)</span> quanta, and the number operator has the same projectors
+with eigenvalues <span class="math notranslate nohighlight">\(n\)</span>.  Applying <span class="math notranslate nohighlight">\(f(E)=e^{-\beta E}\)</span> turns the spectral
+decomposition into the thermal density matrix <span class="math notranslate nohighlight">\(e^{-\beta H}/Z\)</span>, whose
+eigenvalues are the Boltzmann weights.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">oscillator</span><span class="p">(</span><span class="n">nmax</span><span class="p">,</span> <span class="n">omega</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nmax</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">[</span><span class="mi">1</span><span class="p">:]),</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">a</span>
+    <span class="k">return</span> <span class="n">omega</span> <span class="o">*</span> <span class="p">(</span><span class="n">N</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">nmax</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)),</span> <span class="n">N</span><span class="p">,</span> <span class="n">a</span>
+
+
+<span class="k">class</span> <span class="nc">DensityMatrix</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">matrix</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rho</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">weights</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">states</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rho</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">weights</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">pure</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">psi</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">psi</span><span class="p">,</span> <span class="n">psi</span><span class="o">.</span><span class="n">conj</span><span class="p">()))</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">thermal</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">beta</span><span class="p">):</span>                        <span class="c1"># exp(-beta H)/Z from the spectrum of H</span>
+        <span class="n">w</span> <span class="o">=</span> <span class="n">Observable</span><span class="p">(</span><span class="n">H</span><span class="p">)</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="k">lambda</span> <span class="n">E</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">beta</span> <span class="o">*</span> <span class="n">E</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">w</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="n">w</span><span class="p">)</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">reduced</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">psi</span><span class="p">,</span> <span class="n">dims</span><span class="p">):</span>                      <span class="c1"># Tr_B |psi&gt;&lt;psi| = C C^+</span>
+        <span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">psi</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">dims</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">C</span> <span class="o">@</span> <span class="n">C</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">purity</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rho</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">rho</span><span class="p">)</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">entropy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>                                <span class="c1"># -sum p ln p</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">weights</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">weights</span> <span class="o">&gt;</span> <span class="mf">1e-15</span><span class="p">]</span>
+        <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">p</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">p</span><span class="p">))),</span> <span class="mf">0.0</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">expectation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">A</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rho</span> <span class="o">@</span> <span class="n">A</span><span class="p">)</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>
+
+
+<span class="n">H</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="n">oscillator</span><span class="p">(</span><span class="n">nmax</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">osc</span> <span class="o">=</span> <span class="n">Observable</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;oscillator eigenvalues:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">osc</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;max |P_n(H) - P_n(N)| = </span><span class="si">%.1e</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">P</span> <span class="o">-</span> <span class="n">Q</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="k">for</span> <span class="n">P</span><span class="p">,</span> <span class="n">Q</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">osc</span><span class="o">.</span><span class="n">projectors</span><span class="p">,</span> <span class="n">Observable</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="o">.</span><span class="n">projectors</span><span class="p">)))</span>
+<span class="n">rho</span> <span class="o">=</span> <span class="n">DensityMatrix</span><span class="o">.</span><span class="n">thermal</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">boltz</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">osc</span><span class="o">.</span><span class="n">values</span><span class="p">);</span> <span class="n">boltz</span> <span class="o">/=</span> <span class="n">boltz</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;thermal weights   :&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">rho</span><span class="o">.</span><span class="n">weights</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="mi">5</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Boltzmann factors :&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">boltz</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&lt;N&gt; = </span><span class="si">{</span><span class="n">rho</span><span class="o">.</span><span class="n">expectation</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2">,  entropy = </span><span class="si">{</span><span class="n">rho</span><span class="o">.</span><span class="n">entropy</span><span class="p">()</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>oscillator eigenvalues:
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> [0.5 1.5 2.5 3.5 4.5 5.5 6.5]
+max |P_n(H) - P_n(N)| = 0.0e+00
+thermal weights   : [0.6327  0.23276 0.08563 0.0315  0.01159 0.00426 0.00157]
+Boltzmann factors : [0.6327  0.23276 0.08563 0.0315  0.01159 0.00426 0.00157]
+&lt;N&gt; = 0.57559,  entropy = 1.03335
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="density-matrices-eigenvalues-as-statistical-weights-and-the-spectrum-of-a-reduced-state-as-a-measure-of-entanglement">
+<h3><span class="section-number">1.1.5. </span>Density matrices: eigenvalues as statistical weights, and the spectrum of a reduced state as a measure of entanglement<a class="headerlink" href="#density-matrices-eigenvalues-as-statistical-weights-and-the-spectrum-of-a-reduced-state-as-a-measure-of-entanglement" title="Link to this heading">#</a></h3>
+<p>For a density matrix the eigenvalues are the weights of orthogonal states,
+and purity and von Neumann entropy <span class="math notranslate nohighlight">\(S=-\sum_n p_n\ln p_n\)</span> depend on nothing
+else.  For the reduced density matrix <span class="math notranslate nohighlight">\(\rho_A={\rm Tr}_B|\Psi\rangle\langle\Psi|\)</span>
+of a two-qubit state <span class="math notranslate nohighlight">\(\cos\theta|00\rangle+\sin\theta|11\rangle\)</span> the spectrum
+<span class="math notranslate nohighlight">\(\{\cos^2\theta,\sin^2\theta\}\)</span> is the entanglement spectrum: the product
+state has <span class="math notranslate nohighlight">\(S_A=0\)</span>, the Bell state <span class="math notranslate nohighlight">\(S_A=\ln 2\)</span>.  These eigenvalues are the
+squared Schmidt coefficients of section 7.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">rho</span> <span class="ow">in</span> <span class="p">((</span><span class="s2">&quot;|psi&gt;&lt;psi|&quot;</span><span class="p">,</span> <span class="n">DensityMatrix</span><span class="o">.</span><span class="n">pure</span><span class="p">(</span><span class="n">ket</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">))),</span> <span class="p">(</span><span class="s2">&quot;I/2&quot;</span><span class="p">,</span> <span class="n">DensityMatrix</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">I2</span><span class="p">))):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">:</span><span class="s2">&gt;12s</span><span class="si">}</span><span class="s2">: spectrum </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">rho</span><span class="o">.</span><span class="n">weights</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="si">}</span><span class="s2">, purity </span><span class="si">{</span><span class="n">rho</span><span class="o">.</span><span class="n">purity</span><span class="p">()</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, entropy </span><span class="si">{</span><span class="n">rho</span><span class="o">.</span><span class="n">entropy</span><span class="p">()</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">thetas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">181</span><span class="p">)</span>
+<span class="n">spectra</span><span class="p">,</span> <span class="n">entropies</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">theta</span> <span class="ow">in</span> <span class="n">thetas</span><span class="p">:</span>
+    <span class="n">psi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
+    <span class="n">psi</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">psi</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+    <span class="n">rho_A</span> <span class="o">=</span> <span class="n">DensityMatrix</span><span class="o">.</span><span class="n">reduced</span><span class="p">(</span><span class="n">psi</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="n">spectra</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rho_A</span><span class="o">.</span><span class="n">weights</span><span class="p">)</span>
+    <span class="n">entropies</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rho_A</span><span class="o">.</span><span class="n">entropy</span><span class="p">())</span>
+<span class="n">spectra</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">spectra</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mf">4.2</span><span class="p">))</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">thetas</span><span class="p">,</span> <span class="n">spectra</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\lambda_1=\cos^2\theta$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">thetas</span><span class="p">,</span> <span class="n">spectra</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\lambda_2=\sin^2\theta$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">thetas</span><span class="p">,</span> <span class="n">entropies</span><span class="p">,</span> <span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.8</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$S_A=-\sum_n\lambda_n\ln\lambda_n$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.02</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;$\ln 2$&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\theta$&quot;</span><span class="p">);</span> <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;eigenvalues of $</span><span class="se">\\</span><span class="s2">rho_A$ and entropy&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;reduced density matrix of $\cos\theta|00\rangle+\sin\theta|11\rangle$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">8</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">8</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">([</span><span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;$\pi/8$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;$\pi/4$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;$3\pi/8$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;$\pi/2$&quot;</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">);</span> <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;center right&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+
+<span class="n">H</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="n">oscillator</span><span class="p">(</span><span class="n">nmax</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">beta</span><span class="p">,</span> <span class="n">marker</span> <span class="ow">in</span> <span class="p">((</span><span class="mf">0.5</span><span class="p">,</span> <span class="s2">&quot;o&quot;</span><span class="p">),</span> <span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="s2">&quot;s&quot;</span><span class="p">),</span> <span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="s2">&quot;^&quot;</span><span class="p">)):</span>
+    <span class="n">rho</span> <span class="o">=</span> <span class="n">DensityMatrix</span><span class="o">.</span><span class="n">thermal</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">beta</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">rho</span><span class="o">.</span><span class="n">weights</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="n">marker</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">rf</span><span class="s2">&quot;$\beta\hbar\omega=</span><span class="si">{</span><span class="n">beta</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;number of quanta $n$&quot;</span><span class="p">);</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;eigenvalue $e^{-\beta E_n}/Z$ of $\rho_\beta$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;thermal density matrix of the harmonic oscillator&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">);</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  |psi&gt;&lt;psi|: spectrum [0. 1.], purity 1.0000, entropy 0.00000
+         I/2: spectrum [0.5 0.5], purity 0.5000, entropy 0.69315
+</pre></div>
+</div>
+<img alt="_images/f926ac7d07933b4650f528b0b7dc0762b697f4f1d0d45e4fcc6b59628e17beee.png" src="_images/f926ac7d07933b4650f528b0b7dc0762b697f4f1d0d45e4fcc6b59628e17beee.png" />
+</div>
+</div>
+<p>The spectral theorem is thus much more than a diagonalisation theorem: a
+Hermitian operator <em>is</em> a list of possible physical values together with the
+sectors of Hilbert space that carry them.  Everything that follows in this
+notebook – and most of this book – is about computing that list.</p>
+</section>
+</section>
 <section id="direct-solvers">
-<h2><span class="section-number">1.1. </span>1. Direct solvers<a class="headerlink" href="#direct-solvers" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">1.2. </span>2. Direct solvers<a class="headerlink" href="#direct-solvers" title="Link to this heading">#</a></h2>
 <p>A direct method produces the exact answer, up to rounding, in a fixed number
 of operations.  Gaussian elimination reduces <span class="math notranslate nohighlight">\(\boldsymbol{A}\)</span> to upper
 triangular form and then solves by backward substitution,</p>
@@ -646,7 +997,7 @@ inverse                |A^-1 A - I|  = 4.270e-16
 </div>
 </div>
 <section id="structure-pays-the-tridiagonal-solver">
-<h3><span class="section-number">1.1.1. </span>Structure pays: the tridiagonal solver<a class="headerlink" href="#structure-pays-the-tridiagonal-solver" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">1.2.1. </span>Structure pays: the tridiagonal solver<a class="headerlink" href="#structure-pays-the-tridiagonal-solver" title="Link to this heading">#</a></h3>
 <p>The matrix that comes out of discretising <span class="math notranslate nohighlight">\(-u''=f\)</span> is tridiagonal.  Solving it
 with general elimination would cost <span class="math notranslate nohighlight">\(2n^3/3\)</span> operations; the specialised
 forward/backward sweep costs <span class="math notranslate nohighlight">\(\mathcal{O}(n)\)</span>.  Recognising structure is worth
@@ -690,7 +1041,7 @@ more than any amount of tuning.</p>
 </section>
 </section>
 <section id="iterative-solvers">
-<h2><span class="section-number">1.2. </span>2. Iterative solvers<a class="headerlink" href="#iterative-solvers" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">1.3. </span>3. Iterative solvers<a class="headerlink" href="#iterative-solvers" title="Link to this heading">#</a></h2>
 <p>Iterative methods never need the matrix itself, only the product
 <span class="math notranslate nohighlight">\(\boldsymbol{A}\boldsymbol{x}\)</span>.  Splitting
 <span class="math notranslate nohighlight">\(\boldsymbol{A}=\boldsymbol{D}+\boldsymbol{L}+\boldsymbol{U}\)</span>,</p>
@@ -818,7 +1169,7 @@ Conjugate gradient               16        1.578e-16
 </div>
 </section>
 <section id="the-eigenvalue-problem-householder-and-ql">
-<h2><span class="section-number">1.3. </span>3. The eigenvalue problem: Householder and QL<a class="headerlink" href="#the-eigenvalue-problem-householder-and-ql" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">1.4. </span>4. The eigenvalue problem: Householder and QL<a class="headerlink" href="#the-eigenvalue-problem-householder-and-ql" title="Link to this heading">#</a></h2>
 <p>A real symmetric matrix is diagonalised in two steps.  First a sequence of
 Householder reflectors <span class="math notranslate nohighlight">\(\boldsymbol{P}=\boldsymbol{I}-2\boldsymbol{u}\boldsymbol{u}^T\)</span>
 reduces <span class="math notranslate nohighlight">\(\boldsymbol{A}\)</span> to tridiagonal form,
@@ -947,7 +1298,7 @@ max deviation     = 1.554e-15
 </div>
 </section>
 <section id="the-lanczos-algorithm">
-<h2><span class="section-number">1.4. </span>4. The Lanczos algorithm<a class="headerlink" href="#the-lanczos-algorithm" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">1.5. </span>5. The Lanczos algorithm<a class="headerlink" href="#the-lanczos-algorithm" title="Link to this heading">#</a></h2>
 <p>For a many-body Hamiltonian the matrix is far too large to store, but the
 product <span class="math notranslate nohighlight">\(\boldsymbol{A}\boldsymbol{q}\)</span> is always available.  The Lanczos
 algorithm exploits exactly this.  It builds an orthonormal basis of the Krylov
@@ -1009,7 +1360,7 @@ the Ritz values, converge rapidly to the extremal eigenvalues of
 </div>
 </div>
 <section id="a-many-body-test-case-the-pairing-model">
-<h3><span class="section-number">1.4.1. </span>A many-body test case: the pairing model<a class="headerlink" href="#a-many-body-test-case-the-pairing-model" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">1.5.1. </span>A many-body test case: the pairing model<a class="headerlink" href="#a-many-body-test-case-the-pairing-model" title="Link to this heading">#</a></h3>
 <p>We use the pairing Hamiltonian of the course,</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1105,7 +1456,7 @@ exact        24.839172748451                   27.9047354806
 </div>
 </section>
 <section id="loss-of-orthogonality">
-<h3><span class="section-number">1.4.2. </span>Loss of orthogonality<a class="headerlink" href="#loss-of-orthogonality" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">1.5.2. </span>Loss of orthogonality<a class="headerlink" href="#loss-of-orthogonality" title="Link to this heading">#</a></h3>
 <p>In exact arithmetic the three-term recurrence produces orthogonal vectors by
 itself.  In floating-point arithmetic it does not: as soon as one Ritz value
 converges, its direction creeps back into the remainder and the algorithm
@@ -1132,7 +1483,7 @@ reorthogonalize = False:  |Q^T Q - I| =  5.27e+00,   copies of the ground state:
 </section>
 </section>
 <section id="schrodinger-s-equation-by-diagonalisation">
-<h2><span class="section-number">1.5. </span>5. Schrödinger’s equation by diagonalisation<a class="headerlink" href="#schrodinger-s-equation-by-diagonalisation" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">1.6. </span>6. Schrödinger’s equation by diagonalisation<a class="headerlink" href="#schrodinger-s-equation-by-diagonalisation" title="Link to this heading">#</a></h2>
 <p>With the three-point formula for the second derivative, the one-dimensional
 equation</p>
 <div class="math notranslate nohighlight">
@@ -1214,7 +1565,9 @@ endpoints out of the matrix.  The exact eigenvalues are <span class="math notran
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      N             2E_0             2E_1             2E_2    max error
 ------------------------------------------------------------------------
-    100     0.9974937026     2.9874430342     4.9672772610     1.04e-01
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    100     0.9974937026     2.9874430342     4.9672772610     1.04e-01
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    200     0.9993746086     2.9968714733     4.9918612670     2.57e-02
@@ -1280,7 +1633,7 @@ of the three-point formula, exactly as expected.
 </div>
 </section>
 <section id="the-singular-value-decomposition">
-<h2><span class="section-number">1.6. </span>6. The singular value decomposition<a class="headerlink" href="#the-singular-value-decomposition" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">1.7. </span>7. The singular value decomposition<a class="headerlink" href="#the-singular-value-decomposition" title="Link to this heading">#</a></h2>
 <p>Everything above assumed a square matrix, and mostly a symmetric one.  Many
 objects in many-body physics are neither: the coefficients of a state across a
 bipartition, a set of sampled wave functions, the two-body matrix elements in a
@@ -1337,7 +1690,7 @@ V^T =
 </div>
 </div>
 <section id="never-form-boldsymbol-x-t-boldsymbol-x">
-<h3><span class="section-number">1.6.1. </span>Never form <span class="math notranslate nohighlight">\(\boldsymbol{X}^T\boldsymbol{X}\)</span><a class="headerlink" href="#never-form-boldsymbol-x-t-boldsymbol-x" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">1.7.1. </span>Never form <span class="math notranslate nohighlight">\(\boldsymbol{X}^T\boldsymbol{X}\)</span><a class="headerlink" href="#never-form-boldsymbol-x-t-boldsymbol-x" title="Link to this heading">#</a></h3>
 <p>Since <span class="math notranslate nohighlight">\(\sigma_i^2\)</span> are the eigenvalues of <span class="math notranslate nohighlight">\(\boldsymbol{X}^T\boldsymbol{X}\)</span>, one
 could compute singular values by diagonalising that product.  It is correct
 mathematically and poor numerically: forming the product squares the condition
@@ -1379,7 +1732,7 @@ kappa(X^T X) = 1.00e+14
 </div>
 </section>
 <section id="rank-the-pseudoinverse-and-near-linearly-dependent-bases">
-<h3><span class="section-number">1.6.2. </span>Rank, the pseudoinverse and near-linearly-dependent bases<a class="headerlink" href="#rank-the-pseudoinverse-and-near-linearly-dependent-bases" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">1.7.2. </span>Rank, the pseudoinverse and near-linearly-dependent bases<a class="headerlink" href="#rank-the-pseudoinverse-and-near-linearly-dependent-bases" title="Link to this heading">#</a></h3>
 <p>The rank is the number of non-zero singular values, and the condition number is
 <span class="math notranslate nohighlight">\(\kappa_2=\sigma_0/\sigma_{r-1}\)</span>.  When a matrix is singular or nearly so, the
 Moore-Penrose pseudoinverse</p>
@@ -1451,7 +1804,7 @@ threshold    1e-05:  kept  7 of 12   effective kappa =  3.25e+04
 </div>
 </section>
 <section id="low-rank-approximation-and-the-schmidt-decomposition">
-<h3><span class="section-number">1.6.3. </span>Low-rank approximation and the Schmidt decomposition<a class="headerlink" href="#low-rank-approximation-and-the-schmidt-decomposition" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">1.7.3. </span>Low-rank approximation and the Schmidt decomposition<a class="headerlink" href="#low-rank-approximation-and-the-schmidt-decomposition" title="Link to this heading">#</a></h3>
 <p>Truncating</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1502,7 +1855,7 @@ truncation error, and <span class="math notranslate nohighlight">\(\chi\)</span>
 </div>
 </div>
 <section id="the-pairing-model-across-a-cut">
-<h4><span class="section-number">1.6.3.1. </span>The pairing model across a cut<a class="headerlink" href="#the-pairing-model-across-a-cut" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">1.7.3.1. </span>The pairing model across a cut<a class="headerlink" href="#the-pairing-model-across-a-cut" title="Link to this heading">#</a></h4>
 <p>Split the twelve levels of the pairing model into the lowest six and the
 highest six.  A seniority-zero basis state is a set of occupied levels, which
 factorises into its part in <span class="math notranslate nohighlight">\(A\)</span> and its part in <span class="math notranslate nohighlight">\(B\)</span>, so the coefficients form a
@@ -1584,7 +1937,7 @@ largest Schmidt weights: [0.516901 0.408486 0.069164 0.00407  0.001193 0.000089 
 </section>
 </section>
 <section id="natural-orbitals-and-occupation-numbers">
-<h3><span class="section-number">1.6.4. </span>Natural orbitals and occupation numbers<a class="headerlink" href="#natural-orbitals-and-occupation-numbers" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">1.7.4. </span>Natural orbitals and occupation numbers<a class="headerlink" href="#natural-orbitals-and-occupation-numbers" title="Link to this heading">#</a></h3>
 <p>For two identical particles the same decomposition has another name.  Writing
 <span class="math notranslate nohighlight">\(\Psi(x_1,x_2)=\sum_{pq}C_{pq}\varphi_p(x_1)\varphi_q(x_2)\)</span> with
 <span class="math notranslate nohighlight">\(\boldsymbol{C}\)</span> symmetric, the SVD gives the natural expansion</p>
@@ -1683,7 +2036,7 @@ At g = 0 the state is a product: one natural orbital, zero entropy.
 </div>
 </section>
 <section id="low-rank-factorisation-of-the-two-body-interaction">
-<h3><span class="section-number">1.6.5. </span>Low-rank factorisation of the two-body interaction<a class="headerlink" href="#low-rank-factorisation-of-the-two-body-interaction" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">1.7.5. </span>Low-rank factorisation of the two-body interaction<a class="headerlink" href="#low-rank-factorisation-of-the-two-body-interaction" title="Link to this heading">#</a></h3>
 <p>The last application concerns the Hamiltonian rather than the state.  Reading
 the pairs <span class="math notranslate nohighlight">\((pq)\)</span> and <span class="math notranslate nohighlight">\((rs)\)</span> as composite indices turns the four-index array
 <span class="math notranslate nohighlight">\(V_{pqrs}\)</span> into an ordinary matrix, positive semidefinite for a Coulomb-like
@@ -1753,7 +2106,7 @@ leading eigenvalues of the pair matrix:
 </div>
 </section>
 <section id="what-the-singular-values-were-telling-us">
-<h3><span class="section-number">1.6.6. </span>What the singular values were telling us<a class="headerlink" href="#what-the-singular-values-were-telling-us" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">1.7.6. </span>What the singular values were telling us<a class="headerlink" href="#what-the-singular-values-were-telling-us" title="Link to this heading">#</a></h3>
 <p>One decomposition, read five ways.  The same list of numbers gave the numerical
 rank of a matrix, the distance of a basis from linear dependence, the weight
 lost in truncating a wave function, the entanglement across a cut, the
@@ -1767,13 +2120,13 @@ us when a state is <em>not</em> compressible and a quantum computer might be nee
 </section>
 </section>
 <section id="where-this-leads">
-<h2><span class="section-number">1.7. </span>Where this leads<a class="headerlink" href="#where-this-leads" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">1.8. </span>Where this leads<a class="headerlink" href="#where-this-leads" title="Link to this heading">#</a></h2>
 <p>Expanding a state in a finite basis and diagonalising the resulting matrix is
 exactly what full configuration interaction does.  The only differences are
 that the basis consists of Slater determinants rather than grid points, and
 that its dimension grows exponentially with the number of particles rather
 than linearly with the number of mesh points.  That is why the Lanczos
-algorithm of section 4, and not the direct diagonalisation of section 3, is
+algorithm of section 5, and not the direct diagonalisation of section 4, is
 the method used in large-scale many-body calculations.</p>
 </section>
 </section>
@@ -1842,31 +2195,39 @@ the method used in large-scale many-body calculations.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#direct-solvers">1.1. 1. Direct solvers</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#structure-pays-the-tridiagonal-solver">1.1.1. Structure pays: the tridiagonal solver</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-spectral-decomposition-and-what-it-means">1.1. 1. The spectral decomposition, and what it means</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eigenvalues-are-outcomes-projectors-are-the-states-of-each-outcome">1.1.1. Eigenvalues are outcomes, projectors are the states of each outcome</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-of-an-observable-and-why-the-projector-is-what-matters-when-eigenvalues-are-degenerate">1.1.2. Functions of an observable, and why the projector is what matters when eigenvalues are degenerate</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-hamiltonian-stationary-states-and-the-time-evolution">1.1.3. The Hamiltonian: stationary states and the time evolution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-harmonic-oscillator-projectors-count-quanta-and-the-thermal-state-is-boltzmann-weighting">1.1.4. The harmonic oscillator: projectors count quanta, and the thermal state is Boltzmann weighting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#density-matrices-eigenvalues-as-statistical-weights-and-the-spectrum-of-a-reduced-state-as-a-measure-of-entanglement">1.1.5. Density matrices: eigenvalues as statistical weights, and the spectrum of a reduced state as a measure of entanglement</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iterative-solvers">1.2. 2. Iterative solvers</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-eigenvalue-problem-householder-and-ql">1.3. 3. The eigenvalue problem: Householder and QL</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lanczos-algorithm">1.4. 4. The Lanczos algorithm</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-many-body-test-case-the-pairing-model">1.4.1. A many-body test case: the pairing model</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#loss-of-orthogonality">1.4.2. Loss of orthogonality</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#direct-solvers">1.2. 2. Direct solvers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#structure-pays-the-tridiagonal-solver">1.2.1. Structure pays: the tridiagonal solver</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#schrodinger-s-equation-by-diagonalisation">1.5. 5. Schrödinger’s equation by diagonalisation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-singular-value-decomposition">1.6. 6. The singular value decomposition</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#never-form-boldsymbol-x-t-boldsymbol-x">1.6.1. Never form <span class="math notranslate nohighlight">\(\boldsymbol{X}^T\boldsymbol{X}\)</span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rank-the-pseudoinverse-and-near-linearly-dependent-bases">1.6.2. Rank, the pseudoinverse and near-linearly-dependent bases</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#low-rank-approximation-and-the-schmidt-decomposition">1.6.3. Low-rank approximation and the Schmidt decomposition</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-pairing-model-across-a-cut">1.6.3.1. The pairing model across a cut</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iterative-solvers">1.3. 3. Iterative solvers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-eigenvalue-problem-householder-and-ql">1.4. 4. The eigenvalue problem: Householder and QL</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lanczos-algorithm">1.5. 5. The Lanczos algorithm</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-many-body-test-case-the-pairing-model">1.5.1. A many-body test case: the pairing model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#loss-of-orthogonality">1.5.2. Loss of orthogonality</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#natural-orbitals-and-occupation-numbers">1.6.4. Natural orbitals and occupation numbers</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#low-rank-factorisation-of-the-two-body-interaction">1.6.5. Low-rank factorisation of the two-body interaction</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-the-singular-values-were-telling-us">1.6.6. What the singular values were telling us</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#schrodinger-s-equation-by-diagonalisation">1.6. 6. Schrödinger’s equation by diagonalisation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-singular-value-decomposition">1.7. 7. The singular value decomposition</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#never-form-boldsymbol-x-t-boldsymbol-x">1.7.1. Never form <span class="math notranslate nohighlight">\(\boldsymbol{X}^T\boldsymbol{X}\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rank-the-pseudoinverse-and-near-linearly-dependent-bases">1.7.2. Rank, the pseudoinverse and near-linearly-dependent bases</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#low-rank-approximation-and-the-schmidt-decomposition">1.7.3. Low-rank approximation and the Schmidt decomposition</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-pairing-model-across-a-cut">1.7.3.1. The pairing model across a cut</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#where-this-leads">1.7. Where this leads</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#natural-orbitals-and-occupation-numbers">1.7.4. Natural orbitals and occupation numbers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#low-rank-factorisation-of-the-two-body-interaction">1.7.5. Low-rank factorisation of the two-body interaction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-the-singular-values-were-telling-us">1.7.6. What the singular values were telling us</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#where-this-leads">1.8. Where this leads</a></li>
 </ul>
   </nav></div>
 

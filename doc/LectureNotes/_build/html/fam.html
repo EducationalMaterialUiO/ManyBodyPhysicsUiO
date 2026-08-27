@@ -598,9 +598,7 @@ frequencies with three different solvers.</p>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>==========================================================================
 2. FAM against the RPA matrix, one frequency at a time
 ==========================================================================
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The induced field from finite differences against (dh/drho) drho,
+The induced field from finite differences against (dh/drho) drho,
 for a random amplitude vector:
   max |dh(linear) - (A - Delta)X - BY| = 1.0e-13
   forward  eta = 1e-02:  max |dh - dh(linear)| = 1.4e-02
@@ -628,7 +626,7 @@ Strength function at omega = (1.7+0.05j):
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">fam</span><span class="o">.</span><span class="n">demo_validation</span><span class="p">()</span>
 
-<span class="nn">File ~/Teaching/ManyBodyPhysics/doc/LectureNotes/../BookManybody/BookPrograms/appendixA/fam.py:608,</span> in <span class="ni">demo_validation</span><span class="nt">()</span>
+<span class="nn">File ~/Teaching/ManyBodyPhysicsUiO/doc/LectureNotes/../BookManybody/BookPrograms/appendixA/fam.py:608,</span> in <span class="ni">demo_validation</span><span class="nt">()</span>
 <span class="g g-Whitespace">    </span><span class="mi">605</span> <span class="k">for</span> <span class="n">scheme</span><span class="p">,</span> <span class="n">method</span> <span class="ow">in</span> <span class="p">((</span><span class="s2">&quot;forward&quot;</span><span class="p">,</span> <span class="s2">&quot;gmres&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;forward&quot;</span><span class="p">,</span> <span class="s2">&quot;bicgstab&quot;</span><span class="p">),</span>
 <span class="g g-Whitespace">    </span><span class="mi">606</span>                        <span class="p">(</span><span class="s2">&quot;forward&quot;</span><span class="p">,</span> <span class="s2">&quot;fixed&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;central&quot;</span><span class="p">,</span> <span class="s2">&quot;gmres&quot;</span><span class="p">)):</span>
 <span class="g g-Whitespace">    </span><span class="mi">607</span>     <span class="n">fam</span> <span class="o">=</span> <span class="n">FiniteAmplitudeMethod</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="n">scheme</span><span class="o">=</span><span class="n">scheme</span><span class="p">)</span>
@@ -636,7 +634,7 @@ Strength function at omega = (1.7+0.05j):
 <span class="g g-Whitespace">    </span><span class="mi">609</span>     <span class="n">S</span> <span class="o">=</span> <span class="n">fam</span><span class="o">.</span><span class="n">space</span><span class="o">.</span><span class="n">strength</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">610</span>     <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">res</span><span class="p">):</span>
 
-<span class="nn">File ~/Teaching/ManyBodyPhysics/doc/LectureNotes/../BookManybody/BookPrograms/appendixA/fam.py:393,</span> in <span class="ni">FiniteAmplitudeMethod.solve</span><span class="nt">(self, F_hf, omega, method, tol, maxiter, mixing, x0)</span>
+<span class="nn">File ~/Teaching/ManyBodyPhysicsUiO/doc/LectureNotes/../BookManybody/BookPrograms/appendixA/fam.py:393,</span> in <span class="ni">FiniteAmplitudeMethod.solve</span><span class="nt">(self, F_hf, omega, method, tol, maxiter, mixing, x0)</span>
 <span class="g g-Whitespace">    </span><span class="mi">391</span> <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;gmres&quot;</span><span class="p">:</span>
 <span class="g g-Whitespace">    </span><span class="mi">392</span>     <span class="n">restart</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">n</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
 <span class="ne">--&gt; </span><span class="mi">393</span>     <span class="n">z</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">gmres</span><span class="p">(</span><span class="n">op</span><span class="p">,</span> <span class="n">rhs</span><span class="p">,</span> <span class="n">x0</span><span class="o">=</span><span class="n">x0</span><span class="p">,</span> <span class="n">rtol</span><span class="o">=</span><span class="n">tol</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
