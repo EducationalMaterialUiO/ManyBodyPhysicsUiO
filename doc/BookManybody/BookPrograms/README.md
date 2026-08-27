@@ -11,19 +11,21 @@ programs import a program from another chapter (`mbpt.py` uses `fci.py`,
 `hartreefock.py` and `rpa.py`; `dmc.py` uses `vmc.py` and `vmcoptimise.py`;
 `manybodymc.py` uses `vmc.py`, `slater_update.py` and `vmcoptimise.py`;
 `vqe.py` uses `qpe.py` and `jordanwigner.py`), so put every chapter directory
-on the path rather than a single one:
+on the path rather than a single one -- and the project directory of the
+appendix (`appendixA`, whose `fam.py` uses `rpa.py`) as well:
 
 ```python
 import sys, os, glob
-for d in sorted(glob.glob(os.path.join('BookPrograms', 'chapter*'))):
-    sys.path.insert(0, d)
+for pattern in ('chapter*', 'appendix*'):
+    for d in sorted(glob.glob(os.path.join('BookPrograms', pattern))):
+        sys.path.insert(0, d)
 ```
 
 That is exactly what the notebooks do.
 
 | Chapter | Directory | Programs |
 |---|---|---|
-| 1 | `chapter01` | `direct_solvers.py`, `iterative_solvers.py`, `householder.py`, `lanczos.py`, `svd.py`, `schrodinger_diagonalization.py` |
+| 1 | `chapter01` | `spectral.py`, `direct_solvers.py`, `iterative_solvers.py`, `householder.py`, `lanczos.py`, `svd.py`, `schrodinger_diagonalization.py` |
 | 2 | `chapter02` | `slaterdeterminant.py`, `slater_update.py` |
 | 3 | `chapter03` | `wick.py`, `jordanwigner.py` |
 | 4 | `chapter04` | `models.py` |
@@ -44,6 +46,8 @@ That is exactly what the notebooks do.
 | 19 | `chapter19` | `qpe.py` |
 | 20 | `chapter20` | `vqe.py` |
 | 21 | `chapter21` | -- (no programs; see the notebook `conclusions.ipynb`) |
+| A | `appendixA` | `fam.py` (Project 1: the finite amplitude method, built on `rpa.py`) |
 
-Figures are collected the same way, in `../BookFigures/chapterNN/`, and are
-produced by re-executing the notebooks; see `../../LectureNotes/README.md`.
+Figures are collected the same way, in `../BookFigures/chapterNN/` (and
+`../BookFigures/appendixA/` for the projects), and are produced by re-executing
+the notebooks; see `../../LectureNotes/README.md`.

@@ -45,6 +45,9 @@ NOTEBOOKS = {
     "quantumfourier.ipynb":   (19, "qft"),
     "vqe.ipynb":              (20, "vqe"),
     "conclusions.ipynb":      (21, "concl"),
+    # the project notebooks of the appendix: the first entry is the figure
+    # directory name rather than a chapter number
+    "fam.ipynb":              ("appendixA", "fam"),
 }
 
 SETUP = r'''
@@ -53,9 +56,10 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-for _d in sorted(glob.glob(os.path.join(r"{prog}", "chapter*"))):
-    if _d not in sys.path:
-        sys.path.insert(0, _d)
+for _pattern in ("chapter*", "appendix*"):
+    for _d in sorted(glob.glob(os.path.join(r"{prog}", _pattern))):
+        if _d not in sys.path:
+            sys.path.insert(0, _d)
 
 plt.rcParams.update({{
     "figure.figsize":   (6.0, 3.9),
@@ -142,9 +146,16 @@ def _dump_manifest():
 '''
 
 
+def figure_dir(chapter):
+    """BookFigures/chapterNN for a chapter number, BookFigures/<name> otherwise."""
+    if isinstance(chapter, int):
+        return os.path.join(FIG, "chapter%02d" % chapter)
+    return os.path.join(FIG, chapter)
+
+
 def build_exec_copy(path, chapter, tag):
     nb = nbformat.read(path, as_version=4)
-    figdir = os.path.join(FIG, "chapter%02d" % chapter)
+    figdir = figure_dir(chapter)
     cells = [nbformat.v4.new_code_cell(
         SETUP.format(prog=PROG, figdir=figdir, tag=tag))]
     for i, c in enumerate(nb.cells):
@@ -178,7 +189,8 @@ def main():
         if not os.path.exists(path):
             print("MISSING", name); continue
         print("=" * 70)
-        print("running", name, "-> chapter%02d" % chapter, flush=True)
+        print("running", name, "->", os.path.basename(figure_dir(chapter)),
+              flush=True)
         nb = build_exec_copy(path, chapter, tag)
         client = NotebookClient(nb, timeout=args.timeout, kernel_name="python3",
                                 allow_errors=True, resources={"metadata": {"path": NB}})
@@ -194,7 +206,7 @@ def main():
             for o in c.get("outputs", []):
                 if o.get("output_type") == "error":
                     errs.append((i, o.get("ename"), (o.get("evalue") or "")[:200]))
-        figdir = os.path.join(FIG, "chapter%02d" % chapter)
+        figdir = figure_dir(chapter)
         mf = os.path.join(figdir, "_manifest_%s.json" % tag)
         nfig = len(json.load(open(mf))) if os.path.exists(mf) else 0
         results[name] = {"status": status, "figures": nfig, "errors": errs[:8],

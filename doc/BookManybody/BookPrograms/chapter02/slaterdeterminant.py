@@ -270,6 +270,166 @@ def exact_two_particle(functional):
     return values[0], vectors[:, 0], pairs
 
 
+
+# ---------------------------------------------------------------------------
+def permutation_sign(sigma):
+    """sgn(sigma) for a permutation given in one-line notation (0-based)."""
+    sigma = list(sigma)
+    sign, seen = 1, [False] * len(sigma)
+    for start in range(len(sigma)):
+        if seen[start]:
+            continue
+        length, k = 0, start
+        while not seen[k]:
+            seen[k] = True
+            k = sigma[k]
+            length += 1
+        if length % 2 == 0:            # a cycle of even length is odd
+            sign = -sign
+    return sign
+
+
+class PermutationIntegrals:
+    """Every term of <Phi|H|Phi> = sum_sigma sgn(sigma) <Phi_H|H P_sigma|Phi_H>.
+
+    Section 2.8 argues that only the identity survives for a one-body
+    operator and only the identity and one transposition for a two-body
+    operator.  Here the argument is not made -- every one of the N! terms is
+    evaluated and the survivors are counted.  The permuted Hartree function
+    P_sigma Phi_H places orbital alpha_{sigma^{-1}(j)} at coordinate x_j, so
+    each term factorises into single-coordinate integrals: an overlap
+    S[alpha_j, alpha_{sigma^{-1}(j)}] for every spectator coordinate, and the
+    one- or two-body matrix element for the coordinates the operator acts
+    on.  The overlap S is the numerically computed one of the basis, so the
+    vanishing of a term is a numerical fact, not an assumption.
+    """
+
+    def __init__(self, basis, occupied):
+        from itertools import permutations
+        self.basis = basis
+        self.occupied = list(occupied)
+        self.N = len(self.occupied)
+        self.S = basis.overlap
+        self.h = basis.one_body
+        self.v = basis.two_body()
+        self.perms = list(permutations(range(self.N)))
+        if self.N == 3:                    # the order of Table 2.1
+            self.perms = [(0, 1, 2), (1, 0, 2), (0, 2, 1),
+                          (2, 1, 0), (1, 2, 0), (2, 0, 1)]
+
+    def _inverse(self, sigma):
+        inv = [0] * len(sigma)
+        for i, s in enumerate(sigma):
+            inv[s] = i
+        return inv
+
+    def one_body_terms(self, i, operator=None):
+        """The N! terms for a one-body operator f(x_i), default f = h_0.
+
+        Returns [(sigma, sgn, matrix element, spectator overlaps, term)].
+        """
+        occ, inv_of = self.occupied, self._inverse
+        f = self.h if operator is None else operator
+        out = []
+        for sigma in self.perms:
+            inv = inv_of(sigma)
+            element = f[occ[i], occ[inv[i]]]
+            spectators = 1.0
+            for j in range(self.N):
+                if j != i:
+                    spectators *= self.S[occ[j], occ[inv[j]]]
+            out.append((sigma, permutation_sign(sigma), element, spectators,
+                        element * spectators))
+        return out
+
+    def two_body_terms(self, i, j):
+        """The N! terms for the operator v(r_ij).
+
+        Returns [(sigma, sgn, matrix element, spectator overlaps, term)].
+        """
+        occ, inv_of = self.occupied, self._inverse
+        out = []
+        for sigma in self.perms:
+            inv = inv_of(sigma)
+            element = self.v[occ[i], occ[j], occ[inv[i]], occ[inv[j]]]
+            spectators = 1.0
+            for k in range(self.N):
+                if k not in (i, j):
+                    spectators *= self.S[occ[k], occ[inv[k]]]
+            out.append((sigma, permutation_sign(sigma), element, spectators,
+                        element * spectators))
+        return out
+
+    def energy(self, tol=1e-10):
+        """Sum every term with its sign; also count the non-vanishing ones."""
+        one, two, survivors, total = 0.0, 0.0, 0, 0
+        for i in range(self.N):
+            for sigma, sgn, _, _, value in self.one_body_terms(i):
+                one += sgn * value
+                total += 1
+                survivors += abs(value) > tol
+        for i in range(self.N):
+            for j in range(i + 1, self.N):
+                for sigma, sgn, _, _, value in self.two_body_terms(i, j):
+                    two += sgn * value
+                    total += 1
+                    survivors += abs(value) > tol
+        return one + two, survivors, total
+
+
+def _one_line(sigma):
+    return "(" + " ".join(str(s + 1) for s in sigma) + ")"
+
+
+def demo_permutations():
+    """Section 2.8, the worked three-particle example, term by term."""
+    basis = HarmonicOscillatorBasis(n_orb=8, strength=1.0)
+    occ = [0, 1, 2]
+    terms = PermutationIntegrals(basis, occ)
+    names = [f"a{k + 1}" for k in range(3)]
+    tiny = lambda z: 0.0 if abs(z) < 1e-12 else z
+    # the dipole operator x connects neighbouring oscillator orbitals, so its
+    # off-diagonal matrix elements are finite: it shows that a term dies on
+    # the spectator overlaps, not on the matrix element
+    x_op = basis.h * (basis.phi * basis.x) @ basis.phi.T
+    print("=" * 74)
+    print("2b. Which permutations survive: three particles in orbitals 0, 1, 2")
+    print("=" * 74)
+    print("Every term <Phi_H| O P_sigma |Phi_H>, with P_sigma Phi_H read by")
+    print("coordinate (the orbital sitting at x_1, x_2, x_3), factorised into the")
+    print("matrix element of O and the product of the spectator overlaps.")
+    print()
+    print("one-body operator f(x_1) = x_1  (the dipole operator):")
+    print(f"  {'sigma':>8s} {'sgn':>4s}   at (x1,x2,x3)   {'<a1|x|a_k>':>12s} "
+          f"{'overlaps':>10s} {'term':>12s}")
+    for sigma, sgn, element, spect, value in terms.one_body_terms(0, x_op):
+        inv = terms._inverse(sigma)
+        at = " ".join(names[inv[j]] for j in range(3))
+        print(f"  {_one_line(sigma):>8s} {sgn:+4d}   {at:<14s} {tiny(element):12.6f} "
+              f"{tiny(spect):10.6f} {tiny(value):12.6f}")
+    print()
+    print("two-body operator v(r_12):")
+    print(f"  {'sigma':>8s} {'sgn':>4s}   at (x1,x2,x3)   {'<a1a2|v|..>':>12s} "
+          f"{'overlaps':>10s} {'term':>12s}")
+    for sigma, sgn, element, spect, value in terms.two_body_terms(0, 1):
+        inv = terms._inverse(sigma)
+        at = " ".join(names[inv[j]] for j in range(3))
+        print(f"  {_one_line(sigma):>8s} {sgn:+4d}   {at:<14s} {tiny(element):12.6f} "
+              f"{tiny(spect):10.6f} {tiny(value):12.6f}")
+    E, survivors, total = terms.energy()
+    E_ref = EnergyFunctional(basis).energy_from_occupied(occ)
+    print()
+    print("Summing every signed term of <Phi|H_0 + H_I|Phi> over all 36:")
+    print(f"  non-vanishing terms          = {survivors} of {total}   "
+          f"(3 of 18 one-body, 6 of 18 two-body)")
+    print(f"  sum of all signed terms      = {E:.12f}")
+    print(f"  E[Phi] from EnergyFunctional = {E_ref:.12f}")
+    print("A permutation survives only if it fixes every particle the operator")
+    print("does not act on: one survivor per one-body term, two per two-body")
+    print("term.  The matrix element itself can be finite -- <a1|x|a2> is -- and")
+    print("the term still vanishes, on the spectator overlap <a2|a1>.")
+
+
 # ---------------------------------------------------------------------------
 def _demo():
     rng = np.random.default_rng(2026)
@@ -301,6 +461,9 @@ def _demo():
     repeated = SlaterDeterminant(basis, [0, 1, 1])
     print(f"two particles in orbital 1: Phi = "
           f"{repeated.evaluate(coords):+.2e}   (Pauli principle)")
+
+    print()
+    demo_permutations()
 
     print()
     print("=" * 74)
