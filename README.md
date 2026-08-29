@@ -58,6 +58,7 @@ There are many excellent textbooks on many-body physics. In addition to our own 
 - Shavitt and Bartlett at https://www.cambridge.org/core/books/manybody-methods-in-chemistry-and-physics/D12027E4DAF75CE8214671D842C6B80C
 - Carsten Ulrich, Time dependent Density Functional Theory, gives a good link with other many-body methods such as Hartree-Fock theory and time-dependent theories. See https://global.oup.com/academic/product/time-dependent-density-functional-theory-9780199563029?cc=us&lang=en&
 
+Our own notes can be retried from the this GitHub address, go to the folder doc/BookManyBody.
 ## Topics (not all will be discussed)
 
 - Intro chapter with basic definitions and simple examples and mathematics of many-body functions
