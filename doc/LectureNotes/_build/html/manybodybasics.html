@@ -462,6 +462,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-slater-determinant">2.2. 2. The Slater determinant</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#occupation-numbers">2.2.1. Occupation numbers</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#which-permutations-survive-in-an-expectation-value">2.2.2. Which permutations survive in an expectation value</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#antisymmetry-derived-or-postulated">2.2.3. Antisymmetry: derived or postulated?</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basis-changes">2.3. 3. Basis changes</a></li>
@@ -854,6 +855,91 @@ non-vanishing terms: 9 of 36;  signed sum = 6.468010213126
 </div>
 </div>
 </section>
+<section id="antisymmetry-derived-or-postulated">
+<h3><span class="section-number">2.2.3. </span>Antisymmetry: derived or postulated?<a class="headerlink" href="#antisymmetry-derived-or-postulated" title="Link to this heading">#</a></h3>
+<p>Section 2.2.4 of the book pauses to ask what the exchange argument actually
+established.  Indistinguishability only forces the wave function to change by
+a <em>phase</em> under exchange, and since a transposition squares to the identity,
+<span class="math notranslate nohighlight">\(e^{2i\theta}=1\)</span> leaves the two sectors <span class="math notranslate nohighlight">\(\beta=\pm1\)</span>: symmetric states for
+bosons, antisymmetric states for fermions.  Setting <span class="math notranslate nohighlight">\(x_i=x_j\)</span> in the
+antisymmetric sector gives <span class="math notranslate nohighlight">\(\Psi=-\Psi=0\)</span> – the coordinate-space form of
+“two equal rows kill a determinant”.</p>
+<p>What the argument does <em>not</em> deliver is which sector a given species
+occupies: within nonrelativistic quantum mechanics the antisymmetry of the
+electronic wave function is an <strong>empirical postulate</strong>, on the same footing as
+the Schr”odinger equation itself.  The spin-statistics theorem supplies the
+missing link – integer spin with symmetric, half-integer spin with
+antisymmetric statistics – but only within relativistic quantum field
+theory, conditional on Lorentz invariance, locality, a stable vacuum and a
+positive-definite Hilbert space.  And two assumptions entered the two-line
+argument silently: that exchange acts by a phase at all, i.e. that the
+physical states carry a <em>one-dimensional</em> representation of the symmetric
+group <span class="math notranslate nohighlight">\(S_N\)</span> (its higher-dimensional irreducible representations are the
+parafermions and parabosons nature declines to use), and that a double
+exchange is the identity – true in three spatial dimensions, where the
+exchange path can be deformed away, but not in two, where the braid group
+takes over, any phase <span class="math notranslate nohighlight">\(e^{i\theta}\)</span> is allowed, and <em>anyons</em> appear in the
+fractional quantum Hall effect.</p>
+<p>The cell below makes the representation-theory point concrete for <span class="math notranslate nohighlight">\(N=3\)</span>
+particles in the three lowest oscillator orbitals.  The <span class="math notranslate nohighlight">\(27\)</span>-dimensional
+product space splits into a <span class="math notranslate nohighlight">\(10\)</span>-dimensional symmetric sector, a
+<em>one</em>-dimensional antisymmetric sector – the single Slater determinant –
+and a <span class="math notranslate nohighlight">\(16\)</span>-dimensional remainder of mixed symmetry, invisible to the
+<span class="math notranslate nohighlight">\(\beta=\pm1\)</span> dichotomy: this is where parastatistics would live.
+Antisymmetrising a product state that uses one orbital twice gives exactly
+zero, which is the Pauli principle as a statement about the antisymmetriser
+rather than about determinant rows.  For everything that follows in the book
+the postulate is simply adopted: the physical <span class="math notranslate nohighlight">\(N\)</span>-fermion states are the
+eigenvalue-one eigenspace of <span class="math notranslate nohighlight">\(\hat A\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="mi">3</span>                                        <span class="c1"># single-particle basis a1, a2, a3</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">d</span><span class="p">)]</span>
+<span class="n">index</span> <span class="o">=</span> <span class="p">{</span><span class="n">lab</span><span class="p">:</span> <span class="n">n</span> <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">lab</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">labels</span><span class="p">)}</span>
+
+
+<span class="k">def</span> <span class="nf">exchange_matrix</span><span class="p">(</span><span class="n">sigma</span><span class="p">):</span>
+    <span class="c1"># P_sigma acts on the tensor-product space by permuting the particle slots</span>
+    <span class="n">P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">d</span><span class="o">**</span><span class="mi">3</span><span class="p">,</span> <span class="n">d</span><span class="o">**</span><span class="mi">3</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">lab</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">index</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">P</span><span class="p">[</span><span class="n">index</span><span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">lab</span><span class="p">[</span><span class="n">sigma</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">))],</span> <span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>
+    <span class="k">return</span> <span class="n">P</span>
+
+
+<span class="n">group</span> <span class="o">=</span> <span class="p">[(</span><span class="n">sigma</span><span class="p">,</span> <span class="n">permutation_sign</span><span class="p">(</span><span class="n">sigma</span><span class="p">),</span> <span class="n">exchange_matrix</span><span class="p">(</span><span class="n">sigma</span><span class="p">))</span> <span class="k">for</span> <span class="n">sigma</span> <span class="ow">in</span> <span class="n">terms</span><span class="o">.</span><span class="n">perms</span><span class="p">]</span>
+
+<span class="n">P12</span> <span class="o">=</span> <span class="n">exchange_matrix</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;double exchange is the identity:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">P12</span> <span class="o">@</span> <span class="n">P12</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">d</span><span class="o">**</span><span class="mi">3</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;eigenvalues of a transposition: &quot;</span><span class="p">,</span> <span class="nb">sorted</span><span class="p">({</span><span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvalsh</span><span class="p">(</span><span class="n">P12</span><span class="p">),</span> <span class="mi">10</span><span class="p">)}))</span>
+
+<span class="n">S</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">P</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">P</span> <span class="ow">in</span> <span class="n">group</span><span class="p">)</span> <span class="o">/</span> <span class="mi">6</span>          <span class="c1"># symmetriser</span>
+<span class="n">A</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">sgn</span> <span class="o">*</span> <span class="n">P</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">sgn</span><span class="p">,</span> <span class="n">P</span> <span class="ow">in</span> <span class="n">group</span><span class="p">)</span> <span class="o">/</span> <span class="mi">6</span>  <span class="c1"># antisymmetriser</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;projectors:  S^2=S:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">S</span> <span class="o">@</span> <span class="n">S</span><span class="p">,</span> <span class="n">S</span><span class="p">),</span>
+      <span class="s2">&quot;  A^2=A:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">A</span> <span class="o">@</span> <span class="n">A</span><span class="p">,</span> <span class="n">A</span><span class="p">),</span> <span class="s2">&quot;  SA=0:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">S</span> <span class="o">@</span> <span class="n">A</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+
+<span class="n">dim_S</span><span class="p">,</span> <span class="n">dim_A</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="n">S</span><span class="p">)),</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="n">A</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;of the </span><span class="si">{</span><span class="n">d</span><span class="o">**</span><span class="mi">3</span><span class="si">}</span><span class="s2"> product states: </span><span class="si">{</span><span class="n">dim_S</span><span class="si">}</span><span class="s2"> symmetric, </span><span class="si">{</span><span class="n">dim_A</span><span class="si">}</span><span class="s2"> antisymmetric, &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">d</span><span class="o">**</span><span class="mi">3</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">dim_S</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">dim_A</span><span class="si">}</span><span class="s2"> of mixed symmetry&quot;</span><span class="p">)</span>
+
+<span class="n">double</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">d</span><span class="o">**</span><span class="mi">3</span><span class="p">)[:,</span> <span class="n">index</span><span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]]</span>   <span class="c1"># |a1 a1 a2&gt;: one orbital used twice</span>
+<span class="n">full</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">d</span><span class="o">**</span><span class="mi">3</span><span class="p">)[:,</span> <span class="n">index</span><span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)]]</span>     <span class="c1"># |a1 a2 a3&gt;: all orbitals distinct</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;|A |a1 a1 a2&gt;| =&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">A</span> <span class="o">@</span> <span class="n">double</span><span class="p">),</span> <span class="s2">&quot;  (Pauli exclusion)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;|A |a1 a2 a3&gt;| =&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">A</span> <span class="o">@</span> <span class="n">full</span><span class="p">),</span> <span class="mi">6</span><span class="p">),</span> <span class="s2">&quot; = 1/sqrt(3!)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>double exchange is the identity: True
+eigenvalues of a transposition:  [-1.0, 1.0]
+projectors:  S^2=S: True   A^2=A: True   SA=0: True
+of the 27 product states: 10 symmetric, 1 antisymmetric, 16 of mixed symmetry
+|A |a1 a1 a2&gt;| = 0.0   (Pauli exclusion)
+|A |a1 a2 a3&gt;| = 0.408248  = 1/sqrt(3!)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 </section>
 <section id="basis-changes">
 <h2><span class="section-number">2.3. </span>3. Basis changes<a class="headerlink" href="#basis-changes" title="Link to this heading">#</a></h2>
@@ -1032,7 +1118,9 @@ the book.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  N   E (lowest N orbitals)     E (Hartree-Fock)         gain   iterations
-  2              2.69018342           2.66308878    -2.71e-02            9
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  2              2.69018342           2.66308878    -2.71e-02            9
   3              6.46801021           6.39016133    -7.78e-02            9
   4             11.77084712          11.62305385    -1.48e-01            9
 </pre></div>
@@ -1730,6 +1818,7 @@ permutation algebra of section 2.8.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-slater-determinant">2.2. 2. The Slater determinant</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#occupation-numbers">2.2.1. Occupation numbers</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#which-permutations-survive-in-an-expectation-value">2.2.2. Which permutations survive in an expectation value</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#antisymmetry-derived-or-postulated">2.2.3. Antisymmetry: derived or postulated?</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basis-changes">2.3. 3. Basis changes</a></li>
