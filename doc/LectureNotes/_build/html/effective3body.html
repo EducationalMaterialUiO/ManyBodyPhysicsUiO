@@ -1,0 +1,1567 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Project 2: effective interactions and induced three-body forces from full configuration interaction &#8212; Quantum Mechanics for Many-Particle Systems: from standard methods to quantum computing and machine learning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'effective3body';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Project: the finite amplitude method for the RPA" href="fam.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Quantum Mechanics for Many-Particle Systems: from standard methods to quantum computing and machine learning - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Quantum Mechanics for Many-Particle Systems: from standard methods to quantum computing and machine learning - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Quantum mechanics for many-particle systems
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">About the course</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="teachers.html">Instructor information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="textbooks.html">Textbooks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Foundations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="linearalgebra.html">1. Linear algebra and eigenvalue problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manybodybasics.html">2. From linear algebra to many-body physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wicktheorem.html">3. Wick’s theorem, verified by brute force</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jordanwigner.html">4. From fermions to qubits: the Jordan-Wigner transformation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">5. Physical systems and models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fullci.html">6. Full configuration interaction theory</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Mean-field and beyond</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="hartreefock.html">7. Mean-field approaches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tdarpa.html">8. Mean-field applications: TDA, RPA and QRPA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dft.html">9. Density functional theory</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Post Hartree-Fock methods</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="mbptheory.html">10. Many-body perturbation theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coupledcluster.html">11. Coupled cluster theory</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Applications and stochastic methods</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="quantumdots.html">12. Quantum dots: a realistic Hamiltonian</a></li>
+<li class="toctree-l1"><a class="reference internal" href="statistics.html">13. Elements from statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variationalmc.html">14. Variational Monte Carlo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimisation.html">15. Optimization and resampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diffusionmc.html">16. Diffusion Monte Carlo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manybodymc.html">17. Applications to many-body systems: six electrons</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine learning approaches</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="boltzmannmachines.html">18. Boltzmann machines and generative models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pinns.html">19. Neural quantum states and physics-informed neural networks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum computing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="quantumfourier.html">20. The quantum Fourier transform and phase estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vqe.html">21. The variational quantum eigensolver</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Concluding remarks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="conclusions.html">22. Concluding remarks and perspectives</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="fam.html">Project: the finite amplitude method for the RPA</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Project 2: effective interactions and induced three-body forces from full configuration interaction</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/ManyBodyPhysics/FYS4480/master?urlpath=lab/tree/doc/LectureNotes/effective3body.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ManyBodyPhysics/FYS4480" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ManyBodyPhysics/FYS4480/issues/new?title=Issue%20on%20page%20%2Feffective3body.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/effective3body.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Project 2: effective interactions and induced three-body forces from full configuration interaction</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-model-space-as-a-truncated-fci-basis">1. The model space as a truncated FCI basis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lee-suzuki-okubo-transformation-derivation">2. The Lee-Suzuki-Okubo transformation: derivation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decoupling-by-a-similarity-transformation">Decoupling by a similarity transformation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-form">Matrix form</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-hermitian-okubo-form">The Hermitian (Okubo) form</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-not-fixed-by-the-construction">What is not fixed by the construction</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cluster-decomposition-and-induced-many-body-forces-derivation">3. Cluster decomposition and induced many-body forces: derivation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-k-body-operator-is-fixed-by-its-k-particle-matrix-elements">A <span class="math notranslate nohighlight">\(k\)</span>-body operator is fixed by its <span class="math notranslate nohighlight">\(k\)</span>-particle matrix elements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-a-body-cluster-hierarchy">The <span class="math notranslate nohighlight">\(a\)</span>-body cluster hierarchy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-an-induced-three-body-force-appears-at-all">Why an induced three-body force appears at all</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-model">4. The model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-effective-two-body-interaction-a-2">5. The effective two-body interaction (<span class="math notranslate nohighlight">\(a=2\)</span>)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-induced-three-body-interaction-a-3">6. The induced three-body interaction (<span class="math notranslate nohighlight">\(a=3\)</span>)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#four-particles-does-the-hierarchy-converge">7. Four particles: does the hierarchy converge?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dependence-on-the-coupling-strength">8. Dependence on the coupling strength</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dependence-on-the-size-of-the-model-space">9. Dependence on the size of the model space</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intruder-states-and-the-choice-of-eigenvectors">10. Intruder states and the choice of eigenvectors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-and-tasks">11. Summary and tasks</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="project-2-effective-interactions-and-induced-three-body-forces-from-full-configuration-interaction">
+<h1>Project 2: effective interactions and induced three-body forces from full configuration interaction<a class="headerlink" href="#project-2-effective-interactions-and-induced-three-body-forces-from-full-configuration-interaction" title="Link to this heading">#</a></h1>
+<p>Companion notebook to Appendix A, Project 2, of <em>Quantum mechanics for
+many-particle systems</em>.  The code is the same as in
+<code class="docutils literal notranslate"><span class="pre">BookManybody/BookPrograms/appendixA/effective3b.py</span></code>, which builds on the
+bit-string machinery of the chapter-5 program <code class="docutils literal notranslate"><span class="pre">fci.py</span></code>; the notebook runs it
+section by section and derives the formulas it implements.</p>
+<p>Chapter 5 made two statements that sit uneasily together.  Full
+configuration interaction is <em>exact</em>: in the basis of all Slater
+determinants that a set of <span class="math notranslate nohighlight">\(n\)</span> single-particle states allows, the
+eigenvalue problem gives every eigenpair of <span class="math notranslate nohighlight">\(\hat H\)</span>, and every later
+method is a truncation of it.  And the exponential wall, <span class="math notranslate nohighlight">\(\dim\mathcal H
+=\binom{n}{N}\)</span>, puts that exact solution out of reach as soon as <span class="math notranslate nohighlight">\(n\)</span> and <span class="math notranslate nohighlight">\(N\)</span>
+are both moderately large.  The truncations of chapter 5 (CIS, CID, CISD)
+cut the expansion by excitation level and keep the single-particle basis.
+This project cuts the other way: we keep every excitation level – we still
+diagonalise – but in a <strong>model space</strong> <span class="math notranslate nohighlight">\(P\)</span> spanned by the determinants that
+can be built from the <span class="math notranslate nohighlight">\(n_P&lt;n\)</span> lowest orbitals alone.  That is the shell model
+of nuclear physics and the complete-active-space method of quantum chemistry,
+and it raises the question every such calculation has to answer: which
+interaction should be diagonalised in the small space?</p>
+<p>The classical answer is an <em>effective interaction</em>, constructed in chapter 9
+by perturbation theory.  Here we take the non-perturbative route, open
+whenever the few-body problem can be solved exactly in the large space.
+Given the exact eigenpairs, the Lee-Suzuki-Okubo similarity transformation
+produces an effective Hamiltonian in <span class="math notranslate nohighlight">\(P\)</span> that reproduces a chosen set of
+exact eigenvalues.  Doing this for two particles gives an effective two-body
+interaction <span class="math notranslate nohighlight">\(V^{(2)}_{\rm eff}\)</span>; doing it for three particles gives an
+effective three-body Hamiltonian, and the part of it that is <strong>not</strong> the sum
+of embedded one- and two-body operators is an induced effective three-body
+interaction</p>
+<div class="math notranslate nohighlight">
+\[
+V^{(3)}_{\rm eff}=H^{(3)}_{\rm eff}-\sum_{i=1}^{3}t_i-\sum_{i&lt;j}V^{(2)}_{\rm eff}(ij).
+\]</div>
+<p>This is the <em>a-body cluster</em> construction of the no-core shell model
+(Navrátil, Vary and Barrett, Phys. Rev. Lett. <strong>84</strong>, 5728 (2000); Navrátil
+and Ormand, Phys. Rev. C <strong>68</strong>, 034305 (2003)), and it is the same logic by
+which the similarity renormalisation group generates induced three-body
+forces.  We implement it on a toy model small enough that every step can be
+checked by a full diagonalisation in the large space: spinless fermions in a
+one-dimensional harmonic oscillator with a Gaussian interaction.</p>
+<p>Contents:</p>
+<ol class="arabic simple">
+<li><p>The model space as a truncated FCI basis</p></li>
+<li><p>The Lee-Suzuki-Okubo transformation: derivation</p></li>
+<li><p>Cluster decomposition and induced many-body forces: derivation</p></li>
+<li><p>The model</p></li>
+<li><p>The effective two-body interaction (<span class="math notranslate nohighlight">\(a=2\)</span>)</p></li>
+<li><p>The induced three-body interaction (<span class="math notranslate nohighlight">\(a=3\)</span>)</p></li>
+<li><p>Four particles: does the hierarchy converge?</p></li>
+<li><p>Dependence on the coupling strength</p></li>
+<li><p>Dependence on the size of the model space</p></li>
+<li><p>Intruder states and the choice of eigenvectors</p></li>
+<li><p>Summary and tasks</p></li>
+</ol>
+<section id="the-model-space-as-a-truncated-fci-basis">
+<h2>1. The model space as a truncated FCI basis<a class="headerlink" href="#the-model-space-as-a-truncated-fci-basis" title="Link to this heading">#</a></h2>
+<p>The Hamiltonian is the usual one- plus two-body operator of chapter 3,</p>
+<div class="math notranslate nohighlight">
+\[
+\hat H=\sum_{pq}h_{pq}\,a^\dagger_p a_q+\frac14\sum_{pqrs}\langle pq|\hat v|rs\rangle_{\rm AS}\,a^\dagger_p a^\dagger_q a_s a_r ,
+\]</div>
+<p>in a single-particle basis of <span class="math notranslate nohighlight">\(n\)</span> orbitals.  For <span class="math notranslate nohighlight">\(N\)</span> particles the full
+space is the FCI space of chapter 5: the <span class="math notranslate nohighlight">\(\binom{n}{N}\)</span> determinants
+<span class="math notranslate nohighlight">\(|p_1p_2\ldots p_N\rangle=a^\dagger_{p_1}\cdots a^\dagger_{p_N}|0\rangle\)</span>
+with <span class="math notranslate nohighlight">\(p_1&lt;\cdots&lt;p_N\)</span>, each stored as a bit string exactly as in <code class="docutils literal notranslate"><span class="pre">fci.py</span></code>.
+The <strong>model space</strong> is defined at the single-particle level: the <span class="math notranslate nohighlight">\(n_P&lt;n\)</span>
+lowest orbitals.  For <span class="math notranslate nohighlight">\(N\)</span> particles the model space <span class="math notranslate nohighlight">\(P_N\)</span> is spanned by all
+<span class="math notranslate nohighlight">\(\binom{n_P}{N}\)</span> determinants built from these orbitals alone, and its
+complement <span class="math notranslate nohighlight">\(Q_N=1-P_N\)</span> contains every determinant with at least one particle
+in an excluded orbital.  The projectors <span class="math notranslate nohighlight">\(P\)</span> and <span class="math notranslate nohighlight">\(Q\)</span> are the many-dimensional
+counterparts of the one-dimensional pair of chapter 9.</p>
+<p>Note the difference from the truncations of chapter 5.  There CIS, CID and
+CISD cut by excitation level with respect to a reference determinant and
+kept the full single-particle basis.  Here the truncation is in the
+<em>single-particle</em> basis and complete in excitation level: within <span class="math notranslate nohighlight">\(P_N\)</span> every
+<span class="math notranslate nohighlight">\(np\)</span>-<span class="math notranslate nohighlight">\(nh\)</span> excitation of the lowest determinant is present, so the
+model-space calculation is a full CI, only in a small space.  Defining <span class="math notranslate nohighlight">\(P\)</span>
+through the orbitals, rather than through the total energy of the
+determinants, is what makes the <em>product structure</em> <span class="math notranslate nohighlight">\(P_N\subset
+P_{N-1}\otimes P_1\)</span> hold, and we shall need that structure to embed a
+two-body operator defined on <span class="math notranslate nohighlight">\(P_2\)</span> into <span class="math notranslate nohighlight">\(P_3\)</span> and <span class="math notranslate nohighlight">\(P_4\)</span>.</p>
+<p>The goal is an effective Hamiltonian <span class="math notranslate nohighlight">\(H_{\rm eff}^{(N)}\)</span> acting in <span class="math notranslate nohighlight">\(P_N\)</span>
+whose eigenvalues are exact eigenvalues of <span class="math notranslate nohighlight">\(\hat H\)</span>, written as a sum of
+one-, two- and three-body operators that we obtain from the one-, two- and
+three-particle problems only.  If that works, we can attack an <span class="math notranslate nohighlight">\(N\)</span>-particle
+system, for which the full space is out of reach, with the FCI machinery of
+chapter 5 in the small space <span class="math notranslate nohighlight">\(P_N\)</span>, with</p>
+<div class="math notranslate nohighlight">
+\[
+H^{(N)}_{\rm eff}\approx\sum_i t_i+\sum_{i&lt;j}V^{(2)}_{\rm eff}(ij)+\sum_{i&lt;j&lt;k}V^{(3)}_{\rm eff}(ijk).
+\]</div>
+</section>
+<section id="the-lee-suzuki-okubo-transformation-derivation">
+<h2>2. The Lee-Suzuki-Okubo transformation: derivation<a class="headerlink" href="#the-lee-suzuki-okubo-transformation-derivation" title="Link to this heading">#</a></h2>
+<section id="decoupling-by-a-similarity-transformation">
+<h3>Decoupling by a similarity transformation<a class="headerlink" href="#decoupling-by-a-similarity-transformation" title="Link to this heading">#</a></h3>
+<p>Let <span class="math notranslate nohighlight">\(P\)</span> and <span class="math notranslate nohighlight">\(Q\)</span> be the projectors on the model space and its complement in
+the <span class="math notranslate nohighlight">\(N\)</span>-particle space, with <span class="math notranslate nohighlight">\(d_P=\dim P\)</span>.  We look for a similarity
+transformation <span class="math notranslate nohighlight">\(\tilde H=e^{-\omega}\hat He^{\omega}\)</span> such that <span class="math notranslate nohighlight">\(\tilde H\)</span>
+does not connect <span class="math notranslate nohighlight">\(P\)</span> to <span class="math notranslate nohighlight">\(Q\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[
+Q\tilde HP=0 .
+\]</div>
+<p>The reader will recognise the structure of coupled-cluster theory (chapter
+10): there the similarity transformation <span class="math notranslate nohighlight">\(e^{-\hat T}\hat He^{\hat T}\)</span> is
+required to have no matrix elements from the reference determinant to the
+excited ones, and the amplitude equations are a decoupling condition of
+exactly this type for a one-dimensional model space.</p>
+<p>Following Lee and Suzuki we take <span class="math notranslate nohighlight">\(\omega\)</span> to map <span class="math notranslate nohighlight">\(P\)</span> into <span class="math notranslate nohighlight">\(Q\)</span> and nothing
+else, <span class="math notranslate nohighlight">\(\omega=Q\omega P\)</span>.  Then <span class="math notranslate nohighlight">\(\omega^2=Q\omega P\,Q\omega P=0\)</span>, so the
+exponentials terminate: <span class="math notranslate nohighlight">\(e^{\omega}=1+\omega\)</span> and <span class="math notranslate nohighlight">\(e^{-\omega}=1-\omega\)</span>, and</p>
+<div class="math notranslate nohighlight">
+\[
+\tilde H=(1-\omega)\hat H(1+\omega).
+\]</div>
+<p>Inserting this into the decoupling condition gives a quadratic (Riccati)
+equation for <span class="math notranslate nohighlight">\(\omega\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[
+Q\hat HP+Q\hat HQ\,\omega-\omega\,P\hat HP-\omega\,P\hat HQ\,\omega=0 ,
+\]</div>
+<p>which is what the iterative Lee-Suzuki schemes solve, and which reduces,
+for a one-dimensional <span class="math notranslate nohighlight">\(P\)</span>, to the nonlinear equation for the correlation
+coefficients that chapter 5 solves by iteration.  When the exact
+eigenpairs are available there is a closed-form solution.  Pick <span class="math notranslate nohighlight">\(d_P\)</span>
+eigenstates <span class="math notranslate nohighlight">\(\hat H|k\rangle=E_k|k\rangle\)</span> whose projections <span class="math notranslate nohighlight">\(P|k\rangle\)</span> are
+linearly independent, and <em>define</em> <span class="math notranslate nohighlight">\(\omega\)</span> by</p>
+<div class="math notranslate nohighlight">
+\[
+Q|k\rangle=\omega\,P|k\rangle\qquad\text{for each chosen }k .
+\]</div>
+<p>Since the <span class="math notranslate nohighlight">\(P|k\rangle\)</span> span <span class="math notranslate nohighlight">\(P\)</span> this fixes <span class="math notranslate nohighlight">\(\omega\)</span> completely.  With this
+choice <span class="math notranslate nohighlight">\((1+\omega)P|k\rangle=P|k\rangle+Q|k\rangle=|k\rangle\)</span>, and therefore</p>
+<div class="math notranslate nohighlight">
+\[
+\tilde H\,P|k\rangle=(1-\omega)\hat H|k\rangle=E_k(1-\omega)(1+\omega)P|k\rangle=E_k\,P|k\rangle ,
+\]</div>
+<p>because <span class="math notranslate nohighlight">\((1-\omega)(1+\omega)=1-\omega^2=1\)</span>.  The <span class="math notranslate nohighlight">\(d_P\)</span> vectors
+<span class="math notranslate nohighlight">\(P|k\rangle\)</span> are eigenvectors of <span class="math notranslate nohighlight">\(\tilde H\)</span> lying entirely in <span class="math notranslate nohighlight">\(P\)</span>, so
+<span class="math notranslate nohighlight">\(Q\tilde HP=0\)</span> and the model-space block</p>
+<div class="math notranslate nohighlight">
+\[
+H^{\rm LS}_{\rm eff}=P\tilde HP=P\hat HP+P\hat HQ\,\omega
+\]</div>
+<p>has <em>exactly</em> the chosen eigenvalues <span class="math notranslate nohighlight">\(E_k\)</span>.  This is the Lee-Suzuki
+effective Hamiltonian.  It is not Hermitian: the <span class="math notranslate nohighlight">\(P|k\rangle\)</span> are not
+orthogonal even though the <span class="math notranslate nohighlight">\(|k\rangle\)</span> are.</p>
+</section>
+<section id="matrix-form">
+<h3>Matrix form<a class="headerlink" href="#matrix-form" title="Link to this heading">#</a></h3>
+<p>Collect the chosen eigenvectors as the columns of an <span class="math notranslate nohighlight">\(n\times d_P\)</span> matrix
+<span class="math notranslate nohighlight">\(K\)</span>, and write <span class="math notranslate nohighlight">\(PK\)</span> and <span class="math notranslate nohighlight">\(QK\)</span> for its rows inside <span class="math notranslate nohighlight">\(P\)</span> and <span class="math notranslate nohighlight">\(Q\)</span>.  The defining
+relation reads <span class="math notranslate nohighlight">\(QK=\omega\,PK\)</span>, so</p>
+<div class="math notranslate nohighlight">
+\[
+\omega=(QK)(PK)^{-1},
+\]</div>
+<p>and the requirement that the <span class="math notranslate nohighlight">\(P|k\rangle\)</span> be linearly independent is the
+requirement that the <span class="math notranslate nohighlight">\(d_P\times d_P\)</span> matrix <span class="math notranslate nohighlight">\(PK\)</span> be invertible.  Its condition
+number is the first thing to look at when the construction misbehaves
+(Section 10).</p>
+</section>
+<section id="the-hermitian-okubo-form">
+<h3>The Hermitian (Okubo) form<a class="headerlink" href="#the-hermitian-okubo-form" title="Link to this heading">#</a></h3>
+<p>The map <span class="math notranslate nohighlight">\(X=(P+\omega)\)</span> sends <span class="math notranslate nohighlight">\(P|k\rangle\)</span> to <span class="math notranslate nohighlight">\(|k\rangle\)</span>, i.e. it maps the
+model space one-to-one onto the subspace spanned by the chosen exact
+eigenstates.  It is not unitary; its metric is</p>
+<div class="math notranslate nohighlight">
+\[
+S=X^\dagger X=P+\omega^\dagger\omega .
+\]</div>
+<p>The operator <span class="math notranslate nohighlight">\(U=XS^{-1/2}\)</span> <em>is</em> an isometry from <span class="math notranslate nohighlight">\(P\)</span> onto that subspace
+(<span class="math notranslate nohighlight">\(U^\dagger U=S^{-1/2}X^\dagger XS^{-1/2}=P\)</span>), so the Hamiltonian restricted
+to the chosen eigenstates and expressed in an orthonormal basis of <span class="math notranslate nohighlight">\(P\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[
+H_{\rm eff}=U^\dagger\hat HU=(P+\omega^\dagger\omega)^{-1/2}(P+\omega^\dagger)\hat H(P+\omega)(P+\omega^\dagger\omega)^{-1/2}.
+\]</div>
+<p>This is Okubo’s Hermitian effective Hamiltonian.  It is unitarily equivalent
+to <span class="math notranslate nohighlight">\(\hat H\)</span> on the chosen subspace, so it has exactly the eigenvalues <span class="math notranslate nohighlight">\(E_k\)</span>,
+and it is what we shall use.  A compact formula follows from
+<span class="math notranslate nohighlight">\(X\,PK=K\)</span>, i.e. <span class="math notranslate nohighlight">\(X=K(PK)^{-1}\)</span> on <span class="math notranslate nohighlight">\(P\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+S=(PK)^{-\dagger}(PK)^{-1},\qquad
+H_{\rm eff}=S^{-1/2}(PK)^{-\dagger}\,{\rm diag}(E_k)\,(PK)^{-1}S^{-1/2}.
+\]</div>
+<p>The class <code class="docutils literal notranslate"><span class="pre">LeeSuzuki</span></code> evaluates precisely this, sector by sector for each
+conserved quantum number, and also returns the non-Hermitian form for
+comparison.</p>
+</section>
+<section id="what-is-not-fixed-by-the-construction">
+<h3>What is not fixed by the construction<a class="headerlink" href="#what-is-not-fixed-by-the-construction" title="Link to this heading">#</a></h3>
+<p>Two choices have been made.  First, which <span class="math notranslate nohighlight">\(d_P\)</span> eigenstates to reproduce: the
+lowest ones in each symmetry sector is the natural choice when the model
+space is well separated in energy from its complement, but in general the
+<span class="math notranslate nohighlight">\(d_P\)</span> states with the largest norm inside <span class="math notranslate nohighlight">\(P\)</span> are the safer choice
+(Section 10).  Second, the Hermitisation: any unitary on <span class="math notranslate nohighlight">\(P\)</span> gives another
+equally valid <span class="math notranslate nohighlight">\(H_{\rm eff}\)</span>.  An effective interaction is therefore never
+unique; what is fixed is the spectrum it reproduces.  The Bloch-Horowitz
+energy-dependent effective Hamiltonian
+<span class="math notranslate nohighlight">\(H_{\rm eff}(E)=P\hat HP+P\hat HQ(E-Q\hat HQ)^{-1}Q\hat HP\)</span> reproduces the
+same eigenvalues when <span class="math notranslate nohighlight">\(E\)</span> is set self-consistently to each <span class="math notranslate nohighlight">\(E_k\)</span> – it is
+the Brillouin-Wigner form of chapter 9 for a degenerate model space; the
+Lee-Suzuki construction is the energy-independent (folded-diagram) version.</p>
+</section>
+</section>
+<section id="cluster-decomposition-and-induced-many-body-forces-derivation">
+<h2>3. Cluster decomposition and induced many-body forces: derivation<a class="headerlink" href="#cluster-decomposition-and-induced-many-body-forces-derivation" title="Link to this heading">#</a></h2>
+<section id="a-k-body-operator-is-fixed-by-its-k-particle-matrix-elements">
+<h3>A <span class="math notranslate nohighlight">\(k\)</span>-body operator is fixed by its <span class="math notranslate nohighlight">\(k\)</span>-particle matrix elements<a class="headerlink" href="#a-k-body-operator-is-fixed-by-its-k-particle-matrix-elements" title="Link to this heading">#</a></h3>
+<p>A <span class="math notranslate nohighlight">\(k\)</span>-body operator is, in second quantisation,</p>
+<div class="math notranslate nohighlight">
+\[
+\hat O=\frac{1}{(k!)^2}\sum_{s_1\ldots s_k}\sum_{p_1\ldots p_k}
+\langle s_1\ldots s_k|\hat O|p_1\ldots p_k\rangle_{\rm AS}\;
+a^\dagger_{s_1}\cdots a^\dagger_{s_k}a_{p_k}\cdots a_{p_1}.
+\]</div>
+<p>The antisymmetry of the matrix elements lets us restrict both sums to ordered
+tuples <span class="math notranslate nohighlight">\(S=(s_1&lt;\cdots&lt;s_k)\)</span> and <span class="math notranslate nohighlight">\(P=(p_1&lt;\cdots&lt;p_k)\)</span>, absorbing the
+<span class="math notranslate nohighlight">\((k!)^2\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\hat O=\sum_{S,P}\langle S|\hat O|P\rangle\;a^\dagger_S\,a_P,\qquad
+a^\dagger_S=a^\dagger_{s_1}\cdots a^\dagger_{s_k},\quad a_P=a_{p_k}\cdots a_{p_1},
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(|P\rangle=a^\dagger_P|0\rangle\)</span> is a <span class="math notranslate nohighlight">\(k\)</span>-particle Slater determinant.
+On the <span class="math notranslate nohighlight">\(k\)</span>-particle space <span class="math notranslate nohighlight">\(a^\dagger_Sa_P|P'\rangle=\delta_{PP'}|S\rangle\)</span>,
+so the right-hand side reproduces the matrix of <span class="math notranslate nohighlight">\(\hat O\)</span> between
+<span class="math notranslate nohighlight">\(k\)</span>-particle determinants, and since a normal-ordered <span class="math notranslate nohighlight">\(k\)</span>-body operator is
+uniquely determined by these matrix elements, the identity holds on the
+whole Fock space.  In particular it tells us how to <strong>embed</strong> a <span class="math notranslate nohighlight">\(k\)</span>-body
+operator in the <span class="math notranslate nohighlight">\(N\)</span>-particle space: for <span class="math notranslate nohighlight">\(N\)</span>-particle determinants
+<span class="math notranslate nohighlight">\(|D\rangle\)</span> and <span class="math notranslate nohighlight">\(|D'\rangle\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[
+\langle D'|\hat O|D\rangle=\sum_{P\subset D}\;\sum_{S}\langle S|\hat O|P\rangle\,
+\langle D'|a^\dagger_Sa_P|D\rangle ,
+\]</div>
+<p>where the sum runs over the <span class="math notranslate nohighlight">\(k\)</span>-subsets <span class="math notranslate nohighlight">\(P\)</span> of the occupied orbitals of <span class="math notranslate nohighlight">\(D\)</span>,
+and <span class="math notranslate nohighlight">\(\langle D'|a^\dagger_Sa_P|D\rangle\)</span> is <span class="math notranslate nohighlight">\(\pm1\)</span> if removing <span class="math notranslate nohighlight">\(P\)</span> from <span class="math notranslate nohighlight">\(D\)</span>
+and adding <span class="math notranslate nohighlight">\(S\)</span> gives <span class="math notranslate nohighlight">\(D'\)</span>, and zero otherwise.  The sign is the fermionic phase of the bit-string representation, and the
+whole formula is exactly what <code class="docutils literal notranslate"><span class="pre">KBodyOperator.embed</span></code> computes with the
+<code class="docutils literal notranslate"><span class="pre">annihilate</span></code> and <code class="docutils literal notranslate"><span class="pre">create</span></code> routines of <code class="docutils literal notranslate"><span class="pre">fci.py</span></code>, for any <span class="math notranslate nohighlight">\(k\)</span>.  The
+Condon-Slater rules of chapter 3 are the special cases <span class="math notranslate nohighlight">\(k=1\)</span> and <span class="math notranslate nohighlight">\(k=2\)</span>:
+the one-body Hamiltonian is <span class="math notranslate nohighlight">\(k=1\)</span> with matrix <span class="math notranslate nohighlight">\(h_{pq}\)</span>, the bare
+interaction is <span class="math notranslate nohighlight">\(k=2\)</span> with <span class="math notranslate nohighlight">\(\langle rs|\hat v|pq\rangle_{\rm AS}\)</span>, and the
+band structure of the FCI matrix in chapter 5 is the statement that the
+formula vanishes when <span class="math notranslate nohighlight">\(D\)</span> and <span class="math notranslate nohighlight">\(D'\)</span> differ by more than <span class="math notranslate nohighlight">\(k\)</span> orbitals.  The
+effective three-body interaction we are after will be a <span class="math notranslate nohighlight">\(k=3\)</span> operator
+given by its matrix in the three-particle model space <span class="math notranslate nohighlight">\(P_3\)</span>, and exercise
+2 of chapter 5 has already told us what it does to the band structure.</p>
+</section>
+<section id="the-a-body-cluster-hierarchy">
+<h3>The <span class="math notranslate nohighlight">\(a\)</span>-body cluster hierarchy<a class="headerlink" href="#the-a-body-cluster-hierarchy" title="Link to this heading">#</a></h3>
+<p>Solve the <span class="math notranslate nohighlight">\(a\)</span>-particle problem exactly and construct
+<span class="math notranslate nohighlight">\(H^{(a)}_{\rm eff}\)</span> in <span class="math notranslate nohighlight">\(P_a\)</span> for <span class="math notranslate nohighlight">\(a=1,2,3,\ldots\)</span>  Each <span class="math notranslate nohighlight">\(H^{(a)}_{\rm eff}\)</span> is a
+matrix on the <span class="math notranslate nohighlight">\(a\)</span>-particle model space, hence, by the identity above, an
+<span class="math notranslate nohighlight">\(a\)</span>-body operator.  Define recursively</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+V^{(1)}_{\rm eff}&amp;=H^{(1)}_{\rm eff},\\
+V^{(2)}_{\rm eff}&amp;=H^{(2)}_{\rm eff}-\sum_{i=1}^{2}V^{(1)}_{\rm eff}(i),\\
+V^{(3)}_{\rm eff}&amp;=H^{(3)}_{\rm eff}-\sum_{i=1}^{3}V^{(1)}_{\rm eff}(i)-\sum_{i&lt;j}V^{(2)}_{\rm eff}(ij),
+\end{aligned}
+\end{split}\]</div>
+<p>and so on, where every operator on the right is embedded into the
+<span class="math notranslate nohighlight">\(a\)</span>-particle model space with the recipe above.  By construction the
+<span class="math notranslate nohighlight">\(a\)</span>-particle effective Hamiltonian truncated at cluster level <span class="math notranslate nohighlight">\(a\)</span> is exact,
+and for <span class="math notranslate nohighlight">\(N&gt;a\)</span> particles</p>
+<div class="math notranslate nohighlight">
+\[
+H^{(N)}_{\rm eff}=\sum_{i}V^{(1)}_{\rm eff}(i)+\sum_{i&lt;j}V^{(2)}_{\rm eff}(ij)+\sum_{i&lt;j&lt;k}V^{(3)}_{\rm eff}(ijk)+\cdots
+\]</div>
+<p>is the <em>a-body cluster approximation</em> when the series is stopped after
+<span class="math notranslate nohighlight">\(a\)</span>-body terms.  Here <span class="math notranslate nohighlight">\(V^{(1)}_{\rm eff}\)</span> is trivial: the one-body
+Hamiltonian is diagonal in the oscillator basis, so the one-particle model
+space is already exact and <span class="math notranslate nohighlight">\(V^{(1)}_{\rm eff}=t\)</span>.  In the presence of a
+one-body field with off-diagonal elements between <span class="math notranslate nohighlight">\(P\)</span> and <span class="math notranslate nohighlight">\(Q\)</span> this step would
+be non-trivial too.</p>
+<p>Why the hierarchy rather than the <span class="math notranslate nohighlight">\(N\)</span>-body problem itself?  Because the
+decomposition of an <span class="math notranslate nohighlight">\(N\)</span>-body operator into one-, two- and three-body pieces
+is <em>not</em> unique when we only know its matrix elements in the <span class="math notranslate nohighlight">\(N\)</span>-particle
+sector: an <span class="math notranslate nohighlight">\(N\)</span>-body effective Hamiltonian has <span class="math notranslate nohighlight">\(d_{P_N}^2\)</span> matrix elements,
+far more than a <span class="math notranslate nohighlight">\(1+2+3\)</span>-body operator has, so the inverse problem is
+overdetermined and any solution is a fit.  The <span class="math notranslate nohighlight">\(a\)</span>-particle sectors, in
+contrast, determine the <span class="math notranslate nohighlight">\(a\)</span>-body operators uniquely, and a particle-number
+conserving unitary transformation of <span class="math notranslate nohighlight">\(\hat H\)</span> on Fock space has a well-defined
+cluster decomposition obtained sector by sector in exactly this way.</p>
+</section>
+<section id="why-an-induced-three-body-force-appears-at-all">
+<h3>Why an induced three-body force appears at all<a class="headerlink" href="#why-an-induced-three-body-force-appears-at-all" title="Link to this heading">#</a></h3>
+<p>The bare Hamiltonian has no three-body term.  The induced term arises because
+the decoupling transformation acts on the three-particle system as a whole.
+Perturbatively, in second order the model-space Hamiltonian is
+<span class="math notranslate nohighlight">\(P\hat HP+P\hat V Q(E_0-\hat H_0)^{-1}Q\hat VP\)</span>.  Among the terms in the
+three-particle space are <em>connected</em> ones in which particle 1 is excited
+into <span class="math notranslate nohighlight">\(Q\)</span> by interacting with particle 2 and brought back by interacting with
+particle 3.  No two-body operator embedded with a spectator can produce such
+a term; it is a genuine three-body operator of order <span class="math notranslate nohighlight">\(v^2\)</span>.  We shall see the
+quadratic scaling in Section 8.  The Lee-Suzuki <span class="math notranslate nohighlight">\(\omega\)</span> resums these
+diagrams to all orders, together with the folded diagrams that remove the
+energy dependence.</p>
+<p>The same mechanism produces the induced three-body forces of the similarity
+renormalisation group, where the unitary transformation is generated by a
+flow equation instead of being read off from eigenvectors, and it is the
+reason why the no-core shell model needs at least the three-body cluster
+approximation when the bare interaction is softened.  Conversely, once
+<span class="math notranslate nohighlight">\(V^{(3)}_{\rm eff}\)</span> is known, normal ordering with respect to a reference
+determinant turns most of it into zero-, one- and two-body pieces
+(chapter 3), which is how three-body forces enter mean-field, coupled-cluster
+and in-medium SRG calculations at two-body cost – the procedure anticipated
+in the answer to exercise 2 of chapter 5.</p>
+</section>
+</section>
+<section id="the-model">
+<h2>4. The model<a class="headerlink" href="#the-model" title="Link to this heading">#</a></h2>
+<p>We take spinless fermions in a one-dimensional harmonic oscillator
+(<span class="math notranslate nohighlight">\(\hbar=m=\omega=1\)</span>) with the Gaussian interaction</p>
+<div class="math notranslate nohighlight">
+\[
+v(x-y)=V_0\,e^{-(x-y)^2/2\sigma^2}.
+\]</div>
+<p>The single-particle basis consists of the <span class="math notranslate nohighlight">\(n=14\)</span> lowest oscillator functions
+<span class="math notranslate nohighlight">\(\varphi_0,\ldots,\varphi_{13}\)</span> and the model space of the <span class="math notranslate nohighlight">\(n_P=6\)</span> lowest.
+The two-body matrix elements
+<span class="math notranslate nohighlight">\(\langle pq|v|rs\rangle=\int dx\,dy\,\varphi_p(x)\varphi_q(y)v(x-y)\varphi_r(x)\varphi_s(y)\)</span>
+are computed on a grid; parity is the only conserved quantum number of a
+determinant and the Lee-Suzuki construction is carried out separately in the
+even and odd sectors.</p>
+<p>One modification of the pure oscillator is essential.  The single-particle
+energies are <span class="math notranslate nohighlight">\(\epsilon_n=n+\tfrac12\)</span>, so the three-particle determinant
+<span class="math notranslate nohighlight">\(|345\rangle\)</span> of the model space, with <span class="math notranslate nohighlight">\(13.5\)</span> units of energy, is degenerate
+with the excluded determinants <span class="math notranslate nohighlight">\(|0\,1\,12\rangle\)</span>, <span class="math notranslate nohighlight">\(|0\,2\,11\rangle\)</span>,
+<span class="math notranslate nohighlight">\(|1\,2\,10\rangle\)</span>, and so on: for an orbital truncation of the oscillator
+the top of <span class="math notranslate nohighlight">\(P\)</span> overlaps in energy with the bottom of <span class="math notranslate nohighlight">\(Q\)</span> as soon as
+<span class="math notranslate nohighlight">\(N\ge2\)</span>.  These <em>intruder states</em> make the effective interaction
+ill-defined in the limit of weak coupling (the exact eigenstates are then
+arbitrary mixtures of degenerate <span class="math notranslate nohighlight">\(P\)</span> and <span class="math notranslate nohighlight">\(Q\)</span> determinants) and are the
+classic obstacle to effective-interaction theory, analysed by Schucan and
+Weidenmüller in 1972.  The no-core shell model avoids them by truncating on
+the total number of oscillator quanta rather than orbital by orbital.  We
+keep the orbital truncation, because it gives the product structure of
+Section 1, and instead open a <strong>shell gap</strong>: the excluded orbitals are shifted
+up by <span class="math notranslate nohighlight">\(\Delta\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[
+\epsilon_n=n+\tfrac12+\Delta\,\theta(n-n_P).
+\]</div>
+<p>With <span class="math notranslate nohighlight">\(\Delta=3\)</span> the model space is well separated for <span class="math notranslate nohighlight">\(N\le4\)</span>.  Section 10
+turns <span class="math notranslate nohighlight">\(\Delta\)</span> back down and shows the intruders arrive.</p>
+<p>The bootstrap cell below puts every <code class="docutils literal notranslate"><span class="pre">BookPrograms/chapter*</span></code> and
+<code class="docutils literal notranslate"><span class="pre">BookPrograms/appendix*</span></code> directory on the path, because <code class="docutils literal notranslate"><span class="pre">effective3b.py</span></code>
+imports the bit-string routines of the chapter-5 program <code class="docutils literal notranslate"><span class="pre">fci.py</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">glob</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="kn">import</span> <span class="n">eigh</span>
+
+<span class="c1"># the chapter programs live in BookPrograms/chapterNN and the appendix</span>
+<span class="c1"># programs in BookPrograms/appendixX; put them all on the path</span>
+<span class="k">for</span> <span class="n">_pattern</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;chapter*&quot;</span><span class="p">,</span> <span class="s2">&quot;appendix*&quot;</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">_d</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;..&quot;</span><span class="p">,</span> <span class="s2">&quot;BookManybody&quot;</span><span class="p">,</span>
+                                            <span class="s2">&quot;BookPrograms&quot;</span><span class="p">,</span> <span class="n">_pattern</span><span class="p">))):</span>
+        <span class="k">if</span> <span class="n">_d</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">_d</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">effective3b</span> <span class="k">as</span> <span class="nn">e3</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span><span class="p">,</span> <span class="n">n_P</span> <span class="o">=</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">6</span>              <span class="c1"># single-particle orbitals: full space and model space</span>
+<span class="n">V0</span><span class="p">,</span> <span class="n">sigma</span> <span class="o">=</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">1.0</span>       <span class="c1"># Gaussian interaction</span>
+<span class="n">gap</span> <span class="o">=</span> <span class="mf">3.0</span>                   <span class="c1"># shell gap between model space and excluded space</span>
+
+<span class="n">ho</span> <span class="o">=</span> <span class="n">e3</span><span class="o">.</span><span class="n">HarmonicOscillator1D</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">h</span> <span class="o">=</span> <span class="n">ho</span><span class="o">.</span><span class="n">one_body</span><span class="p">(</span><span class="n">gap</span><span class="o">=</span><span class="n">gap</span><span class="p">,</span> <span class="n">n_P</span><span class="o">=</span><span class="n">n_P</span><span class="p">)</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">ho</span><span class="o">.</span><span class="n">two_body</span><span class="p">(</span><span class="n">e3</span><span class="o">.</span><span class="n">gaussian</span><span class="p">(</span><span class="n">V0</span><span class="p">,</span> <span class="n">sigma</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;single-particle energies:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">h</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a few antisymmetrised matrix elements &lt;pq|v|rs&gt;_AS:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span> <span class="ow">in</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  &lt;</span><span class="si">{</span><span class="n">p</span><span class="si">}{</span><span class="n">q</span><span class="si">}</span><span class="s2">|v|</span><span class="si">{</span><span class="n">r</span><span class="si">}{</span><span class="n">s</span><span class="si">}</span><span class="s2">&gt; = </span><span class="si">{</span><span class="n">v</span><span class="p">[</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">q</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">]</span><span class="si">:</span><span class="s2"> .6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>single-particle energies: [ 0.5  1.5  2.5  3.5  4.5  5.5  9.5 10.5 11.5 12.5 13.5 14.5 15.5 16.5]
+a few antisymmetrised matrix elements &lt;pq|v|rs&gt;_AS:
+  &lt;01|v|01&gt; = -0.707107
+  &lt;01|v|23&gt; = -0.191366
+  &lt;02|v|13&gt; = -0.306186
+  &lt;23|v|45&gt; = -0.213745
+</pre></div>
+</div>
+</div>
+</div>
+<p>The bare Hamiltonian is assembled from the one- and two-body operators by the
+embedding routine of Section 3.  As a check on the machinery we compare the
+diagonal matrix element of a determinant with the Condon-Slater rule of chapter 3
+<span class="math notranslate nohighlight">\(\langle D|\hat H|D\rangle=\sum_{p\in D}h_{pp}+\sum_{p&lt;q\in D}\langle pq|v|pq\rangle_{\rm AS}\)</span>
+and confirm that the matrix is symmetric.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">h1</span> <span class="o">=</span> <span class="n">e3</span><span class="o">.</span><span class="n">KBodyOperator</span><span class="o">.</span><span class="n">from_one_body</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+<span class="n">v2</span> <span class="o">=</span> <span class="n">e3</span><span class="o">.</span><span class="n">KBodyOperator</span><span class="o">.</span><span class="n">from_two_body</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="n">B3</span> <span class="o">=</span> <span class="n">e3</span><span class="o">.</span><span class="n">DeterminantBasis</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">H3</span> <span class="o">=</span> <span class="n">h1</span><span class="o">.</span><span class="n">embed</span><span class="p">(</span><span class="n">B3</span><span class="p">)</span> <span class="o">+</span> <span class="n">v2</span><span class="o">.</span><span class="n">embed</span><span class="p">(</span><span class="n">B3</span><span class="p">)</span>
+
+<span class="n">D</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<span class="n">i</span> <span class="o">=</span> <span class="n">B3</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">D</span><span class="p">]</span>
+<span class="n">slater_condon</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">h</span><span class="p">[</span><span class="n">p</span><span class="p">,</span> <span class="n">p</span><span class="p">]</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">D</span><span class="p">)</span> <span class="o">+</span> <span class="nb">sum</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">]</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">D</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">D</span> <span class="k">if</span> <span class="n">p</span> <span class="o">&lt;</span> <span class="n">q</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">B3</span><span class="p">)</span><span class="si">}</span><span class="s2"> three-particle determinants&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&lt;</span><span class="si">{</span><span class="n">D</span><span class="si">}</span><span class="s2">|H|</span><span class="si">{</span><span class="n">D</span><span class="si">}</span><span class="s2">&gt;: embedding </span><span class="si">{</span><span class="n">H3</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">]</span><span class="si">:</span><span class="s2">.10f</span><span class="si">}</span><span class="s2">, Slater-Condon </span><span class="si">{</span><span class="n">slater_condon</span><span class="si">:</span><span class="s2">.10f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;symmetric:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">H3</span><span class="p">,</span> <span class="n">H3</span><span class="o">.</span><span class="n">T</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>364 three-particle determinants
+&lt;(0, 3, 7)|H|(0, 3, 7)&gt;: embedding 12.9655337238, Slater-Condon 12.9655337238
+symmetric: True
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="the-effective-two-body-interaction-a-2">
+<h2>5. The effective two-body interaction (<span class="math notranslate nohighlight">\(a=2\)</span>)<a class="headerlink" href="#the-effective-two-body-interaction-a-2" title="Link to this heading">#</a></h2>
+<p>The class <code class="docutils literal notranslate"><span class="pre">ClusterHierarchy</span></code> runs the whole construction: it builds the
+exact two- and three-particle Hamiltonians, applies the Lee-Suzuki-Okubo
+transformation in each parity sector, and subtracts the embedded lower
+clusters.  We first look at the two-particle step.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ch</span> <span class="o">=</span> <span class="n">e3</span><span class="o">.</span><span class="n">ClusterHierarchy</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">n_P</span><span class="p">,</span> <span class="n">orbital_parity</span><span class="o">=</span><span class="n">ho</span><span class="o">.</span><span class="n">parity</span><span class="p">(),</span> <span class="n">select</span><span class="o">=</span><span class="s2">&quot;overlap&quot;</span><span class="p">)</span>
+
+<span class="n">ls2</span> <span class="o">=</span> <span class="n">ch</span><span class="o">.</span><span class="n">ls</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">B2</span><span class="p">,</span> <span class="n">B2P</span> <span class="o">=</span> <span class="n">ch</span><span class="o">.</span><span class="n">basis</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">ch</span><span class="o">.</span><span class="n">basis</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;two-particle space: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">B2</span><span class="p">)</span><span class="si">}</span><span class="s2"> determinants, model space: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">B2P</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;condition number of PK in each parity sector:&quot;</span><span class="p">,</span> <span class="n">ls2</span><span class="o">.</span><span class="n">condition_numbers</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;norm of omega in each sector:                &quot;</span><span class="p">,</span> <span class="n">ls2</span><span class="o">.</span><span class="n">omega_norm</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;max |eig(H_eff) - E_k| = </span><span class="si">{</span><span class="n">ls2</span><span class="o">.</span><span class="n">check</span><span class="p">()</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;H_eff Hermitian:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">ls2</span><span class="o">.</span><span class="n">H_eff</span><span class="p">,</span> <span class="n">ls2</span><span class="o">.</span><span class="n">H_eff</span><span class="o">.</span><span class="n">T</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;non-Hermitian Lee-Suzuki form has the same spectrum:&quot;</span><span class="p">,</span>
+      <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvals</span><span class="p">(</span><span class="n">ls2</span><span class="o">.</span><span class="n">H_eff_nonhermitian</span><span class="p">)</span><span class="o">.</span><span class="n">real</span><span class="p">),</span>
+                  <span class="n">ls2</span><span class="o">.</span><span class="n">chosen_energies</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>two-particle space: 91 determinants, model space: 15
+condition number of PK in each parity sector: {-1: 1.0066742242017943, 1: 1.0064412828084044}
+norm of omega in each sector:                 {-1: 0.18102973095030403, 1: 0.17551150391063217}
+max |eig(H_eff) - E_k| = 7.11e-15
+H_eff Hermitian: True
+non-Hermitian Lee-Suzuki form has the same spectrum: True
+</pre></div>
+</div>
+</div>
+</div>
+<p>The effective two-body interaction <span class="math notranslate nohighlight">\(V^{(2)}_{\rm eff}=H^{(2)}_{\rm eff}-t_1-t_2\)</span>
+differs from the bare interaction restricted to <span class="math notranslate nohighlight">\(P\)</span> by the renormalisation
+that virtual excitations into <span class="math notranslate nohighlight">\(Q\)</span> produce.  The two lowest exact
+two-particle energies are reproduced by <span class="math notranslate nohighlight">\(t+V^{(2)}_{\rm eff}\)</span> in <span class="math notranslate nohighlight">\(P_2\)</span> exactly,
+while <span class="math notranslate nohighlight">\(P\hat HP\)</span> with the bare interaction misses them.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T2</span> <span class="o">=</span> <span class="n">ch</span><span class="o">.</span><span class="n">h_P</span><span class="o">.</span><span class="n">embed</span><span class="p">(</span><span class="n">B2P</span><span class="p">)</span>
+<span class="n">E_exact</span> <span class="o">=</span> <span class="n">eigh</span><span class="p">(</span><span class="n">ch</span><span class="o">.</span><span class="n">bare_hamiltonian</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">eigvals_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)[:</span><span class="nb">len</span><span class="p">(</span><span class="n">B2P</span><span class="p">)]</span>
+<span class="n">E_bare</span>  <span class="o">=</span> <span class="n">eigh</span><span class="p">(</span><span class="n">T2</span> <span class="o">+</span> <span class="n">ch</span><span class="o">.</span><span class="n">V2_bare</span><span class="o">.</span><span class="n">embed</span><span class="p">(</span><span class="n">B2P</span><span class="p">),</span> <span class="n">eigvals_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">E_eff</span>   <span class="o">=</span> <span class="n">eigh</span><span class="p">(</span><span class="n">T2</span> <span class="o">+</span> <span class="n">ch</span><span class="o">.</span><span class="n">V2_eff</span><span class="o">.</span><span class="n">embed</span><span class="p">(</span><span class="n">B2P</span><span class="p">),</span> <span class="n">eigvals_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;lowest two-particle energies&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  exact      :&quot;</span><span class="p">,</span> <span class="n">E_exact</span><span class="p">[:</span><span class="mi">5</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  bare in P  :&quot;</span><span class="p">,</span> <span class="n">E_bare</span><span class="p">[:</span><span class="mi">5</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  V2_eff in P:&quot;</span><span class="p">,</span> <span class="n">E_eff</span><span class="p">[:</span><span class="mi">5</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">||V2_bare|| = </span><span class="si">{</span><span class="n">ch</span><span class="o">.</span><span class="n">V2_bare</span><span class="o">.</span><span class="n">norm</span><span class="p">()</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, ||V2_eff|| = </span><span class="si">{</span><span class="n">ch</span><span class="o">.</span><span class="n">V2_eff</span><span class="o">.</span><span class="n">norm</span><span class="p">()</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;||V2_eff - V2_bare|| = </span><span class="si">{</span><span class="p">(</span><span class="n">ch</span><span class="o">.</span><span class="n">V2_eff</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">ch</span><span class="o">.</span><span class="n">V2_bare</span><span class="p">)</span><span class="o">.</span><span class="n">norm</span><span class="p">()</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mf">3.8</span><span class="p">))</span>
+<span class="n">vmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">ch</span><span class="o">.</span><span class="n">V2_eff</span><span class="o">.</span><span class="n">matrix</span><span class="p">))</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">d</span><span class="p">))</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">B2P</span><span class="o">.</span><span class="n">dets</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">title</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="p">[(</span><span class="n">ch</span><span class="o">.</span><span class="n">V2_bare</span><span class="o">.</span><span class="n">matrix</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;$\langle rs|v|pq\rangle_{\rm AS}$ in $P_2$&quot;</span><span class="p">),</span>
+                              <span class="p">((</span><span class="n">ch</span><span class="o">.</span><span class="n">V2_eff</span> <span class="o">-</span> <span class="n">ch</span><span class="o">.</span><span class="n">V2_bare</span><span class="p">)</span><span class="o">.</span><span class="n">matrix</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;$V^{(2)}_{\rm eff}-v$&quot;</span><span class="p">)]):</span>
+    <span class="n">im</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;RdBu_r&quot;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="n">vmax</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">)</span>
+    <span class="n">a</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="n">a</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">)));</span> <span class="n">a</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+    <span class="n">a</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">)));</span> <span class="n">a</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">shrink</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lowest two-particle energies
+  exact      : [1.184833 2.187946 3.19293  3.574968 4.222133]
+  bare in P  : [1.18655  2.194871 3.20631  3.580234 4.253854]
+  V2_eff in P: [1.184833 2.187946 3.19293  3.574968 4.222133]
+
+||V2_bare|| = 2.7350, ||V2_eff|| = 2.8199, ||V2_eff - V2_bare|| = 0.1198
+</pre></div>
+</div>
+<img alt="_images/626daf1027235f12f75cab27c2a4ea4186e3e58d45bb38f3916427816700b40d.png" src="_images/626daf1027235f12f75cab27c2a4ea4186e3e58d45bb38f3916427816700b40d.png" />
+</div>
+</div>
+</section>
+<section id="the-induced-three-body-interaction-a-3">
+<h2>6. The induced three-body interaction (<span class="math notranslate nohighlight">\(a=3\)</span>)<a class="headerlink" href="#the-induced-three-body-interaction-a-3" title="Link to this heading">#</a></h2>
+<p>Now the three-particle problem.  <span class="math notranslate nohighlight">\(H^{(3)}_{\rm eff}\)</span> is a <span class="math notranslate nohighlight">\(20\times20\)</span> matrix
+in <span class="math notranslate nohighlight">\(P_3\)</span> that reproduces twenty exact three-particle energies.  Subtracting
+the embedded one-body part and the embedded <span class="math notranslate nohighlight">\(V^{(2)}_{\rm eff}\)</span> leaves the
+induced three-body interaction <span class="math notranslate nohighlight">\(V^{(3)}_{\rm eff}\)</span>, again a <span class="math notranslate nohighlight">\(20\times20\)</span>
+matrix, which by Section 3 defines a three-body operator on Fock space.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ls3</span> <span class="o">=</span> <span class="n">ch</span><span class="o">.</span><span class="n">ls</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">B3P</span> <span class="o">=</span> <span class="n">ch</span><span class="o">.</span><span class="n">basis</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;three-particle space: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ch</span><span class="o">.</span><span class="n">basis</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span><span class="si">}</span><span class="s2"> determinants, model space: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">B3P</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;condition number of PK in each parity sector:&quot;</span><span class="p">,</span> <span class="n">ls3</span><span class="o">.</span><span class="n">condition_numbers</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;max |eig(H_eff) - E_k| = </span><span class="si">{</span><span class="n">ls3</span><span class="o">.</span><span class="n">check</span><span class="p">()</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">spectra3</span> <span class="o">=</span> <span class="n">ch</span><span class="o">.</span><span class="n">model_space_spectra</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">n_states</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">lowest three-particle energies&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">E</span> <span class="ow">in</span> <span class="n">spectra3</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">label</span><span class="si">:</span><span class="s2">22s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">E</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>three-particle space: 364 determinants, model space: 20
+condition number of PK in each parity sector: {-1: 1.017576367846106, 1: 1.0219656153225432}
+max |eig(H_eff) - E_k| = 2.13e-14
+
+lowest three-particle energies
+  exact                  [2.310362 3.324123 4.392015 4.728877 5.394779 5.785757]
+  bare (PHP)             [2.325412 3.357059 4.462551 4.78783  5.469447 5.865945]
+  h + V2_eff             [2.307649 3.318338 4.407699 4.745798 5.395576 5.816277]
+  h + V2_eff + V3_eff    [2.310362 3.324123 4.392015 4.728877 5.394779 5.785757]
+</pre></div>
+</div>
+</div>
+</div>
+<p>With <span class="math notranslate nohighlight">\(t+V^{(2)}_{\rm eff}\)</span> alone the three-particle energies are already much
+better than with the bare interaction, but they are not exact: the residual
+is what <span class="math notranslate nohighlight">\(V^{(3)}_{\rm eff}\)</span> repairs, by construction exactly.  Its size can be
+gauged in three ways: the Frobenius norm of its matrix, its largest matrix
+element, and its expectation value in the exact ground state.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">V3</span> <span class="o">=</span> <span class="n">ch</span><span class="o">.</span><span class="n">V3_eff</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;||V2_eff|| = </span><span class="si">{</span><span class="n">ch</span><span class="o">.</span><span class="n">V2_eff</span><span class="o">.</span><span class="n">norm</span><span class="p">()</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">,  ||V3_eff|| = </span><span class="si">{</span><span class="n">V3</span><span class="o">.</span><span class="n">norm</span><span class="p">()</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">,  &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;ratio </span><span class="si">{</span><span class="n">V3</span><span class="o">.</span><span class="n">norm</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">ch</span><span class="o">.</span><span class="n">V2_eff</span><span class="o">.</span><span class="n">norm</span><span class="p">()</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;largest |&lt;S|V3_eff|P&gt;| = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">V3</span><span class="o">.</span><span class="n">matrix</span><span class="p">))</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;largest |&lt;rs|V2_eff|pq&gt;| = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">ch</span><span class="o">.</span><span class="n">V2_eff</span><span class="o">.</span><span class="n">matrix</span><span class="p">))</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hermitian:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">V3</span><span class="o">.</span><span class="n">matrix</span><span class="p">,</span> <span class="n">V3</span><span class="o">.</span><span class="n">matrix</span><span class="o">.</span><span class="n">T</span><span class="p">))</span>
+
+<span class="c1"># ground-state expectation value of V3_eff in the model space</span>
+<span class="n">T3</span> <span class="o">=</span> <span class="n">ch</span><span class="o">.</span><span class="n">h_P</span><span class="o">.</span><span class="n">embed</span><span class="p">(</span><span class="n">B3P</span><span class="p">)</span>
+<span class="n">E</span><span class="p">,</span> <span class="n">C</span> <span class="o">=</span> <span class="n">eigh</span><span class="p">(</span><span class="n">T3</span> <span class="o">+</span> <span class="n">ch</span><span class="o">.</span><span class="n">V2_eff</span><span class="o">.</span><span class="n">embed</span><span class="p">(</span><span class="n">B3P</span><span class="p">)</span> <span class="o">+</span> <span class="n">V3</span><span class="o">.</span><span class="n">embed</span><span class="p">(</span><span class="n">B3P</span><span class="p">))</span>
+<span class="n">gs</span> <span class="o">=</span> <span class="n">C</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&lt;gs|V3_eff|gs&gt; = </span><span class="si">{</span><span class="n">gs</span><span class="w"> </span><span class="o">@</span><span class="w"> </span><span class="n">V3</span><span class="o">.</span><span class="n">matrix</span><span class="w"> </span><span class="o">@</span><span class="w"> </span><span class="n">gs</span><span class="si">:</span><span class="s2"> .5f</span><span class="si">}</span><span class="s2">  (E_gs = </span><span class="si">{</span><span class="n">E</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+
+<span class="n">labels3</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">d</span><span class="p">))</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">B3P</span><span class="o">.</span><span class="n">dets</span><span class="p">]</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">5.2</span><span class="p">,</span> <span class="mf">4.6</span><span class="p">))</span>
+<span class="n">vmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">V3</span><span class="o">.</span><span class="n">matrix</span><span class="p">))</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">V3</span><span class="o">.</span><span class="n">matrix</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;RdBu_r&quot;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="n">vmax</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">labels3</span><span class="p">)));</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">labels3</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">labels3</span><span class="p">)));</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="n">labels3</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;induced three-body interaction $\langle S|V^{(3)}_{\rm eff}|P\rangle$&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">shrink</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>||V2_eff|| = 2.8199,  ||V3_eff|| = 0.1843,  ratio 0.065
+largest |&lt;S|V3_eff|P&gt;| = 0.0367, largest |&lt;rs|V2_eff|pq&gt;| = 0.7102
+Hermitian: True
+&lt;gs|V3_eff|gs&gt; =  0.00263  (E_gs = 2.31036)
+</pre></div>
+</div>
+<img alt="_images/e00e37439820f268090ffbd8f8cceb41b0da1e6842dfe36d71282a826bb47ce1.png" src="_images/e00e37439820f268090ffbd8f8cceb41b0da1e6842dfe36d71282a826bb47ce1.png" />
+</div>
+</div>
+<p>The block structure is parity: even and odd three-particle determinants do
+not mix.  The largest elements involve the highest model-space orbitals,
+which are closest to the excluded space and feel the decoupling most.</p>
+</section>
+<section id="four-particles-does-the-hierarchy-converge">
+<h2>7. Four particles: does the hierarchy converge?<a class="headerlink" href="#four-particles-does-the-hierarchy-converge" title="Link to this heading">#</a></h2>
+<p>The real test is a system we did not use to build the interactions.  For
+four particles the full space has <span class="math notranslate nohighlight">\(\binom{14}{4}=1001\)</span> determinants and the
+model space <span class="math notranslate nohighlight">\(\binom{6}{4}=15\)</span>.  We compare the exact spectrum with the
+model-space spectra obtained with the bare interaction, with
+<span class="math notranslate nohighlight">\(t+V^{(2)}_{\rm eff}\)</span>, and with <span class="math notranslate nohighlight">\(t+V^{(2)}_{\rm eff}+V^{(3)}_{\rm eff}\)</span>.  The
+remaining discrepancy is the induced four-body interaction, which we can
+also extract by carrying the hierarchy one step further.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spectra4</span> <span class="o">=</span> <span class="n">ch</span><span class="o">.</span><span class="n">model_space_spectra</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">n_states</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;lowest four-particle energies&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">E</span> <span class="ow">in</span> <span class="n">spectra4</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">label</span><span class="si">:</span><span class="s2">22s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">E</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">errors in the ground-state energy:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">E</span> <span class="ow">in</span> <span class="n">spectra4</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">label</span> <span class="o">!=</span> <span class="s2">&quot;exact&quot;</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">label</span><span class="si">:</span><span class="s2">22s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">E</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">spectra4</span><span class="p">[</span><span class="s1">&#39;exact&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2"> .2e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lowest four-particle energies
+  exact                  [4.016621 5.138837 6.133578 6.533993 7.292868 7.719233]
+  bare (PHP)             [4.072766 5.266284 6.260734 6.704104 7.466165 7.82506 ]
+  h + V2_eff             [3.998842 5.167793 6.127434 6.608091 7.326293 7.712288]
+  h + V2_eff + V3_eff    [4.016232 5.137136 6.13501  6.534664 7.288118 7.723718]
+
+errors in the ground-state energy:
+  bare (PHP)              5.61e-02
+  h + V2_eff             -1.78e-02
+  h + V2_eff + V3_eff    -3.89e-04
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">V4</span> <span class="o">=</span> <span class="n">ch</span><span class="o">.</span><span class="n">add_four_body</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;||V2_eff|| = </span><span class="si">{</span><span class="n">ch</span><span class="o">.</span><span class="n">V2_eff</span><span class="o">.</span><span class="n">norm</span><span class="p">()</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">  ||V3_eff|| = </span><span class="si">{</span><span class="n">ch</span><span class="o">.</span><span class="n">V3_eff</span><span class="o">.</span><span class="n">norm</span><span class="p">()</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">  &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;||V4_eff|| = </span><span class="si">{</span><span class="n">V4</span><span class="o">.</span><span class="n">norm</span><span class="p">()</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;largest elements: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">ch</span><span class="o">.</span><span class="n">V2_eff</span><span class="o">.</span><span class="n">matrix</span><span class="p">))</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">  &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">ch</span><span class="o">.</span><span class="n">V3_eff</span><span class="o">.</span><span class="n">matrix</span><span class="p">))</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">  </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">V4</span><span class="o">.</span><span class="n">matrix</span><span class="p">))</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">E4</span> <span class="o">=</span> <span class="n">ch</span><span class="o">.</span><span class="n">model_space_spectra</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">n_states</span><span class="o">=</span><span class="mi">4</span><span class="p">)[</span><span class="s2">&quot;h + V2_eff + V3_eff + V4_eff&quot;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;with V4_eff the four-particle spectrum is exact:&quot;</span><span class="p">,</span>
+      <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">E4</span><span class="p">,</span> <span class="n">spectra4</span><span class="p">[</span><span class="s2">&quot;exact&quot;</span><span class="p">][:</span><span class="mi">4</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>||V2_eff|| = 2.8199  ||V3_eff|| = 0.1843  ||V4_eff|| = 0.1009
+largest elements: 0.7102  0.0367  0.0348
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>with V4_eff the four-particle spectrum is exact: True
+</pre></div>
+</div>
+</div>
+</div>
+<p>The hierarchy converges.  The renormalisation of the two-body interaction is
+an order of magnitude larger than the induced three-body term, and the induced
+four-body term is smaller still, though by a smaller factor.  In the energies
+the effect is clearer: the two-body cluster approximation leaves an error of
+about <span class="math notranslate nohighlight">\(2\times10^{-2}\)</span> in the four-particle ground state, the three-body
+cluster approximation reduces it to <span class="math notranslate nohighlight">\(4\times10^{-4}\)</span>, one part in <span class="math notranslate nohighlight">\(10^4\)</span> of
+the interaction energy, and the four-body term makes the spectrum exact by
+construction.  This is the pattern one hopes for, and, for realistic nuclear
+interactions, the pattern the no-core shell model relies on.</p>
+</section>
+<section id="dependence-on-the-coupling-strength">
+<h2>8. Dependence on the coupling strength<a class="headerlink" href="#dependence-on-the-coupling-strength" title="Link to this heading">#</a></h2>
+<p>Section 3 argued that the induced three-body force is a second-order effect
+in the interaction.  We scan <span class="math notranslate nohighlight">\(V_0\)</span> and plot the norms of
+<span class="math notranslate nohighlight">\(V^{(2)}_{\rm eff}-v\)</span> and of <span class="math notranslate nohighlight">\(V^{(3)}_{\rm eff}\)</span>; both should scale as <span class="math notranslate nohighlight">\(V_0^2\)</span>
+for weak coupling, where the perturbative picture applies, and depart from it
+when the coupling becomes strong.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">couplings</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0625</span><span class="p">,</span> <span class="mf">0.125</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">])</span>
+<span class="n">dV2</span><span class="p">,</span> <span class="n">V3n</span><span class="p">,</span> <span class="n">V4n</span><span class="p">,</span> <span class="n">err3</span><span class="p">,</span> <span class="n">err4</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">couplings</span><span class="p">:</span>
+    <span class="n">chc</span> <span class="o">=</span> <span class="n">e3</span><span class="o">.</span><span class="n">ClusterHierarchy</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">ho</span><span class="o">.</span><span class="n">two_body</span><span class="p">(</span><span class="n">e3</span><span class="o">.</span><span class="n">gaussian</span><span class="p">(</span><span class="o">-</span><span class="n">c</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)),</span> <span class="n">n_P</span><span class="p">,</span>
+                              <span class="n">orbital_parity</span><span class="o">=</span><span class="n">ho</span><span class="o">.</span><span class="n">parity</span><span class="p">(),</span> <span class="n">select</span><span class="o">=</span><span class="s2">&quot;overlap&quot;</span><span class="p">)</span>
+    <span class="n">dV2</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">chc</span><span class="o">.</span><span class="n">V2_eff</span> <span class="o">-</span> <span class="n">chc</span><span class="o">.</span><span class="n">V2_bare</span><span class="p">)</span><span class="o">.</span><span class="n">norm</span><span class="p">())</span>
+    <span class="n">V3n</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">chc</span><span class="o">.</span><span class="n">V3_eff</span><span class="o">.</span><span class="n">norm</span><span class="p">())</span>
+    <span class="n">s4</span> <span class="o">=</span> <span class="n">chc</span><span class="o">.</span><span class="n">model_space_spectra</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">n_states</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">err3</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">s4</span><span class="p">[</span><span class="s2">&quot;h + V2_eff&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">s4</span><span class="p">[</span><span class="s2">&quot;exact&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
+    <span class="n">err4</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">s4</span><span class="p">[</span><span class="s2">&quot;h + V2_eff + V3_eff&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">s4</span><span class="p">[</span><span class="s2">&quot;exact&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;V0 = </span><span class="si">{</span><span class="o">-</span><span class="n">c</span><span class="si">:</span><span class="s2">7.4f</span><span class="si">}</span><span class="s2">: ||V2_eff - v|| = </span><span class="si">{</span><span class="n">dV2</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.3e</span><span class="si">}</span><span class="s2">  ||V3_eff|| = </span><span class="si">{</span><span class="n">V3n</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.3e</span><span class="si">}</span><span class="s2">  &quot;</span>
+          <span class="sa">f</span><span class="s2">&quot;N=4 error with V2: </span><span class="si">{</span><span class="n">err3</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2">, with V2+V3: </span><span class="si">{</span><span class="n">err4</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">9.5</span><span class="p">,</span> <span class="mf">3.8</span><span class="p">))</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">couplings</span><span class="p">,</span> <span class="n">dV2</span><span class="p">,</span> <span class="s2">&quot;o-&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\|V^{(2)}_{\rm eff}-v\|$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">couplings</span><span class="p">,</span> <span class="n">V3n</span><span class="p">,</span> <span class="s2">&quot;s-&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\|V^{(3)}_{\rm eff}\|$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">couplings</span><span class="p">,</span> <span class="n">V3n</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">couplings</span> <span class="o">/</span> <span class="n">couplings</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;k:&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\propto V_0^2$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$|V_0|$&quot;</span><span class="p">);</span> <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Frobenius norm&quot;</span><span class="p">);</span> <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">couplings</span><span class="p">,</span> <span class="n">err3</span><span class="p">,</span> <span class="s2">&quot;o-&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$t+V^{(2)}_{\rm eff}$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">couplings</span><span class="p">,</span> <span class="n">err4</span><span class="p">,</span> <span class="s2">&quot;s-&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$t+V^{(2)}_{\rm eff}+V^{(3)}_{\rm eff}$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$|V_0|$&quot;</span><span class="p">);</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;error in $E_0$, $N=4$&quot;</span><span class="p">);</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>V0 = -0.0625: ||V2_eff - v|| = 1.139e-04  ||V3_eff|| = 1.647e-04  N=4 error with V2: 2.01e-05, with V2+V3: 2.58e-08
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>V0 = -0.1250: ||V2_eff - v|| = 4.561e-04  ||V3_eff|| = 6.599e-04  N=4 error with V2: 8.14e-05, with V2+V3: 2.00e-07
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>V0 = -0.2500: ||V2_eff - v|| = 1.827e-03  ||V3_eff|| = 2.650e-03  N=4 error with V2: 3.31e-04, with V2+V3: 1.48e-06
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>V0 = -0.5000: ||V2_eff - v|| = 7.330e-03  ||V3_eff|| = 1.069e-02  N=4 error with V2: 1.35e-03, with V2+V3: 9.73e-06
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>V0 = -1.0000: ||V2_eff - v|| = 2.951e-02  ||V3_eff|| = 4.350e-02  N=4 error with V2: 5.39e-03, with V2+V3: 3.65e-05
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>V0 = -2.0000: ||V2_eff - v|| = 1.198e-01  ||V3_eff|| = 1.843e-01  N=4 error with V2: 1.78e-02, with V2+V3: 3.89e-04
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>V0 = -4.0000: ||V2_eff - v|| = 4.984e-01  ||V3_eff|| = 8.213e-01  N=4 error with V2: 2.03e-02, with V2+V3: 2.16e-02
+V0 = -8.0000: ||V2_eff - v|| = 2.235e+00  ||V3_eff|| = 1.079e+01  N=4 error with V2: 1.29e-01, with V2+V3: 3.06e-01
+</pre></div>
+</div>
+<img alt="_images/00a315e9b8f6025613860757a763a80923629a711d4156da3b1b189ebb413ea9.png" src="_images/00a315e9b8f6025613860757a763a80923629a711d4156da3b1b189ebb413ea9.png" />
+</div>
+</div>
+<p>At weak coupling both curves follow the <span class="math notranslate nohighlight">\(V_0^2\)</span> line, confirming the
+diagrammatic argument, and the three-body cluster approximation improves the
+four-particle ground state by two to three orders of magnitude.  As the
+coupling grows the induced three-body term becomes larger than the
+renormalisation of the two-body term itself, and the induced four-body term,
+visible as the error that remains after including <span class="math notranslate nohighlight">\(V^{(3)}_{\rm eff}\)</span>, grows
+faster still: at <span class="math notranslate nohighlight">\(V_0=-4\)</span> adding <span class="math notranslate nohighlight">\(V^{(3)}_{\rm eff}\)</span> no longer improves the
+four-particle ground state and at <span class="math notranslate nohighlight">\(V_0=-8\)</span> it makes it worse.  The cluster
+expansion converges more slowly the harder the interaction, which is the
+reason for softening realistic interactions before they are used in a small
+space.</p>
+</section>
+<section id="dependence-on-the-size-of-the-model-space">
+<h2>9. Dependence on the size of the model space<a class="headerlink" href="#dependence-on-the-size-of-the-model-space" title="Link to this heading">#</a></h2>
+<p>Enlarging the model space (keeping the gap <span class="math notranslate nohighlight">\(\Delta\)</span> above its top) should make
+the effective interactions approach the bare ones and the induced three-body
+term vanish.  When <span class="math notranslate nohighlight">\(n_P=n\)</span> there is nothing to decouple, <span class="math notranslate nohighlight">\(\omega=0\)</span>, and
+<span class="math notranslate nohighlight">\(V^{(3)}_{\rm eff}\)</span> must be zero to machine precision.  Because the number of
+three-body matrix elements grows with <span class="math notranslate nohighlight">\(n_P\)</span>, the Frobenius norm is not the
+right measure across model spaces; we monitor the largest matrix element and
+the error of the three-particle ground state obtained with
+<span class="math notranslate nohighlight">\(t+V^{(2)}_{\rm eff}\)</span> alone, which is the energy shift <span class="math notranslate nohighlight">\(V^{(3)}_{\rm eff}\)</span> has
+to supply.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sizes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">14</span><span class="p">]</span>
+<span class="n">v_default</span> <span class="o">=</span> <span class="n">ho</span><span class="o">.</span><span class="n">two_body</span><span class="p">(</span><span class="n">e3</span><span class="o">.</span><span class="n">gaussian</span><span class="p">(</span><span class="n">V0</span><span class="p">,</span> <span class="n">sigma</span><span class="p">))</span>
+<span class="n">maxV3</span><span class="p">,</span> <span class="n">shift3</span><span class="p">,</span> <span class="n">maxdV2</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">nP</span> <span class="ow">in</span> <span class="n">sizes</span><span class="p">:</span>
+    <span class="n">hP</span> <span class="o">=</span> <span class="n">ho</span><span class="o">.</span><span class="n">one_body</span><span class="p">(</span><span class="n">gap</span><span class="o">=</span><span class="n">gap</span><span class="p">,</span> <span class="n">n_P</span><span class="o">=</span><span class="n">nP</span><span class="p">)</span>
+    <span class="n">chP</span> <span class="o">=</span> <span class="n">e3</span><span class="o">.</span><span class="n">ClusterHierarchy</span><span class="p">(</span><span class="n">hP</span><span class="p">,</span> <span class="n">v_default</span><span class="p">,</span> <span class="n">nP</span><span class="p">,</span> <span class="n">orbital_parity</span><span class="o">=</span><span class="n">ho</span><span class="o">.</span><span class="n">parity</span><span class="p">(),</span> <span class="n">select</span><span class="o">=</span><span class="s2">&quot;overlap&quot;</span><span class="p">)</span>
+    <span class="n">s3</span> <span class="o">=</span> <span class="n">chP</span><span class="o">.</span><span class="n">model_space_spectra</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">n_states</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">maxV3</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">chP</span><span class="o">.</span><span class="n">V3_eff</span><span class="o">.</span><span class="n">matrix</span><span class="p">)))</span>
+    <span class="n">maxdV2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">((</span><span class="n">chP</span><span class="o">.</span><span class="n">V2_eff</span> <span class="o">-</span> <span class="n">chP</span><span class="o">.</span><span class="n">V2_bare</span><span class="p">)</span><span class="o">.</span><span class="n">matrix</span><span class="p">)))</span>
+    <span class="n">shift3</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">s3</span><span class="p">[</span><span class="s2">&quot;h + V2_eff&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">s3</span><span class="p">[</span><span class="s2">&quot;exact&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;n_P = </span><span class="si">{</span><span class="n">nP</span><span class="si">:</span><span class="s2">2d</span><span class="si">}</span><span class="s2">: dim P_3 = </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">chP</span><span class="o">.</span><span class="n">basis</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span><span class="si">:</span><span class="s2">4d</span><span class="si">}</span><span class="s2">  &quot;</span>
+          <span class="sa">f</span><span class="s2">&quot;max|V2_eff - v| = </span><span class="si">{</span><span class="n">maxdV2</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2">  max|V3_eff| = </span><span class="si">{</span><span class="n">maxV3</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2">  &quot;</span>
+          <span class="sa">f</span><span class="s2">&quot;E_0(N=3) error with V2_eff only = </span><span class="si">{</span><span class="n">shift3</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">5.5</span><span class="p">,</span> <span class="mf">3.8</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">sizes</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">maxdV2</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;o-&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\max|V^{(2)}_{\rm eff}-v|$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">sizes</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">maxV3</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;s-&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\max|V^{(3)}_{\rm eff}|$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">sizes</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">shift3</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;^-&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$|E_0^{(3)}(t+V^{(2)}_{\rm eff})-E_0^{(3)}|$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;model-space orbitals $n_P$&quot;</span><span class="p">);</span> <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$n_P=14$ is the full space: all three vanish there&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n_P =  3: dim P_3 =    1  max|V2_eff - v| = 4.88e-02  max|V3_eff| = 1.45e-03  E_0(N=3) error with V2_eff only = 1.45e-03
+n_P =  4: dim P_3 =    4  max|V2_eff - v| = 5.01e-02  max|V3_eff| = 4.09e-02  E_0(N=3) error with V2_eff only = 1.46e-04
+n_P =  5: dim P_3 =   10  max|V2_eff - v| = 4.75e-02  max|V3_eff| = 4.05e-02  E_0(N=3) error with V2_eff only = 5.53e-03
+n_P =  6: dim P_3 =   20  max|V2_eff - v| = 4.64e-02  max|V3_eff| = 3.67e-02  E_0(N=3) error with V2_eff only = 2.71e-03
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n_P =  7: dim P_3 =   35  max|V2_eff - v| = 4.47e-02  max|V3_eff| = 5.08e-02  E_0(N=3) error with V2_eff only = 2.07e-03
+n_P =  8: dim P_3 =   56  max|V2_eff - v| = 4.25e-02  max|V3_eff| = 5.69e-02  E_0(N=3) error with V2_eff only = 9.65e-04
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n_P = 10: dim P_3 =  120  max|V2_eff - v| = 3.67e-02  max|V3_eff| = 5.13e-02  E_0(N=3) error with V2_eff only = 2.33e-04
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n_P = 12: dim P_3 =  220  max|V2_eff - v| = 2.72e-02  max|V3_eff| = 2.63e-02  E_0(N=3) error with V2_eff only = 4.24e-05
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n_P = 14: dim P_3 =  364  max|V2_eff - v| = 8.23e-13  max|V3_eff| = 3.26e-12  E_0(N=3) error with V2_eff only = 2.18e-14
+</pre></div>
+</div>
+<img alt="_images/0f7b11eabd178cb23981a93c762be33ba1027e49c95be8d2fb61fe16b26fd4c5.png" src="_images/0f7b11eabd178cb23981a93c762be33ba1027e49c95be8d2fb61fe16b26fd4c5.png" />
+</div>
+</div>
+<p>The largest matrix elements of <span class="math notranslate nohighlight">\(V^{(2)}_{\rm eff}-v\)</span> and of <span class="math notranslate nohighlight">\(V^{(3)}_{\rm eff}\)</span>
+hardly decrease with <span class="math notranslate nohighlight">\(n_P\)</span>: they always involve the highest model-space
+orbitals, which sit right below the gap whatever <span class="math notranslate nohighlight">\(n_P\)</span> is, and the gap itself
+is kept fixed.  What does decrease, by almost two orders of magnitude from
+<span class="math notranslate nohighlight">\(n_P=5\)</span> to <span class="math notranslate nohighlight">\(n_P=12\)</span>, is the effect of <span class="math notranslate nohighlight">\(V^{(3)}_{\rm eff}\)</span> on the ground state,
+because the orbitals where it is large move further and further away from
+the configurations that dominate the low-lying states.  This is the way
+effective many-body forces disappear when the model space is enlarged: not
+element by element, but by becoming irrelevant for the states one cares
+about.  In the full space, <span class="math notranslate nohighlight">\(n_P=14\)</span>, all three quantities are zero to
+machine precision, which is a stringent test of the whole embedding and
+subtraction machinery.</p>
+</section>
+<section id="intruder-states-and-the-choice-of-eigenvectors">
+<h2>10. Intruder states and the choice of eigenvectors<a class="headerlink" href="#intruder-states-and-the-choice-of-eigenvectors" title="Link to this heading">#</a></h2>
+<p>Finally we close the shell gap.  As <span class="math notranslate nohighlight">\(\Delta\to0\)</span> excluded determinants
+descend into the energy range of the model space.  If we insist on
+reproducing the <em>lowest</em> <span class="math notranslate nohighlight">\(d_P\)</span> eigenvalues in each sector, some of the chosen
+eigenstates are intruders that live mostly in <span class="math notranslate nohighlight">\(Q\)</span>; their projections on <span class="math notranslate nohighlight">\(P\)</span>
+are nearly linearly dependent, the condition number of <span class="math notranslate nohighlight">\(PK\)</span> explodes, and
+the effective interaction acquires huge, strongly state-dependent pieces
+that spoil the cluster hierarchy.  Choosing instead the <span class="math notranslate nohighlight">\(d_P\)</span> eigenstates
+with the largest norm in <span class="math notranslate nohighlight">\(P\)</span> keeps <span class="math notranslate nohighlight">\(PK\)</span> well conditioned for moderate gaps,
+but when the gap vanishes even that fails: the exact states are then
+genuine <span class="math notranslate nohighlight">\(P\)</span>-<span class="math notranslate nohighlight">\(Q\)</span> mixtures and no choice of <span class="math notranslate nohighlight">\(d_P\)</span> of them spans the model
+space gracefully.  We monitor the condition number, the size of
+<span class="math notranslate nohighlight">\(V^{(3)}_{\rm eff}\)</span>, and the error of the four-particle ground state with
+<span class="math notranslate nohighlight">\(t+V^{(2)}_{\rm eff}+V^{(3)}_{\rm eff}\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gaps</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.35</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">,</span> <span class="mf">12.0</span><span class="p">]</span>
+<span class="n">rows</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;lowest&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">&quot;overlap&quot;</span><span class="p">:</span> <span class="p">[]}</span>
+<span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">gaps</span><span class="p">:</span>
+    <span class="n">hg</span> <span class="o">=</span> <span class="n">ho</span><span class="o">.</span><span class="n">one_body</span><span class="p">(</span><span class="n">gap</span><span class="o">=</span><span class="n">g</span><span class="p">,</span> <span class="n">n_P</span><span class="o">=</span><span class="n">n_P</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">sel</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>
+        <span class="n">chg</span> <span class="o">=</span> <span class="n">e3</span><span class="o">.</span><span class="n">ClusterHierarchy</span><span class="p">(</span><span class="n">hg</span><span class="p">,</span> <span class="n">v_default</span><span class="p">,</span> <span class="n">n_P</span><span class="p">,</span> <span class="n">orbital_parity</span><span class="o">=</span><span class="n">ho</span><span class="o">.</span><span class="n">parity</span><span class="p">(),</span> <span class="n">select</span><span class="o">=</span><span class="n">sel</span><span class="p">)</span>
+        <span class="n">s4</span> <span class="o">=</span> <span class="n">chg</span><span class="o">.</span><span class="n">model_space_spectra</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">n_states</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">rows</span><span class="p">[</span><span class="n">sel</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="nb">max</span><span class="p">(</span><span class="n">chg</span><span class="o">.</span><span class="n">ls</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">condition_numbers</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span>
+                          <span class="n">chg</span><span class="o">.</span><span class="n">V3_eff</span><span class="o">.</span><span class="n">norm</span><span class="p">(),</span>
+                          <span class="nb">abs</span><span class="p">(</span><span class="n">s4</span><span class="p">[</span><span class="s2">&quot;h + V2_eff + V3_eff&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">s4</span><span class="p">[</span><span class="s2">&quot;exact&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]),</span>
+                          <span class="nb">abs</span><span class="p">(</span><span class="n">s4</span><span class="p">[</span><span class="s2">&quot;h + V2_eff&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">s4</span><span class="p">[</span><span class="s2">&quot;exact&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">])))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;gap&#39;</span><span class="si">:</span><span class="s2">&gt;5s</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="s1">&#39;cond(PK), lowest&#39;</span><span class="si">:</span><span class="s2">&gt;17s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;||V3||&#39;</span><span class="si">:</span><span class="s2">&gt;8s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;N=4 err&#39;</span><span class="si">:</span><span class="s2">&gt;9s</span><span class="si">}</span><span class="s2"> | &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;cond(PK), overlap&#39;</span><span class="si">:</span><span class="s2">&gt;18s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;||V3||&#39;</span><span class="si">:</span><span class="s2">&gt;8s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;N=4 err&#39;</span><span class="si">:</span><span class="s2">&gt;9s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">g</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">gaps</span><span class="p">,</span> <span class="n">rows</span><span class="p">[</span><span class="s2">&quot;lowest&quot;</span><span class="p">],</span> <span class="n">rows</span><span class="p">[</span><span class="s2">&quot;overlap&quot;</span><span class="p">]):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">g</span><span class="si">:</span><span class="s2">5.2f</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">17.1f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">8.3f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">:</span><span class="s2">9.2e</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">18.1f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">8.3f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">b</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">:</span><span class="s2">9.2e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">9.5</span><span class="p">,</span> <span class="mf">3.8</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">sel</span><span class="p">,</span> <span class="n">mk</span> <span class="ow">in</span> <span class="p">((</span><span class="s2">&quot;lowest&quot;</span><span class="p">,</span> <span class="s2">&quot;o-&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;overlap&quot;</span><span class="p">,</span> <span class="s2">&quot;s-&quot;</span><span class="p">)):</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">rows</span><span class="p">[</span><span class="n">sel</span><span class="p">])</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">gaps</span><span class="p">,</span> <span class="n">r</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">mk</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;select = </span><span class="si">{</span><span class="n">sel</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">gaps</span><span class="p">,</span> <span class="n">r</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">mk</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;select = </span><span class="si">{</span><span class="n">sel</span><span class="si">}</span><span class="s2">, with $V^</span><span class="se">{{</span><span class="s2">(3)</span><span class="se">}}</span><span class="s2">_</span><span class="se">{{\\</span><span class="s2">rm eff</span><span class="se">}}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">gaps</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">rows</span><span class="p">[</span><span class="s2">&quot;overlap&quot;</span><span class="p">])[:,</span> <span class="mi">3</span><span class="p">],</span> <span class="s2">&quot;^--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;overlap, $V^{(2)}_{\rm eff}$ only&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;shell gap $\Delta$&quot;</span><span class="p">);</span> <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\|V^{(3)}_{\rm eff}\|$&quot;</span><span class="p">);</span> <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;shell gap $\Delta$&quot;</span><span class="p">);</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;error in $E_0$, $N=4$&quot;</span><span class="p">);</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  gap |  cond(PK), lowest   ||V3||   N=4 err |  cond(PK), overlap   ||V3||   N=4 err
+ 0.00 |            8745.6    4.943  6.77e-02 |             4202.3    6.842  4.38e-01
+ 0.35 |            6931.6    4.313  1.74e-03 |             4504.2    4.693  2.04e-02
+ 0.70 |            5788.1    4.066  4.40e-02 |                1.5    0.547  3.35e-03
+ 1.50 |            4314.8    3.787  3.00e-02 |                1.0    0.284  7.51e-04
+ 3.00 |            1521.1    2.883  5.60e-03 |                1.0    0.184  3.89e-04
+ 6.00 |               1.0    0.109  2.57e-04 |                1.0    0.109  2.57e-04
+12.00 |               1.0    0.062  1.01e-04 |                1.0    0.062  1.01e-04
+</pre></div>
+</div>
+<img alt="_images/a5277616daeccd20c235275dc9c37a5157f6e368b19426b7a21d79b7c21dbec9.png" src="_images/a5277616daeccd20c235275dc9c37a5157f6e368b19426b7a21d79b7c21dbec9.png" />
+</div>
+</div>
+<p>For a large gap the two selection rules coincide and the hierarchy converges.
+Below <span class="math notranslate nohighlight">\(\Delta\approx5\)</span>, the point where the highest model-space
+determinants start to overlap in energy with the lowest excluded ones, the
+“lowest” rule picks up intruders and <span class="math notranslate nohighlight">\(V^{(3)}_{\rm eff}\)</span> becomes as large as
+<span class="math notranslate nohighlight">\(V^{(2)}_{\rm eff}\)</span>; the four-particle energy obtained with it improves
+erratically and for small gaps is <em>worse</em> than with <span class="math notranslate nohighlight">\(V^{(2)}_{\rm eff}\)</span>
+alone.  The overlap rule survives down to
+<span class="math notranslate nohighlight">\(\Delta\approx0.7\)</span>, but at <span class="math notranslate nohighlight">\(\Delta=0\)</span>, the pure oscillator with orbital
+truncation, it fails as well.  This is the intruder-state problem in its
+simplest incarnation and the reason why realistic calculations either
+truncate on total excitation energy (no-core shell model), or soften the
+interaction first so that the decoupling is mild (SRG, <span class="math notranslate nohighlight">\(V_{{\rm low}\,k}\)</span>),
+or both.</p>
+</section>
+<section id="summary-and-tasks">
+<h2>11. Summary and tasks<a class="headerlink" href="#summary-and-tasks" title="Link to this heading">#</a></h2>
+<p>Exact eigenpairs of the <span class="math notranslate nohighlight">\(a\)</span>-particle problem – full configuration
+interaction in the large space – define, through the Lee-Suzuki-Okubo
+transformation, an effective Hamiltonian in the <span class="math notranslate nohighlight">\(a\)</span>-particle model space
+that reproduces <span class="math notranslate nohighlight">\(d_P\)</span> exact eigenvalues.  Because a <span class="math notranslate nohighlight">\(k\)</span>-body operator is
+fixed by its <span class="math notranslate nohighlight">\(k\)</span>-particle matrix elements, the <span class="math notranslate nohighlight">\(a\)</span>-particle effective
+Hamiltonians can be peeled apart cluster by cluster: the two-particle problem
+gives <span class="math notranslate nohighlight">\(V^{(2)}_{\rm eff}\)</span>, the three-particle problem gives the induced
+<span class="math notranslate nohighlight">\(V^{(3)}_{\rm eff}\)</span>, and so on.  Applied to an <span class="math notranslate nohighlight">\(N\)</span>-particle system in the
+small space – full configuration interaction again, now affordable – the
+truncated hierarchy converges quickly when the model space is well separated
+from its complement and the interaction is not too strong, and it breaks
+down, through intruder states, when it is not.  The induced three-body force
+is not an artefact to be removed but the price of working in a small space;
+it is of second order in the interaction and it is the same object that
+appears when a nuclear Hamiltonian is softened by the similarity
+renormalisation group.</p>
+<p><strong>Tasks</strong> (the full formulation is in Appendix A of the book; tasks a) to d)
+have reference solutions in this notebook, e) to g) are open)</p>
+<ul class="simple">
+<li><p>a) <em>Embedding and the Condon-Slater rules.</em>  Implement the embedding
+formula of section 3 on top of the bit-string routines of <code class="docutils literal notranslate"><span class="pre">fci.py</span></code>, verify
+it for <span class="math notranslate nohighlight">\(k=1,2\)</span> against the Condon-Slater rules, and display the band
+structure of the three-particle Hamiltonian with respect to <span class="math notranslate nohighlight">\(|012\rangle\)</span>
+with and without <span class="math notranslate nohighlight">\(V^{(3)}_{\rm eff}\)</span> (exercise 2b of chapter 5).</p></li>
+<li><p>b) <em>The Lee-Suzuki-Okubo transformation.</em>  Construct <span class="math notranslate nohighlight">\(H_{\rm eff}\)</span> for
+two particles in each parity sector, check Hermiticity and the spectrum,
+then solve the quadratic equation for <span class="math notranslate nohighlight">\(\omega\)</span> by the iteration
+<span class="math notranslate nohighlight">\(\omega_{n+1}=(QHQ)^{-1}(\omega_nPHP+\omega_nPHQ\omega_n-QHP)\)</span> from
+<span class="math notranslate nohighlight">\(\omega_0=0\)</span> and find out which solution it selects, and when it fails.</p></li>
+<li><p>c) <em>The cluster hierarchy.</em>  Extract <span class="math notranslate nohighlight">\(V^{(2)}_{\rm eff}\)</span>,
+<span class="math notranslate nohighlight">\(V^{(3)}_{\rm eff}\)</span> and <span class="math notranslate nohighlight">\(V^{(4)}_{\rm eff}\)</span>, reproduce the spectra of
+sections 6 and 7, and verify that all of them vanish when <span class="math notranslate nohighlight">\(n_P=n\)</span>.</p></li>
+<li><p>d) <em>Scaling and intruders.</em>  Reproduce sections 8 to 10, fit the
+weak-coupling exponent, list the degenerate <span class="math notranslate nohighlight">\(P\)</span> and <span class="math notranslate nohighlight">\(Q\)</span> determinants of
+the pure oscillator, and propose a third selection rule.</p></li>
+<li><p>e) <em>Open: normal ordering.</em>  Normal order <span class="math notranslate nohighlight">\(V^{(3)}_{\rm eff}\)</span> with respect
+to <span class="math notranslate nohighlight">\(|0123\rangle\)</span> (chapter 3), keep the zero-, one- and two-body parts,
+and measure how much of the four-particle three-body effect the
+normal-ordered two-body approximation captures; then feed the
+normal-ordered Hamiltonian to the coupled-cluster code of chapter 10.</p></li>
+<li><p>f) <em>Open: second-order perturbation theory.</em>  Compute
+<span class="math notranslate nohighlight">\(P\hat HP+P\hat VQ(E_0-\hat H_0)^{-1}Q\hat VP\)</span> for three particles
+(chapter 9), isolate the connected three-body terms, and compare with
+<span class="math notranslate nohighlight">\(V^{(3)}_{\rm eff}\)</span> at <span class="math notranslate nohighlight">\(V_0=-0.25\)</span> and <span class="math notranslate nohighlight">\(V_0=-2\)</span>.</p></li>
+<li><p>g) <em>Open: the similarity renormalisation group.</em>  Evolve the Hamiltonian
+with <span class="math notranslate nohighlight">\(dH_s/ds=[[T,H_s],H_s]\)</span> in the two- and three-particle spaces,
+extract the induced three-body term, combine softening with the
+model-space decoupling, and replace the orbital truncation by the
+<span class="math notranslate nohighlight">\(N_{\max}\)</span> truncation of the no-core shell model (Navrátil and Ormand,
+Phys. Rev. C <strong>68</strong>, 034305 (2003)).</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="fam.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Project: the finite amplitude method for the RPA</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-model-space-as-a-truncated-fci-basis">1. The model space as a truncated FCI basis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lee-suzuki-okubo-transformation-derivation">2. The Lee-Suzuki-Okubo transformation: derivation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decoupling-by-a-similarity-transformation">Decoupling by a similarity transformation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-form">Matrix form</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-hermitian-okubo-form">The Hermitian (Okubo) form</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-not-fixed-by-the-construction">What is not fixed by the construction</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cluster-decomposition-and-induced-many-body-forces-derivation">3. Cluster decomposition and induced many-body forces: derivation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-k-body-operator-is-fixed-by-its-k-particle-matrix-elements">A <span class="math notranslate nohighlight">\(k\)</span>-body operator is fixed by its <span class="math notranslate nohighlight">\(k\)</span>-particle matrix elements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-a-body-cluster-hierarchy">The <span class="math notranslate nohighlight">\(a\)</span>-body cluster hierarchy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-an-induced-three-body-force-appears-at-all">Why an induced three-body force appears at all</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-model">4. The model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-effective-two-body-interaction-a-2">5. The effective two-body interaction (<span class="math notranslate nohighlight">\(a=2\)</span>)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-induced-three-body-interaction-a-3">6. The induced three-body interaction (<span class="math notranslate nohighlight">\(a=3\)</span>)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#four-particles-does-the-hierarchy-converge">7. Four particles: does the hierarchy converge?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dependence-on-the-coupling-strength">8. Dependence on the coupling strength</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dependence-on-the-size-of-the-model-space">9. Dependence on the size of the model space</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intruder-states-and-the-choice-of-eigenvectors">10. Intruder states and the choice of eigenvectors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-and-tasks">11. Summary and tasks</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Morten Hjorth-Jensen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
