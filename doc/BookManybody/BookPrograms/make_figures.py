@@ -48,6 +48,7 @@ NOTEBOOKS = {
     # the project notebooks of the appendix: the first entry is the figure
     # directory name rather than a chapter number
     "fam.ipynb":              ("appendixA", "fam"),
+    "effective3body.ipynb":   ("appendixB", "eff3b"),
 }
 
 SETUP = r'''

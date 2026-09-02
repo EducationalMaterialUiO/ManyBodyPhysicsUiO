@@ -47,7 +47,8 @@ That is exactly what the notebooks do.
 | 20 | `chapter20` | `vqe.py` |
 | 21 | `chapter21` | -- (no programs; see the notebook `conclusions.ipynb`) |
 | A | `appendixA` | `fam.py` (Project 1: the finite amplitude method, built on `rpa.py`) |
+| B | `appendixB` | `effective3b.py` (effective three-body interactions from exact diagonalisation: Lee-Suzuki-Okubo transformation and the a-body cluster hierarchy on a 1D oscillator toy model) |
 
 Figures are collected the same way, in `../BookFigures/chapterNN/` (and
-`../BookFigures/appendixA/` for the projects), and are produced by re-executing
+`../BookFigures/appendixA/`, `../BookFigures/appendixB/` for the appendices), and are produced by re-executing
 the notebooks; see `../../LectureNotes/README.md`.

@@ -34,6 +34,7 @@ parts:
     numbered: true
     chapters:
       - file: quantumdots.ipynb          # chapter 11
+      - file: dmrg.ipynb                 # the DMRG chapter (after chapter 11)
       - file: statistics.ipynb           # chapter 12
       - file: variationalmc.ipynb        # chapter 13
       - file: optimisation.ipynb         # chapter 14
@@ -61,3 +62,4 @@ parts:
     numbered: false
     chapters:
       - file: fam.ipynb                  # appendix A, project 1
+      - file: effective3body.ipynb       # appendix A, project 2

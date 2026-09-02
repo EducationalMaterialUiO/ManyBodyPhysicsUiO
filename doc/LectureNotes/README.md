@@ -55,6 +55,7 @@ rm -rf _build && jupyter-book build .
 | `quantumdots.ipynb` | 11, the two-dimensional quantum dot | `quantumdot.py` |
 | `statistics.ipynb` | 12, statistics, random walks and Metropolis | `montecarlo.py` |
 | `fam.ipynb` | Appendix A, Project 1: the finite amplitude method | `appendixA/fam.py` (with `rpa.py`) |
+| `effective3body.ipynb` | Appendix B: effective three-body interactions from exact diagonalisation | `appendixB/effective3b.py` |
 
 ## Regenerating the book's figures
 
