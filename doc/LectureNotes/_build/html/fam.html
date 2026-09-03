@@ -63,7 +63,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Project 2: effective interactions and induced three-body forces from full configuration interaction" href="effective3body.html" />
-    <link rel="prev" title="22. Concluding remarks and perspectives" href="conclusions.html" />
+    <link rel="prev" title="23. Concluding remarks and perspectives" href="conclusions.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -209,25 +209,26 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Applications and stochastic methods</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="quantumdots.html">12. Quantum dots: a realistic Hamiltonian</a></li>
-<li class="toctree-l1"><a class="reference internal" href="statistics.html">13. Elements from statistics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="variationalmc.html">14. Variational Monte Carlo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="optimisation.html">15. Optimization and resampling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="diffusionmc.html">16. Diffusion Monte Carlo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="manybodymc.html">17. Applications to many-body systems: six electrons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dmrg.html">13. The density matrix renormalisation group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="statistics.html">14. Elements from statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variationalmc.html">15. Variational Monte Carlo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimisation.html">16. Optimization and resampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diffusionmc.html">17. Diffusion Monte Carlo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manybodymc.html">18. Applications to many-body systems: six electrons</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine learning approaches</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="boltzmannmachines.html">18. Boltzmann machines and generative models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pinns.html">19. Neural quantum states and physics-informed neural networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="boltzmannmachines.html">19. Boltzmann machines and generative models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pinns.html">20. Neural quantum states and physics-informed neural networks</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum computing</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="quantumfourier.html">20. The quantum Fourier transform and phase estimation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="vqe.html">21. The variational quantum eigensolver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quantumfourier.html">21. The quantum Fourier transform and phase estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vqe.html">22. The variational quantum eigensolver</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Concluding remarks</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="conclusions.html">22. Concluding remarks and perspectives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conclusions.html">23. Concluding remarks and perspectives</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
 <ul class="current nav bd-sidenav">
@@ -628,7 +629,7 @@ Strength function at omega = (1.7+0.05j):
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">fam</span><span class="o">.</span><span class="n">demo_validation</span><span class="p">()</span>
 
-<span class="nn">File ~/Teaching/ManyBodyPhysicsUiO/doc/LectureNotes/../BookManybody/BookPrograms/appendixA/fam.py:608,</span> in <span class="ni">demo_validation</span><span class="nt">()</span>
+<span class="nn">File ~/Teaching/ManyBodyPhysics/doc/LectureNotes/../BookManybody/BookPrograms/appendixA/fam.py:608,</span> in <span class="ni">demo_validation</span><span class="nt">()</span>
 <span class="g g-Whitespace">    </span><span class="mi">605</span> <span class="k">for</span> <span class="n">scheme</span><span class="p">,</span> <span class="n">method</span> <span class="ow">in</span> <span class="p">((</span><span class="s2">&quot;forward&quot;</span><span class="p">,</span> <span class="s2">&quot;gmres&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;forward&quot;</span><span class="p">,</span> <span class="s2">&quot;bicgstab&quot;</span><span class="p">),</span>
 <span class="g g-Whitespace">    </span><span class="mi">606</span>                        <span class="p">(</span><span class="s2">&quot;forward&quot;</span><span class="p">,</span> <span class="s2">&quot;fixed&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;central&quot;</span><span class="p">,</span> <span class="s2">&quot;gmres&quot;</span><span class="p">)):</span>
 <span class="g g-Whitespace">    </span><span class="mi">607</span>     <span class="n">fam</span> <span class="o">=</span> <span class="n">FiniteAmplitudeMethod</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="n">scheme</span><span class="o">=</span><span class="n">scheme</span><span class="p">)</span>
@@ -636,7 +637,7 @@ Strength function at omega = (1.7+0.05j):
 <span class="g g-Whitespace">    </span><span class="mi">609</span>     <span class="n">S</span> <span class="o">=</span> <span class="n">fam</span><span class="o">.</span><span class="n">space</span><span class="o">.</span><span class="n">strength</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">610</span>     <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">res</span><span class="p">):</span>
 
-<span class="nn">File ~/Teaching/ManyBodyPhysicsUiO/doc/LectureNotes/../BookManybody/BookPrograms/appendixA/fam.py:393,</span> in <span class="ni">FiniteAmplitudeMethod.solve</span><span class="nt">(self, F_hf, omega, method, tol, maxiter, mixing, x0)</span>
+<span class="nn">File ~/Teaching/ManyBodyPhysics/doc/LectureNotes/../BookManybody/BookPrograms/appendixA/fam.py:393,</span> in <span class="ni">FiniteAmplitudeMethod.solve</span><span class="nt">(self, F_hf, omega, method, tol, maxiter, mixing, x0)</span>
 <span class="g g-Whitespace">    </span><span class="mi">391</span> <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;gmres&quot;</span><span class="p">:</span>
 <span class="g g-Whitespace">    </span><span class="mi">392</span>     <span class="n">restart</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">n</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
 <span class="ne">--&gt; </span><span class="mi">393</span>     <span class="n">z</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">gmres</span><span class="p">(</span><span class="n">op</span><span class="p">,</span> <span class="n">rhs</span><span class="p">,</span> <span class="n">x0</span><span class="o">=</span><span class="n">x0</span><span class="p">,</span> <span class="n">rtol</span><span class="o">=</span><span class="n">tol</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
@@ -1049,7 +1050,7 @@ the <span class="math notranslate nohighlight">\(^{20}\)</span>Ne calculation of
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">22. </span>Concluding remarks and perspectives</p>
+        <p class="prev-next-title"><span class="section-number">23. </span>Concluding remarks and perspectives</p>
       </div>
     </a>
     <a class="right-next"

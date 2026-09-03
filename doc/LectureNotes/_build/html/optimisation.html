@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>15. Optimization and resampling &#8212; Quantum Mechanics for Many-Particle Systems: from standard methods to quantum computing and machine learning</title>
+    <title>16. Optimization and resampling &#8212; Quantum Mechanics for Many-Particle Systems: from standard methods to quantum computing and machine learning</title>
   
   
   
@@ -62,8 +62,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'optimisation';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="16. Diffusion Monte Carlo" href="diffusionmc.html" />
-    <link rel="prev" title="14. Variational Monte Carlo" href="variationalmc.html" />
+    <link rel="next" title="17. Diffusion Monte Carlo" href="diffusionmc.html" />
+    <link rel="prev" title="15. Variational Monte Carlo" href="variationalmc.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -209,25 +209,26 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Applications and stochastic methods</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="quantumdots.html">12. Quantum dots: a realistic Hamiltonian</a></li>
-<li class="toctree-l1"><a class="reference internal" href="statistics.html">13. Elements from statistics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="variationalmc.html">14. Variational Monte Carlo</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">15. Optimization and resampling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="diffusionmc.html">16. Diffusion Monte Carlo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="manybodymc.html">17. Applications to many-body systems: six electrons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dmrg.html">13. The density matrix renormalisation group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="statistics.html">14. Elements from statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variationalmc.html">15. Variational Monte Carlo</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">16. Optimization and resampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diffusionmc.html">17. Diffusion Monte Carlo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manybodymc.html">18. Applications to many-body systems: six electrons</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine learning approaches</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="boltzmannmachines.html">18. Boltzmann machines and generative models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pinns.html">19. Neural quantum states and physics-informed neural networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="boltzmannmachines.html">19. Boltzmann machines and generative models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pinns.html">20. Neural quantum states and physics-informed neural networks</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum computing</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="quantumfourier.html">20. The quantum Fourier transform and phase estimation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="vqe.html">21. The variational quantum eigensolver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quantumfourier.html">21. The quantum Fourier transform and phase estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vqe.html">22. The variational quantum eigensolver</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Concluding remarks</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="conclusions.html">22. Concluding remarks and perspectives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conclusions.html">23. Concluding remarks and perspectives</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
 <ul class="nav bd-sidenav">
@@ -459,32 +460,32 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-gradient-of-the-energy">15.1. 1. The gradient of the energy</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-descent">15.2. 2. Gradient descent</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quasi-newton-methods-the-secant-condition-broyden-and-bfgs">15.3. 3. Quasi-Newton methods: the secant condition, Broyden and BFGS</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#broyden-minimum-change-in-the-frobenius-norm">15.3.1. Broyden: minimum change in the Frobenius norm</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bfgs-symmetric-positive-definite-rank-two">15.3.2. BFGS: symmetric, positive definite, rank two</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#broyden-against-newton-on-a-nonlinear-system">15.3.3. Broyden against Newton on a nonlinear system</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-gradient-of-the-energy">16.1. 1. The gradient of the energy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-descent">16.2. 2. Gradient descent</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quasi-newton-methods-the-secant-condition-broyden-and-bfgs">16.3. 3. Quasi-Newton methods: the secant condition, Broyden and BFGS</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#broyden-minimum-change-in-the-frobenius-norm">16.3.1. Broyden: minimum change in the Frobenius norm</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bfgs-symmetric-positive-definite-rank-two">16.3.2. BFGS: symmetric, positive definite, rank two</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#broyden-against-newton-on-a-nonlinear-system">16.3.3. Broyden against Newton on a nonlinear system</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-curvature-matters">15.4. 4. Why curvature matters</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#derivative-free-optimisation-powell-s-method">15.5. 5. Derivative-free optimisation: Powell’s method</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stochastic-reconfiguration">15.6. 6. Stochastic reconfiguration</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-methods-compared-on-the-quantum-dot">15.7. 7. The methods compared on the quantum dot</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-production-run">15.8. 8. The production run</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-exact-variance-of-a-correlated-mean">15.9. 9. The exact variance of a correlated mean</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#blocking-and-what-it-does-to-sigma">15.10. 10. Blocking, and what it does to <span class="math notranslate nohighlight">\(\Sigma\)</span></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-three-estimators-side-by-side">15.10.1. The three estimators side by side</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-curvature-matters">16.4. 4. Why curvature matters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#derivative-free-optimisation-powell-s-method">16.5. 5. Derivative-free optimisation: Powell’s method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stochastic-reconfiguration">16.6. 6. Stochastic reconfiguration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-methods-compared-on-the-quantum-dot">16.7. 7. The methods compared on the quantum dot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-production-run">16.8. 8. The production run</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-exact-variance-of-a-correlated-mean">16.9. 9. The exact variance of a correlated mean</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#blocking-and-what-it-does-to-sigma">16.10. 10. Blocking, and what it does to <span class="math notranslate nohighlight">\(\Sigma\)</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-three-estimators-side-by-side">16.10.1. The three estimators side by side</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-bootstrap-properly">15.11. 11. The bootstrap, properly</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimators-that-are-not-means">15.12. 12. Estimators that are not means</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-the-blocks-matter">15.12.1. Why the blocks matter</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#which-to-use">15.12.2. Which to use</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-bootstrap-properly">16.11. 11. The bootstrap, properly</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimators-that-are-not-means">16.12. 12. Estimators that are not means</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-the-blocks-matter">16.12.1. Why the blocks matter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#which-to-use">16.12.2. Which to use</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-result">15.13. 13. The result</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-left">15.14. What is left</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-result">16.13. 13. The result</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-left">16.14. What is left</a></li>
 </ul>
             </nav>
         </div>
@@ -497,7 +498,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="optimization-and-resampling">
-<h1><span class="section-number">15. </span>Optimization and resampling<a class="headerlink" href="#optimization-and-resampling" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">16. </span>Optimization and resampling<a class="headerlink" href="#optimization-and-resampling" title="Link to this heading">#</a></h1>
 <p>Executable companion to chapter 14.</p>
 <p>Chapter 13 left two loose ends: the variational parameters were found by
 scanning a grid, and the error bar came from the autocorrelation time.  Both
@@ -531,7 +532,7 @@ Blocking, bootstrap or jackknife give the honest error.</p></li>
 </div>
 </div>
 <section id="the-gradient-of-the-energy">
-<h2><span class="section-number">15.1. </span>1. The gradient of the energy<a class="headerlink" href="#the-gradient-of-the-energy" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">16.1. </span>1. The gradient of the energy<a class="headerlink" href="#the-gradient-of-the-energy" title="Link to this heading">#</a></h2>
 <p>Write the energy as a Rayleigh quotient and differentiate.  With
 <span class="math notranslate nohighlight">\(A=\int \psi\,H\psi\)</span> and <span class="math notranslate nohighlight">\(B=\int\psi^2\)</span>, so that <span class="math notranslate nohighlight">\(E=A/B\)</span>,</p>
 <div class="math notranslate nohighlight">
@@ -624,7 +625,7 @@ instead of four, with no cancellation of nearly equal numbers.
 </div>
 </section>
 <section id="gradient-descent">
-<h2><span class="section-number">15.2. </span>2. Gradient descent<a class="headerlink" href="#gradient-descent" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">16.2. </span>2. Gradient descent<a class="headerlink" href="#gradient-descent" title="Link to this heading">#</a></h2>
 <p><span class="math notranslate nohighlight">\(\theta \leftarrow \theta - \eta\,\nabla_\theta E\)</span>, starting deliberately far
 from the minimum.  Note the budget: 6000 cycles per step, far too few to
 <em>report</em> an energy but ample to decide which way is down.</p>
@@ -669,7 +670,7 @@ converged to alpha = 1.0067, beta = 0.3564
 </div>
 </section>
 <section id="quasi-newton-methods-the-secant-condition-broyden-and-bfgs">
-<h2><span class="section-number">15.3. </span>3. Quasi-Newton methods: the secant condition, Broyden and BFGS<a class="headerlink" href="#quasi-newton-methods-the-secant-condition-broyden-and-bfgs" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">16.3. </span>3. Quasi-Newton methods: the secant condition, Broyden and BFGS<a class="headerlink" href="#quasi-newton-methods-the-secant-condition-broyden-and-bfgs" title="Link to this heading">#</a></h2>
 <p>Newton’s method for <span class="math notranslate nohighlight">\(F(x)=0\)</span> linearises, <span class="math notranslate nohighlight">\(J_k s_k = -F(x_k)\)</span>, and needs the
 <span class="math notranslate nohighlight">\(n\times n\)</span> Jacobian at every step.  Quasi-Newton methods never form it.  From
 the step and the change in the function,</p>
@@ -681,7 +682,7 @@ s_k = x_{k+1}-x_k, \qquad y_k = F(x_{k+1})-F(x_k) \approx J s_k ,
 the <strong>secant condition</strong> <span class="math notranslate nohighlight">\(B_{k+1}s_k = y_k\)</span> — and fix the remaining <span class="math notranslate nohighlight">\(n^2-n\)</span>
 degrees of freedom by changing as little as possible.</p>
 <section id="broyden-minimum-change-in-the-frobenius-norm">
-<h3><span class="section-number">15.3.1. </span>Broyden: minimum change in the Frobenius norm<a class="headerlink" href="#broyden-minimum-change-in-the-frobenius-norm" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">16.3.1. </span>Broyden: minimum change in the Frobenius norm<a class="headerlink" href="#broyden-minimum-change-in-the-frobenius-norm" title="Link to this heading">#</a></h3>
 <div class="math notranslate nohighlight">
 \[
 \min_{\Delta B}\ \|\Delta B\|_F^2 \quad\text{s.t.}\quad \Delta B\,s = r,
@@ -700,7 +701,7 @@ H_{k+1} = H_k + \frac{(s_k - H_k y_k)y_k^T}{y_k^Ty_k}
 <p>the second being the same calculation for the inverse, <span class="math notranslate nohighlight">\(H_{k+1}y_k = s_k\)</span>.</p>
 </section>
 <section id="bfgs-symmetric-positive-definite-rank-two">
-<h3><span class="section-number">15.3.2. </span>BFGS: symmetric, positive definite, rank two<a class="headerlink" href="#bfgs-symmetric-positive-definite-rank-two" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">16.3.2. </span>BFGS: symmetric, positive definite, rank two<a class="headerlink" href="#bfgs-symmetric-positive-definite-rank-two" title="Link to this heading">#</a></h3>
 <p>For <em>minimisation</em> the matrix approximates a Hessian, so it must also be
 symmetric and positive definite.  A rank-one update cannot do that; a rank-two
 one can.  With <span class="math notranslate nohighlight">\(\rho = 1/(y^Ts)\)</span> and <span class="math notranslate nohighlight">\(V = I - \rho s y^T\)</span>,</p>
@@ -761,7 +762,7 @@ orthogonal in the Frobenius inner product, so this is just Pythagoras — and it
 is <em>why</em> the answer had to be rank one.</p>
 </section>
 <section id="broyden-against-newton-on-a-nonlinear-system">
-<h3><span class="section-number">15.3.3. </span>Broyden against Newton on a nonlinear system<a class="headerlink" href="#broyden-against-newton-on-a-nonlinear-system" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">16.3.3. </span>Broyden against Newton on a nonlinear system<a class="headerlink" href="#broyden-against-newton-on-a-nonlinear-system" title="Link to this heading">#</a></h3>
 <p><span class="math notranslate nohighlight">\(F(x,y) = (x^2+y^2-4,\ e^x+y-1)\)</span>, from <span class="math notranslate nohighlight">\((1,2)\)</span>.  Newton uses the analytic
 Jacobian; Broyden starts from <span class="math notranslate nohighlight">\(H_0 = I\)</span> and uses none.</p>
 <div class="cell docutils container">
@@ -805,7 +806,7 @@ Broyden: 11 iterations and no Jacobian at all.
 </section>
 </section>
 <section id="why-curvature-matters">
-<h2><span class="section-number">15.4. </span>4. Why curvature matters<a class="headerlink" href="#why-curvature-matters" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">16.4. </span>4. Why curvature matters<a class="headerlink" href="#why-curvature-matters" title="Link to this heading">#</a></h2>
 <p>For a quadratic <span class="math notranslate nohighlight">\(f = \tfrac12 x^TAx - b^Tx\)</span>, steepest descent with the optimal
 step obeys</p>
 <div class="math notranslate nohighlight">
@@ -921,7 +922,7 @@ Powell       500 cycles       f = 2.174e-14
 </div>
 </section>
 <section id="derivative-free-optimisation-powell-s-method">
-<h2><span class="section-number">15.5. </span>5. Derivative-free optimisation: Powell’s method<a class="headerlink" href="#derivative-free-optimisation-powell-s-method" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">16.5. </span>5. Derivative-free optimisation: Powell’s method<a class="headerlink" href="#derivative-free-optimisation-powell-s-method" title="Link to this heading">#</a></h2>
 <p>Sometimes there is no gradient — a black-box simulation, or one so noisy that
 a finite difference is meaningless.  Powell’s method reduces the problem to a
 sequence of <strong>line minimisations</strong>,</p>
@@ -993,7 +994,7 @@ will happily converge on a fluctuation.  Both objections apply with full force
 to variational Monte Carlo.</p>
 </section>
 <section id="stochastic-reconfiguration">
-<h2><span class="section-number">15.6. </span>6. Stochastic reconfiguration<a class="headerlink" href="#stochastic-reconfiguration" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">16.6. </span>6. Stochastic reconfiguration<a class="headerlink" href="#stochastic-reconfiguration" title="Link to this heading">#</a></h2>
 <p>SR comes from a different direction entirely: not from approximating the
 Hessian of the energy, but from asking what imaginary-time evolution would do
 and doing as much of it as the variational manifold permits.</p>
@@ -1093,7 +1094,7 @@ the system is solved by conjugate gradients.  That is what makes SR practical
 for neural-network wave functions with millions of parameters.</p>
 </section>
 <section id="the-methods-compared-on-the-quantum-dot">
-<h2><span class="section-number">15.7. </span>7. The methods compared on the quantum dot<a class="headerlink" href="#the-methods-compared-on-the-quantum-dot" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">16.7. </span>7. The methods compared on the quantum dot<a class="headerlink" href="#the-methods-compared-on-the-quantum-dot" title="Link to this heading">#</a></h2>
 <p>Same start, same budget per step.  The last two rows are the informative ones.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1172,7 +1173,7 @@ in this notebook, only a first-order update on the covariance gradient and
 stochastic reconfiguration survive that list.</p>
 </section>
 <section id="the-production-run">
-<h2><span class="section-number">15.8. </span>8. The production run<a class="headerlink" href="#the-production-run" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">16.8. </span>8. The production run<a class="headerlink" href="#the-production-run" title="Link to this heading">#</a></h2>
 <p>Nothing left to decide, only statistics to accumulate — and that parallelises
 perfectly, since the walkers are independent.</p>
 <div class="cell docutils container">
@@ -1205,7 +1206,7 @@ analysis of chapter 12 is still needed.
 </div>
 </section>
 <section id="the-exact-variance-of-a-correlated-mean">
-<h2><span class="section-number">15.9. </span>9. The exact variance of a correlated mean<a class="headerlink" href="#the-exact-variance-of-a-correlated-mean" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">16.9. </span>9. The exact variance of a correlated mean<a class="headerlink" href="#the-exact-variance-of-a-correlated-mean" title="Link to this heading">#</a></h2>
 <p>The sample mean is a <strong>linear</strong> functional of the data, <span class="math notranslate nohighlight">\(\bar X = \bm{1}^T\bm{X}/N\)</span>,
 and for any deterministic <span class="math notranslate nohighlight">\(\bm{a}\)</span>, <span class="math notranslate nohighlight">\(\mathrm{Var}(\bm{a}^T\bm{X}) = \bm{a}^T\Sigma\bm{a}\)</span>
 with <span class="math notranslate nohighlight">\(\Sigma_{ij} = \mathrm{Cov}(X_i,X_j)\)</span>.  So, with no approximation at all,</p>
@@ -1340,7 +1341,7 @@ needs a decision that changes the answer by more than the answer’s own
 precision, and offers no principle for making it.</p>
 </section>
 <section id="blocking-and-what-it-does-to-sigma">
-<h2><span class="section-number">15.10. </span>10. Blocking, and what it does to <span class="math notranslate nohighlight">\(\Sigma\)</span><a class="headerlink" href="#blocking-and-what-it-does-to-sigma" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">16.10. </span>10. Blocking, and what it does to <span class="math notranslate nohighlight">\(\Sigma\)</span><a class="headerlink" href="#blocking-and-what-it-does-to-sigma" title="Link to this heading">#</a></h2>
 <div class="math notranslate nohighlight">
 \[
 X_i^{(k+1)} = \tfrac12\left(X_{2i-1}^{(k)}+X_{2i}^{(k)}\right),
@@ -1394,7 +1395,7 @@ the badly tuned run, where there is something to see.</p>
 </div>
 </div>
 <section id="the-three-estimators-side-by-side">
-<h3><span class="section-number">15.10.1. </span>The three estimators side by side<a class="headerlink" href="#the-three-estimators-side-by-side" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">16.10.1. </span>The three estimators side by side<a class="headerlink" href="#the-three-estimators-side-by-side" title="Link to this heading">#</a></h3>
 <p>Blocking with Jonsson’s stopping rule, the block bootstrap and the block
 jackknife, on the well-tuned run and on the badly tuned one.  The plateau of
 the blocking curve below is the same plateau as the last column of the table
@@ -1473,7 +1474,7 @@ is wrong by a factor of four, silently.
 </section>
 </section>
 <section id="the-bootstrap-properly">
-<h2><span class="section-number">15.11. </span>11. The bootstrap, properly<a class="headerlink" href="#the-bootstrap-properly" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">16.11. </span>11. The bootstrap, properly<a class="headerlink" href="#the-bootstrap-properly" title="Link to this heading">#</a></h2>
 <p>Suppose the data come from an unknown <span class="math notranslate nohighlight">\(F\)</span> and we want the sampling
 distribution of some estimator <span class="math notranslate nohighlight">\(\hat\theta = f(X_1,\dots,X_N)\)</span>.  If we knew
 <span class="math notranslate nohighlight">\(F\)</span> we would simply repeat the experiment.  We do not — but we have the
@@ -1554,7 +1555,7 @@ bootstrap error    0.000105
 </div>
 </section>
 <section id="estimators-that-are-not-means">
-<h2><span class="section-number">15.12. </span>12. Estimators that are not means<a class="headerlink" href="#estimators-that-are-not-means" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">16.12. </span>12. Estimators that are not means<a class="headerlink" href="#estimators-that-are-not-means" title="Link to this heading">#</a></h2>
 <p>Blocking gives the error on a mean and on nothing else.  The natural
 non-linear estimator in VMC is the <strong>variance of the local energy</strong>: by the
 zero-variance argument it vanishes when <span class="math notranslate nohighlight">\(\Psi_T\)</span> is an exact eigenstate, so it
@@ -1643,7 +1644,7 @@ deterministic, does not have the problem at all.
 </div>
 </div>
 <section id="why-the-blocks-matter">
-<h3><span class="section-number">15.12.1. </span>Why the blocks matter<a class="headerlink" href="#why-the-blocks-matter" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">16.12.1. </span>Why the blocks matter<a class="headerlink" href="#why-the-blocks-matter" title="Link to this heading">#</a></h3>
 <p>Resampling single points produces data sets that are independent <strong>by
 construction</strong>, whatever the original looked like, and returns <span class="math notranslate nohighlight">\(\sigma^2/N\)</span> —
 the naive answer, with every appearance of a careful calculation.  The effect
@@ -1702,7 +1703,7 @@ is invisible when <span class="math notranslate nohighlight">\(\tau\approx1\)</s
 </div>
 </section>
 <section id="which-to-use">
-<h3><span class="section-number">15.12.2. </span>Which to use<a class="headerlink" href="#which-to-use" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">16.12.2. </span>Which to use<a class="headerlink" href="#which-to-use" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>The mean of a Monte Carlo run</strong> — blocking with Jonsson’s rule.  No free
 parameters, no window, conservative.</p></li>
@@ -1718,7 +1719,7 @@ announces itself.</p></li>
 </section>
 </section>
 <section id="the-result">
-<h2><span class="section-number">15.13. </span>13. The result<a class="headerlink" href="#the-result" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">16.13. </span>13. The result<a class="headerlink" href="#the-result" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean</span> <span class="o">=</span> <span class="n">series</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
@@ -1759,7 +1760,7 @@ and concluded, wrongly, that something was broken.
 </div>
 </section>
 <section id="what-is-left">
-<h2><span class="section-number">15.14. </span>What is left<a class="headerlink" href="#what-is-left" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">16.14. </span>What is left<a class="headerlink" href="#what-is-left" title="Link to this heading">#</a></h2>
 <p>Every result here is bounded above by what two parameters can express, and no
 amount of sampling or optimisation changes that.  Two ways out:</p>
 <ul class="simple">
@@ -1809,7 +1810,7 @@ let the gradient and the stochastic-reconfiguration step do the rest.</p></li>
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">14. </span>Variational Monte Carlo</p>
+        <p class="prev-next-title"><span class="section-number">15. </span>Variational Monte Carlo</p>
       </div>
     </a>
     <a class="right-next"
@@ -1817,7 +1818,7 @@ let the gradient and the stochastic-reconfiguration step do the rest.</p></li>
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">16. </span>Diffusion Monte Carlo</p>
+        <p class="prev-next-title"><span class="section-number">17. </span>Diffusion Monte Carlo</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1837,32 +1838,32 @@ let the gradient and the stochastic-reconfiguration step do the rest.</p></li>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-gradient-of-the-energy">15.1. 1. The gradient of the energy</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-descent">15.2. 2. Gradient descent</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quasi-newton-methods-the-secant-condition-broyden-and-bfgs">15.3. 3. Quasi-Newton methods: the secant condition, Broyden and BFGS</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#broyden-minimum-change-in-the-frobenius-norm">15.3.1. Broyden: minimum change in the Frobenius norm</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bfgs-symmetric-positive-definite-rank-two">15.3.2. BFGS: symmetric, positive definite, rank two</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#broyden-against-newton-on-a-nonlinear-system">15.3.3. Broyden against Newton on a nonlinear system</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-gradient-of-the-energy">16.1. 1. The gradient of the energy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-descent">16.2. 2. Gradient descent</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quasi-newton-methods-the-secant-condition-broyden-and-bfgs">16.3. 3. Quasi-Newton methods: the secant condition, Broyden and BFGS</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#broyden-minimum-change-in-the-frobenius-norm">16.3.1. Broyden: minimum change in the Frobenius norm</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bfgs-symmetric-positive-definite-rank-two">16.3.2. BFGS: symmetric, positive definite, rank two</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#broyden-against-newton-on-a-nonlinear-system">16.3.3. Broyden against Newton on a nonlinear system</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-curvature-matters">15.4. 4. Why curvature matters</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#derivative-free-optimisation-powell-s-method">15.5. 5. Derivative-free optimisation: Powell’s method</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stochastic-reconfiguration">15.6. 6. Stochastic reconfiguration</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-methods-compared-on-the-quantum-dot">15.7. 7. The methods compared on the quantum dot</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-production-run">15.8. 8. The production run</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-exact-variance-of-a-correlated-mean">15.9. 9. The exact variance of a correlated mean</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#blocking-and-what-it-does-to-sigma">15.10. 10. Blocking, and what it does to <span class="math notranslate nohighlight">\(\Sigma\)</span></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-three-estimators-side-by-side">15.10.1. The three estimators side by side</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-curvature-matters">16.4. 4. Why curvature matters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#derivative-free-optimisation-powell-s-method">16.5. 5. Derivative-free optimisation: Powell’s method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stochastic-reconfiguration">16.6. 6. Stochastic reconfiguration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-methods-compared-on-the-quantum-dot">16.7. 7. The methods compared on the quantum dot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-production-run">16.8. 8. The production run</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-exact-variance-of-a-correlated-mean">16.9. 9. The exact variance of a correlated mean</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#blocking-and-what-it-does-to-sigma">16.10. 10. Blocking, and what it does to <span class="math notranslate nohighlight">\(\Sigma\)</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-three-estimators-side-by-side">16.10.1. The three estimators side by side</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-bootstrap-properly">15.11. 11. The bootstrap, properly</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimators-that-are-not-means">15.12. 12. Estimators that are not means</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-the-blocks-matter">15.12.1. Why the blocks matter</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#which-to-use">15.12.2. Which to use</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-bootstrap-properly">16.11. 11. The bootstrap, properly</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimators-that-are-not-means">16.12. 12. Estimators that are not means</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-the-blocks-matter">16.12.1. Why the blocks matter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#which-to-use">16.12.2. Which to use</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-result">15.13. 13. The result</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-left">15.14. What is left</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-result">16.13. 13. The result</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-left">16.14. What is left</a></li>
 </ul>
   </nav></div>
 

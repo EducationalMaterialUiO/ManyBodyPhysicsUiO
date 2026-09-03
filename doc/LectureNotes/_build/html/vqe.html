@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>21. The variational quantum eigensolver &#8212; Quantum Mechanics for Many-Particle Systems: from standard methods to quantum computing and machine learning</title>
+    <title>22. The variational quantum eigensolver &#8212; Quantum Mechanics for Many-Particle Systems: from standard methods to quantum computing and machine learning</title>
   
   
   
@@ -62,8 +62,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'vqe';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="22. Concluding remarks and perspectives" href="conclusions.html" />
-    <link rel="prev" title="20. The quantum Fourier transform and phase estimation" href="quantumfourier.html" />
+    <link rel="next" title="23. Concluding remarks and perspectives" href="conclusions.html" />
+    <link rel="prev" title="21. The quantum Fourier transform and phase estimation" href="quantumfourier.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -209,25 +209,26 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Applications and stochastic methods</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="quantumdots.html">12. Quantum dots: a realistic Hamiltonian</a></li>
-<li class="toctree-l1"><a class="reference internal" href="statistics.html">13. Elements from statistics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="variationalmc.html">14. Variational Monte Carlo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="optimisation.html">15. Optimization and resampling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="diffusionmc.html">16. Diffusion Monte Carlo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="manybodymc.html">17. Applications to many-body systems: six electrons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dmrg.html">13. The density matrix renormalisation group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="statistics.html">14. Elements from statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variationalmc.html">15. Variational Monte Carlo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimisation.html">16. Optimization and resampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diffusionmc.html">17. Diffusion Monte Carlo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manybodymc.html">18. Applications to many-body systems: six electrons</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine learning approaches</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="boltzmannmachines.html">18. Boltzmann machines and generative models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pinns.html">19. Neural quantum states and physics-informed neural networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="boltzmannmachines.html">19. Boltzmann machines and generative models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pinns.html">20. Neural quantum states and physics-informed neural networks</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum computing</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="quantumfourier.html">20. The quantum Fourier transform and phase estimation</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">21. The variational quantum eigensolver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quantumfourier.html">21. The quantum Fourier transform and phase estimation</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">22. The variational quantum eigensolver</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Concluding remarks</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="conclusions.html">22. Concluding remarks and perspectives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conclusions.html">23. Concluding remarks and perspectives</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
 <ul class="nav bd-sidenav">
@@ -459,23 +460,23 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#measurement">21.1. 1. Measurement</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shot-noise">21.1.1. Shot noise</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#measurement">22.1. 1. Measurement</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shot-noise">22.1.1. Shot noise</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-single-qubit-readout-is-not-enough">21.2. 2. Why single-qubit readout is not enough</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-it-does-to-a-vqe-landscape">21.2.1. What it does to a VQE landscape</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-single-qubit-readout-is-not-enough">22.2. 2. Why single-qubit readout is not enough</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-it-does-to-a-vqe-landscape">22.2.1. What it does to a VQE landscape</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-parameter-shift-rule">21.3. 3. The parameter-shift rule</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#applications">21.4. 4. Applications</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-one-qubit-hamiltonian">21.4.1. The one-qubit Hamiltonian</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-two-qubit-hamiltonian">21.4.2. The two-qubit Hamiltonian</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lipkin-model-two-encodings">21.4.3. The Lipkin model: two encodings</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-models-of-chapter-4">21.4.4. The models of Chapter 4</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-parameter-shift-rule">22.3. 3. The parameter-shift rule</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#applications">22.4. 4. Applications</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-one-qubit-hamiltonian">22.4.1. The one-qubit Hamiltonian</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-two-qubit-hamiltonian">22.4.2. The two-qubit Hamiltonian</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lipkin-model-two-encodings">22.4.3. The Lipkin model: two encodings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-models-of-chapter-4">22.4.4. The models of Chapter 4</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#phase-estimation-and-vqe">21.5. 5. Phase estimation and VQE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#phase-estimation-and-vqe">22.5. 5. Phase estimation and VQE</a></li>
 </ul>
             </nav>
         </div>
@@ -488,7 +489,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="the-variational-quantum-eigensolver">
-<h1><span class="section-number">21. </span>The variational quantum eigensolver<a class="headerlink" href="#the-variational-quantum-eigensolver" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">22. </span>The variational quantum eigensolver<a class="headerlink" href="#the-variational-quantum-eigensolver" title="Link to this heading">#</a></h1>
 <p>This notebook accompanies Chapter 20.  It is the practical half of the pair
 begun in <code class="docutils literal notranslate"><span class="pre">quantumfourier.ipynb</span></code>: where phase estimation solved the eigenvalue
 problem exactly on a machine that does not exist, the variational quantum
@@ -531,7 +532,7 @@ encodings, and the models of Chapter 4.</p></li>
 </div>
 </div>
 <section id="measurement">
-<h2><span class="section-number">21.1. </span>1. Measurement<a class="headerlink" href="#measurement" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">22.1. </span>1. Measurement<a class="headerlink" href="#measurement" title="Link to this heading">#</a></h2>
 <p>A quantum computer measures in the computational basis, the eigenbasis of
 <span class="math notranslate nohighlight">\(Z\)</span>, and does nothing else.  Every other Pauli has to be rotated into it
 first:</p>
@@ -592,7 +593,7 @@ rotating and averaging parities with the matrix element.</p>
 </div>
 </div>
 <section id="shot-noise">
-<h3><span class="section-number">21.1.1. </span>Shot noise<a class="headerlink" href="#shot-noise" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">22.1.1. </span>Shot noise<a class="headerlink" href="#shot-noise" title="Link to this heading">#</a></h3>
 <p>Each shot returns a single bit string.  The estimator of <span class="math notranslate nohighlight">\(\langle P\rangle\)</span> is
 the average parity over the shots, unbiased with variance
 <span class="math notranslate nohighlight">\((1-\langle P\rangle^2)/N\)</span>, so the error falls as <span class="math notranslate nohighlight">\(1/\sqrt{N}\)</span> — and nothing
@@ -651,7 +652,7 @@ algorithm.</p>
 </section>
 </section>
 <section id="why-single-qubit-readout-is-not-enough">
-<h2><span class="section-number">21.2. </span>2. Why single-qubit readout is not enough<a class="headerlink" href="#why-single-qubit-readout-is-not-enough" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">22.2. </span>2. Why single-qubit readout is not enough<a class="headerlink" href="#why-single-qubit-readout-is-not-enough" title="Link to this heading">#</a></h2>
 <p>It is tempting to measure each qubit separately and multiply,
 <span class="math notranslate nohighlight">\(\langle Z_1Z_2\rangle \approx \langle Z_1\rangle\langle Z_2\rangle\)</span>.
 This is false, and the way in which it is false is quiet rather than loud.</p>
@@ -676,7 +677,7 @@ correlations.  Two states with identical marginals and opposite correlator:</p>
 </div>
 </div>
 <section id="what-it-does-to-a-vqe-landscape">
-<h3><span class="section-number">21.2.1. </span>What it does to a VQE landscape<a class="headerlink" href="#what-it-does-to-a-vqe-landscape" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">22.2.1. </span>What it does to a VQE landscape<a class="headerlink" href="#what-it-does-to-a-vqe-landscape" title="Link to this heading">#</a></h3>
 <p>Take <span class="math notranslate nohighlight">\(H = Z_1Z_2\)</span> with the ansatz
 <span class="math notranslate nohighlight">\(|\psi(\theta)\rangle = \cos\theta|00\rangle + \sin\theta|11\rangle\)</span>.  Both
 basis states have even parity, so <strong>every</strong> member of the family has
@@ -746,7 +747,7 @@ two operations is the whole of the difference.</p>
 </section>
 </section>
 <section id="the-parameter-shift-rule">
-<h2><span class="section-number">21.3. </span>3. The parameter-shift rule<a class="headerlink" href="#the-parameter-shift-rule" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">22.3. </span>3. The parameter-shift rule<a class="headerlink" href="#the-parameter-shift-rule" title="Link to this heading">#</a></h2>
 <p>If a parameter enters as <span class="math notranslate nohighlight">\(e^{-i\theta P/2}\)</span> with <span class="math notranslate nohighlight">\(P\)</span> a Pauli string, then
 <span class="math notranslate nohighlight">\(P/2\)</span> has eigenvalues <span class="math notranslate nohighlight">\(\pm 1/2\)</span> and the energy is a trigonometric polynomial
 of frequency one,</p>
@@ -804,9 +805,9 @@ four-term rule       -0.970535   error 5.32e-10
 </div>
 </section>
 <section id="applications">
-<h2><span class="section-number">21.4. </span>4. Applications<a class="headerlink" href="#applications" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">22.4. </span>4. Applications<a class="headerlink" href="#applications" title="Link to this heading">#</a></h2>
 <section id="the-one-qubit-hamiltonian">
-<h3><span class="section-number">21.4.1. </span>The one-qubit Hamiltonian<a class="headerlink" href="#the-one-qubit-hamiltonian" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">22.4.1. </span>The one-qubit Hamiltonian<a class="headerlink" href="#the-one-qubit-hamiltonian" title="Link to this heading">#</a></h3>
 <p>Two angles reach every point on the Bloch sphere, so for a one-qubit
 Hamiltonian the ansatz is <strong>exact</strong>: the variational minimum is the true
 ground state and the only error is the optimiser’s.  This is the last case in
@@ -834,7 +835,7 @@ which anything of the kind is true.</p>
 </div>
 </section>
 <section id="the-two-qubit-hamiltonian">
-<h3><span class="section-number">21.4.2. </span>The two-qubit Hamiltonian<a class="headerlink" href="#the-two-qubit-hamiltonian" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">22.4.2. </span>The two-qubit Hamiltonian<a class="headerlink" href="#the-two-qubit-hamiltonian" title="Link to this heading">#</a></h3>
 <p>The ground state is a superposition of <span class="math notranslate nohighlight">\(|00\rangle\)</span> and <span class="math notranslate nohighlight">\(|11\rangle\)</span> — the
 <span class="math notranslate nohighlight">\(X\otimes X\)</span> term couples exactly those — so it is entangled, and a single
 CNOT suffices to reach it.  One layer is enough; extra layers add parameters
@@ -895,7 +896,7 @@ exact ground state -0.531129
 </div>
 </section>
 <section id="the-lipkin-model-two-encodings">
-<h3><span class="section-number">21.4.3. </span>The Lipkin model: two encodings<a class="headerlink" href="#the-lipkin-model-two-encodings" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">22.4.3. </span>The Lipkin model: two encodings<a class="headerlink" href="#the-lipkin-model-two-encodings" title="Link to this heading">#</a></h3>
 <p>Fixing the maximal quasispin <span class="math notranslate nohighlight">\(j = N/2\)</span> and using
 <span class="math notranslate nohighlight">\(J_+J_- + J_-J_+ = 2(J^2 - J_z^2)\)</span> reduces the Lipkin Hamiltonian to a matrix
 of dimension <span class="math notranslate nohighlight">\(N+1\)</span>.  Two ways to put that on qubits:</p>
@@ -951,7 +952,7 @@ spectrum exactly.</p>
 </div>
 </section>
 <section id="the-models-of-chapter-4">
-<h3><span class="section-number">21.4.4. </span>The models of Chapter 4<a class="headerlink" href="#the-models-of-chapter-4" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">22.4.4. </span>The models of Chapter 4<a class="headerlink" href="#the-models-of-chapter-4" title="Link to this heading">#</a></h3>
 <p>The same four systems Chapter 19 fed to phase estimation.  The
 hardware-efficient ansatz is used throughout, deliberately: it carries no
 information about any of these Hamiltonians, so where it falls short the fault
@@ -1011,7 +1012,7 @@ carries no information about whether the answer is right.</p>
 </section>
 </section>
 <section id="phase-estimation-and-vqe">
-<h2><span class="section-number">21.5. </span>5. Phase estimation and VQE<a class="headerlink" href="#phase-estimation-and-vqe" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">22.5. </span>5. Phase estimation and VQE<a class="headerlink" href="#phase-estimation-and-vqe" title="Link to this heading">#</a></h2>
 <p>The last column above is the measurement cost: with <span class="math notranslate nohighlight">\(G\)</span> commuting groups and
 <span class="math notranslate nohighlight">\(S\)</span> shots each, one energy evaluation costs <span class="math notranslate nohighlight">\(GS\)</span> measurements and one
 parameter-shift gradient costs <span class="math notranslate nohighlight">\(2PGS\)</span> for <span class="math notranslate nohighlight">\(P\)</span> parameters.  For the four-qubit,
@@ -1119,7 +1120,7 @@ estimation, mathematics for VQE.</p>
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">20. </span>The quantum Fourier transform and phase estimation</p>
+        <p class="prev-next-title"><span class="section-number">21. </span>The quantum Fourier transform and phase estimation</p>
       </div>
     </a>
     <a class="right-next"
@@ -1127,7 +1128,7 @@ estimation, mathematics for VQE.</p>
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">22. </span>Concluding remarks and perspectives</p>
+        <p class="prev-next-title"><span class="section-number">23. </span>Concluding remarks and perspectives</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1147,23 +1148,23 @@ estimation, mathematics for VQE.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#measurement">21.1. 1. Measurement</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shot-noise">21.1.1. Shot noise</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#measurement">22.1. 1. Measurement</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shot-noise">22.1.1. Shot noise</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-single-qubit-readout-is-not-enough">21.2. 2. Why single-qubit readout is not enough</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-it-does-to-a-vqe-landscape">21.2.1. What it does to a VQE landscape</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-single-qubit-readout-is-not-enough">22.2. 2. Why single-qubit readout is not enough</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-it-does-to-a-vqe-landscape">22.2.1. What it does to a VQE landscape</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-parameter-shift-rule">21.3. 3. The parameter-shift rule</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#applications">21.4. 4. Applications</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-one-qubit-hamiltonian">21.4.1. The one-qubit Hamiltonian</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-two-qubit-hamiltonian">21.4.2. The two-qubit Hamiltonian</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lipkin-model-two-encodings">21.4.3. The Lipkin model: two encodings</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-models-of-chapter-4">21.4.4. The models of Chapter 4</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-parameter-shift-rule">22.3. 3. The parameter-shift rule</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#applications">22.4. 4. Applications</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-one-qubit-hamiltonian">22.4.1. The one-qubit Hamiltonian</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-two-qubit-hamiltonian">22.4.2. The two-qubit Hamiltonian</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lipkin-model-two-encodings">22.4.3. The Lipkin model: two encodings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-models-of-chapter-4">22.4.4. The models of Chapter 4</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#phase-estimation-and-vqe">21.5. 5. Phase estimation and VQE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#phase-estimation-and-vqe">22.5. 5. Phase estimation and VQE</a></li>
 </ul>
   </nav></div>
 

@@ -48,7 +48,13 @@ NOTEBOOKS = {
     # the project notebooks of the appendix: the first entry is the figure
     # directory name rather than a chapter number
     "fam.ipynb":              ("appendixA", "fam"),
-    "effective3body.ipynb":   ("appendixB", "eff3b"),
+    "effective3body.ipynb":   ("appendixA", "effective3b"),
+    "atoms.ipynb":            ("appendixA", "atoms"),
+    "ccdchannels.ipynb":      ("appendixA", "ccdchannels"),
+    "nqs.ipynb":              ("appendixA", "nqs"),
+    # the DMRG chapter keeps its programs in chapterdmrg rather than a
+    # numbered directory
+    "dmrg.ipynb":             ("chapterdmrg", "dmrg"),
 }
 
 SETUP = r'''

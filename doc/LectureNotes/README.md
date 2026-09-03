@@ -53,9 +53,9 @@ rm -rf _build && jupyter-book build .
 | `mbptheory.ipynb` | 9, many-body perturbation theory | `mbpt.py` |
 | `coupledcluster.ipynb` | 10, coupled cluster and unitary CC | `coupledcluster.py` |
 | `quantumdots.ipynb` | 11, the two-dimensional quantum dot | `quantumdot.py` |
+| `dmrg.ipynb` | the DMRG chapter (after 11): matrix product states and the density matrix renormalisation group | `chapterdmrg/dmrg.py` |
 | `statistics.ipynb` | 12, statistics, random walks and Metropolis | `montecarlo.py` |
 | `fam.ipynb` | Appendix A, Project 1: the finite amplitude method | `appendixA/fam.py` (with `rpa.py`) |
-| `effective3body.ipynb` | Appendix B: effective three-body interactions from exact diagonalisation | `appendixB/effective3b.py` |
 
 ## Regenerating the book's figures
 

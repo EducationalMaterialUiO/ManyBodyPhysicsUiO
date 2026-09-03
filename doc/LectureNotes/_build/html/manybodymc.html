@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>17. Applications to many-body systems: six electrons &#8212; Quantum Mechanics for Many-Particle Systems: from standard methods to quantum computing and machine learning</title>
+    <title>18. Applications to many-body systems: six electrons &#8212; Quantum Mechanics for Many-Particle Systems: from standard methods to quantum computing and machine learning</title>
   
   
   
@@ -62,8 +62,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'manybodymc';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="18. Boltzmann machines and generative models" href="boltzmannmachines.html" />
-    <link rel="prev" title="16. Diffusion Monte Carlo" href="diffusionmc.html" />
+    <link rel="next" title="19. Boltzmann machines and generative models" href="boltzmannmachines.html" />
+    <link rel="prev" title="17. Diffusion Monte Carlo" href="diffusionmc.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -209,25 +209,26 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Applications and stochastic methods</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="quantumdots.html">12. Quantum dots: a realistic Hamiltonian</a></li>
-<li class="toctree-l1"><a class="reference internal" href="statistics.html">13. Elements from statistics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="variationalmc.html">14. Variational Monte Carlo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="optimisation.html">15. Optimization and resampling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="diffusionmc.html">16. Diffusion Monte Carlo</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">17. Applications to many-body systems: six electrons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dmrg.html">13. The density matrix renormalisation group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="statistics.html">14. Elements from statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variationalmc.html">15. Variational Monte Carlo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimisation.html">16. Optimization and resampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diffusionmc.html">17. Diffusion Monte Carlo</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">18. Applications to many-body systems: six electrons</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine learning approaches</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="boltzmannmachines.html">18. Boltzmann machines and generative models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pinns.html">19. Neural quantum states and physics-informed neural networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="boltzmannmachines.html">19. Boltzmann machines and generative models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pinns.html">20. Neural quantum states and physics-informed neural networks</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum computing</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="quantumfourier.html">20. The quantum Fourier transform and phase estimation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="vqe.html">21. The variational quantum eigensolver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quantumfourier.html">21. The quantum Fourier transform and phase estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vqe.html">22. The variational quantum eigensolver</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Concluding remarks</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="conclusions.html">22. Concluding remarks and perspectives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conclusions.html">23. Concluding remarks and perspectives</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
 <ul class="nav bd-sidenav">
@@ -459,21 +460,21 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verification-first">17.1. 1. Verification first</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sherman-morrison-a-determinant-ratio-without-a-determinant">17.2. 2. Sherman-Morrison: a determinant ratio without a determinant</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-cusp-coefficients-are-spin-dependent">17.3. 3. The cusp coefficients are spin dependent</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nodes-the-drift-and-what-the-spin-move-is-worth">17.4. 4. Nodes, the drift, and what the spin move is worth</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optimising-the-trial-function">17.5. 5. Optimising the trial function</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variational-monte-carlo">17.6. 6. Variational Monte Carlo</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diffusion-monte-carlo-and-a-warning">17.7. 7. Diffusion Monte Carlo, and a warning</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-time-step">17.7.1. The time step</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verification-first">18.1. 1. Verification first</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sherman-morrison-a-determinant-ratio-without-a-determinant">18.2. 2. Sherman-Morrison: a determinant ratio without a determinant</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-cusp-coefficients-are-spin-dependent">18.3. 3. The cusp coefficients are spin dependent</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nodes-the-drift-and-what-the-spin-move-is-worth">18.4. 4. Nodes, the drift, and what the spin move is worth</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optimising-the-trial-function">18.5. 5. Optimising the trial function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variational-monte-carlo">18.6. 6. Variational Monte Carlo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diffusion-monte-carlo-and-a-warning">18.7. 7. Diffusion Monte Carlo, and a warning</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-time-step">18.7.1. The time step</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-comparison">17.8. 8. The comparison</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dependence-on-the-confinement">17.9. 9. Dependence on the confinement</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-pictures-of-the-six-electron-dot">17.10. 10. Two pictures of the six-electron dot</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-local-energy-along-a-run">17.10.1. The local energy along a run</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-jastrow-factor-seen">17.10.2. The Jastrow factor, seen</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-comparison">18.8. 8. The comparison</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dependence-on-the-confinement">18.9. 9. Dependence on the confinement</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-pictures-of-the-six-electron-dot">18.10. 10. Two pictures of the six-electron dot</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-local-energy-along-a-run">18.10.1. The local energy along a run</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-jastrow-factor-seen">18.10.2. The Jastrow factor, seen</a></li>
 </ul>
 </li>
 </ul>
@@ -488,7 +489,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="applications-to-many-body-systems-six-electrons">
-<h1><span class="section-number">17. </span>Applications to many-body systems: six electrons<a class="headerlink" href="#applications-to-many-body-systems-six-electrons" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">18. </span>Applications to many-body systems: six electrons<a class="headerlink" href="#applications-to-many-body-systems-six-electrons" title="Link to this heading">#</a></h1>
 <p>Executable companion to chapter 16.</p>
 <p>Every method in this book has now been developed, and every one has been tested
 on a system chosen to make it easy.  Hartree-Fock, MBPT and coupled cluster were
@@ -551,7 +552,7 @@ published DMC (Lohne et al. 2011): 20.1597(2)
 </div>
 </div>
 <section id="verification-first">
-<h2><span class="section-number">17.1. </span>1. Verification first<a class="headerlink" href="#verification-first" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">18.1. </span>1. Verification first<a class="headerlink" href="#verification-first" title="Link to this heading">#</a></h2>
 <p>Nothing is usable until the determinant ratios and their derivatives are known
 to be right.  Everything is analytic; everything is checked against finite
 differences.  And for two electrons the whole machinery must collapse onto the
@@ -593,7 +594,7 @@ N=2, vmc.py       : 2.836973119243
 </div>
 </section>
 <section id="sherman-morrison-a-determinant-ratio-without-a-determinant">
-<h2><span class="section-number">17.2. </span>2. Sherman-Morrison: a determinant ratio without a determinant<a class="headerlink" href="#sherman-morrison-a-determinant-ratio-without-a-determinant" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">18.2. </span>2. Sherman-Morrison: a determinant ratio without a determinant<a class="headerlink" href="#sherman-morrison-a-determinant-ratio-without-a-determinant" title="Link to this heading">#</a></h2>
 <p>Equation (2.44).  Moving one particle changes one row of one spin block, so the
 ratio is a single dot product with the <span class="math notranslate nohighlight">\(i\)</span>-th column of the old inverse, and the
 inverse is repaired in <span class="math notranslate nohighlight">\(O(N^2)\)</span> by Eqs. (2.47)-(2.48) instead of recomputed in
@@ -629,7 +630,7 @@ brute-force quotient of two determinants.</p>
 </div>
 </section>
 <section id="the-cusp-coefficients-are-spin-dependent">
-<h2><span class="section-number">17.3. </span>3. The cusp coefficients are spin dependent<a class="headerlink" href="#the-cusp-coefficients-are-spin-dependent" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">18.3. </span>3. The cusp coefficients are spin dependent<a class="headerlink" href="#the-cusp-coefficients-are-spin-dependent" title="Link to this heading">#</a></h2>
 <p>Requiring the local energy to stay finite as two electrons meet gives
 <span class="math notranslate nohighlight">\(a = 1/(2\ell + d - 1)\)</span>, with <span class="math notranslate nohighlight">\(\ell = 0\)</span> for an antiparallel pair and <span class="math notranslate nohighlight">\(\ell = 1\)</span>
 for a parallel one – the determinant already vanishes linearly there.  In two
@@ -671,7 +672,7 @@ gets by assuming the determinant handles it alone.</p>
 <span class="math notranslate nohighlight">\(1/r_{ij}\)</span>, and the variance of the energy with it.</p>
 </section>
 <section id="nodes-the-drift-and-what-the-spin-move-is-worth">
-<h2><span class="section-number">17.4. </span>4. Nodes, the drift, and what the spin move is worth<a class="headerlink" href="#nodes-the-drift-and-what-the-spin-move-is-worth" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">18.4. </span>4. Nodes, the drift, and what the spin move is worth<a class="headerlink" href="#nodes-the-drift-and-what-the-spin-move-is-worth" title="Link to this heading">#</a></h2>
 <p>The two-electron trial function was strictly positive.  This one is not:
 <span class="math notranslate nohighlight">\(|D_\uparrow|\)</span> vanishes when the three spin-up electrons become collinear.  Near
 that surface the quantum force <span class="math notranslate nohighlight">\(\mathbf F = 2\nabla\ln\Psi_T\)</span> diverges, the drift
@@ -730,7 +731,7 @@ you.</p>
 numerically: sampling the spin assignment gives the same energy as freezing it.</p>
 </section>
 <section id="optimising-the-trial-function">
-<h2><span class="section-number">17.5. </span>5. Optimising the trial function<a class="headerlink" href="#optimising-the-trial-function" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">18.5. </span>5. Optimising the trial function<a class="headerlink" href="#optimising-the-trial-function" title="Link to this heading">#</a></h2>
 <p>The gradient of chapter 14 carries over untouched.  Only the parameter
 derivatives change: <span class="math notranslate nohighlight">\(\partial\ln|D|/\partial\alpha = {\rm Tr}(D^{-1}\,
 \partial D/\partial\alpha)\)</span>, using the same inverse the sampling already keeps.
@@ -812,7 +813,7 @@ and co-workers found the same for this system, and noted that it fails for three
 electrons, where the spin populations differ.  Closed shells are forgiving.</p>
 </section>
 <section id="variational-monte-carlo">
-<h2><span class="section-number">17.6. </span>6. Variational Monte Carlo<a class="headerlink" href="#variational-monte-carlo" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">18.6. </span>6. Variational Monte Carlo<a class="headerlink" href="#variational-monte-carlo" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">run</span> <span class="o">=</span> <span class="n">mbmc</span><span class="o">.</span><span class="n">vmc</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mf">0.98</span><span class="p">,</span> <span class="mf">0.46</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">n_walkers</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span> <span class="n">n_steps</span><span class="o">=</span><span class="mi">900</span><span class="p">,</span> <span class="n">burn_in</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
@@ -838,7 +839,7 @@ electrons, where the spin populations differ.  Closed shells are forgiving.</p>
 </div>
 </section>
 <section id="diffusion-monte-carlo-and-a-warning">
-<h2><span class="section-number">17.7. </span>7. Diffusion Monte Carlo, and a warning<a class="headerlink" href="#diffusion-monte-carlo-and-a-warning" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">18.7. </span>7. Diffusion Monte Carlo, and a warning<a class="headerlink" href="#diffusion-monte-carlo-and-a-warning" title="Link to this heading">#</a></h2>
 <p>The spin-exchange move is exact in variational Monte Carlo and <strong>wrong</strong> in
 diffusion Monte Carlo.  It satisfies detailed balance with respect to
 <span class="math notranslate nohighlight">\(|\Psi_T|^2\)</span>, which is what VMC samples, and <em>not</em> with respect to
@@ -873,7 +874,7 @@ has been undone.  The remedy is to exchange during the variational equilibration
 leaving each walker in a randomised assignment, and then freeze – the ensemble
 still averages over assignments and nothing interferes with the projection.</p>
 <section id="the-time-step">
-<h3><span class="section-number">17.7.1. </span>The time step<a class="headerlink" href="#the-time-step" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">18.7.1. </span>The time step<a class="headerlink" href="#the-time-step" title="Link to this heading">#</a></h3>
 <p>Note that the equilibration is measured in <em>imaginary time</em>, not in steps.  At
 <span class="math notranslate nohighlight">\(\Delta\tau = 0.01\)</span> a fixed number of steps covers a tenth of the imaginary time
 it does at <span class="math notranslate nohighlight">\(\Delta\tau = 0.1\)</span>, and a calculation that forgets this reports the
@@ -918,7 +919,7 @@ with the published fixed-node result at one standard error.</p>
 </section>
 </section>
 <section id="the-comparison">
-<h2><span class="section-number">17.8. </span>8. The comparison<a class="headerlink" href="#the-comparison" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">18.8. </span>8. The comparison<a class="headerlink" href="#the-comparison" title="Link to this heading">#</a></h2>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>method</p></th>
@@ -979,7 +980,7 @@ same-spin electrons be collinear.  That was never optimised and, within this
 ansatz, cannot be.  It is the last uncontrolled approximation in the book.</p>
 </section>
 <section id="dependence-on-the-confinement">
-<h2><span class="section-number">17.9. </span>9. Dependence on the confinement<a class="headerlink" href="#dependence-on-the-confinement" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">18.9. </span>9. Dependence on the confinement<a class="headerlink" href="#dependence-on-the-confinement" title="Link to this heading">#</a></h2>
 <p>Running the full <span class="math notranslate nohighlight">\(\omega\)</span> scan takes a few minutes, so the numbers below come
 from <code class="docutils literal notranslate"><span class="pre">manybodymc.py</span></code> rather than from this notebook.  Parameters are
 <span class="math notranslate nohighlight">\(\alpha = 0.98\)</span>, <span class="math notranslate nohighlight">\(\beta = 0.46\sqrt{\omega}\)</span> – the oscillator length is
@@ -1050,13 +1051,13 @@ larger populations; it is left visible because a residual of <span class="math n
 exactly what a table of six-digit numbers is apt to conceal.</p>
 </section>
 <section id="two-pictures-of-the-six-electron-dot">
-<h2><span class="section-number">17.10. </span>10. Two pictures of the six-electron dot<a class="headerlink" href="#two-pictures-of-the-six-electron-dot" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">18.10. </span>10. Two pictures of the six-electron dot<a class="headerlink" href="#two-pictures-of-the-six-electron-dot" title="Link to this heading">#</a></h2>
 <p>The sections above report numbers.  The two figures here show what the numbers
 are made of.  Both come from short runs – a few hundred sweeps with a couple of
 hundred walkers – which is enough to show the behaviour and nowhere near enough
 for a production error bar.</p>
 <section id="the-local-energy-along-a-run">
-<h3><span class="section-number">17.10.1. </span>The local energy along a run<a class="headerlink" href="#the-local-energy-along-a-run" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">18.10.1. </span>The local energy along a run<a class="headerlink" href="#the-local-energy-along-a-run" title="Link to this heading">#</a></h3>
 <p>Every variational average in this notebook is the mean of a time series, and the
 series has two parts which must be kept apart.  The walkers start life in a
 Gaussian cloud that is <em>not</em> distributed as <span class="math notranslate nohighlight">\(|\Psi_T|^2\)</span>, so the first few tens
@@ -1133,7 +1134,7 @@ that is what <code class="docutils literal notranslate"><span class="pre">blocki
 notebook is quoted through it.</p>
 </section>
 <section id="the-jastrow-factor-seen">
-<h3><span class="section-number">17.10.2. </span>The Jastrow factor, seen<a class="headerlink" href="#the-jastrow-factor-seen" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">18.10.2. </span>The Jastrow factor, seen<a class="headerlink" href="#the-jastrow-factor-seen" title="Link to this heading">#</a></h3>
 <p>The Jastrow factor is usually justified by what it does to the energy.  It is
 more instructive to look at what it does to the electrons.  We sample the same
 six-electron dot twice, with the same importance-sampled sweep and the same
@@ -1266,7 +1267,7 @@ coefficients of section 3 had to be spin dependent.</p>
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">16. </span>Diffusion Monte Carlo</p>
+        <p class="prev-next-title"><span class="section-number">17. </span>Diffusion Monte Carlo</p>
       </div>
     </a>
     <a class="right-next"
@@ -1274,7 +1275,7 @@ coefficients of section 3 had to be spin dependent.</p>
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">18. </span>Boltzmann machines and generative models</p>
+        <p class="prev-next-title"><span class="section-number">19. </span>Boltzmann machines and generative models</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1294,21 +1295,21 @@ coefficients of section 3 had to be spin dependent.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verification-first">17.1. 1. Verification first</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sherman-morrison-a-determinant-ratio-without-a-determinant">17.2. 2. Sherman-Morrison: a determinant ratio without a determinant</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-cusp-coefficients-are-spin-dependent">17.3. 3. The cusp coefficients are spin dependent</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nodes-the-drift-and-what-the-spin-move-is-worth">17.4. 4. Nodes, the drift, and what the spin move is worth</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optimising-the-trial-function">17.5. 5. Optimising the trial function</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variational-monte-carlo">17.6. 6. Variational Monte Carlo</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diffusion-monte-carlo-and-a-warning">17.7. 7. Diffusion Monte Carlo, and a warning</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-time-step">17.7.1. The time step</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verification-first">18.1. 1. Verification first</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sherman-morrison-a-determinant-ratio-without-a-determinant">18.2. 2. Sherman-Morrison: a determinant ratio without a determinant</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-cusp-coefficients-are-spin-dependent">18.3. 3. The cusp coefficients are spin dependent</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nodes-the-drift-and-what-the-spin-move-is-worth">18.4. 4. Nodes, the drift, and what the spin move is worth</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optimising-the-trial-function">18.5. 5. Optimising the trial function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variational-monte-carlo">18.6. 6. Variational Monte Carlo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diffusion-monte-carlo-and-a-warning">18.7. 7. Diffusion Monte Carlo, and a warning</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-time-step">18.7.1. The time step</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-comparison">17.8. 8. The comparison</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dependence-on-the-confinement">17.9. 9. Dependence on the confinement</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-pictures-of-the-six-electron-dot">17.10. 10. Two pictures of the six-electron dot</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-local-energy-along-a-run">17.10.1. The local energy along a run</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-jastrow-factor-seen">17.10.2. The Jastrow factor, seen</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-comparison">18.8. 8. The comparison</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dependence-on-the-confinement">18.9. 9. Dependence on the confinement</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-pictures-of-the-six-electron-dot">18.10. 10. Two pictures of the six-electron dot</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-local-energy-along-a-run">18.10.1. The local energy along a run</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-jastrow-factor-seen">18.10.2. The Jastrow factor, seen</a></li>
 </ul>
 </li>
 </ul>

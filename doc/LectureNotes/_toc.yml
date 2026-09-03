@@ -63,3 +63,6 @@ parts:
     chapters:
       - file: fam.ipynb                  # appendix A, project 1
       - file: effective3body.ipynb       # appendix A, project 2
+      - file: atoms.ipynb                # appendix A, project 3
+      - file: ccdchannels.ipynb          # appendix A, project 4
+      - file: nqs.ipynb                  # appendix A, project 5

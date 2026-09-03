@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>18. Boltzmann machines and generative models &#8212; Quantum Mechanics for Many-Particle Systems: from standard methods to quantum computing and machine learning</title>
+    <title>19. Boltzmann machines and generative models &#8212; Quantum Mechanics for Many-Particle Systems: from standard methods to quantum computing and machine learning</title>
   
   
   
@@ -62,8 +62,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'boltzmannmachines';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="19. Neural quantum states and physics-informed neural networks" href="pinns.html" />
-    <link rel="prev" title="17. Applications to many-body systems: six electrons" href="manybodymc.html" />
+    <link rel="next" title="20. Neural quantum states and physics-informed neural networks" href="pinns.html" />
+    <link rel="prev" title="18. Applications to many-body systems: six electrons" href="manybodymc.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -209,25 +209,26 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Applications and stochastic methods</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="quantumdots.html">12. Quantum dots: a realistic Hamiltonian</a></li>
-<li class="toctree-l1"><a class="reference internal" href="statistics.html">13. Elements from statistics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="variationalmc.html">14. Variational Monte Carlo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="optimisation.html">15. Optimization and resampling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="diffusionmc.html">16. Diffusion Monte Carlo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="manybodymc.html">17. Applications to many-body systems: six electrons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dmrg.html">13. The density matrix renormalisation group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="statistics.html">14. Elements from statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variationalmc.html">15. Variational Monte Carlo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimisation.html">16. Optimization and resampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diffusionmc.html">17. Diffusion Monte Carlo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manybodymc.html">18. Applications to many-body systems: six electrons</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine learning approaches</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">18. Boltzmann machines and generative models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pinns.html">19. Neural quantum states and physics-informed neural networks</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">19. Boltzmann machines and generative models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pinns.html">20. Neural quantum states and physics-informed neural networks</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum computing</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="quantumfourier.html">20. The quantum Fourier transform and phase estimation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="vqe.html">21. The variational quantum eigensolver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quantumfourier.html">21. The quantum Fourier transform and phase estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vqe.html">22. The variational quantum eigensolver</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Concluding remarks</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="conclusions.html">22. Concluding remarks and perspectives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conclusions.html">23. Concluding remarks and perspectives</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
 <ul class="nav bd-sidenav">
@@ -459,17 +460,17 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#energy-based-models">18.1. 1. Energy-based models</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gibbs-sampling">18.2. 2. Gibbs sampling</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gibbs-against-metropolis-and-a-cautionary-tale">18.2.1. Gibbs against Metropolis, and a cautionary tale</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#energy-based-models">19.1. 1. Energy-based models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gibbs-sampling">19.2. 2. Gibbs sampling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gibbs-against-metropolis-and-a-cautionary-tale">19.2.1. Gibbs against Metropolis, and a cautionary tale</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#restricted-boltzmann-machines">18.3. 3. Restricted Boltzmann machines</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-contrastive-divergence">18.4. 4. Training: contrastive divergence</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-gaussianbinary-machine">18.5. 5. The Gaussian–binary machine</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#neural-quantum-states">18.6. 6. Neural quantum states</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-electrons-in-a-quantum-dot">18.7. 7. Two electrons in a quantum dot</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#two-honest-observations">18.7.1. Two honest observations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#restricted-boltzmann-machines">19.3. 3. Restricted Boltzmann machines</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-contrastive-divergence">19.4. 4. Training: contrastive divergence</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-gaussianbinary-machine">19.5. 5. The Gaussian–binary machine</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#neural-quantum-states">19.6. 6. Neural quantum states</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-electrons-in-a-quantum-dot">19.7. 7. Two electrons in a quantum dot</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#two-honest-observations">19.7.1. Two honest observations</a></li>
 </ul>
 </li>
 </ul>
@@ -484,7 +485,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="boltzmann-machines-and-generative-models">
-<h1><span class="section-number">18. </span>Boltzmann machines and generative models<a class="headerlink" href="#boltzmann-machines-and-generative-models" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">19. </span>Boltzmann machines and generative models<a class="headerlink" href="#boltzmann-machines-and-generative-models" title="Link to this heading">#</a></h1>
 <p>Executable companion to chapter 17.</p>
 <p>Every method so far in this book has begun with a <em>guess</em> — a Slater
 determinant, an exponential ansatz, a Padé–Jastrow factor — built from physics.
@@ -524,7 +525,7 @@ quantum dot of chapters 11 and 13.</p></li>
 </div>
 </div>
 <section id="energy-based-models">
-<h2><span class="section-number">18.1. </span>1. Energy-based models<a class="headerlink" href="#energy-based-models" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">19.1. </span>1. Energy-based models<a class="headerlink" href="#energy-based-models" title="Link to this heading">#</a></h2>
 <p>Introduce visible variables <span class="math notranslate nohighlight">\(\bm{x}\)</span> and hidden variables <span class="math notranslate nohighlight">\(\bm{h}\)</span>, and a
 joint distribution</p>
 <div class="math notranslate nohighlight">
@@ -572,7 +573,7 @@ distribution, arrived at from the other direction.</p>
 in section 4.</p>
 </section>
 <section id="gibbs-sampling">
-<h2><span class="section-number">18.2. </span>2. Gibbs sampling<a class="headerlink" href="#gibbs-sampling" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">19.2. </span>2. Gibbs sampling<a class="headerlink" href="#gibbs-sampling" title="Link to this heading">#</a></h2>
 <p>The conditional of a distribution known up to normalisation is known
 <strong>exactly</strong>: <span class="math notranslate nohighlight">\(Z\)</span> cancels between numerator and denominator in</p>
 <div class="math notranslate nohighlight">
@@ -680,7 +681,7 @@ rho =  0.95   tau =    20.32
 </div>
 </div>
 <section id="gibbs-against-metropolis-and-a-cautionary-tale">
-<h3><span class="section-number">18.2.1. </span>Gibbs against Metropolis, and a cautionary tale<a class="headerlink" href="#gibbs-against-metropolis-and-a-cautionary-tale" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">19.2.1. </span>Gibbs against Metropolis, and a cautionary tale<a class="headerlink" href="#gibbs-against-metropolis-and-a-cautionary-tale" title="Link to this heading">#</a></h3>
 <p>Both are correct.  They differ in that Gibbs never rejects — and at low
 temperature that is worth a great deal.</p>
 <div class="cell docutils container">
@@ -754,7 +755,7 @@ conditional and accepting a proposal are not always the same thing.
 </section>
 </section>
 <section id="restricted-boltzmann-machines">
-<h2><span class="section-number">18.3. </span>3. Restricted Boltzmann machines<a class="headerlink" href="#restricted-boltzmann-machines" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">19.3. </span>3. Restricted Boltzmann machines<a class="headerlink" href="#restricted-boltzmann-machines" title="Link to this heading">#</a></h2>
 <p>A Boltzmann machine is a generalised Ising model with the couplings promoted
 from constants of nature to parameters to be fitted.  Deleting the
 <em>intra-layer</em> couplings leaves a bipartite graph,</p>
@@ -851,7 +852,7 @@ missing lateral couplings buy, and it is what makes block Gibbs work.
 </div>
 </section>
 <section id="training-contrastive-divergence">
-<h2><span class="section-number">18.4. </span>4. Training: contrastive divergence<a class="headerlink" href="#training-contrastive-divergence" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">19.4. </span>4. Training: contrastive divergence<a class="headerlink" href="#training-contrastive-divergence" title="Link to this heading">#</a></h2>
 <p>The positive phase is free — clamp the visible units to the data and evaluate
 the sigmoid.  The negative phase needs samples from the <em>model</em>, and the only
 route is a Markov chain.  Running it to equilibrium at every gradient step is
@@ -967,7 +968,7 @@ surprising and much-discussed fact about the algorithm.
 </div>
 </section>
 <section id="the-gaussianbinary-machine">
-<h2><span class="section-number">18.5. </span>5. The Gaussian–binary machine<a class="headerlink" href="#the-gaussianbinary-machine" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">19.5. </span>5. The Gaussian–binary machine<a class="headerlink" href="#the-gaussianbinary-machine" title="Link to this heading">#</a></h2>
 <p>Binary visible units are useless for particle coordinates.  Let them be real
 and Gaussian, keeping the hidden units binary:</p>
 <div class="math notranslate nohighlight">
@@ -1027,7 +1028,7 @@ p(x|h) vs. N(a + Wh, sigma^2)            8.35e-16
 </div>
 </section>
 <section id="neural-quantum-states">
-<h2><span class="section-number">18.6. </span>6. Neural quantum states<a class="headerlink" href="#neural-quantum-states" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">19.6. </span>6. Neural quantum states<a class="headerlink" href="#neural-quantum-states" title="Link to this heading">#</a></h2>
 <p>A wave function is a probability amplitude on configuration space; the
 marginal <span class="math notranslate nohighlight">\(p_{GB}(\bm{x})\)</span> is a probability density on the same space.  Identify
 them, and chapters 13 and 14 do the rest.</p>
@@ -1082,7 +1083,7 @@ E_L vs. numerical H Psi / Psi    3.17e-07
 </div>
 </section>
 <section id="two-electrons-in-a-quantum-dot">
-<h2><span class="section-number">18.7. </span>7. Two electrons in a quantum dot<a class="headerlink" href="#two-electrons-in-a-quantum-dot" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">19.7. </span>7. Two electrons in a quantum dot<a class="headerlink" href="#two-electrons-in-a-quantum-dot" title="Link to this heading">#</a></h2>
 <p>The system of chapters 11, 13, 14 and 16: two electrons in a two-dimensional
 harmonic trap at <span class="math notranslate nohighlight">\(\omega = 1\)</span>, exact energy 3 with the Coulomb repulsion and 2
 without.  <span class="math notranslate nohighlight">\(M = 4\)</span> visible units, <span class="math notranslate nohighlight">\(N\)</span> hidden.</p>
@@ -1204,7 +1205,7 @@ where E_L is constant.  This is the zero-variance principle of ch. 14.
 </div>
 </div>
 <section id="two-honest-observations">
-<h3><span class="section-number">18.7.1. </span>Two honest observations<a class="headerlink" href="#two-honest-observations" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">19.7.1. </span>Two honest observations<a class="headerlink" href="#two-honest-observations" title="Link to this heading">#</a></h3>
 <p><strong>The Boltzmann machine beats Hartree-Fock.</strong>  Given no single-particle basis,
 no orbitals and no notion of antisymmetry, fourteen numbers learned enough of
 the correlations from the energy alone to do better than a mean-field
@@ -1268,7 +1269,7 @@ the rest.</p>
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">17. </span>Applications to many-body systems: six electrons</p>
+        <p class="prev-next-title"><span class="section-number">18. </span>Applications to many-body systems: six electrons</p>
       </div>
     </a>
     <a class="right-next"
@@ -1276,7 +1277,7 @@ the rest.</p>
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">19. </span>Neural quantum states and physics-informed neural networks</p>
+        <p class="prev-next-title"><span class="section-number">20. </span>Neural quantum states and physics-informed neural networks</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1296,17 +1297,17 @@ the rest.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#energy-based-models">18.1. 1. Energy-based models</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gibbs-sampling">18.2. 2. Gibbs sampling</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gibbs-against-metropolis-and-a-cautionary-tale">18.2.1. Gibbs against Metropolis, and a cautionary tale</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#energy-based-models">19.1. 1. Energy-based models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gibbs-sampling">19.2. 2. Gibbs sampling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gibbs-against-metropolis-and-a-cautionary-tale">19.2.1. Gibbs against Metropolis, and a cautionary tale</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#restricted-boltzmann-machines">18.3. 3. Restricted Boltzmann machines</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-contrastive-divergence">18.4. 4. Training: contrastive divergence</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-gaussianbinary-machine">18.5. 5. The Gaussian–binary machine</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#neural-quantum-states">18.6. 6. Neural quantum states</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-electrons-in-a-quantum-dot">18.7. 7. Two electrons in a quantum dot</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#two-honest-observations">18.7.1. Two honest observations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#restricted-boltzmann-machines">19.3. 3. Restricted Boltzmann machines</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-contrastive-divergence">19.4. 4. Training: contrastive divergence</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-gaussianbinary-machine">19.5. 5. The Gaussian–binary machine</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#neural-quantum-states">19.6. 6. Neural quantum states</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-electrons-in-a-quantum-dot">19.7. 7. Two electrons in a quantum dot</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#two-honest-observations">19.7.1. Two honest observations</a></li>
 </ul>
 </li>
 </ul>

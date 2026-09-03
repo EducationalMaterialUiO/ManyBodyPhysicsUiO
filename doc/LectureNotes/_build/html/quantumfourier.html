@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>20. The quantum Fourier transform and phase estimation &#8212; Quantum Mechanics for Many-Particle Systems: from standard methods to quantum computing and machine learning</title>
+    <title>21. The quantum Fourier transform and phase estimation &#8212; Quantum Mechanics for Many-Particle Systems: from standard methods to quantum computing and machine learning</title>
   
   
   
@@ -62,8 +62,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'quantumfourier';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="21. The variational quantum eigensolver" href="vqe.html" />
-    <link rel="prev" title="19. Neural quantum states and physics-informed neural networks" href="pinns.html" />
+    <link rel="next" title="22. The variational quantum eigensolver" href="vqe.html" />
+    <link rel="prev" title="20. Neural quantum states and physics-informed neural networks" href="pinns.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -209,25 +209,26 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Applications and stochastic methods</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="quantumdots.html">12. Quantum dots: a realistic Hamiltonian</a></li>
-<li class="toctree-l1"><a class="reference internal" href="statistics.html">13. Elements from statistics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="variationalmc.html">14. Variational Monte Carlo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="optimisation.html">15. Optimization and resampling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="diffusionmc.html">16. Diffusion Monte Carlo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="manybodymc.html">17. Applications to many-body systems: six electrons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dmrg.html">13. The density matrix renormalisation group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="statistics.html">14. Elements from statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variationalmc.html">15. Variational Monte Carlo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimisation.html">16. Optimization and resampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diffusionmc.html">17. Diffusion Monte Carlo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manybodymc.html">18. Applications to many-body systems: six electrons</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine learning approaches</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="boltzmannmachines.html">18. Boltzmann machines and generative models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pinns.html">19. Neural quantum states and physics-informed neural networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="boltzmannmachines.html">19. Boltzmann machines and generative models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pinns.html">20. Neural quantum states and physics-informed neural networks</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum computing</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">20. The quantum Fourier transform and phase estimation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="vqe.html">21. The variational quantum eigensolver</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">21. The quantum Fourier transform and phase estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vqe.html">22. The variational quantum eigensolver</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Concluding remarks</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="conclusions.html">22. Concluding remarks and perspectives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conclusions.html">23. Concluding remarks and perspectives</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
 <ul class="nav bd-sidenav">
@@ -459,20 +460,20 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-quantum-fourier-transform">20.1. 1. The quantum Fourier transform</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-product-form">20.1.1. The product form</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-worked-example-mathrm-qft-8-101-rangle">20.1.2. The worked example: <span class="math notranslate nohighlight">\(\mathrm{QFT}_8|101\rangle\)</span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cost-the-approximate-qft-and-bit-reversal">20.1.3. Cost, the approximate QFT, and bit reversal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-quantum-fourier-transform">21.1. 1. The quantum Fourier transform</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-product-form">21.1.1. The product form</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-worked-example-mathrm-qft-8-101-rangle">21.1.2. The worked example: <span class="math notranslate nohighlight">\(\mathrm{QFT}_8|101\rangle\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cost-the-approximate-qft-and-bit-reversal">21.1.3. Cost, the approximate QFT, and bit reversal</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quantum-phase-estimation">20.2. 2. Quantum phase estimation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-phases-to-energies">20.3. 3. From phases to energies</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-chapter-4-models-as-qubit-hamiltonians">20.3.1. The chapter-4 models as qubit Hamiltonians</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-second-error-trotterisation">20.3.2. The second error: Trotterisation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-this-is-fatal-here-and-harmless-in-unitary-coupled-cluster">20.3.3. Why this is fatal here and harmless in unitary coupled cluster</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quantum-phase-estimation">21.2. 2. Quantum phase estimation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-phases-to-energies">21.3. 3. From phases to energies</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-chapter-4-models-as-qubit-hamiltonians">21.3.1. The chapter-4 models as qubit Hamiltonians</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-second-error-trotterisation">21.3.2. The second error: Trotterisation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-this-is-fatal-here-and-harmless-in-unitary-coupled-cluster">21.3.3. Why this is fatal here and harmless in unitary coupled cluster</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-state-you-start-from">20.4. 4. The state you start from</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-state-you-start-from">21.4. 4. The state you start from</a></li>
 </ul>
             </nav>
         </div>
@@ -485,7 +486,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="the-quantum-fourier-transform-and-phase-estimation">
-<h1><span class="section-number">20. </span>The quantum Fourier transform and phase estimation<a class="headerlink" href="#the-quantum-fourier-transform-and-phase-estimation" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">21. </span>The quantum Fourier transform and phase estimation<a class="headerlink" href="#the-quantum-fourier-transform-and-phase-estimation" title="Link to this heading">#</a></h1>
 <p>Executable companion to chapter 19.</p>
 <p>Every method so far in this book has been classical, and several have run into
 the exponential wall.  A quantum computer does not remove the wall — it moves
@@ -529,7 +530,7 @@ chapter 6.</p>
 </div>
 </div>
 <section id="the-quantum-fourier-transform">
-<h2><span class="section-number">20.1. </span>1. The quantum Fourier transform<a class="headerlink" href="#the-quantum-fourier-transform" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">21.1. </span>1. The quantum Fourier transform<a class="headerlink" href="#the-quantum-fourier-transform" title="Link to this heading">#</a></h2>
 <div class="math notranslate nohighlight">
 \[
 \boxed{\;\mathrm{QFT}_N|x\rangle = \frac{1}{\sqrt N}\sum_{k=0}^{N-1} e^{2\pi i xk/N}|k\rangle\;}
@@ -541,7 +542,7 @@ cannot be read out — measuring gives one basis state drawn from <span class="m
 the QFT is useless for transforming <em>data</em> and invaluable inside algorithms
 that need one number out of the transform.</p>
 <section id="the-product-form">
-<h3><span class="section-number">20.1.1. </span>The product form<a class="headerlink" href="#the-product-form" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">21.1.1. </span>The product form<a class="headerlink" href="#the-product-form" title="Link to this heading">#</a></h3>
 <p>Write <span class="math notranslate nohighlight">\(k\)</span> in binary.  Then <span class="math notranslate nohighlight">\(xk/2^n = x\sum_m k_m/2^m\)</span>, so the phase factors,</p>
 <div class="math notranslate nohighlight">
 \[
@@ -593,7 +594,7 @@ implementation&#39;s self-consistency.
 </div>
 </section>
 <section id="the-worked-example-mathrm-qft-8-101-rangle">
-<h3><span class="section-number">20.1.2. </span>The worked example: <span class="math notranslate nohighlight">\(\mathrm{QFT}_8|101\rangle\)</span><a class="headerlink" href="#the-worked-example-mathrm-qft-8-101-rangle" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">21.1.2. </span>The worked example: <span class="math notranslate nohighlight">\(\mathrm{QFT}_8|101\rangle\)</span><a class="headerlink" href="#the-worked-example-mathrm-qft-8-101-rangle" title="Link to this heading">#</a></h3>
 <p>Here <span class="math notranslate nohighlight">\(x_1=1, x_2=0, x_3=1\)</span>, so <span class="math notranslate nohighlight">\(x=5\)</span>, and the binary fractions are
 <span class="math notranslate nohighlight">\(0.1 = \tfrac12\)</span>, <span class="math notranslate nohighlight">\(0.01 = \tfrac14\)</span>, <span class="math notranslate nohighlight">\(0.101 = \tfrac58\)</span>:</p>
 <div class="math notranslate nohighlight">
@@ -648,7 +649,7 @@ every modulus is 1/sqrt(8) = 0.353553, and the phase of
 </div>
 </section>
 <section id="cost-the-approximate-qft-and-bit-reversal">
-<h3><span class="section-number">20.1.3. </span>Cost, the approximate QFT, and bit reversal<a class="headerlink" href="#cost-the-approximate-qft-and-bit-reversal" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">21.1.3. </span>Cost, the approximate QFT, and bit reversal<a class="headerlink" href="#cost-the-approximate-qft-and-bit-reversal" title="Link to this heading">#</a></h3>
 <p><span class="math notranslate nohighlight">\(n\)</span> Hadamards, <span class="math notranslate nohighlight">\(n(n-1)/2\)</span> controlled rotations, <span class="math notranslate nohighlight">\(\lfloor n/2\rfloor\)</span> swaps —
 <span class="math notranslate nohighlight">\(\mathcal{O}(n^2)\)</span> against <span class="math notranslate nohighlight">\(\mathcal{O}(4^n)\)</span> for multiplying by the matrix it
 represents.  And <span class="math notranslate nohighlight">\(R_k\)</span> turns the phase by <span class="math notranslate nohighlight">\(2\pi/2^k\)</span>, which for large <span class="math notranslate nohighlight">\(k\)</span> is
@@ -725,7 +726,7 @@ e^{i pi} ends up.
 </section>
 </section>
 <section id="quantum-phase-estimation">
-<h2><span class="section-number">20.2. </span>2. Quantum phase estimation<a class="headerlink" href="#quantum-phase-estimation" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">21.2. </span>2. Quantum phase estimation<a class="headerlink" href="#quantum-phase-estimation" title="Link to this heading">#</a></h2>
 <p>Let <span class="math notranslate nohighlight">\(U|\psi\rangle = e^{2\pi i\phi}|\psi\rangle\)</span>.  Prepare <span class="math notranslate nohighlight">\(m\)</span> control qubits
 in <span class="math notranslate nohighlight">\(|0\rangle\)</span>, Hadamard them, then apply <span class="math notranslate nohighlight">\(U^{2^j}\)</span> controlled on qubit <span class="math notranslate nohighlight">\(j\)</span>.
 Since <span class="math notranslate nohighlight">\(|\psi\rangle\)</span> is an eigenstate the system register factors out and the
@@ -806,7 +807,7 @@ Its worst case gives the standard bound 4/pi^2 = 0.4053.
 </div>
 </section>
 <section id="from-phases-to-energies">
-<h2><span class="section-number">20.3. </span>3. From phases to energies<a class="headerlink" href="#from-phases-to-energies" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">21.3. </span>3. From phases to energies<a class="headerlink" href="#from-phases-to-energies" title="Link to this heading">#</a></h2>
 <p>With <span class="math notranslate nohighlight">\(U(t) = e^{-i\hat H t}\)</span> and <span class="math notranslate nohighlight">\(\hat H|E\rangle = E|E\rangle\)</span>,</p>
 <div class="math notranslate nohighlight">
 \[
@@ -820,7 +821,7 @@ the bound used is the 1-norm of the Pauli coefficients,
 <span class="math notranslate nohighlight">\(\Lambda = \sum_\alpha |h_\alpha| \ge \|\hat H\|\)</span>.  It is loose, and the
 looseness costs resolution.</p>
 <section id="the-chapter-4-models-as-qubit-hamiltonians">
-<h3><span class="section-number">20.3.1. </span>The chapter-4 models as qubit Hamiltonians<a class="headerlink" href="#the-chapter-4-models-as-qubit-hamiltonians" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">21.3.1. </span>The chapter-4 models as qubit Hamiltonians<a class="headerlink" href="#the-chapter-4-models-as-qubit-hamiltonians" title="Link to this heading">#</a></h3>
 <p>The cost is set by three numbers: how many Pauli strings, their <strong>weight</strong>
 (which fixes the CNOT ladder length), and how many mutually <strong>commuting</strong>
 groups they fall into — terms in a group exponentiate together with no Trotter
@@ -936,7 +937,7 @@ the cost of each application of U.
 </div>
 </section>
 <section id="the-second-error-trotterisation">
-<h3><span class="section-number">20.3.2. </span>The second error: Trotterisation<a class="headerlink" href="#the-second-error-trotterisation" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">21.3.2. </span>The second error: Trotterisation<a class="headerlink" href="#the-second-error-trotterisation" title="Link to this heading">#</a></h3>
 <p>On hardware <span class="math notranslate nohighlight">\(e^{-i\hat H t}\)</span> must itself be built from gates,</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1008,7 +1009,7 @@ errors must be balanced <em>against each other</em>, not minimised separately, a
 is that balance which fixes the circuit depth of a real calculation.</p>
 </section>
 <section id="why-this-is-fatal-here-and-harmless-in-unitary-coupled-cluster">
-<h3><span class="section-number">20.3.3. </span>Why this is fatal here and harmless in unitary coupled cluster<a class="headerlink" href="#why-this-is-fatal-here-and-harmless-in-unitary-coupled-cluster" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">21.3.3. </span>Why this is fatal here and harmless in unitary coupled cluster<a class="headerlink" href="#why-this-is-fatal-here-and-harmless-in-unitary-coupled-cluster" title="Link to this heading">#</a></h3>
 <p>Chapter 10 met exactly the same splitting.  Yet for the pairing model <em>every</em>
 Trotter number from <span class="math notranslate nohighlight">\(n=1\)</span> upwards gave the same UCC energy to ten digits — the
 crudest possible splitting cost nothing.  The reason is not that the error was
@@ -1026,7 +1027,7 @@ exponential precision no variational method offers.</p>
 </section>
 </section>
 <section id="the-state-you-start-from">
-<h2><span class="section-number">20.4. </span>4. The state you start from<a class="headerlink" href="#the-state-you-start-from" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">21.4. </span>4. The state you start from<a class="headerlink" href="#the-state-you-start-from" title="Link to this heading">#</a></h2>
 <p>One assumption has been silent throughout: that the system register holds an
 eigenstate.  It need not.  Fed <span class="math notranslate nohighlight">\(|\psi\rangle = \sum_j c_j|E_j\rangle\)</span>,
 linearity carries every term through independently and measurement returns
@@ -1130,7 +1131,7 @@ energy.</p>
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">19. </span>Neural quantum states and physics-informed neural networks</p>
+        <p class="prev-next-title"><span class="section-number">20. </span>Neural quantum states and physics-informed neural networks</p>
       </div>
     </a>
     <a class="right-next"
@@ -1138,7 +1139,7 @@ energy.</p>
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">21. </span>The variational quantum eigensolver</p>
+        <p class="prev-next-title"><span class="section-number">22. </span>The variational quantum eigensolver</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1158,20 +1159,20 @@ energy.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-quantum-fourier-transform">20.1. 1. The quantum Fourier transform</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-product-form">20.1.1. The product form</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-worked-example-mathrm-qft-8-101-rangle">20.1.2. The worked example: <span class="math notranslate nohighlight">\(\mathrm{QFT}_8|101\rangle\)</span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cost-the-approximate-qft-and-bit-reversal">20.1.3. Cost, the approximate QFT, and bit reversal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-quantum-fourier-transform">21.1. 1. The quantum Fourier transform</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-product-form">21.1.1. The product form</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-worked-example-mathrm-qft-8-101-rangle">21.1.2. The worked example: <span class="math notranslate nohighlight">\(\mathrm{QFT}_8|101\rangle\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cost-the-approximate-qft-and-bit-reversal">21.1.3. Cost, the approximate QFT, and bit reversal</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quantum-phase-estimation">20.2. 2. Quantum phase estimation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-phases-to-energies">20.3. 3. From phases to energies</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-chapter-4-models-as-qubit-hamiltonians">20.3.1. The chapter-4 models as qubit Hamiltonians</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-second-error-trotterisation">20.3.2. The second error: Trotterisation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-this-is-fatal-here-and-harmless-in-unitary-coupled-cluster">20.3.3. Why this is fatal here and harmless in unitary coupled cluster</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quantum-phase-estimation">21.2. 2. Quantum phase estimation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-phases-to-energies">21.3. 3. From phases to energies</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-chapter-4-models-as-qubit-hamiltonians">21.3.1. The chapter-4 models as qubit Hamiltonians</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-second-error-trotterisation">21.3.2. The second error: Trotterisation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-this-is-fatal-here-and-harmless-in-unitary-coupled-cluster">21.3.3. Why this is fatal here and harmless in unitary coupled cluster</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-state-you-start-from">20.4. 4. The state you start from</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-state-you-start-from">21.4. 4. The state you start from</a></li>
 </ul>
   </nav></div>
 

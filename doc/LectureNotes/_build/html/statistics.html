@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>13. Elements from statistics &#8212; Quantum Mechanics for Many-Particle Systems: from standard methods to quantum computing and machine learning</title>
+    <title>14. Elements from statistics &#8212; Quantum Mechanics for Many-Particle Systems: from standard methods to quantum computing and machine learning</title>
   
   
   
@@ -62,8 +62,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'statistics';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="14. Variational Monte Carlo" href="variationalmc.html" />
-    <link rel="prev" title="12. Quantum dots: a realistic Hamiltonian" href="quantumdots.html" />
+    <link rel="next" title="15. Variational Monte Carlo" href="variationalmc.html" />
+    <link rel="prev" title="13. The density matrix renormalisation group" href="dmrg.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -209,25 +209,26 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Applications and stochastic methods</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="quantumdots.html">12. Quantum dots: a realistic Hamiltonian</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">13. Elements from statistics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="variationalmc.html">14. Variational Monte Carlo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="optimisation.html">15. Optimization and resampling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="diffusionmc.html">16. Diffusion Monte Carlo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="manybodymc.html">17. Applications to many-body systems: six electrons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dmrg.html">13. The density matrix renormalisation group</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">14. Elements from statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variationalmc.html">15. Variational Monte Carlo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimisation.html">16. Optimization and resampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diffusionmc.html">17. Diffusion Monte Carlo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manybodymc.html">18. Applications to many-body systems: six electrons</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine learning approaches</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="boltzmannmachines.html">18. Boltzmann machines and generative models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pinns.html">19. Neural quantum states and physics-informed neural networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="boltzmannmachines.html">19. Boltzmann machines and generative models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pinns.html">20. Neural quantum states and physics-informed neural networks</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum computing</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="quantumfourier.html">20. The quantum Fourier transform and phase estimation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="vqe.html">21. The variational quantum eigensolver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quantumfourier.html">21. The quantum Fourier transform and phase estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vqe.html">22. The variational quantum eigensolver</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Concluding remarks</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="conclusions.html">22. Concluding remarks and perspectives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conclusions.html">23. Concluding remarks and perspectives</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
 <ul class="nav bd-sidenav">
@@ -459,23 +460,23 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-numbers">13.1. 1. Random numbers</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monte-carlo-integration-and-the-square-root-law">13.2. 2. Monte Carlo integration and the square-root law</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#changing-variables">13.3. 3. Changing variables</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importance-sampling">13.4. 4. Importance sampling</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-quantum-mechanics-forces-this-on-us">13.4.1. Why quantum mechanics forces this on us</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-numbers">14.1. 1. Random numbers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monte-carlo-integration-and-the-square-root-law">14.2. 2. Monte Carlo integration and the square-root law</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#changing-variables">14.3. 3. Changing variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importance-sampling">14.4. 4. Importance sampling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-quantum-mechanics-forces-this-on-us">14.4.1. Why quantum mechanics forces this on us</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-central-limit-theorem">13.5. 5. The central limit theorem</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correlated-data-and-the-true-error">13.6. 6. Correlated data and the true error</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-walks-and-the-diffusion-equation">13.7. 7. Random walks and the diffusion equation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#equilibrium-and-entropy">13.7.1. Equilibrium and entropy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-central-limit-theorem">14.5. 5. The central limit theorem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correlated-data-and-the-true-error">14.6. 6. Correlated data and the true error</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-walks-and-the-diffusion-equation">14.7. 7. Random walks and the diffusion equation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#equilibrium-and-entropy">14.7.1. Equilibrium and entropy</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#markov-chains-and-detailed-balance">13.8. 8. Markov chains and detailed balance</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-metropolis-algorithm">13.9. 9. The Metropolis algorithm</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-first-variational-monte-carlo-on-the-quantum-dot">13.10. 10. A first variational Monte Carlo on the quantum dot</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-changed">13.11. What changed</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#markov-chains-and-detailed-balance">14.8. 8. Markov chains and detailed balance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-metropolis-algorithm">14.9. 9. The Metropolis algorithm</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-first-variational-monte-carlo-on-the-quantum-dot">14.10. 10. A first variational Monte Carlo on the quantum dot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-changed">14.11. What changed</a></li>
 </ul>
             </nav>
         </div>
@@ -488,7 +489,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="elements-from-statistics">
-<h1><span class="section-number">13. </span>Elements from statistics<a class="headerlink" href="#elements-from-statistics" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">14. </span>Elements from statistics<a class="headerlink" href="#elements-from-statistics" title="Link to this heading">#</a></h1>
 <p>Executable companion to chapter 12.</p>
 <p>Every method so far expanded the wave function in a basis, and the error was a
 truncation.  The stochastic methods that follow never write down a basis at
@@ -521,7 +522,7 @@ calculation on the two-electron quantum dot of chapter 11.</p>
 </div>
 </div>
 <section id="random-numbers">
-<h2><span class="section-number">13.1. </span>1. Random numbers<a class="headerlink" href="#random-numbers" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">14.1. </span>1. Random numbers<a class="headerlink" href="#random-numbers" title="Link to this heading">#</a></h2>
 <p>A generator can be perfectly uniform and still be useless.  RANDU passes every
 one-dimensional test; its consecutive triples satisfy
 <span class="math notranslate nohighlight">\(x_{n+2} = 6x_{n+1} - 9x_n \pmod 1\)</span> exactly and therefore lie on fifteen
@@ -573,7 +574,7 @@ planes of the unit cube.</p>
 </div>
 </section>
 <section id="monte-carlo-integration-and-the-square-root-law">
-<h2><span class="section-number">13.2. </span>2. Monte Carlo integration and the square-root law<a class="headerlink" href="#monte-carlo-integration-and-the-square-root-law" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">14.2. </span>2. Monte Carlo integration and the square-root law<a class="headerlink" href="#monte-carlo-integration-and-the-square-root-law" title="Link to this heading">#</a></h2>
 <p>The error falls as <span class="math notranslate nohighlight">\(1/\sqrt{N}\)</span> <em>regardless of dimension</em>.  A grid needs
 <span class="math notranslate nohighlight">\(N^d\)</span> points for the same accuracy in <span class="math notranslate nohighlight">\(d\)</span> dimensions; Monte Carlo needs <span class="math notranslate nohighlight">\(N\)</span>.
 That is the whole reason for using it on a many-body problem.</p>
@@ -613,7 +614,7 @@ That is the whole reason for using it on a many-body problem.</p>
 </div>
 </section>
 <section id="changing-variables">
-<h2><span class="section-number">13.3. </span>3. Changing variables<a class="headerlink" href="#changing-variables" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">14.3. </span>3. Changing variables<a class="headerlink" href="#changing-variables" title="Link to this heading">#</a></h2>
 <p>Random numbers arrive uniform on <span class="math notranslate nohighlight">\([0,1)\)</span>; the inverse of the cumulative
 distribution turns them into anything integrable:</p>
 <div class="math notranslate nohighlight">
@@ -658,7 +659,7 @@ acceptance-rejection, int_0^3 exp(x) dx = 19.0354 +/- 0.0626   (exact 19.0855)
 </div>
 </section>
 <section id="importance-sampling">
-<h2><span class="section-number">13.4. </span>4. Importance sampling<a class="headerlink" href="#importance-sampling" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">14.4. </span>4. Importance sampling<a class="headerlink" href="#importance-sampling" title="Link to this heading">#</a></h2>
 <p>Sampling from a density that resembles the integrand and averaging <span class="math notranslate nohighlight">\(f/p\)</span>
 flattens what is actually averaged.  For</p>
 <div class="math notranslate nohighlight">
@@ -698,7 +699,7 @@ which by the square-root law is a factor 2522 in time.
 </div>
 </div>
 <section id="why-quantum-mechanics-forces-this-on-us">
-<h3><span class="section-number">13.4.1. </span>Why quantum mechanics forces this on us<a class="headerlink" href="#why-quantum-mechanics-forces-this-on-us" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">14.4.1. </span>Why quantum mechanics forces this on us<a class="headerlink" href="#why-quantum-mechanics-forces-this-on-us" title="Link to this heading">#</a></h3>
 <div class="math notranslate nohighlight">
 \[
 \langle H\rangle = \int dx\,|\Psi(x)|^2\,\frac{\hat H\Psi(x)}{\Psi(x)}
@@ -711,7 +712,7 @@ the trial function is.</p>
 </section>
 </section>
 <section id="the-central-limit-theorem">
-<h2><span class="section-number">13.5. </span>5. The central limit theorem<a class="headerlink" href="#the-central-limit-theorem" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">14.5. </span>5. The central limit theorem<a class="headerlink" href="#the-central-limit-theorem" title="Link to this heading">#</a></h2>
 <p>Averages of <span class="math notranslate nohighlight">\(m\)</span> samples from <em>any</em> distribution with finite variance are
 normally distributed with variance <span class="math notranslate nohighlight">\(\sigma^2/m\)</span>.  Here the parent is uniform,
 which is about as non-Gaussian as it gets.</p>
@@ -748,7 +749,7 @@ which is about as non-Gaussian as it gets.</p>
 </div>
 </section>
 <section id="correlated-data-and-the-true-error">
-<h2><span class="section-number">13.6. </span>6. Correlated data and the true error<a class="headerlink" href="#correlated-data-and-the-true-error" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">14.6. </span>6. Correlated data and the true error<a class="headerlink" href="#correlated-data-and-the-true-error" title="Link to this heading">#</a></h2>
 <p>The <span class="math notranslate nohighlight">\(1/\sqrt{N}\)</span> law assumes independent samples.  A Markov chain does not
 produce them, and <span class="math notranslate nohighlight">\(\sigma/\sqrt{N}\)</span> then <strong>understates</strong> the error — always in
 that direction, which is why the mistake survives.</p>
@@ -804,7 +805,7 @@ or from blocking.  A naive <span class="math notranslate nohighlight">\(\sigma/\
 small underestimate — above it is wrong by a factor of seven.</p>
 </section>
 <section id="random-walks-and-the-diffusion-equation">
-<h2><span class="section-number">13.7. </span>7. Random walks and the diffusion equation<a class="headerlink" href="#random-walks-and-the-diffusion-equation" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">14.7. </span>7. Random walks and the diffusion equation<a class="headerlink" href="#random-walks-and-the-diffusion-equation" title="Link to this heading">#</a></h2>
 <p>An unbiased walk has <span class="math notranslate nohighlight">\(\langle x\rangle = 0\)</span> and <span class="math notranslate nohighlight">\(\langle x^2\rangle = n l^2\)</span>.
 Discretising the walk gives back the diffusion equation exactly, with
 <span class="math notranslate nohighlight">\(D = l^2/2\epsilon\)</span> — which is why diffusion Monte Carlo works: the
@@ -841,7 +842,7 @@ Schrödinger equation in imaginary time <em>is</em> a diffusion equation.</p>
 </div>
 </div>
 <section id="equilibrium-and-entropy">
-<h3><span class="section-number">13.7.1. </span>Equilibrium and entropy<a class="headerlink" href="#equilibrium-and-entropy" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">14.7.1. </span>Equilibrium and entropy<a class="headerlink" href="#equilibrium-and-entropy" title="Link to this heading">#</a></h3>
 <p>On a finite ring the spreading has to stop.  The entropy
 <span class="math notranslate nohighlight">\(S = -\sum_i w_i \ln w_i\)</span> rises and then flattens: the walkers have reached a
 steady state.  Nothing imposed it — it happened because the walk can reach
@@ -878,7 +879,7 @@ uniform distribution: S = 4.6151
 </section>
 </section>
 <section id="markov-chains-and-detailed-balance">
-<h2><span class="section-number">13.8. </span>8. Markov chains and detailed balance<a class="headerlink" href="#markov-chains-and-detailed-balance" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">14.8. </span>8. Markov chains and detailed balance<a class="headerlink" href="#markov-chains-and-detailed-balance" title="Link to this heading">#</a></h2>
 <p>Iterating a transition matrix drives any starting vector to the eigenvector
 with eigenvalue one.  <strong>Detailed balance</strong>,</p>
 <div class="math notranslate nohighlight">
@@ -920,7 +921,7 @@ detailed balance residual: 9.2e-13
 </div>
 </section>
 <section id="the-metropolis-algorithm">
-<h2><span class="section-number">13.9. </span>9. The Metropolis algorithm<a class="headerlink" href="#the-metropolis-algorithm" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">14.9. </span>9. The Metropolis algorithm<a class="headerlink" href="#the-metropolis-algorithm" title="Link to this heading">#</a></h2>
 <div class="math notranslate nohighlight">
 \[
 A(i\to j) = \min\left(1,\; \frac{w_j}{w_i}\right)
@@ -981,7 +982,7 @@ looks.</p>
 </div>
 </section>
 <section id="a-first-variational-monte-carlo-on-the-quantum-dot">
-<h2><span class="section-number">13.10. </span>10. A first variational Monte Carlo on the quantum dot<a class="headerlink" href="#a-first-variational-monte-carlo-on-the-quantum-dot" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">14.10. </span>10. A first variational Monte Carlo on the quantum dot<a class="headerlink" href="#a-first-variational-monte-carlo-on-the-quantum-dot" title="Link to this heading">#</a></h2>
 <div class="math notranslate nohighlight">
 \[
 \Psi_T = \exp\!\left(-\tfrac{\alpha\omega}{2}(r_1^2+r_2^2)\right)
@@ -1100,7 +1101,7 @@ Hartree-Fock, 42 orb. : 3.161921   (table 11.3)
 </div>
 </section>
 <section id="what-changed">
-<h2><span class="section-number">13.11. </span>What changed<a class="headerlink" href="#what-changed" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">14.11. </span>What changed<a class="headerlink" href="#what-changed" title="Link to this heading">#</a></h2>
 <p>Two things are worth drawing out.</p>
 <ul class="simple">
 <li><p><strong>The variance fell by three orders of magnitude</strong>, from about 3 to about
@@ -1151,12 +1152,12 @@ running longer.  That trade is the subject of the chapters that follow.</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="quantumdots.html"
+       href="dmrg.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">12. </span>Quantum dots: a realistic Hamiltonian</p>
+        <p class="prev-next-title"><span class="section-number">13. </span>The density matrix renormalisation group</p>
       </div>
     </a>
     <a class="right-next"
@@ -1164,7 +1165,7 @@ running longer.  That trade is the subject of the chapters that follow.</p>
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">14. </span>Variational Monte Carlo</p>
+        <p class="prev-next-title"><span class="section-number">15. </span>Variational Monte Carlo</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1184,23 +1185,23 @@ running longer.  That trade is the subject of the chapters that follow.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-numbers">13.1. 1. Random numbers</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monte-carlo-integration-and-the-square-root-law">13.2. 2. Monte Carlo integration and the square-root law</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#changing-variables">13.3. 3. Changing variables</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importance-sampling">13.4. 4. Importance sampling</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-quantum-mechanics-forces-this-on-us">13.4.1. Why quantum mechanics forces this on us</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-numbers">14.1. 1. Random numbers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monte-carlo-integration-and-the-square-root-law">14.2. 2. Monte Carlo integration and the square-root law</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#changing-variables">14.3. 3. Changing variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importance-sampling">14.4. 4. Importance sampling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-quantum-mechanics-forces-this-on-us">14.4.1. Why quantum mechanics forces this on us</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-central-limit-theorem">13.5. 5. The central limit theorem</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correlated-data-and-the-true-error">13.6. 6. Correlated data and the true error</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-walks-and-the-diffusion-equation">13.7. 7. Random walks and the diffusion equation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#equilibrium-and-entropy">13.7.1. Equilibrium and entropy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-central-limit-theorem">14.5. 5. The central limit theorem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correlated-data-and-the-true-error">14.6. 6. Correlated data and the true error</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-walks-and-the-diffusion-equation">14.7. 7. Random walks and the diffusion equation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#equilibrium-and-entropy">14.7.1. Equilibrium and entropy</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#markov-chains-and-detailed-balance">13.8. 8. Markov chains and detailed balance</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-metropolis-algorithm">13.9. 9. The Metropolis algorithm</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-first-variational-monte-carlo-on-the-quantum-dot">13.10. 10. A first variational Monte Carlo on the quantum dot</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-changed">13.11. What changed</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#markov-chains-and-detailed-balance">14.8. 8. Markov chains and detailed balance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-metropolis-algorithm">14.9. 9. The Metropolis algorithm</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-first-variational-monte-carlo-on-the-quantum-dot">14.10. 10. A first variational Monte Carlo on the quantum dot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-changed">14.11. What changed</a></li>
 </ul>
   </nav></div>
 

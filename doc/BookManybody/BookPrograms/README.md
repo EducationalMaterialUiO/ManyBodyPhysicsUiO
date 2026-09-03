@@ -12,7 +12,8 @@ programs import a program from another chapter (`mbpt.py` uses `fci.py`,
 `manybodymc.py` uses `vmc.py`, `slater_update.py` and `vmcoptimise.py`;
 `vqe.py` uses `qpe.py` and `jordanwigner.py`), so put every chapter directory
 on the path rather than a single one -- and the project directory of the
-appendix (`appendixA`, whose `fam.py` uses `rpa.py`) as well:
+appendix (`appendixA`, whose `fam.py` uses `rpa.py` and whose `effective3b.py` uses `fci.py`) as well; the DMRG chapter keeps
+its program in `chapterdmrg/`, which the `chapter*` pattern also matches:
 
 ```python
 import sys, os, glob
@@ -45,10 +46,10 @@ That is exactly what the notebooks do.
 | 18 | `chapter18` | `pinn.py` |
 | 19 | `chapter19` | `qpe.py` |
 | 20 | `chapter20` | `vqe.py` |
+| DMRG | `chapterdmrg` | `dmrg.py` (matrix product states and operators, two-site DMRG; the chapter follows chapter 11) |
 | 21 | `chapter21` | -- (no programs; see the notebook `conclusions.ipynb`) |
-| A | `appendixA` | `fam.py` (Project 1: the finite amplitude method, built on `rpa.py`) |
-| B | `appendixB` | `effective3b.py` (effective three-body interactions from exact diagonalisation: Lee-Suzuki-Okubo transformation and the a-body cluster hierarchy on a 1D oscillator toy model) |
+| A | `appendixA` | `fam.py` (Project 1: the finite amplitude method, built on `rpa.py`), `effective3b.py` (Project 2: effective interactions and induced three-body forces from FCI, built on `fci.py`) |
 
 Figures are collected the same way, in `../BookFigures/chapterNN/` (and
-`../BookFigures/appendixA/`, `../BookFigures/appendixB/` for the appendices), and are produced by re-executing
+`../BookFigures/appendixA/` for the projects), and are produced by re-executing
 the notebooks; see `../../LectureNotes/README.md`.

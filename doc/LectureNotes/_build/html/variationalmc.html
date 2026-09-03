@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>14. Variational Monte Carlo &#8212; Quantum Mechanics for Many-Particle Systems: from standard methods to quantum computing and machine learning</title>
+    <title>15. Variational Monte Carlo &#8212; Quantum Mechanics for Many-Particle Systems: from standard methods to quantum computing and machine learning</title>
   
   
   
@@ -62,8 +62,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'variationalmc';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="15. Optimization and resampling" href="optimisation.html" />
-    <link rel="prev" title="13. Elements from statistics" href="statistics.html" />
+    <link rel="next" title="16. Optimization and resampling" href="optimisation.html" />
+    <link rel="prev" title="14. Elements from statistics" href="statistics.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -209,25 +209,26 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Applications and stochastic methods</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="quantumdots.html">12. Quantum dots: a realistic Hamiltonian</a></li>
-<li class="toctree-l1"><a class="reference internal" href="statistics.html">13. Elements from statistics</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">14. Variational Monte Carlo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="optimisation.html">15. Optimization and resampling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="diffusionmc.html">16. Diffusion Monte Carlo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="manybodymc.html">17. Applications to many-body systems: six electrons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dmrg.html">13. The density matrix renormalisation group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="statistics.html">14. Elements from statistics</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">15. Variational Monte Carlo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimisation.html">16. Optimization and resampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diffusionmc.html">17. Diffusion Monte Carlo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manybodymc.html">18. Applications to many-body systems: six electrons</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine learning approaches</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="boltzmannmachines.html">18. Boltzmann machines and generative models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pinns.html">19. Neural quantum states and physics-informed neural networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="boltzmannmachines.html">19. Boltzmann machines and generative models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pinns.html">20. Neural quantum states and physics-informed neural networks</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum computing</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="quantumfourier.html">20. The quantum Fourier transform and phase estimation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="vqe.html">21. The variational quantum eigensolver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quantumfourier.html">21. The quantum Fourier transform and phase estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vqe.html">22. The variational quantum eigensolver</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Concluding remarks</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="conclusions.html">22. Concluding remarks and perspectives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conclusions.html">23. Concluding remarks and perspectives</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
 <ul class="nav bd-sidenav">
@@ -459,15 +460,15 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-trial-function">14.1. 1. The trial function</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-cusp-condition-at-work">14.2. 2. The cusp condition at work</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#brute-force-metropolis">14.3. 3. Brute-force Metropolis</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importance-sampling">14.4. 4. Importance sampling</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-importance-sampling-actually-buys">14.5. 5. What importance sampling actually buys</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-wrong-quantum-force-is-not-a-wrong-answer">14.6. 6. A wrong quantum force is not a wrong answer</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-variational-surface">14.7. 7. The variational surface</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-final-number">14.8. 8. The final number</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-still-missing">14.9. What is still missing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-trial-function">15.1. 1. The trial function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-cusp-condition-at-work">15.2. 2. The cusp condition at work</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#brute-force-metropolis">15.3. 3. Brute-force Metropolis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importance-sampling">15.4. 4. Importance sampling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-importance-sampling-actually-buys">15.5. 5. What importance sampling actually buys</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-wrong-quantum-force-is-not-a-wrong-answer">15.6. 6. A wrong quantum force is not a wrong answer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-variational-surface">15.7. 7. The variational surface</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-final-number">15.8. 8. The final number</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-still-missing">15.9. What is still missing</a></li>
 </ul>
             </nav>
         </div>
@@ -480,7 +481,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="variational-monte-carlo">
-<h1><span class="section-number">14. </span>Variational Monte Carlo<a class="headerlink" href="#variational-monte-carlo" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">15. </span>Variational Monte Carlo<a class="headerlink" href="#variational-monte-carlo" title="Link to this heading">#</a></h1>
 <p>Executable companion to chapter 13.</p>
 <p>Chapter 12 assembled the tools and ended with a first variational Monte Carlo
 run.  This is the method proper: the variational principle, the trial wave
@@ -510,7 +511,7 @@ so the Monte Carlo result can be put on the same scale.</p>
 </div>
 </div>
 <section id="the-trial-function">
-<h2><span class="section-number">14.1. </span>1. The trial function<a class="headerlink" href="#the-trial-function" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">15.1. </span>1. The trial function<a class="headerlink" href="#the-trial-function" title="Link to this heading">#</a></h2>
 <div class="math notranslate nohighlight">
 \[
 \Psi_T(\bm r_1,\bm r_2;\alpha,\beta)
@@ -553,7 +554,7 @@ quantum force: largest discrepancy 2.7e-10
 </div>
 </section>
 <section id="the-cusp-condition-at-work">
-<h2><span class="section-number">14.2. </span>2. The cusp condition at work<a class="headerlink" href="#the-cusp-condition-at-work" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">15.2. </span>2. The cusp condition at work<a class="headerlink" href="#the-cusp-condition-at-work" title="Link to this heading">#</a></h2>
 <p>As the electrons approach, <span class="math notranslate nohighlight">\(1/r_{12}\)</span> diverges.  The Jastrow factor makes the
 kinetic term produce a compensating divergence, and the local energy stays
 finite.  That cancellation <em>is</em> the cusp condition.</p>
@@ -594,7 +595,7 @@ finite.  That cancellation <em>is</em> the cusp condition.</p>
 </div>
 </section>
 <section id="brute-force-metropolis">
-<h2><span class="section-number">14.3. </span>3. Brute-force Metropolis<a class="headerlink" href="#brute-force-metropolis" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">15.3. </span>3. Brute-force Metropolis<a class="headerlink" href="#brute-force-metropolis" title="Link to this heading">#</a></h2>
 <p>Uniform proposals, one particle at a time, accepted with
 <span class="math notranslate nohighlight">\(\min(1, |\Psi_T(y)|^2/|\Psi_T(x)|^2)\)</span>.</p>
 <p>Two details are easy to get wrong: move <strong>one</strong> particle at a time (moving all
@@ -639,7 +640,7 @@ average.</p>
 </div>
 </section>
 <section id="importance-sampling">
-<h2><span class="section-number">14.4. </span>4. Importance sampling<a class="headerlink" href="#importance-sampling" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">15.4. </span>4. Importance sampling<a class="headerlink" href="#importance-sampling" title="Link to this heading">#</a></h2>
 <p>The uniform proposal is wasteful: it offers moves in every direction equally,
 including into regions where <span class="math notranslate nohighlight">\(|\Psi_T|^2\)</span> is negligible.  Requiring the
 Fokker-Planck equation to have <span class="math notranslate nohighlight">\(|\Psi_T|^2\)</span> as its stationary solution forces
@@ -725,7 +726,7 @@ makes a large proposed move likely to be accepted.  The rule of thumb “aim for
 50%” belongs to symmetric proposals only.</p>
 </section>
 <section id="what-importance-sampling-actually-buys">
-<h2><span class="section-number">14.5. </span>5. What importance sampling actually buys<a class="headerlink" href="#what-importance-sampling-actually-buys" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">15.5. </span>5. What importance sampling actually buys<a class="headerlink" href="#what-importance-sampling-actually-buys" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="n">vmc</span><span class="o">.</span><span class="n">vmc_brute_force</span><span class="p">(</span><span class="mf">0.98</span><span class="p">,</span> <span class="mf">0.40</span><span class="p">,</span> <span class="n">n_cycles</span><span class="o">=</span><span class="mi">40000</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">4.0</span><span class="p">,</span>
@@ -761,7 +762,7 @@ advantage grows with particle number, and becomes essential in DMC.
 </div>
 </section>
 <section id="a-wrong-quantum-force-is-not-a-wrong-answer">
-<h2><span class="section-number">14.6. </span>6. A wrong quantum force is not a wrong answer<a class="headerlink" href="#a-wrong-quantum-force-is-not-a-wrong-answer" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">15.6. </span>6. A wrong quantum force is not a wrong answer<a class="headerlink" href="#a-wrong-quantum-force-is-not-a-wrong-answer" title="Link to this heading">#</a></h2>
 <p>This is worth knowing, because it is a trap.  Detailed balance holds for
 <em>any</em> drift, provided the same expression is used to propose the move and to
 evaluate the Green’s function.  A wrong quantum force therefore leaves the
@@ -801,7 +802,7 @@ finite differences in section 1.
 </div>
 </section>
 <section id="the-variational-surface">
-<h2><span class="section-number">14.7. </span>7. The variational surface<a class="headerlink" href="#the-variational-surface" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">15.7. </span>7. The variational surface<a class="headerlink" href="#the-variational-surface" title="Link to this heading">#</a></h2>
 <p>The energy is flat near its minimum; the variance is not.  Since we know the
 variance should be zero for an exact wave function, it has both a sharper
 minimum and a known target — which is the practical argument for variance
@@ -858,7 +859,7 @@ variance
 </div>
 </section>
 <section id="the-final-number">
-<h2><span class="section-number">14.8. </span>8. The final number<a class="headerlink" href="#the-final-number" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">15.8. </span>8. The final number<a class="headerlink" href="#the-final-number" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">best</span> <span class="o">=</span> <span class="n">vmc</span><span class="o">.</span><span class="n">vmc_importance</span><span class="p">(</span><span class="mf">1.00</span><span class="p">,</span> <span class="mf">0.38</span><span class="p">,</span> <span class="n">n_cycles</span><span class="o">=</span><span class="mi">120000</span><span class="p">,</span> <span class="n">time_step</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
@@ -903,7 +904,7 @@ three.  Not because the many-body treatment is better — for two electrons CCSD
 is exact within its basis — but because there is no basis here at all.</p>
 </section>
 <section id="what-is-still-missing">
-<h2><span class="section-number">14.9. </span>What is still missing<a class="headerlink" href="#what-is-still-missing" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">15.9. </span>What is still missing<a class="headerlink" href="#what-is-still-missing" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>The error analysis used the correlation time; for production runs, use
 <strong>blocking</strong>.</p></li>
@@ -952,7 +953,7 @@ Fokker-Planck machinery set up in section 4.</p></li>
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">13. </span>Elements from statistics</p>
+        <p class="prev-next-title"><span class="section-number">14. </span>Elements from statistics</p>
       </div>
     </a>
     <a class="right-next"
@@ -960,7 +961,7 @@ Fokker-Planck machinery set up in section 4.</p></li>
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">15. </span>Optimization and resampling</p>
+        <p class="prev-next-title"><span class="section-number">16. </span>Optimization and resampling</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -980,15 +981,15 @@ Fokker-Planck machinery set up in section 4.</p></li>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-trial-function">14.1. 1. The trial function</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-cusp-condition-at-work">14.2. 2. The cusp condition at work</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#brute-force-metropolis">14.3. 3. Brute-force Metropolis</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importance-sampling">14.4. 4. Importance sampling</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-importance-sampling-actually-buys">14.5. 5. What importance sampling actually buys</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-wrong-quantum-force-is-not-a-wrong-answer">14.6. 6. A wrong quantum force is not a wrong answer</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-variational-surface">14.7. 7. The variational surface</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-final-number">14.8. 8. The final number</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-still-missing">14.9. What is still missing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-trial-function">15.1. 1. The trial function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-cusp-condition-at-work">15.2. 2. The cusp condition at work</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#brute-force-metropolis">15.3. 3. Brute-force Metropolis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importance-sampling">15.4. 4. Importance sampling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-importance-sampling-actually-buys">15.5. 5. What importance sampling actually buys</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-wrong-quantum-force-is-not-a-wrong-answer">15.6. 6. A wrong quantum force is not a wrong answer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-variational-surface">15.7. 7. The variational surface</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-final-number">15.8. 8. The final number</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-still-missing">15.9. What is still missing</a></li>
 </ul>
   </nav></div>
 

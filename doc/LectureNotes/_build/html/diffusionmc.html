@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>16. Diffusion Monte Carlo &#8212; Quantum Mechanics for Many-Particle Systems: from standard methods to quantum computing and machine learning</title>
+    <title>17. Diffusion Monte Carlo &#8212; Quantum Mechanics for Many-Particle Systems: from standard methods to quantum computing and machine learning</title>
   
   
   
@@ -62,8 +62,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'diffusionmc';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="17. Applications to many-body systems: six electrons" href="manybodymc.html" />
-    <link rel="prev" title="15. Optimization and resampling" href="optimisation.html" />
+    <link rel="next" title="18. Applications to many-body systems: six electrons" href="manybodymc.html" />
+    <link rel="prev" title="16. Optimization and resampling" href="optimisation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -209,25 +209,26 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Applications and stochastic methods</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="quantumdots.html">12. Quantum dots: a realistic Hamiltonian</a></li>
-<li class="toctree-l1"><a class="reference internal" href="statistics.html">13. Elements from statistics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="variationalmc.html">14. Variational Monte Carlo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="optimisation.html">15. Optimization and resampling</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">16. Diffusion Monte Carlo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="manybodymc.html">17. Applications to many-body systems: six electrons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dmrg.html">13. The density matrix renormalisation group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="statistics.html">14. Elements from statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variationalmc.html">15. Variational Monte Carlo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimisation.html">16. Optimization and resampling</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">17. Diffusion Monte Carlo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manybodymc.html">18. Applications to many-body systems: six electrons</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine learning approaches</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="boltzmannmachines.html">18. Boltzmann machines and generative models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pinns.html">19. Neural quantum states and physics-informed neural networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="boltzmannmachines.html">19. Boltzmann machines and generative models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pinns.html">20. Neural quantum states and physics-informed neural networks</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum computing</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="quantumfourier.html">20. The quantum Fourier transform and phase estimation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="vqe.html">21. The variational quantum eigensolver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quantumfourier.html">21. The quantum Fourier transform and phase estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vqe.html">22. The variational quantum eigensolver</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Concluding remarks</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="conclusions.html">22. Concluding remarks and perspectives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conclusions.html">23. Concluding remarks and perspectives</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
 <ul class="nav bd-sidenav">
@@ -459,13 +460,13 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-algorithm-in-its-original-form">16.1. 1. The algorithm in its original form</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-quantum-dot">16.2. 2. The quantum dot</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-time-step-is-the-systematic-error">16.3. 3. The time step is the systematic error</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-deliberately-bad-guiding-function">16.4. 4. A deliberately bad guiding function</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#is-it-a-population-control-bias">16.5. 5. Is it a population-control bias?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#where-this-leaves-the-quantum-dot">16.6. 6. Where this leaves the quantum dot</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-not-here">16.7. What is not here</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-algorithm-in-its-original-form">17.1. 1. The algorithm in its original form</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-quantum-dot">17.2. 2. The quantum dot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-time-step-is-the-systematic-error">17.3. 3. The time step is the systematic error</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-deliberately-bad-guiding-function">17.4. 4. A deliberately bad guiding function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#is-it-a-population-control-bias">17.5. 5. Is it a population-control bias?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#where-this-leaves-the-quantum-dot">17.6. 6. Where this leaves the quantum dot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-not-here">17.7. What is not here</a></li>
 </ul>
             </nav>
         </div>
@@ -478,7 +479,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="diffusion-monte-carlo">
-<h1><span class="section-number">16. </span>Diffusion Monte Carlo<a class="headerlink" href="#diffusion-monte-carlo" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">17. </span>Diffusion Monte Carlo<a class="headerlink" href="#diffusion-monte-carlo" title="Link to this heading">#</a></h1>
 <p>Executable companion to chapter 15.</p>
 <p>Chapter 14 ended with <span class="math notranslate nohighlight">\(E_{\rm VMC} = 3.000549 \pm 0.000049\)</span> for two electrons in a
 two-dimensional quantum dot, against Taut’s exact <span class="math notranslate nohighlight">\(3\)</span>.  The residual
@@ -540,7 +541,7 @@ guiding function  alpha = 1.0  beta = 0.4
 </div>
 </div>
 <section id="the-algorithm-in-its-original-form">
-<h2><span class="section-number">16.1. </span>1. The algorithm in its original form<a class="headerlink" href="#the-algorithm-in-its-original-form" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">17.1. </span>1. The algorithm in its original form<a class="headerlink" href="#the-algorithm-in-its-original-form" title="Link to this heading">#</a></h2>
 <p>No trial function, no drift, no accept/reject: walkers diffuse freely and are
 branched with weight <span class="math notranslate nohighlight">\(\exp[-\Delta\tau(V - E_T)]\)</span>.  For the one-dimensional
 harmonic oscillator, <span class="math notranslate nohighlight">\(V = x^2/2\)</span>, this works and the population growth alone
@@ -568,7 +569,7 @@ That is the whole argument, and it is why the algorithm of this cell is never th
 algorithm that is used.</p>
 </section>
 <section id="the-quantum-dot">
-<h2><span class="section-number">16.2. </span>2. The quantum dot<a class="headerlink" href="#the-quantum-dot" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">17.2. </span>2. The quantum dot<a class="headerlink" href="#the-quantum-dot" title="Link to this heading">#</a></h2>
 <p>One run at <span class="math notranslate nohighlight">\(\Delta\tau = 0.05\)</span> with 500 walkers, started from a short variational
 Monte Carlo run at the same parameters.  Two independent estimators come out: the
 mixed estimator <span class="math notranslate nohighlight">\(\langle E_L\rangle_f\)</span>, and the growth estimator, which is the
@@ -636,7 +637,7 @@ E_T = \bar E - \frac{\kappa}{\Delta\tau}
 a violent controller injects its own fluctuations into the simulation.</p>
 </section>
 <section id="the-time-step-is-the-systematic-error">
-<h2><span class="section-number">16.3. </span>3. The time step is the systematic error<a class="headerlink" href="#the-time-step-is-the-systematic-error" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">17.3. </span>3. The time step is the systematic error<a class="headerlink" href="#the-time-step-is-the-systematic-error" title="Link to this heading">#</a></h2>
 <p>The short-time Green’s function is exact only as <span class="math notranslate nohighlight">\(\Delta\tau\to0\)</span>, so a
 calculation that quotes one time step has not finished.  Run at several and
 extrapolate.</p>
@@ -759,7 +760,7 @@ factorisation drops, and those vanish when <span class="math notranslate nohighl
 almost nothing for the factorisation to get wrong.</p>
 </section>
 <section id="a-deliberately-bad-guiding-function">
-<h2><span class="section-number">16.4. </span>4. A deliberately bad guiding function<a class="headerlink" href="#a-deliberately-bad-guiding-function" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">17.4. </span>4. A deliberately bad guiding function<a class="headerlink" href="#a-deliberately-bad-guiding-function" title="Link to this heading">#</a></h2>
 <p><span class="math notranslate nohighlight">\(\alpha = 0.80\)</span>, <span class="math notranslate nohighlight">\(\beta = 0.10\)</span> is a long way from the variational minimum.  In
 chapter 13 that would simply be a worse answer.  Here it is not.</p>
 <div class="cell docutils container">
@@ -816,7 +817,7 @@ longer usable at all.  A poor guiding function costs computer time and demands a
 smaller time step.  It does not cost accuracy.</p>
 </section>
 <section id="is-it-a-population-control-bias">
-<h2><span class="section-number">16.5. </span>5. Is it a population-control bias?<a class="headerlink" href="#is-it-a-population-control-bias" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">17.5. </span>5. Is it a population-control bias?<a class="headerlink" href="#is-it-a-population-control-bias" title="Link to this heading">#</a></h2>
 <p>A systematic error that does not move with <span class="math notranslate nohighlight">\(\Delta\tau\)</span> often turns out to move
 with the number of walkers instead, because the feedback that stabilises the
 population correlates the walkers with each other.  Worth checking rather than
@@ -858,7 +859,7 @@ bias is below the statistical resolution here, so the residual in the poor-guide
 column is time-step error – which section 3 removes by extrapolating.</p>
 </section>
 <section id="where-this-leaves-the-quantum-dot">
-<h2><span class="section-number">16.6. </span>6. Where this leaves the quantum dot<a class="headerlink" href="#where-this-leaves-the-quantum-dot" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">17.6. </span>6. Where this leaves the quantum dot<a class="headerlink" href="#where-this-leaves-the-quantum-dot" title="Link to this heading">#</a></h2>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>method</p></th>
@@ -900,7 +901,7 @@ basis but is limited by the ansatz.  Diffusion Monte Carlo removes the ansatz to
 and what is left is statistics.</p>
 </section>
 <section id="what-is-not-here">
-<h2><span class="section-number">16.7. </span>What is not here<a class="headerlink" href="#what-is-not-here" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">17.7. </span>What is not here<a class="headerlink" href="#what-is-not-here" title="Link to this heading">#</a></h2>
 <p>The two-electron singlet has a symmetric spatial wave function, so <span class="math notranslate nohighlight">\(\Psi_T\)</span> is
 strictly positive and there are no nodes.  For fermions in general there are, the
 projector converges on the nodeless <em>bosonic</em> state instead, and the fermionic
@@ -952,7 +953,7 @@ come in.</p>
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">15. </span>Optimization and resampling</p>
+        <p class="prev-next-title"><span class="section-number">16. </span>Optimization and resampling</p>
       </div>
     </a>
     <a class="right-next"
@@ -960,7 +961,7 @@ come in.</p>
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">17. </span>Applications to many-body systems: six electrons</p>
+        <p class="prev-next-title"><span class="section-number">18. </span>Applications to many-body systems: six electrons</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -980,13 +981,13 @@ come in.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-algorithm-in-its-original-form">16.1. 1. The algorithm in its original form</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-quantum-dot">16.2. 2. The quantum dot</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-time-step-is-the-systematic-error">16.3. 3. The time step is the systematic error</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-deliberately-bad-guiding-function">16.4. 4. A deliberately bad guiding function</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#is-it-a-population-control-bias">16.5. 5. Is it a population-control bias?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#where-this-leaves-the-quantum-dot">16.6. 6. Where this leaves the quantum dot</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-not-here">16.7. What is not here</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-algorithm-in-its-original-form">17.1. 1. The algorithm in its original form</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-quantum-dot">17.2. 2. The quantum dot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-time-step-is-the-systematic-error">17.3. 3. The time step is the systematic error</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-deliberately-bad-guiding-function">17.4. 4. A deliberately bad guiding function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#is-it-a-population-control-bias">17.5. 5. Is it a population-control bias?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#where-this-leaves-the-quantum-dot">17.6. 6. Where this leaves the quantum dot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-not-here">17.7. What is not here</a></li>
 </ul>
   </nav></div>
 

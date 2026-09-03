@@ -1,0 +1,1359 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>13. The density matrix renormalisation group &#8212; Quantum Mechanics for Many-Particle Systems: from standard methods to quantum computing and machine learning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'dmrg';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="14. Elements from statistics" href="statistics.html" />
+    <link rel="prev" title="12. Quantum dots: a realistic Hamiltonian" href="quantumdots.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Quantum Mechanics for Many-Particle Systems: from standard methods to quantum computing and machine learning - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Quantum Mechanics for Many-Particle Systems: from standard methods to quantum computing and machine learning - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Quantum mechanics for many-particle systems
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">About the course</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="teachers.html">Instructor information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="textbooks.html">Textbooks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Foundations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="linearalgebra.html">1. Linear algebra and eigenvalue problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manybodybasics.html">2. From linear algebra to many-body physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wicktheorem.html">3. Wick’s theorem, verified by brute force</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jordanwigner.html">4. From fermions to qubits: the Jordan-Wigner transformation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">5. Physical systems and models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fullci.html">6. Full configuration interaction theory</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Mean-field and beyond</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="hartreefock.html">7. Mean-field approaches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tdarpa.html">8. Mean-field applications: TDA, RPA and QRPA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dft.html">9. Density functional theory</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Post Hartree-Fock methods</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="mbptheory.html">10. Many-body perturbation theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coupledcluster.html">11. Coupled cluster theory</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Applications and stochastic methods</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="quantumdots.html">12. Quantum dots: a realistic Hamiltonian</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">13. The density matrix renormalisation group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="statistics.html">14. Elements from statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variationalmc.html">15. Variational Monte Carlo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimisation.html">16. Optimization and resampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diffusionmc.html">17. Diffusion Monte Carlo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manybodymc.html">18. Applications to many-body systems: six electrons</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine learning approaches</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="boltzmannmachines.html">19. Boltzmann machines and generative models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pinns.html">20. Neural quantum states and physics-informed neural networks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum computing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="quantumfourier.html">21. The quantum Fourier transform and phase estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vqe.html">22. The variational quantum eigensolver</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Concluding remarks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="conclusions.html">23. Concluding remarks and perspectives</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="fam.html">Project: the finite amplitude method for the RPA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="effective3body.html">Project 2: effective interactions and induced three-body forces from full configuration interaction</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/ManyBodyPhysics/FYS4480/master?urlpath=lab/tree/doc/LectureNotes/dmrg.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ManyBodyPhysics/FYS4480" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ManyBodyPhysics/FYS4480/issues/new?title=Issue%20on%20page%20%2Fdmrg.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/dmrg.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>The density matrix renormalisation group</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sites-modes-and-jordan-wigner-strings">13.1. 1. Sites, modes and Jordan-Wigner strings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-product-operators-of-the-three-models">13.2. 2. Matrix product operators of the three models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-pairing-model">13.3. 3. The pairing model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-four-level-model-of-chapter-4">13.3.1. The four-level model of Chapter 4</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#twelve-levels-six-pairs-the-entropy-of-chapter-1">13.3.2. Twelve levels, six pairs: the entropy of Chapter 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#occupation-numbers">13.3.3. Occupation numbers</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-pairing-plus-particle-hole-model">13.4. 4. The pairing plus particle-hole model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-hubbard-chain">13.5. 5. The Hubbard chain</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-four-site-ring-of-chapter-4">13.5.1. The four-site ring of Chapter 4</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#open-chains-towards-the-thermodynamic-limit">13.5.2. Open chains: towards the thermodynamic limit</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">13.6. Exercises</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="the-density-matrix-renormalisation-group">
+<h1><span class="section-number">13. </span>The density matrix renormalisation group<a class="headerlink" href="#the-density-matrix-renormalisation-group" title="Link to this heading">#</a></h1>
+<p>Companion notebook to the chapter on the density matrix renormalisation
+group of <em>Quantum mechanics for many-particle systems</em>.  The code is the
+same as in <code class="docutils literal notranslate"><span class="pre">BookManybody/BookPrograms/chapterdmrg/dmrg.py</span></code>.</p>
+<p>The full configuration-interaction calculations of the earlier chapters
+store a state as one amplitude per Slater determinant, and the number of
+determinants grows exponentially with the number of single-particle
+levels.  The DMRG stores a state instead as a <strong>matrix product state</strong>
+(MPS),</p>
+<div class="math notranslate nohighlight">
+\[|\Psi\rangle=\sum_{s_1\cdots s_L}
+  A^{s_1}_{[1]}A^{s_2}_{[2]}\cdots A^{s_L}_{[L]}\,|s_1 s_2\cdots s_L\rangle ,\]</div>
+<p>a product of matrices of size at most <span class="math notranslate nohighlight">\(\chi\times\chi\)</span>, one per site of a
+chain, and optimises the matrices one bond at a time.  The Schmidt
+decomposition of Chapter 1 is applied at every bond in turn; truncating it
+to the <span class="math notranslate nohighlight">\(\chi\)</span> largest Schmidt values is what makes the method polynomial,
+and the discarded weight tells us what the truncation cost.</p>
+<p>The three models of the book are mapped on a chain by treating each
+doubly-degenerate level <span class="math notranslate nohighlight">\(p\)</span> as one site with the four states
+<span class="math notranslate nohighlight">\(|0\rangle\)</span>, <span class="math notranslate nohighlight">\(|{\uparrow}\rangle\)</span>, <span class="math notranslate nohighlight">\(|{\downarrow}\rangle\)</span> and
+<span class="math notranslate nohighlight">\(|{\uparrow\downarrow}\rangle\)</span>, with the Jordan-Wigner strings of Chapter 3
+taking care of the fermionic signs.  The Hamiltonians are written as
+<strong>matrix product operators</strong> (MPO) built automatically from the list of
+operator strings that also defines the exact diagonalisation, so that the
+two methods are guaranteed to solve the same problem.</p>
+<p>Contents:</p>
+<ol class="arabic simple">
+<li><p>Sites, modes and Jordan-Wigner strings</p></li>
+<li><p>Matrix product operators of the three models</p></li>
+<li><p>The pairing model: the energies of Chapter 4 and the entropy of Chapter 1</p></li>
+<li><p>The pairing plus particle-hole model: convergence and extrapolation</p></li>
+<li><p>The Hubbard chain: beyond exact diagonalisation</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">glob</span><span class="o">,</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># the chapter programs live in BookPrograms/chapterNN (and chapterdmrg);</span>
+<span class="c1"># put them all on the path</span>
+<span class="k">for</span> <span class="n">_pattern</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;chapter*&quot;</span><span class="p">,</span> <span class="s2">&quot;appendix*&quot;</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">_d</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;..&quot;</span><span class="p">,</span> <span class="s2">&quot;BookManybody&quot;</span><span class="p">,</span>
+                                            <span class="s2">&quot;BookPrograms&quot;</span><span class="p">,</span> <span class="n">_pattern</span><span class="p">))):</span>
+        <span class="k">if</span> <span class="n">_d</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">_d</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">dmrg</span>
+<span class="kn">from</span> <span class="nn">dmrg</span> <span class="kn">import</span> <span class="p">(</span><span class="n">pairing_terms</span><span class="p">,</span> <span class="n">particle_hole_terms</span><span class="p">,</span> <span class="n">hubbard_terms</span><span class="p">,</span>
+                  <span class="n">number_penalty_terms</span><span class="p">,</span> <span class="n">number_terms</span><span class="p">,</span> <span class="n">occupation_terms</span><span class="p">,</span>
+                  <span class="n">add_terms</span><span class="p">,</span> <span class="n">build_mpo</span><span class="p">,</span> <span class="n">mpo_bond_dimensions</span><span class="p">,</span> <span class="n">mpo_dense</span><span class="p">,</span>
+                  <span class="n">exact_ground_state</span><span class="p">,</span> <span class="n">sector_states</span><span class="p">,</span> <span class="n">sparse_hamiltonian</span><span class="p">,</span>
+                  <span class="n">chain_index</span><span class="p">,</span> <span class="n">MPS</span><span class="p">,</span> <span class="n">DMRG</span><span class="p">,</span> <span class="n">dmrg_ground_state</span><span class="p">,</span>
+                  <span class="n">entanglement_entropy</span><span class="p">,</span> <span class="n">lieb_wu_energy</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="sites-modes-and-jordan-wigner-strings">
+<h2><span class="section-number">13.1. </span>1. Sites, modes and Jordan-Wigner strings<a class="headerlink" href="#sites-modes-and-jordan-wigner-strings" title="Link to this heading">#</a></h2>
+<p>A site carries two modes, <span class="math notranslate nohighlight">\(a\)</span> (spin up, or the time-reversal partner
+<span class="math notranslate nohighlight">\(+\)</span> of the pairing model) and <span class="math notranslate nohighlight">\(b\)</span> (spin down, or <span class="math notranslate nohighlight">\(-\)</span>), so the local space
+is <span class="math notranslate nohighlight">\(d=4\)</span>.  Inside the site the creation operators are
+<span class="math notranslate nohighlight">\(c^\dagger_a=\sigma^+\otimes I\)</span> and <span class="math notranslate nohighlight">\(c^\dagger_b=\sigma^z\otimes\sigma^+\)</span>,
+which anticommute; between sites the Jordan-Wigner string is the parity
+<span class="math notranslate nohighlight">\((-1)^{n_a+n_b}\)</span> of every site to the left.  Let us verify the
+anticommutation relations on one site, and that a two-site product with
+the string in place anticommutes across sites.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">I4</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">ops</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;c_a&quot;</span><span class="p">:</span> <span class="n">dmrg</span><span class="o">.</span><span class="n">C_A</span><span class="p">,</span> <span class="s2">&quot;c_b&quot;</span><span class="p">:</span> <span class="n">dmrg</span><span class="o">.</span><span class="n">C_B</span><span class="p">}</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;one site, {c_i, c_j^+} = delta_ij and {c_i, c_j} = 0:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">ni</span><span class="p">,</span> <span class="n">ci</span> <span class="ow">in</span> <span class="n">ops</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">nj</span><span class="p">,</span> <span class="n">cj</span> <span class="ow">in</span> <span class="n">ops</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">acomm</span> <span class="o">=</span> <span class="n">ci</span> <span class="o">@</span> <span class="n">cj</span><span class="o">.</span><span class="n">T</span> <span class="o">+</span> <span class="n">cj</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">ci</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="se">{{</span><span class="si">{</span><span class="n">ni</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">nj</span><span class="si">}</span><span class="s2">^+</span><span class="se">}}</span><span class="s2"> = delta_ij: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">acomm</span><span class="p">,</span><span class="w"> </span><span class="n">I4</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">ni</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">nj</span><span class="p">))</span><span class="si">}</span><span class="s2">,&quot;</span>
+              <span class="sa">f</span><span class="s2">&quot;   </span><span class="se">{{</span><span class="si">{</span><span class="n">ni</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">nj</span><span class="si">}</span><span class="se">}}</span><span class="s2"> = 0: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">ci</span><span class="w"> </span><span class="o">@</span><span class="w"> </span><span class="n">cj</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">cj</span><span class="w"> </span><span class="o">@</span><span class="w"> </span><span class="n">ci</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># two sites: c on site 1 must carry the parity of site 0</span>
+<span class="n">c0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">dmrg</span><span class="o">.</span><span class="n">C_A</span><span class="p">,</span> <span class="n">I4</span><span class="p">)</span>
+<span class="n">c1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">dmrg</span><span class="o">.</span><span class="n">PARITY</span><span class="p">,</span> <span class="n">dmrg</span><span class="o">.</span><span class="n">C_A</span><span class="p">)</span>          <span class="c1"># string on the site to the left</span>
+<span class="n">c1_bad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">I4</span><span class="p">,</span> <span class="n">dmrg</span><span class="o">.</span><span class="n">C_A</span><span class="p">)</span>               <span class="c1"># without the string</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;two sites: {c_0, c_1} = 0 with the string:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">c0</span> <span class="o">@</span> <span class="n">c1</span> <span class="o">+</span> <span class="n">c1</span> <span class="o">@</span> <span class="n">c0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+      <span class="s2">&quot;  without the string:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">c0</span> <span class="o">@</span> <span class="n">c1_bad</span> <span class="o">+</span> <span class="n">c1_bad</span> <span class="o">@</span> <span class="n">c0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>one site, {c_i, c_j^+} = delta_ij and {c_i, c_j} = 0:
+  {c_a, c_a^+} = delta_ij: True,   {c_a, c_a} = 0: True
+  {c_a, c_b^+} = delta_ij: True,   {c_a, c_b} = 0: True
+  {c_b, c_a^+} = delta_ij: True,   {c_b, c_a} = 0: True
+  {c_b, c_b^+} = delta_ij: True,   {c_b, c_b} = 0: True
+two sites: {c_0, c_1} = 0 with the string: True   without the string: False
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="matrix-product-operators-of-the-three-models">
+<h2><span class="section-number">13.2. </span>2. Matrix product operators of the three models<a class="headerlink" href="#matrix-product-operators-of-the-three-models" title="Link to this heading">#</a></h2>
+<p>Every Hamiltonian of the chapter is a list of terms, each a coefficient
+and a string of creation and annihilation operators on the <span class="math notranslate nohighlight">\(2L\)</span> modes.
+<code class="docutils literal notranslate"><span class="pre">build_mpo</span></code> converts the list into an MPO: each string becomes a product
+of one <span class="math notranslate nohighlight">\(4\times4\)</span> operator per site (with the parity on the sites the
+string passes over), and the sum of these products is compressed bond by
+bond with the SVD, so that the bond dimension is the smallest one that
+represents the operator exactly.  The pairing interaction
+<span class="math notranslate nohighlight">\(-\tfrac{g}{2}\sum_{pq}P^+_pP^-_q\)</span> is a product of two sums and needs the
+four automaton states <em>nothing placed</em>, <em><span class="math notranslate nohighlight">\(P^+\)</span> placed</em>, <em><span class="math notranslate nohighlight">\(P^-\)</span> placed</em>,
+<em>done</em>; the particle-hole interaction with its Jordan-Wigner strings needs
+more; a periodic bond has to be carried across the whole chain.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">terms</span> <span class="ow">in</span> <span class="p">((</span><span class="s2">&quot;pairing, g = 1&quot;</span><span class="p">,</span> <span class="n">pairing_terms</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)),</span>
+                    <span class="p">(</span><span class="s2">&quot;pairing + particle-hole, g = 1, f = 0.5&quot;</span><span class="p">,</span>
+                     <span class="n">add_terms</span><span class="p">(</span><span class="n">pairing_terms</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span> <span class="n">particle_hole_terms</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">))),</span>
+                    <span class="p">(</span><span class="s2">&quot;Hubbard chain, open, U = 4&quot;</span><span class="p">,</span> <span class="n">hubbard_terms</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">)),</span>
+                    <span class="p">(</span><span class="s2">&quot;Hubbard ring, periodic, U = 4&quot;</span><span class="p">,</span> <span class="n">hubbard_terms</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="n">pbc</span><span class="o">=</span><span class="kc">True</span><span class="p">)),</span>
+                    <span class="p">(</span><span class="s2">&quot;number penalty (N - 6)^2&quot;</span><span class="p">,</span> <span class="n">number_penalty_terms</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">))):</span>
+    <span class="n">W</span> <span class="o">=</span> <span class="n">build_mpo</span><span class="p">(</span><span class="n">terms</span><span class="p">,</span> <span class="n">L</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">name</span><span class="si">:</span><span class="s2">42s</span><span class="si">}</span><span class="s2"> terms = </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">terms</span><span class="p">)</span><span class="si">:</span><span class="s2">5d</span><span class="si">}</span><span class="s2">   &quot;</span>
+          <span class="sa">f</span><span class="s2">&quot;MPO bond dimensions </span><span class="si">{</span><span class="n">mpo_bond_dimensions</span><span class="p">(</span><span class="n">W</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  pairing, g = 1                             terms =    48   MPO bond dimensions [4, 4, 4, 4, 4]
+  pairing + particle-hole, g = 1, f = 0.5    terms =   480   MPO bond dimensions [12, 14, 14, 14, 12]
+  Hubbard chain, open, U = 4                 terms =    26   MPO bond dimensions [6, 6, 6, 6, 6]
+  Hubbard ring, periodic, U = 4              terms =    30   MPO bond dimensions [6, 10, 10, 10, 6]
+  number penalty (N - 6)^2                   terms =   157   MPO bond dimensions [3, 3, 3, 3, 3]
+</pre></div>
+</div>
+</div>
+</div>
+<p>The MPO and the sparse Hamiltonian of the exact diagonalisation are built
+from the same list; for three sites we can form the dense <span class="math notranslate nohighlight">\(64\times64\)</span>
+matrix of the MPO and compare it with the Hamiltonian in the <span class="math notranslate nohighlight">\(N=3\)</span>
+sector.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">terms</span> <span class="o">=</span> <span class="n">add_terms</span><span class="p">(</span><span class="n">pairing_terms</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span> <span class="n">particle_hole_terms</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">))</span>
+<span class="n">H</span> <span class="o">=</span> <span class="n">mpo_dense</span><span class="p">(</span><span class="n">build_mpo</span><span class="p">(</span><span class="n">terms</span><span class="p">,</span> <span class="n">L</span><span class="p">))</span>
+<span class="n">states</span> <span class="o">=</span> <span class="n">sector_states</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">Hs</span> <span class="o">=</span> <span class="n">sparse_hamiltonian</span><span class="p">(</span><span class="n">terms</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">states</span><span class="p">)</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
+<span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">chain_index</span><span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="n">L</span><span class="p">)</span> <span class="k">for</span> <span class="n">st</span> <span class="ow">in</span> <span class="n">states</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;max |H_MPO - H_ED| in the N = 3 sector = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">H</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ix_</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span><span class="w"> </span><span class="n">idx</span><span class="p">)]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Hs</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">:</span><span class="s2">.1e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hermitian: max |H - H^T| = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">H</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">H</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">:</span><span class="s2">.1e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>max |H_MPO - H_ED| in the N = 3 sector = 3.6e-15
+Hermitian: max |H - H^T| = 2.2e-15
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="the-pairing-model">
+<h2><span class="section-number">13.3. </span>3. The pairing model<a class="headerlink" href="#the-pairing-model" title="Link to this heading">#</a></h2>
+<section id="the-four-level-model-of-chapter-4">
+<h3><span class="section-number">13.3.1. </span>The four-level model of Chapter 4<a class="headerlink" href="#the-four-level-model-of-chapter-4" title="Link to this heading">#</a></h3>
+<p>The DMRG works in the full Fock space of the chain, <span class="math notranslate nohighlight">\(4^L\)</span> states, and is
+told the particle number only through the penalty
+<span class="math notranslate nohighlight">\(\lambda(\hat N-N_0)^2\)</span> added to the MPO.  For four levels and four
+particles <span class="math notranslate nohighlight">\(\chi=16=4^{L/2}\)</span> makes the MPS exact, and the method must
+reproduce the seniority-zero energies of Table 4.2 – without ever being
+told that the ground state has seniority zero.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span><span class="p">,</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span>
+<span class="n">reference</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.5</span><span class="p">:</span> <span class="mf">1.41677428</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">:</span> <span class="mf">0.63554847</span><span class="p">}</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;g&#39;</span><span class="si">:</span><span class="s2">&gt;6s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;E_exact (chapter 4)&#39;</span><span class="si">:</span><span class="s2">&gt;20s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;E_DMRG&#39;</span><span class="si">:</span><span class="s2">&gt;14s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;error&#39;</span><span class="si">:</span><span class="s2">&gt;10s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;&lt;N&gt;&#39;</span><span class="si">:</span><span class="s2">&gt;8s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;chi&#39;</span><span class="si">:</span><span class="s2">&gt;4s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">):</span>
+    <span class="n">terms</span> <span class="o">=</span> <span class="n">pairing_terms</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span>
+    <span class="n">solver</span> <span class="o">=</span> <span class="n">dmrg_ground_state</span><span class="p">(</span><span class="n">terms</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">chi_max</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    <span class="n">e_ed</span> <span class="o">=</span> <span class="n">exact_ground_state</span><span class="p">(</span><span class="n">terms</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">g</span><span class="si">:</span><span class="s2">6.2f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">reference</span><span class="p">[</span><span class="n">g</span><span class="p">]</span><span class="si">:</span><span class="s2">20.8f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">solver</span><span class="o">.</span><span class="n">energy</span><span class="si">:</span><span class="s2">14.8f</span><span class="si">}</span><span class="s2"> &quot;</span>
+          <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">solver</span><span class="o">.</span><span class="n">energy</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">e_ed</span><span class="si">:</span><span class="s2">10.1e</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">solver</span><span class="o">.</span><span class="n">particles</span><span class="si">:</span><span class="s2">8.4f</span><span class="si">}</span><span class="s2"> &quot;</span>
+          <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">max</span><span class="p">(</span><span class="n">solver</span><span class="o">.</span><span class="n">mps</span><span class="o">.</span><span class="n">bond_dimensions</span><span class="p">())</span><span class="si">:</span><span class="s2">4d</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     g  E_exact (chapter 4)         E_DMRG      error      &lt;N&gt;  chi
+  0.50           1.41677428     1.41677428    3.3e-15   4.0000    4
+  1.00           0.63554847     0.63554847    8.2e-15   4.0000    4
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="twelve-levels-six-pairs-the-entropy-of-chapter-1">
+<h3><span class="section-number">13.3.2. </span>Twelve levels, six pairs: the entropy of Chapter 1<a class="headerlink" href="#twelve-levels-six-pairs-the-entropy-of-chapter-1" title="Link to this heading">#</a></h3>
+<p>Chapter 1 computed the Schmidt spectrum of the exact ground state of the
+twelve-level pairing model across the cut between levels 6 and 7
+(<span class="math notranslate nohighlight">\(\delta=1\)</span>, <span class="math notranslate nohighlight">\(g=0.5\)</span> in the convention of Chapter 1, which is <span class="math notranslate nohighlight">\(\xi=1\)</span>,
+<span class="math notranslate nohighlight">\(g=1\)</span> in that of Chapter 4) and found the entanglement entropy <span class="math notranslate nohighlight">\(0.9238\)</span>.
+The DMRG never sees the exact state; it truncates at every bond.  We run
+it with <span class="math notranslate nohighlight">\(\chi=8\)</span>, <span class="math notranslate nohighlight">\(16\)</span> and <span class="math notranslate nohighlight">\(32\)</span> and compare with the seniority-zero
+diagonalisation of the <span class="math notranslate nohighlight">\(\binom{12}{6}=924\)</span> pair configurations, which
+also gives us the exact Schmidt spectrum for the figure.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">combinations</span>
+
+<span class="k">def</span> <span class="nf">seniority_zero_ground_state</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">n_pairs</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">xi</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+    <span class="s2">&quot;Exact ground state in the seniority-zero space: energy, basis, vector.&quot;</span>
+    <span class="n">basis</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">combinations</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">L</span><span class="p">),</span> <span class="n">n_pairs</span><span class="p">))</span>
+    <span class="n">index</span> <span class="o">=</span> <span class="p">{</span><span class="n">c</span><span class="p">:</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">basis</span><span class="p">)}</span>
+    <span class="n">H</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">basis</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">basis</span><span class="p">)))</span>
+    <span class="k">for</span> <span class="n">c</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">index</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">occ</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+        <span class="n">H</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">xi</span> <span class="o">*</span> <span class="nb">sum</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">g</span> <span class="o">*</span> <span class="n">n_pairs</span>
+        <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">c</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">p</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">occ</span><span class="p">:</span>
+                    <span class="n">H</span><span class="p">[</span><span class="n">index</span><span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">occ</span> <span class="o">-</span> <span class="p">{</span><span class="n">q</span><span class="p">}</span> <span class="o">|</span> <span class="p">{</span><span class="n">p</span><span class="p">}))],</span> <span class="n">i</span><span class="p">]</span> <span class="o">-=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">g</span>
+    <span class="n">w</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">w</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">basis</span><span class="p">,</span> <span class="n">v</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">schmidt_spectrum_seniority_zero</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">basis</span><span class="p">,</span> <span class="n">vec</span><span class="p">,</span> <span class="n">cut</span><span class="p">):</span>
+    <span class="s2">&quot;Singular values of the coefficient matrix across the cut (levels &lt; cut | &gt;= cut).&quot;</span>
+    <span class="n">left</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">({</span><span class="nb">tuple</span><span class="p">(</span><span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">c</span> <span class="k">if</span> <span class="n">p</span> <span class="o">&lt;</span> <span class="n">cut</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">basis</span><span class="p">})</span>
+    <span class="n">right</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">({</span><span class="nb">tuple</span><span class="p">(</span><span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">c</span> <span class="k">if</span> <span class="n">p</span> <span class="o">&gt;=</span> <span class="n">cut</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">basis</span><span class="p">})</span>
+    <span class="n">il</span> <span class="o">=</span> <span class="p">{</span><span class="n">c</span><span class="p">:</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">left</span><span class="p">)}</span>
+    <span class="n">ir</span> <span class="o">=</span> <span class="p">{</span><span class="n">c</span><span class="p">:</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">right</span><span class="p">)}</span>
+    <span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">left</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">right</span><span class="p">)))</span>
+    <span class="k">for</span> <span class="n">c</span><span class="p">,</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">basis</span><span class="p">,</span> <span class="n">vec</span><span class="p">):</span>
+        <span class="n">C</span><span class="p">[</span><span class="n">il</span><span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">c</span> <span class="k">if</span> <span class="n">p</span> <span class="o">&lt;</span> <span class="n">cut</span><span class="p">)],</span> <span class="n">ir</span><span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">c</span> <span class="k">if</span> <span class="n">p</span> <span class="o">&gt;=</span> <span class="n">cut</span><span class="p">)]]</span> <span class="o">=</span> <span class="n">a</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">compute_uv</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">L</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">g</span> <span class="o">=</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mf">1.0</span>
+<span class="n">e_ref</span><span class="p">,</span> <span class="n">basis</span><span class="p">,</span> <span class="n">vec</span> <span class="o">=</span> <span class="n">seniority_zero_ground_state</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">N</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span>
+<span class="n">sigma_exact</span> <span class="o">=</span> <span class="n">schmidt_spectrum_seniority_zero</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">basis</span><span class="p">,</span> <span class="n">vec</span><span class="p">,</span> <span class="n">L</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;seniority-zero diagonalisation (924 states): E = </span><span class="si">{</span><span class="n">e_ref</span><span class="si">:</span><span class="s2">.10f</span><span class="si">}</span><span class="s2">, &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;S(middle cut) = </span><span class="si">{</span><span class="n">entanglement_entropy</span><span class="p">(</span><span class="n">sigma_exact</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">pairing_runs</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;chi&#39;</span><span class="si">:</span><span class="s2">&gt;4s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;E_DMRG&#39;</span><span class="si">:</span><span class="s2">&gt;16s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;error&#39;</span><span class="si">:</span><span class="s2">&gt;10s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;discarded&#39;</span><span class="si">:</span><span class="s2">&gt;10s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;S(middle)&#39;</span><span class="si">:</span><span class="s2">&gt;10s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;time&#39;</span><span class="si">:</span><span class="s2">&gt;8s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">chi</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">32</span><span class="p">):</span>
+    <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">solver</span> <span class="o">=</span> <span class="n">dmrg_ground_state</span><span class="p">(</span><span class="n">pairing_terms</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">g</span><span class="p">),</span> <span class="n">L</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">chi_max</span><span class="o">=</span><span class="n">chi</span><span class="p">,</span> <span class="n">max_sweeps</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">pairing_runs</span><span class="p">[</span><span class="n">chi</span><span class="p">]</span> <span class="o">=</span> <span class="n">solver</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">chi</span><span class="si">:</span><span class="s2">4d</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">solver</span><span class="o">.</span><span class="n">energy</span><span class="si">:</span><span class="s2">16.10f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">solver</span><span class="o">.</span><span class="n">energy</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">e_ref</span><span class="si">:</span><span class="s2">10.1e</span><span class="si">}</span><span class="s2"> &quot;</span>
+          <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">solver</span><span class="o">.</span><span class="n">discarded</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">10.1e</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">solver</span><span class="o">.</span><span class="n">entropies</span><span class="p">[</span><span class="n">L</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">10.4f</span><span class="si">}</span><span class="s2"> &quot;</span>
+          <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">t0</span><span class="si">:</span><span class="s2">7.1f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>seniority-zero diagonalisation (924 states): E = 24.8391727485, S(middle cut) = 0.9238
+ chi           E_DMRG      error  discarded  S(middle)     time
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="ne">ValueError</span>: unexpected array size: new_size=1, got array with arr_size=0
+
+
+<span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
+
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">line</span> <span class="mi">39</span>
+<span class="g g-Whitespace">     </span><span class="mi">37</span> <span class="k">for</span> <span class="n">chi</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">32</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">38</span>     <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="ne">---&gt; </span><span class="mi">39</span>     <span class="n">solver</span> <span class="o">=</span> <span class="n">dmrg_ground_state</span><span class="p">(</span><span class="n">pairing_terms</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">g</span><span class="p">),</span> <span class="n">L</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">chi_max</span><span class="o">=</span><span class="n">chi</span><span class="p">,</span> <span class="n">max_sweeps</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">40</span>     <span class="n">pairing_runs</span><span class="p">[</span><span class="n">chi</span><span class="p">]</span> <span class="o">=</span> <span class="n">solver</span>
+<span class="g g-Whitespace">     </span><span class="mi">41</span>     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">chi</span><span class="si">:</span><span class="s2">4d</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">solver</span><span class="o">.</span><span class="n">energy</span><span class="si">:</span><span class="s2">16.10f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">solver</span><span class="o">.</span><span class="n">energy</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">e_ref</span><span class="si">:</span><span class="s2">10.1e</span><span class="si">}</span><span class="s2"> &quot;</span>
+<span class="g g-Whitespace">     </span><span class="mi">42</span>           <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">solver</span><span class="o">.</span><span class="n">discarded</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">10.1e</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">solver</span><span class="o">.</span><span class="n">entropies</span><span class="p">[</span><span class="n">L</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">10.4f</span><span class="si">}</span><span class="s2"> &quot;</span>
+<span class="g g-Whitespace">     </span><span class="mi">43</span>           <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">t0</span><span class="si">:</span><span class="s2">7.1f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+
+<span class="nn">File ~/Teaching/ManyBodyPhysics/doc/LectureNotes/../BookManybody/BookPrograms/chapterdmrg/dmrg.py:605,</span> in <span class="ni">dmrg_ground_state</span><span class="nt">(terms, L, n_particles, chi_max, lam, max_sweeps, tol, seed, verbose)</span>
+<span class="g g-Whitespace">    </span><span class="mi">603</span> <span class="n">full</span> <span class="o">=</span> <span class="n">add_terms</span><span class="p">(</span><span class="n">terms</span><span class="p">,</span> <span class="n">number_penalty_terms</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">n_particles</span><span class="p">,</span> <span class="n">lam</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">604</span> <span class="n">solver</span> <span class="o">=</span> <span class="n">DMRG</span><span class="p">(</span><span class="n">build_mpo</span><span class="p">(</span><span class="n">full</span><span class="p">,</span> <span class="n">L</span><span class="p">),</span> <span class="n">chi_max</span><span class="o">=</span><span class="n">chi_max</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">605</span> <span class="n">solver</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">max_sweeps</span><span class="o">=</span><span class="n">max_sweeps</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="n">tol</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">606</span> <span class="n">solver</span><span class="o">.</span><span class="n">energy</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">mps</span><span class="o">.</span><span class="n">expectation_terms</span><span class="p">(</span><span class="n">terms</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">607</span> <span class="n">solver</span><span class="o">.</span><span class="n">particles</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">mps</span><span class="o">.</span><span class="n">expectation_terms</span><span class="p">(</span><span class="n">number_terms</span><span class="p">(</span><span class="n">L</span><span class="p">))</span>
+
+<span class="nn">File ~/Teaching/ManyBodyPhysics/doc/LectureNotes/../BookManybody/BookPrograms/chapterdmrg/dmrg.py:584,</span> in <span class="ni">DMRG.run</span><span class="nt">(self, max_sweeps, tol, verbose)</span>
+<span class="g g-Whitespace">    </span><span class="mi">582</span> <span class="n">previous</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+<span class="g g-Whitespace">    </span><span class="mi">583</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_sweeps</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">584</span>     <span class="n">E</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sweep</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">585</span>     <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">586</span>         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  sweep </span><span class="si">{</span><span class="n">n</span><span class="si">:</span><span class="s2">2d</span><span class="si">}</span><span class="s2">  E = </span><span class="si">{</span><span class="n">E</span><span class="si">:</span><span class="s2">.12f</span><span class="si">}</span><span class="s2">  &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">587</span>               <span class="sa">f</span><span class="s2">&quot;max discarded weight = </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">discarded_sweep</span><span class="si">:</span><span class="s2">.1e</span><span class="si">}</span><span class="s2">  &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">588</span>               <span class="sa">f</span><span class="s2">&quot;chi = </span><span class="si">{</span><span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mps</span><span class="o">.</span><span class="n">bond_dimensions</span><span class="p">())</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nn">File ~/Teaching/ManyBodyPhysics/doc/LectureNotes/../BookManybody/BookPrograms/chapterdmrg/dmrg.py:571,</span> in <span class="ni">DMRG.sweep</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">569</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">L</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">570</span>     <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tensordot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mps</span><span class="o">.</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">mps</span><span class="o">.</span><span class="n">A</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="n">axes</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="ne">--&gt; </span><span class="mi">571</span>     <span class="n">energy</span><span class="p">,</span> <span class="n">theta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_optimise</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">theta</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">572</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_split</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">going_right</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">573</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">L</span> <span class="o">-</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+
+<span class="nn">File ~/Teaching/ManyBodyPhysics/doc/LectureNotes/../BookManybody/BookPrograms/chapterdmrg/dmrg.py:542,</span> in <span class="ni">DMRG._optimise</span><span class="nt">(self, i, theta)</span>
+<span class="g g-Whitespace">    </span><span class="mi">540</span>     <span class="n">w</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">eigh</span><span class="p">(</span><span class="n">Hd</span><span class="p">,</span> <span class="n">subset_by_index</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="g g-Whitespace">    </span><span class="mi">541</span>     <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">w</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">v</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">542</span> <span class="n">E</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">lanczos_lowest</span><span class="p">(</span><span class="n">matvec</span><span class="p">,</span> <span class="n">theta</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">543</span> <span class="k">return</span> <span class="n">E</span><span class="p">,</span> <span class="n">v</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="nn">File ~/Teaching/ManyBodyPhysics/doc/LectureNotes/../BookManybody/BookPrograms/chapterdmrg/dmrg.py:452,</span> in <span class="ni">lanczos_lowest</span><span class="nt">(matvec, v0, m, tol, restarts)</span>
+<span class="g g-Whitespace">    </span><span class="mi">450</span>     <span class="n">w</span> <span class="o">=</span> <span class="n">w</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span> <span class="o">*</span> <span class="n">u</span>
+<span class="g g-Whitespace">    </span><span class="mi">451</span> <span class="n">b</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">w</span><span class="p">))</span>
+<span class="ne">--&gt; </span><span class="mi">452</span> <span class="n">ev</span><span class="p">,</span> <span class="n">evec</span> <span class="o">=</span> <span class="n">eigh_tridiagonal</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">select</span><span class="o">=</span><span class="s2">&quot;i&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">453</span>                             <span class="n">select_range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">454</span> <span class="k">if</span> <span class="n">b</span> <span class="o">&lt;</span> <span class="mf">1e-12</span> <span class="ow">or</span> <span class="n">b</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">evec</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span> <span class="o">&lt;</span> <span class="n">tol</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">455</span>     <span class="n">converged</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="nn">File ~/miniforge3/envs/myenv/lib/python3.9/site-packages/scipy/linalg/_decomp.py:1334,</span> in <span class="ni">eigh_tridiagonal</span><span class="nt">(d, e, eigvals_only, select, select_range, check_finite, tol, lapack_driver)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1331</span>     <span class="c1"># If getting eigenvectors, needs to be block-ordered (B) instead of</span>
+<span class="g g-Whitespace">   </span><span class="mi">1332</span>     <span class="c1"># matrix-ordered (E), and we will reorder later</span>
+<span class="g g-Whitespace">   </span><span class="mi">1333</span>     <span class="n">order</span> <span class="o">=</span> <span class="s1">&#39;E&#39;</span> <span class="k">if</span> <span class="n">eigvals_only</span> <span class="k">else</span> <span class="s1">&#39;B&#39;</span>
+<span class="ne">-&gt; </span><span class="mi">1334</span>     <span class="n">m</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">iblock</span><span class="p">,</span> <span class="n">isplit</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">stebz</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">select</span><span class="p">,</span> <span class="n">vl</span><span class="p">,</span> <span class="n">vu</span><span class="p">,</span> <span class="n">il</span><span class="p">,</span> <span class="n">iu</span><span class="p">,</span> <span class="n">tol</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1335</span>                                        <span class="n">order</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1336</span> <span class="k">else</span><span class="p">:</span>   <span class="c1"># &#39;stemr&#39;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1337</span>     <span class="c1"># ?STEMR annoyingly requires size N instead of N-1</span>
+<span class="g g-Whitespace">   </span><span class="mi">1338</span>     <span class="n">e_</span> <span class="o">=</span> <span class="n">empty</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">size</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+
+<span class="ne">ValueError</span>: failed in converting 2nd argument `e&#39; of _flapack.dstebz to C/Fortran array
+</pre></div>
+</div>
+</div>
+</div>
+<p>The entropy profile – the entanglement entropy across every bond of the
+chain – is the picture of the area law: it rises from the ends, where a
+cut separates one level from eleven, and flattens in the bulk.  We compute
+it for three couplings, and keep the ground states for the occupation
+numbers below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">couplings</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span>
+<span class="n">profiles</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">states_g</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">gg</span> <span class="ow">in</span> <span class="n">couplings</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">gg</span> <span class="o">==</span> <span class="mf">1.0</span><span class="p">:</span>
+        <span class="n">solver</span> <span class="o">=</span> <span class="n">pairing_runs</span><span class="p">[</span><span class="mi">32</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">solver</span> <span class="o">=</span> <span class="n">dmrg_ground_state</span><span class="p">(</span><span class="n">pairing_terms</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">gg</span><span class="p">),</span> <span class="n">L</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">chi_max</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">max_sweeps</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">profiles</span><span class="p">[</span><span class="n">gg</span><span class="p">]</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">entropies</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">states_g</span><span class="p">[</span><span class="n">gg</span><span class="p">]</span> <span class="o">=</span> <span class="n">solver</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;g = </span><span class="si">{</span><span class="n">gg</span><span class="si">:</span><span class="s2">3.1f</span><span class="si">}</span><span class="s2">:  E = </span><span class="si">{</span><span class="n">solver</span><span class="o">.</span><span class="n">energy</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2">   S(middle cut) = </span><span class="si">{</span><span class="n">solver</span><span class="o">.</span><span class="n">entropies</span><span class="p">[</span><span class="n">L</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span>
+          <span class="sa">f</span><span class="s2">&quot;   max S = </span><span class="si">{</span><span class="n">solver</span><span class="o">.</span><span class="n">entropies</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">sigma_dmrg</span> <span class="o">=</span> <span class="n">pairing_runs</span><span class="p">[</span><span class="mi">32</span><span class="p">]</span><span class="o">.</span><span class="n">mps</span><span class="o">.</span><span class="n">schmidt_values</span><span class="p">(</span><span class="n">L</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">9.0</span><span class="p">,</span> <span class="mf">3.7</span><span class="p">))</span>
+<span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">33</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">sigma_exact</span><span class="p">[:</span><span class="mi">32</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">mfc</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;exact (Chapter 1)&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">k</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">sigma_dmrg</span><span class="p">)],</span> <span class="n">sigma_dmrg</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;DMRG, $\chi=32$&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Schmidt index $k$&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Schmidt weight $\sigma_k^2$&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;middle cut, $g=1$&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">bonds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">L</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">gg</span><span class="p">,</span> <span class="n">mk</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">couplings</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;o-&quot;</span><span class="p">,</span> <span class="s2">&quot;s-&quot;</span><span class="p">,</span> <span class="s2">&quot;^-&quot;</span><span class="p">)):</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bonds</span><span class="p">,</span> <span class="n">profiles</span><span class="p">[</span><span class="n">gg</span><span class="p">],</span> <span class="n">mk</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">rf</span><span class="s2">&quot;$g=</span><span class="si">{</span><span class="n">gg</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;bond $\ell$ (levels $1\ldots\ell$ | $\ell+1\ldots 12$)&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;entanglement entropy $S_\ell$&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;entropy profile&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>g = 0.5:  E = 28.14608852   S(middle cut) = 0.3097   max S = 0.3097
+g = 1.0:  E = 24.83917275   S(middle cut) = 0.9238   max S = 0.9238
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>g = 2.0:  E = 11.96102442   S(middle cut) = 1.2163   max S = 1.2163
+</pre></div>
+</div>
+<img alt="_images/a1f5db04c7654f06f0fc9414170a73a82a24a39efbfe527f777bb90d365c98ed.png" src="_images/a1f5db04c7654f06f0fc9414170a73a82a24a39efbfe527f777bb90d365c98ed.png" />
+</div>
+</div>
+</section>
+<section id="occupation-numbers">
+<h3><span class="section-number">13.3.3. </span>Occupation numbers<a class="headerlink" href="#occupation-numbers" title="Link to this heading">#</a></h3>
+<p>The DMRG state conserves the particle number exactly (the penalty
+enforces it), so the occupation numbers <span class="math notranslate nohighlight">\(\langle\hat n_p\rangle\)</span> of the
+twelve levels show the correlated smearing of the Fermi surface without
+the number fluctuations of the BCS state of Chapter 6.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">occ_couplings</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">)</span>
+<span class="n">occupations</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">gg</span> <span class="ow">in</span> <span class="n">occ_couplings</span><span class="p">:</span>
+    <span class="n">solver</span> <span class="o">=</span> <span class="n">states_g</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">gg</span><span class="p">)</span> <span class="ow">or</span> <span class="n">dmrg_ground_state</span><span class="p">(</span><span class="n">pairing_terms</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">gg</span><span class="p">),</span> <span class="n">L</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span>
+                                                  <span class="n">chi_max</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">max_sweeps</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">occupations</span><span class="p">[</span><span class="n">gg</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+        <span class="n">solver</span><span class="o">.</span><span class="n">mps</span><span class="o">.</span><span class="n">expectation_terms</span><span class="p">(</span><span class="n">occupation_terms</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">occupation_terms</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">L</span><span class="p">)])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;g = </span><span class="si">{</span><span class="n">gg</span><span class="si">:</span><span class="s2">3.1f</span><span class="si">}</span><span class="s2">:  n_p =&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">occupations</span><span class="p">[</span><span class="n">gg</span><span class="p">],</span> <span class="mi">4</span><span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;  sum = </span><span class="si">{</span><span class="n">occupations</span><span class="p">[</span><span class="n">gg</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">3.9</span><span class="p">))</span>
+<span class="n">levels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">L</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">gg</span><span class="p">,</span> <span class="n">mk</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">occ_couplings</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;o-&quot;</span><span class="p">,</span> <span class="s2">&quot;s-&quot;</span><span class="p">,</span> <span class="s2">&quot;^-&quot;</span><span class="p">,</span> <span class="s2">&quot;d-&quot;</span><span class="p">)):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">levels</span><span class="p">,</span> <span class="n">occupations</span><span class="p">[</span><span class="n">gg</span><span class="p">],</span> <span class="n">mk</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">rf</span><span class="s2">&quot;$g=</span><span class="si">{</span><span class="n">gg</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mf">6.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;level $p$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;occupation $\langle \hat n_p\rangle$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">levels</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>g = 0.5:  n_p = [1.9944 1.9923 1.9887 1.9818 1.9651 1.9006 0.0994 0.0349 0.0182 0.0113 0.0077 0.0056]   sum = 12.000000
+g = 1.0:  n_p = [1.9534 1.9365 1.9084 1.8572 1.7499 1.4731 0.5269 0.2501 0.1428 0.0916 0.0635 0.0466]   sum = 12.000000
+g = 2.0:  n_p = [1.7554 1.6932 1.6081 1.4907 1.3299 1.1201 0.8799 0.6701 0.5093 0.3919 0.3068 0.2446]   sum = 12.000000
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>g = 4.0:  n_p = [1.4607 1.3934 1.3178 1.2343 1.1438 1.0485 0.9515 0.8562 0.7657 0.6822 0.6066 0.5393]   sum = 12.000000
+</pre></div>
+</div>
+<img alt="_images/fffc5ed5249e0fdf4cbcadef92e20a8f99f190bc9e8f1aa4663a6f4b84b6a0d9.png" src="_images/fffc5ed5249e0fdf4cbcadef92e20a8f99f190bc9e8f1aa4663a6f4b84b6a0d9.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="the-pairing-plus-particle-hole-model">
+<h2><span class="section-number">13.4. </span>4. The pairing plus particle-hole model<a class="headerlink" href="#the-pairing-plus-particle-hole-model" title="Link to this heading">#</a></h2>
+<p>The particle-hole interaction of Chapter 7 breaks pairs, so the ground
+state is no longer of seniority zero and the exact diagonalisation has to
+be done in the full <span class="math notranslate nohighlight">\(S_z=0\)</span> sector.  Four levels and four particles first,
+at the couplings of Chapter 7.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span><span class="p">,</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;g&#39;</span><span class="si">:</span><span class="s2">&gt;6s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;f&#39;</span><span class="si">:</span><span class="s2">&gt;6s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;E_exact&#39;</span><span class="si">:</span><span class="s2">&gt;14s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;E_DMRG&#39;</span><span class="si">:</span><span class="s2">&gt;14s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;error&#39;</span><span class="si">:</span><span class="s2">&gt;10s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">g</span><span class="p">,</span> <span class="n">f</span> <span class="ow">in</span> <span class="p">((</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.025</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">),</span> <span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">),</span> <span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)):</span>
+    <span class="n">terms</span> <span class="o">=</span> <span class="n">add_terms</span><span class="p">(</span><span class="n">pairing_terms</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">g</span><span class="p">),</span> <span class="n">particle_hole_terms</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">f</span><span class="p">))</span>
+    <span class="n">e_ed</span> <span class="o">=</span> <span class="n">exact_ground_state</span><span class="p">(</span><span class="n">terms</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+    <span class="n">solver</span> <span class="o">=</span> <span class="n">dmrg_ground_state</span><span class="p">(</span><span class="n">terms</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">chi_max</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">g</span><span class="si">:</span><span class="s2">6.2f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">f</span><span class="si">:</span><span class="s2">6.3f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">e_ed</span><span class="si">:</span><span class="s2">14.8f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">solver</span><span class="o">.</span><span class="n">energy</span><span class="si">:</span><span class="s2">14.8f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">solver</span><span class="o">.</span><span class="n">energy</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">e_ed</span><span class="si">:</span><span class="s2">10.1e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     g      f        E_exact         E_DMRG      error
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0.50  0.025     1.34713265     1.34713265    2.4e-15
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0.70  0.050     0.96975878     0.96975878   -1.5e-14
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1.00  0.050     0.45058234     0.45058234    4.6e-15
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1.00  0.500    -1.69173670    -1.69173670   -8.0e-15
+</pre></div>
+</div>
+</div>
+</div>
+<p>Eight levels and eight particles, <span class="math notranslate nohighlight">\(g=1\)</span>, <span class="math notranslate nohighlight">\(f=0.5\)</span>: the <span class="math notranslate nohighlight">\(S_z=0\)</span> sector has
+<span class="math notranslate nohighlight">\(\binom{8}{4}^2=4900\)</span> determinants and is still within reach of exact
+diagonalisation, so we can follow the DMRG error as a function of <span class="math notranslate nohighlight">\(\chi\)</span>.
+The error is variational, falls by about an order of magnitude per
+doubling of <span class="math notranslate nohighlight">\(\chi\)</span>, and is proportional to the discarded weight – which
+is what makes the extrapolation to zero discarded weight the standard way
+of quoting a DMRG energy.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span><span class="p">,</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span>
+<span class="n">g</span><span class="p">,</span> <span class="n">f</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.5</span>
+<span class="n">terms</span> <span class="o">=</span> <span class="n">add_terms</span><span class="p">(</span><span class="n">pairing_terms</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">g</span><span class="p">),</span> <span class="n">particle_hole_terms</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">f</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;full N = 8 sector: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">sector_states</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">))</span><span class="si">}</span><span class="s2"> determinants, &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;S_z = 0 sector: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">sector_states</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="mi">2</span><span class="p">))</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">e_ed</span> <span class="o">=</span> <span class="n">exact_ground_state</span><span class="p">(</span><span class="n">terms</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">n_a</span><span class="o">=</span><span class="n">N</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;exact: E = </span><span class="si">{</span><span class="n">e_ed</span><span class="si">:</span><span class="s2">.10f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">chis</span> <span class="o">=</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span>
+<span class="n">ph</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;E&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">&quot;eps&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">&quot;S&quot;</span><span class="p">:</span> <span class="p">[]}</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;chi&#39;</span><span class="si">:</span><span class="s2">&gt;4s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;E_DMRG&#39;</span><span class="si">:</span><span class="s2">&gt;16s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;error&#39;</span><span class="si">:</span><span class="s2">&gt;10s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;discarded&#39;</span><span class="si">:</span><span class="s2">&gt;10s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;S(middle)&#39;</span><span class="si">:</span><span class="s2">&gt;10s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;time&#39;</span><span class="si">:</span><span class="s2">&gt;8s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">chi</span> <span class="ow">in</span> <span class="n">chis</span><span class="p">:</span>
+    <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">solver</span> <span class="o">=</span> <span class="n">dmrg_ground_state</span><span class="p">(</span><span class="n">terms</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">chi_max</span><span class="o">=</span><span class="n">chi</span><span class="p">,</span> <span class="n">max_sweeps</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">ph</span><span class="p">[</span><span class="s2">&quot;E&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">solver</span><span class="o">.</span><span class="n">energy</span><span class="p">);</span> <span class="n">ph</span><span class="p">[</span><span class="s2">&quot;eps&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">solver</span><span class="o">.</span><span class="n">discarded</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">ph</span><span class="p">[</span><span class="s2">&quot;S&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">solver</span><span class="o">.</span><span class="n">entropies</span><span class="p">[</span><span class="n">L</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">chi</span><span class="si">:</span><span class="s2">4d</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">solver</span><span class="o">.</span><span class="n">energy</span><span class="si">:</span><span class="s2">16.10f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">solver</span><span class="o">.</span><span class="n">energy</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">e_ed</span><span class="si">:</span><span class="s2">10.1e</span><span class="si">}</span><span class="s2"> &quot;</span>
+          <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">solver</span><span class="o">.</span><span class="n">discarded</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">10.1e</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">solver</span><span class="o">.</span><span class="n">entropies</span><span class="p">[</span><span class="n">L</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">10.4f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">t0</span><span class="si">:</span><span class="s2">7.1f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+<span class="n">E_chi</span><span class="p">,</span> <span class="n">eps_chi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">ph</span><span class="p">[</span><span class="s2">&quot;E&quot;</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">ph</span><span class="p">[</span><span class="s2">&quot;eps&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>full N = 8 sector: 12870 determinants, S_z = 0 sector: 4900
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>exact: E = 1.8291066715
+ chi           E_DMRG      error  discarded  S(middle)     time
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   4     2.2435302961    4.1e-01    9.1e-03     1.0114     0.7s
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   8     1.8655652393    3.6e-02    1.2e-03     1.0898     2.6s
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  16     1.8326023377    3.5e-03    1.3e-04     1.1064     7.3s
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  32     1.8291612166    5.5e-05    2.4e-06     1.1084     7.6s
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  64     1.8291067166    4.5e-08    2.2e-09     1.1084    11.9s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># straight-line extrapolation in the discarded weight through the three</span>
+<span class="c1"># runs with the smallest discarded weights (the converged tail)</span>
+<span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">eps_chi</span><span class="p">[</span><span class="mi">2</span><span class="p">:],</span> <span class="n">E_chi</span><span class="p">[</span><span class="mi">2</span><span class="p">:],</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">a2</span><span class="p">,</span> <span class="n">b2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">eps_chi</span><span class="p">[</span><span class="mi">3</span><span class="p">:],</span> <span class="n">E_chi</span><span class="p">[</span><span class="mi">3</span><span class="p">:],</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">a0</span><span class="p">,</span> <span class="n">b0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">eps_chi</span><span class="p">[:</span><span class="mi">3</span><span class="p">],</span> <span class="n">E_chi</span><span class="p">[:</span><span class="mi">3</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;extrapolated energy from chi = 16, 32, 64: </span><span class="si">{</span><span class="n">b</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2">   error </span><span class="si">{</span><span class="n">b</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">e_ed</span><span class="si">:</span><span class="s2">.1e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;extrapolated energy from chi = 32, 64:     </span><span class="si">{</span><span class="n">b2</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2">   error </span><span class="si">{</span><span class="n">b2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">e_ed</span><span class="si">:</span><span class="s2">.1e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;extrapolated energy from chi = 4, 8, 16:   </span><span class="si">{</span><span class="n">b0</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2">   error </span><span class="si">{</span><span class="n">b0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">e_ed</span><span class="si">:</span><span class="s2">.1e</span><span class="si">}</span><span class="s2">  (the cheap runs are off the line)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ratio  error / discarded weight:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">((</span><span class="n">E_chi</span> <span class="o">-</span> <span class="n">e_ed</span><span class="p">)</span> <span class="o">/</span> <span class="n">eps_chi</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">9.0</span><span class="p">,</span> <span class="mf">3.7</span><span class="p">))</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">chis</span><span class="p">,</span> <span class="n">E_chi</span> <span class="o">-</span> <span class="n">e_ed</span><span class="p">,</span> <span class="s2">&quot;o-&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$E_{\rm DMRG}-E_0$&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">chis</span><span class="p">,</span> <span class="n">eps_chi</span><span class="p">,</span> <span class="s2">&quot;s--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;discarded weight $\epsilon_\chi$&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xscale</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">chis</span><span class="p">);</span> <span class="n">ax1</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">chis</span><span class="p">])</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;bond dimension $\chi$&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;error&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">scale</span> <span class="o">=</span> <span class="mf">1e4</span>
+<span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">eps_chi</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="mf">1.08</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">scale</span> <span class="o">*</span> <span class="n">eps_chi</span><span class="p">[</span><span class="mi">2</span><span class="p">:],</span> <span class="n">E_chi</span><span class="p">[</span><span class="mi">2</span><span class="p">:],</span> <span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;DMRG, $\chi=16,32,64$&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">scale</span> <span class="o">*</span> <span class="n">xs</span><span class="p">,</span> <span class="n">a</span> <span class="o">*</span> <span class="n">xs</span> <span class="o">+</span> <span class="n">b</span><span class="p">,</span> <span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;linear fit&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">e_ed</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;exact&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;discarded weight $\epsilon_\chi$  ($10^{-4}$)&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$E_{\rm DMRG}$&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>extrapolated energy from chi = 16, 32, 64: 1.82910168   error -5.0e-06
+extrapolated energy from chi = 32, 64:     1.82910667   error -4.6e-09
+extrapolated energy from chi = 4, 8, 16:   1.81943878   error -9.7e-03  (the cheap runs are off the line)
+ratio  error / discarded weight: [45.8 31.5 26.8 22.7 20.6]
+</pre></div>
+</div>
+<img alt="_images/5a56f2496b748c79bff420863deff99c93e0d623bb650f634b3be2d68853e6b7.png" src="_images/5a56f2496b748c79bff420863deff99c93e0d623bb650f634b3be2d68853e6b7.png" />
+</div>
+</div>
+</section>
+<section id="the-hubbard-chain">
+<h2><span class="section-number">13.5. </span>5. The Hubbard chain<a class="headerlink" href="#the-hubbard-chain" title="Link to this heading">#</a></h2>
+<section id="the-four-site-ring-of-chapter-4">
+<h3><span class="section-number">13.5.1. </span>The four-site ring of Chapter 4<a class="headerlink" href="#the-four-site-ring-of-chapter-4" title="Link to this heading">#</a></h3>
+<p>A ring is awkward for an MPS – the bond between the last and the first
+site is carried through the whole chain – but for four sites <span class="math notranslate nohighlight">\(\chi=16\)</span>
+is exact and the DMRG reproduces every entry of Table 4.3, energies and
+double occupancies alike.  (<span class="math notranslate nohighlight">\(U=0\)</span> is left out: the half-filled free ring
+has a degenerate ground state and its double occupancy is not unique.)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">table</span> <span class="o">=</span> <span class="p">{</span><span class="mi">2</span><span class="p">:</span> <span class="o">-</span><span class="mf">2.82842712</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span> <span class="o">-</span><span class="mf">2.10274848</span><span class="p">,</span> <span class="mi">8</span><span class="p">:</span> <span class="o">-</span><span class="mf">1.32023496</span><span class="p">,</span> <span class="mi">16</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.72286432</span><span class="p">}</span>
+<span class="n">L</span><span class="p">,</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;U/t&#39;</span><span class="si">:</span><span class="s2">&gt;5s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;E_0 (table)&#39;</span><span class="si">:</span><span class="s2">&gt;14s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;E_DMRG&#39;</span><span class="si">:</span><span class="s2">&gt;14s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;error&#39;</span><span class="si">:</span><span class="s2">&gt;10s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;double occ.&#39;</span><span class="si">:</span><span class="s2">&gt;12s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">U</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">16</span><span class="p">):</span>
+    <span class="n">terms</span> <span class="o">=</span> <span class="n">hubbard_terms</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="n">U</span><span class="p">),</span> <span class="n">pbc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">solver</span> <span class="o">=</span> <span class="n">dmrg_ground_state</span><span class="p">(</span><span class="n">terms</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">chi_max</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    <span class="n">docc</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">solver</span><span class="o">.</span><span class="n">mps</span><span class="o">.</span><span class="n">expectation_terms</span><span class="p">(</span>
+        <span class="p">[(</span><span class="mf">1.0</span><span class="p">,</span> <span class="p">[(</span><span class="n">mode</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="kc">True</span><span class="p">),</span> <span class="p">(</span><span class="n">mode</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="kc">False</span><span class="p">),</span>
+                <span class="p">(</span><span class="n">mode</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="kc">True</span><span class="p">),</span> <span class="p">(</span><span class="n">mode</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="kc">False</span><span class="p">)])])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">L</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">U</span><span class="si">:</span><span class="s2">5d</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">table</span><span class="p">[</span><span class="n">U</span><span class="p">]</span><span class="si">:</span><span class="s2">14.8f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">solver</span><span class="o">.</span><span class="n">energy</span><span class="si">:</span><span class="s2">14.8f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">solver</span><span class="o">.</span><span class="n">energy</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">table</span><span class="p">[</span><span class="n">U</span><span class="p">]</span><span class="si">:</span><span class="s2">10.1e</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">docc</span><span class="si">:</span><span class="s2">12.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  U/t    E_0 (table)         E_DMRG      error  double occ.
+    2    -2.82842712    -2.82842712   -4.7e-09     0.453082
+    4    -2.10274848    -2.10274848   -3.5e-09     0.287325
+    8    -1.32023496    -1.32023496    1.7e-09     0.129992
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   16    -0.72286432    -0.72286432   -2.4e-09     0.042033
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="open-chains-towards-the-thermodynamic-limit">
+<h3><span class="section-number">13.5.2. </span>Open chains: towards the thermodynamic limit<a class="headerlink" href="#open-chains-towards-the-thermodynamic-limit" title="Link to this heading">#</a></h3>
+<p>With open ends the chain is what the MPS wants, and we can leave exact
+diagonalisation behind.  The check that replaces it is the Bethe ansatz:
+Lieb and Wu solved the infinite half-filled chain exactly, with the energy
+per site</p>
+<div class="math notranslate nohighlight">
+\[e_\infty(U)=-4t\int_0^\infty
+  \frac{J_0(\omega)J_1(\omega)}{\omega\,(1+e^{\omega U/2t})}\,d\omega ,\]</div>
+<p>which at <span class="math notranslate nohighlight">\(U=4t\)</span> is <span class="math notranslate nohighlight">\(-0.573729\)</span>.  An open chain has two ends, each raising
+the energy by a fixed amount, so <span class="math notranslate nohighlight">\(E/L\to e_\infty+a/L+b/L^2\)</span>.  The runs
+below take a few minutes; the <span class="math notranslate nohighlight">\(L=32\)</span> chain at <span class="math notranslate nohighlight">\(\chi=32\)</span> is the most
+expensive.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">e_inf</span> <span class="o">=</span> <span class="n">lieb_wu_energy</span><span class="p">(</span><span class="mf">4.0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Lieb-Wu energy per site of the infinite chain at U = 4t: </span><span class="si">{</span><span class="n">e_inf</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">sizes</span> <span class="o">=</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>
+<span class="n">hub</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;L&#39;</span><span class="si">:</span><span class="s2">&gt;4s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;E_exact&#39;</span><span class="si">:</span><span class="s2">&gt;14s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;E_DMRG&#39;</span><span class="si">:</span><span class="s2">&gt;14s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;E/L&#39;</span><span class="si">:</span><span class="s2">&gt;10s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;discarded&#39;</span><span class="si">:</span><span class="s2">&gt;10s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;S(middle)&#39;</span><span class="si">:</span><span class="s2">&gt;10s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;time&#39;</span><span class="si">:</span><span class="s2">&gt;8s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">L</span> <span class="ow">in</span> <span class="n">sizes</span><span class="p">:</span>
+    <span class="n">chi</span> <span class="o">=</span> <span class="mi">16</span> <span class="k">if</span> <span class="n">L</span> <span class="o">==</span> <span class="mi">4</span> <span class="k">else</span> <span class="mi">32</span>
+    <span class="n">terms</span> <span class="o">=</span> <span class="n">hubbard_terms</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">)</span>
+    <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">solver</span> <span class="o">=</span> <span class="n">dmrg_ground_state</span><span class="p">(</span><span class="n">terms</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">chi_max</span><span class="o">=</span><span class="n">chi</span><span class="p">,</span> <span class="n">max_sweeps</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">hub</span><span class="p">[</span><span class="n">L</span><span class="p">]</span> <span class="o">=</span> <span class="n">solver</span>
+    <span class="k">if</span> <span class="n">L</span> <span class="o">&lt;=</span> <span class="mi">8</span><span class="p">:</span>
+        <span class="n">e_ed</span> <span class="o">=</span> <span class="n">exact_ground_state</span><span class="p">(</span><span class="n">terms</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">n_a</span><span class="o">=</span><span class="n">L</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">ed</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">e_ed</span><span class="si">:</span><span class="s2">14.8f</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">ed</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;--&#39;</span><span class="si">:</span><span class="s2">&gt;14s</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">L</span><span class="si">:</span><span class="s2">4d</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">ed</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">solver</span><span class="o">.</span><span class="n">energy</span><span class="si">:</span><span class="s2">14.8f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">solver</span><span class="o">.</span><span class="n">energy</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">L</span><span class="si">:</span><span class="s2">10.6f</span><span class="si">}</span><span class="s2"> &quot;</span>
+          <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">solver</span><span class="o">.</span><span class="n">discarded</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">10.1e</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">solver</span><span class="o">.</span><span class="n">entropies</span><span class="p">[</span><span class="n">L</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">10.4f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">t0</span><span class="si">:</span><span class="s2">7.1f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Lieb-Wu energy per site of the infinite chain at U = 4t: -0.573729
+   L        E_exact         E_DMRG        E/L  discarded  S(middle)     time
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   4    -1.95314531    -1.95314531  -0.488286    0.0e+00     0.5969     0.1s
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   8    -4.23580700    -4.23579335  -0.529474    1.7e-06     0.7814     6.1s
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  12             --    -6.52613611  -0.543845    6.4e-06     0.8757    23.4s
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  16             --    -8.81845095  -0.551153    1.2e-05     0.9362    38.1s
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  20             --   -11.11152991  -0.555576    1.9e-05     0.9791    57.2s
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  24             --   -13.40496912  -0.558540    2.5e-05     1.0108    72.9s
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  32             --   -17.99217239  -0.562255    3.5e-05     1.0540   124.0s
+</pre></div>
+</div>
+</div>
+</div>
+<p>The entanglement entropy of the Hubbard chain does not saturate with <span class="math notranslate nohighlight">\(L\)</span>:
+the spin sector is gapless, and conformal field theory predicts for an
+open critical chain the arc
+<span class="math notranslate nohighlight">\(S_\ell=\tfrac{c}{6}\ln\big[\tfrac{2L}{\pi}\sin\tfrac{\pi\ell}{L}\big]+s_0\)</span>
+with central charge <span class="math notranslate nohighlight">\(c=1\)</span> (Calabrese and Cardy), superimposed on an
+even-odd alternation between neighbouring bonds.  We fit only <span class="math notranslate nohighlight">\(s_0\)</span>, with
+<span class="math notranslate nohighlight">\(c=1\)</span> fixed, through the even bonds of the <span class="math notranslate nohighlight">\(L=32\)</span> chain.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_sizes</span> <span class="o">=</span> <span class="p">[</span><span class="n">L</span> <span class="k">for</span> <span class="n">L</span> <span class="ow">in</span> <span class="n">sizes</span> <span class="k">if</span> <span class="n">L</span> <span class="o">&gt;=</span> <span class="mi">8</span><span class="p">]</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">L</span> <span class="k">for</span> <span class="n">L</span> <span class="ow">in</span> <span class="n">fit_sizes</span><span class="p">])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">hub</span><span class="p">[</span><span class="n">L</span><span class="p">]</span><span class="o">.</span><span class="n">energy</span> <span class="o">/</span> <span class="n">L</span> <span class="k">for</span> <span class="n">L</span> <span class="ow">in</span> <span class="n">fit_sizes</span><span class="p">])</span>
+<span class="n">c2</span><span class="p">,</span> <span class="n">c1</span><span class="p">,</span> <span class="n">c0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;quadratic extrapolation of E/L in 1/L: </span><span class="si">{</span><span class="n">c0</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">   Lieb-Wu: </span><span class="si">{</span><span class="n">e_inf</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">   &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;difference </span><span class="si">{</span><span class="n">c0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">e_inf</span><span class="si">:</span><span class="s2">.1e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">L</span> <span class="o">=</span> <span class="mi">32</span>
+<span class="n">S</span> <span class="o">=</span> <span class="n">hub</span><span class="p">[</span><span class="n">L</span><span class="p">]</span><span class="o">.</span><span class="n">entropies</span>
+<span class="n">ell</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">L</span><span class="p">)</span>
+<span class="n">arc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">L</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">ell</span> <span class="o">/</span> <span class="n">L</span><span class="p">))</span> <span class="o">/</span> <span class="mf">6.0</span>
+<span class="n">even</span> <span class="o">=</span> <span class="n">ell</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span>
+<span class="n">s0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">S</span><span class="p">[</span><span class="n">even</span><span class="p">]</span> <span class="o">-</span> <span class="n">arc</span><span class="p">[</span><span class="n">even</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Calabrese-Cardy fit with c = 1 through the even bonds: s_0 = </span><span class="si">{</span><span class="n">s0</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;rms deviation </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">S</span><span class="p">[</span><span class="n">even</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">arc</span><span class="p">[</span><span class="n">even</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">s0</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">9.0</span><span class="p">,</span> <span class="mf">3.7</span><span class="p">))</span>
+<span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">*</span> <span class="mf">1.05</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;DMRG, $\chi=32$&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">polyval</span><span class="p">((</span><span class="n">c2</span><span class="p">,</span> <span class="n">c1</span><span class="p">,</span> <span class="n">c0</span><span class="p">),</span> <span class="n">xs</span><span class="p">),</span> <span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;quadratic fit&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">e_inf</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Lieb-Wu&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$1/L$&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$E/L$&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;half filling, $U=4t$&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ell</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="s2">&quot;o-&quot;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mf">3.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;DMRG, $L=32$&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ell</span><span class="p">,</span> <span class="n">arc</span> <span class="o">+</span> <span class="n">s0</span><span class="p">,</span> <span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\frac</span><span class="si">{1}{6}</span><span class="s2">\ln[\frac</span><span class="si">{2L}</span><span class="s2">{\pi}\sin\frac{\pi\ell}</span><span class="si">{L}</span><span class="s2">]+s_0$&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;bond $\ell$&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;entanglement entropy $S_\ell$&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">top</span><span class="o">=</span><span class="n">S</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mf">0.35</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;upper center&quot;</span><span class="p">,</span> <span class="n">ncol</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>quadratic extrapolation of E/L in 1/L: -0.573542   Lieb-Wu: -0.573729   difference 1.9e-04
+Calabrese-Cardy fit with c = 1 through the even bonds: s_0 = 0.5439, rms deviation 0.0171
+</pre></div>
+</div>
+<img alt="_images/b82e1ac5279443f4c2b804ee250ee40b785b259a5cb66452aee3c22b37c66c54.png" src="_images/b82e1ac5279443f4c2b804ee250ee40b785b259a5cb66452aee3c22b37c66c54.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="exercises">
+<h2><span class="section-number">13.6. </span>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
+<p>The exercises of the chapter can all be done with the functions of this
+notebook: the Schmidt spectrum and the entropy across every bond come from
+<code class="docutils literal notranslate"><span class="pre">DMRG.entropies</span></code> and <code class="docutils literal notranslate"><span class="pre">MPS.schmidt_values</span></code>, the extrapolation in the
+discarded weight from <code class="docutils literal notranslate"><span class="pre">DMRG.discarded</span></code>, and every observable from
+<code class="docutils literal notranslate"><span class="pre">MPS.expectation_terms</span></code> with a term list in the same format as the
+Hamiltonians.  Changing the order of the levels on the chain (put the
+levels around the Fermi surface next to each other, or far apart) is a
+matter of relabelling the sites in <code class="docutils literal notranslate"><span class="pre">pairing_terms</span></code>, and is the quickest way
+to see that the bond dimension needed for a given accuracy depends on the
+ordering as well as on the state.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="quantumdots.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">12. </span>Quantum dots: a realistic Hamiltonian</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="statistics.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">14. </span>Elements from statistics</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sites-modes-and-jordan-wigner-strings">13.1. 1. Sites, modes and Jordan-Wigner strings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-product-operators-of-the-three-models">13.2. 2. Matrix product operators of the three models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-pairing-model">13.3. 3. The pairing model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-four-level-model-of-chapter-4">13.3.1. The four-level model of Chapter 4</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#twelve-levels-six-pairs-the-entropy-of-chapter-1">13.3.2. Twelve levels, six pairs: the entropy of Chapter 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#occupation-numbers">13.3.3. Occupation numbers</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-pairing-plus-particle-hole-model">13.4. 4. The pairing plus particle-hole model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-hubbard-chain">13.5. 5. The Hubbard chain</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-four-site-ring-of-chapter-4">13.5.1. The four-site ring of Chapter 4</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#open-chains-towards-the-thermodynamic-limit">13.5.2. Open chains: towards the thermodynamic limit</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">13.6. Exercises</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Morten Hjorth-Jensen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
