@@ -1,0 +1,972 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Project 5: neural quantum states for the quantum dot, from the Boltzmann machine to a physics-informed ansatz &#8212; Quantum Mechanics for Many-Particle Systems: from standard methods to quantum computing and machine learning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'nqs';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Project 4: coupled-cluster doubles for quantum dots, three ways" href="ccdchannels.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Quantum Mechanics for Many-Particle Systems: from standard methods to quantum computing and machine learning - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Quantum Mechanics for Many-Particle Systems: from standard methods to quantum computing and machine learning - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Quantum mechanics for many-particle systems
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">About the course</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="teachers.html">Instructor information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="textbooks.html">Textbooks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Foundations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="linearalgebra.html">1. Linear algebra and eigenvalue problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manybodybasics.html">2. From linear algebra to many-body physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wicktheorem.html">3. Wick’s theorem, verified by brute force</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jordanwigner.html">4. From fermions to qubits: the Jordan-Wigner transformation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">5. Physical systems and models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fullci.html">6. Full configuration interaction theory</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Mean-field and beyond</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="hartreefock.html">7. Mean-field approaches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tdarpa.html">8. Mean-field applications: TDA, RPA and QRPA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dft.html">9. Density functional theory</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Post Hartree-Fock methods</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="mbptheory.html">10. Many-body perturbation theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coupledcluster.html">11. Coupled cluster theory</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Applications and stochastic methods</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="quantumdots.html">12. Quantum dots: a realistic Hamiltonian</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dmrg.html">13. The density matrix renormalisation group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="statistics.html">14. Elements from statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variationalmc.html">15. Variational Monte Carlo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimisation.html">16. Optimization and resampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diffusionmc.html">17. Diffusion Monte Carlo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manybodymc.html">18. Applications to many-body systems: six electrons</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine learning approaches</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="boltzmannmachines.html">19. Boltzmann machines and generative models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pinns.html">20. Neural quantum states and physics-informed neural networks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum computing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="quantumfourier.html">21. The quantum Fourier transform and phase estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vqe.html">22. The variational quantum eigensolver</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Concluding remarks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="conclusions.html">23. Concluding remarks and perspectives</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="fam.html">Project: the finite amplitude method for the RPA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="effective3body.html">Project 2: effective interactions and induced three-body forces from full configuration interaction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="atoms.html">Project 3: helium and beryllium from the reference determinant to Hartree-Fock, configuration interaction, TDA and RPA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ccdchannels.html">Project 4: coupled-cluster doubles for quantum dots, three ways</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Project 5: neural quantum states for the quantum dot, from the Boltzmann machine to a physics-informed ansatz</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/ManyBodyPhysics/FYS4480/master?urlpath=lab/tree/doc/LectureNotes/nqs.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ManyBodyPhysics/FYS4480" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ManyBodyPhysics/FYS4480/issues/new?title=Issue%20on%20page%20%2Fnqs.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/nqs.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Project 5: neural quantum states for the quantum dot, from the Boltzmann machine to a physics-informed ansatz</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-ansatz-and-its-derivatives">1. The ansatz and its derivatives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#one-particle-in-one-dimension-two-hidden-units">2. One particle in one dimension, two hidden units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling-brute-force-against-importance-sampling">3. Sampling: brute force against importance sampling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optimisation-gradient-descent-against-stochastic-reconfiguration">4. Optimisation: gradient descent against stochastic reconfiguration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-cusp">5. The cusp</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="project-5-neural-quantum-states-for-the-quantum-dot-from-the-boltzmann-machine-to-a-physics-informed-ansatz">
+<h1>Project 5: neural quantum states for the quantum dot, from the Boltzmann machine to a physics-informed ansatz<a class="headerlink" href="#project-5-neural-quantum-states-for-the-quantum-dot-from-the-boltzmann-machine-to-a-physics-informed-ansatz" title="Link to this heading">#</a></h1>
+<p>Companion notebook to Appendix A, Project 5, of <em>Quantum mechanics for
+many-particle systems</em>.  The code is the same as in
+<code class="docutils literal notranslate"><span class="pre">BookManybody/BookPrograms/appendixA/nqs.py</span></code>, which extends the
+<code class="docutils literal notranslate"><span class="pre">NeuralQuantumState</span></code> class of the chapter-17 program <code class="docutils literal notranslate"><span class="pre">rbm.py</span></code> and uses the
+blocking of the chapter-14 program <code class="docutils literal notranslate"><span class="pre">vmcoptimise.py</span></code>; the notebook runs it
+section by section.</p>
+<p>The wave function of two electrons in a two-dimensional harmonic trap at
+<span class="math notranslate nohighlight">\(\omega=1\)</span> is represented by the square root of the marginal distribution
+of a Gaussian-binary restricted Boltzmann machine – Carleo and Troyer’s
+<em>neural quantum state</em> – and optimised by variational Monte Carlo.  The
+project builds the code in the order of chapters 13, 14 and 17: the
+analytic derivatives, brute-force and importance-sampled Metropolis,
+gradient descent and stochastic reconfiguration, the blocking analysis,
+and finally the interaction, where Taut’s exact energy of <span class="math notranslate nohighlight">\(3\)</span> a.u. is the
+target.  It ends where chapter 18 begins: with the cusp put into the
+ansatz by hand.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">glob</span><span class="o">,</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="k">for</span> <span class="n">_pattern</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;chapter*&quot;</span><span class="p">,</span> <span class="s2">&quot;appendix*&quot;</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">_d</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;..&quot;</span><span class="p">,</span> <span class="s2">&quot;BookManybody&quot;</span><span class="p">,</span>
+                                            <span class="s2">&quot;BookPrograms&quot;</span><span class="p">,</span> <span class="n">_pattern</span><span class="p">))):</span>
+        <span class="k">if</span> <span class="n">_d</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">_d</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">nqs</span>
+<span class="kn">from</span> <span class="nn">vmcoptimise</span> <span class="kn">import</span> <span class="n">blocking</span><span class="p">,</span> <span class="n">blocking_curve</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="the-ansatz-and-its-derivatives">
+<h2>1. The ansatz and its derivatives<a class="headerlink" href="#the-ansatz-and-its-derivatives" title="Link to this heading">#</a></h2>
+<p>With <span class="math notranslate nohighlight">\(M=PD\)</span> visible units <span class="math notranslate nohighlight">\(x_m\)</span> (the coordinates), <span class="math notranslate nohighlight">\(N\)</span> hidden units, and
+<span class="math notranslate nohighlight">\(Q_n=b_n+\sum_m x_mw_{mn}/\sigma^2\)</span>, the neural quantum state of
+chapter 17 is</p>
+<div class="math notranslate nohighlight">
+\[
+\ln\Psi(\mathbf x)=-\sum_m\frac{(x_m-a_m)^2}{4\sigma^2}
++\frac12\sum_n\ln\!\big(1+e^{Q_n}\big),
+\]</div>
+<p>the square root of the RBM marginal, so that <span class="math notranslate nohighlight">\(|\Psi|^2\)</span> is itself an RBM
+distribution.  The local energy needs <span class="math notranslate nohighlight">\(\partial_m\ln\Psi\)</span> and
+<span class="math notranslate nohighlight">\(\partial_m^2\ln\Psi\)</span>, and the optimiser needs
+<span class="math notranslate nohighlight">\(O_k=\partial\ln\Psi/\partial\theta_k\)</span> for every parameter
+<span class="math notranslate nohighlight">\(\theta=(\mathbf a,\mathbf b,\mathbf W)\)</span> – and, in this project, also for
+the width <span class="math notranslate nohighlight">\(\sigma\)</span> and for the parameter <span class="math notranslate nohighlight">\(\beta\)</span> of an optional
+Padé-Jastrow factor <span class="math notranslate nohighlight">\(\exp[r_{12}/(1+\beta r_{12})]\)</span>.  Every one of these
+is checked against finite differences before anything else is run, and
+Taut’s exact state is used as the ultimate test of the local energy: its
+<span class="math notranslate nohighlight">\(E_L\)</span> must be exactly <span class="math notranslate nohighlight">\(3\)</span> everywhere.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="p">(</span><span class="n">dp</span><span class="p">,</span> <span class="n">de</span><span class="p">)</span> <span class="ow">in</span> <span class="n">nqs</span><span class="o">.</span><span class="n">check_derivatives</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;jastrow=</span><span class="si">{</span><span class="n">key</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">!s:</span><span class="s2">5s</span><span class="si">}</span><span class="s2"> learn_sigma=</span><span class="si">{</span><span class="n">key</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">!s:</span><span class="s2">5s</span><span class="si">}</span><span class="s2">: &quot;</span>
+          <span class="sa">f</span><span class="s2">&quot;max |O_analytic - O_fd| = </span><span class="si">{</span><span class="n">dp</span><span class="si">:</span><span class="s2">.1e</span><span class="si">}</span><span class="s2">, max |E_L analytic - fd| = </span><span class="si">{</span><span class="n">de</span><span class="si">:</span><span class="s2">.1e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">e</span> <span class="o">=</span> <span class="n">nqs</span><span class="o">.</span><span class="n">taut_local_energy</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Taut&#39;s exact state: E_L = </span><span class="si">{</span><span class="n">e</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.12f</span><span class="si">}</span><span class="s2"> with spread </span><span class="si">{</span><span class="n">e</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="si">:</span><span class="s2">.1e</span><span class="si">}</span><span class="s2"> over </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2"> random points&quot;</span><span class="p">)</span>
+<span class="n">psi</span> <span class="o">=</span> <span class="n">nqs</span><span class="o">.</span><span class="n">ProjectNQS</span><span class="p">(</span><span class="n">n_hidden</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">jastrow</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">learn_sigma</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;parameters:&quot;</span><span class="p">,</span> <span class="n">psi</span><span class="o">.</span><span class="n">n_parameters</span><span class="p">,</span> <span class="s2">&quot;=&quot;</span><span class="p">,</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">psi</span><span class="o">.</span><span class="n">parameter_names</span><span class="p">()[:</span><span class="mi">6</span><span class="p">]),</span> <span class="s2">&quot;...,&quot;</span><span class="p">,</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">psi</span><span class="o">.</span><span class="n">parameter_names</span><span class="p">()[</span><span class="o">-</span><span class="mi">2</span><span class="p">:]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>jastrow=False learn_sigma=False: max |O_analytic - O_fd| = 2.5e-10, max |E_L analytic - fd| = 1.1e-07
+jastrow=True  learn_sigma=False: max |O_analytic - O_fd| = 2.5e-10, max |E_L analytic - fd| = 1.1e-07
+jastrow=True  learn_sigma=True : max |O_analytic - O_fd| = 4.9e-10, max |E_L analytic - fd| = 1.1e-07
+Taut&#39;s exact state: E_L = 3.000000000000 with spread 4.1e-16 over 2000 random points
+parameters: 26 = a0, a1, a2, a3, b0, b1 ..., beta, sigma
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="one-particle-in-one-dimension-two-hidden-units">
+<h2>2. One particle in one dimension, two hidden units<a class="headerlink" href="#one-particle-in-one-dimension-two-hidden-units" title="Link to this heading">#</a></h2>
+<p>The first calculation is the smallest possible: one particle, one
+dimension, no interaction, two hidden units, seven parameters.  The exact
+energy is <span class="math notranslate nohighlight">\(1/2\)</span>.  With <span class="math notranslate nohighlight">\(\sigma^2=1/2\omega\)</span> the machine represents the
+exact ground state at zero weights, so the optimiser only has to switch
+the hidden units off, and the variance of the local energy is a direct
+measure of how well it has done so.  We follow the training for three
+learning rates.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">3.8</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">rate</span> <span class="ow">in</span> <span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">):</span>
+    <span class="n">psi</span> <span class="o">=</span> <span class="n">nqs</span><span class="o">.</span><span class="n">ProjectNQS</span><span class="p">(</span><span class="n">n_particles</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_dimensions</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_hidden</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">interaction</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                         <span class="n">rng</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+    <span class="n">hist</span> <span class="o">=</span> <span class="n">psi</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="s2">&quot;sgd&quot;</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="n">rate</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">n_cycles</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">n_walkers</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">prod</span> <span class="o">=</span> <span class="n">psi</span><span class="o">.</span><span class="n">production</span><span class="p">(</span><span class="n">n_cycles</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">n_walkers</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;learning rate </span><span class="si">{</span><span class="n">rate</span><span class="si">:</span><span class="s2">4.2f</span><span class="si">}</span><span class="s2">: E = </span><span class="si">{</span><span class="n">prod</span><span class="p">[</span><span class="s1">&#39;energy&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">prod</span><span class="p">[</span><span class="s1">&#39;error&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">, &quot;</span>
+          <span class="sa">f</span><span class="s2">&quot;var(E_L) = </span><span class="si">{</span><span class="n">prod</span><span class="p">[</span><span class="s1">&#39;variance&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2">   (exact 0.5)&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">semilogy</span><span class="p">([</span><span class="n">h</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">hist</span><span class="p">],</span> <span class="p">[</span><span class="n">h</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">hist</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">rf</span><span class="s2">&quot;$\eta=</span><span class="si">{</span><span class="n">rate</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;gradient step&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\mathrm</span><span class="si">{var}</span><span class="s2">(E_L)$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;one particle in 1D, two hidden units: variance during training&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>learning rate 0.01: E = 0.501053 +/- 0.000133, var(E_L) = 2.08e-03   (exact 0.5)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>learning rate 0.05: E = 0.500740 +/- 0.000111, var(E_L) = 1.50e-03   (exact 0.5)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>learning rate 0.20: E = 0.500284 +/- 0.000070, var(E_L) = 5.97e-04   (exact 0.5)
+</pre></div>
+</div>
+<img alt="_images/26f0460b3f4c20cd162c04c9722a8757c7142fa6c85134c121f4760076ee791c.png" src="_images/26f0460b3f4c20cd162c04c9722a8757c7142fa6c85134c121f4760076ee791c.png" />
+</div>
+</div>
+</section>
+<section id="sampling-brute-force-against-importance-sampling">
+<h2>3. Sampling: brute force against importance sampling<a class="headerlink" href="#sampling-brute-force-against-importance-sampling" title="Link to this heading">#</a></h2>
+<p>The samplers of chapter 13 are both implemented for the machine: a
+symmetric uniform step of size <span class="math notranslate nohighlight">\(\Delta\)</span> accepted with <span class="math notranslate nohighlight">\(|\Psi'/\Psi|^2\)</span>, and
+the Langevin move with the quantum force <span class="math notranslate nohighlight">\(\mathbf F=2\nabla\ln\Psi\)</span> and
+time step <span class="math notranslate nohighlight">\(\delta t\)</span> accepted with the Metropolis-Hastings ratio.  We train
+one interacting machine (<span class="math notranslate nohighlight">\(N=4\)</span> hidden units) and then compare the two
+samplers on it: the acceptance rate, and – the quantity that matters –
+the statistical error of the energy from the blocking analysis of
+chapter 14 for the same number of Monte Carlo cycles.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">machine</span> <span class="o">=</span> <span class="n">nqs</span><span class="o">.</span><span class="n">ProjectNQS</span><span class="p">(</span><span class="n">n_hidden</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">rng</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">11</span><span class="p">))</span>
+<span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">hist_sgd</span> <span class="o">=</span> <span class="n">machine</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="s2">&quot;sgd&quot;</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span> <span class="n">n_cycles</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">n_walkers</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;trained in </span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">t0</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> s; last energy estimate </span><span class="si">{</span><span class="n">hist_sgd</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">theta_sgd</span> <span class="o">=</span> <span class="n">machine</span><span class="o">.</span><span class="n">get_theta</span><span class="p">()</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;sampler&#39;</span><span class="si">:</span><span class="s2">&gt;12s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;step&#39;</span><span class="si">:</span><span class="s2">&gt;6s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;acceptance&#39;</span><span class="si">:</span><span class="s2">&gt;11s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;E&#39;</span><span class="si">:</span><span class="s2">&gt;10s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;error&#39;</span><span class="si">:</span><span class="s2">&gt;9s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;var(E_L)&#39;</span><span class="si">:</span><span class="s2">&gt;9s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="p">(</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">):</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">machine</span><span class="o">.</span><span class="n">production</span><span class="p">(</span><span class="n">n_cycles</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">n_walkers</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">sampler</span><span class="o">=</span><span class="s2">&quot;brute&quot;</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="n">step</span><span class="p">)</span>
+    <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s2">&quot;brute force&quot;</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;acceptance&quot;</span><span class="p">],</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;energy&quot;</span><span class="p">],</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;error&quot;</span><span class="p">],</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;variance&quot;</span><span class="p">],</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;samples&quot;</span><span class="p">]))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;brute force&#39;</span><span class="si">:</span><span class="s2">&gt;12s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">step</span><span class="si">:</span><span class="s2">6.2f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;acceptance&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">11.3f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;energy&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">10.5f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;error&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">9.5f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;variance&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">9.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">dt</span> <span class="ow">in</span> <span class="p">(</span><span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">):</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">machine</span><span class="o">.</span><span class="n">production</span><span class="p">(</span><span class="n">n_cycles</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">n_walkers</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">sampler</span><span class="o">=</span><span class="s2">&quot;importance&quot;</span><span class="p">,</span> <span class="n">time_step</span><span class="o">=</span><span class="n">dt</span><span class="p">)</span>
+    <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s2">&quot;importance&quot;</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;acceptance&quot;</span><span class="p">],</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;energy&quot;</span><span class="p">],</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;error&quot;</span><span class="p">],</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;variance&quot;</span><span class="p">],</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;samples&quot;</span><span class="p">]))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;importance&#39;</span><span class="si">:</span><span class="s2">&gt;12s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">dt</span><span class="si">:</span><span class="s2">6.2f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;acceptance&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">11.3f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;energy&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">10.5f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;error&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">9.5f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;variance&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">9.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>trained in 19 s; last energy estimate 3.20245
+     sampler   step  acceptance          E     error  var(E_L)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> brute force   0.25       0.894    3.22051   0.00837    10.132
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> brute force   0.50       0.791    3.20645   0.00593     3.794
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> brute force   1.00       0.601    3.21040   0.00556     4.056
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> brute force   2.00       0.324    3.21186   0.00634     3.755
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  importance   0.02       0.999    3.20480   0.00790     3.727
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  importance   0.10       0.989    3.20424   0.00426     2.940
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  importance   0.50       0.882    3.20750   0.00432     3.597
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  importance   2.00       0.312    3.20622   0.00690     3.353
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">9.0</span><span class="p">,</span> <span class="mf">3.6</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="n">acc</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">err</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">samples</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;brute force&quot;</span> <span class="ow">and</span> <span class="n">step</span> <span class="ow">in</span> <span class="p">(</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">))</span> <span class="ow">or</span> <span class="p">(</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;importance&quot;</span> <span class="ow">and</span> <span class="n">step</span> <span class="ow">in</span> <span class="p">(</span><span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)):</span>
+        <span class="n">curve</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">blocking_curve</span><span class="p">(</span><span class="n">samples</span><span class="p">))</span>
+        <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">samples</span><span class="p">)</span> <span class="o">/</span> <span class="n">curve</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">curve</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;o-&quot;</span><span class="p">,</span>
+                         <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">, step </span><span class="si">{</span><span class="n">step</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;block length&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;estimated error of the mean&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;blocking curves for the trained machine&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">marker</span> <span class="ow">in</span> <span class="p">((</span><span class="s2">&quot;brute force&quot;</span><span class="p">,</span> <span class="s2">&quot;s&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;importance&quot;</span><span class="p">,</span> <span class="s2">&quot;o&quot;</span><span class="p">)):</span>
+    <span class="n">sel</span> <span class="o">=</span> <span class="p">[(</span><span class="n">step</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="n">acc</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">err</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">rows</span> <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="n">name</span><span class="p">]</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">loglog</span><span class="p">([</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">sel</span><span class="p">],</span> <span class="p">[</span><span class="n">e</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">sel</span><span class="p">],</span> <span class="n">marker</span> <span class="o">+</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;step $\Delta$ or time step $\delta t$&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;blocking error, 2000 cycles&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;statistical error against the step&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/1baf9568093938a1468b71f1e151436a0dd5be8ce48267e4fa33622fa9ca6562.png" src="_images/1baf9568093938a1468b71f1e151436a0dd5be8ce48267e4fa33622fa9ca6562.png" />
+</div>
+</div>
+<p>Both samplers give the same energy within the error, as they must – they
+sample the same <span class="math notranslate nohighlight">\(|\Psi|^2\)</span> – but not with the same efficiency.  The
+brute-force walk has a best step, where the acceptance is around one half;
+the importance-sampled walk keeps its acceptance near one and its error
+smaller over a wide range of time steps, because the drift term moves the
+walkers where the wave function is large instead of waiting for them to
+diffuse there.  The blocking curves show the same thing: the plateau is
+reached after fewer transformations, so the correlation time is shorter.</p>
+</section>
+<section id="optimisation-gradient-descent-against-stochastic-reconfiguration">
+<h2>4. Optimisation: gradient descent against stochastic reconfiguration<a class="headerlink" href="#optimisation-gradient-descent-against-stochastic-reconfiguration" title="Link to this heading">#</a></h2>
+<p>The gradient of the energy is the covariance of chapter 14,
+<span class="math notranslate nohighlight">\(\partial_kE=2\big(\langle E_LO_k\rangle-\langle E_L\rangle\langle O_k\rangle\big)\)</span>.
+Plain gradient descent moves along it; stochastic reconfiguration
+preconditions it with the metric
+<span class="math notranslate nohighlight">\(S_{kl}=\langle O_kO_l\rangle-\langle O_k\rangle\langle O_l\rangle\)</span>,
+regularised by a diagonal shift, which makes the step independent of the
+scaling of the parameters – and with <span class="math notranslate nohighlight">\(24\)</span> parameters of very different
+sensitivities that matters.  We run both from the same start on the
+interacting dot, and add a third run in which the width <span class="math notranslate nohighlight">\(\sigma\)</span> is
+promoted to a variational parameter.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">runs</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">3.8</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">rate</span> <span class="ow">in</span> <span class="p">((</span><span class="s2">&quot;SGD, $</span><span class="se">\\</span><span class="s2">eta=0.05$&quot;</span><span class="p">,</span> <span class="nb">dict</span><span class="p">(</span><span class="n">n_hidden</span><span class="o">=</span><span class="mi">4</span><span class="p">),</span> <span class="s2">&quot;sgd&quot;</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s2">&quot;SR, $</span><span class="se">\\</span><span class="s2">eta=0.2$&quot;</span><span class="p">,</span> <span class="nb">dict</span><span class="p">(</span><span class="n">n_hidden</span><span class="o">=</span><span class="mi">4</span><span class="p">),</span> <span class="s2">&quot;sr&quot;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s2">&quot;SR, $</span><span class="se">\\</span><span class="s2">sigma$ learned&quot;</span><span class="p">,</span> <span class="nb">dict</span><span class="p">(</span><span class="n">n_hidden</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">learn_sigma</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="s2">&quot;sr&quot;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)):</span>
+    <span class="n">psi</span> <span class="o">=</span> <span class="n">nqs</span><span class="o">.</span><span class="n">ProjectNQS</span><span class="p">(</span><span class="n">rng</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">11</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="n">hist</span> <span class="o">=</span> <span class="n">psi</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="n">rate</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span> <span class="n">n_cycles</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">n_walkers</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+    <span class="n">prod</span> <span class="o">=</span> <span class="n">psi</span><span class="o">.</span><span class="n">production</span><span class="p">()</span>
+    <span class="n">runs</span><span class="p">[</span><span class="n">label</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">psi</span><span class="p">,</span> <span class="n">hist</span><span class="p">,</span> <span class="n">prod</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">label</span><span class="si">:</span><span class="s2">22s</span><span class="si">}</span><span class="s2">: E = </span><span class="si">{</span><span class="n">prod</span><span class="p">[</span><span class="s1">&#39;energy&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">prod</span><span class="p">[</span><span class="s1">&#39;error&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2">, var(E_L) = </span><span class="si">{</span><span class="n">prod</span><span class="p">[</span><span class="s1">&#39;variance&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, &quot;</span>
+          <span class="sa">f</span><span class="s2">&quot;sigma = </span><span class="si">{</span><span class="n">psi</span><span class="o">.</span><span class="n">sigma</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">h</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">hist</span><span class="p">],</span> <span class="p">[</span><span class="n">h</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">hist</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mf">3.0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;exact (Taut)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">2.95</span><span class="p">,</span> <span class="mf">3.6</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;optimisation step&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\langle E_L\rangle$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;two electrons at $</span><span class="se">\\</span><span class="s2">omega=1$: SGD against SR, four hidden units&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SGD, $\eta=0.05$      : E = 3.20826 +/- 0.00207, var(E_L) = 4.520, sigma = 0.7071
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SR, $\eta=0.2$        : E = 3.06537 +/- 0.00169, var(E_L) = 3.130, sigma = 0.7071
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SR, $\sigma$ learned  : E = 3.04697 +/- 0.00133, var(E_L) = 1.893, sigma = 0.6128
+</pre></div>
+</div>
+<img alt="_images/700f9fe2d8301d753ffd9b5efaf3220a41678d2b47fd73a119cd64feebb98541.png" src="_images/700f9fe2d8301d753ffd9b5efaf3220a41678d2b47fd73a119cd64feebb98541.png" />
+</div>
+</div>
+<p>Stochastic reconfiguration reaches in a few tens of steps what gradient
+descent does not reach in a hundred, and settles lower: the natural
+gradient knows that a change of a hidden bias and a change of a weight
+are not the same size of step on the manifold of wave functions.  Learning
+<span class="math notranslate nohighlight">\(\sigma\)</span> helps a little more – the interacting state is broader than the
+non-interacting one that fixed <span class="math notranslate nohighlight">\(\sigma^2=1/2\omega\)</span> – but the energy stays
+several hundredths above <span class="math notranslate nohighlight">\(3\)</span>, and the variance of the local energy stays
+of order one.  Chapter 17 identified the reason: nothing in a Gaussian
+times a product of sigmoids can produce the cusp at <span class="math notranslate nohighlight">\(r_{12}=0\)</span>.</p>
+</section>
+<section id="the-cusp">
+<h2>5. The cusp<a class="headerlink" href="#the-cusp" title="Link to this heading">#</a></h2>
+<p>The cheapest physics-informed ansatz multiplies the machine by the
+Padé-Jastrow factor of chapter 13,</p>
+<div class="math notranslate nohighlight">
+\[
+\Psi(\mathbf x)=\Psi_{\rm RBM}(\mathbf x)\,\exp\!\Big(\frac{r_{12}}{1+\beta r_{12}}\Big),
+\]</div>
+<p>whose unit slope at the origin cancels the <span class="math notranslate nohighlight">\(1/r_{12}\)</span> of the Hamiltonian
+exactly, with <span class="math notranslate nohighlight">\(\beta\)</span> as one more variational parameter.  The hidden
+units are then left with what the rational function gets wrong further
+out – the difference between <span class="math notranslate nohighlight">\(\ln(1+r_{12})\)</span> and <span class="math notranslate nohighlight">\(r_{12}/(1+\beta r_{12})\)</span>
+that chapter 18 drew – which is a smooth, bounded function they can
+represent.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">psi_j</span> <span class="o">=</span> <span class="n">nqs</span><span class="o">.</span><span class="n">ProjectNQS</span><span class="p">(</span><span class="n">n_hidden</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">jastrow</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">rng</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">11</span><span class="p">))</span>
+<span class="n">hist_j</span> <span class="o">=</span> <span class="n">psi_j</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="s2">&quot;sr&quot;</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span> <span class="n">n_cycles</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">n_walkers</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">prod_j</span> <span class="o">=</span> <span class="n">psi_j</span><span class="o">.</span><span class="n">production</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;RBM x Jastrow, SR: E = </span><span class="si">{</span><span class="n">prod_j</span><span class="p">[</span><span class="s1">&#39;energy&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">prod_j</span><span class="p">[</span><span class="s1">&#39;error&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">, &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;var(E_L) = </span><span class="si">{</span><span class="n">prod_j</span><span class="p">[</span><span class="s1">&#39;variance&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2">, beta = </span><span class="si">{</span><span class="n">psi_j</span><span class="o">.</span><span class="n">beta</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># the local-energy distributions with and without the cusp</span>
+<span class="n">prod_sr</span> <span class="o">=</span> <span class="n">runs</span><span class="p">[</span><span class="s2">&quot;SR, $</span><span class="se">\\</span><span class="s2">eta=0.2$&quot;</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">9.0</span><span class="p">,</span> <span class="mf">3.6</span><span class="p">))</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">prod_sr</span><span class="p">[</span><span class="s2">&quot;samples&quot;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C0&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mf">3.0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mf">2.9</span><span class="p">,</span> <span class="mf">3.8</span><span class="p">)</span>                    <span class="c1"># a few far outliers are cut off</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;walker-averaged $E_L$&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;RBM alone (SR): a one-sided tail&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">prod_j</span><span class="p">[</span><span class="s2">&quot;samples&quot;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C1&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mf">3.0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;walker-averaged $E_L$&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;RBM $\times$ Jastrow: a symmetric spike&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RBM x Jastrow, SR: E = 3.000031 +/- 0.000018, var(E_L) = 0.00030, beta = 0.4548
+</pre></div>
+</div>
+<img alt="_images/c33ca9c5633f3b50ba1b5286361d514209a66e5f02a72ebe9c7be07daed61835.png" src="_images/c33ca9c5633f3b50ba1b5286361d514209a66e5f02a72ebe9c7be07daed61835.png" />
+</div>
+</div>
+<p>With the cusp in place the same machine, the same optimiser and the same
+number of samples give the exact energy to a few parts in <span class="math notranslate nohighlight">\(10^5\)</span> with a
+variance ten thousand times smaller.  Set beside the other trial functions
+of the book for the same system:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;trial function&#39;</span><span class="si">:</span><span class="s2">40s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;E&#39;</span><span class="si">:</span><span class="s2">&gt;12s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;var(E_L)&#39;</span><span class="si">:</span><span class="s2">&gt;10s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;E - 3&#39;</span><span class="si">:</span><span class="s2">&gt;10s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">table</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;RBM, N=4, SGD (this project)&quot;</span><span class="p">,</span> <span class="n">runs</span><span class="p">[</span><span class="s2">&quot;SGD, $</span><span class="se">\\</span><span class="s2">eta=0.05$&quot;</span><span class="p">][</span><span class="mi">2</span><span class="p">]),</span>
+         <span class="p">(</span><span class="s2">&quot;RBM, N=4, SR (this project)&quot;</span><span class="p">,</span> <span class="n">runs</span><span class="p">[</span><span class="s2">&quot;SR, $</span><span class="se">\\</span><span class="s2">eta=0.2$&quot;</span><span class="p">][</span><span class="mi">2</span><span class="p">]),</span>
+         <span class="p">(</span><span class="s2">&quot;RBM, N=4, SR, sigma learned&quot;</span><span class="p">,</span> <span class="n">runs</span><span class="p">[</span><span class="s2">&quot;SR, $</span><span class="se">\\</span><span class="s2">sigma$ learned&quot;</span><span class="p">][</span><span class="mi">2</span><span class="p">]),</span>
+         <span class="p">(</span><span class="s2">&quot;RBM, N=4 x Pade-Jastrow, SR&quot;</span><span class="p">,</span> <span class="n">prod_j</span><span class="p">)]</span>
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">table</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">:</span><span class="s2">40s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">p</span><span class="p">[</span><span class="s1">&#39;energy&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">12.6f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">p</span><span class="p">[</span><span class="s1">&#39;variance&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">10.5f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">p</span><span class="p">[</span><span class="s1">&#39;energy&#39;</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">3</span><span class="si">:</span><span class="s2">+10.5f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;Pade-Jastrow, 2 parameters (chapter 13)&#39;</span><span class="si">:</span><span class="s2">40s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="mf">3.001323</span><span class="si">:</span><span class="s2">12.6f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="mf">0.0054</span><span class="si">:</span><span class="s2">10.5f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="mf">0.001323</span><span class="si">:</span><span class="s2">+10.5f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;Pade-Jastrow x neural correlator (ch. 18)&#39;</span><span class="si">:</span><span class="s2">40s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="mf">3.000477</span><span class="si">:</span><span class="s2">12.6f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="mf">0.0027</span><span class="si">:</span><span class="s2">10.5f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="mf">0.000477</span><span class="si">:</span><span class="s2">+10.5f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;exact (Taut)&#39;</span><span class="si">:</span><span class="s2">40s</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="mf">3.0</span><span class="si">:</span><span class="s2">12.6f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="mf">0.0</span><span class="si">:</span><span class="s2">10.5f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="mf">0.0</span><span class="si">:</span><span class="s2">+10.5f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>trial function                                      E   var(E_L)      E - 3
+RBM, N=4, SGD (this project)                 3.208257    4.52009   +0.20826
+RBM, N=4, SR (this project)                  3.065366    3.12955   +0.06537
+RBM, N=4, SR, sigma learned                  3.046974    1.89276   +0.04697
+RBM, N=4 x Pade-Jastrow, SR                  3.000031    0.00030   +0.00003
+Pade-Jastrow, 2 parameters (chapter 13)      3.001323    0.00540   +0.00132
+Pade-Jastrow x neural correlator (ch. 18)     3.000477    0.00270   +0.00048
+exact (Taut)                                 3.000000    0.00000   +0.00000
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
+<p>The project passes through every stage of a variational Monte Carlo
+calculation with a learned wave function: analytic derivatives checked
+against finite differences and against an exact state, two samplers
+compared by their blocking errors, two optimisers compared on the same
+gradient, and the ansatz itself examined through the variance of the
+local energy.  The result is the lesson of chapters 17 and 18 in one
+table: a machine with no physics in it beats the mean field; a machine
+with one line of physics – the cusp – beats everything else in the book
+on this system.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="ccdchannels.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Project 4: coupled-cluster doubles for quantum dots, three ways</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-ansatz-and-its-derivatives">1. The ansatz and its derivatives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#one-particle-in-one-dimension-two-hidden-units">2. One particle in one dimension, two hidden units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling-brute-force-against-importance-sampling">3. Sampling: brute force against importance sampling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optimisation-gradient-descent-against-stochastic-reconfiguration">4. Optimisation: gradient descent against stochastic reconfiguration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-cusp">5. The cusp</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Morten Hjorth-Jensen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -234,6 +234,9 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="fam.html">Project: the finite amplitude method for the RPA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="effective3body.html">Project 2: effective interactions and induced three-body forces from full configuration interaction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="atoms.html">Project 3: helium and beryllium from the reference determinant to Hartree-Fock, configuration interaction, TDA and RPA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ccdchannels.html">Project 4: coupled-cluster doubles for quantum dots, three ways</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nqs.html">Project 5: neural quantum states for the quantum dot, from the Boltzmann machine to a physics-informed ansatz</a></li>
 </ul>
 
     </div>
@@ -464,24 +467,25 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#two-orbital-bases-the-exterior-power">3.1.1. Two orbital bases: the exterior power</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#route-1-anticommutation">3.2. Route 1: anticommutation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#route-2-wick-s-theorem">3.3. Route 2: Wick’s theorem</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-operators">3.4. Two operators</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#three-operators">3.5. Three operators</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#four-operators-the-overlap-langle-rs-pq-rangle">3.6. Four operators: the overlap <span class="math notranslate nohighlight">\(\langle rs|pq\rangle\)</span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#six-and-eight-operators">3.7. Six and eight operators</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-number-operator">3.8. The number operator</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-two-body-interaction">3.9. The two-body interaction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-the-theorem-is-worth-having">3.10. Why the theorem is worth having</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wick-s-generalised-theorem">3.11. Wick’s generalised theorem</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-groups-of-the-one-and-two-body-matrix-elements">3.11.1. The groups of the one- and two-body matrix elements</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#three-routes-to-the-same-matrix-element">3.11.2. Three routes to the same matrix element</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-theorem-as-an-identity-between-operators">3.11.3. The theorem as an identity between operators</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creation-and-annihilation-operators-as-matrices">3.2. Creation and annihilation operators as matrices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#route-1-anticommutation">3.3. Route 1: anticommutation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#route-2-wick-s-theorem">3.4. Route 2: Wick’s theorem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-operators">3.5. Two operators</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#three-operators">3.6. Three operators</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#four-operators-the-overlap-langle-rs-pq-rangle">3.7. Four operators: the overlap <span class="math notranslate nohighlight">\(\langle rs|pq\rangle\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#six-and-eight-operators">3.8. Six and eight operators</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-number-operator">3.9. The number operator</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-two-body-interaction">3.10. The two-body interaction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-the-theorem-is-worth-having">3.11. Why the theorem is worth having</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wick-s-generalised-theorem">3.12. Wick’s generalised theorem</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-groups-of-the-one-and-two-body-matrix-elements">3.12.1. The groups of the one- and two-body matrix elements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#three-routes-to-the-same-matrix-element">3.12.2. Three routes to the same matrix element</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-theorem-as-an-identity-between-operators">3.12.3. The theorem as an identity between operators</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#where-this-leads">3.12. Where this leads</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-counting-drawn">3.13. The counting, drawn</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-the-generalised-theorem-throws-away">3.14. What the generalised theorem throws away</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#where-this-leads">3.13. Where this leads</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-counting-drawn">3.14. The counting, drawn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-the-generalised-theorem-throws-away">3.15. What the generalised theorem throws away</a></li>
 </ul>
             </nav>
         </div>
@@ -844,8 +848,154 @@ rotation among the occupied orbitals (0, 2, 3) only: |&lt;p1..pN|rotated&gt; - d
 </div>
 </section>
 </section>
+<section id="creation-and-annihilation-operators-as-matrices">
+<h2><span class="section-number">3.2. </span>Creation and annihilation operators as matrices<a class="headerlink" href="#creation-and-annihilation-operators-as-matrices" title="Link to this heading">#</a></h2>
+<p>With <span class="math notranslate nohighlight">\(n\)</span> orbitals the Fock space has <span class="math notranslate nohighlight">\(2^n\)</span> basis states
+<span class="math notranslate nohighlight">\(|n_0 n_1\cdots n_{n-1}\rangle = (a_0^\dagger)^{n_0}(a_1^\dagger)^{n_1}\cdots|0\rangle\)</span>,
+numbered by <span class="math notranslate nohighlight">\(k=\sum_p n_p 2^p\)</span>, and every creation and annihilation operator
+is an ordinary <span class="math notranslate nohighlight">\(2^n\times 2^n\)</span> matrix.  Its columns follow from the
+definitions alone: with <span class="math notranslate nohighlight">\(\ell_p=\sum_{q&lt;p}n_q\)</span> the number of occupied
+orbitals <em>before</em> <span class="math notranslate nohighlight">\(p\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[
+a_p^\dagger\,|n_0\cdots n_p\cdots\rangle=(1-n_p)(-1)^{\ell_p}\,|n_0\cdots 1_p\cdots\rangle,
+\qquad
+a_p\,|n_0\cdots n_p\cdots\rangle=n_p(-1)^{\ell_p}\,|n_0\cdots 0_p\cdots\rangle ,
+\]</div>
+<p>so that each column holds at most one entry, <span class="math notranslate nohighlight">\(\pm 1\)</span>.  In tensor-product
+form, <span class="math notranslate nohighlight">\(a_p = Z\otimes\cdots\otimes Z\otimes a\otimes I\otimes\cdots\otimes I\)</span>
+with <span class="math notranslate nohighlight">\(p\)</span> factors of <span class="math notranslate nohighlight">\(Z=\mathrm{diag}(1,-1)\)</span>: the string of <span class="math notranslate nohighlight">\(Z\)</span>’s is what turns
+commuting two-level systems into anticommuting fermions.  The class
+<code class="docutils literal notranslate"><span class="pre">FockSpace</span></code> of <code class="docutils literal notranslate"><span class="pre">wick.py</span></code> builds exactly these matrices, bit by bit, and
+<code class="docutils literal notranslate"><span class="pre">slater2fock.py</span></code> applies the same rule to a sparse dictionary of amplitudes
+without ever storing the matrix.  Here we look at them.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">wick</span> <span class="kn">import</span> <span class="n">FockSpace</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
+
+<span class="c1"># --- one orbital: the 2 x 2 matrices ------------------------------------</span>
+<span class="n">one</span> <span class="o">=</span> <span class="n">FockSpace</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">a1</span><span class="p">,</span> <span class="n">c1</span> <span class="o">=</span> <span class="n">one</span><span class="o">.</span><span class="n">annihilate</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">one</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a =</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">a^+ =</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">c1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a^+ a =&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">c1</span> <span class="o">@</span> <span class="n">a1</span><span class="p">),</span> <span class="s2">&quot;   a a^+ =&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">a1</span> <span class="o">@</span> <span class="n">c1</span><span class="p">),</span>
+      <span class="s2">&quot;   {a, a^+} = I:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">a1</span> <span class="o">@</span> <span class="n">c1</span> <span class="o">+</span> <span class="n">c1</span> <span class="o">@</span> <span class="n">a1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">2</span><span class="p">)))</span>
+
+<span class="c1"># --- two orbitals: the sign appears ------------------------------------</span>
+<span class="n">two</span> <span class="o">=</span> <span class="n">FockSpace</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">basis k = n_0 + 2 n_1 :  |00&gt;, |10&gt;, |01&gt;, |11&gt;&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;a_</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2"> =</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">two</span><span class="o">.</span><span class="n">annihilate</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">))</span>
+<span class="n">e0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">4</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a_0^+ a_1^+ |0&gt; =&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">two</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">@</span> <span class="n">two</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">@</span> <span class="n">e0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span>
+      <span class="s2">&quot;   a_1^+ a_0^+ |0&gt; =&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">two</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">@</span> <span class="n">two</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">@</span> <span class="n">e0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">))</span>
+<span class="n">N</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">two</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">@</span> <span class="n">two</span><span class="o">.</span><span class="n">annihilate</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;number operator N = diag&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">))</span>
+
+<span class="c1"># --- the tensor-product form: a_p = Z x ... x Z x a x I x ... x I --------</span>
+<span class="c1"># numpy&#39;s kron puts the leftmost factor in the most significant bit, while</span>
+<span class="c1"># FockSpace stores orbital p in bit p, so the factors are written in</span>
+<span class="c1"># reverse order (orbital 0 rightmost) to obtain identical matrices.</span>
+<span class="n">am</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="n">I</span> <span class="o">=</span> <span class="n">a1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>   <span class="c1"># am: the one-orbital matrix a</span>
+<span class="k">def</span> <span class="nf">kron_chain</span><span class="p">(</span><span class="n">factors</span><span class="p">):</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">factors</span><span class="p">:</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">out</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span>
+    <span class="n">space</span> <span class="o">=</span> <span class="n">FockSpace</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">ok</span> <span class="o">=</span> <span class="nb">all</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">space</span><span class="o">.</span><span class="n">annihilate</span><span class="p">(</span><span class="n">p</span><span class="p">),</span>
+                         <span class="n">kron_chain</span><span class="p">([</span><span class="n">I</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">p</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="n">am</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">Z</span><span class="p">]</span> <span class="o">*</span> <span class="n">p</span><span class="p">))</span>
+             <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;n = </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2">: tensor-product form equals FockSpace matrices: </span><span class="si">{</span><span class="n">ok</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># --- the anticommutation relations as exact matrix identities ----------</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span>
+    <span class="n">space</span> <span class="o">=</span> <span class="n">FockSpace</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="n">space</span><span class="o">.</span><span class="n">annihilate</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
+    <span class="n">Id</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">space</span><span class="o">.</span><span class="n">dim</span><span class="p">)</span>
+    <span class="n">worst</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">@</span> <span class="n">A</span><span class="p">[</span><span class="n">q</span><span class="p">]</span><span class="o">.</span><span class="n">T</span> <span class="o">+</span> <span class="n">A</span><span class="p">[</span><span class="n">q</span><span class="p">]</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">A</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="n">p</span> <span class="o">==</span> <span class="n">q</span><span class="p">)</span> <span class="o">*</span> <span class="n">Id</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+                    <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">@</span> <span class="n">A</span><span class="p">[</span><span class="n">q</span><span class="p">]</span> <span class="o">+</span> <span class="n">A</span><span class="p">[</span><span class="n">q</span><span class="p">]</span> <span class="o">@</span> <span class="n">A</span><span class="p">[</span><span class="n">p</span><span class="p">])</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+                <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;n = </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2">: largest violation of the anticommutation relations = </span><span class="si">{</span><span class="n">worst</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># --- without the Z string the operators would commute -------------------</span>
+<span class="n">naive</span> <span class="o">=</span> <span class="p">[</span><span class="n">kron_chain</span><span class="p">([</span><span class="n">I</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">3</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">p</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="n">am</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">I</span><span class="p">]</span> <span class="o">*</span> <span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;naive a_0 a_1 + a_1 a_0 has norm&quot;</span><span class="p">,</span>
+      <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">naive</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">@</span> <span class="n">naive</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">naive</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">@</span> <span class="n">naive</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+      <span class="s2">&quot;-- these are distinguishable two-level systems, not fermions&quot;</span><span class="p">)</span>
+
+<span class="c1"># --- vacuum expectation values are (0,0) entries of matrix products -----</span>
+<span class="kn">from</span> <span class="nn">wick</span> <span class="kn">import</span> <span class="n">vacuum_expectation_wick</span>
+<span class="n">ann</span><span class="p">,</span> <span class="n">cre</span> <span class="o">=</span> <span class="n">a</span><span class="p">,</span> <span class="n">c</span>                                <span class="c1"># the (index, dagger) constructors of the first cell</span>
+<span class="n">space</span> <span class="o">=</span> <span class="n">FockSpace</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">ops</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="p">(((</span><span class="n">ann</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">ann</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">cre</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">cre</span><span class="p">(</span><span class="mi">3</span><span class="p">)),</span> <span class="s2">&quot;&lt;0| a_3 a_2 a_2^+ a_3^+ |0&gt;&quot;</span><span class="p">),</span>
+                   <span class="p">((</span><span class="n">ann</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">ann</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">cre</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">cre</span><span class="p">(</span><span class="mi">2</span><span class="p">)),</span> <span class="s2">&quot;&lt;0| a_3 a_2 a_3^+ a_2^+ |0&gt;&quot;</span><span class="p">),</span>
+                   <span class="p">((</span><span class="n">ann</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">cre</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">ann</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">cre</span><span class="p">(</span><span class="mi">1</span><span class="p">)),</span> <span class="s2">&quot;&lt;0| a_1 a_0^+ a_0 a_1^+ |0&gt;&quot;</span><span class="p">)):</span>
+    <span class="n">entry</span> <span class="o">=</span> <span class="n">space</span><span class="o">.</span><span class="n">string</span><span class="p">(</span><span class="n">ops</span><span class="p">)[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="n">wick</span> <span class="o">=</span> <span class="n">vacuum_expectation_wick</span><span class="p">(</span><span class="n">ops</span><span class="p">)</span><span class="o">.</span><span class="n">substitute</span><span class="p">({})</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s2">: matrix product </span><span class="si">{</span><span class="n">entry</span><span class="si">:</span><span class="s2">+.0f</span><span class="si">}</span><span class="s2">, Wick&#39;s theorem </span><span class="si">{</span><span class="n">wick</span><span class="si">:</span><span class="s2">+d</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># --- the same matrix acting on the sparse dictionaries of slater2fock.py --</span>
+<span class="kn">import</span> <span class="nn">slater2fock</span>
+<span class="n">state</span> <span class="o">=</span> <span class="n">slater2fock</span><span class="o">.</span><span class="n">determinant_state</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>   <span class="c1"># a_0^+ a_2^+ a_3^+ |0&gt; = |1011&gt;</span>
+<span class="n">vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">space</span><span class="o">.</span><span class="n">dim</span><span class="p">);</span> <span class="n">vec</span><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">state</span><span class="p">)[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+    <span class="n">dense</span> <span class="o">=</span> <span class="n">space</span><span class="o">.</span><span class="n">annihilate</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">@</span> <span class="n">vec</span>
+    <span class="n">sparse</span> <span class="o">=</span> <span class="n">slater2fock</span><span class="o">.</span><span class="n">annihilate</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span>
+    <span class="n">same</span> <span class="o">=</span> <span class="nb">all</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">dense</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">amp</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">amp</span> <span class="ow">in</span> <span class="n">sparse</span><span class="o">.</span><span class="n">items</span><span class="p">())</span> <span class="ow">and</span> \
+           <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">dense</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">sparse</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;a_</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2"> on |1011&gt;: dense and dictionary versions agree: </span><span class="si">{</span><span class="n">same</span><span class="si">}</span><span class="s2">   </span><span class="si">{</span><span class="n">sparse</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>a =
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> [[0. 1.]
+ [0. 0.]] 
+a^+ =
+ [[0. 0.]
+ [1. 0.]]
+a^+ a = [0. 1.]    a a^+ = [1. 0.]    {a, a^+} = I: True
+
+basis k = n_0 + 2 n_1 :  |00&gt;, |10&gt;, |01&gt;, |11&gt;
+a_0 =
+ [[0 1 0 0]
+ [0 0 0 0]
+ [0 0 0 1]
+ [0 0 0 0]]
+a_1 =
+ [[ 0  0  1  0]
+ [ 0  0  0 -1]
+ [ 0  0  0  0]
+ [ 0  0  0  0]]
+a_0^+ a_1^+ |0&gt; = [0 0 0 1]    a_1^+ a_0^+ |0&gt; = [ 0  0  0 -1]
+number operator N = diag [0 1 1 2]
+n = 2: tensor-product form equals FockSpace matrices: True
+n = 3: tensor-product form equals FockSpace matrices: True
+n = 4: tensor-product form equals FockSpace matrices: True
+n = 2: largest violation of the anticommutation relations = 0.0
+n = 3: largest violation of the anticommutation relations = 0.0
+n = 4: largest violation of the anticommutation relations = 0.0
+naive a_0 a_1 + a_1 a_0 has norm 2.0 -- these are distinguishable two-level systems, not fermions
+&lt;0| a_3 a_2 a_2^+ a_3^+ |0&gt;: matrix product +1, Wick&#39;s theorem +1
+&lt;0| a_3 a_2 a_3^+ a_2^+ |0&gt;: matrix product -1, Wick&#39;s theorem -1
+&lt;0| a_1 a_0^+ a_0 a_1^+ |0&gt;: matrix product +0, Wick&#39;s theorem +0
+a_0 on |1011&gt;: dense and dictionary versions agree: True   {12: 1.0}
+a_1 on |1011&gt;: dense and dictionary versions agree: True   {}
+a_2 on |1011&gt;: dense and dictionary versions agree: True   {9: -1.0}
+a_3 on |1011&gt;: dense and dictionary versions agree: True   {5: 1.0}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 <section id="route-1-anticommutation">
-<h2><span class="section-number">3.2. </span>Route 1: anticommutation<a class="headerlink" href="#route-1-anticommutation" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">3.3. </span>Route 1: anticommutation<a class="headerlink" href="#route-1-anticommutation" title="Link to this heading">#</a></h2>
 <p>The recursion is the one carried out by hand in the text. Find the leftmost
 place where an annihilation operator stands immediately to the left of a
 creation operator and replace</p>
@@ -894,7 +1044,7 @@ expectation value vanishes unless the string is empty.</p>
 </div>
 </section>
 <section id="route-2-wick-s-theorem">
-<h2><span class="section-number">3.3. </span>Route 2: Wick’s theorem<a class="headerlink" href="#route-2-wick-s-theorem" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">3.4. </span>Route 2: Wick’s theorem<a class="headerlink" href="#route-2-wick-s-theorem" title="Link to this heading">#</a></h2>
 <p>Only one of the four elementary contractions survives,</p>
 <div class="math notranslate nohighlight">
 \[
@@ -967,7 +1117,7 @@ number of crossings of the contraction lines.</p>
 </div>
 </section>
 <section id="two-operators">
-<h2><span class="section-number">3.4. </span>Two operators<a class="headerlink" href="#two-operators" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">3.5. </span>Two operators<a class="headerlink" href="#two-operators" title="Link to this heading">#</a></h2>
 <p>The whole content of the theorem at <span class="math notranslate nohighlight">\(M=2\)</span> is
 <span class="math notranslate nohighlight">\(xy = N[xy] + \overset{\frown}{xy}\)</span>, and only one of the four combinations
 has a non-vanishing contraction.</p>
@@ -995,7 +1145,7 @@ has a non-vanishing contraction.</p>
 </div>
 </section>
 <section id="three-operators">
-<h2><span class="section-number">3.5. </span>Three operators<a class="headerlink" href="#three-operators" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">3.6. </span>Three operators<a class="headerlink" href="#three-operators" title="Link to this heading">#</a></h2>
 <p>An odd number of operators can never be paired up completely, so at least one
 is always left uncontracted — and <span class="math notranslate nohighlight">\(\langle 0|a|0\rangle=\langle
 0|a^\dagger|0\rangle=0\)</span>.</p>
@@ -1019,7 +1169,7 @@ is always left uncontracted — and <span class="math notranslate nohighlight">\
 </div>
 </section>
 <section id="four-operators-the-overlap-langle-rs-pq-rangle">
-<h2><span class="section-number">3.6. </span>Four operators: the overlap <span class="math notranslate nohighlight">\(\langle rs|pq\rangle\)</span><a class="headerlink" href="#four-operators-the-overlap-langle-rs-pq-rangle" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">3.7. </span>Four operators: the overlap <span class="math notranslate nohighlight">\(\langle rs|pq\rangle\)</span><a class="headerlink" href="#four-operators-the-overlap-langle-rs-pq-rangle" title="Link to this heading">#</a></h2>
 <p>Of the three ways to pair four operators, one vanishes on inspection, one is
 nested (no crossings, plus sign) and one crosses once (minus sign). The result
 is the antisymmetrised overlap</p>
@@ -1066,7 +1216,7 @@ the three pairings, one at a time:
 </div>
 </section>
 <section id="six-and-eight-operators">
-<h2><span class="section-number">3.7. </span>Six and eight operators<a class="headerlink" href="#six-and-eight-operators" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">3.8. </span>Six and eight operators<a class="headerlink" href="#six-and-eight-operators" title="Link to this heading">#</a></h2>
 <p>The agreement is not an accident of small numbers.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1093,7 +1243,7 @@ M = 8:  24 surviving terms, (M-1)!! = 105 pairings, agree: True
 </div>
 </section>
 <section id="the-number-operator">
-<h2><span class="section-number">3.8. </span>The number operator<a class="headerlink" href="#the-number-operator" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">3.9. </span>The number operator<a class="headerlink" href="#the-number-operator" title="Link to this heading">#</a></h2>
 <p>With <span class="math notranslate nohighlight">\(|12\rangle = a_1^\dagger a_2^\dagger|0\rangle\)</span> and
 <span class="math notranslate nohighlight">\(\hat N = \sum_i a_i^\dagger a_i\)</span>, Wick’s theorem should return the particle
 number.</p>
@@ -1122,7 +1272,7 @@ number.</p>
 </div>
 </section>
 <section id="the-two-body-interaction">
-<h2><span class="section-number">3.9. </span>The two-body interaction<a class="headerlink" href="#the-two-body-interaction" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">3.10. </span>The two-body interaction<a class="headerlink" href="#the-two-body-interaction" title="Link to this heading">#</a></h2>
 <div class="math notranslate nohighlight">
 \[
 \hat H_I=\tfrac12\sum_{pqrs}\langle pq|v|rs\rangle\,
@@ -1173,7 +1323,7 @@ see which survive. The answer should be the antisymmetrised matrix element
 </div>
 </section>
 <section id="why-the-theorem-is-worth-having">
-<h2><span class="section-number">3.10. </span>Why the theorem is worth having<a class="headerlink" href="#why-the-theorem-is-worth-having" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">3.11. </span>Why the theorem is worth having<a class="headerlink" href="#why-the-theorem-is-worth-having" title="Link to this heading">#</a></h2>
 <p>Both routes grow quickly, but they grow differently. The anticommutation
 recursion branches with no structure one can anticipate. Wick’s theorem
 enumerates a known number of terms in advance, most of which vanish on
@@ -1205,7 +1355,7 @@ written down directly.</p>
 </div>
 </section>
 <section id="wick-s-generalised-theorem">
-<h2><span class="section-number">3.11. </span>Wick’s generalised theorem<a class="headerlink" href="#wick-s-generalised-theorem" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">3.12. </span>Wick’s generalised theorem<a class="headerlink" href="#wick-s-generalised-theorem" title="Link to this heading">#</a></h2>
 <p>In practice we never meet a bare string of operators.  We meet a product of
 <em>groups</em>, each of them already normal-ordered: the bra, the operator and the
 ket.  The generalised theorem says that for such a product</p>
@@ -1332,7 +1482,7 @@ vanishes too.  Internal contractions are not thrown away — they are zero.</p>
 </div>
 </div>
 <section id="the-groups-of-the-one-and-two-body-matrix-elements">
-<h3><span class="section-number">3.11.1. </span>The groups of the one- and two-body matrix elements<a class="headerlink" href="#the-groups-of-the-one-and-two-body-matrix-elements" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.12.1. </span>The groups of the one- and two-body matrix elements<a class="headerlink" href="#the-groups-of-the-one-and-two-body-matrix-elements" title="Link to this heading">#</a></h3>
 <p>For <span class="math notranslate nohighlight">\(\langle ij|\hat O^{(1)}|k\ell\rangle\)</span> the groups are the bra
 <span class="math notranslate nohighlight">\(a_ja_i\)</span>, the operator <span class="math notranslate nohighlight">\(a_p^\dagger a_q\)</span> and the ket
 <span class="math notranslate nohighlight">\(a_k^\dagger a_\ell^\dagger\)</span>; for the two-body element the operator has four
@@ -1373,7 +1523,7 @@ two-body: groups normal-ordered: True, non-vanishing internal contractions: 0
 </div>
 </section>
 <section id="three-routes-to-the-same-matrix-element">
-<h3><span class="section-number">3.11.2. </span>Three routes to the same matrix element<a class="headerlink" href="#three-routes-to-the-same-matrix-element" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.12.2. </span>Three routes to the same matrix element<a class="headerlink" href="#three-routes-to-the-same-matrix-element" title="Link to this heading">#</a></h3>
 <p>Brute-force anticommutation, the ordinary theorem and the generalised theorem
 must all give the same answer.  The generalised theorem gets there with a
 fraction of the terms.</p>
@@ -1403,7 +1553,7 @@ two-body:  anticommutation == Wick: True,  Wick == generalised: True
 </div>
 </section>
 <section id="the-theorem-as-an-identity-between-operators">
-<h3><span class="section-number">3.11.3. </span>The theorem as an identity between operators<a class="headerlink" href="#the-theorem-as-an-identity-between-operators" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.12.3. </span>The theorem as an identity between operators<a class="headerlink" href="#the-theorem-as-an-identity-between-operators" title="Link to this heading">#</a></h3>
 <p>Everything so far lives inside a vacuum expectation value.  The generalised
 theorem is stronger than that: it is an identity between <em>operators</em>, and the
 uncontracted and partially contracted terms are as much a part of it as the
@@ -1516,7 +1666,7 @@ max |LHS - RHS| = 0.0e+00   ordinary Wick, 6 operators
 </section>
 </section>
 <section id="where-this-leads">
-<h2><span class="section-number">3.12. </span>Where this leads<a class="headerlink" href="#where-this-leads" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">3.13. </span>Where this leads<a class="headerlink" href="#where-this-leads" title="Link to this heading">#</a></h2>
 <p>Nothing in the argument used the fact that <span class="math notranslate nohighlight">\(|0\rangle\)</span> is the true vacuum.  In
 many-body theory the reference state is a filled Fermi sea <span class="math notranslate nohighlight">\(|c\rangle\)</span>, and the
 useful statement is Wick’s theorem relative to <em>that</em> reference, obtained by
@@ -1534,7 +1684,7 @@ only a quarter join different groups, and of those only a handful survive the
 elementary contractions.</p>
 </section>
 <section id="the-counting-drawn">
-<h2><span class="section-number">3.13. </span>The counting, drawn<a class="headerlink" href="#the-counting-drawn" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">3.14. </span>The counting, drawn<a class="headerlink" href="#the-counting-drawn" title="Link to this heading">#</a></h2>
 <p>The tables above are easier to read as a picture, and the picture is worth
 keeping in mind whenever a hand calculation starts to look unpleasant.  For a
 vacuum expectation value of <span class="math notranslate nohighlight">\(2n\)</span> operators we plot three counts against <span class="math notranslate nohighlight">\(2n\)</span>
@@ -1596,7 +1746,7 @@ the theorem usable.</p>
 </div>
 </section>
 <section id="what-the-generalised-theorem-throws-away">
-<h2><span class="section-number">3.14. </span>What the generalised theorem throws away<a class="headerlink" href="#what-the-generalised-theorem-throws-away" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">3.15. </span>What the generalised theorem throws away<a class="headerlink" href="#what-the-generalised-theorem-throws-away" title="Link to this heading">#</a></h2>
 <p>The generalised theorem earns its keep by forbidding contractions inside a
 normal-ordered group, and we can watch that restriction bite as the string is
 cut into more and more groups.  Take <span class="math notranslate nohighlight">\(k\)</span> groups all of the same size, count
@@ -1730,24 +1880,25 @@ at at all.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#two-orbital-bases-the-exterior-power">3.1.1. Two orbital bases: the exterior power</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#route-1-anticommutation">3.2. Route 1: anticommutation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#route-2-wick-s-theorem">3.3. Route 2: Wick’s theorem</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-operators">3.4. Two operators</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#three-operators">3.5. Three operators</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#four-operators-the-overlap-langle-rs-pq-rangle">3.6. Four operators: the overlap <span class="math notranslate nohighlight">\(\langle rs|pq\rangle\)</span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#six-and-eight-operators">3.7. Six and eight operators</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-number-operator">3.8. The number operator</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-two-body-interaction">3.9. The two-body interaction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-the-theorem-is-worth-having">3.10. Why the theorem is worth having</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wick-s-generalised-theorem">3.11. Wick’s generalised theorem</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-groups-of-the-one-and-two-body-matrix-elements">3.11.1. The groups of the one- and two-body matrix elements</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#three-routes-to-the-same-matrix-element">3.11.2. Three routes to the same matrix element</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-theorem-as-an-identity-between-operators">3.11.3. The theorem as an identity between operators</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creation-and-annihilation-operators-as-matrices">3.2. Creation and annihilation operators as matrices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#route-1-anticommutation">3.3. Route 1: anticommutation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#route-2-wick-s-theorem">3.4. Route 2: Wick’s theorem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-operators">3.5. Two operators</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#three-operators">3.6. Three operators</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#four-operators-the-overlap-langle-rs-pq-rangle">3.7. Four operators: the overlap <span class="math notranslate nohighlight">\(\langle rs|pq\rangle\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#six-and-eight-operators">3.8. Six and eight operators</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-number-operator">3.9. The number operator</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-two-body-interaction">3.10. The two-body interaction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-the-theorem-is-worth-having">3.11. Why the theorem is worth having</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wick-s-generalised-theorem">3.12. Wick’s generalised theorem</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-groups-of-the-one-and-two-body-matrix-elements">3.12.1. The groups of the one- and two-body matrix elements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#three-routes-to-the-same-matrix-element">3.12.2. Three routes to the same matrix element</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-theorem-as-an-identity-between-operators">3.12.3. The theorem as an identity between operators</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#where-this-leads">3.12. Where this leads</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-counting-drawn">3.13. The counting, drawn</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-the-generalised-theorem-throws-away">3.14. What the generalised theorem throws away</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#where-this-leads">3.13. Where this leads</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-counting-drawn">3.14. The counting, drawn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-the-generalised-theorem-throws-away">3.15. What the generalised theorem throws away</a></li>
 </ul>
   </nav></div>
 
