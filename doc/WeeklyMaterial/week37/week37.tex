@@ -1,0 +1,1430 @@
+% ======================================================================
+%  FYS4480/FYS9480  Quantum mechanics for many-particle systems
+%  Week 37, September 10-11, 2026
+%  Lecture slides (Beamer).  Thursday: 2 x 45 min,  Friday: 2 x 45 min.
+%
+%  Sources: chapter3.tex of the book "Quantum mechanics for many-particle
+%  systems": sections 3.13-3.15 (Wick's generalised theorem, proof and
+%  applications), 3.4 (particle-hole formalism), 3.5 (the normal-ordered
+%  Hamiltonian, derived here in full) and 3.16 (bit representation);
+%  chapter5.tex (full configuration interaction theory), sections 5.1-5.11.
+%  Exercises: chapter 3, exercise 4, and chapter 5, exercises 1-3.
+%  Companion notebook: WeeklySlides/week37.ipynb
+%  Companion programs: BookPrograms/chapter03/wick.py,
+%                      BookPrograms/chapter05/fci.py
+%
+%  Build:  pdflatex week37.tex  (twice; the Wick contraction lines are
+%          drawn with tikzmark overlays and need the second pass)
+%  Handout (no overlays):  replace \documentclass[...] by
+%           \documentclass[handout,aspectratio=169]{beamer}
+% ======================================================================
+\documentclass[aspectratio=169,10pt]{beamer}
+
+% ---------------------------------------------------------------- packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+% \usepackage{lmodern}  % optional; uncomment if installed
+\usepackage{amsmath,amssymb,bm}
+\usepackage{booktabs}
+\usepackage{tcolorbox}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows.meta}
+\usetikzlibrary{tikzmark}
+
+% ---------------------------------------------------------------- look
+\usetheme{default}
+\useinnertheme{rectangles}
+\setbeamertemplate{navigation symbols}{}
+\definecolor{uioblue}{RGB}{18,52,86}
+\definecolor{teal}{RGB}{0,128,128}
+\definecolor{warm}{RGB}{181,73,36}
+\definecolor{paleblue}{RGB}{232,240,248}
+\definecolor{paleteal}{RGB}{228,244,244}
+\definecolor{palewarm}{RGB}{252,238,230}
+\setbeamercolor{structure}{fg=uioblue}
+\setbeamercolor{title}{fg=uioblue}
+\setbeamercolor{frametitle}{fg=uioblue,bg=white}
+\setbeamercolor{section in toc}{fg=uioblue}
+\setbeamercolor{alerted text}{fg=warm}
+\setbeamercolor{block title}{fg=white,bg=uioblue}
+\setbeamercolor{block body}{bg=paleblue}
+\setbeamercolor{block title example}{fg=white,bg=teal}
+\setbeamercolor{block body example}{bg=paleteal}
+\setbeamerfont{frametitle}{size=\large,series=\bfseries}
+\setbeamerfont{title}{size=\LARGE,series=\bfseries}
+\setbeamertemplate{frametitle}{%
+  \vspace*{0.6em}\insertframetitle\par
+  \vspace*{-0.2em}{\color{teal}\rule{\textwidth}{0.6pt}}}
+\setbeamertemplate{footline}{%
+  \hbox{\begin{beamercolorbox}[wd=\paperwidth,ht=2.4ex,dp=1.2ex,leftskip=1em,rightskip=1em]{structure}%
+  \footnotesize FYS4480/9480 -- Week 37 \hfill \insertsection \hfill \insertframenumber/\inserttotalframenumber
+  \end{beamercolorbox}}}
+\setbeamertemplate{itemize items}[circle]
+\setbeamertemplate{enumerate items}[default]
+\setbeamertemplate{section page}{%
+  \begin{centering}
+    {\usebeamerfont{section title}\usebeamercolor[fg]{title}\LARGE\bfseries\insertsection\par}
+    \vspace{0.5em}{\color{teal}\rule{0.5\textwidth}{1pt}}
+  \end{centering}}
+\AtBeginSection[]{\frame{\sectionpage}}
+
+% ---------------------------------------------------------------- boxes
+\newcounter{thinkctr}
+\newcommand{\thinkq}[2]{%
+  \stepcounter{thinkctr}%
+  \begin{tcolorbox}[colback=palewarm,colframe=warm,title={\bfseries Pause to think \#\thethinkctr\hfill\mdseries\small(about #1 min -- discuss with your neighbour)},fonttitle=\bfseries]
+  #2
+  \end{tcolorbox}}
+\newcommand{\thinka}[1]{%
+  \begin{tcolorbox}[colback=paleteal,colframe=teal,title={\bfseries Answer to pause \#\thethinkctr}]
+  #1
+  \end{tcolorbox}}
+\newcommand{\mbbox}[1]{%
+  \begin{tcolorbox}[colback=paleblue,colframe=uioblue,title={\bfseries Many-body connection}]
+  #1
+  \end{tcolorbox}}
+\newcommand{\qcbox}[1]{%
+  \begin{tcolorbox}[colback=paleteal,colframe=teal,title={\bfseries Quantum computing connection}]
+  #1
+  \end{tcolorbox}}
+
+% ---------------------------------------------------------------- code
+\lstset{language=Python,basicstyle=\ttfamily\scriptsize,
+  keywordstyle=\color{uioblue}\bfseries,commentstyle=\color{teal},
+  stringstyle=\color{warm},showstringspaces=false,columns=fullflexible,
+  frame=single,rulecolor=\color{paleblue},backgroundcolor=\color{white},
+  breaklines=true}
+
+% ---------------------------------------------------------------- macros
+\newcommand{\ket}[1]{\vert #1\rangle}
+\newcommand{\bra}[1]{\langle #1\vert}
+\newcommand{\braket}[2]{\langle #1\vert #2\rangle}
+\newcommand{\ketbra}[2]{\vert #1\rangle\langle #2\vert}
+\newcommand{\element}[3]{\langle #1\vert #2\vert #3\rangle}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\Det}[1]{\vert\bm{#1}\vert}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\sgn}{sgn}
+% normal ordering with respect to the reference determinant |c>
+\newcommand{\nc}[1]{\bigl\{#1\bigr\}}
+% Wick contraction lines, as in the book (book.tex).
+\newcommand{\wmark}[2]{\tikzmarknode{#1}{\vphantom{a_p^{\dagger}}#2}}
+\newcommand{\wline}[3][2.4ex]{%
+  \begin{tikzpicture}[overlay,remember picture]
+    \draw[thin] ([yshift=0.7ex]#2.north) -- ++(0,#1)
+                -| ([yshift=0.7ex]#3.north);
+  \end{tikzpicture}}
+\newcommand{\wlineb}[3][2.4ex]{%
+  \begin{tikzpicture}[overlay,remember picture]
+    \draw[thin] ([yshift=-0.5ex]#2.south) -- ++(0,-#1)
+                -| ([yshift=-0.5ex]#3.south);
+  \end{tikzpicture}}
+\newcommand{\wstrut}[1][4.6ex]{\vphantom{\rule{0pt}{#1}}}
+
+% ---------------------------------------------------------------- title
+\title{Particle-hole formalism, the normal-ordered Hamiltonian, and full configuration interaction}
+\subtitle{FYS4480/FYS9480 -- Week 37, September 10--11, 2026}
+\author{Morten Hjorth-Jensen}
+\institute{Department of Physics and Center for Computing in Science Education,\\
+University of Oslo, Norway}
+\date{}
+
+\begin{document}
+
+\begin{frame}[plain]
+  \vspace*{-1em}\titlepage
+  \vfill
+  \begin{center}\footnotesize
+  Thursday September 10: Wick's generalised theorem and the Condon-Slater rules; the particle-hole formalism with examples; the normal-ordered Hamiltonian $\hat{H}=E_{\mathrm{ref}}+\hat{F}_N+\hat{V}_N$\\
+  Friday September 11: Slater determinants as bit patterns; full configuration interaction theory (chapter 5); the pairing model by FCI; truncations and size consistency; exercises\\[0.3em]
+  Reading: these slides, chapter 3 of the lecture notes (sections 3.4--3.5 and 3.13--3.16) and chapter 5; Szabo and Ostlund chapters 2 and 4; Shavitt and Bartlett chapters 3--4.
+  Code: \texttt{WeeklySlides/week37.ipynb}, \texttt{BookPrograms/chapter03/wick.py}, \texttt{BookPrograms/chapter05/fci.py}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Plan for week 37}
+  \scriptsize
+  \begin{block}{Thursday September 10, $2\times45$ min}
+    \begin{itemize}
+      \item Where week 36 stopped: Wick's theorem was proved, the rest was not reached. Short reminder (5 min)
+      \item Wick's generalised theorem for products of normal-ordered groups, proof, and what it buys (sections 3.13--3.14)
+      \item Applications: matrix elements between two-particle states -- the Condon-Slater rules (section 3.15)
+      \item The particle-hole formalism: the Fermi sea as vacuum, quasiparticle operators, $\hat{H}_0$ and $\hat{H}_I$ in particle-hole form, with worked examples (section 3.4)
+      \item The normal-ordered Hamiltonian: a proper derivation of $\hat{H}=E_{\mathrm{ref}}+\hat{F}_N+\hat{V}_N$ with $i,j,k,\dots$ below and $a,b,c,\dots$ above the Fermi level (section 3.5)
+    \end{itemize}
+  \end{block}
+  \begin{block}{Friday September 11, $2\times45$ min}
+    \begin{itemize}
+      \item From the formalism to a running code: Slater determinants as bit patterns, $\hat{H}\ket{\Phi}$ by bit operations (section 3.16)
+      \item Full configuration interaction theory: determinants as a basis, the CI expansion, the eigenvalue problem, the structure of the Hamiltonian matrix, the exponential wall (chapter 5, sections 5.1--5.5)
+      \item FCI for the pairing model, truncated CI, size consistency, the other many-body methods as truncations of FCI, practical considerations (sections 5.6--5.11)
+      \item Exercise session: chapter 3, exercise 4 (normal ordering on a Fermi sea) and chapter 5, exercises 1--3
+    \end{itemize}
+  \end{block}
+  Not covered: section 5.7 (the Hubbard ring by FCI) -- part of next week's examples.
+\end{frame}
+
+% ======================================================================
+\section{Thursday, lecture 1: Wick's generalised theorem}
+% ======================================================================
+
+\begin{frame}{Where week 36 ended}
+  Last week we established the operators and the theorem that evaluates them:
+  \begin{gather*}
+    \hat{F}=\sum_{pq}\element{p}{\hat{f}}{q}a_p^{\dagger}a_q,\qquad
+    \hat{V}=\frac14\sum_{pqrs}\element{pq}{\hat{v}}{rs}_{\mathrm{AS}}\,a_p^{\dagger}a_q^{\dagger}a_sa_r,\\
+    xyz\cdots w=N[xyz\cdots w]+\sum_{(1)}N[\cdots]+\sum_{(2)}N[\cdots]+\cdots
+  \end{gather*}
+  with the proof by the appending lemma and induction. What we did \emph{not} reach, and do today:
+  \begin{itemize}
+    \item the \alert{generalised theorem} for products of normal-ordered groups, which is the form in which Wick's theorem is actually used, and the Condon-Slater rules as its first application (sections 3.13--3.15);
+    \item the \alert{particle-hole formalism}: the Fermi sea as vacuum (section 3.4), this time with worked examples;
+    \item the \alert{normal-ordered Hamiltonian} $\hat{H}=E_{\mathrm{ref}}+\hat{F}_N+\hat{V}_N$, derived in full (section 3.5).
+  \end{itemize}
+  \vspace{0.3em}
+  Tomorrow the bit representation (section 3.16) and full configuration interaction theory (chapter 5), where all of this becomes a matrix to diagonalise.
+\end{frame}
+
+\begin{frame}{Reminder: contractions and the two theorems of week 36}
+  \small\vspace{-0.3em}
+  The contraction of two operators is a number, $xy-N[xy]=\bra{0}xy\ket{0}$, and only one type survives with respect to the empty vacuum:
+  \[
+    \wstrut
+    \wmark{rc1}{a_p}\,\wmark{rc2}{a_q^{\dagger}}\wline[1.6ex]{rc1}{rc2}
+    =\delta_{pq},\qquad
+    \wmark{rc3}{a_p}\,\wmark{rc4}{a_q}\wline[1.6ex]{rc3}{rc4}
+    =\wmark{rc5}{a_q^{\dagger}}\,\wmark{rc6}{a_p}\wline[1.6ex]{rc5}{rc6}
+    =\wmark{rc7}{a_p^{\dagger}}\,\wmark{rc8}{a_q^{\dagger}}\wline[1.6ex]{rc7}{rc8}
+    =0 .
+  \]
+  \begin{itemize}
+    \item \textbf{Wick's theorem}: product $=$ normal-ordered product $+$ all single contractions $+$ all double contractions $+\cdots$; each term carries the sign $(-1)^{\nu}$, $\nu$ the number of crossings of the contraction lines (equivalently: the parity of the permutation that brings the contracted pairs to the front).
+    \item \textbf{Vacuum expectation values}: only fully contracted terms survive, $\bra{0}xyz\cdots w\ket{0}=\sum_{\text{complete pairings}}(-1)^{\nu}\prod(\text{contractions})$; $(M-1)!!$ pairings for $M$ operators, zero for odd $M$.
+    \item A single contraction of two operators with $k$ operators between them carries the sign $(-1)^k$ -- used repeatedly today.
+  \end{itemize}
+  \begin{exampleblock}{The situation we actually meet}
+    $\bra{\Phi}\hat{O}\ket{\Phi'}$: bra, operator and ket, each \emph{already} normal-ordered. Contractions \emph{inside} such a group can be skipped.
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}{Wick's generalised theorem (section 3.13)}
+  \small
+  \begin{block}{Products of normal-ordered groups}
+    \[
+      N\bigl[A_1A_2\cdots\bigr]\,N\bigl[B_1B_2\cdots\bigr]\,N\bigl[C_1C_2\cdots\bigr]
+      =N\bigl[A_1A_2\cdots B_1B_2\cdots C_1C_2\cdots\bigr]
+      +\sum_{\mathrm{all}}N\bigl[A_1A_2\cdots C_1C_2\cdots\bigr],
+    \]
+    where the sum runs over all contractions \emph{between operators belonging to different groups}.
+  \end{block}
+  \begin{itemize}
+    \item Contractions within a single group are absent -- not thrown away, but \alert{zero}, because that group is already normal-ordered and its internal contractions are of the vanishing types.
+    \item The ordinary theorem is the special case in which every group holds a single operator.
+    \item Taking the vacuum expectation value:
+    \[
+      \boxed{\;\bra{0}N[A_1A_2\cdots]N[B_1B_2\cdots]N[C_1C_2\cdots]\ket{0}
+      =\sum_{\substack{\text{fully contracted,}\\\text{no line inside a group}}}(-1)^{\nu}\prod\text{contractions}\;}
+    \]
+    the form used relentlessly in Hartree-Fock, perturbation theory and coupled cluster theory.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{What the restriction buys}
+  \small
+  Put numbers on it before proving anything (all from \texttt{wick.py}, recomputed in section 2 of the notebook):
+  \begin{center}
+  \renewcommand{\arraystretch}{1.2}
+  \begin{tabular}{lrrr}
+    \toprule
+    string & groups & all pairings & inter-group pairings\\
+    \midrule
+    one-body element $\bra{0}\,a_ja_i\;a_p^{\dagger}a_q\;a_k^{\dagger}a_\ell^{\dagger}\,\ket{0}$ & $2+2+2$ & $5!!=15$ & $8$\\
+    two-body element $\bra{0}\,a_ja_i\;a_p^{\dagger}a_q^{\dagger}a_sa_r\;a_i^{\dagger}a_j^{\dagger}\,\ket{0}$ & $2+4+2$ & $7!!=105$ & $24$\\
+    three two-body operators & $4+4+4$ & $11!!=10\,395$ & $1\,728$\\
+    \bottomrule
+  \end{tabular}
+  \end{center}
+  \begin{itemize}
+    \item Cutting a string into groups does \emph{not} tame the factorial (book, Fig.~3.2): the surviving fraction tends to a number fixed by the group \emph{size} -- a little under $0.6$ for groups of two, about $0.18$ for groups of four ($0.53$ and $0.17$ in the table).
+    \item \alert{Fat groups pay}: a matrix element is not $2n$ separate operators but a few normal-ordered blocks, and the bigger the blocks the fewer pairings survive -- before a single index has been looked at.
+    \item This is why one always writes the interaction in normal-ordered form \emph{before} starting a derivation -- the second half of today.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Proof of the generalised theorem, in three steps (section 3.14)}
+  \small
+  \textbf{Step 0: a normal-ordered group has no internal contractions.} Each group is \emph{written} with its creation operators to the left (any group can be brought to that form at the price of a sign that multiplies both sides). Pick $A_k$, $A_l$ with $k<l$: if $A_k$ is a creation operator, $A_l$ is either a creation operator ($a^{\dagger}a^{\dagger}\to0$) or an annihilation operator to its right ($a^{\dagger}a\to0$); if $A_k$ is an annihilation operator, so is everything to its right ($aa\to0$). \alert{The arrangement matters}: written as $a_qa_p^{\dagger}$ the pair contracts to $\delta_{pq}$.
+  \vspace{0.3em}
+
+  \textbf{Step 1: two groups}, by induction on the length $m$ of the second group. $m=1$ is the appending lemma of week 36 with $\Omega=B_1$. For $m\to m+1$ multiply by $B_{m+1}$ on the right and apply the lemma to every term: it produces (a) $B_{m+1}$ absorbed into the normal product, (b) contractions of $B_{m+1}$ with the uncontracted operators. A partner from $A$ gives a legitimate $A$--$B$ line; a partner from $B_1\dots B_m$ is a line internal to the second group, \alert{zero by step 0}. Every set of $A$--$B$ lines is generated exactly once, with its crossing sign.
+  \vspace{0.3em}
+
+  \textbf{Step 2: any number of groups}, by induction on the number of groups: multiplying from the right by one more group $N[H_1\cdots H_k]$ is step 1 with $A$ standing for what is left of the first groups. $\square$
+  \begin{exampleblock}{Nothing new was needed}
+    The whole proof is the appending lemma applied over and over, plus step 0. Section 2 of the notebook verifies the theorem as an operator identity for random groups.
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}{Pause to think: the generalised theorem at work}
+  \thinkq{4}{
+  \begin{enumerate}
+    \item For the string $\bra{0}\,a_ja_i\;a_p^{\dagger}a_q\;a_k^{\dagger}a_\ell^{\dagger}\,\ket{0}$ with the three groups indicated, list the pairings that join only different groups. There should be eight. How many of them survive the elementary contractions?
+    \item A colleague writes the one-body operator as $\sum_{pq}\element{p}{\hat{f}}{q}\,a_qa_p^{\dagger}$ (``it is the same up to a sign and a constant'') and applies the generalised theorem with this as the middle group. What goes wrong?
+  \end{enumerate}}
+\end{frame}
+
+\begin{frame}{Answer}
+  \small
+  \thinka{
+  \begin{enumerate}
+    \item Label positions $1..6$: $a_j,a_i\mid a_p^{\dagger},a_q\mid a_k^{\dagger},a_\ell^{\dagger}$. Inter-group pairings: $\{(1,3),(2,5),(4,6)\}$, $\{(1,3),(2,6),(4,5)\}$, $\{(1,4),(2,5),(3,6)\}$, $\{(1,4),(2,6),(3,5)\}$, $\{(1,5),(2,3),(4,6)\}$, $\{(1,5),(2,4),(3,6)\}$, $\{(1,6),(2,3),(4,5)\}$, $\{(1,6),(2,4),(3,5)\}$ -- eight. A survivor needs every line to join an annihilation operator ($1,2,4$) to a creation operator ($3,5,6$) standing to its right, which kills every pairing containing $(1,4)$, $(2,4)$, $(3,5)$ or $(3,6)$. Exactly \emph{four} survive: $\{(1,3),(2,5),(4,6)\}$, $\{(1,3),(2,6),(4,5)\}$, $\{(1,5),(2,3),(4,6)\}$, $\{(1,6),(2,3),(4,5)\}$ -- one for each of the four terms of the result on the next slides.
+    \item The middle group is then \emph{not} normal-ordered: its internal contraction $a_qa_p^{\dagger}\to\delta_{pq}$ is not zero, and the theorem as stated omits a non-vanishing term ($\sum_p\element{p}{\hat{f}}{p}=\tr\hat{f}$ times the overlap). Either bring the group to normal order first, $a_qa_p^{\dagger}=\delta_{pq}-a_p^{\dagger}a_q$, or include the internal contraction by hand. Step 0 is a hypothesis, not a decoration.
+  \end{enumerate}}
+\end{frame}
+
+\begin{frame}{Application 1: a one-body operator between two-particle states (section 3.15)}
+  With $\hat{O}^{(1)}=\sum_{pq}\element{p}{\hat{o}^{(1)}}{q}a_p^{\dagger}a_q$ and $\ket{ij}=a_i^{\dagger}a_j^{\dagger}\ket{0}$, $\bra{ij}=\bra{0}a_ja_i$,
+  \[
+    \element{ij}{\hat{O}^{(1)}}{k\ell}
+    =\sum_{pq}\element{p}{\hat{o}^{(1)}}{q}\,
+    \bra{0}\,\underbrace{a_ja_i}_{\text{bra}}\;\underbrace{a_p^{\dagger}a_q}_{\text{operator}}\;\underbrace{a_k^{\dagger}a_\ell^{\dagger}}_{\text{ket}}\,\ket{0}.
+  \]
+  Only contractions between different groups contribute, and each must join an annihilation operator to a creation operator standing to its right. One such term:
+  \[
+    \wstrut[5.4ex]
+    \wmark{o1}{a_j}\,\wmark{o2}{a_i}\,\wmark{o3}{a_p^{\dagger}}\,
+    \wmark{o4}{a_q}\,\wmark{o5}{a_k^{\dagger}}\,\wmark{o6}{a_{\ell}^{\dagger}}
+    \wline[1.4ex]{o2}{o3}\wline[1.4ex]{o4}{o5}\wlineb{o1}{o6}
+    \;=\;+\,\delta_{ip}\,\delta_{qk}\,\delta_{j\ell}
+    \quad\longrightarrow\quad\delta_{j\ell}\element{i}{\hat{o}^{(1)}}{k}
+  \]
+  \vspace{1.6em}
+
+  after the sums over $p$ and $q$ are carried out. No line crosses another: sign $+$.
+\end{frame}
+
+\begin{frame}{Application 1: the result}
+  Collecting the four surviving terms (pause \#1),
+  \begin{block}{One-body operator between two-particle determinants}
+    \[
+      \element{ij}{\hat{O}^{(1)}}{k\ell}
+      =\delta_{j\ell}\element{i}{\hat{o}^{(1)}}{k}
+      -\delta_{jk}\element{i}{\hat{o}^{(1)}}{\ell}
+      -\delta_{i\ell}\element{j}{\hat{o}^{(1)}}{k}
+      +\delta_{ik}\element{j}{\hat{o}^{(1)}}{\ell}.
+    \]
+  \end{block}
+  \begin{itemize}
+    \item Diagonal, $k=i$, $\ell=j$: $\element{i}{\hat{o}}{i}+\element{j}{\hat{o}}{j}$ -- the sum over occupied orbitals of week 34.
+    \item One orbital replaced, $\ket{k\ell}=\ket{i\ell'}$ with $\ell'\neq j$: a single term, $\element{j}{\hat{o}}{\ell'}$ (up to the sign of bringing the determinants to maximum coincidence).
+    \item Two orbitals replaced: no assignment of the deltas can be satisfied -- \alert{zero}.
+  \end{itemize}
+  These are the \alert{Condon-Slater rules} for one-body operators (week 36, exercise 1), obtained without a single explicit permutation. The same argument for $N$ particles: the bra and ket supply $N$ annihilation and $N$ creation operators, and one contraction must pass through the operator.
+\end{frame}
+
+\begin{frame}{Application 2: the two-body interaction, diagonal element}
+  \small
+  With $\hat{H}_I=\frac12\sum_{pqrs}\element{pq}{v}{rs}a_p^{\dagger}a_q^{\dagger}a_sa_r$ (plain elements),
+  \[
+    \element{ij}{\hat{H}_I}{ij}
+    =\frac12\sum_{pqrs}\element{pq}{v}{rs}\,
+    \bra{0}\,\underbrace{a_ja_i}_{\text{bra}}\;\underbrace{a_p^{\dagger}a_q^{\dagger}a_sa_r}_{\text{operator}}\;\underbrace{a_i^{\dagger}a_j^{\dagger}}_{\text{ket}}\,\ket{0}.
+  \]
+  An eight-operator string: $105$ pairings, $24$ between different groups, \alert{four} survive. One of them:
+  \[
+    \wstrut[5.6ex]
+    \wmark{t1}{a_j}\,\wmark{t2}{a_i}\,\wmark{t3}{a_p^{\dagger}}\,
+    \wmark{t4}{a_q^{\dagger}}\,\wmark{t5}{a_s}\,\wmark{t6}{a_r}\,
+    \wmark{t7}{a_i^{\dagger}}\,\wmark{t8}{a_j^{\dagger}}
+    \wline[1.4ex]{t2}{t3}\wline[1.4ex]{t6}{t7}
+    \wlineb[1.4ex]{t1}{t4}\wlineb[3.0ex]{t5}{t8}
+    \;=\;\delta_{ip}\delta_{jq}\delta_{ri}\delta_{sj}\;\longrightarrow\;\element{ij}{v}{ij},
+  \]
+  \vspace{1.2em}
+
+  and the one obtained by exchanging the roles of $r$ and $s$ (the lines $(a_s,a_i^{\dagger})$ and $(a_r,a_j^{\dagger})$), which crosses one more line and enters with the opposite sign: $-\element{ij}{v}{ji}$. The two remaining terms are these two with $i\leftrightarrow j$ in the operator indices; they are equal to the first two and cancel the factor $\frac12$.
+\end{frame}
+
+\begin{frame}{Application 2: the result, and the Condon-Slater rules for $N$ particles}
+  \footnotesize\vspace{-0.4em}
+  \begin{block}{Two-body interaction in a two-particle determinant}
+    \[
+      \element{ij}{\hat{H}_I}{ij}
+      =\element{ij}{v}{ij}-\element{ij}{v}{ji}
+      =\element{ij}{v}{ij}_{\mathrm{AS}},
+      \qquad\text{and likewise}\qquad
+      \element{k\ell}{\hat{H}_I}{ij}=\element{k\ell}{v}{ij}_{\mathrm{AS}}.
+    \]
+  \end{block}
+  For $N$ particles ($\hat{H}=\hat{H}_0+\hat{V}$, $h_{pq}=\element{p}{\hat{h}_0}{q}$, AS elements, maximum coincidence):
+  \begin{center}\footnotesize
+  \renewcommand{\arraystretch}{1.1}
+  \begin{tabular}{lll}
+    \toprule
+    determinants differ in & $\element{\Phi}{\hat{H}_0}{\Phi'}$ & $\element{\Phi}{\hat{V}}{\Phi'}$\\
+    \midrule
+    no orbital & $\sum_i h_{ii}$ & $\frac12\sum_{ij}\element{ij}{v}{ij}$\\
+    one orbital, $i\to a$ & $h_{ai}$ & $\sum_j\element{aj}{v}{ij}$\\
+    two orbitals, $ij\to ab$ & $0$ & $\element{ab}{v}{ij}$\\
+    three or more & $0$ & $0$\\
+    \bottomrule
+  \end{tabular}
+  \end{center}
+  \mbbox{\small An $n$-body operator connects determinants differing by at most $n$ orbitals: the Hamiltonian matrix in a determinant basis is \alert{banded in the excitation level} and overwhelmingly sparse -- tomorrow's FCI matrix. The table's lines become $E_{\mathrm{ref}}$, $\hat{F}_N$, $\hat{V}_N$ of this afternoon's normal-ordered Hamiltonian.}
+\end{frame}
+
+\begin{frame}{Pause to think: off-diagonal elements}
+  \thinkq{4}{Use the generalised theorem to evaluate, for four distinct orbitals $i,j,k,\ell$,
+  \[
+    \element{k\ell}{\hat{H}_I}{ij}
+    =\frac12\sum_{pqrs}\element{pq}{v}{rs}\bra{0}a_\ell a_k\,a_p^{\dagger}a_q^{\dagger}a_sa_r\,a_i^{\dagger}a_j^{\dagger}\ket{0}.
+  \]
+  \begin{enumerate}
+    \item How many inter-group pairings survive, and what is the result?
+    \item What happens if the determinants differ in only \emph{one} orbital, $\element{k j}{\hat{H}_I}{ij}$ -- and, for $N$ particles, if they differ in three?
+  \end{enumerate}}
+\end{frame}
+
+\begin{frame}{Answer}
+  \thinka{
+  \begin{enumerate}
+    \item The bra operators must contract into $a_p^{\dagger}a_q^{\dagger}$ (two ways) and $a_sa_r$ into the ket (two ways): four survivors, exactly as for the diagonal element. Result: $\element{k\ell}{\hat{H}_I}{ij}=\element{k\ell}{v}{ij}-\element{k\ell}{v}{ji}=\element{k\ell}{v}{ij}_{\mathrm{AS}}$ -- a two-body operator connects determinants differing by two orbitals with a single antisymmetrised matrix element.
+    \item With one orbital in common the four survivors give $\element{kj}{v}{ij}_{\mathrm{AS}}$; for $N$ particles the common orbital can be any occupied $m$, and the result is $\sum_m\element{km}{v}{im}_{\mathrm{AS}}$ -- an \emph{effective one-body} operator, the interaction part of the Fock matrix we meet this afternoon. With three or more differing orbitals at least one bra operator has no creation operator to contract with except those of the ket, and the two-body operator cannot bridge the gap: \alert{zero}. The Hamiltonian matrix is sparse.
+  \end{enumerate}}
+\end{frame}
+
+% ======================================================================
+\section{Thursday, lecture 2: Particle-hole formalism, normal ordering}
+% ======================================================================
+
+\begin{frame}{No free lunch -- and one important exception (section 3.4)}
+  Second quantization is an elegant formalism for constructing states and operators, and expectation values are easy to compute. But from a practical point of view -- \emph{solving} the Schr\"odinger equation -- there is no particular gain: the many-body problem is equally hard in any representation.
+  \vspace{0.3em}
+
+  There is at least one case where second quantization comes to our rescue. It is easy to introduce \alert{another reference state than the empty vacuum}: with many particles present we take a filled determinant
+  \[
+    \ket{c}\equiv\ket{\alpha_1\alpha_2\dots\alpha_{n_c-1}\alpha_{n_c}}
+    =a_{\alpha_1}^{\dagger}a_{\alpha_2}^{\dagger}\cdots a_{\alpha_{n_c}}^{\dagger}\ket{0}
+    \qquad(c\text{ for core, }n_c\text{ particles})
+  \]
+  as the new vacuum and describe everything else as \emph{excitations} of it.
+  \begin{itemize}
+    \item This reduces the dimensionality of the many-body problem considerably, and allows us to sum specific many-body correlations to infinite order (perturbation theory, coupled cluster).
+    \item The states $\ket{c}$, $a_{\alpha_{n_c+1}}^{\dagger}\ket{c}$, $a_{\alpha_{n_c}}\ket{c}$, $a_{\alpha_{n_c+1}}^{\dagger}a_{\alpha_{n_c}}\ket{c}$, \dots\ are the reference state, one-particle, one-hole and one-particle-one-hole states.
+    \item Throughout: $i,j,k,l,\dots$ label states \alert{below} the Fermi level $F$ (holes), $a,b,c,d,\dots$ states \alert{above} it (particles), $p,q,r,s,\dots$ any state. The constraints $\le F$, $>F$ are implied by the letters and dropped from the sums.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{The reference state and its neighbours}
+  In the original representation the $(n_c+1)$- and $(n_c-1)$-particle states are products of $a^{\dagger}$'s on $\ket{0}$. Relative to $\ket{c}$,
+  \begin{align*}
+    \ket{\alpha_1\alpha_2\dots\alpha_{n_c}\alpha_{n_c+1}}
+    &=a_{\alpha_1}^{\dagger}\cdots a_{\alpha_{n_c}}^{\dagger}a_{\alpha_{n_c+1}}^{\dagger}\ket{0}
+    =(-1)^{n_c}\,a_{\alpha_{n_c+1}}^{\dagger}\ket{c}\equiv(-1)^{n_c}\ket{\alpha_{n_c+1}}_c,\\[4pt]
+    \ket{\alpha_1\alpha_2\dots\alpha_{n_c-1}}
+    &=a_{\alpha_1}^{\dagger}\cdots a_{\alpha_{n_c-1}}^{\dagger}\ket{0}
+    =(-1)^{n_c-1}\,a_{\alpha_{n_c}}\ket{c}\equiv(-1)^{n_c-1}\ket{\alpha_{n_c}^{-1}}_c .
+  \end{align*}
+  \begin{itemize}
+    \item The first is a \alert{one-particle state}: one particle added to the reference. The second is a \alert{one-hole state}: one particle removed. The signs are the cost of moving $a_{\alpha_{n_c+1}}^{\dagger}$ (or $a_{\alpha_{n_c}}$) past the $n_c$ (or $n_c-1$) creation operators of the core.
+    \item The crucial difference from the true vacuum:
+    \[
+      a_i\ket{c}\neq0\quad\text{for }i\le F,
+      \qquad\text{whereas}\qquad a_\alpha\ket{0}=0\ \text{for all }\alpha .
+    \]
+    An annihilation operator no longer kills the vacuum -- so the operators must be redefined.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Quasiparticle operators}
+  We want new operators $b_\alpha^{\dagger}$, $b_\alpha$ that behave with respect to $\ket{c}$ exactly as $a^{\dagger}$, $a$ did with respect to $\ket{0}$:
+  \vspace{-0.3em}\[
+    b_\alpha\ket{c}=0,\qquad
+    \{b_\alpha^{\dagger},b_\beta^{\dagger}\}=\{b_\alpha,b_\beta\}=0,\qquad
+    \{b_\alpha^{\dagger},b_\beta\}=\delta_{\alpha\beta},\qquad\braket{c}{c}=1 .
+  \]
+  With $F$ the \alert{Fermi level} -- the last occupied orbit of $\ket{c}$ -- the definition is
+  \begin{block}{Quasiparticle creation and annihilation operators}
+    \[
+      b_a^{\dagger}=a_a^{\dagger},\quad b_a=a_a\quad(a>F),
+      \qquad\qquad
+      b_i^{\dagger}=a_i,\quad b_i=a_i^{\dagger}\quad(i\le F),
+    \]
+    \vspace{-1.2em}
+    \[
+      b_a^{\dagger}\ket{c}=a_a^{\dagger}\ket{c}=\ket{a},\qquad b_i^{\dagger}\ket{c}=a_i\ket{c}=\ket{i^{-1}}.
+    \]
+  \end{block}
+  \begin{itemize}
+    \item Above $F$ nothing changes. Below $F$ the roles are swapped: \emph{removing} a particle from the core creates a \alert{hole}, and a hole is a quasiparticle.
+    \item The $b$'s inherit the fermion algebra because swapping $a\leftrightarrow a^{\dagger}$ for a subset of the labels preserves all three anticommutation relations (pause \#3).
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Example 1: four orbitals, two particles}
+  \small
+  Take $n=4$ orbitals $\alpha_0,\dots,\alpha_3$ and the reference $\ket{c}=a_0^{\dagger}a_1^{\dagger}\ket{0}=\ket{1100}$, so $F=1$: holes $i\in\{0,1\}$, particles $a\in\{2,3\}$.
+  \begin{center}\footnotesize
+  \renewcommand{\arraystretch}{1.15}
+  \begin{tabular}{lll}
+    \toprule
+    operator & in terms of $a$, $a^{\dagger}$ & acting on $\ket{c}$\\
+    \midrule
+    $b_2^{\dagger}$ & $a_2^{\dagger}$ & $a_2^{\dagger}a_0^{\dagger}a_1^{\dagger}\ket{0}=\ket{1110}$, one particle added\\
+    $b_1^{\dagger}$ & $a_1$ & $a_1a_0^{\dagger}a_1^{\dagger}\ket{0}=-a_0^{\dagger}a_1a_1^{\dagger}\ket{0}=-\ket{1000}$, one hole\\
+    $b_2$ & $a_2$ & $0$ -- orbital $2$ is empty\\
+    $b_1$ & $a_1^{\dagger}$ & $0$ -- orbital $1$ is occupied (Pauli)\\
+    $b_2^{\dagger}b_1^{\dagger}$ & $a_2^{\dagger}a_1$ & $a_2^{\dagger}(-a_0^{\dagger})\ket{0}=+\ket{1010}$: the $1p1h$ state $\ket{2\,1^{-1}}$\\
+    $b_3^{\dagger}b_2^{\dagger}b_1^{\dagger}b_0^{\dagger}$ & $a_3^{\dagger}a_2^{\dagger}a_1a_0$ & $a_3^{\dagger}a_2^{\dagger}\ket{0}=-\ket{0011}$: the $2p2h$ state, both particles lifted\\
+    \bottomrule
+  \end{tabular}
+  \end{center}
+  \begin{itemize}
+    \item With two particles in four orbitals the $\binom42=6$ determinants are: $\ket{c}$ (no quasiparticle), four $1p1h$ states $\ket{a\,i^{-1}}$, one $2p2h$ state -- $1+4+1=6$. Every determinant is an excitation of the reference, and the number of quasiparticles is even for a particle-conserving Hamiltonian.
+    \item $\hat{N}=\sum_pa_p^{\dagger}a_p$ gives $2$ on all six; $\hat{N}_{qp}=\sum_pb_p^{\dagger}b_p$ gives $0,2,4$. Section 3 of the notebook does this for $n=6$, $n_c=3$, as matrices.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Pause to think: the quasiparticle algebra}
+  \thinkq{4}{
+  \begin{enumerate}
+    \item Show, from the definition and the $a$-algebra, that $\{b_\alpha^{\dagger},b_\beta\}=\delta_{\alpha\beta}$ for all four combinations of $\alpha,\beta$ above or below $F$, and that $b_\alpha\ket{c}=0$ for every $\alpha$.
+    \item What are $b_i^{\dagger}b_i\ket{c}$ and $b_ib_i^{\dagger}\ket{c}$ for a hole state $i\le F$? Compare with $a_i^{\dagger}a_i\ket{c}$.
+  \end{enumerate}}
+\end{frame}
+
+\begin{frame}{Answer}
+  \thinka{
+  \begin{enumerate}
+    \item Both above $F$: $\{a_a^{\dagger},a_b\}=\delta_{ab}$. Both below: $\{b_i^{\dagger},b_j\}=\{a_i,a_j^{\dagger}\}=\delta_{ij}$. Mixed: $\{b_a^{\dagger},b_i\}=\{a_a^{\dagger},a_i^{\dagger}\}=0$ and $\{b_i^{\dagger},b_a\}=\{a_i,a_a\}=0$ -- and $\delta_{ai}=0$ anyway. For the vacuum: $b_a\ket{c}=a_a\ket{c}=0$ since $a$ is empty, and $b_i\ket{c}=a_i^{\dagger}\ket{c}=0$ since $i$ is occupied (Pauli).
+    \item $b_i^{\dagger}b_i\ket{c}=a_ia_i^{\dagger}\ket{c}=0$: no quasiparticle in the state $i$. $b_ib_i^{\dagger}\ket{c}=a_i^{\dagger}a_i\ket{c}=\ket{c}$. So $b_i^{\dagger}b_i$ counts \emph{holes} while $a_i^{\dagger}a_i=1-b_i^{\dagger}b_i$ counts \emph{particles} in an orbital below $F$ -- the origin of the minus sign in the number operator and in the hole term of $\hat{H}_0$ on the next slides.
+  \end{enumerate}}
+\end{frame}
+
+\begin{frame}{Particle-hole states, and two number operators}
+  With the new operators we construct many-body quasiparticle states -- one-particle-one-hole, two-particle-two-hole, \dots -- exactly as we constructed many-particle states before:
+  \[
+    \ket{\beta_1\beta_2\dots\beta_{n_p}\gamma_1^{-1}\gamma_2^{-1}\dots\gamma_{n_h}^{-1}}
+    \equiv\underbrace{b_{\beta_1}^{\dagger}b_{\beta_2}^{\dagger}\cdots b_{\beta_{n_p}}^{\dagger}}_{>F}
+    \underbrace{b_{\gamma_1}^{\dagger}b_{\gamma_2}^{\dagger}\cdots b_{\gamma_{n_h}}^{\dagger}}_{\le F}\ket{c}.
+  \]
+  The number operator, rewritten with $a_i^{\dagger}a_i=b_ib_i^{\dagger}=1-b_i^{\dagger}b_i$,
+  \[
+    \hat{N}=\sum_pa_p^{\dagger}a_p
+    =\sum_{a}b_a^{\dagger}b_a+n_c-\sum_{i}b_i^{\dagger}b_i,
+    \qquad
+    \hat{N}\ket{\beta_1\dots\gamma_{n_h}^{-1}}=(n_p+n_c-n_h)\ket{\beta_1\dots\gamma_{n_h}^{-1}},
+  \]
+  with $n_c$ the number of particles in $\ket{c}$: $\hat{N}$ counts \alert{particles}. The operator
+  \[
+    \hat{N}_{qp}=\sum_pb_p^{\dagger}b_p,
+    \qquad
+    \hat{N}_{qp}\ket{\beta_1\dots\gamma_{n_h}^{-1}}=(n_p+n_h)\ket{\beta_1\dots\gamma_{n_h}^{-1}},
+  \]
+  counts \alert{quasiparticles} -- particles above $F$ plus holes below. For a particle-conserving Hamiltonian, $n_p=n_h$ in every state it connects to $\ket{c}$.
+\end{frame}
+
+\begin{frame}{The one-body operator in particle-hole form}
+  \small
+  Split $\hat{H}_0=\sum_{pq}\element{p}{\hat{h}_0}{q}a_p^{\dagger}a_q$ by $p,q$ above or below $F$ and substitute the $b$'s. Three blocks are already normal-ordered in the $b$'s; the hole-hole block needs one anticommutation, $a_i^{\dagger}a_j=b_ib_j^{\dagger}=\delta_{ij}-b_j^{\dagger}b_i$:
+  \begin{block}{$\hat{H}_0$ in particle-hole form}
+    \[
+      \hat{H}_0=\sum_{ab}\element{a}{\hat{h}_0}{b}b_a^{\dagger}b_b
+      +\sum_{ai}\Bigl[\element{a}{\hat{h}_0}{i}b_a^{\dagger}b_i^{\dagger}+\element{i}{\hat{h}_0}{a}b_ib_a\Bigr]
+      +\sum_i\element{i}{\hat{h}_0}{i}
+      -\sum_{ij}\element{j}{\hat{h}_0}{i}b_i^{\dagger}b_j .
+    \]
+  \end{block}
+  \begin{itemize}
+    \item First term: acts on particle states only. Last term: on hole states only, with a \alert{minus sign} -- a hole in a deep orbital costs energy $-\element{i}{\hat{h}_0}{i}$.
+    \item Second term: \alert{creates or destroys a particle-hole pair} -- the only piece that connects $\ket{c}$ to other states.
+    \item Third term: a number, the core energy: $\bra{c}\hat{H}_0\ket{c}=\sum_i\element{i}{\hat{h}_0}{i}$, every other term having a $b$ on the right or a $b^{\dagger}$ on the left.
+  \end{itemize}
+  \textbf{Example 2} (four orbitals, $\hat{h}_0$ diagonal, energies $\varepsilon_p$): $\hat{H}_0=\sum_a\varepsilon_ab_a^{\dagger}b_a-\sum_i\varepsilon_ib_i^{\dagger}b_i+(\varepsilon_0+\varepsilon_1)$, so $\hat{H}_0\ket{2\,1^{-1}}=(\varepsilon_0+\varepsilon_1+\varepsilon_2-\varepsilon_1)\ket{2\,1^{-1}}=(\varepsilon_0+\varepsilon_2)\ket{2\,1^{-1}}$: the orbital energies of the particles present. \checkmark
+\end{frame}
+
+\begin{frame}{The two-body operator in particle-hole form: five groups}
+  \footnotesize
+  Translating the four indices of $\hat{H}_I=\frac14\sum_{pqrs}\element{pq}{\hat{v}}{rs}_{\mathrm{AS}}a_p^{\dagger}a_q^{\dagger}a_sa_r$ into particle and hole labels and normal-ordering in the $b$'s, one regroups $\hat{H}_I=\hat{H}_I^{(a)}+\dots+\hat{H}_I^{(e)}$ by the number of particle indices (antisymmetrised elements; section 5 of the notebook checks the decomposition as a matrix identity):
+  \vspace{-0.4em}
+  {\scriptsize
+  \begin{align*}
+    \hat{H}_I^{(a)}&=\tfrac14\sum_{abcd}\element{ab}{\hat{v}}{cd}\,b_a^{\dagger}b_b^{\dagger}b_db_c
+    &&\text{particle-particle scattering}\\[1pt]
+    \hat{H}_I^{(b)}&=\tfrac12\sum_{abci}\Bigl[\element{ab}{\hat{v}}{ci}\,b_a^{\dagger}b_b^{\dagger}b_i^{\dagger}b_c
+    +\element{ci}{\hat{v}}{ab}\,b_c^{\dagger}b_ib_bb_a\Bigr]
+    &&1p\to2p1h\text{ and back}\\[1pt]
+    \hat{H}_I^{(c)}&=\tfrac14\sum_{abij}\Bigl[\element{ab}{\hat{v}}{ij}\,b_a^{\dagger}b_b^{\dagger}b_j^{\dagger}b_i^{\dagger}
+    +\element{ij}{\hat{v}}{ab}\,b_ib_jb_bb_a\Bigr]
+    &&2p2h\text{ creation/destruction}\\
+    &\quad+\sum_{abij}\element{ai}{\hat{v}}{bj}\,b_a^{\dagger}b_j^{\dagger}b_bb_i
+    +\sum_{abi}\element{ai}{\hat{v}}{bi}\,b_a^{\dagger}b_b
+    &&\text{ph scattering; particle energy}\\[1pt]
+    \hat{H}_I^{(d)}&=\tfrac12\sum_{aijk}\Bigl[\element{ai}{\hat{v}}{jk}\,b_a^{\dagger}b_k^{\dagger}b_j^{\dagger}b_i
+    +\element{jk}{\hat{v}}{ai}\,b_i^{\dagger}b_jb_kb_a\Bigr]
+    +\sum_{aij}\element{ai}{\hat{v}}{ji}\Bigl[b_a^{\dagger}b_j^{\dagger}+b_jb_a\Bigr]
+    &&1h\to1p2h;\ \text{ph pair}\\[1pt]
+    \hat{H}_I^{(e)}&=\tfrac14\sum_{ijkl}\element{kl}{\hat{v}}{ij}\,b_i^{\dagger}b_j^{\dagger}b_lb_k
+    -\sum_{ijk}\element{ij}{\hat{v}}{kj}\,b_k^{\dagger}b_i
+    +\tfrac12\sum_{ij}\element{ij}{\hat{v}}{ij}
+    &&\text{hh; hole energy; core energy}
+  \end{align*}}
+  Each term conserves the particle number and changes the quasiparticle number by $-4,-2,0,+2,+4$; prefactors $\frac14$, $\frac12$, $1$ for zero, one, two mixed index pairs. By brute force -- sixteen index combinations, anticommutators in each -- this is painful and error-prone. The rest of the lecture obtains the same content in four lines with Wick's theorem, without even needing the $b$'s.
+\end{frame}
+
+\begin{frame}{Wick's theorem relative to the Fermi vacuum (section 3.5)}
+  \footnotesize
+  Nothing in the proofs of week 36 used that $\ket{0}$ is empty. Replace $\ket{0}\to\ket{c}$, $a,a^{\dagger}\to b,b^{\dagger}$: normal ordering, contractions, both theorems and their proofs carry over word for word. We write $\nc{\cdots}$ for \alert{normal ordering with respect to $\ket{c}$}: quasiparticle creators $a_a^{\dagger}$, $a_i$ to the left, annihilators $a_a$, $a_i^{\dagger}$ to the right, with the sign of the permutation. Then $\bra{c}\nc{\text{anything}}\ket{c}=0$, and the contractions $xy-\nc{xy}=\bra{c}xy\ket{c}$ are
+  \[
+    \wstrut
+    \wmark{f1}{a_a}\,\wmark{f2}{a_b^{\dagger}}\wline[1.6ex]{f1}{f2}=\delta_{ab}\quad(a,b>F),
+    \qquad\qquad
+    \wmark{f3}{a_i^{\dagger}}\,\wmark{f4}{a_j}\wline[1.6ex]{f3}{f4}=\delta_{ij}\quad(i,j\le F),
+    \qquad\qquad\text{all others zero.}
+  \]
+  \vspace{0.1em}
+  \begin{block}{In one formula, with $n_p=1$ for $p\le F$ and $n_p=0$ for $p>F$}
+    \[
+      \wstrut
+      \wmark{f5}{a_p^{\dagger}}\,\wmark{f6}{a_q}\wline[1.6ex]{f5}{f6}=\delta_{pq}\,n_p\equiv\delta^{h}_{pq},
+      \qquad
+      \wmark{f7}{a_p}\,\wmark{f8}{a_q^{\dagger}}\wline[1.6ex]{f7}{f8}=\delta_{pq}(1-n_p),
+      \qquad
+      \wmark{f9}{a_p}\,\wmark{f10}{a_q}\wline[1.6ex]{f9}{f10}=\wmark{f11}{a_p^{\dagger}}\,\wmark{f12}{a_q^{\dagger}}\wline[1.6ex]{f11}{f12}=0 .
+    \]
+    \vspace{-0.4em}
+  \end{block}
+  \begin{itemize}
+    \item The second contraction is the new one: a hole state is occupied in $\ket{c}$, so removing and replacing a particle there gives unity.
+    \item $\nc{a_a^{\dagger}a_b}=b_a^{\dagger}b_b$, $\nc{a_i^{\dagger}a_j}=-a_ja_i^{\dagger}=-b_j^{\dagger}b_i$, $\nc{a_a^{\dagger}a_i}=b_a^{\dagger}b_i^{\dagger}$, $\nc{a_i^{\dagger}a_a}=b_ib_a$: the bracket \emph{is} the $b$-language without renaming operators (section 4 of the notebook).
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{The normal-ordered one-body operator}
+  Wick's theorem for two operators, relative to $\ket{c}$:
+  \[
+    a_p^{\dagger}a_q=\nc{a_p^{\dagger}a_q}+\wstrut\wmark{g1}{a_p^{\dagger}}\,\wmark{g2}{a_q}\wline[1.6ex]{g1}{g2}
+    =\nc{a_p^{\dagger}a_q}+\delta_{pq}\,n_p .
+  \]
+  Multiply by $\element{p}{\hat{h}_0}{q}$ and sum; the delta with $n_p$ restricts the constant to hole states:
+  \begin{block}{One-body operator relative to the reference}
+    \[
+      \hat{H}_0=\sum_{pq}\element{p}{\hat{h}_0}{q}a_p^{\dagger}a_q
+      =\underbrace{\sum_{i}\element{i}{\hat{h}_0}{i}}_{\bra{c}\hat{H}_0\ket{c}}
+      +\sum_{pq}\element{p}{\hat{h}_0}{q}\nc{a_p^{\dagger}a_q}.
+    \]
+  \end{block}
+  \begin{itemize}
+    \item Splitting $p,q$ into $a,i$ and using the dictionary of the previous slide reproduces the four-term particle-hole form -- including the minus sign of the hole term -- in one line.
+    \item The general pattern: \alert{operator $=$ its expectation value in $\ket{c}$ $+$ normal-ordered remainder}. The remainder has zero expectation value in $\ket{c}$ and is what acts on excitations.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{The two-body string: all contractions relative to $\ket{c}$}
+  \small
+  For $a_p^{\dagger}a_q^{\dagger}a_sa_r$ (positions $1,2,3,4$) a non-zero contraction joins a creation operator to an annihilation operator \emph{to its right} with a common hole index -- four candidates $(1,3),(1,4),(2,3),(2,4)$ -- and a single contraction carries $(-1)^{k}$, $k$ the number of operators between the pair:
+  {\footnotesize\[
+    \wstrut[4.6ex]
+    \wmark{h1}{a_p^{\dagger}}\,\wmark{h2}{a_q^{\dagger}}\,\wmark{h3}{a_s}\,\wmark{h4}{a_r}\wline[1.4ex]{h1}{h3}
+    =-\delta^{h}_{ps}\nc{a_q^{\dagger}a_r},\;\;
+    \wmark{h5}{a_p^{\dagger}}\,\wmark{h6}{a_q^{\dagger}}\,\wmark{h7}{a_s}\,\wmark{h8}{a_r}\wline[2.8ex]{h5}{h8}
+    =+\delta^{h}_{pr}\nc{a_q^{\dagger}a_s},\;\;
+    \wmark{h9}{a_p^{\dagger}}\,\wmark{h10}{a_q^{\dagger}}\,\wmark{h11}{a_s}\,\wmark{h12}{a_r}\wline[1.4ex]{h10}{h11}
+    =+\delta^{h}_{qs}\nc{a_p^{\dagger}a_r},\;\;
+    \wmark{h13}{a_p^{\dagger}}\,\wmark{h14}{a_q^{\dagger}}\,\wmark{h15}{a_s}\,\wmark{h16}{a_r}\wline[1.4ex]{h14}{h16}
+    =-\delta^{h}_{qr}\nc{a_p^{\dagger}a_s}.
+  \]}
+  \vspace{0.3em}
+
+  The two double contractions follow the crossing rule -- $(1,3)(2,4)$ crosses once, $(1,4)(2,3)$ is nested:
+  {\footnotesize\[
+    \wstrut[4.6ex]
+    \wmark{k1}{a_p^{\dagger}}\,\wmark{k2}{a_q^{\dagger}}\,\wmark{k3}{a_s}\,\wmark{k4}{a_r}\wline[1.4ex]{k1}{k3}\wline[2.8ex]{k2}{k4}
+    =-\delta^{h}_{ps}\delta^{h}_{qr},
+    \qquad\qquad
+    \wmark{k5}{a_p^{\dagger}}\,\wmark{k6}{a_q^{\dagger}}\,\wmark{k7}{a_s}\,\wmark{k8}{a_r}\wline[2.8ex]{k5}{k8}\wline[1.4ex]{k6}{k7}
+    =+\delta^{h}_{pr}\delta^{h}_{qs}.
+  \]}
+  \vspace{0.2em}
+  \begin{block}{Wick's theorem for the two-body string, relative to $\ket{c}$ (an operator identity, checked in the notebook for all $6^4$ index choices)}
+    {\footnotesize\[
+      a_p^{\dagger}a_q^{\dagger}a_sa_r=\nc{a_p^{\dagger}a_q^{\dagger}a_sa_r}
+      -\delta^{h}_{ps}\nc{a_q^{\dagger}a_r}+\delta^{h}_{pr}\nc{a_q^{\dagger}a_s}+\delta^{h}_{qs}\nc{a_p^{\dagger}a_r}-\delta^{h}_{qr}\nc{a_p^{\dagger}a_s}
+      +\delta^{h}_{pr}\delta^{h}_{qs}-\delta^{h}_{ps}\delta^{h}_{qr}.
+    \]}
+    \vspace{-0.6em}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Collecting the one-body pieces}
+  \footnotesize
+  Insert the expansion into $\hat{H}_I=\frac14\sum_{pqrs}\element{pq}{\hat{v}}{rs}a_p^{\dagger}a_q^{\dagger}a_sa_r$ (antisymmetrised elements). Each singly contracted term carries one hole delta, turning one of the four sums into a sum over holes:
+  \begin{align*}
+    -\tfrac14\sum_{pqrs}\element{pq}{\hat{v}}{rs}\delta^{h}_{ps}\nc{a_q^{\dagger}a_r}
+    &=-\tfrac14\sum_{iqr}\element{iq}{\hat{v}}{ri}\nc{a_q^{\dagger}a_r}
+    =+\tfrac14\sum_{iqr}\element{qi}{\hat{v}}{ri}\nc{a_q^{\dagger}a_r},\\
+    +\tfrac14\sum_{pqrs}\element{pq}{\hat{v}}{rs}\delta^{h}_{pr}\nc{a_q^{\dagger}a_s}
+    &=+\tfrac14\sum_{iqs}\element{iq}{\hat{v}}{is}\nc{a_q^{\dagger}a_s}
+    =+\tfrac14\sum_{iqs}\element{qi}{\hat{v}}{si}\nc{a_q^{\dagger}a_s},\\
+    +\tfrac14\sum_{pqrs}\element{pq}{\hat{v}}{rs}\delta^{h}_{qs}\nc{a_p^{\dagger}a_r}
+    &=+\tfrac14\sum_{pir}\element{pi}{\hat{v}}{ri}\nc{a_p^{\dagger}a_r},\\
+    -\tfrac14\sum_{pqrs}\element{pq}{\hat{v}}{rs}\delta^{h}_{qr}\nc{a_p^{\dagger}a_s}
+    &=-\tfrac14\sum_{pis}\element{pi}{\hat{v}}{is}\nc{a_p^{\dagger}a_s}
+    =+\tfrac14\sum_{pis}\element{pi}{\hat{v}}{si}\nc{a_p^{\dagger}a_s},
+  \end{align*}
+  using $\element{pq}{\hat{v}}{rs}=-\element{pq}{\hat{v}}{sr}=-\element{qp}{\hat{v}}{rs}=\element{qp}{\hat{v}}{sr}$. After renaming the summation indices all four are identical, and the $\frac14$ is cancelled:
+  \[
+    \boxed{\;\text{one-body part of }\hat{H}_I=\sum_{pq}\Bigl[\sum_i\element{pi}{\hat{v}}{qi}\Bigr]\nc{a_p^{\dagger}a_q}\;}
+  \]
+  the interaction of one particle (or hole) with all particles of the core -- the signs from antisymmetry and from the contraction rule cancelled in pairs.
+\end{frame}
+
+\begin{frame}{The constant, and the result}
+  \footnotesize
+  The two doubly contracted terms are numbers,
+  \[
+    \tfrac14\sum_{pqrs}\element{pq}{\hat{v}}{rs}\bigl[\delta^{h}_{pr}\delta^{h}_{qs}-\delta^{h}_{ps}\delta^{h}_{qr}\bigr]
+    =\tfrac14\sum_{ij}\bigl[\element{ij}{\hat{v}}{ij}-\element{ij}{\hat{v}}{ji}\bigr]
+    =\tfrac12\sum_{ij}\element{ij}{\hat{v}}{ij},
+  \]
+  the direct-minus-exchange energy of the core (antisymmetrised elements: the two terms are equal). Adding $\hat{H}_0$:
+  \begin{block}{The normal-ordered Hamiltonian}
+    \[
+      \hat{H}=E_{\mathrm{ref}}+\hat{F}_N+\hat{V}_N,
+      \qquad
+      E_{\mathrm{ref}}=\sum_i\element{i}{\hat{h}_0}{i}+\frac12\sum_{ij}\element{ij}{\hat{v}}{ij},
+    \]
+    \[
+      \hat{F}_N=\sum_{pq}f_{pq}\nc{a_p^{\dagger}a_q},\qquad
+      f_{pq}=\element{p}{\hat{h}_0}{q}+\sum_i\element{pi}{\hat{v}}{qi},
+      \qquad
+      \hat{V}_N=\frac14\sum_{pqrs}\element{pq}{\hat{v}}{rs}\nc{a_p^{\dagger}a_q^{\dagger}a_sa_r}.
+    \]
+  \end{block}
+  \begin{itemize}
+    \item $E_{\mathrm{ref}}=\bra{c}\hat{H}\ket{c}$ is the energy functional of week 34 -- there from $N!$ permutations, here from two contractions. $f_{pq}$ is the \alert{Fock matrix}: $\hat{h}_0$ dressed by the mean field of the core; its diagonalisation is Hartree-Fock theory (end of next week).
+    \item $\hat{V}_N$ has the matrix elements of $\hat{V}$; only the string is normal-ordered relative to $\ket{c}$. Section 4 of the notebook builds the three pieces as matrices: $\hat{H}=E_{\mathrm{ref}}+\hat{F}_N+\hat{V}_N$ to machine precision.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Reading the result: the particle and hole blocks}
+  \small
+  Splitting every index into $a$ or $i$ and translating $\nc{\cdots}$ into $b$'s recovers the particle-hole forms of section 3.4 -- with the prefactors now \emph{derived}:
+  \begin{align*}
+    \hat{F}_N&=\sum_{ab}f_{ab}\,b_a^{\dagger}b_b
+    +\sum_{ai}\bigl[f_{ai}\,b_a^{\dagger}b_i^{\dagger}+f_{ia}\,b_ib_a\bigr]
+    -\sum_{ij}f_{ji}\,b_i^{\dagger}b_j ,\\
+    \hat{V}_N&=\tfrac14\sum_{abcd}\element{ab}{\hat{v}}{cd}b_a^{\dagger}b_b^{\dagger}b_db_c
+    +\tfrac12\sum_{abci}\bigl[\element{ab}{\hat{v}}{ci}b_a^{\dagger}b_b^{\dagger}b_i^{\dagger}b_c+\mathrm{h.c.}\bigr]
+    +\tfrac14\sum_{abij}\bigl[\element{ab}{\hat{v}}{ij}b_a^{\dagger}b_b^{\dagger}b_j^{\dagger}b_i^{\dagger}+\mathrm{h.c.}\bigr]\\
+    &\quad+\sum_{abij}\element{ai}{\hat{v}}{bj}b_a^{\dagger}b_j^{\dagger}b_bb_i
+    +\tfrac12\sum_{aijk}\bigl[\element{ai}{\hat{v}}{jk}b_a^{\dagger}b_k^{\dagger}b_j^{\dagger}b_i+\mathrm{h.c.}\bigr]
+    +\tfrac14\sum_{ijkl}\element{kl}{\hat{v}}{ij}b_i^{\dagger}b_j^{\dagger}b_lb_k .
+  \end{align*}
+  \begin{itemize}
+    \item The one-body pieces of the five groups, $\sum_{abi}\element{ai}{\hat{v}}{bi}b_a^{\dagger}b_b$, $-\sum_{ijk}\element{ij}{\hat{v}}{kj}b_k^{\dagger}b_i$ and $\sum_{aij}\element{ai}{\hat{v}}{ji}(b_a^{\dagger}b_j^{\dagger}+b_jb_a)$, are exactly the interaction part of $\hat{F}_N$: they have been \alert{absorbed into the Fock matrix}. That is the whole point of normal ordering.
+    \item Prefactor rule, now explained: restricting $\frac14\sum_{pqrs}$ to letters of fixed type keeps the $\frac14$ when both pairs are of one kind ($ab$, $ij$). A mixed pair such as $(r,s)=(c,i)$ occurs twice in the unrestricted sum, as $(c,i)$ and $(i,c)$, with equal contributions by antisymmetry: $\frac14\cdot2=\frac12$ for one mixed pair, $\frac14\cdot2\cdot2=1$ for two.
+    \item Everything on this slide is verified in section 5 of the notebook by comparing matrices.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Pause to think: reading off matrix elements}
+  \thinkq{4}{With $\hat{H}=E_{\mathrm{ref}}+\hat{F}_N+\hat{V}_N$ and the generalised theorem relative to $\ket{c}$:
+  \begin{enumerate}
+    \item Why is $\bra{c}\hat{H}\ket{c}=E_{\mathrm{ref}}$ immediate, without any calculation?
+    \item Consider $\bra{\Phi_i^a}\hat{H}\ket{c}$ with $\ket{\Phi_i^a}=a_a^{\dagger}a_i\ket{c}$, so $\bra{\Phi_i^a}=\bra{c}a_i^{\dagger}a_a$. Which of the three pieces can contribute, and how many contraction patterns survive in each?
+  \end{enumerate}}
+\end{frame}
+
+\begin{frame}{Answer}
+  \thinka{
+  \begin{enumerate}
+    \item $\hat{F}_N$ and $\hat{V}_N$ are normal-ordered relative to $\ket{c}$, so $\bra{c}\hat{F}_N\ket{c}=\bra{c}\hat{V}_N\ket{c}=0$ -- a quasiparticle annihilator on the right, or a creator on the left, kills the reference. Only the number $E_{\mathrm{ref}}$ is left. (The same argument in the $b$-language: every term with at least one $b$ or $b^{\dagger}$ has zero expectation value in $\ket{c}$.)
+    \item $E_{\mathrm{ref}}\bra{c}a_i^{\dagger}a_a\ket{c}=0$: $a_a\ket{c}=0$. In $\hat{V}_N$ the bra supplies two operators and the group $\nc{a_p^{\dagger}a_q^{\dagger}a_sa_r}$ four; two of the four must be contracted with each other, which the generalised theorem forbids -- \alert{zero}. In $\hat{F}_N$ the bra pair $a_i^{\dagger}a_a$ and the group $\nc{a_p^{\dagger}a_q}$ can be fully contracted in exactly \emph{one} way: $a_a$ with $a_p^{\dagger}$ ($\delta_{ap}$, particle) and $a_i^{\dagger}$ with $a_q$ ($\delta_{iq}$, hole), nested lines, sign $+$. Result: $\bra{\Phi_i^a}\hat{H}\ket{c}=f_{ai}$. Next slide.
+  \end{enumerate}}
+\end{frame}
+
+\begin{frame}{Example 3: the reference coupled to single and double excitations}
+  \small
+  \[
+    \bra{\Phi_i^a}\hat{H}\ket{c}
+    =\sum_{pq}f_{pq}\,\bra{c}\,
+    \wstrut[5.2ex]
+    \wmark{e1}{a_i^{\dagger}}\,\wmark{e2}{a_a}\;\wmark{e3}{a_p^{\dagger}}\,\wmark{e4}{a_q}
+    \wline[1.4ex]{e2}{e3}\wline[3.0ex]{e1}{e4}
+    \,\ket{c}=\sum_{pq}f_{pq}\,\delta_{ap}\delta_{iq}=\boxed{f_{ai}}
+  \]
+  \vspace{0.8em}
+  \begin{itemize}
+    \item \alert{Brillouin's theorem}: if the orbitals are chosen such that the Fock matrix is diagonal -- the Hartree-Fock orbitals -- then $f_{ai}=0$ and the reference does not couple to any $1p1h$ state. This is what ``Hartree-Fock'' will mean at the end of next week.
+  \end{itemize}
+  For $\ket{\Phi_{ij}^{ab}}=a_a^{\dagger}a_b^{\dagger}a_ja_i\ket{c}$, $\bra{\Phi_{ij}^{ab}}=\bra{c}a_i^{\dagger}a_j^{\dagger}a_ba_a$, only $\hat{V}_N$ can contribute (four bra operators need four partners); $a_a,a_b$ contract with $a_p^{\dagger},a_q^{\dagger}$ in two ways and $a_i^{\dagger},a_j^{\dagger}$ with $a_s,a_r$ in two ways, the four terms being equal by antisymmetry:
+  \[
+    \bra{\Phi_{ij}^{ab}}\hat{H}\ket{c}=\frac14\sum_{pqrs}\element{pq}{\hat{v}}{rs}\bra{c}a_i^{\dagger}a_j^{\dagger}a_ba_a\nc{a_p^{\dagger}a_q^{\dagger}a_sa_r}\ket{c}
+    =\boxed{\element{ab}{\hat{v}}{ij}},
+    \qquad
+    \bra{\Phi_{ijk}^{abc}}\hat{H}\ket{c}=0 .
+  \]
+  \begin{itemize}
+    \item The three boxed results -- $E_{\mathrm{ref}}$, $f_{ai}$, $\element{ab}{\hat{v}}{ij}$, and zero beyond -- are the first row of tomorrow's FCI matrix, and the Condon-Slater table of lecture 1 read in the new language.
+    \item Signs: the notebook checks all three against the matrices for every choice of $a,b,i,j$ (section 5).
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Example 4: the energies of excited determinants}
+  \small
+  Diagonal elements need all three pieces. For $\bra{\Phi_i^a}\hat{H}\ket{\Phi_i^a}=\bra{c}a_i^{\dagger}a_a\,(E_{\mathrm{ref}}+\hat{F}_N+\hat{V}_N)\,a_a^{\dagger}a_i\ket{c}$: $E_{\mathrm{ref}}$ times the norm $\bra{c}a_i^{\dagger}a_aa_a^{\dagger}a_i\ket{c}=1$; in $\hat{F}_N$ the group $\nc{a_p^{\dagger}a_q}$ contracts either with the two particle operators ($+f_{aa}$) or with the two hole operators (an odd number of crossings: $-f_{ii}$); in $\hat{V}_N$ all four operators must be contracted outwards, one particle line in and out, one hole line in and out: $-\element{ai}{\hat{v}}{ai}$.
+  \begin{block}{Energies of a $1p1h$ and of a $2p2h$ determinant}
+    \begin{align*}
+      \bra{\Phi_i^a}\hat{H}\ket{\Phi_i^a}&=E_{\mathrm{ref}}+f_{aa}-f_{ii}-\element{ai}{\hat{v}}{ai},\\
+      \bra{\Phi_{ij}^{ab}}\hat{H}\ket{\Phi_{ij}^{ab}}&=E_{\mathrm{ref}}+f_{aa}+f_{bb}-f_{ii}-f_{jj}
+      +\element{ab}{\hat{v}}{ab}+\element{ij}{\hat{v}}{ij}
+      -\sum_{c\in\{a,b\}}\sum_{k\in\{i,j\}}\element{ck}{\hat{v}}{ck}.
+    \end{align*}
+  \end{block}
+  \begin{itemize}
+    \item Read: a particle costs $f_{aa}$, a hole $-f_{ii}$; the corrections remove the interaction with the \emph{missing} core particle that $f_{aa}$ still counts (and, for $2p2h$, add the interaction of the two new particles and of the two holes).
+    \item Off-diagonal: $\bra{\Phi_i^a}\hat{H}\ket{\Phi_j^b}=\delta_{ij}f_{ab}-\delta_{ab}f_{ji}+\element{aj}{\hat{v}}{ib}$ -- the \alert{Tamm-Dancoff} matrix, later in the course. All verified in section 5 of the notebook.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Example 5: the pairing model in particle-hole language}
+  \small
+  Four doubly degenerate levels $p=1,\dots,4$, energies $\varepsilon_p=(p-1)\xi$, spin $\sigma=\pm$, four particles, and
+  \[
+    \hat{H}=\xi\sum_{p\sigma}(p-1)a^{\dagger}_{p\sigma}a_{p\sigma}
+    -\frac{g}{2}\sum_{pq}a^{\dagger}_{p+}a^{\dagger}_{p-}a_{q-}a_{q+},
+    \quad\text{i.e.}\quad
+    \element{p+\,p-}{\hat{v}}{q+\,q-}=-\frac{g}{2},\ \text{else }0.
+  \]
+  \vspace{-0.6em}
+  Reference $\ket{c}$: levels $1$ and $2$ filled ($n_c=4$, holes $1\pm,2\pm$, particles $3\pm,4\pm$). Then, with $\xi=1$:
+  \begin{center}\scriptsize
+  \renewcommand{\arraystretch}{1.15}
+  \begin{tabular}{lll}
+    \toprule
+    quantity & formula & value\\
+    \midrule
+    $E_{\mathrm{ref}}$ & $\sum_i\varepsilon_i+\frac12\sum_{ij}\element{ij}{\hat{v}}{ij}=2\xi+\frac12\cdot4\cdot(-\tfrac{g}{2})$ & $2-g$\\
+    $f_{ii}$, hole & $\varepsilon_i+\sum_j\element{ij}{\hat{v}}{ij}=\varepsilon_i-\tfrac{g}{2}$ (only the partner $\bar{\imath}$ contributes) & $-\tfrac{g}{2},\ 1-\tfrac{g}{2}$\\
+    $f_{aa}$, particle & $\varepsilon_a+\sum_j\element{aj}{\hat{v}}{aj}=\varepsilon_a$ (no hole partner) & $2,\ 3$\\
+    $f_{ai}$ & $0$: $f$ is diagonal, Brillouin's theorem holds automatically & $0$\\
+    $\bra{\Phi_{1+1-}^{3+3-}}\hat{H}\ket{c}$ & $\element{3+3-}{\hat{v}}{1+1-}$, a pair moved as a whole & $-\tfrac{g}{2}$\\
+    $\bra{\Phi_{1+2+}^{3+3-}}\hat{H}\ket{c}$ & $\element{3+3-}{\hat{v}}{1+2+}$, a broken pair & $0$\\
+    $\bra{\Phi_{1+1-}^{3+3-}}\hat{H}\ket{\Phi_{1+1-}^{3+3-}}$ & $E_{\mathrm{ref}}+2\varepsilon_3-2(\varepsilon_1-\tfrac g2)+(-\tfrac g2)+(-\tfrac g2)-0$ & $6-g$\\
+    \bottomrule
+  \end{tabular}
+  \end{center}
+  \begin{itemize}
+    \item The last line is the diagonal element $2\xi[(2-1)+(3-1)]-g$ of the configuration with pairs in levels $2$ and $3$: tomorrow's $6\times6$ matrix, entry by entry (section 6 of the notebook prints every number). The interaction never breaks a pair: $\hat{H}$ connects $\ket{c}$ to four $2p2h$ states only, each with $-g/2$.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Summary of Thursday, and what comes on Friday}
+  \small
+  \begin{columns}[T]
+    \column{0.5\textwidth}
+    \begin{block}{Today}
+      \begin{itemize}
+        \item Generalised theorem: only inter-group lines; $105\to24\to4$ for a two-body matrix element
+        \item Condon-Slater: $\sum_ih_{ii}+\frac12\sum\element{ij}{v}{ij}$, $h_{ai}+\sum_j\element{aj}{v}{ij}$, $\element{ab}{v}{ij}$, $0$
+        \item Fermi sea as vacuum: $b_a^{\dagger}=a_a^{\dagger}$, $b_i^{\dagger}=a_i$; two contractions, $a_aa_b^{\dagger}\to\delta_{ab}$ and $a_i^{\dagger}a_j\to\delta_{ij}$
+        \item $\hat{H}=E_{\mathrm{ref}}+\sum f_{pq}\nc{a_p^{\dagger}a_q}+\frac14\sum\element{pq}{v}{rs}\nc{a_p^{\dagger}a_q^{\dagger}a_sa_r}$
+        \item $\bra{\Phi_i^a}\hat{H}\ket{c}=f_{ai}$, $\bra{\Phi_{ij}^{ab}}\hat{H}\ket{c}=\element{ab}{v}{ij}$
+      \end{itemize}
+    \end{block}
+    \column{0.5\textwidth}
+    \begin{block}{Friday}
+      \begin{itemize}
+        \item Slater determinants as bit patterns; $\hat{H}\ket{\Phi}$ by bit operations
+        \item Full configuration interaction: the determinant basis, the CI expansion, the eigenvalue problem
+        \item The structure of the Hamiltonian matrix and the exponential wall
+        \item FCI for the pairing model: $70$ determinants versus $6$
+        \item Truncations, size consistency, the map of many-body methods; exercises
+      \end{itemize}
+    \end{block}
+  \end{columns}
+  Before Friday: run sections 3--6 of \texttt{week37.ipynb}, and redo Example 5 for the reference with levels $1$ and $3$ filled -- which matrix elements change?
+\end{frame}
+
+% ======================================================================
+\section{Friday, lecture 3: Bit patterns, full configuration interaction}
+% ======================================================================
+
+\begin{frame}{Where we are}
+  Thursday gave us the Hamiltonian in the form we shall use for the rest of the course,
+  \[
+    \hat{H}=E_{\mathrm{ref}}+\sum_{pq}f_{pq}\nc{a_p^{\dagger}a_q}+\frac14\sum_{pqrs}\element{pq}{\hat{v}}{rs}\nc{a_p^{\dagger}a_q^{\dagger}a_sa_r},
+  \]
+  and the rules for its matrix elements between Slater determinants: non-zero only when the determinants differ by at most two orbitals.
+  \vspace{0.3em}
+
+  Today:
+  \begin{itemize}
+    \item how a determinant and the action of $\hat{H}$ on it become \alert{code}: bit patterns (section 3.16);
+    \item \alert{full configuration interaction}: expand the exact state in all determinants, diagonalise (chapter 5, sections 5.1--5.3);
+    \item what the matrix looks like, and why it cannot be built for long: the block structure and the \alert{exponential wall} (5.4--5.5);
+    \item in the last 45 minutes: the pairing model by FCI, truncated CI, size consistency, the other methods as truncations, and the exercises (5.6--5.11).
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{From the formalism to a running code (section 3.16)}
+  \vspace{-0.2em}The time-consuming part of any shell-model or FCI code is the action of the Hamiltonian on a determinant,
+  \[
+    \Bigl(\sum_{pq}\element{p}{\hat{h}_0}{q}a_p^{\dagger}a_q
+    +\frac14\sum_{pqrs}\element{pq}{\hat{v}}{rs}a_p^{\dagger}a_q^{\dagger}a_sa_r\Bigr)
+    a_{\alpha_1}^{\dagger}a_{\alpha_2}^{\dagger}\cdots a_{\alpha_N}^{\dagger}\ket{0}.
+  \]
+  A practically useful way to implement it: \alert{encode a Slater determinant as a bit pattern}. With $n$ single-particle states $\alpha_0,\dots,\alpha_{n-1}$ and $N\le n$ particles, an occupied state is a $1$, an empty one a $0$. For $n=16$ and particles in $\alpha_3,\alpha_6,\alpha_{10},\alpha_{13}$:
+  \[
+    \Phi_{3,6,10,13}=a_{\alpha_3}^{\dagger}a_{\alpha_6}^{\dagger}a_{\alpha_{10}}^{\dagger}a_{\alpha_{13}}^{\dagger}\ket{0}
+    =\ket{0001001000100100},
+    \qquad 2^3+2^6+2^{10}+2^{13}=9288 .
+  \]
+  \begin{itemize}
+    \item The ordering of the states is important: it defines the order of the creation operators, and hence the sign convention -- the dictionary of section 3.1 with a fixed ordering.
+    \item There are $2^n$ bit patterns but only $\binom{n}{N}$ determinants with $N$ particles: $\dim\mathcal{H}=\binom{n}{N}$ -- $1820$ for $n=16$, $N=4$.
+    \item The Fock-space matrices of the notebooks \emph{are} this representation; today we never form the $2^n\times2^n$ matrices, only act on one pattern at a time.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{The action of a creation operator on a bit pattern}
+  \small\vspace{-0.2em}
+  \[
+    a^{\dagger}_{\alpha_4}\Phi_{3,6,10,13}
+    =a^{\dagger}_{\alpha_4}a_{\alpha_3}^{\dagger}a_{\alpha_6}^{\dagger}a_{\alpha_{10}}^{\dagger}a_{\alpha_{13}}^{\dagger}\ket{0}
+    =-a_{\alpha_3}^{\dagger}a^{\dagger}_{\alpha_4}a_{\alpha_6}^{\dagger}a_{\alpha_{10}}^{\dagger}a_{\alpha_{13}}^{\dagger}\ket{0}
+    =-\ket{0001101000100100},
+  \]
+  one anticommutation to put $a_{\alpha_4}^{\dagger}$ in its place, while
+  $a^{\dagger}_{\alpha_6}\Phi_{3,6,10,13}=-a_{\alpha_3}^{\dagger}(a_{\alpha_6}^{\dagger})^2a_{\alpha_{10}}^{\dagger}a_{\alpha_{13}}^{\dagger}\ket{0}=0$.
+  \begin{block}{The recipe}
+    \begin{itemize}
+      \item If bit $b_j$ is already $1$ and we act with $a^{\dagger}_{\alpha_j}$: return the null vector (Pauli).
+      \item If $b_j=0$: set it to $1$ and return the sign factor $(-1)^{l}$, $l$ the number of bits set \emph{before} bit $j$ (the creation operators that $a^{\dagger}_{\alpha_j}$ has to pass).
+    \end{itemize}
+    For $a_{\alpha_j}$: return zero if $b_j=0$; otherwise clear the bit and return $(-1)^{l}$ with the same $l$.
+  \end{block}
+  \begin{center}\footnotesize
+  \renewcommand{\arraystretch}{1.0}
+  \begin{tabular}{lll@{\qquad}lll}
+    $a^{\dagger}_{\alpha_2}\ket{00111}$ & $=$ & $0$ &
+    $a^{\dagger}_{\alpha_2}\ket{10101}$ & $=$ & $0$\\
+    $a^{\dagger}_{\alpha_2}\ket{01011}$ & $=$ & $(-1)\ket{01111}$ &
+    $a^{\dagger}_{\alpha_2}\ket{10110}$ & $=$ & $0$\\
+    $a^{\dagger}_{\alpha_2}\ket{01101}$ & $=$ & $0$ &
+    $a^{\dagger}_{\alpha_2}\ket{11001}$ & $=$ & $(+1)\ket{11101}$\\
+    $a^{\dagger}_{\alpha_2}\ket{10011}$ & $=$ & $(-1)\ket{10111}$ &
+    $a^{\dagger}_{\alpha_2}\ket{11010}$ & $=$ & $(+1)\ket{11110}$\\
+  \end{tabular}
+  \end{center}
+  (bits written $\alpha_0\alpha_1\alpha_2\alpha_3\alpha_4$ from left to right, as in the book).
+\end{frame}
+
+\begin{frame}[fragile]{The phase without a loop: bit masks}
+  \small
+  Consider $a^{\dagger}_{\alpha_4}a_{\alpha_0}\Phi_{0,3,6,10,13}$. Removing $\alpha_0$ is a logical AND with the complement of the word $S_1=\ket{1000\cdots}$; adding $\alpha_4$ is a logical OR with $S_2=\ket{00001000\cdots}$, after checking that the AND of $S_2$ with the state is zero. The phase of the pair move $a^{\dagger}_{\alpha_j}a_{\alpha_i}$ is
+  \[
+    (-1)^{\,\#\{\text{occupied states strictly between }\alpha_i\text{ and }\alpha_j\}},
+  \]
+  because the signs from removing $\alpha_i$ and from inserting $\alpha_j$ share all the occupied states outside the interval, which cancel in pairs. The mask of the states between $\alpha_i$ and $\alpha_j$ is integer arithmetic, the AND with the state selects the occupied ones, and a \alert{bit-count} (popcount) gives $l$ -- here $\ket{0001000\cdots}$, $l=1$, phase $-1$.
+\begin{lstlisting}
+def move(state, i, j):                  # a_j^dagger a_i acting on a bit pattern
+    if not (state >> i) & 1:  return 0, None      # i empty: null vector
+    if i == j:                return 1, state     # a_i^dagger a_i counts the occupation
+    if (state >> j) & 1:      return 0, None      # j occupied: null vector
+    lo, hi = min(i, j), max(i, j)
+    between = state & ((1 << hi) - (1 << (lo + 1)))   # occupied states strictly between
+    phase = -1 if bin(between).count("1") % 2 else 1
+    return phase, (state & ~(1 << i)) | (1 << j)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{$\hat{H}\ket{\Phi}$ by bit operations: the inner loop of every FCI code}
+  \small
+  Apply the operator string of each term of $\hat{H}$ to the pattern, right to left, and collect \{new pattern: amplitude\}. Only \emph{occupied} $q,r,s$ contribute, so those loops run over the $N$ occupied orbitals, not over all $n$:
+\begin{lstlisting}
+def apply_hamiltonian(state, h, vAS):
+    out = {}
+    occ = [p for p in range(n) if (state >> p) & 1]
+    for q in occ:                                       # sum_pq h_pq a_p^+ a_q
+        for p in range(n):
+            sign, new = apply_string(state, [(p, True), (q, False)])
+            if sign: out[new] = out.get(new, 0.0) + sign * h[p, q]
+    for r in occ:                                       # 1/4 sum <pq|v|rs> a_p^+ a_q^+ a_s a_r
+        for s in occ:
+            if s == r: continue
+            for p in range(n):
+                for q in range(n):
+                    if vAS[p, q, r, s] != 0.0:
+                        sign, new = apply_string(state, [(p, True), (q, True), (s, False), (r, False)])
+                        if sign: out[new] = out.get(new, 0.0) + 0.25 * sign * vAS[p, q, r, s]
+    return out
+\end{lstlisting}
+  Cost per determinant $\mathcal{O}(Nn+N^2n^2)$ bit operations, against $\binom{n}{N}$ inner products by matrices. Section 7 of the notebook compares with the Fock-space matrices for every pattern of a small space: identical, sign for sign; section 8 builds an FCI code on it.
+\end{frame}
+
+\begin{frame}{Full configuration interaction: Slater determinants as a basis (section 5.1)}
+  \small
+  The simplest many-body wave function is a product, $\Psi\approx\phi_1(x_1)\cdots\phi_N(x_N)$, because we are really only good at thinking about one particle at a time. Products are easy -- orthonormal, factorising matrix elements -- and completely uncorrelated; correlations must be built up by \alert{superposing many products}. This trade-off runs through the whole subject: a compact representation with difficult integrals, or easy integrals and very many states.
+  \vspace{0.2em}
+
+  Antisymmetry turns the product into a determinant, chapter 3 the determinant into a string of creation operators. With the reference $\ket{\Phi_0}=\prod_{i\le F}a_i^{\dagger}\ket{0}$ (our $\ket{c}$), the excited determinants are
+  \[
+    \ket{\Phi_i^a}=a_a^{\dagger}a_i\ket{\Phi_0},\qquad
+    \ket{\Phi_{ij}^{ab}}=a_a^{\dagger}a_b^{\dagger}a_ja_i\ket{\Phi_0},\qquad
+    \ket{\Phi_{ijk\dots}^{abc\dots}}=a_a^{\dagger}a_b^{\dagger}a_c^{\dagger}\cdots a_ka_ja_i\ket{\Phi_0},
+  \]
+  the $np$-$nh$ excitations or \emph{configurations} of Thursday. Every determinant of $N$ particles in $n$ orbitals is one of these, for exactly one excitation level $k$: the number of its occupied orbitals not in $\ket{\Phi_0}$.
+  \begin{block}{The idea of FCI}
+    If the single-particle space describes the system well enough, diagonalising $\hat{H}$ in the space of \emph{all} its determinants gives all eigenpairs exactly. FCI is the benchmark against which every approximation of the course (Hartree-Fock, TDA and RPA, perturbation theory, coupled cluster, neural-network and quantum-computing ans\"atze) is measured -- which is why we treat it first.
+  \end{block}
+\end{frame}
+
+\begin{frame}{The configuration-interaction expansion (section 5.2)}
+  \footnotesize
+  The exact ground state is an arbitrary superposition of all configurations,
+  \begin{gather*}
+    \ket{\Psi_0}=C_0\ket{\Phi_0}+\sum_{ai}C_i^a\ket{\Phi_i^a}+\sum_{\substack{a<b\\i<j}}C_{ij}^{ab}\ket{\Phi_{ij}^{ab}}+\cdots
+    =\bigl(C_0+\hat{C}\bigr)\ket{\Phi_0},\\
+    \hat{C}=\sum_{ai}C_i^aa_a^{\dagger}a_i+\sum_{\substack{a<b\\i<j}}C_{ij}^{ab}a_a^{\dagger}a_b^{\dagger}a_ja_i+\cdots
+  \end{gather*}
+  with the \alert{correlation operator} $\hat{C}$ (restricted sums, every determinant once; unrestricted sums with antisymmetric $C_{ij}^{ab}$ carry a factor $\frac14$). With $C_0\neq0$ we may set $C_0=1$ (\alert{intermediate normalisation}): $\braket{\Psi_0}{\Phi_0}=1$, $\ket{\Psi_0}=(1+\hat{C})\ket{\Phi_0}$.
+  \vspace{0.3em}
+
+  Compact notation: $H$ a set of hole indices, $P$ a set of particle indices, $\hat{A}_H^P$ the operator creating the excitation,
+  \[
+    \ket{\Psi_0}=\sum_{PH}C_H^P\ket{\Phi_H^P}=\Bigl(\sum_{PH}C_H^P\hat{A}_H^P\Bigr)\ket{\Phi_0},
+    \qquad
+    E=\bra{\Psi_0}\hat{H}\ket{\Psi_0}=\sum_{PP'HH'}C_H^{P*}\bra{\Phi_H^P}\hat{H}\ket{\Phi_{H'}^{P'}}C_{H'}^{P'}
+  \]
+  for unit normalisation $\sum_{PH}|C_H^P|^2=1$.
+  \begin{itemize}
+    \item If the expansion runs over \emph{all} determinants of the chosen single-particle basis, this is \alert{full configuration interaction}. The only approximation left is the truncation of the single-particle space itself.
+    \item The $C_i^a$, $C_{ij}^{ab}$ are what coupled-cluster theory will call amplitudes -- with a multiplicative ansatz (lecture 4).
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{The eigenvalue problem (section 5.3)}
+  \footnotesize
+  Minimise the energy subject to normalisation, with a Lagrange multiplier $\lambda$: $\delta\bigl[\bra{\Psi_0}\hat{H}\ket{\Psi_0}-\lambda\braket{\Psi_0}{\Psi_0}\bigr]=0$, i.e.
+  \[
+    \sum_{PH}\sum_{P'H'}\Bigl\{\delta[C_H^{P*}]\bra{\Phi_H^P}\hat{H}\ket{\Phi_{H'}^{P'}}C_{H'}^{P'}
+    +C_H^{P*}\bra{\Phi_H^P}\hat{H}\ket{\Phi_{H'}^{P'}}\delta[C_{H'}^{P'}]
+    -\lambda\bigl(\delta[C_H^{P*}]C_{H'}^{P'}\delta_{PP'}\delta_{HH'}+\mathrm{c.c.}\bigr)\Bigr\}=0 .
+  \]
+  Since $\delta[C^{*}]$ and $\delta[C]$ are complex conjugates it is necessary and sufficient that the coefficient of each $\delta[C_H^{P*}]$ vanishes; multiplying by $C_H^{P*}$ and summing identifies $\lambda=E$:
+  \begin{block}{The full CI equation}
+    \[
+      \boxed{\;\sum_{P'H'}\bra{\Phi_H^P}\hat{H}-E\ket{\Phi_{H'}^{P'}}\,C_{H'}^{P'}=0\quad\text{for every }PH\;}
+    \]
+  \end{block}
+  \begin{itemize}
+    \item The same result follows at once from $(\hat{H}-E)\ket{\Psi_0}=0$ projected onto every $\bra{\Phi_H^P}$.
+    \item A Hermitian eigenvalue problem. Diagonalisation \emph{is} the variational answer -- Rayleigh-Ritz in the space of the chosen determinants: the lowest eigenvalue is the best upper bound to $E_0$ in that space, and it can only improve as the space grows.
+    \item Matrix elements from the Condon-Slater rules of Thursday; diagonalisation by Householder-QL for small matrices, Lanczos for large ones -- Lanczos needs only $\hat{H}\ket{\Phi}$, the bit code of three slides ago.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{The structure of the Hamiltonian matrix (section 5.4)}
+  \small
+  Six fermions below the Fermi level, determinants ordered by excitation level:
+  \[
+    \begin{array}{c|ccccccc}
+       & 0p0h & 1p1h & 2p2h & 3p3h & 4p4h & 5p5h & 6p6h\\
+      \hline
+      0p0h & E_{\mathrm{ref}} & f_{ai} & \element{ab}{v}{ij} & 0 & 0 & 0 & 0\\
+      1p1h & \times & \times & \times & \times & 0 & 0 & 0\\
+      2p2h & \times & \times & \times & \times & \times & 0 & 0\\
+      3p3h & 0 & \times & \times & \times & \times & \times & 0\\
+      4p4h & 0 & 0 & \times & \times & \times & \times & \times\\
+      5p5h & 0 & 0 & 0 & \times & \times & \times & \times\\
+      6p6h & 0 & 0 & 0 & 0 & \times & \times & \times
+    \end{array}
+  \]
+  \begin{itemize}
+    \item The zeros are not accidental: a two-body operator connects determinants differing by at most two orbitals (Condon-Slater), and an $np$-$nh$ and an $mp$-$mh$ determinant differ by at least $|n-m|$ orbitals. The matrix is \alert{banded in the excitation level, bandwidth two}, and overwhelmingly sparse.
+    \item The first row is Thursday's Example 3: $E_{\mathrm{ref}}$, $f_{ai}$, $\element{ab}{\hat{v}}{ij}$, then nothing.
+    \item A three-body force widens the band to three and multiplies the number of non-zero elements per row by $\sim N(n-N)$ -- which is why three-body forces are normal-ordered with respect to $\ket{\Phi_0}$ and truncated at the two-body level (exercise 3b of this week's set).
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{In a Hartree-Fock basis: Brillouin's theorem empties one more block}
+  \small
+  If the single-particle states diagonalise the Fock matrix, $f_{ai}=0$, and the reference does not couple to the singles at all:
+  \[
+    \begin{array}{c|ccccccc}
+       & 0p0h & 1p1h & 2p2h & 3p3h & 4p4h & 5p5h & 6p6h\\
+      \hline
+      0p0h & \tilde{\times} & 0 & \tilde{\times} & 0 & 0 & 0 & 0\\
+      1p1h & 0 & \tilde{\times} & \tilde{\times} & \tilde{\times} & 0 & 0 & 0\\
+      2p2h & \tilde{\times} & \tilde{\times} & \tilde{\times} & \tilde{\times} & \tilde{\times} & 0 & 0\\
+      3p3h & 0 & \tilde{\times} & \tilde{\times} & \tilde{\times} & \tilde{\times} & \tilde{\times} & 0\\
+      4p4h & 0 & 0 & \tilde{\times} & \tilde{\times} & \tilde{\times} & \tilde{\times} & \tilde{\times}\\
+      5p5h & 0 & 0 & 0 & \tilde{\times} & \tilde{\times} & \tilde{\times} & \tilde{\times}\\
+      6p6h & 0 & 0 & 0 & 0 & \tilde{\times} & \tilde{\times} & \tilde{\times}
+    \end{array}
+  \]
+  the tildes a reminder that the unitary transformation of the basis has changed every matrix element.
+  \begin{itemize}
+    \item The correlation energy is then carried entirely by the doubles at leading order -- the starting point of both perturbation theory and coupled-cluster theory.
+    \item For the pairing model \emph{every} even-odd block is empty, whatever the basis: the interaction moves pairs and cannot break one, so the number of broken pairs (the seniority) is conserved. The symmetry does more than Brillouin's theorem would (lecture 4).
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Pause to think: counting determinants}
+  \thinkq{4}{$N$ particles in $n$ single-particle states, reference $\ket{\Phi_0}$.
+  \begin{enumerate}
+    \item How many determinants are $k$ particle-hole excitations of $\ket{\Phi_0}$? Check that they add up to $\binom{n}{N}$.
+    \item Evaluate for $n=8$, $N=4$ (the pairing model of Thursday's Example 5). What is the dimension of the singles block, and of the space kept in a ``singles and doubles'' truncation?
+  \end{enumerate}}
+\end{frame}
+
+\begin{frame}{Answer}
+  \thinka{
+  \begin{enumerate}
+    \item Choose which $k$ of the $N$ occupied orbitals to empty, $\binom{N}{k}$ ways, and which $k$ of the $n-N$ empty ones to fill, $\binom{n-N}{k}$ ways: $\binom{N}{k}\binom{n-N}{k}$ determinants at level $k$. Every $N$-particle determinant arises exactly once, so $\sum_k\binom{N}{k}\binom{n-N}{k}=\sum_k\binom{N}{N-k}\binom{n-N}{k}=\binom{n}{N}$ -- Vandermonde's identity.
+    \item $\binom4k^2=1,16,36,16,1$ for $k=0,\dots,4$, total $70=\binom84$. The singles block is $16\times16$; singles and doubles keep $1+16+36=53$ of the $70$ determinants -- and, as we shall see, essentially all of the correlation energy of the pairing model at small $g$.
+  \end{enumerate}}
+\end{frame}
+
+\begin{frame}{The exponential wall (section 5.5)}
+  \footnotesize
+  Full configuration interaction is exact, and that is precisely its problem. $\dim\mathcal{H}=\binom{n}{N}$ is the number of bit patterns with $N$ bits set out of $n$, and at half filling Stirling's formula gives
+  \[
+    \binom{n}{n/2}\sim\frac{2^n}{\sqrt{\pi n/2}}:
+    \qquad\text{the dimension \alert{doubles} for every single-particle state added.}
+  \]
+  \begin{center}\footnotesize
+  \renewcommand{\arraystretch}{1.05}
+  \begin{tabular}{rll@{\qquad}l}
+    \toprule
+    $n$ & $\binom{n}{n/2}$ & $2^n/\sqrt{\pi n/2}$ & landmark\\
+    \midrule
+    $10$ & $2.520\times10^{2}$ & $2.584\times10^{2}$ & a toy model\\
+    $20$ & $1.848\times10^{5}$ & $1.871\times10^{5}$ & limit of dense diagonalisation ($\sim10^5$)\\
+    $36$--$38$ & $9.08\times10^{9}$--$3.53\times10^{10}$ & & limit of Lanczos on a large machine ($\sim10^{10}$)\\
+    $40$ & $1.378\times10^{11}$ & $1.387\times10^{11}$ & \\
+    $80$ & $1.075\times10^{23}$ & $1.078\times10^{23}$ & Avogadro's number of amplitudes\\
+    $160$ & $9.205\times10^{46}$ & $9.219\times10^{46}$ & \\
+    \bottomrule
+  \end{tabular}
+  \end{center}
+  \vspace{-0.6em}
+  \begin{itemize}
+    \item At fixed $N$, $\binom{n}{N}\sim n^N/N!$ is a polynomial: adding orbitals to a few valence particles is cheap -- calculations near a closed shell are much easier than in the middle of an open one. The half-filled line is the envelope of the family (section 9 of the notebook).
+    \item \textbf{A realistic example.} The eight neutrons of $^{16}$O in the four lowest major oscillator shells ($2+6+12+20=40$ states): $\binom{40}{8}=7.7\times10^{7}$, inside the Lanczos band. Protons independently: $\binom{40}{8}^2=5.9\times10^{15}$. Symmetries cut this by orders of magnitude; one more shell restores the growth at once.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{The same wall in the models of the course, and why it is not the end of the story}
+  \footnotesize\vspace{-0.5em}
+  \emph{Lipkin}: $\binom{2N}{N}$ determinants, of which SU(2) isolates $N+1$ -- a symmetry accident. \emph{Pairing}: $\binom{2n}{N}$ determinants, $\binom{n}{N/2}$ of seniority zero. \emph{Hubbard}: $\binom{L}{N_\uparrow}\binom{L}{N_\downarrow}$; a spin chain has $2^L$ by construction. A conservation law removes a factor, never the exponential.
+  \mbbox{\footnotesize The dimension of $\mathcal{H}$ counts the coefficients an \emph{arbitrary} state would need. Physical ground states are not arbitrary: for local, gapped Hamiltonians the entanglement across a cut grows with its area, not its volume, and such states need a polynomial number of parameters -- matrix product states, or a neural-network quantum state that replaces the $\binom{n}{N}$ amplitudes by a function of the occupation pattern. Full CI is the reference against which all such compressions are measured.}
+  \qcbox{\footnotesize A register of $n$ qubits has dimension $2^n$ by construction -- the same growth, as a resource rather than a cost: the bit pattern of a determinant is a basis state of the register, and the FCI ground state a state of the register. How fermion operators become qubit operators is the subject of FYS5419/9419 in the spring.}
+\end{frame}
+
+\begin{frame}{Summary of lecture 3, and what comes next}
+  \begin{itemize}
+    \item A Slater determinant is an integer; $a^{\dagger}$ and $a$ are bit operations with a popcount for the sign; $\hat{H}\ket{\Phi}$ is a loop over the occupied orbitals and the non-zero matrix elements.
+    \item FCI: $\ket{\Psi_0}=(1+\hat{C})\ket{\Phi_0}$ over all configurations; the variational principle turns the expansion into the eigenvalue problem $\sum_{P'H'}\bra{\Phi_H^P}\hat{H}-E\ket{\Phi_{H'}^{P'}}C_{H'}^{P'}=0$.
+    \item The matrix is banded in the excitation level (bandwidth two), its first row is $E_{\mathrm{ref}}$, $f_{ai}$, $\element{ab}{\hat{v}}{ij}$; a Hartree-Fock basis empties the $0p0h$--$1p1h$ block.
+    \item $\dim\mathcal{H}=\binom{n}{N}$, exponential at fixed filling: dense diagonalisation to $\sim10^5$, Lanczos to $\sim10^{10}$, beyond that the expansion itself must be truncated.
+  \end{itemize}
+  \mbbox{In the last 45 minutes we run the machinery on the pairing model -- $70$ determinants, $6$ of seniority zero, one ground-state energy -- and then \emph{truncate} the expansion, which is where every other method of the course begins: CIS, CID, CISD and their failure of size consistency, and the exponential ansatz that repairs it.}
+\end{frame}
+
+% ======================================================================
+\section{Friday, lecture 4: FCI for the pairing model, exercises}
+% ======================================================================
+
+\begin{frame}{Full CI for the pairing model (section 5.6)}
+  \small
+  The pairing Hamiltonian of Thursday's Example 5, four doubly degenerate levels, four particles, $\xi=1$:
+  \[
+    \hat{H}=\xi\sum_{p\sigma}(p-1)a^{\dagger}_{p\sigma}a_{p\sigma}
+    -\frac{g}{2}\sum_{pq}a^{\dagger}_{p+}a^{\dagger}_{p-}a_{q-}a_{q+}.
+  \]
+  The full space has $\binom84=70$ determinants, $1,16,36,16,1$ over the excitation levels, and the block table computed by \texttt{fci.py} (section 8 of the notebook) is
+  \[
+    \begin{array}{c|ccccc}
+       & 0p0h & 1p1h & 2p2h & 3p3h & 4p4h\\
+      \hline
+      0p0h & \times & 0 & \times & 0 & 0\\
+      1p1h & 0 & \times & 0 & \times & 0\\
+      2p2h & \times & 0 & \times & 0 & \times\\
+      3p3h & 0 & \times & 0 & \times & 0\\
+      4p4h & 0 & 0 & \times & 0 & \times
+    \end{array}
+  \]
+  \begin{itemize}
+    \item The even-odd blocks are empty as well: the interaction moves particles two at a time and never changes the number of broken pairs. The \alert{seniority} $s$ (number of unpaired particles) commutes with $\hat{H}$: a six-dimensional $s=0$ block, an $s=2$ block, an $s=4$ block.
+    \item The ideal first test: small enough for the full space, and the seniority-zero answer of chapter 4 is known.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{The seniority-zero matrix, by the rules of Thursday}
+  \small
+  Label a seniority-zero configuration by the pair of occupied levels: $\ket{12},\ket{13},\ket{14},\ket{23},\ket{24},\ket{34}$. The diagonal element of $\ket{pq}$ is $2\xi[(p-1)+(q-1)]-g$ (each level holds two particles; the $p=q$ terms of the interaction give $-g/2$ for each of the two pairs -- Example 5 with the reference $\ket{12}$ and the $2p2h$ state $\ket{23}$). One application of the interaction moves \emph{one} pair, so two configurations are connected by $-g/2$ if and only if they share exactly one level:
+  \[
+    \bm{H}=
+    \begin{pmatrix}
+      2-g & -g/2 & -g/2 & -g/2 & -g/2 & 0\\
+      -g/2 & 4-g & -g/2 & -g/2 & 0 & -g/2\\
+      -g/2 & -g/2 & 6-g & 0 & -g/2 & -g/2\\
+      -g/2 & -g/2 & 0 & 6-g & -g/2 & -g/2\\
+      -g/2 & 0 & -g/2 & -g/2 & 8-g & -g/2\\
+      0 & -g/2 & -g/2 & -g/2 & -g/2 & 10-g
+    \end{pmatrix}
+  \]
+  \begin{itemize}
+    \item Every entry is a Condon-Slater element: $\element{\Phi_0}{\hat{H}}{\Phi_0}=E_{\mathrm{ref}}=2-g$, $\element{\Phi_{ij}^{ab}}{\hat{H}}{\Phi_0}=\element{ab}{\hat{v}}{ij}=-g/2$ for a pair moved as a whole, and $\ket{12}$--$\ket{34}$ differ by \emph{four} orbitals: zero.
+    \item The three unconnected pairs, $\ket{12}$--$\ket{34}$, $\ket{13}$--$\ket{24}$, $\ket{14}$--$\ket{23}$, are the zeros in the matrix.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Results: $70\times70$ against $6\times6$}
+  \small
+  \begin{center}
+  \renewcommand{\arraystretch}{1.15}
+  \begin{tabular}{rllll}
+    \toprule
+    $g$ & $E_{\mathrm{ref}}$ & $E_0$ ($6\times6$) & $E_0$ ($70\times70$) & broken-pair amplitude\\
+    \midrule
+    $-1.00$ & $3.000000$ & $2.77987014$ & $2.77987014$ & $<10^{-15}$\\
+    $-0.50$ & $2.500000$ & $2.43688426$ & $2.43688426$ & $<10^{-15}$\\
+    $0.00$  & $2.000000$ & $2.00000000$ & $2.00000000$ & $0$\\
+    $0.50$  & $1.500000$ & $1.41677428$ & $1.41677428$ & $<10^{-15}$\\
+    $1.00$  & $1.000000$ & $0.63554847$ & $0.63554847$ & $<10^{-15}$\\
+    \bottomrule
+  \end{tabular}
+  \end{center}
+  \begin{itemize}
+    \item Identical to every digit. The $64$ determinants with a broken pair are present in the basis but carry no amplitude in the ground state: the symmetry that chapter 4 imposed by hand is \alert{recovered automatically} by the diagonalisation.
+    \item This is the general situation. A symmetry of $\hat{H}$ block-diagonalises the FCI matrix, and one may exploit it (a smaller matrix, a labelled spectrum) or ignore it (a simpler code, a larger matrix). Production codes exploit it; \texttt{fci.py} does not, so that the two answers can be compared.
+    \item The correlation energy $E_0-E_{\mathrm{ref}}$ is $-0.083$ at $g=0.5$ and $-0.364$ at $g=1$: $36\%$ of the reference energy. At small $|g|$ it is quadratic, and the coefficient can be computed by hand (pause \#6).
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Pause to think: the correlation energy at small $g$}
+  \thinkq{4}{With the reference $\ket{12}$, second-order perturbation theory gives
+  \[
+    E^{(2)}=\sum_{\Phi\neq\Phi_0}\frac{|\element{\Phi_0}{\hat{H}_I}{\Phi}|^2}{E_0^{(0)}-E_\Phi^{(0)}} .
+  \]
+  \begin{enumerate}
+    \item Which configurations contribute, with what matrix element and which unperturbed excitation energies? Evaluate $E^{(2)}$.
+    \item Compare with the exact correlation energies $-0.01954$ ($g=0.25$), $-0.0832$ ($g=0.5$) and $-0.3645$ ($g=1$). What do you conclude about the higher orders?
+  \end{enumerate}}
+\end{frame}
+
+\begin{frame}{Answer}
+  \thinka{
+  \begin{enumerate}
+    \item The four configurations reachable by moving one pair, $\ket{13},\ket{14},\ket{23},\ket{24}$, each with matrix element $-g/2$ and unperturbed excitation energies $2,4,4,6$:
+    \[
+      E^{(2)}=\frac{g^2}{4}\Bigl(\frac{1}{-2}+\frac{1}{-4}+\frac{1}{-4}+\frac{1}{-6}\Bigr)=-\frac{7}{24}g^2=-0.2917\,g^2 .
+    \]
+    \item $-0.01823$ against $-0.01954$ at $g=0.25$, $-0.0729$ against $-0.0832$ at $g=0.5$, $-0.2917$ against $-0.3645$ at $g=1$: the leading order is right at small coupling and misses $20\%$ at $g=1$. The higher orders are negative for $g>0$ and their sum is what FCI delivers; perturbation theory (later in the course) computes them one order at a time, FCI all at once.
+  \end{enumerate}}
+\end{frame}
+
+\begin{frame}{Truncating the expansion (section 5.8)}
+  \footnotesize
+  Since the full expansion is out of reach for all but the smallest systems, we truncate it by excitation level:
+  \[
+    \ket{\Psi_{\mathrm{CIS}}}=(1+\hat{C}_1)\ket{\Phi_0},\qquad
+    \ket{\Psi_{\mathrm{CID}}}=(1+\hat{C}_2)\ket{\Phi_0},\qquad
+    \ket{\Psi_{\mathrm{CISD}}}=(1+\hat{C}_1+\hat{C}_2)\ket{\Phi_0},\ \dots
+  \]
+  up to CISDTQ and, at $\hat{C}_N$, full CI. Each is variational in a subspace: upper bounds to $E_0$, decreasing monotonically as the truncation is relaxed. The space at level $k$ holds $\binom{N}{k}\binom{n-N}{k}$ determinants, polynomial of degree $2k$, and the work grows roughly as $n^{2k+2}$: CISD at $\mathcal{O}(n^6)$ is affordable, CISDTQ at $\mathcal{O}(n^{10})$ is not.
+  \begin{center}
+  \renewcommand{\arraystretch}{1.15}
+  \begin{tabular}{rlllll}
+    \toprule
+    $g$ & $E_{\mathrm{ref}}$ & CIS ($17$) & CID ($37$) & CISD ($53$) & FCI ($70$)\\
+    \midrule
+    $0.25$ & $1.750000$ & $1.75000000$ & $1.73050700$ & $1.73050700$ & $1.73045985$\\
+    $0.50$ & $1.500000$ & $1.50000000$ & $1.41759645$ & $1.41759645$ & $1.41677428$\\
+    $1.00$ & $1.000000$ & $1.00000000$ & $0.64890655$ & $0.64890655$ & $0.63554847$\\
+    $2.00$ & $0.000000$ & $0.00000000$ & $-1.35208670$ & $-1.35208670$ & $-1.48965216$\\
+    \bottomrule
+  \end{tabular}
+  \end{center}
+  \begin{itemize}
+    \item The singles change nothing (a single excitation breaks a pair -- the reference is decoupled from the whole singles block), and CISD coincides with CID.
+    \item The doubles carry $99.8\%$ of the correlation energy at $g=0.25$, $96.3\%$ at $g=1$, only $90.8\%$ at $g=2$: truncation at fixed level works while the reference is good and degrades as the coupling grows. In the Hubbard ring (section 5.7) the same pattern: $98.7\%$ at $U/t=1$, $72\%$ at $U/t=8$ -- the signature of \alert{strong correlation}.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Size consistency (section 5.9)}
+  \footnotesize
+  There is a defect of truncated CI more serious than the loss of accuracy, because it does not go away as the basis is improved. Two identical systems $A$ and $B$, infinitely far apart: $\hat{H}=\hat{H}_A+\hat{H}_B$, the exact ground state is the product $\ket{\Psi_A}\ket{\Psi_B}$, and
+  \[
+    E(AB)=E(A)+E(B)=2E(A)\qquad\text{(\alert{size consistency}).}
+  \]
+  Full CI passes, since the product state lies in the full space. Truncated CI does not: if $A$ and $B$ are each doubly excited, the combined state is a \emph{quadruple} excitation of the combined reference, and CID has no room for it. The product of two doubles is a quadruple -- truncation at a fixed level is not multiplicatively closed.
+  \begin{center}
+  \renewcommand{\arraystretch}{1.15}
+  \begin{tabular}{rllll}
+    \toprule
+    $g$ & $2E(A)$ & $E(AB)$, FCI & $E(AB)$, CID & CID error\\
+    \midrule
+    $0.25$ & $-0.26556444$ & $-0.26556444$ & $-0.26550480$ & $5.96\times10^{-5}$\\
+    $0.50$ & $-0.56155281$ & $-0.56155281$ & $-0.56066017$ & $8.93\times10^{-4}$\\
+    $1.00$ & $-1.23606798$ & $-1.23606798$ & $-1.22474487$ & $1.13\times10^{-2}$\\
+    \bottomrule
+  \end{tabular}
+  \end{center}
+  Two non-interacting copies of a two-level, one-pair system (section 8 of the notebook). With $M$ subsystems the error grows with $M$: the energy per particle of truncated CI drifts with the size of the system -- fatal for nuclear matter, the electron gas, a large molecule.
+\end{frame}
+
+\begin{frame}{The repair: make the ansatz multiplicative}
+  \small
+  For two non-interacting one-pair systems the exact state is a product,
+  \[
+    \bigl(1+c\hat{A}_2^A\bigr)\bigl(1+c\hat{A}_2^B\bigr)\ket{\Phi_0}
+    =\bigl(1+c\hat{A}_2^A+c\hat{A}_2^B+c^2\hat{A}_2^A\hat{A}_2^B\bigr)\ket{\Phi_0},
+  \]
+  and the last term -- both subsystems excited at once -- is a $4p4h$ excitation of the combined reference, absent from CID, with a coefficient that is \emph{not} independent: $c^2$, the product of the two doubles.
+  \begin{block}{Coupled-cluster theory in one line}
+    \[
+      \ket{\Psi_{\mathrm{CCSD}}}=e^{\hat{T}_1+\hat{T}_2}\ket{\Phi_0}
+      =\bigl(1+\hat{T}_1+\hat{T}_2+\tfrac12\hat{T}_2^2+\cdots\bigr)\ket{\Phi_0}
+    \]
+    The quadruple $\tfrac12\hat{T}_2^2$ appears automatically with its coefficient fixed by the doubles; for non-interacting subsystems $e^{\hat{T}}=e^{\hat{T}_A}e^{\hat{T}_B}$ and size consistency is exact -- with the \emph{same} number of parameters as CISD.
+  \end{block}
+  \begin{itemize}
+    \item For the two copies, $\hat{T}_2=t(\hat{A}_2^A+\hat{A}_2^B)$ with commuting pieces and $(\hat{A}_2^X)^2=0$ gives $e^{\hat{T}_2}=(1+t\hat{A}_2^A)(1+t\hat{A}_2^B)$ exactly (chapter 5, exercise 4 of the lecture notes).
+    \item This is why coupled cluster, not truncated CI, is the workhorse of modern many-body physics; we develop it properly later in the course.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Truncations and the other many-body methods (section 5.10)}
+  \footnotesize
+  Project $(\hat{H}-E)\ket{\Psi_0}=0$ onto $\bra{\Phi_0}$ and onto $\bra{\Phi_H^P}$:
+  \[
+    E=\bra{\Phi_0}\hat{H}\ket{\Phi_0}+\sum_{P'H'\neq0}\bra{\Phi_0}\hat{H}\ket{\Phi_{H'}^{P'}}C_{H'}^{P'},
+    \qquad
+    \bigl(E-\bra{\Phi_H^P}\hat{H}\ket{\Phi_H^P}\bigr)C_H^P=\sum_{P'H'\neq PH}\bra{\Phi_H^P}\hat{H}\ket{\Phi_{H'}^{P'}}C_{H'}^{P'} .
+  \]
+  The first: the correlation energy comes from the coupling of the reference to singles and doubles only, $\sum_{ai}f_{ai}C_i^a+\sum_{a<b,\,i<j}\element{ab}{\hat{v}}{ij}C_{ij}^{ab}$ (Example 3). The second: coupled equations for the coefficients, solvable by iteration. Every method of the course is a prescription for which terms to keep and how to solve it:
+  \begin{itemize}
+    \item \textbf{Hartree-Fock}: keep only $C_0$ and vary the \emph{basis} so that $f_{ai}=0$ -- optimise the reference, not the expansion (end of next week).
+    \item \textbf{Tamm-Dancoff}: diagonalise the $1p1h$ block alone (CIS for excited states; the matrix of Example 4). \textbf{RPA} adds $2p2h$ correlations to the ground state.
+    \item \textbf{Perturbation theory}: expand in the interaction -- $E\to E_{\mathrm{ref}}$, $C\to0$ on the right gives the first-order coefficients, substituting back the second-order energy (pause \#6), and so on.
+    \item \textbf{Coupled cluster}: the truncation of CISD with the multiplicative ansatz; the nonlinear terms restore size consistency.
+  \end{itemize}
+  \begin{exampleblock}{One question, several answers}
+    Which parts of the CI expansion do we keep, and additively or multiplicatively? Full CI is the fixed point that measures each answer: whenever a model is small enough to solve exactly, solve it and calibrate.
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}{Practical considerations (section 5.11)}
+  \small
+  \begin{itemize}
+    \item \textbf{Never store the matrix.} The FCI matrix is sparse and banded, and for interesting dimensions cannot be stored at all. Lanczos needs only $\hat{H}\bm{v}$, computed by looping over the determinants and the non-zero elements with the bit representation -- \texttt{apply\_hamiltonian} of lecture 3. The single most important structural choice in an FCI code. (Chapter 5, exercise 6: $10^6$ determinants with $10^3$ non-zero elements per row take $12$~GB sparse, $8$~TB dense.)
+    \item \textbf{Reorthogonalise.} Lanczos vectors lose orthogonality as soon as an eigenvalue has converged and spurious copies appear; full or selective reorthogonalisation, at the price of storing the vectors.
+    \item \textbf{Use the symmetries.} Angular momentum, parity, particle number, total momentum and spin projection commute with $\hat{H}$ and block-diagonalise the matrix: orders of magnitude in dimension, and labelled states -- $70$ determinants without the symmetry today, $6$ with it, the same energy.
+  \end{itemize}
+  \mbbox{\small Large-scale shell-model codes (nuclear physics) and FCI codes (quantum chemistry) are exactly this: bit patterns, a symmetry-adapted basis, and Lanczos on a matrix never written down. Dimensions of $10^{10}$ are reached on large machines; beyond that the wall stands, and the rest of the course is about climbing it approximately.}
+\end{frame}
+
+\begin{frame}{Exercise session: week 37}
+  \footnotesize
+  The exercises are taken from the chapter exercise sections of the lecture notes, where full answers are given: chapter 3, exercise 4, and chapter 5, exercises 1--3.
+  \begin{block}{Exercise 1 (chapter 3, exercise 4): normal ordering with respect to a Fermi vacuum}
+    \begin{enumerate}
+      \item[a)] With $\ket{c}$ the reference determinant, evaluate the four contractions of $a_p$ and $a_p^{\dagger}$ with respect to $\ket{c}$ and say which survive.
+      \item[b)] Use them to compute $\bra{c}\hat{H}_0\ket{c}$ for $\hat{H}_0=\sum_{pq}\element{p}{\hat{h}_0}{q}a_p^{\dagger}a_q$.
+      \item[c)] Explain why the same argument fails if $\ket{c}$ is replaced by a BCS state.
+      \item[d)] (Added.) Repeat the derivation of Thursday for $\hat{V}$ and verify the six terms of the four-operator expansion, with their signs, by the crossing rule.
+    \end{enumerate}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Exercise session: week 37 (continued)}
+  \footnotesize
+  \begin{block}{Exercise 2 (chapter 5, exercise 1): counting determinants}
+    \begin{enumerate}
+      \item[a)] Show that the number of $k$ particle-hole excitations of a given reference is $\binom{N}{k}\binom{n-N}{k}$, and verify $\sum_k\binom{N}{k}\binom{n-N}{k}=\binom{n}{N}$.
+      \item[b)] Evaluate this for $n=8$, $N=4$ and compare with the distribution $1,16,36,16,1$.
+      \item[c)] Use Stirling's formula to derive $\binom{n}{n/2}\sim2^n/\sqrt{\pi n/2}$, and determine the largest $n$ for which $\binom{n}{n/2}$ stays below $10^{10}$.
+    \end{enumerate}
+  \end{block}
+  \begin{block}{Exercise 3 (chapter 5, exercise 2): which blocks vanish}
+    Let $\hat{H}=\hat{H}_0+\hat{H}_I$ with $\hat{H}_I$ a two-body operator.
+    \begin{enumerate}
+      \item[a)] Show that $\bra{\Phi_H^P}\hat{H}\ket{\Phi_{H'}^{P'}}=0$ whenever the two determinants differ by more than two single-particle states, and deduce the band structure of the FCI matrix.
+      \item[b)] Suppose $\hat{H}$ also contains a genuine three-body force. How does the band structure change, and what does that do to the cost of a matrix-vector product?
+      \item[c)] For the pairing Hamiltonian, show that every block connecting an even to an odd excitation level vanishes.
+    \end{enumerate}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Exercise session: week 37 (continued)}
+  \footnotesize
+  \begin{block}{Exercise 4 (chapter 5, exercise 3): full CI for the pairing model}
+    Four doubly degenerate levels with $\varepsilon_p=(p-1)\xi$, four particles, $\xi=1$.
+    \begin{enumerate}
+      \item[a)] Set up the six seniority-zero configurations and write down the $6\times6$ Hamiltonian matrix -- with the Condon-Slater rules, not by inspection.
+      \item[b)] Diagonalise it for $g=-1,-0.5,0,0.5,1$ and reproduce the table of lecture 4.
+      \item[c)] Repeat the calculation in the full $70$-dimensional space (\texttt{fci.py}, or section 8 of the notebook) and confirm that the ground-state energy is unchanged. Inspect the eigenvector and verify that every determinant with a broken pair has zero amplitude.
+      \item[d)] Plot the correlation energy against $g$ and show that it is quadratic for small $|g|$, with the coefficient $-7/24$ of pause \#6.
+    \end{enumerate}
+  \end{block}
+  Hints: for 3a) count the operators of the bra, the ket and $\hat{H}_I$ and ask whether the generalised theorem can contract them all; for 4a) every entry is one of $E_{\mathrm{ref}}$, $\element{\Phi_{ij}^{ab}}{\hat{H}}{\Phi_0}=\element{ab}{\hat{v}}{ij}$, or the $2p2h$ diagonal formula of Thursday's Example 4.
+\end{frame}
+
+\begin{frame}{What to do with the notebook}
+  \footnotesize
+  \texttt{WeeklySlides/week37.ipynb} contains, in this order:
+  \begin{enumerate}
+    \item Fermion operators as matrices on a six-orbital Fock space, and a random Hamiltonian (reminder).
+    \item The generalised theorem as an operator identity; the four-term one-body formula, $\element{k\ell}{\hat{H}_I}{ij}=\element{k\ell}{v}{ij}_{\mathrm{AS}}$, and the sparsity rule.
+    \item Section 3.4: $\ket{c}$, the $b$ operators, $\hat{N}$ and $\hat{N}_{qp}$, the two Fermi-vacuum contractions -- every pair of operators checked.
+    \item Section 3.5: normal ordering relative to $\ket{c}$ as code; Wick's theorem relative to $\ket{c}$ on random strings; the six-term expansion of $a_p^{\dagger}a_q^{\dagger}a_sa_r$ for all $6^4$ index choices; $\hat{H}=E_{\mathrm{ref}}+\hat{F}_N+\hat{V}_N$ as a matrix identity.
+    \item Examples 3 and 4: $f_{ai}$, $\element{ab}{\hat{v}}{ij}$, zero for triples, the $1p1h$ and $2p2h$ energies, the TDA matrix, and the particle/hole blocks of $\hat{F}_N$ and $\hat{V}_N$ (the five groups, with the derived prefactors).
+    \item Example 5: the pairing model, every number of the table.
+    \item Section 3.16: bit patterns, and $\hat{H}\ket{\Phi}$ by bit operations against the matrices.
+    \item Chapter 5: a small FCI code (\texttt{SlaterBasis}); the $70$-dimensional pairing calculation, the block table, the comparison with the $6\times6$ matrix, the broken-pair amplitudes, CIS/CID/CISD against FCI, and the size-consistency test.
+    \item The exponential wall: the table and the plot of $\binom{n}{N}$ against $n$.
+  \end{enumerate}
+  Play with it: change the Fermi level, the number of orbitals, the coupling $g$; try the reference with levels $1$ and $3$ filled; run the FCI code for six levels and six particles ($924$ determinants) and reproduce Figure 5.2 of the lecture notes.
+\end{frame}
+
+\begin{frame}{Summary of week 37}
+  \small
+  \begin{columns}[T]
+    \column{0.5\textwidth}
+    \begin{block}{The formalism}
+      \begin{itemize}
+        \item Generalised Wick: only inter-group lines; Condon-Slater rules in four surviving pairings.
+        \item Fermi sea as vacuum: $b_a^{\dagger}=a_a^{\dagger}$, $b_i^{\dagger}=a_i$; contractions $a_aa_b^{\dagger}\to\delta_{ab}$, $a_i^{\dagger}a_j\to\delta_{ij}$.
+        \item $\hat{H}=E_{\mathrm{ref}}+\sum f_{pq}\nc{a_p^{\dagger}a_q}+\frac14\sum\element{pq}{v}{rs}\nc{a_p^{\dagger}a_q^{\dagger}a_sa_r}$, with $f_{pq}=h_{pq}+\sum_i\element{pi}{v}{qi}$ and $E_{\mathrm{ref}}=\sum_ih_{ii}+\frac12\sum_{ij}\element{ij}{v}{ij}$.
+        \item First row of $\hat{H}$: $E_{\mathrm{ref}}$, $f_{ai}$, $\element{ab}{v}{ij}$, $0$.
+      \end{itemize}
+    \end{block}
+    \column{0.5\textwidth}
+    \begin{block}{Full configuration interaction}
+      \begin{itemize}
+        \item $\ket{\Psi_0}=(1+\hat{C})\ket{\Phi_0}$; the variational principle gives the eigenvalue problem.
+        \item Banded matrix, bandwidth two; symmetries block-diagonalise it further.
+        \item $\dim\mathcal{H}=\binom{n}{N}\sim2^n/\sqrt{n}$: the exponential wall.
+        \item Pairing model: $70=6$ to every digit; CID $96\%$ at $g=1$; truncated CI is not size consistent, $e^{\hat{T}}$ is.
+      \end{itemize}
+    \end{block}
+  \end{columns}
+  {\small In code: a determinant is an integer, $\hat{H}\ket{\Phi}$ a loop over occupied orbitals, and FCI is \texttt{numpy.linalg.eigh} of a matrix one never stores for real.}
+\end{frame}
+
+\begin{frame}{Next week, and a closing remark}
+  \begin{exampleblock}{Next week (week 38)}
+    Full configuration interaction continued, with worked examples: the FCI code on the pairing model beyond four levels (six levels, six particles, $924$ determinants, CISD and CISDTQ against FCI), the Hubbard ring in the momentum basis (section 5.7) and its strong-correlation regime, the amplitude equations solved by iteration, and the counting exercises done in class. At the end of the week we begin Hartree-Fock theory (chapter 6): the reference determinant as a variational ansatz, the energy functional $E_{\mathrm{ref}}$ of this week and its minimisation. Reading: chapter 5 (all sections) and the first sections of chapter 6; Szabo and Ostlund chapters 3--4.
+  \end{exampleblock}
+  \vspace{0.5em}
+  Three weeks ago every expectation value cost a page of permutations. This week $\bra{c}\hat{H}\ket{c}$, $f_{ai}$ and $\element{ab}{\hat{v}}{ij}$ were read off from a normal-ordered Hamiltonian, the whole Hamiltonian matrix of a model was written down from three rules, and diagonalising it gave the exact answer -- for $70$ determinants. The exponential wall says that this cannot last, and the truncations that it forces upon us are precisely the approximations that the following weeks elevate into methods: Hartree-Fock empties one block, perturbation theory iterates the amplitude equations, and coupled cluster makes the ansatz multiplicative.
+\end{frame}
+
+\end{document}
