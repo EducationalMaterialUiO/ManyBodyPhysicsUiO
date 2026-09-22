@@ -12,6 +12,8 @@ model, and the Baker-Campbell-Hausdorff and Trotter expansions are checked
 numerically.
 
     SelfConsistentField -- a general SCF loop, h0 and antisymmetrised v
+    OrbitalVariation    -- phi_i -> phi_i + eta phi_a is a_a^+ a_i |Phi_0>,
+                           and <Phi_0|H|Phi_i^a> = f_ia (section 6.6)
     PairingHF           -- Hartree-Fock for the pairing model of chapter 4
     ThoulessRotation    -- exp(sum C_ai a^+_a a_i)|c> is a single determinant
     LipkinHF            -- the mean-field energy surface and its instability
@@ -179,6 +181,185 @@ def trap_system(n_orbitals=8, strength=1.0, softening=0.5):
                        phi, phi, interaction * dx * dx, phi, phi)
     v = direct - direct.transpose(0, 1, 3, 2)
     return h0, v
+
+
+# ---------------------------------------------------------------------------
+#  Varying one orbital (chapter 6, section 6.6)
+# ---------------------------------------------------------------------------
+def hamiltonian_matrix(h0, v, states, index):
+    """The many-body Hamiltonian in a determinant basis.
+
+    H = sum_pq h0[p,q] a^+_p a_q + (1/4) sum_pqrs v[p,q,r,s] a^+_p a^+_q a_s a_r
+    with v[p,q,r,s] = <pq|v|rs>_AS, exactly as in chapter 3.
+    """
+    n = h0.shape[0]
+    dim = len(states)
+    H = np.zeros((dim, dim))
+    for col, state in enumerate(states):
+        for p in range(n):
+            for q in range(n):
+                if h0[p, q] == 0.0:
+                    continue
+                sign, new = apply_string(state, [(p, True), (q, False)])
+                if sign:
+                    H[index[new], col] += sign * h0[p, q]
+        for p in range(n):
+            for q in range(n):
+                for r in range(n):
+                    for t in range(n):
+                        vel = v[p, q, r, t]
+                        if vel == 0.0:
+                            continue
+                        ops = [(p, True), (q, True), (t, False), (r, False)]
+                        sign, new = apply_string(state, ops)
+                        if sign:
+                            H[index[new], col] += 0.25 * sign * vel
+    return H
+
+
+def transform_integrals(h0, v, C):
+    """h0 and v in the orbital basis whose columns are C[:, p]."""
+    h0_new = C.T @ h0 @ C
+    v_new = np.einsum("ap,bq,abcd,cr,ds->pqrs", C, C, v, C, C)
+    return h0_new, v_new
+
+
+class OrbitalVariation:
+    """Vary one occupied orbital towards one unoccupied orbital.
+
+    In the single-particle basis in which the reference |Phi_0> occupies the
+    first N orbitals, the variation phi_i -> N_i (phi_i + eta phi_a) turns the
+    determinant into
+
+        |Phi'_0> = N_i ( |Phi_0> + eta a^+_a a_i |Phi_0> ),
+
+    so that the energy E(eta) = <Phi'|H|Phi'>/<Phi'|Phi'> is
+
+        E(eta) = E_0 + eta^* f_ai + eta f_ia
+                     + |eta|^2 ( <Phi_i^a|H|Phi_i^a> - E_0 ) + O(eta^3),
+
+    with f the Fock matrix built from |Phi_0>.  The class checks the three
+    ingredients in the determinant basis of chapter 5: that a^+_a a_i on the
+    reference is the determinant with orbital i replaced by orbital a, that
+    <Phi_0|H|Phi_i^a> = f_ia for every pair, and that the linear term of
+    E(eta) is 2 Re(eta f_ia) -- which vanishes only in the Hartree-Fock basis.
+    """
+
+    def __init__(self, h0, v, n_particles):
+        self.h0 = np.asarray(h0, dtype=float)
+        self.v = np.asarray(v, dtype=float)
+        self.n = self.h0.shape[0]
+        self.N = n_particles
+        self.states = determinant_basis(self.n, self.N)
+        self.index = {s: k for k, s in enumerate(self.states)}
+        self.H = hamiltonian_matrix(self.h0, self.v, self.states, self.index)
+        self.reference = sum(1 << p for p in range(self.N))
+        self.r = self.index[self.reference]
+        self.E0 = self.H[self.r, self.r]
+        rho = np.diag([1.0] * self.N + [0.0] * (self.n - self.N))
+        self.f = self.h0 + np.einsum("gd,agbd->ab", rho, self.v)
+        self.pairs = [(a, i) for a in range(self.N, self.n)
+                      for i in range(self.N)]
+
+    # ------------------------------------------------------------------
+    def excitation(self, a, i):
+        """Sign and basis index of a^+_a a_i |Phi_0>."""
+        sign, new = apply_string(self.reference, [(a, True), (i, False)])
+        return sign, self.index[new]
+
+    def replacement_check(self):
+        """a^+_a a_i |Phi_0> is the determinant with orbital i replaced by a.
+
+        In the bit representation the orbitals are stored in ascending order,
+        so putting a^+_a in the slot of a^+_i and then re-ordering costs
+        (-1)^(number of occupied orbitals strictly between i and a).  The
+        book's statement 'no sign' refers to the un-reordered product.
+        """
+        worst = 0
+        for a, i in self.pairs:
+            sign, idx = self.excitation(a, i)
+            expected_state = (self.reference ^ (1 << i)) | (1 << a)
+            between = sum(1 for p in range(i + 1, a)
+                          if (self.reference >> p) & 1)
+            expected_sign = -1 if between % 2 else 1
+            worst = max(worst, abs(sign - expected_sign),
+                        abs(self.states[idx] - expected_state))
+        return worst
+
+    def matrix_elements(self):
+        """<Phi_0|H|Phi_i^a> against f_ia for every pair; returns max |diff|."""
+        worst = 0.0
+        for a, i in self.pairs:
+            sign, idx = self.excitation(a, i)
+            worst = max(worst, abs(sign * self.H[self.r, idx] - self.f[i, a]))
+        return worst
+
+    def max_f_ai(self):
+        return max(abs(self.f[a, i]) for a, i in self.pairs)
+
+    # ------------------------------------------------------------------
+    def energy(self, a, i, eta):
+        """E(eta) of the normalised varied determinant, eta complex."""
+        sign, idx = self.excitation(a, i)
+        psi = np.zeros(len(self.states), dtype=complex)
+        psi[self.r] = 1.0
+        psi[idx] = eta * sign
+        return (psi.conj() @ self.H @ psi).real / (psi.conj() @ psi).real
+
+    def expansion(self, a, i, eta):
+        """The right-hand side of the expansion above, through |eta|^2."""
+        sign, idx = self.excitation(a, i)
+        curvature = self.H[idx, idx] - self.E0
+        return (self.E0 + 2.0 * (eta * self.f[i, a]).real
+                + abs(eta)**2 * curvature)
+
+    def linear_term(self, a, i, eta):
+        """The odd part of E(eta) - E_0, isolating the first-order term."""
+        return 0.5 * (self.energy(a, i, eta) - self.energy(a, i, -eta))
+
+
+def demo_orbital_variation():
+    print("=" * 74)
+    print("2. Varying one orbital: <Phi_0|H|Phi_i^a> = f_ia")
+    print("=" * 74)
+    h0, v = trap_system(n_orbitals=8)
+    N = 4
+    print("Four fermions in eight trap orbitals.  First the reference is the")
+    print("lowest four oscillator orbitals, then the Hartree-Fock orbitals.")
+    print()
+    scf = SelfConsistentField(h0, v, N)
+    scf.run()
+    for label, (h, w) in (("oscillator basis", (h0, v)),
+                          ("Hartree-Fock basis",
+                           transform_integrals(h0, v, scf.C))):
+        var = OrbitalVariation(h, w, N)
+        print(f"--- reference = first {N} orbitals of the {label}")
+        print(f"   E_0 = <Phi_0|H|Phi_0>                         "
+              f"= {var.E0:.10f}")
+        print(f"   a^+_a a_i|Phi_0> = determinant with i -> a   "
+              f"(max error {var.replacement_check()})")
+        print(f"   max |<Phi_0|H|Phi_i^a> - f_ia| over all pairs "
+              f"= {var.matrix_elements():.2e}")
+        print(f"   max |f_ai|                                     "
+              f"= {var.max_f_ai():.2e}")
+        a, i = max(var.pairs, key=lambda pair: abs(var.f[pair[1], pair[0]]))
+        print(f"   pair (a, i) = ({a}, {i}) with the largest |f_ia|, "
+              f"f_ia = {var.f[i, a]:+.6f}")
+        print(f"   {'eta':>14s} {'E(eta) - E_0':>16s} {'2 Re(eta f_ia)':>16s} "
+              f"{'odd part':>12s} {'E - expansion':>14s}")
+        for eta in (0.1, 0.05, 0.025, 0.05j, 0.05 * np.exp(0.7j)):
+            e = var.energy(a, i, eta)
+            print(f"   {str(np.round(eta, 4)):>14s} {e - var.E0:16.10f} "
+                  f"{2 * (eta * var.f[i, a]).real:16.10f} "
+                  f"{var.linear_term(a, i, eta):12.3e} "
+                  f"{e - var.expansion(a, i, eta):14.2e}")
+        print()
+    print("In the oscillator basis the energy changes linearly with eta and")
+    print("the slope is 2 Re(eta f_ia): a real eta probes Re f_ia, an")
+    print("imaginary one Im f_ia.  In the Hartree-Fock basis every f_ai")
+    print("vanishes, the odd part of E(eta) is zero to machine precision,")
+    print("and what is left is the quadratic term -- the second variation")
+    print("that decides stability.  The residual E - expansion is O(eta^3).")
 
 
 # ---------------------------------------------------------------------------
@@ -656,7 +837,7 @@ def demo_scf():
 
 def demo_pairing():
     print("=" * 74)
-    print("2. Hartree-Fock does nothing for the pairing model")
+    print("3. Hartree-Fock does nothing for the pairing model")
     print("=" * 74)
     print(f"{'g':>6s} {'E(reference)':>15s} {'E(Hartree-Fock)':>17s} "
           f"{'E(exact)':>15s} {'iterations':>11s}")
@@ -679,7 +860,7 @@ def demo_pairing():
 
 def demo_thouless():
     print("=" * 74)
-    print("3. Thouless' theorem")
+    print("4. Thouless' theorem")
     print("=" * 74)
     print("Six orbitals, three particles, random amplitudes C_ai of size 0.3.")
     print()
@@ -713,7 +894,7 @@ def demo_thouless():
 
 def demo_stability():
     print("=" * 74)
-    print("4. Stability of the Hartree-Fock solution")
+    print("5. Stability of the Hartree-Fock solution")
     print("=" * 74)
     print("The Lipkin model with N = 4 and W = 0.  The mean-field energy is")
     print("E(alpha)/N = -(eps/2)cos(alpha) - (eps chi/4)sin^2(alpha), with")
@@ -745,7 +926,7 @@ def demo_stability():
 
 def demo_bch():
     print("=" * 74)
-    print("5. The Baker-Campbell-Hausdorff expansion")
+    print("6. The Baker-Campbell-Hausdorff expansion")
     print("=" * 74)
     A = np.array([[0.0, 0.1], [0.0, 0.0]])
     B = np.array([[0.0, 0.0], [0.1, 0.0]])
@@ -768,7 +949,7 @@ def demo_bch():
 
 def demo_trotter():
     print("=" * 74)
-    print("6. The Trotter-Suzuki splitting")
+    print("7. The Trotter-Suzuki splitting")
     print("=" * 74)
     X = np.array([[0.0, 1.0], [1.0, 0.0]])
     Z = np.array([[1.0, 0.0], [0.0, -1.0]])
@@ -794,7 +975,7 @@ def demo_trotter():
 
 def demo_electron_gas():
     print("=" * 74)
-    print("7. The infinite homogeneous electron gas")
+    print("8. The infinite homogeneous electron gas")
     print("=" * 74)
     gas = ElectronGas(rs_over_a0=4.0)
     print("Hartree-Fock single-particle energy, r_s/a_0 = 4:")
@@ -839,8 +1020,8 @@ def demo_electron_gas():
 
 
 def _demo():
-    for f in (demo_scf, demo_pairing, demo_thouless, demo_stability,
-              demo_bch, demo_trotter, demo_electron_gas):
+    for f in (demo_scf, demo_orbital_variation, demo_pairing, demo_thouless,
+              demo_stability, demo_bch, demo_trotter, demo_electron_gas):
         f()
         print()
 

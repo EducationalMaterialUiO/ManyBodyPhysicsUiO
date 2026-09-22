@@ -6,7 +6,7 @@ Figures generated from that notebook: `../../BookFigures/chapter06/`
 
 | Program | What it does | Runtime |
 |---|---|---|
-| `hartreefock.py` | the self-consistent field with the density matrix, Thouless rotations, the stability matrix, the Baker--Campbell--Hausdorff and Trotter errors, and the infinite electron gas | a few seconds; needs `scipy.linalg} for `expm} and `logm} |
+| `hartreefock.py` | the self-consistent field with the density matrix, the single-orbital variation and the check $\langle\Phi_0|H|\Phi_i^a\rangle = f_{ia}$, Thouless rotations, the stability matrix, the Baker--Campbell--Hausdorff and Trotter errors, and the infinite electron gas | a few seconds; needs `scipy.linalg} for `expm} and `logm} |
 
 Run any of them as a script:
 
