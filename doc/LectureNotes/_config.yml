@@ -78,9 +78,9 @@ launch_buttons:
 #######################################################################################
 # Repository
 repository:
-  url: https://github.com/ManyBodyPhysics/FYS4480
+  url: https://github.com/EducationalMaterialUiO/ManyBodyPhysicsUiO
   path_to_book: doc/LectureNotes
-  branch: master
+  branch: main
 
 #######################################################################################
 # Sphinx
