@@ -34,7 +34,6 @@ background and interests of the participants.
 
 * _Name_: Cecilie Glittum
 * _Email_: cecilie.glittum@fys.uio.no
-#* _Phone_: +47-48257387
 * _Office_: Department of Physics, University of Oslo, Eastern wing, room FØ455
 
 
