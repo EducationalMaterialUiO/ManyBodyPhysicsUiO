@@ -1,0 +1,908 @@
+% ======================================================================
+%  FYS4480/FYS9480  Quantum mechanics for many-particle systems
+%  Week 42, October 15-16, 2026
+%  Lecture slides (Beamer).  Thursday: 2 x 45 min,  Friday: 2 x 45 min.
+%
+%  Sources: chapter6.tex, section 6.14 (the infinite homogeneous electron
+%  gas: plane waves, the momentum-space interaction, reference energy,
+%  single-particle energy, F(x), band width, effective mass, energy per
+%  electron) and chapter8.tex, sections 8.1-8.4 (electronic Hamiltonian,
+%  reduced density matrices, Hohenberg-Kohn theorems, Thomas-Fermi from
+%  the electron gas).  Week 43 continues with 8.5-8.7 (Kohn-Sham, LDA).
+%  No exercise sessions in weeks 42-43 (first midterm).
+%  Figures: ../BookFigures/chapter06/hf_fig05-07, chapter08/dft_fig06.
+%  Companion programs: BookPrograms/chapter06/hartreefock.py (electron-gas
+%  part), BookPrograms/chapter08/dft.py; notebook week42.ipynb.
+%
+%  Slide discipline: one claim per frame, the equation or table that
+%  carries it, and a few short bullets.  Preamble and box macros as in
+%  week41.tex.
+%
+%  Build:  pdflatex week42.tex  (twice)
+%  Handout (no overlays):  replace \documentclass[...] by
+%           \documentclass[handout,aspectratio=169]{beamer}
+% ======================================================================
+\documentclass[aspectratio=169,10pt]{beamer}
+
+% ---------------------------------------------------------------- packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,bm,mathtools}
+\usepackage{booktabs}
+\usepackage[most]{tcolorbox}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows.meta,decorations.markings,shapes.misc}
+\usetikzlibrary{tikzmark}
+
+% ---------------------------------------------------------------- look
+\usetheme{default}
+\useinnertheme{rectangles}
+\setbeamertemplate{navigation symbols}{}
+\definecolor{uioblue}{RGB}{18,52,86}
+\definecolor{teal}{RGB}{0,128,128}
+\definecolor{warm}{RGB}{181,73,36}
+\definecolor{paleblue}{RGB}{232,240,248}
+\definecolor{paleteal}{RGB}{228,244,244}
+\definecolor{palewarm}{RGB}{252,238,230}
+\definecolor{palegreen}{RGB}{232,244,234}
+\setbeamercolor{structure}{fg=uioblue}
+\setbeamercolor{title}{fg=uioblue}
+\setbeamercolor{frametitle}{fg=uioblue,bg=white}
+\setbeamercolor{section in toc}{fg=uioblue}
+\setbeamercolor{alerted text}{fg=warm}
+\setbeamercolor{block title}{fg=white,bg=uioblue}
+\setbeamercolor{block body}{bg=paleblue}
+\setbeamercolor{block title example}{fg=white,bg=teal}
+\setbeamercolor{block body example}{bg=paleteal}
+\setbeamerfont{frametitle}{size=\large,series=\bfseries}
+\setbeamerfont{title}{size=\LARGE,series=\bfseries}
+\setbeamertemplate{frametitle}{%
+  \vspace*{0.6em}\insertframetitle\par
+  \vspace*{-0.2em}{\color{teal}\rule{\textwidth}{0.6pt}}}
+\setbeamertemplate{footline}{%
+  \hbox{\begin{beamercolorbox}[wd=\paperwidth,ht=2.4ex,dp=1.2ex,leftskip=1em,rightskip=1em]{structure}%
+  \footnotesize FYS4480/9480 -- Week 42 \hfill \insertsection \hfill \insertframenumber/\inserttotalframenumber
+  \end{beamercolorbox}}}
+\setbeamertemplate{itemize items}[circle]
+\setbeamertemplate{enumerate items}[default]
+\setbeamertemplate{section page}{%
+  \begin{centering}
+    {\usebeamerfont{section title}\usebeamercolor[fg]{title}\LARGE\bfseries\insertsection\par}
+    \vspace{0.5em}{\color{teal}\rule{0.5\textwidth}{1pt}}
+  \end{centering}}
+\AtBeginSection[]{\frame{\sectionpage}}
+
+% ---------------------------------------------------------------- boxes
+\newcounter{thinkctr}
+\newcommand{\thinkq}[2]{%
+  \stepcounter{thinkctr}%
+  \vfill
+  \begin{tcolorbox}[enhanced,colback=palewarm,colframe=warm,boxrule=1.2pt,arc=4pt,
+    grow to left by=6mm,grow to right by=6mm,
+    left=16pt,right=16pt,top=16pt,bottom=18pt,
+    fonttitle=\bfseries\Large,fontupper=\Large,
+    title={Pause to think \#\thethinkctr\hfill\mdseries\normalsize(about #1 min -- discuss with your neighbour)}]
+  #2
+  \end{tcolorbox}
+  \vfill}
+\newcommand{\thinka}[1]{%
+  \vfill
+  \begin{tcolorbox}[enhanced,colback=paleteal,colframe=teal,boxrule=1.2pt,arc=4pt,
+    grow to left by=6mm,grow to right by=6mm,
+    left=16pt,right=16pt,top=16pt,bottom=18pt,
+    fonttitle=\bfseries\Large,fontupper=\large,
+    title={Answer to pause \#\thethinkctr}]
+  #1
+  \end{tcolorbox}
+  \vfill}
+\newcommand{\mbbox}[1]{%
+  \begin{tcolorbox}[colback=paleblue,colframe=uioblue,title={\bfseries Many-body connection}]
+  #1
+  \end{tcolorbox}}
+\newcommand{\warnbox}[1]{%
+  \begin{tcolorbox}[colback=palewarm,colframe=warm,title={\bfseries A trap to avoid}]
+  #1
+  \end{tcolorbox}}
+\newcommand{\numbox}[1]{%
+  \begin{tcolorbox}[colback=palegreen,colframe=teal!70!black,title={\bfseries Measured}]
+  #1
+  \end{tcolorbox}}
+
+% ---------------------------------------------------------------- code
+\lstset{language=Python,basicstyle=\ttfamily\scriptsize,
+  keywordstyle=\color{uioblue}\bfseries,commentstyle=\color{teal},
+  stringstyle=\color{warm},showstringspaces=false,columns=fullflexible,
+  frame=single,rulecolor=\color{paleblue},backgroundcolor=\color{white},
+  breaklines=true}
+
+% ---------------------------------------------------------------- macros
+\newcommand{\ket}[1]{\vert #1\rangle}
+\newcommand{\bra}[1]{\langle #1\vert}
+\newcommand{\braket}[2]{\langle #1\vert #2\rangle}
+\newcommand{\element}[3]{\langle #1\vert #2\vert #3\rangle}
+\DeclareMathOperator{\tr}{tr}
+\newcommand{\bigO}{\mathcal{O}}
+\newcommand{\bmat}[1]{\bm{#1}}
+\newcommand{\Amat}[1]{\bm{A}^{#1}}
+\newcommand{\Bmat}[1]{\bm{B}^{#1}}
+\newcommand{\hH}{\hat{H}}
+\newcommand{\ad}[1]{a_{#1}^{\dagger}}
+\newcommand{\ketbra}[2]{\vert #1\rangle\langle #2\vert}
+% normal ordering with respect to the reference determinant |c> (as in week 40)
+\newcommand{\nc}[1]{\bigl\{#1\bigr\}}
+
+% ---------------------------------------------------------------- diagrams
+\tikzset{
+  tens/.style={draw=uioblue,fill=paleblue,thick,rounded corners=1pt,minimum size=7mm,font=\small},
+  mpo/.style={draw=warm,fill=palewarm,thick,rounded corners=1pt,minimum size=7mm,font=\small},
+  env/.style={draw=teal!70!black,fill=paleteal,thick,rounded corners=1pt,
+              minimum width=7mm,minimum height=14mm,font=\small},
+  leg/.style={thick,uioblue},
+  dlab/.style={font=\scriptsize},
+  every picture/.style={scale=0.8,baseline=(current bounding box.center)}
+}
+
+\graphicspath{{../BookFigures/}{./}}
+
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\dftbox}[1]{%
+  \begin{tcolorbox}[colback=paleteal,colframe=teal,title={\bfseries Density functional connection}]
+  #1
+  \end{tcolorbox}}
+
+% ---------------------------------------------------------------- title
+\title{The electron gas, and the density as the variable}
+\subtitle{FYS4480/FYS9480 -- Week 42, October 15--16, 2026}
+\author{Cecilie Glittum and Morten Hjorth-Jensen}
+\institute{Department of Physics,\\
+University of Oslo, Norway}
+\date{}
+
+\begin{document}
+
+\begin{frame}[plain]
+  \vspace*{0.4em}{\setbeamerfont{title}{size=\Large,series=\bfseries}\titlepage}
+  \vfill
+  \begin{center}\small
+  Thursday: the infinite homogeneous electron gas in Hartree-Fock --- the one realistic system solved in closed form\\
+  Friday: density functional theory, part I --- densities, the Hohenberg-Kohn theorems, and a first functional from the gas\\[0.8em]
+  {\footnotesize Reading: lecture notes chapter 6, section 6.14; chapter 8, sections 8.1--8.4; Szabo-Ostlund, chapter 3.\\
+  Code: \texttt{BookPrograms/chapter06/hartreefock.py} (electron-gas part), \texttt{BookPrograms/chapter08/dft.py}; notebook \texttt{week42.ipynb}.\\[0.3em]
+  \alert{No exercise sessions in weeks 42 and 43: the time is for the first midterm.}}
+  \end{center}
+\end{frame}
+
+\begin{frame}[shrink=5]{Plan for week 42}
+  \begin{block}{Thursday, $2\times45$ min: the electron gas (chapter 6, section 6.14)}
+    \begin{itemize}
+      \item The model: electrons, a uniform background, neutrality; plane waves are the Hartree-Fock orbitals for free
+      \item Three divergent pieces and one cancellation; the interaction in momentum space, $4\pi e^2/q^2$
+      \item The reference energy: $\tfrac35\varepsilon_F$ per particle, direct term gone, exchange left
+      \item The single-particle energy in closed form; $F(x)$, the band width $1+0.33\,r_s$, the effective mass that goes to zero
+      \item The energy per electron $2.21/r_s^2-0.916/r_s$: exchange alone binds a metal, correlation moves the minimum
+    \end{itemize}
+  \end{block}
+  \begin{block}{Friday, $2\times45$ min: density functional theory, part I (chapter 8, sections 8.1--8.4)}
+    \begin{itemize}
+      \item From $3N$ coordinates to three: the electronic Hamiltonian, and what distinguishes one material from another
+      \item One- and two-body densities; the factorisation for a determinant is the boundary of mean-field theory
+      \item The Hohenberg-Kohn theorems, their four-line proof, and what they do \emph{not} give
+      \item The variational equation $\delta E/\delta n=\mu$; Thomas-Fermi from the electron gas, and why it is not enough
+    \end{itemize}
+  \end{block}
+  \centering\small Week 43 continues with the Kohn-Sham construction and the local density approximation. No exercises these two weeks: first midterm.
+\end{frame}
+
+\begin{frame}[shrink=3]{Where we are}
+  \small
+  \begin{columns}[T]
+    \column{0.5\textwidth}
+    \begin{block}{Weeks 38--39: Hartree-Fock}
+      \begin{itemize}
+        \item One determinant, orbitals free; $f_{ai}=0$ (Brillouin)
+        \item Thouless: every nearby determinant is $e^{\hat T_1}\ket c$
+        \item Stability: $\hat M\ge0$; Lipkin fails, pairing is stable and useless
+      \end{itemize}
+    \end{block}
+    \column{0.5\textwidth}
+    \begin{block}{Weeks 40--41: matrix product states}
+      \begin{itemize}
+        \item No reference at all; the entanglement is restricted instead
+        \item The SVD at every bond; a sweep of small eigenproblems
+      \end{itemize}
+    \end{block}
+  \end{columns}
+  \vspace{0.5em}
+  \begin{block}{This week and next: back to the mean field, twice}
+    \begin{itemize}
+      \item \textbf{Thursday}: a system where the Hartree-Fock equations need no iteration --- translation invariance hands us the orbitals --- and where every quantity follows in closed form. We will see the mean field at its best (a metal is bound) and at its worst ($m^{*}\to0$).
+      \item \textbf{Friday}: a different bargain. Not a better wave function, but \alert{no wave function}: the density $n(\bm r)$ as the variable, exactly, by a four-line theorem. The electron gas of Thursday becomes the building block of its first functional.
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+% ======================================================================
+\section{Thursday, lecture 1: The model and its Hamiltonian}
+% ======================================================================
+
+\begin{frame}{The infinite homogeneous electron gas (section 6.14)}
+  \begin{block}{Three assumptions}
+    \begin{enumerate}
+      \item $N$ electrons in a cubic box of side $L$, volume $\Omega=L^3$, periodic boundary conditions
+      \item a uniform, stationary background of positive charge, density $Ne/\Omega$, the only external force
+      \item the system as a whole is neutral
+    \end{enumerate}
+  \end{block}
+  \begin{itemize}
+    \item The valence electrons of a simple metal; the cornerstone of the local density approximation (Friday and week 43)
+    \item Very likely the only realistic interacting system for which Hartree-Fock is solved \alert{in closed form}
+    \item Its correlations resist everything but quantum Monte Carlo (Ceperley; Ceperley and Tanatar): the benchmark in 3D and 2D
+    \item Low density: Wigner crystal, a direct consequence of the long range of $1/r$; high density: a liquid
+  \end{itemize}
+  \vspace{0.3em}
+  \centering The infinite range of the Coulomb interaction is the whole story: it makes the pieces diverge, the sum finite, and the mean field singular.
+\end{frame}
+
+\begin{frame}{Plane waves, and why no self-consistency is needed}
+  \[
+    \psi_{\bm k\sigma}(\bm r)=\frac{1}{\sqrt\Omega}e^{\imath\bm k\cdot\bm r}\xi_\sigma,
+    \qquad k_i=\frac{2\pi n_i}{L},\ n_i=0,\pm1,\pm2,\dots
+    \qquad
+    \hat T=\sum_{\bm k\sigma}\frac{\hbar^2k^2}{2m}\ad{\bm k\sigma}a_{\bm k\sigma}
+  \]
+  \begin{itemize}
+    \item The limit $L\to\infty$ is taken \emph{after} the expectation values: $\sum_{\bm k}\to\Omega(2\pi)^{-3}\int\dd\bm k$
+    \item Same structure as the momentum-space Hubbard model of chapter 5: the interaction conserves momentum
+  \end{itemize}
+  \mbbox{Week 39: a determinant is a Hartree-Fock solution iff $f_{ai}=0$ for every particle-hole pair. Here $f_{ai}\propto\delta_{\bm k_a,\bm k_i}$ by momentum conservation, and $\bm k_a\ne\bm k_i$ for a particle and a hole --- so $f_{ai}=0$ \emph{identically}. The filled Fermi sphere is the Hartree-Fock state of \emph{any} translation-invariant interaction, with no iteration. Everything that follows is a calculation \emph{in} the Hartree-Fock basis, not a search for it.}
+\end{frame}
+
+\begin{frame}{Three pieces, three divergences, one cancellation}
+  \[
+    \hat H=\hat H_{\rm el}+\hat H_b+\hat H_{{\rm el}-b},\qquad
+    \hat H_{\rm el}=\sum_i\frac{p_i^2}{2m}+\frac{e^2}{2}\sum_{i\ne j}\frac{e^{-\mu|\bm r_i-\bm r_j|}}{|\bm r_i-\bm r_j|}
+  \]
+  \[
+    \hat H_b=\frac{e^2}{2}\iint\dd\bm r\,\dd\bm r'\,\frac{n(\bm r)n(\bm r')e^{-\mu|\bm r-\bm r'|}}{|\bm r-\bm r'|},\qquad
+    \hat H_{{\rm el}-b}=-e^2\sum_i\int\dd\bm r\,\frac{n(\bm r)e^{-\mu|\bm r-\bm x_i|}}{|\bm r-\bm x_i|},\qquad n=\frac N\Omega
+  \]
+  \begin{itemize}
+    \item $e^{-\mu r}$ is a convergence device: every integral at finite $\mu$, the limit $\mu\to0$ at the end
+    \item Individually: $\hat H_b=+\tfrac12\,e^2\dfrac{N^2}{\Omega}\dfrac{4\pi}{\mu^2}$, $\quad\hat H_{{\rm el}-b}=-e^2\dfrac{N^2}{\Omega}\dfrac{4\pi}{\mu^2}$, $\quad$ direct term of $\hat H_{\rm el}$: $+\tfrac12\,e^2\dfrac{N^2}{\Omega}\dfrac{4\pi}{\mu^2}$
+    \item \alert{The three cancel.} What survives is the kinetic energy and the exchange term
+  \end{itemize}
+  \[
+    \hat H=\sum_{\bm k\sigma}\frac{\hbar^2k^2}{2m}\ad{\bm k\sigma}a_{\bm k\sigma}
+    +\frac{e^2}{2\Omega}\sum_{\sigma_1\sigma_2}\sum_{\bm q\ne0,\bm k,\bm p}\frac{4\pi}{q^2}\,
+    \ad{\bm k+\bm q,\sigma_1}\ad{\bm p-\bm q,\sigma_2}a_{\bm p\sigma_2}a_{\bm k\sigma_1}
+  \]
+  \centering The $\bm q=0$ term --- the one that diverged --- is what the background removed.
+\end{frame}
+
+\begin{frame}{Pause to think: the cancellation}
+  \thinkq{4}{
+  \begin{enumerate}
+    \item Why is the electron-background term $-e^2N^2(4\pi/\mu^2)/\Omega$ \emph{twice} the background-background term, with the opposite sign? (Count what interacts with what.)
+    \item The direct term of the electron-electron repulsion supplies exactly the $+\tfrac12$ that is missing. Which contraction of $\element{\Phi_0}{\hat V}{\Phi_0}$ is ``direct'', and why does it carry $N^2$?
+    \item For a short-ranged nuclear force there is no background. What survives in $\element{\Phi_0}{\hat V}{\Phi_0}$ then?
+  \end{enumerate}}
+\end{frame}
+
+\begin{frame}{Answer}
+  \thinka{
+  \begin{enumerate}
+    \item $\hat H_b$ counts each pair of background elements once ($\tfrac12\iint$), $\hat H_{{\rm el}-b}$ counts every electron against the whole background with no $\tfrac12$ --- and the two charge densities are equal and opposite. Hence $-2\times$.
+    \item The direct contraction pairs $\ad{\bm k+\bm q}$ with $a_{\bm k}$ and $\ad{\bm p-\bm q}$ with $a_{\bm p}$, forcing $\bm q=0$: every occupied state sees every other, $N^2$ times $\int v(r)\,\dd\bm r=4\pi e^2/\mu^2$, with the $\tfrac12$ of the Hamiltonian in front.
+    \item Both: $\element{\Phi_0}{\hat V}{\Phi_0}=\dfrac{1}{2\Omega}\Bigl(N^2\!\int v\,\dd\bm r-N\sum_{\bm q}\!\int v\,e^{-\imath\bm q\cdot\bm r}\dd\bm r\Bigr)$, direct minus exchange, is valid for any $v(r)$; only the Coulomb direct term is cancelled, and only because the system is neutral.
+  \end{enumerate}}
+\end{frame}
+
+\begin{frame}{The interaction in momentum space}
+  \small
+  Insert the plane waves into $\hat V=\frac12\sum\element{pq}{\hat v}{rs}\ad p\ad q a_sa_r$ with $p=(\bm k_p,\sigma_p)$ etc.:
+  \[
+    \element{\bm k_p\sigma_p,\bm k_q\sigma_q}{\hat v}{\bm k_r\sigma_r,\bm k_s\sigma_s}
+    =\frac{\delta_{\sigma_p\sigma_r}\delta_{\sigma_q\sigma_s}}{\Omega^2}
+    \iint e^{-\imath\bm k_p\cdot\bm r_p}e^{-\imath\bm k_q\cdot\bm r_q}\,v(r)\,e^{\imath\bm k_r\cdot\bm r_p}e^{\imath\bm k_s\cdot\bm r_q}\,\dd\bm r_p\dd\bm r_q
+  \]
+  \begin{enumerate}
+    \item Relative coordinate $\bm r=\bm r_p-\bm r_q$ at fixed $\bm r_q$: the exponentials separate
+    \item The $\bm r_q$ integral is a Kronecker delta: \alert{$\bm k_p+\bm k_q=\bm k_r+\bm k_s$}, momentum conservation
+    \item What is left is $\dfrac{1}{\Omega}\displaystyle\int v(r)e^{\imath(\bm k_r-\bm k_p)\cdot\bm r}\dd\bm r$ --- the Fourier transform at the momentum transfer
+  \end{enumerate}
+  \[
+    \hat V=\frac{1}{2\Omega}\sum_{\sigma\sigma'}\sum_{\bm k\bm p\bm q}\Bigl[\int v(r)e^{-\imath\bm q\cdot\bm r}\dd\bm r\Bigr]
+    \ad{\bm k+\bm q,\sigma}\ad{\bm p-\bm q,\sigma'}a_{\bm p\sigma'}a_{\bm k\sigma},
+    \qquad
+    \int\frac{e^{-\mu r}}{r}e^{-\imath\bm q\cdot\bm r}\dd\bm r=\frac{4\pi}{\mu^2+q^2}\;\xrightarrow{\;\mu\to0\;}\;\frac{4\pi}{q^2}
+  \]
+  \centering\small The Hubbard interaction of chapter 5 in momentum space, with $4\pi e^2/q^2$ in place of the constant $U$. The $1/q^2$ at small $q$ is where all the trouble below comes from.
+\end{frame}
+
+\begin{frame}[shrink=3]{The reference energy}
+  \small
+  Kinetic energy of the filled Fermi sphere (spin degeneracy 2, $\sum_{\bm k}\to\Omega(2\pi)^{-3}\int$):
+  \[
+    \element{\Phi_0}{\hat T}{\Phi_0}=\frac{2\Omega}{(2\pi)^3}\frac{\hbar^2}{2m}\int_0^{k_F}4\pi k^4\,\dd k=\frac{\hbar^2\Omega}{10\pi^2m}k_F^5,
+    \qquad
+    N=\frac{2\Omega}{(2\pi)^3}\frac43\pi k_F^3=\frac{\Omega}{3\pi^2}k_F^3
+  \]
+  \[
+    \boxed{\;\frac{\element{\Phi_0}{\hat T}{\Phi_0}}{N}=\frac35\,\frac{\hbar^2k_F^2}{2m}=\frac35\varepsilon_F
+    =\frac{\hbar^2(3\pi^2)^{5/3}}{10\pi^2m}\,\rho^{2/3},\qquad \rho=\frac N\Omega,\quad k_F=(3\pi^2\rho)^{1/3}\;}
+  \]
+  \begin{itemize}
+    \item Interaction: Wick on $\ad{\bm k+\bm q}\ad{\bm p-\bm q}a_{\bm p}a_{\bm k}$ leaves two complete contractions --- direct ($\bm q=0$) and exchange ($\bm k+\bm q=\bm p$, $\sigma=\sigma'$)
+    \item Direct: cancelled by the background. Exchange: $-\dfrac{N}{2\Omega}\displaystyle\sum_{\bm q}\frac{4\pi e^2}{q^2}$ restricted to $\bm k,\bm k+\bm q$ both inside the sphere
+  \end{itemize}
+  \dftbox{Kinetic energy per volume $t_0\propto\rho^{5/3}$ and exchange energy per particle $\propto\rho^{1/3}$, as functions of \emph{the density alone}: Friday's Thomas-Fermi functional and week 43's local density approximation.}
+\end{frame}
+
+\begin{frame}{Pause to think: direct and exchange}
+  \thinkq{3}{
+  Write the interaction as $\frac12\sum v(\bm q)\,\ad{\bm k+\bm q,\sigma}\ad{\bm p-\bm q,\sigma'}a_{\bm p\sigma'}a_{\bm k\sigma}$ and take the expectation value in the Fermi sea with Wick's theorem (weeks 36--37).
+  \begin{enumerate}
+    \item Draw the two complete contraction patterns. Which conditions on $\bm q$, $\bm k$, $\bm p$, $\sigma$, $\sigma'$ does each impose?
+    \item Which one carries a minus sign, and why?
+    \item Why does the exchange term not need the background to be finite?
+  \end{enumerate}}
+\end{frame}
+
+\begin{frame}{Answer}
+  \thinka{
+  \begin{enumerate}
+    \item Direct: $(\ad{\bm k+\bm q},a_{\bm k})(\ad{\bm p-\bm q},a_{\bm p})$, nested lines, needs $\bm q=0$, any spins. Exchange: $(\ad{\bm k+\bm q},a_{\bm p})(\ad{\bm p-\bm q},a_{\bm k})$, crossed lines, needs $\bm p=\bm k+\bm q$ \emph{and} $\sigma=\sigma'$ (the operators carry the spin labels).
+    \item Exchange: one crossing of contraction lines, $(-1)^1$. Same rule as for the stability matrix of week 40.
+    \item Because $\bm q\ne0$ there: $\sum_{\bm q}4\pi e^2/q^2$ over the Fermi sphere is a convergent integral in three dimensions, $\int\dd^3q/q^2\sim\int\dd q$. The divergence sat entirely in the $\bm q=0$ Fourier component, which is the uniform (direct) part.
+  \end{enumerate}}
+\end{frame}
+
+% ======================================================================
+\section{Thursday, lecture 2: Single-particle energies and the energy per electron}
+% ======================================================================
+
+\begin{frame}{The Hartree-Fock single-particle energy}
+  Kinetic energy plus the exchange self-energy, the sum running over the occupied states:
+  \[
+    \varepsilon_k^{\rm HF}=\frac{\hbar^2k^2}{2m}-\frac{e^2}{\Omega^2}\sum_{p\le k_F}\int\dd\bm r\,e^{\imath(\bm p-\bm k)\cdot\bm r}\int\dd\bm r'\,\frac{e^{\imath(\bm k-\bm p)\cdot\bm r'}}{|\bm r-\bm r'|}
+  \]
+  \[
+    \boxed{\;\varepsilon_k^{\rm HF}=\frac{\hbar^2k^2}{2m}-\frac{e^2k_F}{2\pi}\left[2+\frac{k_F^2-k^2}{kk_F}\ln\left|\frac{k+k_F}{k-k_F}\right|\right]\;}
+  \]
+  \begin{itemize}
+    \item Week 39: $\varepsilon_p=\element{p}{\hat h_0}{p}+\sum_{i\le F}\element{pi}{\hat v}{pi}_{\rm AS}$; the direct part of the sum is again cancelled by the background, the exchange part is what is written
+    \item Every state is lowered; the bottom of the band far more than the top
+    \item The logarithm is harmless at $k=k_F$ (it is multiplied by zero) but its \emph{derivative} is not
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{The derivation in four steps}
+  \small
+  \begin{enumerate}
+    \item Convergence factor $e^{-\mu|\bm r-\bm r'|}$, $\sum_{\bm p}\to\Omega(2\pi)^{-3}\int\dd\bm p$; change to $\bm x=\bm r-\bm r'$, $\bm y=\bm r'$: the $\bm y$ integral gives $\Omega$
+    \item The Fourier transform of the screened Coulomb potential:
+      \[
+        \int\dd\bm x\,e^{\imath(\bm p-\bm k)\cdot\bm x}\frac{e^{-\mu x}}{x}=4\pi\int_0^\infty\frac{\sin(|\bm p-\bm k|x)}{|\bm p-\bm k|}e^{-\mu x}\dd x=\frac{4\pi}{\mu^2+|\bm p-\bm k|^2}
+      \]
+      and the limit $\mu\to0$ is now harmless
+    \item Angular integral with $u=\cos\theta$:
+      \[
+        \frac{e^2}{2\pi^2}\int_{p\le k_F}\frac{\dd\bm p}{|\bm p-\bm k|^2}=\frac{e^2}{\pi}\int_0^{k_F}p^2\dd p\int_{-1}^{1}\frac{\dd u}{p^2+k^2-2pku},
+        \quad
+        \int_{-1}^{1}\frac{\dd u}{p^2+k^2-2pku}=\frac{1}{pk}\ln\Bigl|\frac{p+k}{p-k}\Bigr|
+      \]
+    \item Radial integral by $x=p+k$, $y=p-k$:
+      \[
+        \frac{e^2}{k\pi}\int_0^{k_F}p\ln\Bigl|\frac{p+k}{p-k}\Bigr|\dd p=\frac{e^2}{k\pi}\Bigl[kk_F+\frac{k_F^2-k^2}{2}\ln\Bigl|\frac{k+k_F}{k-k_F}\Bigr|\Bigr]
+      \]
+  \end{enumerate}
+  \centering\small Rearranging gives the boxed result. The notebook checks step 4 by numerical quadrature at $k=0.3k_F$ and $k=1.7k_F$.
+\end{frame}
+
+\begin{frame}{Dimensionless form: $r_s$ and $F(x)$}
+  \small
+  \[
+    \rho=\frac{k_F^3}{3\pi^2}=\frac{3}{4\pi r_0^3}\ \Rightarrow\ k_F=\frac{(9\pi/4)^{1/3}}{r_0}=\frac{1.9192}{r_0},
+    \qquad r_s=\frac{r_0}{a_0},\quad a_0=\frac{\hbar^2}{me^2},\quad x=\frac{k}{k_F}
+  \]
+  \vspace{-1.0em}
+  \[
+    F(x)=\frac12+\frac{1-x^2}{4x}\ln\left|\frac{1+x}{1-x}\right|,
+    \qquad
+    \boxed{\;\frac{\varepsilon_k^{\rm HF}}{\varepsilon_F^0}=x^2-\frac{4}{\pi k_Fa_0}F(x)=x^2-0.663\,r_s\,F(x)\;}
+  \]
+  with $\varepsilon_F^0=\hbar^2k_F^2/2m$ the free Fermi energy; $r_s$ lies between about $2$ and $6$ for most metals.
+  \begin{columns}[T]
+    \column{0.5\textwidth}
+    \begin{center}\small
+    \begin{tabular}{@{}rrrr@{}}\toprule
+    $x$ & $F(x)$ & $\varepsilon^{\rm HF}_k/\varepsilon_F^0$ & $x^2$\\\midrule
+    0.00 & 1.000000 & $-2.652000$ & 0.0000\\
+    0.50 & 0.911980 & $-2.168570$ & 0.2500\\
+    0.75 & 0.783779 & $-1.516081$ & 0.5625\\
+    1.00 & 0.500000 & $-0.326000$ & 1.0000\\
+    1.25 & 0.252812 & $\phantom{-}0.892042$ & 1.5625\\
+    2.00 & 0.088020 & $\phantom{-}3.766570$ & 4.0000\\\bottomrule
+    \end{tabular}\\[2pt]
+    $r_s=4$ (\texttt{hartreefock.py}, Table 6.1)
+    \end{center}
+    \column{0.48\textwidth}
+    \begin{itemize}
+      \item $F(0)=1$, $F(1)=\tfrac12$, $F\to0$ like $1/(3x^2)$ for large $x$
+      \item Smooth everywhere except $x=1$: finite value, \alert{infinite slope}
+      \item One number, $0.663\,r_s$, sets the size of the whole effect: $1.3$ to $4.0$ at metallic $r_s=2$--$6$. Exchange is never a small perturbation
+    \end{itemize}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{The band at $r_s=4$ (chapter 6, Fig.\ 6.5)}
+  \begin{columns}[T]
+    \column{0.58\textwidth}
+    \includegraphics[width=\textwidth]{chapter06/hf_fig05}
+    \column{0.42\textwidth}
+    \small
+    \begin{itemize}
+      \item The shift is \emph{not} constant: $-2.652$ at the bottom, $-1.326$ at $k_F$, $-0.233$ at $x=2$. A state deep in the sea exchanges with every occupied state; a state at $k_F$ with fewer
+      \item A rigid shift would only move the zero of energy. The $k$-dependence is the physics
+      \item The occupied band lies below zero out to $x\simeq1.05$: at $k_F$ exchange ($-1.326$) beats kinetic energy ($+1$) --- \alert{this is what binds the gas}
+      \item The kink at $x=1$: not a plotting artefact but $F'(1)=-\infty$
+    \end{itemize}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Pause to think: the band width}
+  \thinkq{4}{
+  \begin{enumerate}
+    \item Using $F(0)=1$ and $F(1)=\tfrac12$, find the width of the occupied band, $\varepsilon^{\rm HF}_{k_F}-\varepsilon^{\rm HF}_0$, in units of $\varepsilon_F^0$ and as a function of $r_s$. Check it against the table at $r_s=4$.
+    \item The free gas has width exactly $1$. Is the Hartree-Fock correction of the right sign? Of the right size? (Sodium has $r_s=3.93$ and a measured band width close to, if anything slightly below, the free-electron value.)
+    \item Where does the error come from, physically?
+  \end{enumerate}}
+\end{frame}
+
+\begin{frame}{Answer}
+  \thinka{
+  \begin{enumerate}
+    \item $\Delta\varepsilon^{\rm HF}=[1-0.663r_s\cdot\tfrac12]-[0-0.663r_s\cdot1]=1+0.3315\,r_s$; at $r_s=4$: $2.326=-0.326-(-2.652)$. \checkmark
+    \item Right sign --- exchange is larger for the deep states, so it stretches the band --- but far too large: more than doubled at sodium's density, where experiment finds roughly the free value.
+    \item The bare $1/q^2$ exchange is unscreened. In the metal the other electrons rearrange and the effective interaction decays beyond the screening length; the small-$q$ part of the exchange, which is precisely what lowers the deep states most, is removed. Correlation (RPA, chapter 7) undoes most of the stretching.
+  \end{enumerate}}
+\end{frame}
+
+\begin{frame}[shrink=8]{The effective mass goes to zero --- logarithmically}
+  \small
+  Expand about $k_F$ and compare with $\varepsilon^{(0)}_k=\varepsilon_F^0+(\hbar^2k_F/m)(k-k_F)+\cdots$:
+  \[
+    m^{*}_{\rm HF}\equiv\hbar^2k_F\left(\frac{\partial\varepsilon^{\rm HF}_k}{\partial k}\right)^{-1}_{k_F}=\frac{2m}{2-0.663\,r_s\,F'(1)},
+    \qquad F'(x)\to-\infty\ \text{like}\ \ln|1-x|\ \text{as}\ x\to1
+  \]
+  \begin{columns}[T]
+    \column{0.44\textwidth}
+    \includegraphics[width=\textwidth]{chapter06/hf_fig06}
+    \column{0.56\textwidth}
+    \numbox{$r_s=4$, approaching from below: $m^{*}/m=0.256,\ 0.185,\ 0.144,\ 0.118,\ 0.100$ at $1-x=10^{-2},\dots,10^{-6}$; $0.076$ at $10^{-8}$. Eight decades cost a factor of five: $m^{*}\sim1/\ln(1-x)$.}
+    \begin{itemize}
+      \item Level density $n(\varepsilon)=\dfrac{\Omega k^2}{2\pi^2}\Bigl(\dfrac{\partial\varepsilon}{\partial k}\Bigr)^{-1}\to0$ at the Fermi surface
+      \item A finite $\bm k$-mesh, spacing $\sim1/L$, so $1-x\sim N^{-1/3}$, sees a finite, plausible, \alert{basis-dependent} $m^{*}\approx0.3$--$0.4$. Only the analytic result reveals that there is no limit
+    \end{itemize}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[shrink=8]{Qualitatively wrong, and why}
+  \small
+  \begin{itemize}
+    \item Metals have a finite density of states at the Fermi level: the linear specific heat and the Pauli susceptibility depend on it. Hartree-Fock gives zero
+    \item The culprit is the $1/q^2$ singularity of the \emph{bare} Coulomb interaction at small momentum transfer, treated without any screening
+    \item In the real metal the other electrons screen it; beyond the screening length the effective interaction falls off exponentially and $F'(1)$ is finite
+  \end{itemize}
+  \mbbox{Summing the diagrams that produce the screening is exactly what the random-phase approximation of chapter 7 does: the ring diagrams resum the $1/q^2$ into $4\pi e^2/(q^2+k_{\rm TF}^2)$ and restore a finite effective mass. The electron gas shows both what a mean field does well and precisely where it must fail --- and it points at the next method.}
+  \warnbox{A finite-basis Hartree-Fock calculation of the electron gas returns a finite $m^{*}$ that depends on $N$. Converging it in $N$ does not converge it to anything: it creeps to zero like $1/\ln N^{1/3}$. Always ask whether the quantity you compute \emph{has} a thermodynamic limit.}
+\end{frame}
+
+\begin{frame}{The energy per electron}
+  In Rydberg, $e^2/2a_0=13.606$~eV, kinetic energy plus exchange:
+  \[
+    \boxed{\;\frac{E_0}{N}=\frac{e^2}{2a_0}\left[\frac{2.21}{r_s^2}-\frac{0.916}{r_s}\right],\qquad
+    \frac35\Bigl(\frac{9\pi}{4}\Bigr)^{2/3}=2.2099,\quad\frac{3}{2\pi}\Bigl(\frac{9\pi}{4}\Bigr)^{1/3}=0.9163\;}
+  \]
+  \begin{columns}[T]
+    \column{0.45\textwidth}
+    \begin{center}\small
+    \begin{tabular}{@{}rr@{}}\toprule
+    $r_s$ & $E_0/N$ [Ry]\\\midrule
+    1.00 & $\phantom{-}1.294000$\\
+    2.00 & $\phantom{-}0.094500$\\
+    3.00 & $-0.059778$\\
+    4.00 & $-0.090875$\\
+    4.83 & $-0.094916$\\
+    6.00 & $-0.091278$\\
+    8.00 & $-0.079969$\\\bottomrule
+    \end{tabular}
+    \end{center}
+    \column{0.55\textwidth}
+    \begin{itemize}
+      \item Kinetic: $\rho^{2/3}\propto r_s^{-2}$, wins at high density; exchange: $\rho^{1/3}\propto r_s^{-1}$, wins at low density
+      \item Opposite signs, different powers $\Rightarrow$ a minimum: $\dfrac{\dd}{\dd r_s}=0$ at $r_s=\dfrac{2\times2.21}{0.916}=4.83$, $E_0/N=-0.0949$~Ry $=-1.29$~eV
+      \item Crosses zero at $r_s=2.41$; the well is \alert{very shallow}: within $5\%$ of the minimum for $4\le r_s\le6$
+    \end{itemize}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Exchange binds a metal (chapter 6, Fig.\ 6.7)}
+  \begin{columns}[T]
+    \column{0.56\textwidth}
+    \includegraphics[width=\textwidth]{chapter06/hf_fig07}
+    \column{0.44\textwidth}
+    \small
+    \begin{itemize}
+      \item A real success: exchange alone, with no correlation whatsoever, explains why a metal is stable against expansion, at a density squarely in the alkali range ($r_s=3.93$ for Na, $5.62$ for Cs)
+      \item The flatness is physics: a system this soft against compression has a small bulk modulus --- the alkalis are among the most compressible solids
+      \item And a warning: the correlation energy, about $-0.06$~Ry near equilibrium, is comparable to the \emph{whole} Hartree-Fock binding. Adding the Ceperley-Alder value (notebook) roughly doubles the binding, to $-0.155$~Ry, and moves the minimum to $r_s\simeq4.2$ --- same mechanism, different numbers
+    \end{itemize}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Pause to think: what a mean field can and cannot do here}
+  \thinkq{4}{
+  \begin{enumerate}
+    \item In the Hubbard model of week 38 the plane-wave determinant was stationary but not always minimal. Can the plane-wave state of the electron gas be unstable in the sense of week 39? What would the lower determinant look like?
+    \item The binding energy comes out too small by roughly a factor of two. Where in the methods map does the missing piece live, and which of our approximations can reach it for this system?
+  \end{enumerate}}
+\end{frame}
+
+\begin{frame}{Answer}
+  \thinka{
+  \begin{enumerate}
+    \item Yes. Overhauser showed that the paramagnetic Fermi sphere is \emph{never} the Hartree-Fock minimum of the Coulomb gas: a spin- or charge-density wave, a determinant of Bloch-like orbitals that breaks translation invariance, always lies lower, and at low density the fully polarised (ferromagnetic) sea beats the unpolarised one already at the level of exchange. Stationarity by symmetry is not minimality --- the lesson of the Hubbard pause in week 38.
+    \item The correlation energy: everything beyond one determinant. Second-order perturbation theory \emph{diverges} for the Coulomb gas (the $1/q^4$ from two bare interactions is not integrable at small $q$); only an infinite resummation of the ring diagrams --- the RPA of chapter 7, Gell-Mann and Brueckner --- gives the finite $\ln r_s$ term. The electron gas is where ``which diagrams, and all of them'' was first learned.
+  \end{enumerate}}
+\end{frame}
+
+\begin{frame}{What Thursday leaves on the table for Friday}
+  \begin{center}\small
+  \begin{tabular}{@{}lll@{}}\toprule
+  quantity & electron gas, exactly & as a function of\\\midrule
+  kinetic energy per volume & $t_0=\dfrac{3\hbar^2(3\pi^2)^{2/3}}{10m}\,\rho^{5/3}$ & $\rho$ alone\\[8pt]
+  exchange energy per electron & $-\dfrac{0.916}{r_s}\,\mathrm{Ry}=-\dfrac{3e^2}{4\pi}(3\pi^2\rho)^{1/3}$ & $\rho$ alone\\[8pt]
+  correlation energy per electron & from quantum Monte Carlo (Ceperley-Alder) & $\rho$ alone\\\bottomrule
+  \end{tabular}
+  \end{center}
+  \vspace{0.4em}
+  \begin{itemize}
+    \item Three energies that depend on \emph{nothing but the density}. For a system whose density varies slowly, pretend every small region is a uniform gas at the local $\rho(\bm r)$ and integrate
+    \item That is the oldest idea in density functional theory (Thomas, Fermi, Dirac, 1927--30), and Friday starts by asking whether it can be made exact
+  \end{itemize}
+  \vspace{0.3em}
+  \centering\alert{Friday: no wave function at all. The density is the variable --- by a theorem, not by an approximation.}
+\end{frame}
+
+% ======================================================================
+\section{Friday, lecture 3: From the wave function to the density}
+% ======================================================================
+
+\begin{frame}{A different bargain (chapter 8, introduction)}
+  \begin{itemize}
+    \item Every method so far computes a \emph{wave function}: FCI stores its coefficients, Hartree-Fock optimises its orbitals, RPA the fluctuations around them, the DMRG its tensors. All live in a space of dimension exponential in $N$
+    \item Density functional theory replaces $\Psi(\bm r_1,\dots,\bm r_N)$, a function of $3N$ coordinates, by the density $n(\bm r)$, a function of \alert{three}
+    \item This is \emph{not} an approximation. Hohenberg and Kohn (1964): the ground-state density determines the external potential, hence the Hamiltonian, hence everything
+    \item The catch, to be stated precisely: the theorem asserts the \emph{existence} of a universal functional and says nothing about its form
+  \end{itemize}
+  \vspace{0.4em}
+  \begin{block}{Three parts, this week and next}
+    (i) the tools: the electronic Hamiltonian and the reduced density matrices in coordinate space; (ii) the Hohenberg-Kohn theorems and what they do and do not deliver; (iii) the Kohn-Sham scheme, with the functional built from the electron gas (week 43).
+  \end{block}
+  \centering\small Most crystalline materials and a very large fraction of molecular structures have been described with it; Kohn's Nobel Prize in Chemistry, 1998.
+\end{frame}
+
+\begin{frame}{The electronic Hamiltonian (section 8.1)}
+  \small
+  Nuclei and electrons, nothing else needed in principle, nothing soluble in practice. Born-Oppenheimer: the nuclei are $\ge1836$ times heavier, so freeze them:
+  \[
+    \Bigl[\sum_{i=1}^N\Bigl(-\frac{\hbar^2}{2m}\nabla_i^2+v_{\rm ext}(\bm r_i)\Bigr)+\sum_{i<j}v(r_{ij})\Bigr]\Psi(\bm r)=E_0\Psi(\bm r),
+    \qquad
+    v_{\rm ext}(\bm r)=-\sum_j\frac{e^2Z_j}{|\bm r-\bm R_j|}
+  \]
+  \begin{itemize}
+    \item The Hamiltonian of chapter 4 written in coordinate space; a generic $v(r_{ij})$, so that nuclear forces are included (with $v_{\rm ext}=0$: self-bound)
+    \item \alert{The one thing that matters below:} $\hat T$ and $\hat V$ are the \emph{same for every system}. The only thing that distinguishes a crystal from a molecule from a cell is $v_{\rm ext}(\bm r)$
+  \end{itemize}
+  \mbbox{In chapters 5--7 the single-particle basis carried the external field inside $\hat h_0$ and the many-body problem was a matrix in that basis. Here the external field is a \emph{function of one variable}, $v_{\rm ext}(\bm r)$, and the question becomes: how much of the answer is a functional of a function of one variable?}
+\end{frame}
+
+\begin{frame}{The one-body density (section 8.2)}
+  \small
+  \[
+    \hat n(\bm r)=\sum_{i=1}^N\delta(\bm r-\bm r_i),\qquad
+    n(\bm r)=\frac{\element\Psi{\hat n(\bm r)}\Psi}{\braket\Psi\Psi}
+    =N\int\dd^3r_2\cdots\dd^3r_N\,|\Psi(\bm r,\bm r_2,\dots,\bm r_N)|^2
+  \]
+  \begin{columns}[T]
+    \column{0.5\textwidth}
+    \begin{block}{One determinant}
+      $n(\bm r)=\sum_{i=1}^N|\psi_i(\bm r)|^2$ --- used in the SCF of week 38
+    \end{block}
+    \column{0.5\textwidth}
+    \begin{block}{Any state, second quantization}
+      $\hat n(\bm r)=\sum_{\alpha\beta}\psi_\alpha^{*}(\bm r)\psi_\beta(\bm r)\,\ad\alpha a_\beta$; for an FCI state the expectation value needs $\element{\Phi_i}{\ad\alpha a_\beta}{\Phi_j}$ --- the one-body density matrix
+    \end{block}
+  \end{columns}
+  \vspace{0.3em}
+  Off the diagonal, with $x=(\bm r,\sigma)$:
+  \[
+    \rho^{(1)}(x';x)=N\int\dd x_2\cdots\dd x_N\,\Psi^{*}(x',x_2,\dots)\Psi(x,x_2,\dots),\qquad n(x)=\rho^{(1)}(x;x),\qquad\int n=N
+  \]
+  \begin{itemize}
+    \item Hermitian; its eigenvalues are the occupation numbers of chapter 1 (natural orbitals), $0\le n_k\le1$
+    \item Exactly $N$ ones and the rest zeros \alert{iff} $\Psi$ is a single determinant: then $\rho^{(1)}$ is the projector on the occupied space
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{The two-body density, and the energy}
+  \[
+    \rho^{(2)}(x_1,x_2;y_1,y_2)=\frac{N(N-1)}{2}\int\dd x_3\cdots\dd x_N\,\Psi^{*}(y_1,y_2,x_3,\dots)\Psi(x_1,x_2,x_3,\dots)
+  \]
+  \begin{itemize}
+    \item The prefactor counts the distinct pairs; the diagonal $\rho^{(2)}(x_1,x_2)$ is the joint probability of a particle at $x_1$ and another at $x_2$
+    \item Second quantization: $\hat\rho^{(2)}(\bm r_1,\bm r_2)=\sum\rho_{\alpha\gamma}(\bm r_1)\rho_{\beta\delta}(\bm r_2)\,\ad\alpha\ad\beta a_\delta a_\gamma$ with $\rho_{\alpha\beta}(\bm r)=\psi_\alpha^{*}(\bm r)\psi_\beta(\bm r)$
+  \end{itemize}
+  \begin{block}{The energy needs only $\rho^{(1)}$ and $\rho^{(2)}$}
+    \[
+      E=\int\dd x\Bigl[-\frac{\hbar^2}{2m}\nabla^2_{x}\rho^{(1)}(x';x)\Bigr]_{x'=x}+\int\dd x\,v_{\rm ext}(x)n(x)+\int\dd x_1\dd x_2\,v(r_{12})\,\rho^{(2)}(x_1,x_2)
+    \]
+    The full wave function is superfluous for the energy. \emph{That} is the origin of every density-based method.
+  \end{block}
+\end{frame}
+
+\begin{frame}{Antisymmetry, and when the pair density factorises}
+  $\Psi(\dots,x_i,\dots,x_j,\dots)=-\Psi(\dots,x_j,\dots,x_i,\dots)$ $\Rightarrow$ $\rho^{(2)}(x,x)=0$: the Pauli principle as a statement about $\rho^{(2)}$.
+  \vspace{0.3em}
+  For a single determinant, Wick's theorem on $\element{\Phi_0}{\ad{}\ad{}aa}{\Phi_0}$ leaves exactly two contractions:
+  \[
+    \boxed{\;\rho^{(2)}(x_1,x_2;y_1,y_2)=\rho^{(1)}(x_1;y_1)\rho^{(1)}(x_2;y_2)-\rho^{(1)}(x_1;y_2)\rho^{(1)}(x_2;y_1)\;}
+  \]
+  \[
+    \text{diagonal:}\qquad\rho^{(2)}(x_1,x_2)=n(x_1)n(x_2)-|\rho^{(1)}(x_1;x_2)|^2,\qquad\rho^{(2)}(x,x)=n^2-n^2=0.
+  \]
+  \begin{itemize}
+    \item First term: the naive product, independent particles. Second: exchange, which enforces antisymmetry --- the same direct-minus-exchange as Thursday's $\element{\Phi_0}{\hat V}{\Phi_0}$
+    \item \alert{This is the boundary of mean-field theory.} A Hartree product would give $n(x_1)n(x_2)$ but is not a fermionic state; a determinant gives the formula above \emph{exactly}; for any correlated state $\rho^{(2)}$ cannot be reduced to $\rho^{(1)}$ at all --- the difference is what this whole course calls correlation
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Pause to think: where correlation lives}
+  \thinkq{4}{
+  \begin{enumerate}
+    \item For two electrons of opposite spin in the same spatial orbital $\phi$ (helium in Hartree-Fock), write $\rho^{(2)}(\bm r_1\!\uparrow,\bm r_2\!\downarrow)$. Does the exchange term contribute? What is the probability of finding them at the same point?
+    \item Same two electrons with parallel spins in orbitals $\phi_1,\phi_2$. Now what is $\rho^{(2)}(\bm r,\bm r)$?
+    \item The exact helium ground state has $\rho^{(2)}(\bm r_1\!\uparrow,\bm r_2\!\downarrow)$ \emph{smaller} than $n(\bm r_1)n(\bm r_2)/4$ at short distance. Which of our methods can produce that, and which cannot?
+  \end{enumerate}}
+\end{frame}
+
+\begin{frame}{Answer}
+  \thinka{
+  \begin{enumerate}
+    \item $\rho^{(1)}(\bm r_1\!\uparrow;\bm r_2\!\downarrow)=0$ (different spins), so $\rho^{(2)}=n_\uparrow(\bm r_1)n_\downarrow(\bm r_2)=|\phi(\bm r_1)|^2|\phi(\bm r_2)|^2$: a pure product. The two electrons are completely uncorrelated and sit on top of each other with full probability. The \emph{exchange hole} exists only between like spins.
+    \item $\rho^{(2)}(\bm r,\bm r)=n(\bm r)^2-|\rho^{(1)}(\bm r;\bm r)|^2=0$: a like-spin pair never coincides, whatever the orbitals.
+    \item The \emph{correlation hole} between unlike spins needs $\rho^{(2)}$ beyond the factorised form: CI, coupled cluster, the DMRG, quantum Monte Carlo --- any method with more than one determinant. Hartree-Fock cannot, by construction; density functional theory can, \emph{if} the functional knows about it. That is what $E_{\rm xc}$ is for.
+  \end{enumerate}}
+\end{frame}
+
+\begin{frame}[shrink=3]{Two faces of one problem}
+  \small
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+    \begin{block}{Reduced-density-matrix methods}
+      Determine $\rho^{(2)}$ directly --- it is all the energy needs. The obstacle: the \alert{$N$-representability problem}. Not every Hermitian, antisymmetric, correctly normalised $\rho^{(2)}$ comes from an $N$-fermion wave function, and characterising those that do is extremely hard.
+    \end{block}
+    \column{0.48\textwidth}
+    \begin{block}{Density functional theory}
+      Go all the way down to $n(\bm r)$. The obstacle: the \alert{unknown functional}. Everything the wave function knew is now hidden in $F[n]$.
+    \end{block}
+  \end{columns}
+  \vspace{0.6em}
+  \centering An unknown functional here, an unknown representability condition there --- neither has been solved, and they are the same difficulty seen from two sides.
+  \vspace{0.6em}
+
+  \mbbox{Chapter 1: the eigenvalues of $\rho^{(1)}$ are the natural occupations, all $0$ or $1$ exactly for a determinant; their distance from $\{0,1\}$ measures correlation. That is a property of $\rho^{(1)}$, not of $n(\bm r)$ --- the density has thrown it away, and the functional must put it back.}
+\end{frame}
+
+% ======================================================================
+\section{Friday, lecture 4: The Hohenberg-Kohn theorems}
+% ======================================================================
+
+\begin{frame}{The two theorems (section 8.3)}
+  \small
+  Consider the family $\hat H=\hat T+\hat V_{\rm ext}+\hat V$ with $\hat T$, $\hat V$ fixed once and for all --- properties of electrons, not of materials --- and only $v_{\rm ext}$ varying. Non-degenerate ground states, for now.
+  \begin{block}{Hohenberg-Kohn I}
+    The external potential $v_{\rm ext}(\bm r)$ is determined, up to an additive constant, by the ground-state density $n_0(\bm r)$.
+  \end{block}
+  \begin{block}{Hohenberg-Kohn II}
+    There is a universal functional $F[n]=T[n]+V_{\rm int}[n]$, the same for every $v_{\rm ext}$, such that
+    \[
+      E[n]=F[n]+\int\dd^3r\,v_{\rm ext}(\bm r)n(\bm r)
+    \]
+    is minimised, over densities integrating to $N$, by the true ground-state density, and its minimum is $E_0$.
+  \end{block}
+  \centering Three variables determine the potential, hence $\hat H$, hence $\Psi$ and every ground-state observable. A quantity measured routinely by X-ray diffraction contains, in principle, all of the $3N$-dimensional $\Psi$.
+\end{frame}
+
+\begin{frame}{The proof of the first theorem: four lines}
+  Suppose $v^{(1)}$ and $v^{(2)}$, differing by more than a constant, gave the \emph{same} ground-state density $n(\bm r)$. They have different $\hat H^{(1)},\hat H^{(2)}$ and (unique continuation) different ground states $\Psi^{(1)}\ne\Psi^{(2)}$, energies $E^{(1)},E^{(2)}$.
+  \vspace{0.3em}
+  Use $\Psi^{(2)}$ as a trial state for $\hat H^{(1)}$; the variational principle is \alert{strict} for a non-degenerate ground state:
+  \[
+    E^{(1)}<\element{\Psi^{(2)}}{\hat H^{(1)}}{\Psi^{(2)}}=\element{\Psi^{(2)}}{\hat H^{(2)}}{\Psi^{(2)}}+\int[v^{(1)}-v^{(2)}]\,n=E^{(2)}+\int[v^{(1)}-v^{(2)}]\,n
+  \]
+  Interchange the labels:
+  \[
+    E^{(2)}<E^{(1)}+\int[v^{(2)}-v^{(1)}]\,n
+  \]
+  Add: the integrals cancel and
+  \[
+    E^{(1)}+E^{(2)}<E^{(1)}+E^{(2)}.
+  \]
+  \begin{itemize}
+    \item The middle step used \emph{only} that the Hamiltonians differ by a one-body potential and that the density is the same by hypothesis
+    \item Hence no two potentials differing by more than a constant share a ground-state density. $n_0\mapsto v_{\rm ext}$ is injective
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[shrink=4]{The second theorem follows, and the variational equation}
+  \small
+  Since $n_0$ fixes $v_{\rm ext}$, it fixes $\hat H$ and therefore $\Psi[n]$, so
+  \[
+    F_{\rm HK}[n]\equiv\element{\Psi[n]}{\hat T+\hat V}{\Psi[n]}
+  \]
+  is a functional of the density alone, and universal because $\hat T$, $\hat V$ contain no reference to $v_{\rm ext}$. Rayleigh-Ritz within the family: $E_0=\min_nE[n]$.
+  \vspace{0.4em}
+  \begin{block}{Minimise with $\int n=N$ fixed (section 8.3.4)}
+    \[
+      \frac{\delta}{\delta n(\bm r)}\Bigl\{E[n]-\mu\Bigl(\int n\,\dd^3r-N\Bigr)\Bigr\}=0
+      \qquad\Longrightarrow\qquad
+      \left.\frac{\delta E[n]}{\delta n(\bm r)}\right|_{n_0}=\mu
+    \]
+    The functional derivative of the energy is constant throughout the system: that constant is the chemical potential, the Fermi level.
+  \end{block}
+  \mbbox{Week 39: the multiplier enforcing normalisation is the energy conjugate to what it constrains --- $\varepsilon_i$ for $\braket{\phi_i}{\phi_i}=1$ there, $\mu$ for $\int n=N$ here.}
+\end{frame}
+
+\begin{frame}{Pause to think: what the proof uses}
+  \thinkq{4}{
+  \begin{enumerate}
+    \item Where exactly is non-degeneracy used? What goes wrong in the four lines if $\hat H^{(1)}$ has a degenerate ground state?
+    \item Where is it used that $\Psi^{(1)}\ne\Psi^{(2)}$? Could two different potentials have the same ground-state \emph{wave function}?
+    \item The theorem is about \emph{ground-state} densities. Is every reasonable positive function with $\int n=N$ the ground-state density of some $v_{\rm ext}$?
+  \end{enumerate}}
+\end{frame}
+
+\begin{frame}{Answer}
+  \thinka{
+  \begin{enumerate}
+    \item In the strict inequality $E^{(1)}<\element{\Psi^{(2)}}{\hat H^{(1)}}{\Psi^{(2)}}$. With degeneracy, $\Psi^{(2)}$ might be another ground state of $\hat H^{(1)}$, the inequality becomes $\le$, and the contradiction evaporates. Levy's constrained search (next frame) repairs this.
+    \item Same place: strictness needs a trial state that is \emph{not} the ground state. If $\Psi^{(1)}=\Psi^{(2)}$ then $\sum_i[v^{(1)}-v^{(2)}](\bm r_i)\Psi=(E^{(1)}-E^{(2)})\Psi$, so $v^{(1)}-v^{(2)}$ is constant wherever $\Psi\ne0$ --- and unique continuation says that is almost everywhere.
+    \item No. That is the $v$-representability problem: the set of ground-state densities is not characterised, and some reasonable densities are not in it. The theorem says nothing about those.
+  \end{enumerate}}
+\end{frame}
+
+\begin{frame}{What the theorems do not give (section 8.3.3)}
+  \small
+  \begin{block}{They are existence theorems}
+    Nothing constructs $F[n]$, and nothing suggests it is simple. All the many-body difficulty of chapters 5--11 is still there, moved inside $F[n]$. The practical history of the subject is a history of \alert{approximate functionals}.
+  \end{block}
+  \begin{block}{$v$-representability, and the Levy-Lieb repair}
+    \[
+      F_{\rm LL}[n]=\min_{\Psi\to n}\element\Psi{\hat T+\hat V}\Psi
+    \]
+    Search over all antisymmetric $\Psi$ yielding the density $n$: defined for every $N$-representable density, equal to $F_{\rm HK}$ where that exists, extends to degenerate ground states --- and is, of course, no more computable.
+  \end{block}
+  \begin{block}{Ground states only}
+    $E_0$ and $n_0$, nothing else. Excitation energies (chapter 7) need a separate construction (time-dependent DFT). The Kohn-Sham eigenvalues of next week are \alert{not} excitation energies.
+  \end{block}
+\end{frame}
+
+\begin{frame}{Building a functional from the electron gas (section 8.4)}
+  \small
+  Take the one system we solved exactly on Thursday and use it \emph{locally}:
+  \[
+    t_0[n]=\frac{3\hbar^2(3\pi^2)^{2/3}}{10m}\,n^{5/3}
+    \qquad\Longrightarrow\qquad
+    \mathcal T_0[n]=\frac{3\hbar^2(3\pi^2)^{2/3}}{10m}\int\dd^3r\,\bigl(n(\bm r)\bigr)^{5/3}
+    \qquad\text{(Thomas-Fermi)}
+  \]
+  With the classical electrostatic (Hartree) energy $\mathcal U_{\rm H}[n]=\frac{e^2}{2}\iint\dd^3r\,\dd^3r'\,n(\bm r)n(\bm r')/|\bm r-\bm r'|$,
+  \[
+    \boxed{\;\mathcal E_{\rm HK}[n]=\mathcal T_0[n]+\int\dd^3r\,v_{\rm ext}\,n+\mathcal U_{\rm H}[n]+E_{\rm xc}[n]\;}
+  \]
+  \begin{itemize}
+    \item The decomposition is a \emph{definition}, not an approximation: whatever is missing is in $E_{\rm xc}$ by construction
+    \item It is useful only if that remainder is small --- \alert{the whole gamble of the subject}
+    \item Thursday's exchange energy, $-\frac{3e^2}{4\pi}(3\pi^2n)^{1/3}$ per electron, integrated the same way, is Dirac's exchange functional, the first piece of $E_{\rm xc}$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Why Thomas-Fermi is not enough}
+  No orbitals: minimising $\mathcal E_{\rm HK}$ over $n$ gives an \emph{algebraic} equation, enormously cheaper than anything in this course. It also fails, instructively (\texttt{dft.py}: $N$ non-interacting fermions in a 1D trap):
+  \begin{columns}[T]
+    \column{0.42\textwidth}
+    \begin{center}\small
+    \begin{tabular}{@{}rrrr@{}}\toprule
+    $N$ & $T$ exact & $T$ TF & ratio\\\midrule
+    1 & 0.25 & 0.3023 & 1.2092\\
+    2 & 1.00 & 1.0748 & 1.0748\\
+    4 & 4.00 & 4.1018 & 1.0255\\
+    8 & 16.00 & 16.1343 & 1.0084\\\bottomrule
+    \end{tabular}
+    \end{center}
+    \column{0.58\textwidth}
+    \small
+    \begin{itemize}
+      \item The ratio improves as promised (smoother density on the scale of the local Fermi wavelength) --- but the \emph{absolute} error is $0.05,0.08,0.10,0.13$: nearly constant, divided by a growing denominator
+      \item A tenth of a Hartree in the \emph{largest} term of the energy is not available when chemical accuracy is wanted
+      \item Worse: no shell structure at all. Teller: within the model no molecule is bound
+    \end{itemize}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{The failure that no coefficient can repair (chapter 8, Fig.\ 8.6)}
+  \begin{columns}[T]
+    \column{0.62\textwidth}
+    \includegraphics[width=\textwidth]{chapter08/dft_fig06}
+    \column{0.38\textwidth}
+    \small
+    \begin{itemize}
+      \item Left: the ratio, falling steeply then flattening into a long $0.8\%$ tail
+      \item Right: the exact density of eight particles carries \emph{eight maxima} --- the nodal structure of the orbitals surviving the sum --- and ends at the turning point $\sqrt{15}\simeq3.87$ of the highest level. Thomas-Fermi gives a smooth dome
+      \item The shell effects that organise all of atomic and nuclear structure are lost with it
+    \end{itemize}
+  \end{columns}
+  \vspace{0.3em}
+  \centering\alert{The offending quantity is the kinetic energy; the offending feature is shell structure. Both can be recovered exactly by putting the orbitals back in for that one term.} That is the Kohn-Sham construction --- next week.
+\end{frame}
+
+% ======================================================================
+\section{Summary}
+% ======================================================================
+
+\begin{frame}{Summary of week 42}
+  \small
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+    \begin{block}{Thursday: the electron gas}
+      \begin{itemize}
+        \item Plane waves are Hartree-Fock for free: $f_{ai}=0$ by momentum conservation
+        \item Three $\mu^{-2}$ divergences cancel; the $\bm q=0$ term is the background
+        \item $\varepsilon_k^{\rm HF}/\varepsilon_F^0=x^2-0.663\,r_sF(x)$; band width $1+0.33\,r_s$, too large
+        \item $F'(1)=-\infty$: $m^{*}\to0$ like $1/\ln$, no density of states at $k_F$ --- unscreened $1/q^2$, cured by RPA
+        \item $E_0/N=2.21/r_s^2-0.916/r_s$ Ry: exchange alone binds a metal at $r_s=4.83$; correlation ($-0.06$ Ry) is comparable
+      \end{itemize}
+    \end{block}
+    \column{0.48\textwidth}
+    \begin{block}{Friday: the density as the variable}
+      \begin{itemize}
+        \item $\hat T$, $\hat V$ are the same for all matter; only $v_{\rm ext}$ differs
+        \item The energy needs only $\rho^{(1)},\rho^{(2)}$; for a determinant $\rho^{(2)}$ factorises --- the boundary of mean field
+        \item HK I: $n_0$ fixes $v_{\rm ext}$ (four lines, strict variational principle). HK II: a universal $F[n]$, $E_0=\min E[n]$
+        \item Existence only; $v$-representability (Levy-Lieb); ground states only
+        \item $\delta E/\delta n=\mu$; Thomas-Fermi from the gas: cheap, $1\%$ wrong in the largest term, no shells
+      \end{itemize}
+    \end{block}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Next week, and a closing remark}
+  \begin{exampleblock}{Week 43, October 22--23: density functional theory, part II}
+    \small
+    \textbf{Thursday:} the Kohn-Sham construction (section 8.5): a fictitious non-interacting system with the \emph{same density}, the orbitals back in for the kinetic energy, the Kohn-Sham equations as a Hartree-Fock-like self-consistent problem with a \emph{local} potential $v_{\rm xc}(\bm r)=\delta E_{\rm xc}/\delta n$.\\
+    \textbf{Friday:} the local density approximation (section 8.6), derived rather than quoted --- the exchange hole of the Fermi sea, $-0.916/r_s$ recovered from $\rho^{(1)}$, Ceperley-Alder correlation --- and Kohn-Sham in practice (section 8.7): the same trap system as week 38 solved by Hartree-Fock, Kohn-Sham and exactly, self-interaction, and what the Kohn-Sham eigenvalues mean.\\
+    Reading: chapter 8, sections 8.5--8.7. Code: \texttt{dft.py}. \alert{No exercise session in week 43 either: first midterm.}
+  \end{exampleblock}
+  \vspace{0.5em}
+  \small
+  Two bargains in one week. Thursday's determinant got the mechanism of metallic cohesion right and the Fermi surface wrong, for one reason: an unscreened $1/q^2$. Friday replaced the wave function by the density, exactly, and then had to admit that the exact functional is unknown and the first guess at it, from Thursday's gas, misses the shell structure. Next week the two threads meet: orbitals for the kinetic energy, the electron gas for everything else.
+  \vspace{0.4em}
+
+  \centering\alert{The best of both: Kohn and Sham, 1965.}
+\end{frame}
+
+\end{document}
