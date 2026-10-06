@@ -1,0 +1,677 @@
+% ======================================================================
+%  FYS4480/FYS9480  Quantum mechanics for many-particle systems
+%  Week 43, October 22-23, 2026
+%  Lecture slides (Beamer).  Thursday: 2 x 45 min,  Friday: 2 x 45 min.
+%
+%  Sources: chapter8.tex, sections 8.5 (Kohn-Sham construction, KS vs HF,
+%  what the orbitals are), 8.6 (local density approximation, exchange hole,
+%  beyond LDA), 8.7 (Kohn-Sham in practice: the 1D functional, results,
+%  densities, self-interaction, how local is too local) and 8.8 (summary).
+%  Entirely density functional theory; continues week 42 (8.1-8.4).
+%  No exercise session (first midterm).
+%  Figures: ../BookFigures/chapter08/dft_fig01-05.
+%  Companion program: BookPrograms/chapter08/dft.py; notebook week43.ipynb.
+%
+%  Slide discipline: one claim per frame, the equation or table that
+%  carries it, and a few short bullets.  Preamble and box macros as in
+%  week42.tex.
+%
+%  Build:  pdflatex week43.tex  (twice)
+%  Handout (no overlays):  replace \documentclass[...] by
+%           \documentclass[handout,aspectratio=169]{beamer}
+% ======================================================================
+\documentclass[aspectratio=169,10pt]{beamer}
+
+% ---------------------------------------------------------------- packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,bm,mathtools}
+\usepackage{booktabs}
+\usepackage[most]{tcolorbox}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows.meta,decorations.markings,shapes.misc}
+\usetikzlibrary{tikzmark}
+
+% ---------------------------------------------------------------- look
+\usetheme{default}
+\useinnertheme{rectangles}
+\setbeamertemplate{navigation symbols}{}
+\definecolor{uioblue}{RGB}{18,52,86}
+\definecolor{teal}{RGB}{0,128,128}
+\definecolor{warm}{RGB}{181,73,36}
+\definecolor{paleblue}{RGB}{232,240,248}
+\definecolor{paleteal}{RGB}{228,244,244}
+\definecolor{palewarm}{RGB}{252,238,230}
+\definecolor{palegreen}{RGB}{232,244,234}
+\setbeamercolor{structure}{fg=uioblue}
+\setbeamercolor{title}{fg=uioblue}
+\setbeamercolor{frametitle}{fg=uioblue,bg=white}
+\setbeamercolor{section in toc}{fg=uioblue}
+\setbeamercolor{alerted text}{fg=warm}
+\setbeamercolor{block title}{fg=white,bg=uioblue}
+\setbeamercolor{block body}{bg=paleblue}
+\setbeamercolor{block title example}{fg=white,bg=teal}
+\setbeamercolor{block body example}{bg=paleteal}
+\setbeamerfont{frametitle}{size=\large,series=\bfseries}
+\setbeamerfont{title}{size=\LARGE,series=\bfseries}
+\setbeamertemplate{frametitle}{%
+  \vspace*{0.6em}\insertframetitle\par
+  \vspace*{-0.2em}{\color{teal}\rule{\textwidth}{0.6pt}}}
+\setbeamertemplate{footline}{%
+  \hbox{\begin{beamercolorbox}[wd=\paperwidth,ht=2.4ex,dp=1.2ex,leftskip=1em,rightskip=1em]{structure}%
+  \footnotesize FYS4480/9480 -- Week 43 \hfill \insertsection \hfill \insertframenumber/\inserttotalframenumber
+  \end{beamercolorbox}}}
+\setbeamertemplate{itemize items}[circle]
+\setbeamertemplate{enumerate items}[default]
+\setbeamertemplate{section page}{%
+  \begin{centering}
+    {\usebeamerfont{section title}\usebeamercolor[fg]{title}\LARGE\bfseries\insertsection\par}
+    \vspace{0.5em}{\color{teal}\rule{0.5\textwidth}{1pt}}
+  \end{centering}}
+\AtBeginSection[]{\frame{\sectionpage}}
+
+% ---------------------------------------------------------------- boxes
+\newcounter{thinkctr}
+\newcommand{\thinkq}[2]{%
+  \stepcounter{thinkctr}%
+  \vfill
+  \begin{tcolorbox}[enhanced,colback=palewarm,colframe=warm,boxrule=1.2pt,arc=4pt,
+    grow to left by=6mm,grow to right by=6mm,
+    left=16pt,right=16pt,top=16pt,bottom=18pt,
+    fonttitle=\bfseries\Large,fontupper=\Large,
+    title={Pause to think \#\thethinkctr\hfill\mdseries\normalsize(about #1 min -- discuss with your neighbour)}]
+  #2
+  \end{tcolorbox}
+  \vfill}
+\newcommand{\thinka}[1]{%
+  \vfill
+  \begin{tcolorbox}[enhanced,colback=paleteal,colframe=teal,boxrule=1.2pt,arc=4pt,
+    grow to left by=6mm,grow to right by=6mm,
+    left=16pt,right=16pt,top=16pt,bottom=18pt,
+    fonttitle=\bfseries\Large,fontupper=\large,
+    title={Answer to pause \#\thethinkctr}]
+  #1
+  \end{tcolorbox}
+  \vfill}
+\newcommand{\mbbox}[1]{%
+  \begin{tcolorbox}[colback=paleblue,colframe=uioblue,title={\bfseries Many-body connection}]
+  #1
+  \end{tcolorbox}}
+\newcommand{\warnbox}[1]{%
+  \begin{tcolorbox}[colback=palewarm,colframe=warm,title={\bfseries A trap to avoid}]
+  #1
+  \end{tcolorbox}}
+\newcommand{\numbox}[1]{%
+  \begin{tcolorbox}[colback=palegreen,colframe=teal!70!black,title={\bfseries Measured}]
+  #1
+  \end{tcolorbox}}
+
+% ---------------------------------------------------------------- code
+\lstset{language=Python,basicstyle=\ttfamily\scriptsize,
+  keywordstyle=\color{uioblue}\bfseries,commentstyle=\color{teal},
+  stringstyle=\color{warm},showstringspaces=false,columns=fullflexible,
+  frame=single,rulecolor=\color{paleblue},backgroundcolor=\color{white},
+  breaklines=true}
+
+% ---------------------------------------------------------------- macros
+\newcommand{\ket}[1]{\vert #1\rangle}
+\newcommand{\bra}[1]{\langle #1\vert}
+\newcommand{\braket}[2]{\langle #1\vert #2\rangle}
+\newcommand{\element}[3]{\langle #1\vert #2\vert #3\rangle}
+\DeclareMathOperator{\tr}{tr}
+\newcommand{\bigO}{\mathcal{O}}
+\newcommand{\bmat}[1]{\bm{#1}}
+\newcommand{\Amat}[1]{\bm{A}^{#1}}
+\newcommand{\Bmat}[1]{\bm{B}^{#1}}
+\newcommand{\hH}{\hat{H}}
+\newcommand{\ad}[1]{a_{#1}^{\dagger}}
+\newcommand{\ketbra}[2]{\vert #1\rangle\langle #2\vert}
+% normal ordering with respect to the reference determinant |c> (as in week 40)
+\newcommand{\nc}[1]{\bigl\{#1\bigr\}}
+
+% ---------------------------------------------------------------- diagrams
+\tikzset{
+  tens/.style={draw=uioblue,fill=paleblue,thick,rounded corners=1pt,minimum size=7mm,font=\small},
+  mpo/.style={draw=warm,fill=palewarm,thick,rounded corners=1pt,minimum size=7mm,font=\small},
+  env/.style={draw=teal!70!black,fill=paleteal,thick,rounded corners=1pt,
+              minimum width=7mm,minimum height=14mm,font=\small},
+  leg/.style={thick,uioblue},
+  dlab/.style={font=\scriptsize},
+  every picture/.style={scale=0.8,baseline=(current bounding box.center)}
+}
+
+\graphicspath{{../BookFigures/}{./}}
+
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\dftbox}[1]{%
+  \begin{tcolorbox}[colback=paleteal,colframe=teal,title={\bfseries Density functional connection}]
+  #1
+  \end{tcolorbox}}
+
+% ---------------------------------------------------------------- title
+\title{Kohn and Sham: orbitals for the kinetic energy, the electron gas for the rest}
+\subtitle{FYS4480/FYS9480 -- Week 43, October 22--23, 2026}
+\author{Cecilie Glittum and Morten Hjorth-Jensen}
+\institute{Department of Physics,\\
+University of Oslo, Norway}
+\date{}
+
+\begin{document}
+
+\begin{frame}[plain]
+  \vspace*{0.4em}{\setbeamerfont{title}{size=\Large,series=\bfseries}\titlepage}
+  \vfill
+  \begin{center}\small
+  Thursday: the Kohn-Sham construction, and the local density approximation --- derived from the electron gas, not quoted\\
+  Friday: Kohn-Sham in practice --- a functional built numerically, three methods on one Hamiltonian, the self-interaction error, how local is too local\\[0.8em]
+  {\footnotesize Reading: lecture notes chapter 8, sections 8.5--8.8; Kohn and Sham, Phys.\ Rev.\ 140, A1133 (1965). Code: \texttt{BookPrograms/chapter08/dft.py}; notebook \texttt{week43.ipynb}.\\[0.2em]
+  \alert{No exercise session this week: the time is for the first midterm.}}
+  \end{center}
+\end{frame}
+
+\begin{frame}[shrink=5]{Plan for week 43}
+  \begin{block}{Thursday, $2\times45$ min: the Kohn-Sham construction and the local density approximation (sections 8.5--8.6)}
+    \begin{itemize}
+      \item Orbitals back in for the one term a local functional cannot handle: $T_s[n]$, and $E_{\rm xc}$ redefined to absorb the rest
+      \item The Kohn-Sham equations: a Hartree-Fock-like self-consistent problem with a \emph{local} potential $v_{\rm xc}=\delta E_{\rm xc}/\delta n$; the total energy and its double counting
+      \item Kohn-Sham against Hartree-Fock, side by side; what the Kohn-Sham orbitals and eigenvalues are --- and are not
+      \item The local density approximation: $\epsilon_x(n)=-\tfrac34(3/\pi)^{1/3}n^{1/3}$ checked against $-0.916/r_s$; correlation from quantum Monte Carlo
+      \item The exchange hole, $g(0)=\tfrac12$, and the sum rule that explains why a local functional works at all
+    \end{itemize}
+  \end{block}
+  \begin{block}{Friday, $2\times45$ min: Kohn-Sham in practice (sections 8.7--8.8)}
+    \begin{itemize}
+      \item Beyond LDA in one frame: gradients, meta-GGAs, hybrids
+      \item A functional built numerically for the one-dimensional trap; Kohn-Sham, Hartree-Fock and the exact answer on one Hamiltonian
+      \item Densities and the self-consistent loop; the self-interaction error, one number that explains a list of failures
+      \item How local is too local: the $0.078/N$ law; where density functional theory sits among the methods of this course
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Where week 42 left us}
+  \begin{columns}[T]
+    \column{0.5\textwidth}
+    \begin{block}{Exact}
+      \begin{itemize}
+        \item $\hat T$, $\hat V$ are the same for all matter; only $v_{\rm ext}$ differs
+        \item Hohenberg-Kohn: $n_0$ fixes $v_{\rm ext}$; a universal $F[n]$; $E_0=\min_nE[n]$; $\delta E/\delta n=\mu$
+        \item The energy needs only $\rho^{(1)}$ and $\rho^{(2)}$; for a determinant $\rho^{(2)}$ factorises
+      \end{itemize}
+    \end{block}
+    \column{0.5\textwidth}
+    \begin{block}{Approximate, and not good enough}
+      \begin{itemize}
+        \item Thomas-Fermi from the electron gas: $\mathcal T_0[n]\propto\int n^{5/3}$
+        \item Cheap, $1\%$ wrong in the \emph{largest} term, and \alert{no shell structure}: eight particles, eight maxima, and a functional of $n$ alone sees a dome
+      \end{itemize}
+    \end{block}
+  \end{columns}
+  \vspace{0.6em}
+  \centering The offending quantity is the kinetic energy; the offending feature is shell structure.\\[0.3em]
+  \alert{Kohn and Sham, 1965: keep orbitals for that one term, and only that term.}
+\end{frame}
+
+% ======================================================================
+\section{Thursday, lecture 1: The Kohn-Sham construction}
+% ======================================================================
+
+\begin{frame}{The auxiliary system (section 8.5)}
+  Introduce $N$ \emph{non-interacting} fermions in an effective potential $v_{\rm KS}(\bm r)$, chosen so that their ground-state density \alert{equals the density of the real system}. Their kinetic energy is computed exactly from orbitals,
+  \[
+    T_s[n]=-\frac{\hbar^2}{2m}\sum_{i=1}^N\int\dd^3r\,\psi_i^{*}(\bm r)\nabla^2\psi_i(\bm r),
+  \]
+  and it carries the shell structure that Thomas-Fermi threw away. It is not the true $T[n]$; the difference is small, and the remainder is \emph{redefined} to absorb it:
+  \[
+    \boxed{\;E_{\rm xc}[n]\equiv\bigl(T[n]-T_s[n]\bigr)+\bigl(V_{\rm int}[n]-\mathcal U_{\rm H}[n]\bigr)\;}
+    \qquad
+    E[n]=T_s[n]+\int\dd^3r\,v_{\rm ext}\,n+\mathcal U_{\rm H}[n]+E_{\rm xc}[n]
+  \]
+  \begin{itemize}
+    \item Still a definition, not an approximation --- but now the remainder is a \emph{small} part of the energy, and the gamble of week 42 becomes a good bet
+    \item $T_s$ is a functional of $n$ through the orbitals: $n\to v_{\rm KS}\to\{\psi_i\}\to T_s$. Implicit, but exact
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[shrink=5]{The Kohn-Sham equations}
+  \small
+  Vary $E[n]$ with respect to the orbitals under orthonormality --- exactly the steps of week 38 (section 6.4):
+  \[
+    \boxed{\;\Bigl(-\frac{\hbar^2}{2m}\nabla^2+v_{\rm KS}(\bm r)\Bigr)\psi_i(\bm r)=\varepsilon_i\psi_i(\bm r)\;}
+    \qquad
+    n(\bm r)=\sum_{i=1}^N|\psi_i(\bm r)|^2
+  \]
+  \vspace{-0.8em}
+  \[
+    v_{\rm KS}(\bm r)=v_{\rm ext}(\bm r)+\int\dd^3r'\,\frac{e^2n(\bm r')}{|\bm r-\bm r'|}+v_{\rm xc}(\bm r),
+    \qquad
+    v_{\rm xc}=\frac{\delta E_{\rm xc}[n]}{\delta n(\bm r)}
+  \]
+  \begin{itemize}
+    \item $v_{\rm KS}$ depends on $n$, $n$ on the orbitals: nonlinear, iterated to self-consistency --- \alert{the same loop as the SCF of week 38, for the same reason}
+    \item Three potentials: external (the nuclei), Hartree (classical electrostatics of the density), exchange-correlation (everything else)
+  \end{itemize}
+  \begin{block}{The total energy is not the sum of eigenvalues}
+    $\sum_i\varepsilon_i=T_s+\int v_{\rm KS}\,n$, so
+    $E=\sum_{i=1}^N\varepsilon_i-\mathcal U_{\rm H}[n]+E_{\rm xc}[n]-\int\dd^3r\,v_{\rm xc}(\bm r)n(\bm r)$,
+    the last three terms undoing the double counting --- as $E^{\rm HF}=\sum_i\varepsilon_i-\frac12\sum_{ij}\element{ij}{\hat v}{ij}$ in week 39.
+  \end{block}
+\end{frame}
+
+\begin{frame}{Kohn-Sham against Hartree-Fock, side by side (section 8.5.1)}
+  \small
+  \textbf{Hartree-Fock}, in coordinate space:
+  \[
+    \Bigl(-\frac{\hbar^2}{2m}\nabla^2+v_{\rm ext}+\int\dd^3r'\,w(\bm r,\bm r')n(\bm r')\Bigr)\phi_k(\bm r)
+    \underbrace{-\sum_{l=1}^N\int\dd^3r'\,\phi_l^{*}(\bm r')w(\bm r,\bm r')\phi_k(\bm r')\phi_l(\bm r)}_{\text{exchange: non-local, exact}}
+    =\varepsilon_k\phi_k(\bm r)
+  \]
+  \textbf{Kohn-Sham}:
+  \[
+    \Bigl(-\frac{\hbar^2}{2m}\nabla^2+v_{\rm ext}+\int\dd^3r'\,w(\bm r,\bm r')n(\bm r')
+    +\underbrace{v_{\rm xc}([n];\bm r)}_{\text{exchange \emph{and} correlation: local, approximate}}\Bigr)\phi_k(\bm r)=\varepsilon_k\phi_k(\bm r)
+  \]
+  \begin{center}\small
+  \begin{tabular}{@{}lll@{}}\toprule
+   & Hartree-Fock & Kohn-Sham\\\midrule
+  the last term & integral operator, different for each orbital & multiplicative potential, the same for all\\
+  exchange & exact & approximate\\
+  correlation & none & some --- as much as the functional knows\\
+  cost & $\bigO(M^3)$ with four-index integrals & $\bigO(M^3)$, no four-index integrals for $v_{\rm xc}$\\\bottomrule
+  \end{tabular}
+  \end{center}
+  \centering The trade: non-locality and exactness against locality, cheapness, and a bit of correlation.
+\end{frame}
+
+\begin{frame}{Pause to think: what the Kohn-Sham orbitals are}
+  \thinkq{4}{
+  \begin{enumerate}
+    \item The Kohn-Sham orbitals are eigenfunctions of a one-body operator. Are they approximations to ``the'' one-electron wave functions of the interacting system? Is the determinant built from them an approximation to $\Psi_0$?
+    \item Koopmans (week 39): in Hartree-Fock, $-\varepsilon_k$ is an ionisation energy. Does the argument go through for $\varepsilon_i^{\rm KS}$?
+    \item Kohn-Sham band gaps of semiconductors come out systematically too small, by tens of per cent. Numerical deficiency, bad functional, or something else?
+  \end{enumerate}}
+\end{frame}
+
+\begin{frame}[shrink=2]{Answer}
+  \thinka{
+  \begin{enumerate}
+    \item No, and no. They are the orbitals of a \emph{fictitious non-interacting} system chosen to reproduce the right \emph{density} --- the density is the only thing guaranteed. Their determinant has the exact $n$, but $\element{\Phi_{\rm KS}}{\hat H}{\Phi_{\rm KS}}\ne E_0$ and its $\rho^{(2)}$ factorises, which the exact one does not.
+    \item No. Koopmans removes an orbital with the others frozen and uses that $\hat H$ acts on the determinant; $v_{\rm KS}$ is not $\hat H$. One exception survives for the \emph{exact} functional: the highest occupied eigenvalue equals minus the exact ionisation energy (the asymptotic decay of $n$ fixes it).
+    \item Something else: the question is one the orbitals were not built to answer. Even the exact $v_{\rm xc}$ gives a Kohn-Sham gap that differs from the true gap by a \emph{derivative discontinuity} of $E_{\rm xc}$ at integer $N$, which local functionals have no way to produce. Not a bug --- a mismatch between a fictitious spectrum and a real one.
+  \end{enumerate}}
+\end{frame}
+
+% ======================================================================
+\section{Thursday, lecture 2: The local density approximation}
+% ======================================================================
+
+\begin{frame}[shrink=6]{The local density approximation (section 8.6)}
+  Everything now rests on $E_{\rm xc}[n]$. The oldest approximation, and the reference point for all others: the exchange-correlation energy density at a point depends only on the density \emph{at that point}, taken from the uniform gas,
+  \[
+    \boxed{\;E_{\rm xc}^{\rm LDA}[n]=\int\dd^3r\,n(\bm r)\,\epsilon_{\rm xc}\bigl(n(\bm r)\bigr),\qquad
+    v_{\rm xc}(\bm r)=\frac{\dd}{\dd n}\bigl[n\,\epsilon_{\rm xc}(n)\bigr]_{n=n(\bm r)}\;}
+  \]
+  \begin{itemize}
+    \item $\epsilon_{\rm xc}(n)=\epsilon_x(n)+\epsilon_c(n)$: the exchange-correlation energy \emph{per particle} of a uniform gas of density $n$
+    \item Exchange: week 42, Thursday, in closed form. Correlation: no closed form --- quantum Monte Carlo (Ceperley-Alder, 1980), fitted to an analytic form (Perdew-Zunger, 1981)
+    \item The input to the most widely used approximation in computational materials science is a \alert{wave-function calculation} of the kind this course develops
+  \end{itemize}
+  \mbbox{The functional derivative of $\int f(n)\dd^3r$ is $f'(n)$: $v_{\rm xc}$ is a plain function of the local density, evaluated pointwise. That is what ``local'' buys --- no integral operator, no four-index integrals, a one-line potential.}
+\end{frame}
+
+\begin{frame}{Exchange: $-0.916/r_s$ recovered}
+  The exchange energy of the Fermi sea (week 42), per particle instead of per state, in Hartree atomic units:
+  \[
+    \boxed{\;\epsilon_x(n)=-\frac34\Bigl(\frac{3}{\pi}\Bigr)^{1/3}n^{1/3},\qquad v_x(n)=\frac{\dd}{\dd n}[n\epsilon_x]=\frac43\,\epsilon_x(n)\;}
+  \]
+  \begin{columns}[T]
+    \column{0.5\textwidth}
+    \begin{center}\small
+    \begin{tabular}{@{}rrrr@{}}\toprule
+    $r_s$ & $\epsilon_x$ [Ha] & $\epsilon_x$ [Ry] & $-0.916/r_s$\\\midrule
+    1.0000 & $-0.458165$ & $-0.916331$ & $-0.916000$\\
+    2.0000 & $-0.229083$ & $-0.458165$ & $-0.458000$\\
+    4.0000 & $-0.114541$ & $-0.229083$ & $-0.229000$\\
+    4.8253 & $-0.094951$ & $-0.189901$ & $-0.189833$\\
+    6.0000 & $-0.076361$ & $-0.152722$ & $-0.152667$\\\bottomrule
+    \end{tabular}\\[2pt]
+    (\texttt{dft.py}; the coefficient is $0.916331$)
+    \end{center}
+    \column{0.5\textwidth}
+    \begin{itemize}
+      \item The agreement is a \emph{tautology}: the local approximation is defined to be exact for the uniform gas. A check of the algebra, not of nature
+      \item The $\frac43$: the potential is what enters the Kohn-Sham equation, the energy per particle what enters $E$; the difference is the double counting
+      \item The shape is the point: $\epsilon_x\propto n^{1/3}$ is so flat beyond $r_s\simeq4$ that a substantial local error in $n$ costs little in $\epsilon_x$
+    \end{itemize}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Exchange from the Fermi sea, once more (chapter 8, Fig.\ 8.1)}
+  \begin{columns}[T]
+    \column{0.55\textwidth}
+    \includegraphics[width=\textwidth]{chapter08/dft_fig01}
+    \column{0.45\textwidth}
+    \small
+    \begin{itemize}
+      \item Solid: $\epsilon_x(n)$ converted to Rydberg through $n=3/4\pi r_s^3$. Dashed: $-0.916/r_s$ from the filled Fermi sea of week 42. Indistinguishable anywhere
+      \item A sixteenfold drop in $n$ ($r_s=0.5\to2$) costs a factor of four in $\epsilon_x$; from $r_s=4$ on the curve is nearly flat
+      \item A functional this insensitive to its argument can afford to be evaluated on a density that is only roughly uniform --- much of why the approximation survives where its assumption is plainly false
+    \end{itemize}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Pause to think: the exchange potential}
+  \thinkq{3}{
+  \begin{enumerate}
+    \item Derive $v_x=\frac43\epsilon_x$ from $\epsilon_x\propto n^{1/3}$. What is the corresponding factor for the Thomas-Fermi kinetic term $t_0\propto n^{5/3}$?
+    \item In one dimension with a \emph{softened} Coulomb interaction $v(s)=1/\sqrt{s^2+a^2}$, the exchange energy per particle saturates at high density instead of growing like a power. Why? (Think of what $\rho^{(1)}(s)=\sin(k_Fs)/\pi s$ does as $k_F\to\infty$.)
+  \end{enumerate}}
+\end{frame}
+
+\begin{frame}{Answer}
+  \thinka{
+  \begin{enumerate}
+    \item $n\epsilon_x=Cn^{4/3}$, so $\dd(n\epsilon_x)/\dd n=\frac43Cn^{1/3}=\frac43\epsilon_x$. For $t_0=C'n^{5/3}$ the Thomas-Fermi potential is $\frac53\,t_0/n$ --- the chemical potential of a free gas, $\varepsilon_F=\frac53\cdot\frac35\varepsilon_F$. \checkmark
+    \item $\epsilon_x(n)=-\frac1n\int_0^\infty v(s)\,[\sin(k_Fs)/\pi s]^2\,\dd s$. As $k_F=\pi n\to\infty$ the squared density matrix becomes a spike of width $k_F^{-1}$ and weight $n/2$ at $s=0$, so the integral samples the interaction only at contact: $\epsilon_x\to-v(0)/2=-1/(2a)$. The softening puts a floor under the exchange energy; the bare $1/s$ would have none. Friday builds exactly this functional.
+  \end{enumerate}}
+\end{frame}
+
+\begin{frame}{The exchange hole (section 8.6.1)}
+  Divide the pair density by the product of densities: the pair correlation function. For the uniform gas at the Hartree-Fock level it depends only on $y=k_Fs$ and is known exactly,
+  \[
+    g(y)=1-\frac92\left[\frac{\sin y-y\cos y}{y^3}\right]^2,
+    \qquad
+    g(0)=\tfrac12,\qquad g(y)-1\to-\tfrac92\frac{\cos^2y}{y^4}
+  \]
+  \begin{columns}[T]
+    \column{0.42\textwidth}
+    \begin{center}\small
+    \begin{tabular}{@{}rl@{}}\toprule
+    $k_Fs$ & $g$\\\midrule
+    0.00 & 0.500000\\
+    0.50 & 0.524471\\
+    1.00 & 0.591838\\
+    2.00 & 0.786732\\
+    4.00 & 0.996208\\
+    8.00 & 0.999920\\\bottomrule
+    \end{tabular}
+    \end{center}
+    \column{0.58\textwidth}
+    \begin{itemize}
+      \item $g(0)=\frac12$: same spins completely excluded, opposite spins uncorrelated at this level (week 42, pause \#5)
+      \item Each electron moves inside a hole in the density of its neighbours, of radius $\sim k_F^{-1}$
+      \item The hole obeys an \alert{exact sum rule}: it contains precisely one missing electron,
+      \[
+        n\int\dd^3s\,[g(s)-1]=\frac{4}{3\pi}\int_0^\infty\dd y\,y^2[g(y)-1]=-1
+      \]
+    \end{itemize}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[shrink=5]{The hole and its sum rule (chapter 8, Fig.\ 8.2)}
+  \begin{columns}[T]
+    \column{0.62\textwidth}
+    \includegraphics[width=\textwidth]{chapter08/dft_fig02}
+    \column{0.38\textwidth}
+    \small
+    \begin{itemize}
+      \item Left: $g$ rises from $\frac12$ to $0.9962$ by $y=4$, then unity to three decimals --- a short-ranged object
+      \item Right: weighted by $y^2$ the Friedel-like ripples are not negligible: the tail decays only as $y^{-2}$. Out to $y=20$ the integral is $-0.953$; $-0.9976$ needs $k_Fs\simeq400$
+      \item The sum rule is exact, but satisfied slowly, by a tail rather than by the visible hole
+    \end{itemize}
+  \end{columns}
+  \vspace{0.3em}
+  \begin{block}{Why a local approximation works at all}
+    $E_{\rm xc}$ is, to a good approximation, the electrostatic interaction of each electron with its own hole. That depends mostly on the hole's \emph{total charge} --- fixed exactly by the sum rule --- and only weakly on its shape. A functional that gets the shape badly wrong and the normalisation right still gives good energies. The LDA hole is the hole of a system where the sum rule holds.
+  \end{block}
+\end{frame}
+
+\begin{frame}{Pause to think: holes and the methods of this course}
+  \thinkq{4}{
+  \begin{enumerate}
+    \item At the Hartree-Fock level the hole around an electron is entirely an \emph{exchange} hole, between like spins. What does correlation add, and between which spins?
+    \item The exact exchange-correlation hole also integrates to exactly $-1$. Which of the pieces --- exchange, correlation --- carries the $-1$, and what does the other integrate to?
+    \item The RPA of chapter 7 sums ring diagrams. In the language of this week, what does it do to the hole of the electron gas at small $q$?
+  \end{enumerate}}
+\end{frame}
+
+\begin{frame}[shrink=2]{Answer}
+  \thinka{
+  \begin{enumerate}
+    \item A \emph{correlation hole} between \emph{unlike} spins (and a deepening of the like-spin one): the repulsion keeps opposite-spin electrons apart, which the determinant cannot describe --- the $\rho^{(2)}$ beyond the factorised form of week 42.
+    \item Exchange alone integrates to $-1$ (the Fermi sea's hole above). So the correlation hole integrates to \alert{zero}: it moves charge around the electron --- deepens the hole at short range, piles it up further out --- without changing its total. That is why correlation energies are a small fraction of exchange energies, and why the LDA, exact for the total, is tolerable for the shape.
+    \item It screens: the rings resum $4\pi e^2/q^2$ into $4\pi e^2/(q^2+k_{\rm TF}^2)$, so the long-range part of the hole is cut off at the screening length. The Ceperley-Alder $\epsilon_c(n)$ contains this (and everything else) exactly, for the uniform gas; the RPA gets the leading $\ln r_s$ of it (Gell-Mann-Brueckner).
+  \end{enumerate}}
+\end{frame}
+
+% ======================================================================
+\section{Friday, lecture 3: Kohn-Sham in practice}
+% ======================================================================
+
+\begin{frame}[shrink=5]{Beyond LDA, in one frame (section 8.6.2)}
+  The density in an atom or molecule is anything but slowly varying. The natural first correction lets the functional see the gradient:
+  \[
+    E_{\rm xc}^{\rm GGA}[n]=\int\dd^3r\,n(\bm r)\,\epsilon_{\rm xc}\bigl(n(\bm r),|\nabla n(\bm r)|\bigr)
+  \]
+  \begin{itemize}
+    \item A naive gradient expansion of the uniform gas makes things \emph{worse}; what works is to build the gradient dependence so as to preserve the exact constraints --- the sum rule, scaling relations, known limits (PBE, 1996)
+    \item Meta-GGAs add the kinetic energy density $\sum_i|\nabla\psi_i|^2$; hybrids mix in a fraction of exact Hartree-Fock exchange, which is self-interaction free by construction
+    \item ``Jacob's ladder'': each rung adds an ingredient, none converges to $F[n]$ --- there is no hierarchy in the sense of CISD $\to$ CISDT $\to$ FCI
+  \end{itemize}
+  \warnbox{Hartree-Fock exchange mixed into a Kohn-Sham calculation is no longer a local potential: a hybrid gives up the one thing that made $v_{\rm xc}$ cheap, and the four-index integrals return. The gain is in accuracy for molecules, not in cost.}
+\end{frame}
+
+\begin{frame}[shrink=2]{One Hamiltonian, three methods (section 8.7)}
+  $N$ spinless fermions in a one-dimensional harmonic trap with the softened Coulomb repulsion $v(s)=1/\sqrt{s^2+0.25}$, eight oscillator orbitals --- the system of week 38's Hartree-Fock and of chapter 2's exact diagonalisation. Kohn-Sham needs a functional for \emph{this} interaction, and there is none in any table, so \texttt{dft.py} builds one:
+  \[
+    k_F=\pi n,\qquad\rho^{(1)}(s)=\frac{\sin(k_Fs)}{\pi s},\qquad
+    \boxed{\;\epsilon_x(n)=-\frac1n\int_0^\infty\dd s\,v(s)\left[\frac{\sin(k_Fs)}{\pi s}\right]^2\;}
+  \]
+  \begin{itemize}
+    \item The exchange energy of the factorised $\rho^{(2)}$ of week 42, for the uniform 1D gas, evaluated numerically on a grid of densities, tabulated and spline-interpolated --- \alert{this is precisely how real functionals are made}
+    \item $v_x(n)=\dd(n\epsilon_x)/\dd n$ from the spline
+  \end{itemize}
+  \begin{center}\small
+  \begin{tabular}{@{}rrr|rrr@{}}\toprule
+  $n$ & $\epsilon_x(n)$ & $v_x(n)$ & $n$ & $\epsilon_x(n)$ & $v_x(n)$\\\midrule
+  0.05 & $-0.1735$ & $-0.2974$ & 0.80 & $-0.7588$ & $-0.9659$\\
+  0.20 & $-0.4233$ & $-0.6579$ & 1.50 & $-0.8655$ & $-0.9970$\\
+  0.40 & $-0.5956$ & $-0.8488$ & 2.50 & $-0.9190$ & $-0.9999$\\\bottomrule
+  \end{tabular}
+  \end{center}
+\end{frame}
+
+\begin{frame}{The one-dimensional functional (chapter 8, Fig.\ 8.3)}
+  \begin{columns}[T]
+    \column{0.55\textwidth}
+    \includegraphics[width=\textwidth]{chapter08/dft_fig03}
+    \column{0.45\textwidth}
+    \small
+    \begin{itemize}
+      \item Unlike $n^{1/3}$ in three dimensions, both curves \emph{saturate}: $v_x=-0.9833$ at $n=1$, $-0.99990$ at $n=2.5$, the limit $-v(0)/2=-1$ of pause \#3
+      \item $v_x$ lies below $\epsilon_x$ everywhere, by $0.25$ at $n=0.5$: the one-dimensional version of the factor $\frac43$
+      \item It is the potential that enters the Kohn-Sham equation and the energy per particle that enters $E$ --- the gap between the curves is exactly what the double-counting correction undoes
+      \item $241$ tabulated densities to $n=3$, so the spline is never extrapolated inside the loop
+    \end{itemize}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{The result: Kohn-Sham, Hartree-Fock, exact}
+  \begin{center}
+  \begin{tabular}{@{}rrrr@{}}\toprule
+  $N$ & $E$ (Kohn-Sham, local exchange) & $E$ (Hartree-Fock) & $E$ (exact)\\\midrule
+  1 & 0.54752674 & 0.50000000 & 0.50000000\\
+  2 & 2.72022768 & 2.66308878 & 2.65923049\\
+  3 & 6.45108052 & 6.39016133 & ---\\
+  4 & 11.68602229 & 11.62305385 & ---\\\bottomrule
+  \end{tabular}
+  \end{center}
+  \begin{itemize}
+    \item The Hartree-Fock column is week 38's table; the exact $N=2$ value is the full diagonalisation of chapter 2, $3.86\times10^{-3}$ below Hartree-Fock --- the correlation energy quoted there. Three chapters consistent
+    \item Kohn-Sham lies \alert{above both}. Not a failure of the variational principle: no correlation functional was put in, so this is the error of treating exchange \emph{locally} --- compounded by a second defect, isolated below
+    \item For $N=1$ the exact answer is the oscillator ground state $0.5$. Hartree-Fock gets it exactly; Kohn-Sham misses by $0.0475$. There is nothing for one particle to interact with --- so what is it interacting with?
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[shrink=6]{What the self-consistent solution looks like (chapter 8, Fig.\ 8.4)}
+  \begin{columns}[T]
+    \column{0.64\textwidth}
+    \includegraphics[width=\textwidth]{chapter08/dft_fig04}
+    \column{0.36\textwidth}
+    \small
+    \begin{itemize}
+      \item Left, $N=4$: four maxima --- the shell structure Thomas-Fermi destroyed is back. The repulsion pushes the outer pair from $\pm1.64$ to $\pm1.84$ and flattens the centre
+      \item Kohn-Sham and Hartree-Fock lie almost on top of each other ($\max|\Delta n|=0.028$); Hartree-Fock is the more strongly modulated, Kohn-Sham carries $7\%$ more weight beyond $|x|=3$ --- an electron spreading out to escape \emph{its own} charge
+      \item Right: linear mixing at $30\%$, contraction $0.685$ per iteration, $7\times10^{-11}$ after $58$ --- the straight line of a fixed-point iteration, as in week 38
+    \end{itemize}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[shrink=8]{The self-interaction error (section 8.7.1)}
+  \small
+  One particle: nothing to interact with, exact energy $0.5$. Hartree-Fock gives exactly that --- the direct term with $l=k$ is cancelled term by term by the exchange term with $l=k$; \alert{a determinant is rigorously free of self-interaction}.
+  \vspace{0.3em}
+  A local functional cannot do this. It sees only the density, and the density of one electron is indistinguishable from the density of half of two:
+  \[
+    \mathcal U_{\rm H}=0.60855522,\qquad E_x^{\rm LDA}=-0.56166291,\qquad
+    \boxed{\;\mathcal U_{\rm H}+E_x^{\rm LDA}=0.04689232\;}\ \ (\text{should be }0)
+  \]
+  \begin{itemize}
+    \item The residue accounts for almost all of the $0.0475$ by which Kohn-Sham misses the one-particle energy
+    \item One number explains a list: anions overbound, reaction barriers too low, band gaps too small, charge over-delocalised --- an electron spuriously repelled by itself spreads out to reduce that repulsion
+    \item Cures: self-interaction corrections orbital by orbital (Perdew-Zunger); hybrids, which mix in exact exchange
+  \end{itemize}
+  \mbbox{Hartree-Fock is exact for one particle and fails only through what a determinant cannot represent. The local functional is wrong already at $N=1$, where there is no many-body problem at all --- the opposite kind of failure.}
+\end{frame}
+
+\begin{frame}{Pause to think: diagnosing an error}
+  \thinkq{4}{
+  The Kohn-Sham energies above lie $0.0475$, $0.0571$, $0.0609$, $0.0630$ above Hartree-Fock for $N=1,2,3,4$.
+  \begin{enumerate}
+    \item For $N=1$ the whole error is self-interaction. For $N=4$ it is a mixture of self-interaction and the error of locality in exchange. How would you \emph{separate} the two, using only quantities a Kohn-Sham code already has?
+    \item Would adding a correlation functional, if we had one, make the Kohn-Sham energy go below Hartree-Fock? Below the exact answer?
+  \end{enumerate}}
+\end{frame}
+
+\begin{frame}{Answer}
+  \thinka{
+  \begin{enumerate}
+    \item Evaluate, on one and the same density, the \emph{exact} exchange energy of the Kohn-Sham determinant, $E_x=-\frac12\sum_{kl}\iint\phi_k^{*}\phi_l^{*}\,w\,\phi_l\phi_k$, and the local estimate $\int n\epsilon_x(n)$. Their difference is the error of locality alone; what is left of the gap to Hartree-Fock is self-consistency and self-interaction. The next frame does it: the local functional recovers $92\%$, $96\%$, $97\%$, $98\%$ of the exchange energy.
+    \item Below Hartree-Fock, yes, if $|\epsilon_c|$ outweighs the locality error --- for real atoms it does. Below the exact answer: possible. Kohn-Sham with an approximate functional is \alert{not variational} with respect to the exact energy; only the exact $F[n]$ obeys $E[n]\ge E_0$. An LDA energy that undershoots the exact one is not a contradiction, and it happens.
+  \end{enumerate}}
+\end{frame}
+
+\begin{frame}{How local is too local? (section 8.7.2, Fig.\ 8.5)}
+  \begin{columns}[T]
+    \column{0.42\textwidth}
+    \begin{center}\small
+    \begin{tabular}{@{}rrrr@{}}\toprule
+    $N$ & $E_x$ exact & $E_x$ local & ratio\\\midrule
+    1 & $-0.6086$ & $-0.5617$ & 0.9229\\
+    2 & $-1.3308$ & $-1.2775$ & 0.9600\\
+    3 & $-2.1109$ & $-2.0555$ & 0.9738\\
+    4 & $-2.9252$ & $-2.8687$ & 0.9807\\\bottomrule
+    \end{tabular}
+    \end{center}
+    \includegraphics[width=\textwidth]{chapter08/dft_fig05}
+    \column{0.58\textwidth}
+    \small
+    \begin{itemize}
+      \item Both on the \emph{same} self-consistent density: the only error measured is locality
+      \item $N(1-r)=0.077,\,0.080,\,0.079,\,0.077$: the shortfall is $\simeq0.078/N$. The error lives in the \emph{surface} of the density --- the two edges and the shell minima --- whose number does not grow with $N$ while the bulk does
+      \item Eighty particles before locality costs less than $0.1\%$; real atoms in 3D: about $90\%$ of exchange recovered
+      \item One-signed (never overbinds) and smooth in $N$: it does not cancel in a reaction energy, and it is just the kind of error a gradient term can plausibly repair
+    \end{itemize}
+  \end{columns}
+\end{frame}
+
+% ======================================================================
+\section{Friday, lecture 4: Where the method sits}
+% ======================================================================
+
+\begin{frame}{Density functional theory among the methods of this course}
+  \begin{center}\small
+  \begin{tabular}{@{}llll@{}}\toprule
+  method & object computed & improvable? & error estimate\\\midrule
+  Hartree-Fock & one determinant & no (a starting point) & none internal\\
+  CI, CC, MBPT & wave function about a reference & yes: a hierarchy & excitation level, order\\
+  RPA & fluctuations about the reference & partly & stability, sum rules\\
+  DMRG & matrix product state & yes: bond dimension & discarded weight\\
+  Kohn-Sham DFT & density, via fictitious orbitals & \alert{no} & \alert{none}\\\bottomrule
+  \end{tabular}
+  \end{center}
+  \begin{itemize}
+    \item No sequence of functionals converges to $F[n]$, and no internal estimate of the error exists. Validation is by comparison --- with experiment, or with the wave-function methods on systems small enough for them
+    \item What it offers instead: a cost that scales gently enough for thousands of atoms, and an accuracy that, for reasons now partly understood (the sum rule), is far better than the crudeness of the approximations suggests
+    \item Its errors are of a different \emph{character}: not ``too few configurations'' but ``the wrong hole'' --- self-interaction, missing derivative discontinuity, no van der Waals from a local functional
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Pause to think: when to use what}
+  \thinkq{4}{
+  For each system, which method of the course would you reach for first, and what would you distrust in its answer?
+  \begin{enumerate}
+    \item The cohesive energy and lattice constant of sodium metal.
+    \item The dissociation curve of the H$_2$ molecule, out to large separation.
+    \item The ground state of a 100-site Hubbard chain at half filling.
+    \item The binding energy of $^{16}$O with a realistic nuclear force (no external potential; the force is short-ranged and strongly repulsive at short distance).
+  \end{enumerate}}
+\end{frame}
+
+\begin{frame}[shrink=2]{Answer}
+  \thinka{
+  \begin{enumerate}
+    \item Kohn-Sham, LDA or GGA: a nearly uniform valence gas is the case the local approximation is \emph{designed} for. Distrust $m^{*}$-sensitive quantities at the few-per-cent level.
+    \item Restricted Hartree-Fock and single-reference CC cannot split into two neutral atoms; LDA gives a wrong asymptote through self-interaction. Two electrons: FCI is trivial --- use it. The general lesson: DMRG or a multireference method.
+    \item The DMRG: one dimension, 100 sites, ten digits at modest $\chi$. Distrust only your own convergence checks (week 41).
+    \item Coupled cluster or MBPT from a renormalised interaction; the nuclear energy density functionals (Skyrme, Gogny) are Kohn-Sham with $v_{\rm ext}=0$ and fitted parameters --- cheap, accurate across the chart, same ``no error bar'' caveat.
+  \end{enumerate}}
+\end{frame}
+
+% ======================================================================
+\section{Summary}
+% ======================================================================
+
+\begin{frame}{Summary of week 43}
+  \small
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+    \begin{block}{Thursday: construction and functional}
+      \begin{itemize}
+        \item Orbitals for $T_s$ only; $E_{\rm xc}$ redefined to absorb $T-T_s$ and $V_{\rm int}-\mathcal U_{\rm H}$
+        \item Kohn-Sham equations: Hartree-Fock's loop with a local $v_{\rm xc}=\delta E_{\rm xc}/\delta n$; $E\ne\sum\varepsilon_i$
+        \item KS orbitals reproduce $n$, nothing else; eigenvalues are not excitations
+        \item LDA: $\epsilon_x=-\frac34(3/\pi)^{1/3}n^{1/3}$, $v_x=\frac43\epsilon_x$; $\epsilon_c$ from QMC
+        \item The hole: $g(0)=\frac12$, sum rule $-1$ --- the total charge is what the energy feels
+      \end{itemize}
+    \end{block}
+    \column{0.48\textwidth}
+    \begin{block}{Friday: practice and verdict}
+      \begin{itemize}
+        \item A functional made from $\rho^{(1)}$ of the uniform gas, numerically --- as real ones are
+        \item KS above HF with local exchange: locality error plus self-interaction, $\mathcal U_{\rm H}+E_x\ne0$ for $N=1$
+        \item Locality alone: $1-r\simeq0.078/N$, a surface error, one-signed
+        \item Not variational, not improvable, no error bar --- and indispensable
+      \end{itemize}
+    \end{block}
+  \end{columns}
+  \vspace{0.3em}
+  \centering The electron gas did all the work: its kinetic energy gave Thomas-Fermi, its exchange gave Dirac and the LDA, its correlation came from Monte Carlo, and its hole explains why any of it works.
+\end{frame}
+
+\begin{frame}{Next week, and a closing remark}
+  \begin{exampleblock}{Week 44, October 29--30: many-body perturbation theory (chapter 9) --- to be confirmed}
+    \small
+    Back to the wave function, and to a reference determinant: an exact starting point, projection operators and the resolvent, Brillouin-Wigner versus Rayleigh-Schr\"odinger perturbation theory, the wave operator and its link to configuration interaction, the pairing model order by order, and how far a series can be trusted. Reading: chapter 9, sections 9.1--9.7. Exercise sessions resume after the midterm.
+  \end{exampleblock}
+  \vspace{0.6em}
+  \small
+  Two weeks on one idea. The uniform electron gas is the only interacting system we can solve in closed form at the mean-field level, and the local density approximation is nothing but that solution applied pointwise. Everything that makes density functional theory work --- shell structure from the Kohn-Sham orbitals, the right total hole charge from the sum rule --- and everything that makes it fail --- self-interaction, locality at the edges, a fictitious spectrum asked real questions --- can be seen in a four-particle trap with a two-hundred-line program.
+  \vspace{0.4em}
+
+  \centering\alert{Next: perturbation theory, where the reference returns and the diagrams of weeks 37--39 start to pay their way.}
+\end{frame}
+
+\end{document}
