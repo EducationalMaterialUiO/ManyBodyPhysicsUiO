@@ -26,5 +26,5 @@ Reading: the slides; lecture notes chapter 11, sections 11.3 and 11.5–11.7; Sc
 ## Next week (week 42)
 
 - Thursday: back to the mean field – the infinite homogeneous electron gas in Hartree-Fock: plane waves as the self-consistent orbitals, the direct term against the background, the exchange energy in closed form, the single-particle energies and their logarithmic singularity at k_F, the energy per particle in r_s.
-- Friday: density functional theory – the electronic Hamiltonian and reduced density matrices, the Hohenberg–Kohn theorems, the Kohn–Sham construction, and the local density approximation built from the electron gas.
-- Reading: chapter 6, section 6.14; chapter 8, sections 8.1–8.6; Szabo–Ostlund, chapter 3 for the plane-wave Hartree-Fock. The week-41 exercises are answered on the week-42 slides.
+- Friday: density functional theory, part I – the electronic Hamiltonian and reduced density matrices, the Hohenberg–Kohn theorems and what they do not give, and a first functional built from the electron gas; week 43 continues with Kohn–Sham and the local density approximation.
+- Reading: chapter 6, section 6.14; chapter 8, sections 8.1–8.4; Szabo–Ostlund, chapter 3 for the plane-wave Hartree-Fock. No exercise sessions in weeks 42 and 43 (first midterm); worked answers to the week-41 exercises are in the lecture notes, chapter 11, exercises 1 and 7.
