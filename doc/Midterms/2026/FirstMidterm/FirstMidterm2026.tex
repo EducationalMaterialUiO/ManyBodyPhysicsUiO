@@ -1,0 +1,573 @@
+\documentclass[prc]{revtex4} \usepackage[dvips]{graphicx}
+\usepackage{mathrsfs} \usepackage{amsfonts} \usepackage{lscape}
+
+\usepackage{epic,eepic} \usepackage{amsmath} \usepackage{amssymb}
+\usepackage[dvips]{epsfig} \usepackage[T1]{fontenc}
+\usepackage{hyperref} \usepackage{bezier} \usepackage{pstricks}
+\usepackage{dcolumn}% Align table columns on decimal point
+\usepackage{bm}% bold math
+%\usepackage{braket}
+\usepackage[dvips]{graphicx} \usepackage{pst-plot}
+
+\newcommand{\One}{\hat{\mathbf{1}}} \newcommand{\eff}{\text{eff}}
+\newcommand{\Heff}{\hat{H}_\text{eff}}
+\newcommand{\Veff}{\hat{V}_\text{eff}}
+\newcommand{\braket}[1]{\langle#1\rangle}
+\newcommand{\Span}{\operatorname{sp}}
+\newcommand{\tr}{\operatorname{trace}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\bra}[1]{\left\langle #1 \right|}
+\newcommand{\ket}[1]{\left| #1 \right\rangle} \newcommand{\element}[3]
+           {\bra{#1}#2\ket{#3}}
+
+\newcommand{\normord}[1]{ \left\{#1\right\} }
+
+\usepackage{amsmath}
+% Sub-items of an exercise are labelled (i), (ii), ...
+\renewcommand{\labelenumii}{(\roman{enumii})}
+%\newcommand{\be}{\begin{equation}}
+%\newcommand{\ee}{\end{equation}}
+%\newcommand{\OP}[1]{{\bf\widehat{#1}}}
+
+\begin{document}
+
+\begin{center}
+{\LARGE\bf
+First midterm FYS4480 – Quantum mechanics for many-particle systems, deadline October 26, at midnight. This midterm counts 25$\%$ of the final grade. Total score:100 points.}
+\end{center}
+\begin{center}
+% List of all institutions:
+\centerline{{\small Department of Physics, University of Oslo, Norway}}
+\end{center}
+
+
+We present a simplified Hamiltonian consisting of an unperturbed
+Hamiltonian and a so-called pairing interaction term. It is a model
+which to a large extent mimics some central features of atomic
+nuclei, certain atoms and systems which exhibit superfluidity or
+superconductivity.  To study this system we will use three of the
+methods of this course, in the order in which they have been
+developed in the lectures: full configuration interaction (FCI)
+theory, Hartree-Fock (HF) theory and the density matrix
+renormalization group (DMRG). The midterm is divided into three parts
+which follow this order and build on each other.
+
+In Part I we use second quantization to set up the Hamiltonian matrix
+in the space of all Slater determinants of the model. Diagonalizing
+this matrix is the FCI method and provides us with the exact answer,
+which serves as the reference for everything that follows. We also
+look at what happens when the space of Slater determinants is
+truncated. In Part II we go to the opposite extreme and look for the
+best possible \emph{single} Slater determinant, which is Hartree-Fock
+theory. In Part III we return to the exact FCI state and rewrite it as
+a matrix product state (MPS), and the Hamiltonian as a matrix product
+operator (MPO). The bond dimension $\chi$ of the MPS interpolates
+between a product state over the single-particle levels ($\chi=1$) and
+the exact FCI state, and the DMRG is the variational method which
+finds the best MPS at a given $\chi$. The three methods are thus
+different ways of parametrizing the same many-body wave function, and
+the aim of the midterm is to see how they are related for one and the
+same model.  When setting up the Hamiltonian matrix you will need to
+solve an eigenvalue problem.
+
+We define first the Hamiltonian, with a definition of the model space
+and the single-particle basis. Thereafter, we present the various
+exercises.
+
+
+The Hamiltonian acting in the complete Hilbert space (usually infinite
+dimensional) consists of an unperturbed one-body part, $\hat{H}_0$,
+and a perturbation $\hat{V}$.
+
+We limit ourselves to at most two-body interactions, our Hamiltonian
+is then represented by the following operators
+\[
+\hat{H} = \sum_{\alpha\beta}\langle \alpha |h_0|\beta\rangle
+a_{\alpha}^{\dagger}a_{\beta}
++\frac{1}{4}\sum_{\alpha\beta\gamma\delta}\langle \alpha\beta|
+V|\gamma\delta\rangle
+a_{\alpha}^{\dagger}a_{\beta}^{\dagger}a_{\delta}a_{\gamma},
+\]
+where $a_{\alpha}^{\dagger}$ and $a_{\alpha}$ etc.~are standard
+fermion creation and annihilation operators, respectively, and
+$\alpha\beta\gamma\delta$ represent all possible single-particle
+quantum numbers.  The full single-particle space is defined by the
+completeness relation $\hat{{\bf 1}} = \sum_{\alpha
+  =1}^{\infty}|\alpha \rangle \langle \alpha|$.  In our calculations
+we will let the single-particle states $|\alpha\rangle$ be
+eigenfunctions of the one-particle operator $\hat{h}_0$. Note that the two-body part of the Hamiltonian 
+contains anti-symmetrized matrix elements.
+
+
+The above Hamiltonian acts in turn on various many-body Slater
+determinants constructed from the single-basis defined by the one-body
+operator $\hat{h}_0$.  As an example, the two-particle model space
+$\mathcal{P}$ is defined by an operator
+\[
+\hat{P} = \sum_{\alpha\beta =1}^{m}|\alpha\beta \rangle \langle
+\alpha\beta|,
+\]
+where we assume that $m=\dim(\mathcal{P})$ and the full space is
+defined by
+\[
+\hat{P}+\hat{Q}=\hat{{\bf 1}},
+\]
+with the projection operator
+\[
+\hat{Q} = \sum_{\alpha\beta =m+1}^{\infty}|\alpha\beta \rangle \langle
+\alpha\beta|,
+\]
+being the complement of $\hat{P}$.
+
+
+Our specific model consists of $N$ doubly-degenerate and equally
+spaced single-particle levels labelled by $p=1,2,\dots$ and spin
+$\sigma=\pm 1$.  These states are schematically portrayed in
+Fig.~\ref{fig:schematic}.  The first two single-particle levels define
+a possible model space, indicated by the label $\mathcal{P}$.  The
+remaining states span the excluded space $\mathcal{Q}$.
+
+We write the Hamiltonian as
+\[ \hat{H} = \hat{H}_0 + \hat{V} , \]
+where
+\[
+\hat{H}_0=\xi\sum_{p\sigma}(p-1)a_{p\sigma}^{\dagger}a_{p\sigma}
+\]
+and
+\[
+\hat{V}=-\frac{1}{2}g\sum_{pq}a^{\dagger}_{p+}
+a^{\dagger}_{p-}a_{q-}a_{q+}.
+\]
+Here, $H_0$ is the unperturbed Hamiltonian with a spacing between
+successive single-particle states given by $\xi$, which we will set to
+a constant value $\xi=1$ without loss of generality (except in
+exercise~7 below, where we study the degenerate case $\xi=0$). The two-body
+operator $\hat{V}$ has one term only. It represents the pairing
+contribution and carries a constant strength $g$. The pairing
+interaction is attractive for $g>0$.
+
+The indices
+$\sigma=\pm$ represent the two possible spin values. The interaction
+can only couple pairs and excites therefore only two particles at the
+time, as indicated by the rightmost four-particle state in
+Fig.~\ref{fig:schematic}. There one of the pairs is excited to the
+state with $p=9$ and the other to the state $p=7$. The two middle
+possibilities are not possible with the present model.  We label
+single-particle states within the model space as hole-states. The
+single-particle states outside the model space are then particle
+states. 
+
+In our model we have kept both the interaction strength and the
+single-particle level as constants.  In a realistic system like an
+atom or the atomic nucleus this is not the case.
+
+
+
+
+
+\begin{figure*}[htbp]
+\vspace{1.0cm} \setlength{\unitlength}{1cm}
+ \begin{picture}(15,14)
+ \thicklines \put(-0.6,1){\makebox(0,0){$p=1$}}
+ \put(-0.6,2){\makebox(0,0){$p=2$}} \put(-0.6,3){\makebox(0,0){$p=3$}}
+ \put(-0.6,4){\makebox(0,0){$p=4$}} \put(-0.6,5){\makebox(0,0){$p=5$}}
+ \put(-0.6,6){\makebox(0,0){$p=6$}} \put(-0.6,7){\makebox(0,0){$p=7$}}
+ \put(-0.6,8){\makebox(0,0){$p=8$}} \put(-0.6,9){\makebox(0,0){$p=9$}}
+ \put(-0.6,10){\makebox(0,0){$p=10$}}
+ \put(-0.6,11){\makebox(0,0){$p=\dots$}}
+ \put(16,8){\makebox(0,0){$\mathcal{Q}$}}
+ \put(16,2){\makebox(0,0){$\mathcal{P}$}}
+% first 4-particle state
+\put(0.8,1){\circle*{0.3}} \put(0.8,2){\circle*{0.3}}
+\put(1.7,1){\circle*{0.3}} \put(1.7,2){\circle*{0.3}}
+% second 4-particle state
+\put(5.0,1){\circle*{0.3}} \put(5.9,1){\circle*{0.3}}
+\put(5.0,4){\circle*{0.3}} \put(5.0,2){\circle{0.3}}
+\put(5.9,3){\circle*{0.3}} \put(5.9,2){\circle{0.3}}
+% third 4-particle state
+\put(9.2,1){\circle*{0.3}} \put(10.1,3){\circle*{0.3}}
+\put(9.2,4){\circle*{0.3}} \put(10.1,8){\circle*{0.3}}
+\put(10.1,1){\circle{0.3}} \put(9.2,2){\circle{0.3}}
+\put(10.1,2){\circle{0.3}}
+% third 4-particle state
+\put(13.4,7){\circle*{0.3}} \put(14.3,7){\circle*{0.3}}
+\put(13.4,9){\circle*{0.3}} \put(14.3,9){\circle*{0.3}}
+\put(13.4,1){\circle{0.3}} \put(14.3,1){\circle{0.3}}
+\put(13.4,2){\circle{0.3}} \put(14.3,2){\circle{0.3}}
+\dashline[+1]{2.5}(0,1)(15,1) \dashline[+1]{2.5}(0,2)(15,2)
+\dashline[+1]{2.5}(0,3)(15,3) \dashline[+1]{2.5}(0,4)(15,4)
+\dashline[+1]{2.5}(0,5)(15,5) \dashline[+1]{2.5}(0,6)(15,6)
+\dashline[+1]{2.5}(0,7)(15,7) \dashline[+1]{2.5}(0,8)(15,8)
+\dashline[+1]{2.5}(0,9)(15,9) \dashline[+1]{2.5}(0,10)(15,10)
+\thinlines \dashline{0.1}(0,2.5)(15,2.5) \dashline{0.1}(0,11)(15,11)
+ \end{picture}
+\caption{Schematic plot of the possible single-particle levels with
+  double degeneracy.  The filled circles indicate occupied particle
+  states while the empty circles represent vacant particle(hole)
+  states.  The spacing between each level $p$ is constant in this
+  picture.  The first two single-particle levels define our possible
+  model space, indicated by the label $\mathcal{P}$.  The remaining
+  states span the excluded space $\mathcal{Q}$.  The first state to
+  the left represents a possible ground state representation for a
+  four-fermion system. In the second state to the left, one pair is
+  broken. This possibility is however not included in our
+  interaction. \label{fig:schematic}}
+\end{figure*}
+
+%======================================================================
+\subsection*{Part I: Second quantization and full configuration interaction theory (40 points)}
+
+\begin{enumerate}
+\item (15/100 points) Show that the unperturbed Hamiltonian $\hat{H}_0$ and $\hat{V}$
+  commute with both the spin projection $\hat{S}_z$ and the total spin
+  $\hat{S}^2$, given by
+\[
+  \hat{S}_z := \frac{1}{2}\sum_{p\sigma} \sigma
+  a^\dag_{p\sigma}a_{p\sigma}
+\]
+and
+\[
+  \hat{S}^2 := \hat{S}_z^2 + \frac{1}{2}(\hat{S}_+\hat{S}_- +
+  \hat{S}_-\hat{S}_+),
+\]
+where
+\[
+  \hat{S}_\pm := \sum_{p} a^\dag_{p\pm} a_{p\mp}.
+\]
+
+This is an important feature of our system that allows us to
+block-diagonalize the full Hamiltonian. We will focus on total spin
+$S=0$.  In this case, it is convenient to define the so-called pair
+creation and pair annihilation operators
+\[
+\hat{P}^{+}_p = a^\dag_{p+}a^\dag_{p-},
+\]
+and
+\[
+\hat{P}^{-}_p = a_{p-}a_{p+},
+\] 
+respectively.
+
+Show that you can rewrite the Hamiltonian (with $\xi=1$) as
+\[
+\hat{H}=\sum_{p\sigma}(p-1)a_{p\sigma}^{\dagger}a_{p\sigma}
+-\frac{1}{2}g\sum_{pq}\hat{P}^{+}_p\hat{P}^{-}_q.
+\]
+Show also that pair creation operators  commute among themselves.
+
+In this midterm we focus only on a 
+system with no broken pairs. This means that the Hamiltonian can only
+link two-particle states in so-called spin-reversed states.
+
+
+\item (15/100 points) Construct thereafter the Hamiltonian matrix for a system with no
+  broken pairs and total spin $S=0$ for the case of the four lowest
+  single-particle levels indicated in the
+  Fig.~\ref{fig:schematic}. Our system consists of four particles
+  only.  Our single-particle space consists of only the four lowest
+  levels $p=1,2,3,4$.  You need to set up all possible Slater
+  determinants.  Find all eigenvalues by diagonalizing the Hamiltonian
+  matrix.  Vary your results for values of $g\in [-1,1]$.  We refer to
+  this as the exact calculation. Comment the behavior of the ground
+  state as function of $g$. Keep the ground-state eigenvector (not
+  only the eigenvalue) for each value of $g$; you will need it in Part~III.
+
+\item  (10/100 points)
+
+Instead of setting up all possible Slater determinants, construct only
+an approximation to the ground state (where we assume that the four
+particles are in the two lowest single-particle orbits only) which
+includes at most two-particle-two-hole excitations. Diagonalize this
+matrix and compare with the exact calculation and comment your
+results. Can you set up which diagrams this approximation corresponds
+to?
+
+\end{enumerate}
+
+%======================================================================
+\subsection*{Part II: Hartree-Fock theory (15 points)}
+
+\begin{enumerate}
+\setcounter{enumi}{3}
+\item  (15/100 points) We switch now to approximative methods, with Hartree-Fock
+  theory first. Hereafter we will define
+  our model space to consist of the single-particle levels $p=1,2$.
+  The remaining levels $p=3,4$ define our excluded space.  This means
+  that our ground state Slater determinant consists of four particles
+  which can be placed in the doubly degenerate orbits $p=1$ and $p=2$.
+  Our first step is to perform a Hartree-Fock calculation with the
+  pairing Hamiltonian.  Write first the normal-ordered Hamiltonian
+  with respect to the above reference state given by four spin $1/2$
+  fermions in the single-particle levels $p=1,2$, and set up the
+  standard Hartree-Fock equations for the above system (often called
+  restricted Hartree-Fock due to the fact that we have an equal number
+  of spin-orbitals).
+
+ The standard way to perform a Hartree-Fock calculation is to
+expand the single-particle functions in a known basis  and vary the coefficients,  that is, the new function single-particle wave function $|p\rangle$ is written as a linear expansion in terms of a fixed basis $\phi$
+\begin{equation*} 
+\psi_p  = \sum_{\lambda} C_{p\lambda}\phi_{\lambda},
+\end{equation*}
+
+This leads to a new Slater determinant which is related to the
+previous via a unitary transformation.  
+We consider a Slater determinant built up of single-particle orbitals
+$\phi_{\lambda}$ where the indices $\lambda$ refer to specific
+single-particle states. 
+
+The unitary transformation
+
+\begin{equation*}
+\psi_p  = \sum_{\lambda} C_{p\lambda}\phi_{\lambda},
+\end{equation*}
+brings us into the new basis $\psi$.  The new basis is orthonormal and $C$ is a unitary matrix.
+
+
+Minimizing with respect to $C^*_{p\alpha}$, remembering that
+$C^*_{p\alpha}$ and $C_{p\alpha}$ (and that the indices contain all
+single-particle quantum numbers including spin) are independent and
+defining
+
+\begin{equation*}
+h_{\alpha\gamma}^{HF}=\langle \alpha | h | \gamma \rangle+
+\sum_{p}\sum_{\beta\delta} C^*_{p\beta}C_{p\delta}\langle \alpha\beta|V|\gamma\delta\rangle_{AS},
+\end{equation*}
+show that you can write the Hartree-Fock  equations as
+
+\begin{equation*}
+\sum_{\gamma}h_{\alpha\gamma}^{HF}C_{p\gamma}=\epsilon_p^{\mathrm{HF}}C_{p\alpha}.
+\label{eq:newhf}
+\end{equation*}
+
+Explain the meaning of the different terms and define the Hartree-Fock
+operator in second quantization. Write down its diagrammatic
+representation as well.  The greek letters refer to the wave functions
+in the original basis 
+while roman letters refer to the new basis.
+
+
+We will now set up the Hartree-Fock equations by varying the
+coefficients of the single-particle functions. The single-particle
+basis functions are defined as
+\[
+\psi_p = \sum_{\lambda} C_{p\lambda}\psi_{\lambda}.
+\]
+where in our case $p=1,2,3,4$ and $\lambda=1,2,3,4$, that is the first
+four lowest single-particle orbits of Fig.~\ref{fig:schematic}.  Set
+up the Hartree-Fock equations for this system by varying the
+coefficients $C_{p\lambda}$ and solve them for values of $g\in
+[-1,1]$.  Comment your results and compare with the exact
+solution. Compute the total ground state energy  using a Hartree-Fock basis and comment your results.
+Does the Hartree-Fock single-particle basis differ from the original
+basis $\phi_\lambda$ for this interaction? Keep the Hartree-Fock
+ground-state energy and the Hartree-Fock Slater determinant for the
+comparison in Part~III.
+
+\end{enumerate}
+
+%======================================================================
+\subsection*{Part III: From Slater determinants to matrix product states and the DMRG (45 points)}
+
+In Part~I the exact ground state was obtained as a vector in the space
+of Slater determinants with no broken pairs, and in Part~II it was
+approximated by a single Slater determinant. The density matrix
+renormalization group offers a third parametrization of the same
+state, in which the amount of correlation that is kept is controlled by
+a single number, the bond dimension $\chi$. In this part we rewrite
+the pairing model in this language and connect it to the two previous
+parts. The relevant background is the chapter on the density matrix
+renormalization group in the lecture notes; the programs
+\texttt{dmrg.py} in \texttt{doc/BookManybody/BookPrograms/chapterdmrg/}
+and the notebook \texttt{doc/LectureNotes/dmrg.ipynb} may be used
+freely, but everything asked for below can also be done with
+\texttt{numpy} alone.
+
+\paragraph*{Notation.}
+We regard each level $p=1,\dots,L$ as a \emph{site} of a chain, with
+the levels ordered by their energy. With no broken pairs a level is
+either empty or occupied by a pair, so each site has a local
+dimension $d=2$ with basis states $|0\rangle$ and $|1\rangle$. The
+pair creation and annihilation operators of exercise~1 act on one site
+only, $\hat{P}^+_p|0\rangle_p=|1\rangle_p$ and
+$\hat{P}^-_p|1\rangle_p=|0\rangle_p$, and the number operator of the
+level is $\hat{n}_p=\hat{n}_{p+}+\hat{n}_{p-}$. The Slater
+determinants of exercise~2 are then product states
+$|n_1n_2\cdots n_L\rangle$ with $n_p\in\{0,1\}$; for four levels and
+two pairs they are
+\[
+|1100\rangle,\quad |1010\rangle,\quad |1001\rangle,\quad
+|0110\rangle,\quad |0101\rangle,\quad |0011\rangle,
+\]
+where for example $|1100\rangle=\hat{P}^+_1\hat{P}^+_2|0\rangle$ is the
+reference state of exercise~4. If broken pairs are allowed, each site
+has instead $d=4$ states, $|0\rangle$, $|+\rangle$, $|-\rangle$ and
+$|+-\rangle$.
+
+Any state of the chain can be written as a \emph{matrix product state}
+(MPS)
+\[
+|\Psi\rangle=\sum_{n_1\cdots n_L}
+A^{[1]n_1}A^{[2]n_2}\cdots A^{[L]n_L}\,|n_1n_2\cdots n_L\rangle,
+\]
+where $A^{[p]n_p}$ is a $\chi_{p-1}\times\chi_p$ matrix for every value
+of $n_p$, with $\chi_0=\chi_L=1$ so that the product is a number. The
+$\chi_\ell$ are the \emph{bond dimensions}; the bond $\ell$ is the cut
+between site $\ell$ and site $\ell+1$. The smallest possible
+$\chi_\ell$ is the rank of the \emph{coefficient matrix} of the cut,
+\[
+C_{(n_1\cdots n_\ell),(n_{\ell+1}\cdots n_L)}
+=\langle n_1\cdots n_L|\Psi\rangle ,
+\]
+whose singular value decomposition $C=U\Sigma V^\dagger$ is the Schmidt
+decomposition $|\Psi\rangle=\sum_{k=1}^{\chi_\ell}\sigma_k
+|\ell_k\rangle|r_k\rangle$ across that cut. The \emph{entanglement
+entropy} of the cut is $S_\ell=-\sum_k\sigma_k^2\ln\sigma_k^2$ for a
+normalized state, and an MPS is in \emph{left-canonical form} when
+$\sum_{n}(A^{[p]n})^\dagger A^{[p]n}=\mathbf{1}$ for every site $p$,
+which is what one obtains by performing the singular value
+decompositions from left to right and absorbing $\Sigma V^\dagger$
+into the next site. A product state, such as a single Slater
+determinant in the level basis, has $\chi_\ell=1$ for every cut and
+zero entanglement entropy.
+
+In the same way an operator can be written as a \emph{matrix product
+operator} (MPO)
+\[
+\hat{H}=\sum_{\{n\},\{n'\}} W^{[1]n_1n_1'}W^{[2]n_2n_2'}\cdots
+W^{[L]n_Ln_L'}\,|n_1\cdots n_L\rangle\langle n_1'\cdots n_L'| ,
+\]
+where it is convenient to think of $W^{[p]}$ as a $D\times D$ matrix
+whose entries are operators acting on site $p$; the first site
+contributes only the first row and the last site only the last column,
+so that the product $W^{[1]}W^{[2]}\cdots W^{[L]}$ is a single operator
+on the chain. The number $D$ is the bond dimension of the MPO. It is
+helpful to read the product as an automaton walking along the chain,
+whose state keeps track of which operators have been placed and are
+still waiting for their partner.
+
+The DMRG is the variational minimization of
+$\langle\Psi|\hat{H}|\Psi\rangle/\langle\Psi|\Psi\rangle$ over all MPS
+with bond dimensions at most $\chi$, carried out one or two sites at a
+time. With $\chi=1$ it searches among product states over the levels;
+with $\chi$ large enough it reproduces the exact FCI state.
+
+\begin{enumerate}
+\setcounter{enumi}{4}
+
+\item (10/100 points) \textbf{The Hamiltonian as a matrix product operator.}
+Starting from the pair form of the Hamiltonian derived in exercise~1,
+\[
+\hat{H}=\sum_{p=1}^{L}\varepsilon_p\hat{n}_p
+-\frac{g}{2}\sum_{pq}\hat{P}^+_p\hat{P}^-_q,
+\qquad \varepsilon_p=\xi(p-1),
+\]
+describe the effect of each term when it acts on a state
+$|n_1n_2\cdots n_L\rangle$. Restrict to zero seniority, that is $d=2$,
+and write down the $2\times 2$ matrices representing $\hat{P}^+_p$,
+$\hat{P}^-_p$ and $\hat{n}_p$ in the basis $\{|0\rangle,|1\rangle\}$ of
+one site. Explain why the MPO bond dimension is $D=4$, that is,
+identify the four states of the automaton that builds the
+Hamiltonian, and explain why the bond dimension does not grow with the
+number of levels $L$ even though the interaction couples every level to
+every other level. Write out the MPO matrix $W^{[p]}$ for a general
+level $p$ and multiply out the full operator for the case of four
+levels, $W^{[1]}W^{[2]}W^{[3]}W^{[4]}$, where $W^{[1]}$ is the first row
+and $W^{[4]}$ the last column of the general matrix. Check that every
+term of $\hat{H}$ appears exactly once, and that the resulting
+operator, restricted to the states with two pairs, reproduces the
+$6\times 6$ Hamiltonian matrix of exercise~2. Finally, what would the
+MPO be if each site has $d=4$ states $|0\rangle$, $|+\rangle$,
+$|-\rangle$ and $|+-\rangle$?
+
+\item (5/100 points) \textbf{Fermions.}
+The particles are fermions. How does this affect the MPO? Recall that
+if the $2L$ spin-orbitals are ordered along the chain, a fermion
+operator acting on orbital $m$ carries the parity string
+$\prod_{m'<m}(-1)^{\hat{n}_{m'}}$ of all orbitals before it
+(Jordan-Wigner transformation). Discuss both the $d=2$ and the $d=4$
+representation, and explain why the pairing Hamiltonian is a
+particularly simple case. Which additional terms in a Hamiltonian,
+for instance a one-body term
+$a^\dagger_{p\sigma}a_{q\sigma}$ with $p\neq q$ which moves a single
+particle between levels, would require the parity strings to appear
+explicitly in the MPO, and how would they appear?
+
+\item (15/100 points) \textbf{Matrix product states by hand: the degenerate limit.}
+Set $\xi=0$, so that all levels are degenerate and the Hamiltonian
+consists of the pairing interaction alone.
+\begin{enumerate}
+\item For four levels and two pairs, explain why the ground state is
+  the equal-amplitude superposition of the six ways of placing two
+  pairs,
+\[
+|\psi\rangle=\frac{1}{\sqrt{6}}\Big(|1100\rangle+|1010\rangle+|1001\rangle
++|0110\rangle+|0101\rangle+|0011\rangle\Big),
+\]
+  where $|0\rangle$ refers to an empty level and $|1\rangle$ to a
+  paired level. What is its energy, and what are the other eigenvalues
+  of the $6\times 6$ matrix in this limit? Compare with the
+  $g$-dependence found in exercise~2 for $\xi=1$.
+\item Write down the coefficient matrix $C$ for each of the three cuts
+  of the chain, and construct the MPS in left-canonical form.
+\item What is the entanglement entropy of the middle cut, and how does
+  it compare with the largest value that cut could carry? What is the
+  entanglement entropy of the Hartree-Fock state of exercise~4?
+\item The middle bond carries $\chi=3$ states. Say in words what
+  distinguishes them, and use that to write down an MPS of $3\times 3$
+  matrices (except at the edges) that generalizes to a model of $L$
+  levels and two pairs. Close to the edges some of the three bond
+  states are never used. Which, and why?
+\item What are the bond dimensions $\chi_\ell$ for each bond
+  $\ell=1,\dots,L-1$ for $N$ pairs in $L$ degenerate levels? How do they
+  compare with the number of Slater determinants $\binom{L}{N}$ that
+  the FCI calculation of exercise~2 has to handle, and with the maximal
+  bond dimension $\min(2^\ell,2^{L-\ell})$ of an arbitrary state of the
+  chain?
+\end{enumerate}
+
+\item (15/100 points) \textbf{From FCI via Hartree-Fock to the DMRG.}
+Return to $\xi=1$ and to the exact ground state of exercise~2 for
+$g\in[-1,1]$, written as a vector in the basis of the six states
+$|n_1n_2n_3n_4\rangle$ above.
+\begin{enumerate}
+\item For each of the three cuts, compute numerically the singular
+  value decomposition of the coefficient matrix, the Schmidt weights
+  $\sigma_k^2$ and the entanglement entropy $S_\ell$. Plot the entropy
+  of the middle cut as a function of $g$ and compare with the value
+  found in exercise~7 for $\xi=0$. Comment on the limit $g\to 0$ and on
+  the difference between $g>0$ and $g<0$. Which cut carries the most
+  entanglement, and why?
+\item The Hartree-Fock state of exercise~4 is a single Slater
+  determinant. Check whether it is a product state in the basis
+  $|n_1n_2n_3n_4\rangle$, and if so give its bond dimensions. Truncate
+  the Schmidt decomposition of the exact state across the middle cut
+  to $\chi=1$ and to $\chi=2$ Schmidt states, renormalize, and compute
+  the energy expectation value $\langle\hat{H}\rangle$ and the
+  discarded weight $\sum_{k>\chi}\sigma_k^2$ of the truncated states as
+  functions of $g$. Compare with the exact energy of exercise~2, the
+  truncated-CI energy of exercise~3 and the Hartree-Fock energy of
+  exercise~4. Explain in which sense the $\chi=1$ state and the
+  Hartree-Fock state are both ``best product states'', and why they
+  need not be the same state nor give the same energy.
+\item Build the MPO of exercise~5 numerically as an array of shape
+  $(D,D,d,d)$ and contract $W^{[1]}W^{[2]}W^{[3]}W^{[4]}$ to a
+  $16\times 16$ matrix. Verify that, restricted to the two-pair
+  states, it reproduces the Hamiltonian matrix of exercise~2 for a few
+  values of $g$. Then compute $\langle\Psi|\hat{H}|\Psi\rangle$ for the
+  truncated MPS of the previous point by contracting the MPO with the
+  MPS, and check that you obtain the same energies as above.
+\end{enumerate}
+If time permits, run a two-site DMRG (your own, or
+\texttt{dmrg.py}) for the four-level system with $\chi=1,2,3$ and
+compare with the three previous points, and thereafter for a larger
+system, for example $L=8$ levels and four pairs or $L=12$ levels and
+six pairs, where the seniority-zero FCI matrix is still small enough
+to diagonalize. Study the entanglement entropy across every bond as a
+function of $g$ and comment on where along the chain the entanglement
+is concentrated. This last part is not required for full score.
+
+\end{enumerate}
+
+
+
+ \end{document}
