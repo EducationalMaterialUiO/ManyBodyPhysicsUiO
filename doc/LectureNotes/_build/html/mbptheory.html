@@ -464,16 +464,17 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-recursion-against-the-explicit-expressions">10.1. 1. The recursion against the explicit expressions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-pairing-model">10.2. 2. The pairing model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#higher-order-does-the-series-converge">10.3. 3. Higher order: does the series converge?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lipkin-model">10.4. 4. The Lipkin model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#size-extensivity">10.5. 5. Size extensivity</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#brillouin-wigner-and-its-exact-resummation">10.6. 6. Brillouin-Wigner and its exact resummation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-hubbard-model">10.7. 7. The Hubbard model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-pairing-plus-particle-hole-model">10.8. 8. The pairing plus particle-hole model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#does-the-partition-matter">10.9. 9. Does the partition matter?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#everything-against-everything">10.10. 10. Everything against everything</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-full-program">10.11. The full program</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-two-level-benchmark-every-order-in-closed-form">10.2. 2. A two-level benchmark: every order in closed form</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-pairing-model">10.3. 3. The pairing model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#higher-order-does-the-series-converge">10.4. 4. Higher order: does the series converge?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lipkin-model">10.5. 5. The Lipkin model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#size-extensivity">10.6. 6. Size extensivity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#brillouin-wigner-and-its-exact-resummation">10.7. 7. Brillouin-Wigner and its exact resummation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-hubbard-model">10.8. 8. The Hubbard model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-pairing-plus-particle-hole-model">10.9. 9. The pairing plus particle-hole model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#does-the-partition-matter">10.10. 10. Does the partition matter?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#everything-against-everything">10.11. 11. Everything against everything</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-full-program">10.12. The full program</a></li>
 </ul>
             </nav>
         </div>
@@ -578,8 +579,83 @@ extensive -- as section 5 below demonstrates.
 </div>
 </div>
 </section>
+<section id="a-two-level-benchmark-every-order-in-closed-form">
+<h2><span class="section-number">10.2. </span>2. A two-level benchmark: every order in closed form<a class="headerlink" href="#a-two-level-benchmark-every-order-in-closed-form" title="Link to this heading">#</a></h2>
+<p>One particle in two orbitals, <span class="math notranslate nohighlight">\(\varepsilon_1&lt;\varepsilon_2\)</span>, with the
+perturbation <span class="math notranslate nohighlight">\(V_{pq}\)</span>; the reference is the lower orbital and the excited
+space is one-dimensional.  The exact lower eigenvalue is</p>
+<div class="math notranslate nohighlight">
+\[E_- = \frac{\varepsilon_1+V_{11}+\varepsilon_2+V_{22}}{2}
+ - \frac12\sqrt{(\Delta+V_{22}-V_{11})^2+4V_{12}^2},\qquad \Delta=\varepsilon_2-\varepsilon_1,\]</div>
+<p>and with <span class="math notranslate nohighlight">\(R=|\Phi_2\rangle\langle\Phi_2|/D\)</span>, <span class="math notranslate nohighlight">\(D=\varepsilon_1-\varepsilon_2&lt;0\)</span>,
+every Rayleigh-Schrödinger order is a closed expression:</p>
+<div class="math notranslate nohighlight">
+\[\Delta E^{(1)}=V_{11},\quad \Delta E^{(2)}=\frac{V_{12}^2}{D},\quad
+\Delta E^{(3)}=\frac{V_{12}^2(V_{22}-V_{11})}{D^2},\quad
+\Delta E^{(4)}=\frac{V_{12}^2[(V_{22}-V_{11})^2-V_{12}^2]}{D^3}.\]</div>
+<p>Two variants are run: <span class="math notranslate nohighlight">\(V_{11}=V_{22}=V_{12}=g\)</span>, where the third order vanishes
+by a cancellation between the principal and the renormalisation term, and the
+purely off-diagonal <span class="math notranslate nohighlight">\(V_{12}=\lambda\)</span>, where the fourth order is <em>entirely</em> the
+folded renormalisation term <span class="math notranslate nohighlight">\(-\Delta E^{(2)}\langle VR^2V\rangle\)</span>.  The
+two-vertex Brillouin-Wigner equation, solved self-consistently, is the exact
+secular equation in the second variant.  The radius of convergence is where the
+square root branches, <span class="math notranslate nohighlight">\(|2\lambda/\Delta|=1\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mbpt</span><span class="o">.</span><span class="n">demo_two_level</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">mbpt</span><span class="o">.</span><span class="n">demo_two_level</span><span class="p">()</span>
+
+<span class="ne">AttributeError</span>: module &#39;mbpt&#39; has no attribute &#39;demo_two_level&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ratios</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mi">161</span><span class="p">)</span>
+<span class="n">exact</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">mbpt</span><span class="o">.</span><span class="n">two_level_exact</span><span class="p">(</span><span class="n">v12</span><span class="o">=</span><span class="n">r</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">ratios</span><span class="p">])</span>
+<span class="n">orders</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">sums</span> <span class="o">=</span> <span class="p">{</span><span class="n">n</span><span class="p">:</span> <span class="p">[]</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">orders</span><span class="p">}</span>
+<span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">ratios</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">r</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">orders</span><span class="p">:</span> <span class="n">sums</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
+        <span class="k">continue</span>
+    <span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">mbpt</span><span class="o">.</span><span class="n">rayleigh_schrodinger</span><span class="p">(</span><span class="n">mbpt</span><span class="o">.</span><span class="n">two_level_partition</span><span class="p">(</span><span class="n">v12</span><span class="o">=</span><span class="n">r</span><span class="p">),</span> <span class="n">order</span><span class="o">=</span><span class="mi">16</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">orders</span><span class="p">:</span> <span class="n">sums</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mf">4.4</span><span class="p">))</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ratios</span><span class="p">,</span> <span class="n">exact</span><span class="p">,</span> <span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;exact&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">orders</span><span class="p">:</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ratios</span><span class="p">,</span> <span class="n">sums</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;through order </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\lambda/\Delta$&quot;</span><span class="p">);</span> <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$E_- - \varepsilon_1$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;partial sums against the exact eigenvalue&quot;</span><span class="p">);</span> <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="p">(</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.45</span><span class="p">,</span> <span class="mf">0.55</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">):</span>
+    <span class="n">terms</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">mbpt</span><span class="o">.</span><span class="n">rayleigh_schrodinger</span><span class="p">(</span><span class="n">mbpt</span><span class="o">.</span><span class="n">two_level_partition</span><span class="p">(</span><span class="n">v12</span><span class="o">=</span><span class="n">r</span><span class="p">),</span> <span class="n">order</span><span class="o">=</span><span class="mi">30</span><span class="p">))</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">31</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">n</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">],</span> <span class="n">terms</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">],</span> <span class="s2">&quot;o-&quot;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">rf</span><span class="s2">&quot;$\lambda/\Delta=</span><span class="si">{</span><span class="n">r</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;order $n$&quot;</span><span class="p">);</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$|\Delta E^{(n)}|$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;the terms inside and outside the radius&quot;</span><span class="p">);</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/be4e2bee2644789d668877bb4e9483013c2280716f0b087bc885bc741dacb735.png" src="_images/be4e2bee2644789d668877bb4e9483013c2280716f0b087bc885bc741dacb735.png" />
+</div>
+</div>
+</section>
 <section id="the-pairing-model">
-<h2><span class="section-number">10.2. </span>2. The pairing model<a class="headerlink" href="#the-pairing-model" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">10.3. </span>3. The pairing model<a class="headerlink" href="#the-pairing-model" title="Link to this heading">#</a></h2>
 <p>Four doubly degenerate levels, four particles, <span class="math notranslate nohighlight">\(\xi=1\)</span>.  The energy through
 first order is <span class="math notranslate nohighlight">\(2-g\)</span>, which is exactly the Hartree-Fock energy of Chapter 6 —
 for this interaction the mean field does nothing, so everything beyond first
@@ -592,7 +668,7 @@ order is genuine correlation energy.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>==========================================================================
-2. The pairing model
+3. The pairing model
 ==========================================================================
 Four doubly degenerate levels, four particles, xi = 1.  The
 unperturbed reference energy is W_0 = 2 and the first-order energy
@@ -601,13 +677,11 @@ chapter 6: the mean field does nothing for this interaction.
 
      g      E_ref          +E2          +E3          FCI          CID       HF+RPA
   0.25    1.75000   1.73177083   1.73046875   1.73045985   1.73050700   1.71634735
+  0.50    1.50000   1.42708333   1.41666667   1.41677428   1.41759645   1.37450235
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0.50    1.50000   1.42708333   1.41666667   1.41677428   1.41759645   1.37450235
-  1.00    1.00000   0.70833333   0.62500000   0.63554847   0.64890655   0.55458933
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1.50    0.50000  -0.15625000  -0.43750000  -0.34819051  -0.29113175  -0.40624787
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1.00    1.00000   0.70833333   0.62500000   0.63554847   0.64890655   0.55458933
+  1.50    0.50000  -0.15625000  -0.43750000  -0.34819051  -0.29113175  -0.40624787
   2.00    0.00000  -1.16666667  -1.83333333  -1.48965216  -1.35208670  -1.47622319
 
 Second order already recovers most of the correlation energy and
@@ -659,7 +733,7 @@ contributions to all orders.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/284535e134e38a4577b084134f5ce96415c93625d739806e84d2c01454e22e34.png" src="_images/284535e134e38a4577b084134f5ce96415c93625d739806e84d2c01454e22e34.png" />
+<img alt="_images/b27fb3febe95ffc30aac158c640657b444ec3b27f9bf361090afede9547b6075.png" src="_images/b27fb3febe95ffc30aac158c640657b444ec3b27f9bf361090afede9547b6075.png" />
 </div>
 </div>
 <p>The error panel is the interesting one.  At small <span class="math notranslate nohighlight">\(g\)</span> third-order perturbation
@@ -667,7 +741,7 @@ theory is best by orders of magnitude and RPA is the worst; by <span class="math
 ordering has reversed completely.</p>
 </section>
 <section id="higher-order-does-the-series-converge">
-<h2><span class="section-number">10.3. </span>3. Higher order: does the series converge?<a class="headerlink" href="#higher-order-does-the-series-converge" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">10.4. </span>4. Higher order: does the series converge?<a class="headerlink" href="#higher-order-does-the-series-converge" title="Link to this heading">#</a></h2>
 <p>The recursion continues to any order, so we can look rather than guess.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -677,7 +751,7 @@ ordering has reversed completely.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>==========================================================================
-3. Going to higher order: does the series converge?
+4. Going to higher order: does the series converge?
 ==========================================================================
 The recursion continues to any order, so we can watch the series
 itself rather than guess.  For the pairing model, the size of the
@@ -731,7 +805,7 @@ interaction deteriorate in chapter 5, seen from a third direction.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/e2a567042434ecbf0f35ad71a9f4eab065c08246168c0143ec5001dcbebef5f9.png" src="_images/e2a567042434ecbf0f35ad71a9f4eab065c08246168c0143ec5001dcbebef5f9.png" />
+<img alt="_images/abc63580a5bdc09b51c838959bde7f8c6cf0fb7e07d00cdecec6a87e0dff84e5.png" src="_images/abc63580a5bdc09b51c838959bde7f8c6cf0fb7e07d00cdecec6a87e0dff84e5.png" />
 </div>
 </div>
 <p>At <span class="math notranslate nohighlight">\(g=0.5\)</span> and <span class="math notranslate nohighlight">\(g=1\)</span> the terms fall away steadily.  At <span class="math notranslate nohighlight">\(g=2\)</span> they grow without
@@ -739,7 +813,7 @@ limit.  The radius of convergence lies between — and crucially, <strong>the fi
 three orders give no warning</strong>: at <span class="math notranslate nohighlight">\(g=1.5\)</span> they look perfectly reasonable.</p>
 </section>
 <section id="the-lipkin-model">
-<h2><span class="section-number">10.4. </span>4. The Lipkin model<a class="headerlink" href="#the-lipkin-model" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">10.5. </span>5. The Lipkin model<a class="headerlink" href="#the-lipkin-model" title="Link to this heading">#</a></h2>
 <p>Here <span class="math notranslate nohighlight">\(\Delta E^{(1)} = 0\)</span> and <span class="math notranslate nohighlight">\(\Delta E^{(3)} = 0\)</span>, both identically, because
 the interaction changes <span class="math notranslate nohighlight">\(J_z\)</span> by exactly two units.  Second order is available
 in closed form, <span class="math notranslate nohighlight">\(\Delta E^{(2)} = -N(N-1)V^2/4\varepsilon\)</span>.</p>
@@ -751,7 +825,7 @@ in closed form, <span class="math notranslate nohighlight">\(\Delta E^{(2)} = -N
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>==========================================================================
-4. The Lipkin model
+5. The Lipkin model
 ==========================================================================
 N = 4, eps = 1, W = 0.  The interaction changes J_z by two units,
 so the first-order energy vanishes and the reference energy is the
@@ -789,7 +863,7 @@ whatever that anything has gone wrong.
 </div>
 </section>
 <section id="size-extensivity">
-<h2><span class="section-number">10.5. </span>5. Size extensivity<a class="headerlink" href="#size-extensivity" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">10.6. </span>6. Size extensivity<a class="headerlink" href="#size-extensivity" title="Link to this heading">#</a></h2>
 <p>Two identical, non-interacting copies of a three-level pairing system.  Any
 acceptable method must give exactly twice the energy of one subsystem.
 Rayleigh-Schrödinger is exact at every order; Brillouin-Wigner is not.</p>
@@ -801,7 +875,7 @@ Rayleigh-Schrödinger is exact at every order; Brillouin-Wigner is not.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>==========================================================================
-5. Size extensivity: Rayleigh-Schrodinger against Brillouin-Wigner
+6. Size extensivity: Rayleigh-Schrodinger against Brillouin-Wigner
 ==========================================================================
 Two identical, non-interacting copies of a two-level pairing
 system, the construction of chapter 5.  Any acceptable method must
@@ -871,12 +945,12 @@ Wigner theory is not used for many-body problems.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/7574f65a91f911677bc52b366753e93702c1814b8bca8be56c5d6c5cb9e77eef.png" src="_images/7574f65a91f911677bc52b366753e93702c1814b8bca8be56c5d6c5cb9e77eef.png" />
+<img alt="_images/16dee770244905b3a716289e50527293246449b8b708db05fc0efcbcc873f0d2.png" src="_images/16dee770244905b3a716289e50527293246449b8b708db05fc0efcbcc873f0d2.png" />
 </div>
 </div>
 </section>
 <section id="brillouin-wigner-and-its-exact-resummation">
-<h2><span class="section-number">10.6. </span>6. Brillouin-Wigner and its exact resummation<a class="headerlink" href="#brillouin-wigner-and-its-exact-resummation" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">10.7. </span>7. Brillouin-Wigner and its exact resummation<a class="headerlink" href="#brillouin-wigner-and-its-exact-resummation" title="Link to this heading">#</a></h2>
 <div class="math notranslate nohighlight">
 \[\Delta E = \langle\Phi_0|\hat H_I
   + \hat H_I\hat Q\,[E-\hat H_0-\hat Q\hat H_I\hat Q]^{-1}\hat Q\hat H_I
@@ -891,7 +965,7 @@ the exact energy, and it does.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>==========================================================================
-6. Brillouin-Wigner, and its exact resummation
+7. Brillouin-Wigner, and its exact resummation
 ==========================================================================
 Brillouin-Wigner puts the exact energy in the denominator, so the
 equation must be solved self-consistently.  Its full resummation
@@ -918,7 +992,7 @@ fatal.
 </div>
 </section>
 <section id="the-hubbard-model">
-<h2><span class="section-number">10.7. </span>7. The Hubbard model<a class="headerlink" href="#the-hubbard-model" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">10.8. </span>8. The Hubbard model<a class="headerlink" href="#the-hubbard-model" title="Link to this heading">#</a></h2>
 <p>Six sites at half filling in the momentum basis.  The third-order energy
 vanishes identically here — special to this filling and this interaction, not
 a general feature — so fourth order is shown as well.</p>
@@ -930,7 +1004,7 @@ a general feature — so fourth order is shown as well.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>==========================================================================
-7. The Hubbard model
+8. The Hubbard model
 ==========================================================================
 Six sites at half filling in the momentum basis, where the
 plane-wave determinant is the Hartree-Fock solution and the
@@ -954,7 +1028,7 @@ Two things stand out.  First, the third-order energy vanishes
 identically at this filling -- the columns +E2 and +E3 are equal
 to every digit, for every U.  That is special to the half-filled
 ring with a momentum-independent interaction and is not a general
-feature; the pairing model of section 2 has a perfectly good
+feature; the pairing model of section 3 has a perfectly good
 third-order term.  Fourth order is not zero, so we have included
 it.
 
@@ -971,7 +1045,7 @@ chapter 5 seen through the perturbation series.
 </div>
 </section>
 <section id="the-pairing-plus-particle-hole-model">
-<h2><span class="section-number">10.8. </span>8. The pairing plus particle-hole model<a class="headerlink" href="#the-pairing-plus-particle-hole-model" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">10.9. </span>9. The pairing plus particle-hole model<a class="headerlink" href="#the-pairing-plus-particle-hole-model" title="Link to this heading">#</a></h2>
 <p>The particle-hole term breaks pairs, so the reference couples to singles as
 well as doubles.  We split the second-order sum by excitation rank.  The
 singles piece would vanish identically in a Hartree-Fock basis.</p>
@@ -983,7 +1057,7 @@ singles piece would vanish identically in a Hartree-Fock basis.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>==========================================================================
-8. The pairing plus particle-hole model of chapter 7
+9. The pairing plus particle-hole model of chapter 7
 ==========================================================================
 Here the particle-hole term breaks pairs, so the reference does
 couple to singles and the second-order energy picks up a 1p-1h
@@ -1012,7 +1086,7 @@ safer than summing all of them to third order.
 </div>
 </section>
 <section id="does-the-partition-matter">
-<h2><span class="section-number">10.9. </span>9. Does the partition matter?<a class="headerlink" href="#does-the-partition-matter" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">10.10. </span>10. Does the partition matter?<a class="headerlink" href="#does-the-partition-matter" title="Link to this heading">#</a></h2>
 <p>Nothing forced our choice of <span class="math notranslate nohighlight">\(\hat H_0\)</span>.  For three of the four models the
 one-body and Epstein-Nesbet partitions give <em>identical</em> answers, because the
 diagonal of <span class="math notranslate nohighlight">\(\hat H_I\)</span> is constant over every determinant the reference can
@@ -1025,7 +1099,7 @@ reach.  Only the pairing plus particle-hole model distinguishes them.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>==========================================================================
-9. Does the partition matter?
+10. Does the partition matter?
 ==========================================================================
 Nothing forced our choice of H_0.  Taking the whole diagonal of H
 instead of the one-body part gives the Epstein-Nesbet partition,
@@ -1039,9 +1113,7 @@ choices of H_0 differ by a constant, which cancels in every
 energy denominator.
 
          model   spread of diag(V)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       pairing            1.000000
+       pairing            1.000000
         Lipkin            0.000000
        Hubbard            0.000000
  pairing + p-h            2.000000
@@ -1052,9 +1124,7 @@ complete pair and the number of complete pairs differs from one
 determinant to the next.  There the two partitions do disagree:
 
     g      f   one-body: +E2          +E3     E-N: +E2          +E3          FCI
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 0.50   0.25      0.60208333   0.51930556   0.62435065   0.51885823   0.55119157
+ 0.50   0.25      0.60208333   0.51930556   0.62435065   0.51885823   0.55119157
  1.00   0.50     -1.59166667  -2.25388889  -1.44791667  -2.25694444  -1.69173670
  1.50   0.75     -4.58125000  -6.81625000  -4.17225275  -6.82273352  -4.34336785
 
@@ -1072,7 +1142,7 @@ produced it is meaningless.
 </div>
 </section>
 <section id="everything-against-everything">
-<h2><span class="section-number">10.10. </span>10. Everything against everything<a class="headerlink" href="#everything-against-everything" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">10.11. </span>11. Everything against everything<a class="headerlink" href="#everything-against-everything" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mbpt</span><span class="o">.</span><span class="n">demo_comparison</span><span class="p">()</span>
@@ -1081,21 +1151,25 @@ produced it is meaningless.
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>==========================================================================
-10. Everything against everything
+11. Everything against everything
 ==========================================================================
 The pairing model with four levels and four particles, the one
 system every chapter has now treated.
 
      g         HF       MBPT2       MBPT3         CID      HF+RPA         FCI
-  0.25    1.75000    1.731771    1.730469    1.730507    1.716347    1.730460
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0.25    1.75000    1.731771    1.730469    1.730507    1.716347    1.730460
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0.50    1.50000    1.427083    1.416667    1.417596    1.374502    1.416774
+  1.00    1.00000    0.708333    0.625000    0.648907    0.554589    0.635548
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1.00    1.00000    0.708333    0.625000    0.648907    0.554589    0.635548
-  1.50    0.50000   -0.156250   -0.437500   -0.291132   -0.406248   -0.348191
-  2.00    0.00000   -1.166667   -1.833333   -1.352087   -1.476223   -1.489652
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1.50    0.50000   -0.156250   -0.437500   -0.291132   -0.406248   -0.348191
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  2.00    0.00000   -1.166667   -1.833333   -1.352087   -1.476223   -1.489652
 
 The same table as errors, which is where the interest lies:
      g       MBPT2       MBPT3         CID      HF+RPA
@@ -1111,7 +1185,7 @@ ordering changes with the coupling, and no method wins
 everywhere.  At g = 0.25 third-order perturbation theory is best
 by three orders of magnitude and RPA is the worst of the four.
 At g = 2 the ordering has reversed completely: RPA is best, and
-the perturbation series -- which is diverging, as section 3
+the perturbation series -- which is diverging, as section 4
 showed -- is the worst.  CID is the only one of the four that is
 variational, so it alone is guaranteed to stay above the exact
 answer, and it alone degrades gracefully.
@@ -1121,9 +1195,9 @@ answer, and it alone degrades gracefully.
 </div>
 </section>
 <section id="the-full-program">
-<h2><span class="section-number">10.11. </span>The full program<a class="headerlink" href="#the-full-program" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">10.12. </span>The full program<a class="headerlink" href="#the-full-program" title="Link to this heading">#</a></h2>
 <p>Everything above lives in <code class="docutils literal notranslate"><span class="pre">BookManybody/BookPrograms/chapter09/mbpt.py</span></code>, which
-runs as a script and prints all ten demonstrations of the chapter.</p>
+runs as a script and prints all eleven demonstrations of the chapter.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">mbpt</span><span class="o">.</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
@@ -1162,8 +1236,15 @@ chapter 5.
     Partition          -- H_0 either one-body (Moller-Plesset-like) or the
                           full diagonal (Epstein-Nesbet)
     rayleigh_schrodinger -- the series to any order
+    rs_explicit        -- orders one to three written out term by term
+    rs_fourth_order    -- the fourth order written out in resolvent form,
+                          with its three renormalisation terms
     brillouin_wigner   -- solved self-consistently, at a given order
     brillouin_wigner_exact -- the full resummation, which is exact
+    two_level_partition, two_level_exact, two_level_closed_form
+                       -- the two-level benchmark of the text, where every
+                          order is known in closed form and the radius of
+                          convergence is |2 v_12 / Delta| = 1
 
 Author: Morten Hjorth-Jensen
 &quot;&quot;&quot;
@@ -1277,6 +1358,34 @@ def rs_explicit(partition):
     return e1, e2, principal - renormalisation, principal, renormalisation
 
 
+def rs_fourth_order(partition):
+    &quot;&quot;&quot;Delta E^(4) in resolvent form,
+
+        E4 = &lt;V R V R V R V&gt;
+             - E1 [ &lt;V R^2 V R V&gt; + &lt;V R V R^2 V&gt; ]
+             + E1^2 &lt;V R^3 V&gt;
+             - E2 &lt;V R^2 V&gt; ,
+
+    with &lt;X&gt; = &lt;Phi_0| X |Phi_0&gt; and R = Q / (W_0 - H_0).  This is what
+    unwinding the recursion one step further than rs_explicit gives; the
+    three subtractions are the fourth-order renormalisation terms.  Returns
+    the total and the four pieces in the order written above.
+    &quot;&quot;&quot;
+    V, R, ref = partition.V, partition.resolvent, partition.reference
+    v0 = V[ref].copy()
+    e1 = float(V[ref, ref])
+    e2 = float(np.sum(v0 * R * v0))
+    rv = R * v0                                   # R V |Phi_0&gt;
+    rvrv = R * (V @ rv)                           # R V R V |Phi_0&gt;
+    rvrvrv = R * (V @ rvrv)                       # R V R V R V |Phi_0&gt;
+    principal = float(v0 @ rvrvrv)                # &lt;V R V R V R V&gt;
+    mixed = e1 * (float((v0 * R * R) @ (V @ rv))  # &lt;V R^2 V R V&gt;
+                  + float(v0 @ (R * (V @ (R * R * v0)))))   # &lt;V R V R^2 V&gt;
+    square = e1 ** 2 * float(np.sum(v0 * R ** 3 * v0))
+    folded = e2 * float(np.sum(v0 * R * R * v0))
+    return principal - mixed + square - folded, principal, mixed, square, folded
+
+
 # ---------------------------------------------------------------------------
 #  Brillouin-Wigner
 # ---------------------------------------------------------------------------
@@ -1342,6 +1451,41 @@ def brillouin_wigner_exact(partition, max_iter=2000, tol=1e-13,
             return new, iteration
         delta = (1.0 - mixing) * delta + mixing * new
     return delta, max_iter
+
+
+# ---------------------------------------------------------------------------
+#  The two-level benchmark
+# ---------------------------------------------------------------------------
+def two_level_partition(eps1=0.0, eps2=1.0, v11=0.0, v12=0.2, v22=0.0,
+                        scheme=&quot;one_body&quot;):
+    &quot;&quot;&quot;One particle in two orbitals, H_0 = diag(eps1, eps2) and the
+    perturbation V with elements v11, v12, v22.  The text uses two variants:
+    v11 = v22 = v12 = g (every order present, E^(3) a genuine cancellation)
+    and v11 = v22 = 0, v12 = lambda (only even orders, the fourth-order
+    energy entirely a renormalisation term).  The reference is the lower
+    orbital; Q is one-dimensional.&quot;&quot;&quot;
+    H = np.array([[eps1 + v11, v12], [v12, eps2 + v22]], dtype=float)
+    return Partition(H, [eps1, eps2], 0, scheme)
+
+
+def two_level_exact(eps1=0.0, eps2=1.0, v11=0.0, v12=0.2, v22=0.0):
+    &quot;&quot;&quot;The lower eigenvalue of the 2 x 2 problem in closed form.&quot;&quot;&quot;
+    a, d = eps1 + v11, eps2 + v22
+    return 0.5 * (a + d) - 0.5 * np.sqrt((d - a) ** 2 + 4.0 * v12 ** 2)
+
+
+def two_level_closed_form(eps1=0.0, eps2=1.0, v11=0.0, v12=0.2, v22=0.0):
+    &quot;&quot;&quot;Delta E^(1..4) of the two-level model in closed form, from the
+    resolvent expressions with R = |2&gt;&lt;2| / D and D = eps1 - eps2 &lt; 0:
+
+        E1 = v11,
+        E2 = v12^2 / D,
+        E3 = v12^2 (v22 - v11) / D^2,
+        E4 = v12^2 [ (v22 - v11)^2 - v12^2 ] / D^3 .
+    &quot;&quot;&quot;
+    D = eps1 - eps2
+    return [v11, v12 ** 2 / D, v12 ** 2 * (v22 - v11) / D ** 2,
+            v12 ** 2 * ((v22 - v11) ** 2 - v12 ** 2) / D ** 3]
 
 
 # ---------------------------------------------------------------------------
@@ -1486,6 +1630,19 @@ def demo_recursion():
         print(f&quot;{name:&gt;16s} {e[0]:13.8f} {e[1]:13.8f} {e[2]:16.8f} &quot;
               f&quot;{e3:15.8f}&quot;)
     print()
+    print(&quot;One order further, the fourth-order energy in resolvent form,&quot;)
+    print(&quot;   E4 = &lt;VRVRVRV&gt; - E1 [&lt;VR^2VRV&gt; + &lt;VRVR^2V&gt;] + E1^2 &lt;VR^3V&gt; - E2 &lt;VR^2V&gt;,&quot;)
+    print(&quot;against the recursion, with its three renormalisation terms:&quot;)
+    print()
+    print(f&quot;{&#39;model&#39;:&gt;16s} {&#39;E4 (recursion)&#39;:&gt;16s} {&#39;E4 (explicit)&#39;:&gt;15s} &quot;
+          f&quot;{&#39;principal&#39;:&gt;13s} {&#39;-E1 terms&#39;:&gt;13s} {&#39;+E1^2 term&#39;:&gt;13s} &quot;
+          f&quot;{&#39;-E2 term&#39;:&gt;13s}&quot;)
+    for name, part in cases:
+        e = rayleigh_schrodinger(part, order=4)
+        e4, principal, mixed, square, folded = rs_fourth_order(part)
+        print(f&quot;{name:&gt;16s} {e[3]:16.10f} {e4:15.10f} {principal:13.8f} &quot;
+              f&quot;{-mixed:13.8f} {square:13.8f} {-folded:13.8f}&quot;)
+    print()
     print(&quot;The two pieces of the third-order term, for the pairing model at&quot;)
     print(&quot;g = 0.5:&quot;)
     part, _ = pairing_partition(g=0.5)
@@ -1500,12 +1657,12 @@ def demo_recursion():
     print(&quot;The renormalisation term is not a small correction here: it is&quot;)
     print(&quot;larger than the third-order energy itself.  Its role is to cancel&quot;)
     print(&quot;the unlinked contribution, which is what makes the series size&quot;)
-    print(&quot;extensive -- as section 5 below demonstrates.&quot;)
+    print(&quot;extensive -- as section 6 below demonstrates.&quot;)
 
 
 def demo_pairing():
     print(&quot;=&quot; * 74)
-    print(&quot;2. The pairing model&quot;)
+    print(&quot;3. The pairing model&quot;)
     print(&quot;=&quot; * 74)
     print(&quot;Four doubly degenerate levels, four particles, xi = 1.  The&quot;)
     print(&quot;unperturbed reference energy is W_0 = 2 and the first-order energy&quot;)
@@ -1536,7 +1693,7 @@ def demo_pairing():
 
 def demo_orders():
     print(&quot;=&quot; * 74)
-    print(&quot;3. Going to higher order: does the series converge?&quot;)
+    print(&quot;4. Going to higher order: does the series converge?&quot;)
     print(&quot;=&quot; * 74)
     print(&quot;The recursion continues to any order, so we can watch the series&quot;)
     print(&quot;itself rather than guess.  For the pairing model, the size of the&quot;)
@@ -1582,7 +1739,7 @@ def demo_orders():
 
 def demo_lipkin():
     print(&quot;=&quot; * 74)
-    print(&quot;4. The Lipkin model&quot;)
+    print(&quot;5. The Lipkin model&quot;)
     print(&quot;=&quot; * 74)
     print(&quot;N = 4, eps = 1, W = 0.  The interaction changes J_z by two units,&quot;)
     print(&quot;so the first-order energy vanishes and the reference energy is the&quot;)
@@ -1630,7 +1787,7 @@ def demo_lipkin():
 
 def demo_size_extensivity():
     print(&quot;=&quot; * 74)
-    print(&quot;5. Size extensivity: Rayleigh-Schrodinger against Brillouin-Wigner&quot;)
+    print(&quot;6. Size extensivity: Rayleigh-Schrodinger against Brillouin-Wigner&quot;)
     print(&quot;=&quot; * 74)
     print(&quot;Two identical, non-interacting copies of a two-level pairing&quot;)
     print(&quot;system, the construction of chapter 5.  Any acceptable method must&quot;)
@@ -1667,9 +1824,70 @@ def demo_size_extensivity():
     print(&quot;Wigner theory is not used for many-body problems.&quot;)
 
 
+def demo_two_level():
+    print(&quot;=&quot; * 74)
+    print(&quot;2. A two-level benchmark: every order in closed form&quot;)
+    print(&quot;=&quot; * 74)
+    print(&quot;One particle, two orbitals eps_1 &lt; eps_2, one-dimensional Q space.&quot;)
+    print(&quot;The recursion, the explicit resolvent formulae through fourth&quot;)
+    print(&quot;order and the expansion of the exact eigenvalue must all agree.&quot;)
+    print()
+    cases = [(&quot;v11 = v22 = v12 = g = 0.2&quot;, dict(v11=0.2, v12=0.2, v22=0.2)),
+             (&quot;v11 = v22 = 0, v12 = lambda = 0.2&quot;, dict(v12=0.2))]
+    for label, kw in cases:
+        part = two_level_partition(**kw)
+        rec = rayleigh_schrodinger(part, order=6)
+        closed = two_level_closed_form(**kw)
+        e4, principal, mixed, square, folded = rs_fourth_order(part)
+        exact = two_level_exact(**kw)
+        print(f&quot;   {label}:  E_- exact = {exact:.10f}&quot;)
+        print(f&quot;   {&#39;order&#39;:&gt;6s} {&#39;recursion&#39;:&gt;14s} {&#39;closed form&#39;:&gt;14s} &quot;
+              f&quot;{&#39;partial sum&#39;:&gt;14s} {&#39;error&#39;:&gt;12s}&quot;)
+        total = part.w0
+        for n, e in enumerate(rec, 1):
+            total += e
+            cf = f&quot;{closed[n - 1]:14.10f}&quot; if n &lt;= 4 else f&quot;{&#39;--&#39;:&gt;14s}&quot;
+            print(f&quot;   {n:6d} {e:14.10f} {cf} {total:14.10f} &quot;
+                  f&quot;{total - exact:12.2e}&quot;)
+        print(f&quot;   fourth order, piece by piece: &lt;VRVRVRV&gt; = {principal:.6f}, &quot;
+              f&quot;-E1[...] = {-mixed:.6f},&quot;)
+        print(f&quot;      +E1^2 &lt;VR^3V&gt; = {square:.6f}, -E2 &lt;VR^2V&gt; = {-folded:.6f}, &quot;
+              f&quot;sum = {e4:.6f}&quot;)
+        b2, it = brillouin_wigner(part, order=2)
+        bx, _ = brillouin_wigner_exact(part)
+        print(f&quot;   Brillouin-Wigner, two vertices, self-consistent: &quot;
+              f&quot;{part.w0 + b2:.10f} ({it} iterations); resummed: &quot;
+              f&quot;{part.w0 + bx:.10f}&quot;)
+        print()
+    print(&quot;In the first variant the third order vanishes by a cancellation&quot;)
+    print(&quot;between the principal term and the renormalisation term, and all&quot;)
+    print(&quot;four pieces of the fourth order are non-zero.  In the second, with&quot;)
+    print(&quot;Q V Q = 0, nothing but the folded term -E2 &lt;V R^2 V&gt; survives at&quot;)
+    print(&quot;fourth order, and the two-vertex Brillouin-Wigner equation is&quot;)
+    print(&quot;already the exact secular equation.&quot;)
+    print()
+    print(&quot;The radius of convergence is where the square root of the exact&quot;)
+    print(&quot;eigenvalue branches, |2 v12 / Delta| = 1.  Partial sums of the&quot;)
+    print(&quot;second variant against v12 / Delta, through order 2, 4, 8, 16:&quot;)
+    print()
+    print(f&quot;{&#39;v12/Delta&#39;:&gt;10s} {&#39;exact&#39;:&gt;12s} {&#39;order 2&#39;:&gt;12s} {&#39;order 4&#39;:&gt;12s} &quot;
+          f&quot;{&#39;order 8&#39;:&gt;12s} {&#39;order 16&#39;:&gt;12s}&quot;)
+    for ratio in (0.1, 0.3, 0.45, 0.5, 0.55, 0.7):
+        part = two_level_partition(v12=ratio)
+        rec = rayleigh_schrodinger(part, order=16)
+        sums = np.cumsum(rec) + part.w0
+        print(f&quot;{ratio:10.2f} {two_level_exact(v12=ratio):12.6f} &quot;
+              f&quot;{sums[1]:12.6f} {sums[3]:12.6f} {sums[7]:12.6f} {sums[15]:12.6f}&quot;)
+    print()
+    print(&quot;Below v12/Delta = 0.5 every added order helps; above it the terms&quot;)
+    print(&quot;grow and the partial sums run away, although the exact energy is&quot;)
+    print(&quot;perfectly smooth there.  Nothing in the first few orders announces&quot;)
+    print(&quot;the radius: the terms simply stop decreasing.&quot;)
+
+
 def demo_brillouin_wigner():
     print(&quot;=&quot; * 74)
-    print(&quot;6. Brillouin-Wigner, and its exact resummation&quot;)
+    print(&quot;7. Brillouin-Wigner, and its exact resummation&quot;)
     print(&quot;=&quot; * 74)
     print(&quot;Brillouin-Wigner puts the exact energy in the denominator, so the&quot;)
     print(&quot;equation must be solved self-consistently.  Its full resummation&quot;)
@@ -1698,7 +1916,7 @@ def demo_brillouin_wigner():
 
 def demo_hubbard():
     print(&quot;=&quot; * 74)
-    print(&quot;7. The Hubbard model&quot;)
+    print(&quot;8. The Hubbard model&quot;)
     print(&quot;=&quot; * 74)
     print(&quot;Six sites at half filling in the momentum basis, where the&quot;)
     print(&quot;plane-wave determinant is the Hartree-Fock solution and the&quot;)
@@ -1718,7 +1936,7 @@ def demo_hubbard():
     print(&quot;identically at this filling -- the columns +E2 and +E3 are equal&quot;)
     print(&quot;to every digit, for every U.  That is special to the half-filled&quot;)
     print(&quot;ring with a momentum-independent interaction and is not a general&quot;)
-    print(&quot;feature; the pairing model of section 2 has a perfectly good&quot;)
+    print(&quot;feature; the pairing model of section 3 has a perfectly good&quot;)
     print(&quot;third-order term.  Fourth order is not zero, so we have included&quot;)
     print(&quot;it.&quot;)
     print()
@@ -1733,7 +1951,7 @@ def demo_hubbard():
 
 def demo_pairing_ph():
     print(&quot;=&quot; * 74)
-    print(&quot;8. The pairing plus particle-hole model of chapter 7&quot;)
+    print(&quot;9. The pairing plus particle-hole model of chapter 7&quot;)
     print(&quot;=&quot; * 74)
     print(&quot;Here the particle-hole term breaks pairs, so the reference does&quot;)
     print(&quot;couple to singles and the second-order energy picks up a 1p-1h&quot;)
@@ -1771,7 +1989,7 @@ def demo_pairing_ph():
 
 def demo_partitions():
     print(&quot;=&quot; * 74)
-    print(&quot;9. Does the partition matter?&quot;)
+    print(&quot;10. Does the partition matter?&quot;)
     print(&quot;=&quot; * 74)
     print(&quot;Nothing forced our choice of H_0.  Taking the whole diagonal of H&quot;)
     print(&quot;instead of the one-body part gives the Epstein-Nesbet partition,&quot;)
@@ -1821,7 +2039,7 @@ def demo_partitions():
 
 def demo_comparison():
     print(&quot;=&quot; * 74)
-    print(&quot;10. Everything against everything&quot;)
+    print(&quot;11. Everything against everything&quot;)
     print(&quot;=&quot; * 74)
     print(&quot;The pairing model with four levels and four particles, the one&quot;)
     print(&quot;system every chapter has now treated.&quot;)
@@ -1854,16 +2072,17 @@ def demo_comparison():
     print(&quot;everywhere.  At g = 0.25 third-order perturbation theory is best&quot;)
     print(&quot;by three orders of magnitude and RPA is the worst of the four.&quot;)
     print(&quot;At g = 2 the ordering has reversed completely: RPA is best, and&quot;)
-    print(&quot;the perturbation series -- which is diverging, as section 3&quot;)
+    print(&quot;the perturbation series -- which is diverging, as section 4&quot;)
     print(&quot;showed -- is the worst.  CID is the only one of the four that is&quot;)
     print(&quot;variational, so it alone is guaranteed to stay above the exact&quot;)
     print(&quot;answer, and it alone degrades gracefully.&quot;)
 
 
 def _demo():
-    for f in (demo_recursion, demo_pairing, demo_orders, demo_lipkin,
-              demo_size_extensivity, demo_brillouin_wigner, demo_hubbard,
-              demo_pairing_ph, demo_partitions, demo_comparison):
+    for f in (demo_recursion, demo_two_level, demo_pairing, demo_orders,
+              demo_lipkin, demo_size_extensivity, demo_brillouin_wigner,
+              demo_hubbard, demo_pairing_ph, demo_partitions,
+              demo_comparison):
         f()
         print()
 
@@ -1942,16 +2161,17 @@ if __name__ == &quot;__main__&quot;:
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-recursion-against-the-explicit-expressions">10.1. 1. The recursion against the explicit expressions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-pairing-model">10.2. 2. The pairing model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#higher-order-does-the-series-converge">10.3. 3. Higher order: does the series converge?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lipkin-model">10.4. 4. The Lipkin model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#size-extensivity">10.5. 5. Size extensivity</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#brillouin-wigner-and-its-exact-resummation">10.6. 6. Brillouin-Wigner and its exact resummation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-hubbard-model">10.7. 7. The Hubbard model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-pairing-plus-particle-hole-model">10.8. 8. The pairing plus particle-hole model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#does-the-partition-matter">10.9. 9. Does the partition matter?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#everything-against-everything">10.10. 10. Everything against everything</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-full-program">10.11. The full program</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-two-level-benchmark-every-order-in-closed-form">10.2. 2. A two-level benchmark: every order in closed form</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-pairing-model">10.3. 3. The pairing model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#higher-order-does-the-series-converge">10.4. 4. Higher order: does the series converge?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lipkin-model">10.5. 5. The Lipkin model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#size-extensivity">10.6. 6. Size extensivity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#brillouin-wigner-and-its-exact-resummation">10.7. 7. Brillouin-Wigner and its exact resummation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-hubbard-model">10.8. 8. The Hubbard model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-pairing-plus-particle-hole-model">10.9. 9. The pairing plus particle-hole model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#does-the-partition-matter">10.10. 10. Does the partition matter?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#everything-against-everything">10.11. 11. Everything against everything</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-full-program">10.12. The full program</a></li>
 </ul>
   </nav></div>
 
