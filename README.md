@@ -32,7 +32,6 @@ of the participants.
 * _Phone_: +47-48257387
 * _Office_: Department of Physics, University of Oslo, Eastern wing, room FØ470
 
-
 * _Name_: Cecilie Glittum
 * _Email_: cecilie.glittum@fys.uio.no
 * _Office_: Department of Physics, University of Oslo, Eastern wing, room FØ455
@@ -43,8 +42,9 @@ of the participants.
 
 1. Four lectures per week, Fall semester, 10 ECTS. Thursday 1015am-12pm and Friday 1015-12pm FØ257 The lectures will be recorded and linked to this site;
 2. Two hours of exercise sessions for work on projects and exercises, Friday 1215pm-2pm, FØ257;
-3. Two project assignments that each count 25 % towards the final grade (50 % in total).
-Final oral or written exam which counts 50 % towards the final grade. An oral or written exam is decided based on the number of students who register for the course;
+3. Two midterm  assignments that each count 25 % towards the final grade (50 % in total). First midterm due October 26 and second midterm availalbe November 11 and deadline November 23.
+Final oral or written exam which counts 50 % towards the final grade. Final oral exam in week 51, December 14-18. Final day to be settled.
+
 4. Weekly assignments which are not graded;
 5. The course is offered as a so-called _cloned_ course,  FYS4480 at the Master of Science level and FYS9480 as a PhD course;
 6. Weekly email with summary of activities will be mailed to all participants;
