@@ -9,6 +9,8 @@
 %  Rayleigh-Schroedinger, the two-level benchmark, the second order from
 %  Wick's theorem).  Lecture 4 lists every contribution to the energy
 %  through fourth order and to the wave operator through third order.
+%  Lecture 1 includes a four-step proof that Q/(omega-H_0) is a diagonal
+%  matrix (added 2026-10-29; also in week44_resolvent.tex).
 %  Exercises: Exercises/ExercisesWeek44.tex, reproduced on the last two
 %  frames.  Diagram rules and their derivation: week 45.
 %  Figure: ../BookFigures/chapter09/mbpt_fig01 (compile from WeeklySlides/).
@@ -202,12 +204,13 @@ University of Oslo, Norway}
   \end{center}
 \end{frame}
 
-\begin{frame}[shrink=5]{Plan for week 44}
+\begin{frame}[shrink=10]{Plan for week 44}
   \begin{block}{Thursday, $2\times45$ min: reference states, projection methods and systematic orders (sections 9.1--9.4)}
     \begin{itemize}
       \item A reference determinant, its $1p1h$ and $2p2h$ excitations, and the exact energy projected onto the reference: only singles and doubles couple directly
       \item A two-state problem solved by hand: the orders we must recover
       \item Intermediate normalisation, two energy differences that must be kept apart, $P$ and $Q$, the reduced resolvent, an exact equation for $Q\ket{\Psizero}$ and its Neumann series
+      \item Why $Q/(\omega-H_0)$ is a diagonal matrix: $[Q,H_0]=0$, inverses inherit commutation, the spectral form of the resolvent, and $Q$ deleting the pole
       \item Two choices of starting energy: Brillouin-Wigner ($\omega=E_0$, implicit) and Rayleigh-Schr\"odinger ($\omega=\varepsilon_0$, explicit)
       \item A resolvent identity, the resummation in $Q$ space, the energy-dependent effective Hamiltonian, and the secular equation recovered
       \item Rayleigh-Schr\"odinger order by order: $E^{(1)}$, $E^{(2)}$, and the normalisation subtraction in $E^{(3)}$
@@ -461,6 +464,198 @@ R_Q(\omega)\ket{\Phi_m}=
 \begin{block}{The inverse is restricted to \(Q\) space}
 At \(\omega=\varepsilon_0\), the full inverse has a reference-state pole. The reduced resolvent remains defined if \(\varepsilon_0\ne\varepsilon_m\) for all \(m\ne0\) -- this is where non-degeneracy is used.
 \end{block}
+\small The next frames show in four steps why \(Q(\omega-H_0)^{-1}Q=Q(\omega-H_0)^{-1}\), and why the result is a diagonal matrix with \(H_0\) replaced by its eigenvalues.
+\end{frame}
+
+\begin{frame}[shrink=8]{Why \(R_Q(\omega)\) is a diagonal matrix: the claim}
+Dividing \((\omega-H_0)\ket{\Psizero}=(\omega-E_0+H_I)\ket{\Psizero}\) by \(\omega-H_0\) and projecting with \(Q\), we shall use
+\[
+\boxed{\;Q\,\frac{1}{\omega-H_0}\,Q \;=\; Q\,\frac{1}{\omega-H_0} \;=\; \frac{Q}{\omega-H_0}\;\equiv\;R_Q(\omega)\;}
+\]
+and then treat \(R_Q(\omega)\) as a \alert{diagonal matrix} whose entries are numbers,
+\(R_Q(\omega)\ket{\Phi_m}=\ket{\Phi_m}/(\omega-\varepsilon_m)\) for \(m\ne0\) and \(R_Q(\omega)\ket{\ph}=0\).
+\begin{block}{Four things are being claimed at once}
+\begin{enumerate}
+\item \(Q\) commutes with \(H_0\), so the order of \(Q\) and \(H_0\) does not matter;
+\item hence \(Q\) also commutes with the \emph{inverse} \((\omega-H_0)^{-1}\), and \(Q^2=Q\) removes the second \(Q\);
+\item the inverse itself is diagonal in the eigenbasis of \(H_0\), with \(H_0\) replaced by its eigenvalue in every entry;
+\item multiplying by \(Q\) only sets the \(m=0\) entry to zero -- which is what removes the pole at \(\omega=\varepsilon_0\).
+\end{enumerate}
+\end{block}
+\begin{alertblock}{The only assumptions}
+\(H_0\) is Hermitian with the complete orthonormal eigenbasis \(\{\ket{\Phi_m}\}\), \(\sum_{m\ge0}\ketbra{\Phi_m}{\Phi_m}=1\); the reference is non-degenerate; and \(\omega\ne\varepsilon_m\) for the \emph{excited} states \(m\ge1\). We shall \emph{not} need \(\omega\ne\varepsilon_0\) -- that is the whole point of the \(Q\).
+\end{alertblock}
+\end{frame}
+
+\begin{frame}[shrink=12]{Step 1: \([Q,H_0]=0\), by direct computation}
+Act with \(H_0\) on the projector from the left and from the right:
+\begin{align*}
+H_0Q &= \sum_{m\ge1}\bigl(H_0\ket{\Phi_m}\bigr)\bra{\Phi_m}
+      = \sum_{m\ge1}\varepsilon_m\,\ketbra{\Phi_m}{\Phi_m},\\[2pt]
+QH_0 &= \sum_{m\ge1}\ket{\Phi_m}\bigl(\bra{\Phi_m}H_0\bigr)
+      = \sum_{m\ge1}\ket{\Phi_m}\bigl(H_0^\dagger\ket{\Phi_m}\bigr)^\dagger
+      = \sum_{m\ge1}\varepsilon_m^{*}\,\ketbra{\Phi_m}{\Phi_m}.
+\end{align*}
+Since \(H_0\) is Hermitian its eigenvalues are real, \(\varepsilon_m^*=\varepsilon_m\), and the two lines agree:
+\[
+\boxed{\;[Q,H_0]=0,\qquad\text{and likewise}\qquad [P,H_0]=0 .\;}
+\]
+\begin{columns}[T]
+\column{0.54\textwidth}
+\begin{exampleblock}{The same statement as matrices}
+In the ordered basis \(\{\ket{\ph},\ket{\Phi_1},\ket{\Phi_2},\dots\}\)
+\[
+H_0=\mathrm{diag}(\varepsilon_0,\varepsilon_1,\varepsilon_2,\dots),\quad
+Q=\mathrm{diag}(0,1,1,\dots).
+\]
+Two diagonal matrices always commute: \((AB)_{mn}=a_mb_m\delta_{mn}=(BA)_{mn}\).
+\end{exampleblock}
+\column{0.44\textwidth}
+\begin{exampleblock}{The general reason}
+\(Q\) is a function of \(H_0\) -- the spectral projector onto all eigenvalues except \(\varepsilon_0\) -- and every function of an operator commutes with that operator.
+\end{exampleblock}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Pause to think \#2}
+\thinkq{3}{Does \(Q\) commute with \(H_I\)? Give a one-line reason or a one-line counterexample. What would \(QH_IQ=QH_I\) mean physically?}
+\end{frame}
+
+\begin{frame}[shrink=5]{Answer to pause \#2}
+\thinka{Take the matrix element between an excited determinant and the reference:
+\[
+\mel{\Phi_m}{[Q,H_I]}{\ph}
+=\mel{\Phi_m}{QH_I}{\ph}-\mel{\Phi_m}{H_IQ}{\ph}
+=\mel{\Phi_m}{H_I}{\ph}-0 .
+\]
+This vanishes for every \(m\ne0\) only if \(H_I\) does not connect \(\ket{\ph}\) to any excitation -- then there is nothing to perturb and \(\Delta E=\av{H_I}\) exactly. For a two-body \(V\) the \(2p2h\) elements \(\vbar{a}{b}{i}{j}\) are non-zero, so \([Q,H_I]\ne0\).
+
+\medskip
+Hence \(QH_IQ\ne QH_I\): the exclusion operator \emph{can} be moved through resolvents of \(H_0\) but \emph{cannot} be moved through \(H_I\). In the series below every \(Q\) therefore sits glued to its own \(1/(\omega-H_0)\), and the vertices \(H_I\) between them carry all the physics.}
+\end{frame}
+
+\begin{frame}[shrink=12]{Step 2: if \(Q\) commutes with \(A\), it commutes with \(A^{-1}\)}
+\begin{block}{Lemma}
+Let \(A\) be invertible and \([Q,A]=0\). Then \([Q,A^{-1}]=0\).
+\end{block}
+\begin{block}{Proof (two lines)}
+Multiply \(QA=AQ\) by \(A^{-1}\) from the left and from the right:
+\[
+A^{-1}\bigl(QA\bigr)A^{-1}=A^{-1}\bigl(AQ\bigr)A^{-1}
+\quad\Longrightarrow\quad
+A^{-1}Q=QA^{-1}.\qquad\blacksquare
+\]
+\end{block}
+Apply it with \(A=\omega-H_0\). The number \(\omega\) commutes with everything, so \([Q,\omega-H_0]=-[Q,H_0]=0\) by step 1, and \(A\) is invertible as long as \(\omega\ne\varepsilon_m\) for every \(m\). Therefore
+\[
+Q\,\frac{1}{\omega-H_0}=\frac{1}{\omega-H_0}\,Q
+\qquad\Longrightarrow\qquad
+Q\,\frac{1}{\omega-H_0}\,Q=Q^2\,\frac{1}{\omega-H_0}=Q\,\frac{1}{\omega-H_0}.
+\]
+\warnbox{Writing \(\dfrac{Q}{\omega-H_0}\) as a fraction is only legitimate because numerator and denominator commute. For \(Q/(\omega-H)\) with the \emph{full} Hamiltonian the notation would be ambiguous: \(Q(\omega-H)^{-1}\ne(\omega-H)^{-1}Q\) in general, because \([Q,H_I]\ne0\).}
+\end{frame}
+
+\begin{frame}[shrink=12]{Step 3: the spectral form of \((\omega-H_0)^{-1}\)}
+Guess the inverse as a sum over the same projectors with numerical coefficients and verify:
+\[
+G_0(\omega)\equiv\sum_{n\ge0}\frac{\ketbra{\Phi_n}{\Phi_n}}{\omega-\varepsilon_n},
+\qquad
+\bigl(\omega-H_0\bigr)G_0(\omega)
+=\sum_{n\ge0}\frac{(\omega-\varepsilon_n)\,\ketbra{\Phi_n}{\Phi_n}}{\omega-\varepsilon_n}
+=\sum_{n\ge0}\ketbra{\Phi_n}{\Phi_n}=1 ,
+\]
+where we used \((\omega-H_0)\ket{\Phi_n}=(\omega-\varepsilon_n)\ket{\Phi_n}\) and completeness. The same holds with the factors in the opposite order, so
+\[
+\boxed{\;\frac{1}{\omega-H_0}=\sum_{n\ge0}\frac{\ketbra{\Phi_n}{\Phi_n}}{\omega-\varepsilon_n},
+\qquad
+\mel{\Phi_m}{\frac{1}{\omega-H_0}}{\Phi_n}=\frac{\delta_{mn}}{\omega-\varepsilon_n}.\;}
+\]
+\begin{columns}[T]
+\column{0.55\textwidth}
+\begin{exampleblock}{Why ``\(H_0\) is replaced by a number''}
+On each eigenstate the operator \(H_0\) acts as the number \(\varepsilon_n\), so any function \(f(H_0)\) acts as \(f(\varepsilon_n)\):
+\[
+f(H_0)=\sum_n f(\varepsilon_n)\,\ketbra{\Phi_n}{\Phi_n},\qquad f(x)=\frac{1}{\omega-x}.
+\]
+\end{exampleblock}
+\column{0.43\textwidth}
+\begin{alertblock}{The pole}
+The \(n=0\) term, \(1/(\omega-\varepsilon_0)\), blows up at \(\omega=\varepsilon_0\) -- the Rayleigh-Schr\"odinger choice of \(\omega\). Without \(Q\) the resolvent does not exist there.
+\end{alertblock}
+\end{columns}
+\end{frame}
+
+\begin{frame}[shrink=15]{Step 4: \(Q\) deletes one entry and nothing else}
+Insert the spectral form and use orthonormality, \(\braket{\Phi_m}{\Phi_n}=\delta_{mn}\):
+\[
+Q\,\frac{1}{\omega-H_0}
+=\sum_{m\ge1}\sum_{n\ge0}\ket{\Phi_m}\underbrace{\braket{\Phi_m}{\Phi_n}}_{\delta_{mn}}\bra{\Phi_n}\frac{1}{\omega-\varepsilon_n}
+=\sum_{m\ge1}\frac{\ketbra{\Phi_m}{\Phi_m}}{\omega-\varepsilon_m}.
+\]
+The \(n=0\) term is the only casualty. The result is manifestly the same for \((\omega-H_0)^{-1}Q\) and for \(Q(\omega-H_0)^{-1}Q\), confirming step 2 once more.
+\[
+\boxed{\;
+R_Q(\omega)=\frac{Q}{\omega-H_0}=\sum_{m\ge1}\frac{\ketbra{\Phi_m}{\Phi_m}}{\omega-\varepsilon_m},
+\qquad
+\mel{\Phi_m}{R_Q(\omega)}{\Phi_n}=\delta_{mn}\,\frac{1-\delta_{m0}}{\omega-\varepsilon_m}.
+\;}
+\]
+\begin{block}{As a matrix in the basis \(\{\ket{\ph},\ket{\Phi_1},\ket{\Phi_2},\dots\}\)}
+\[
+\underbrace{\begin{pmatrix}0&&&\\&1&&\\&&1&\\&&&\ddots\end{pmatrix}}_{Q}
+\underbrace{\begin{pmatrix}\frac{1}{\omega-\varepsilon_0}&&&\\&\frac{1}{\omega-\varepsilon_1}&&\\&&\frac{1}{\omega-\varepsilon_2}&\\&&&\ddots\end{pmatrix}}_{(\omega-H_0)^{-1}}
+=
+\underbrace{\begin{pmatrix}0&&&\\&\frac{1}{\omega-\varepsilon_1}&&\\&&\frac{1}{\omega-\varepsilon_2}&\\&&&\ddots\end{pmatrix}}_{R_Q(\omega)}
+\]
+A diagonal matrix times a diagonal matrix is diagonal, entry by entry; the zero in \(Q\) kills the only entry that was singular at \(\omega=\varepsilon_0\).
+\end{block}
+\end{frame}
+
+\begin{frame}[shrink=15]{What \(R_Q\) inverts, what the proof used, and how far it reaches}
+\begin{columns}[T]
+\column{0.5\textwidth}
+\begin{block}{The inverse on the \(Q\) space}
+The boxed result never mentions \(\varepsilon_0\), so it defines \(R_Q(\omega)\) also at \(\omega=\varepsilon_0\), where \((\omega-H_0)^{-1}\) does not exist. There
+\[
+(\omega-H_0)R_Q(\omega)=R_Q(\omega)(\omega-H_0)=Q ,
+\]
+the identity on the excluded space only. With \(QH_0Q=\sum_{m\ge1}\varepsilon_m\ketbra{\Phi_m}{\Phi_m}\) one often writes
+\(R_Q(\omega)=Q\,(\omega-QH_0Q)^{-1}_{Q}\,Q\) -- the form that reappears for the full \(H\) in lecture 2.
+\end{block}
+\column{0.48\textwidth}
+\begin{block}{The only ingredients}
+\(Q\) is a sum of projectors onto \emph{eigenstates of} \(H_0\); \(H_0\) is Hermitian; \(\omega\ne\varepsilon_m\) on the excluded states. Nothing used that the model space is one-dimensional.
+\end{block}
+\begin{block}{Larger model spaces}
+For a model space \(D\) of several determinants, \(P=\sum_{\alpha\in D}\ketbra{\Phi_\alpha}{\Phi_\alpha}\) and \(Q=\sum_{m\notin D}\ketbra{\Phi_m}{\Phi_m}\), the identical four steps give
+\[
+\frac{Q}{\omega-H_0}=\sum_{m\notin D}\frac{\ketbra{\Phi_m}{\Phi_m}}{\omega-\varepsilon_m},
+\]
+the resolvent of degenerate and quasi-degenerate perturbation theory (effective interactions, the \(\hat Q\)-box).
+\end{block}
+\end{columns}
+\vspace{0.3em}
+\warnbox{If \(Q\) were built from states that are \emph{not} eigenstates of \(H_0\) -- a Hartree-Fock reference with \(H_0\) the bare kinetic energy, say -- step 1 fails and the ``fraction'' \(Q/(\omega-H_0)\) has no meaning. Always choose \(H_0\) diagonal in the basis that defines \(P\) and \(Q\).}
+\end{frame}
+
+\begin{frame}[fragile,shrink=6]{A twelve-line check in NumPy}
+\(H_0\) is generated in a basis where it is \emph{not} diagonal, so that the diagonal form is seen to appear only after the change to its eigenbasis \(U\).
+\begin{lstlisting}
+import numpy as np
+rng = np.random.default_rng(1)
+A = rng.normal(size=(5, 5)); H0 = (A + A.T)/2      # H_0 in an arbitrary basis
+eps, U = np.linalg.eigh(H0)                         # H_0 U = U diag(eps)
+Q = np.eye(5) - np.outer(U[:, 0], U[:, 0])          # 1 - |Phi_0><Phi_0|
+print(np.allclose(Q @ H0, H0 @ Q))                  # step 1: [Q, H_0] = 0        -> True
+omega = 0.3
+R = np.linalg.inv(omega*np.eye(5) - H0)             # the full resolvent
+print(np.allclose(Q @ R, R @ Q), np.allclose(Q @ R @ Q, Q @ R))   # step 2  -> True True
+print(np.round(U.T @ (Q @ R) @ U, 3))               # steps 3-4: diagonal, first entry 0
+RQ = sum(np.outer(U[:, m], U[:, m])/(eps[0] - eps[m]) for m in range(1, 5))
+print(np.allclose((eps[0]*np.eye(5) - H0) @ RQ, Q)) # at omega = eps_0: (eps_0 - H_0) R_Q = Q -> True
+\end{lstlisting}
+\numbox{With \(\varepsilon=(-2.965,\,-1.300,\,-0.668,\,-0.382,\,0.895)\) and \(\omega=0.3\) the third print gives
+\(\mathrm{diag}(0,\;0.625,\;1.033,\;1.466,\;-1.681)\), i.e.\ exactly \(1/(\omega-\varepsilon_m)\) for \(m=1,\dots,4\) and zero for \(m=0\). The last line works although \(\omega=\varepsilon_0\) makes \(\omega-H_0\) singular. The same cell is in \texttt{week44.ipynb}.}
 \end{frame}
 
 \begin{frame}{An exact equation for the correlated component}
@@ -700,7 +895,7 @@ E^{(3)}=\sum_{m,n\ne0}
 \numbox{Pairing model, four levels, two pairs, \(g=0.5\): principal term \(-0.02300347\), subtraction \(-0.01258681\), \(E^{(3)}=-0.01041667\). The ``correction'' is larger than the answer.}
 \end{frame}
 
-\begin{frame}{Pause to think \#2}
+\begin{frame}{Pause to think \#3}
 \thinkq{4}{For the two-state model \(H_I=g\sum_{pq}\cre{p}\ann{q}\), the exact expansion has \emph{no} third-order term.
 \begin{enumerate}
 \item Compute the principal third-order term \(\av{H_IR_0H_IR_0H_I}\) and the subtraction \(E^{(1)}\av{H_IR_0^2H_I}\) with \(R_0=\ket{2}\bra{2}/D\), \(D=\varepsilon_1-\varepsilon_2\).
@@ -708,7 +903,7 @@ E^{(3)}=\sum_{m,n\ne0}
 \end{enumerate}}
 \end{frame}
 
-\begin{frame}{Answer to pause \#2}
+\begin{frame}{Answer to pause \#3}
 \thinka{%
 \begin{enumerate}
 \item Principal: \(V_{12}V_{22}V_{21}/D^2=g\cdot g\cdot g/D^2=g^3/D^2\). Subtraction: \(V_{11}V_{12}V_{21}/D^2=g^3/D^2\). Difference zero.
@@ -912,7 +1107,7 @@ The \(j\) and \(k\) sums are independent: this is the modulus squared of a sum o
 \end{exampleblock}
 \end{frame}
 
-\begin{frame}{Pause to think \#3}
+\begin{frame}{Pause to think \#4}
 \thinkq{3}{The singles term \(E^{(2)}_{1p1h}=\sum_{ia}|\sum_jv_{ajij}|^2/(\varepsilon_i-\varepsilon_a)\) is a double sum over occupied \(j,k\).
 \begin{enumerate}
 \item For the pairing model (levels \(p\), spins \(\pm\), interaction moving pairs only), what is \(U_{ai}\)? What is \(E^{(2)}_{1p1h}\)?
@@ -921,7 +1116,7 @@ The \(j\) and \(k\) sums are independent: this is the modulus squared of a sum o
 \end{enumerate}}
 \end{frame}
 
-\begin{frame}{Answer to pause \#3}
+\begin{frame}{Answer to pause \#4}
 \thinka{%
 \begin{enumerate}
 \item The pairing interaction \(\vbar{a}{j}{i}{j}\) needs \(a\) and \(i\) to be the two members of the same pair, which is impossible for \(a\) empty and \(i\) occupied in the reference: \(U_{ai}=0\), and the singles term vanishes identically, for every \(g\) and every basis.
@@ -993,7 +1188,7 @@ Therefore
 \small For Hermitian \(V\), the numerator is \(|\vbar{a}{b}{i}{j}|^2\). With \(i<j\) and \(a<b\), omit the factor \(1/4\).
 \end{frame}
 
-\begin{frame}{Pause to think \#4}
+\begin{frame}{Pause to think \#5}
 \thinkq{3}{Factors of two and four.
 \begin{enumerate}
 \item The vertex carries \(\tfrac14\) and the four Wick contractions cancel it. The sum over intermediate determinants carries another \(\tfrac14\) if the indices are unrestricted. Which \(\tfrac14\) survives in \(E^{(2)}_{2p2h}\), and why?
@@ -1001,7 +1196,7 @@ Therefore
 \end{enumerate}}
 \end{frame}
 
-\begin{frame}{Answer to pause \#4}
+\begin{frame}{Answer to pause \#5}
 \thinka{%
 \begin{enumerate}
 \item The vertex \(\tfrac14\) is cancelled by the four ways of contracting \(\cre{p}\cre{q}\ann{s}\ann{r}\) with the excitation, which all give the same antisymmetrised element -- that is what antisymmetrised elements are for. The counting \(\tfrac14\) survives only if one \emph{chooses} to sum over all \(i,j,a,b\); with \(i<j\), \(a<b\) each determinant appears once and there is no factor. The two conventions give the same number; mixing them gives a factor four.
@@ -1220,7 +1415,7 @@ E_-=\varepsilon_1+
 \small The second-order shift is negative; the fourth-order correction is positive. A reader who drops the ``normalisation corrections'' gets the fourth order of this problem not approximately but completely wrong: there is nothing else.
 \end{frame}
 
-\begin{frame}{Pause to think \#5}
+\begin{frame}{Pause to think \#6}
 \thinkq{3}{The exact eigenvalue \(E_-(\lambda)\) is a smooth function of \(\lambda\) on the whole real axis, yet its Taylor series converges only for \(|2\lambda/\Delta|<1\).
 \begin{enumerate}
 \item Where are the singularities of \(E_-(\lambda)\) that limit the radius? Are they ever visited by a real calculation?
@@ -1228,7 +1423,7 @@ E_-=\varepsilon_1+
 \end{enumerate}}
 \end{frame}
 
-\begin{frame}{Answer to pause \#5}
+\begin{frame}{Answer to pause \#6}
 \thinka{%
 \begin{enumerate}
 \item At the branch points of the square root, \(4\lambda^2=-\Delta^2\), i.e.\ \(\lambda=\pm i\Delta/2\): complex couplings, never visited, but they fix the radius of convergence about \(\lambda=0\) all the same.
@@ -1312,7 +1507,7 @@ E^{(2)}&=\underbrace{\sum_{ia}\frac{|U_{ai}|^2}{\varepsilon_i-\varepsilon_a}}_{1
 \numbox{Four models, \texttt{mbpt.py}: the fourth order from the explicit formula and from the recursion agree to \(10^{-12}\). Hubbard (\(U=2\)): the four pieces are \(-0.191\), \(+0.303\), \(-0.151\), \(+0.032\) and the total \(-0.0076\). The cancellations are severe, and they are the point of next week.}
 \end{frame}
 
-\begin{frame}{Pause to think \#6}
+\begin{frame}{Pause to think \#7}
 \thinkq{3}{Look at the list of fourth-order terms.
 \begin{enumerate}
 \item How many distinct terms does \(E^{(4)}\) have for a reference with \(E^{(1)}=0\) (Hartree-Fock partition with the mean field in \(H_0\))?
@@ -1320,7 +1515,7 @@ E^{(2)}&=\underbrace{\sum_{ia}\frac{|U_{ai}|^2}{\varepsilon_i-\varepsilon_a}}_{1
 \end{enumerate}}
 \end{frame}
 
-\begin{frame}{Answer to pause \#6}
+\begin{frame}{Answer to pause \#7}
 \thinka{%
 \begin{enumerate}
 \item Two: the principal term \(\av{VRVRVRV}\) and the folded term \(-E^{(2)}\av{VR^2V}\). For the Lipkin model (\(E^{(1)}=0\)) \texttt{mbpt.py} gives \(-0.0036\) and \(+0.0072\), total \(+0.0036\).
@@ -1332,7 +1527,7 @@ E^{(2)}&=\underbrace{\sum_{ia}\frac{|U_{ai}|^2}{\varepsilon_i-\varepsilon_a}}_{1
 \section{Summary}
 % ======================================================================
 
-\begin{frame}{Summary of week 44}
+\begin{frame}[shrink=5]{Summary of week 44}
   \small
   \begin{columns}[T]
     \column{0.48\textwidth}
@@ -1340,7 +1535,7 @@ E^{(2)}&=\underbrace{\sum_{ia}\frac{|U_{ai}|^2}{\varepsilon_i-\varepsilon_a}}_{1
       \begin{itemize}
         \item \(E_0-\Eref=\sum c_i^af_{ia}+\sum c_{ij}^{ab}\vbar{i}{j}{a}{b}\): singles and doubles couple directly
         \item Intermediate normalisation; \(\Delta E=E_0-\varepsilon_0\) versus \(E_0-\Eref\)
-        \item \(P\), \(Q\), the reduced resolvent, an exact equation, its Neumann series
+        \item \(P\), \(Q\), the reduced resolvent as a diagonal matrix (\([Q,H_0]=0\), inherited by the inverse; \(Q\) deletes the pole), an exact equation, its Neumann series
         \item BW: \(\omega=E_0\), implicit, resummed into \(G_Q\) and \(H_{\rm eff}(E_0)\), exact for the two-state model
         \item RS: \(\omega=\varepsilon_0\), \(E^{(1)}=\av{H_I}\), \(E^{(2)}=\av{H_IR_0H_I}\), \(E^{(3)}\) with its normalisation subtraction
       \end{itemize}
