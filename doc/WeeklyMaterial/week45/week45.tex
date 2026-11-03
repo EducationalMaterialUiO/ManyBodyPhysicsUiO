@@ -10,7 +10,7 @@
 %  diagram) and "Unlinked diagrams and the linked-diagram theorem".
 %  Thursday opens with the week-44 lecture 4 that was not delivered (every
 %  contribution to the energy through fourth order and to the wave operator
-%  through third order).  Week 46: the proof of the linked-diagram theorem.
+%  through third order).  The linked-diagram theorem is proved here for energy and wave amplitudes.
 %  Answers to the week-44 exercises (Exercises/AnswersWeek44.tex) and the
 %  week-45 exercises (Exercises/ExercisesWeek45.tex) are on the last frames.
 %  Companion program: BookPrograms/chapter09/diagrams.py; notebook week45.ipynb.
@@ -208,9 +208,9 @@ University of Oslo, Norway}
   \vspace*{-0.2em}{\setbeamerfont{title}{size=\Large,series=\bfseries}\titlepage}
   \vfill
   \begin{center}\small
-  Thursday: every contribution to the energy through fourth order and to the wave operator through third (the list from week 44), then the diagrams: contractions are lines, cuts are denominators, and the four rules -- sums, denominators, $\tfrac12$ per pair of equivalent lines, $(-1)^{h+l}$ -- derived from Wick's theorem\\
-  Friday: the fourteen third-order diagrams, MP3 and the pairing model diagram by diagram; unlinked diagrams at fourth order, the factorisation of denominators, and the linked-diagram theorem\\[0.8em]
-  {\footnotesize Reading: lecture notes chapter 9, section 9.15 (diagrammatic approach and the linked diagram theorem); Shavitt and Bartlett, chapters 4--5. Code: \texttt{BookPrograms/chapter09/diagrams.py}; notebook \texttt{week45.ipynb}.\\[0.2em]
+  Thursday: resolvents, Wick contractions, symmetry factors and fermion signs\\
+  Friday: third-order diagrams, a proof of the linked-diagram theorem, and Pauli exclusion at fourth order\\[0.55em]
+  {\footnotesize Reading: lecture notes chapter 9, section 9.15 (diagrammatic approach and the linked diagram theorem); Shavitt and Bartlett, chapters 4--6. Code: \texttt{BookPrograms/chapter09/diagrams.py}; notebook \texttt{week45.ipynb}.\\[0.2em]
   Answers to the week-44 exercises and the week-45 exercises: last frames.}
   \end{center}
 \end{frame}
@@ -229,7 +229,7 @@ University of Oslo, Norway}
     \begin{itemize}
       \item Third order by intermediate states: fourteen connected diagrams, three of them MP3 (pp ladder, hh ladder, ph ring); the pairing model diagram by diagram, $-\tfrac{53}{576}-\tfrac{53}{576}+\tfrac{29}{288}=-\tfrac1{12}$ (units of $g^3$)
       \item Fourth order: the unlinked diagrams, the factorisation of their denominators, and the folded term $-E^{(2)}\av{WR_0^2W}$ that removes them
-      \item \alert{The linked-diagram theorem}: energy = connected closed diagrams, wave operator = linked diagrams; extensivity, Brillouin-Wigner, partial summations. The proof: week 46
+      \item Proof of the linked-diagram theorem for the energy and wave operator. Exchange of repeated orbital labels at fourth order and the two-level benchmark
     \end{itemize}
   \end{block}
 \end{frame}
@@ -250,7 +250,7 @@ University of Oslo, Norway}
         \item The complete lists through fourth order
         \item The four rules, with proofs
         \item Third order: fourteen diagrams
-        \item Unlinked diagrams and the theorem
+        \item Fourth-order cancellation, the all-orders proof and the Pauli principle
       \end{enumerate}
     \end{block}
   \end{columns}
@@ -305,12 +305,12 @@ E^{(4)}&=\av{VRVRVRV}\;-\;E^{(1)}\bigl[\av{VR^2VRV}+\av{VRVR^2V}\bigr]\;+\;\bigl
 \end{align*}
 In the determinant basis:
 \begin{align*}
-E^{(1)}&=V_{00},\qquad E^{(2)}=\sum_m\frac{V_{0m}V_{m0}}{D_m},\qquad
+E^{(1)}&=V_{00},\quad E^{(2)}=\sum_m\frac{V_{0m}V_{m0}}{D_m},\quad
 E^{(3)}=\sum_{mn}\frac{V_{0m}V_{mn}V_{n0}}{D_mD_n}-V_{00}\sum_m\frac{V_{0m}V_{m0}}{D_m^2},\\
 E^{(4)}&=\sum_{mnl}\frac{V_{0m}V_{mn}V_{nl}V_{l0}}{D_mD_nD_l}
 -2V_{00}\sum_{mn}\frac{V_{0m}V_{mn}V_{n0}}{D_m^2D_n}
 +V_{00}^2\sum_m\frac{V_{0m}V_{m0}}{D_m^3}
--\Bigl(\sum_n\frac{V_{0n}V_{n0}}{D_n}\Bigr)\sum_m\frac{V_{0m}V_{m0}}{D_m^2}.
+-E^{(2)}\sum_m\frac{V_{0m}V_{m0}}{D_m^2}.
 \end{align*}
 \small (The two mixed terms are complex conjugates, equal for real matrix elements, hence the \(2\).) Every term with a factor \(E^{(k)}\) in front is a renormalisation term: the product of two separately evaluated pieces. Today: these are the \emph{unlinked} diagrams, and they cancel against the unlinked parts of the principal term -- the linked-diagram theorem.
 \end{frame}
@@ -347,7 +347,7 @@ E^{(2)}&=\underbrace{\sum_{ia}\frac{|U_{ai}|^2}{\varepsilon_i-\varepsilon_a}}_{1
 \begin{frame}[shrink=5]{Step zero: normal ordering absorbs the \(E^{(1)}\) renormalisation terms}
 Write the perturbation in the normal-ordered form of week 44 (section 9.8), with a name for its non-scalar part:
 \[
-H_I=E^{(1)}+W,\qquad
+H_I=E^{(1)}+W,\quad
 \boxed{W=\sum_{pq}\ftil{pq}\no{\cre{p}\ann{q}}+\frac14\sum_{pqrs}\vbar{p}{q}{r}{s}\no{\cre{p}\cre{q}\ann{s}\ann{r}},}
 \qquad
 \ftil{pq}=u_{pq}+U_{pq}=f_{pq}-\varepsilon_p\delta_{pq},
@@ -356,7 +356,7 @@ where \(f\) is the Fock matrix of week 39 and \(U_{pq}=\sum_{j}\vbar{p}{j}{q}{j}
 \begin{block}{Look at the recursion}
 The \(k=1\) term subtracts \(E^{(1)}\ket{\Psi^{(n-1)}}\) from \(H_I\ket{\Psi^{(n-1)}}\); the two combine into \(W\ket{\Psi^{(n-1)}}\). Since \(\braket{\ph}{\Psi^{(n)}}=0\) for \(n\ge1\), the energy formula may use \(W\) too:
 \[
-\boxed{\ket{\Psi^{(n)}}=R_0\Bigl[W\ket{\Psi^{(n-1)}}-\sum_{k=2}^{n-1}E^{(k)}\ket{\Psi^{(n-k)}}\Bigr],\qquad E^{(n+1)}=\mel{\ph}{W}{\Psi^{(n)}}\quad(n\ge1).}
+\boxed{\ket{\Psi^{(n)}}=R_0\Bigl[W\ket{\Psi^{(n-1)}}-\sum_{k=2}^{n-1}E^{(k)}\ket{\Psi^{(n-k)}}\Bigr],\quad E^{(n+1)}=\mel{\ph}{W}{\Psi^{(n)}}\;(n\ge1).}
 \]
 \end{block}
 \(E^{(1)}\) has disappeared from the recursion, and with it \emph{every} renormalisation term carrying a factor \(E^{(1)}\).
@@ -453,59 +453,77 @@ and \(\ftil{ai}=f_{ai}\) for \(a\ne i\): the coherent singles sum of week 44 is 
 \section{Thursday, lecture 2: The four rules, proved}
 % ======================================================================
 
-\begin{frame}[shrink=10]{Cuts are denominators, 1: between two vertices the state is an eigenstate of \(H_0\)}
-Put the resolvents back. Between \(W_k\) and \(W_{k+1}\), \(R_0=Q/(\varepsilon_0-H_0)\) acts on the state produced by one monomial \(M_j\) from each of the first \(k\) vertices. Since \(H_0\) is one-body and diagonal,
+\begin{frame}{One Wick contraction gives one orbital sum}
+Write $n_p=1$ for an occupied reference orbital and $n_p=0$ for an empty one. The determinant contractions are
 \[
-\boxed{[H_0,\cre{p}]=\varepsilon_p\cre{p},\qquad [H_0,\ann{p}]=-\varepsilon_p\ann{p},}
+ \av{\cre{p}\ann{q}}=\delta_{pq}n_p,\qquad
+ \av{\ann{q}\cre{p}}=\delta_{pq}(1-n_p).
 \]
-every creation operator in a monomial adds its orbital energy and every annihilation operator subtracts it:
+For example, take one one-body vertex $F=\sum_{pq}\ftil{pq}\no{\cre{p}\ann{q}}$ in each of two successive positions in the operator string. Normal ordering leaves only the intervertex pairing
 \[
-H_0\,M_k\cdots M_1\ket{\ph}
-=\Bigl(\varepsilon_0+\sum_{\rm creators}\varepsilon_p-\sum_{\rm annihilators}\varepsilon_q\Bigr)M_k\cdots M_1\ket{\ph}.
+ \av{\no{\cre{p}\ann{q}}\no{\cre{r}\ann{s}}}
+ = \delta_{ps}n_p\,\delta_{qr}(1-n_q).
 \]
-\begin{block}{Consequence (week 44, lecture 1)}
-On an eigenstate the resolvent is the number \(1/(\varepsilon_0-\varepsilon_m)\). So every \(R_0\) in the string can be replaced by a number that depends only on the labels of the monomials \emph{below} it, and pulled out in front. What remains is the plain product \(\mel{\ph}{M_n\cdots M_1}{\ph}\), to which Wick's theorem applies.
-\end{block}
+The two Kronecker deltas identify the endpoints. The occupation factors restrict $p=s=i$ to holes and $q=r=a$ to particles. Thus $\av{FF}=\sum_{ia}\ftil{ia}\ftil{ai}$. Each internal line has one independently summed orbital label.
 \end{frame}
 
-\begin{frame}[shrink=5]{Cuts are denominators, 2: read the number off the lines that cross the cut}
-Fix a complete contraction and draw the cut between vertices \(k\) and \(k+1\). Each operator of the first \(k\) vertices is contracted either with an operator \emph{below} the cut or with one \emph{above} it.
-\begin{itemize}
-\item A line that begins and ends below the cut pairs a creator and an annihilator with the \emph{same} label: it contributes \(\varepsilon_p-\varepsilon_p=0\).
-\item A \alert{particle line crossing} the cut has its creator below: \(+\varepsilon_a\).
-\item A \alert{hole line crossing} the cut has its annihilator below: \(-\varepsilon_i\).
-\end{itemize}
+\begin{frame}{The reduced resolvent on a determinant}
+For a nondegenerate reference, let $Q=1-\ketbra{\ph}{\ph}$. Define the inverse on the range of $Q$:
 \[
-\varepsilon_m-\varepsilon_0=\sum_{\text{particles crossing}}\varepsilon_a-\sum_{\text{holes crossing}}\varepsilon_i,
-\qquad
-\boxed{\frac{1}{\varepsilon_0-\varepsilon_m}=\frac{1}{\sum_{\rm holes}\varepsilon_i-\sum_{\rm particles}\varepsilon_a}.}
+ R_0=\sum_{m\ne0}\frac{\ketbra{\Phi_m}{\Phi_m}}{\varepsilon_0-\varepsilon_m},
+ \qquad R_0\ket{\ph}=0.
 \]
-One factor per cut, computed from the lines that cross it: \alert{rule 2}.
-\begin{columns}[T]
-\column{0.5\textwidth}
-\begin{block}{What \(Q\) does}
-If \emph{no} line crosses a cut, the state below it is \(\ket{\ph}\) itself; \(Q\) annihilates it, the term is zero. Drawings that fall into two pieces \emph{separated in time} are excluded by \(Q\).
-\end{block}
-\column{0.48\textwidth}
-\begin{alertblock}{What \(Q\) does not do}
-Drawings that fall into two pieces which \emph{overlap} in time are \emph{not} excluded. These are the unlinked diagrams of Friday.
-\end{alertblock}
-\end{columns}
+If $M$ is a normal-ordered monomial, $[H_0,M]=\omega_M M$, where
+$\omega_M$ is the sum of the created orbital energies minus the sum of the annihilated ones. By the product rule for commutators,
+\[
+ [H_0,M_k\cdots M_1]=\Bigl(\sum_{j=1}^k\omega_{M_j}\Bigr)M_k\cdots M_1.
+\]
+Whenever $M_k\cdots M_1\ket{\ph}$ is nonzero, it has unperturbed energy
+$\varepsilon_0+\sum_j\omega_{M_j}$. If a repeated occupied or empty label makes this state vanish, the determinant path already contributes zero.
 \end{frame}
 
-\begin{frame}[shrink=12]{The weight: why \(\tfrac14\) per vertex becomes \(\tfrac12\) per pair of equivalent lines}
-Each two-body vertex carries \(\tfrac14\sum_{pqrs}\). Fix a \emph{drawing} (a topology; the labels are summed) and count the complete contractions that produce it.
-\begin{block}{Relabellings at one vertex}
-\(p\leftrightarrow q\) maps a contraction to another one with the same topology (the ends swap their outgoing lines); \(r\leftrightarrow s\) likewise for the incoming lines. \(\vbar{p}{q}{r}{s}\) and \(\no{\cre{p}\cre{q}\ann{s}\ann{r}}\) both change sign under either exchange: all four relabellings give \emph{identical} values.
-\end{block}
-Relabellings at different vertices are independent: \(4^{n_V}\) of them, cancelling the \((\tfrac14)^{n_V}\) exactly -- \alert{unless two relabellings give the same contraction}.
-\begin{block}{When do they?}
-Only if the swap at one vertex exchanges two operators whose two lines go to the same two operators of \emph{another} vertex, where the partner swap undoes the change: a pair of \alert{equivalent lines}, two lines of the same kind joining the same two vertices in the same direction. Each such pair halves the count.
+\begin{frame}{Reading the energy denominator at a cut}
+A contraction entirely below a horizontal cut contributes $+\varepsilon_p-\varepsilon_p=0$. An upward particle line leaves a creation operator below the cut. A downward hole line leaves an annihilation operator below it. Hence
+\[
+ D_k=\varepsilon_0-\varepsilon_{m_k}
+ =\sum_{i\ {\rm crossing}}\varepsilon_i-\sum_{a\ {\rm crossing}}\varepsilon_a.
+\]
+For $\ket{\Phi_{ij}^{ab}}=\cre{a}\cre{b}\ann{j}\ann{i}\ket{\ph}$ this gives
+\[
+ R_0\ket{\Phi_{ij}^{ab}}=
+ \frac{\ket{\Phi_{ij}^{ab}}}{\varepsilon_i+\varepsilon_j-\varepsilon_a-\varepsilon_b}.
+\]
+A closed, time-ordered term with $n$ vertices has $n-1$ cuts. Multiply by $1/D_k$ at each cut. A cut with no crossing lines returns to the reference and $Q$ kills the term. Two independent excitations can overlap in time and survive this test.
+\end{frame}
+
+\begin{frame}{Counting contractions for antisymmetrised vertices}
+Each two-body vertex carries $1/(2!\,2!)$ and has two outgoing and two incoming slots. Exchanging two slots on one side reverses both the Wick sign and the sign of $\vbar{p}{q}{r}{s}$, leaving their product unchanged.
+\begin{block}{For a fixed ordering of the vertices}
+At $n_V$ two-body vertices there are $4^{n_V}$ choices of slot labels.
+Two choices give the same pairing when they exchange parallel lines at \emph{both} endpoints. With at most two incoming and two outgoing slots, each pair of equivalent internal lines supplies two such choices.
 \end{block}
 \[
-\boxed{\Bigl(\tfrac14\Bigr)^{n_V}\cdot\frac{4^{n_V}}{2^{n_{\rm eq}}}=\Bigl(\tfrac12\Bigr)^{n_{\rm eq}}}\qquad\text{rule 3.}
+ \#\{\text{distinct pairings}\}=\frac{4^{n_V}}{2^{n_{\rm eq}}},
+ \qquad
+ w=\frac{1}{4^{n_V}}\frac{4^{n_V}}{2^{n_{\rm eq}}}=2^{-n_{\rm eq}} .
 \]
-\small Week 44: the four contractions that turned \(\tfrac14\) into one were the four relabellings of one vertex. A cross has no factor. Exchanging the two ends of an interaction is counted once -- an antisymmetrised diagram is direct and exchange at once.
+Equivalent lines have the same two vertices and the same arrow direction. Throughout this count the orbital sums are unrestricted within the particle and hole spaces. Exchanging externally fixed labels gives a different amplitude ordering.
+\end{frame}
+
+\begin{frame}{Four contractions at second order}
+Take the top vertex as $\vbar{p}{q}{r}{s}$ and the bottom vertex as $\vbar{a}{b}{i}{j}$, with $i,j$ occupied and $a,b$ empty. The two particle contractions and the two hole contractions give
+\[
+ (\delta_{ra}\delta_{sb}-\delta_{rb}\delta_{sa})
+ (\delta_{pi}\delta_{qj}-\delta_{pj}\delta_{qi}).
+\]
+Contracting the top matrix element with both brackets gives $4\vbar{i}{j}{a}{b}$. Thus the two vertex factors and four Wick pairings give $(1/4)^2\,4=1/4$.
+\[
+ E^{(2)}_{\rm doubles}
+ =\frac14\sum_{ijab}\frac{|\vbar{a}{b}{i}{j}|^2}{D_{ij}^{ab}}
+ =\sum_{i<j}\sum_{a<b}\frac{|\vbar{a}{b}{i}{j}|^2}{D_{ij}^{ab}},
+ \qquad D_{ij}^{ab}=\varepsilon_i+\varepsilon_j-\varepsilon_a-\varepsilon_b .
+\]
+Every doubly excited determinant occurs once in the ordered sums. This checks the diagram weight independently against the determinant expression.
 \end{frame}
 
 \begin{frame}[shrink=8]{The sign, 1: vertex ends and the permutation \(\pi\)}
@@ -536,15 +554,30 @@ Particle line: \(\ann{a}\) belongs to the later vertex and should stand left: on
 \]
 \end{frame}
 
-\begin{frame}{The sign, 3: open diagrams and quasi-loops (week 38)}
-Nothing in the proof used that the diagram is closed.
+\begin{frame}{Exchanging two particle contractions changes one loop}
+Hold the hole contractions fixed in the second-order doubles diagram. In each string the four operators on the left belong to the upper vertex. Blue brackets fix $p=i$, $q=j$.
+\begin{center}
+\begin{tabular}{@{}c@{\hspace{1.8em}}c@{}}
+\wickpattern{1} & \wickpattern{0} \\[0.5em]
+$r=a,\ s=b$ & $r=b,\ s=a$ \\
+two loops, $h=2$, Wick sign $+$ & one loop, $h=2$, Wick sign $-$
+\end{tabular}
+\end{center}
+The exchange joins two cycles into one. At the same time the upper vertex changes from $\vbar{i}{j}{a}{b}$ to $\vbar{i}{j}{b}{a}=-\vbar{i}{j}{a}{b}$. The two signed terms therefore add. Exchanging the holes supplies the other two contractions counted above.
+\end{frame}
+
+\begin{frame}{Open diagrams and the ordering of external lines}
+Fix $\ket{\Phi_{ij}^{ab}}=\cre{a}\cre{b}\ann{j}\ann{i}\ket{\ph}$. To assign a sign to its amplitude, append the bra at the top of the diagram. Its operator string can be written
+\[
+ \bra{\Phi_{ij}^{ab}}=\bra{\ph}\cre{i}\cre{j}\ann{b}\ann{a}
+ =\bra{\ph}(\cre{i}\ann{a})(\cre{j}\ann{b}).
+\]
+Since $a,b$ are virtual and $i,j$ are occupied, moving $\ann{a}$ through the two middle operators produces two minus signs and no delta term.
 \begin{itemize}
-\item For an open diagram the bra \(\bra{\Phi_{ij}^{ab}}=\bra{\ph}\cre{i}\cre{j}\ann{b}\ann{a}\) is one more vertex at the top of the string.
-\item Reordered like an interaction vertex, \(\cre{i}\cre{j}\ann{b}\ann{a}=(\cre{i}\ann{a})(\cre{j}\ann{b})\): its ends are \((\cre{i}\ann{a})\), \((\cre{j}\ann{b})\).
-\item So the open particle line \(a\) and the open hole line \(i\) meet at one end: that closes the \emph{quasi-loop}, with the pairs \((a,i)\), \((b,j)\) in the order of the bra -- exactly the rule stated for the FCI diagrams in week 38.
-\item The permutation operators \(P(ab)\), \(P(ij)\) of week 38 count the inequivalent ways of attaching the open lines, the open-line analogue of the relabelling argument.
+\item Pair $(a,i)$ and $(b,j)$ at the bra. Count all hole lines and cycles of this \emph{closed} contraction, including those running to the bra. A loop closed this way is called a quasi-loop.
+\item Exchanging $a$ and $b$ in the external ordering reverses the determinant sign. When summing inequivalent attachments use the antisymmetriser $1-P_{ab}$, where $P_{ab}$ simply interchanges labels. The same convention applies to $i,j$.
 \end{itemize}
-\mbbox{The wave-operator diagrams of the first frames (\(\Omega^{(1)}\), \(\Omega^{(2)}\), \dots) are open diagrams: the same rules, with quasi-loops, give their amplitudes, and the denominators are read off the cuts in the same way. That is how the coupled-cluster equations of chapter 10 will be drawn.}
+The projecting bra carries unit weight. A wave-function amplitude with $n$ physical vertices has an additional cut between the last vertex and the bra, for $n$ denominators in total.
 \end{frame}
 
 \begin{frame}{Pause to think \#3}
@@ -565,26 +598,17 @@ Nothing in the proof used that the diagram is closed.
 \end{enumerate}}
 \end{frame}
 
-\begin{frame}[shrink=18]{The four rules, collected}
-\begin{block}{The value of a closed Goldstone diagram with antisymmetrised vertices}
+\begin{frame}{The four rules for a closed, time-ordered diagram}
+Use normal-ordered vertices, antisymmetrised two-body matrix elements and unrestricted internal orbital sums. For each distinct time ordering:
 \begin{enumerate}
-\item Sum over all internal labels; write \(\ftil{\rm out,in}\) for every cross and \(\langle{\rm out}\,{\rm out}|v|{\rm in}\,{\rm in}\rangle\) for every interaction (ends \((p,r)\), \((q,s)\)).
-\item For every cut between successive vertices a denominator \(\sum_{\rm holes}\varepsilon_i-\sum_{\rm particles}\varepsilon_a\) over the lines crossing it.
-\item A factor \(\tfrac12\) for every pair of equivalent lines.
-\item The sign \((-1)^{h+l}\), \(h\) hole lines, \(l\) closed loops (quasi-loops included for open diagrams, plus \(P(ab)\), \(P(ij)\) for inequivalent open lines).
+\item Assign one label per internal line. Sum holes over occupied orbitals and particles over empty orbitals. At every cross write $\ftil{pq}$, and at every interaction write $\vbar{p}{q}{r}{s}$ with ends $(p,r)$ and $(q,s)$.
+\item Insert $1/D_k$ between consecutive vertices, with $D_k=\sum_{\rm holes}\varepsilon_i-\sum_{\rm particles}\varepsilon_a$ on that cut.
+\item Multiply by $2^{-n_{\rm eq}}$ for the equivalent internal line pairs.
+\item Multiply by $(-1)^{h+l}$ using the hole lines and closed fermion loops of the chosen vertex pairing.
 \end{enumerate}
+\begin{block}{Sign check}
+The Wick sign and the signs of the denominators are separate. The doubles diagram has $h=l=2$, so its Wick sign is $+1$. For a ground-state reference $D_{ij}^{ab}<0$, and its contribution to $E^{(2)}$ is negative whenever the matrix element is nonzero.
 \end{block}
-\begin{columns}[T]
-\column{0.5\textwidth}
-\begin{exampleblock}{What was proved where}
-Rule 1: Wick's theorem for normal-ordered groups.\\
-Rule 2: \([H_0,\cre{p}]=\varepsilon_p\cre{p}\) and the spectral form of \(R_0\).\\
-Rule 3: the \(4^{n_V}\) relabellings and their stabiliser.\\
-Rule 4: the parity of \(\pi\) and one transposition per particle line.
-\end{exampleblock}
-\column{0.48\textwidth}
-\warnbox{The diagrams are \emph{time-ordered}: two drawings differing only in the vertical order of their vertices are different Goldstone diagrams with different denominators. A Feynman diagram sums all time orderings of one topology; we keep the Goldstone form because every denominator is explicit, and because coupled cluster is written in it.}
-\end{columns}
 \end{frame}
 
 \begin{frame}{First and second order, re-read with the rules}
@@ -626,9 +650,9 @@ $\sum_i u_{ii}$ & $\tfrac12\sum_{ij}\vbar{i}{j}{i}{j}$ & $\sum_{ia}\dfrac{\ftil{
 \end{tabular}
 \end{center}
 \begin{itemize}
-\item First order (bare vertices, bubbles drawn): \(h=l=1\) and \(h=l=2\) with one equivalent pair, no cut: both \(+\). Together \(\Eref-\varepsilon_0\).
+\item First order uses the bare vertices. The two-body expectation is $\tfrac12\sum_{ij}\vbar{i}{j}{i}{j}$ from two Wick pairings times $1/4$. Both diagrams have positive Wick sign and no cut. Together they give $\Eref-\varepsilon_0$.
 \item Second order (normal-ordered vertices): the two diagrams of pause \#3.
-\item \alert{Hartree-Fock basis}: \(f\) is diagonal with eigenvalues \(\varepsilon_p\), so \(\ftil{pq}=0\) for all \(p,q\): every cross vanishes, every bubble with it (Brillouin), and only the ring survives -- MP2. Pairing model: \(\ftil{ai}=0\) for any basis, ring \(=-\tfrac{7}{24}g^2\).
+\item \alert{Hartree-Fock basis}: \(f\) is diagonal with eigenvalues \(\varepsilon_p\), so \(\ftil{pq}=0\) for all \(p,q\): every cross vanishes, every bubble with it (Brillouin), and only the ring survives -- MP2. Pairing model: \(\ftil{ai}=0\) in the pairing basis, ring \(=-\tfrac{7}{24}g^2\).
 \end{itemize}
 \end{frame}
 
@@ -924,7 +948,7 @@ Ends \(1L{=}(a,i)\), \(1R{=}(b,j)\), \(2L{=}(c,a)\), \(2R{=}(i,k)\), \(3L{=}(k,c
 \end{block}
 \end{frame}
 
-\begin{frame}{Pause to think \#4}
+\begin{frame}[shrink=1]{Pause to think \#4}
 \thinkq{4}{The pairing model: the interaction only moves a pair \((p\!\uparrow,p\!\downarrow)\to(q\!\uparrow,q\!\downarrow)\), \(H_0\) is diagonal by construction, \(u=0\).
 \begin{enumerate}
 \item Which of the fourteen diagrams can be non-zero? (Think: can the interaction connect the reference to a single? Can it scatter a particle and a hole from different pairs? What is \(\ftil{pq}=U_{pq}=\sum_j\vbar{p}{j}{q}{j}\) for an occupied and for an empty spin-orbital?)
@@ -1082,7 +1106,7 @@ pairing of vertices & intermediate states & \\
   \node[dlab,below] at (1.7,-0.4) {(b) vertices $1,4$ and $2,3$};
 \end{tikzpicture}
 \end{center}
-\small Two second-order rings, pairs \((ab,ij)\) and \((cd,kl)\) sharing no orbital; \(D_m=\varepsilon_{ij}^{ab}\), \(D_n=\varepsilon_{kl}^{cd}\) are the denominators of the rings on their own. The matrix elements, the weights and the signs of the two pieces simply \emph{multiply} (\((-1)^{h+l}\) is additive in \(h\) and \(l\)). Only the denominators are not local to a piece: in the middle both rings are open, and the energies \emph{add} because the excitations involve different orbitals.
+\small Two second-order rings, pairs \((ab,ij)\) and \((cd,kl)\) sharing no orbital; \(D_m=\varepsilon_{ij}^{ab}\), \(D_n=\varepsilon_{kl}^{cd}\) are the denominators of the rings on their own. The matrix elements, the weights and the signs of the two pieces simply \emph{multiply} (the line and loop counts add in the exponent). Only the denominators are not local to a piece: in the middle both rings are open, and the energies \emph{add} because the excitations involve different orbitals.
 \end{frame}
 
 \begin{frame}[shrink=6]{The factorisation of the denominators}
@@ -1092,47 +1116,230 @@ Ordering (a): cuts \(D_m\), \(D_m+D_n\), \(D_n\). Ordering (b): \(D_m\), \(D_m+D
 =\frac{1}{D_m(D_m+D_n)}\cdot\frac{D_m+D_n}{D_mD_n}
 =\frac{1}{D_m^2\,D_n}.}
 \]
-The sum over the two time orderings has \alert{factorised} into the product of the denominators of the two pieces, with the piece begun first counted twice. The two orderings with the roles exchanged give \(1/D_mD_n^2\).
+For fixed $m$ opened first, the two orders sum to $1/(D_m^2D_n)$. When $n$ opens first they give $1/(D_n^2D_m)$. An ordered double sum already includes the interchange of $m$ and $n$.
 \begin{block}{Compare with the folded term}
 \[
 E^{(2)}\av{WR_0^2W}=\sum_{m,n\ne0}\frac{W_{0n}W_{n0}}{D_n}\,\frac{W_{0m}W_{m0}}{D_m^2}
 \]
--- exactly the sum of the unlinked diagrams, with the opposite sign.
+This product enters $E^{(4)}$ with a minus sign. For disjoint excitations it cancels the sum of the two overlapping orderings for each ordered pair of excitations.
 \end{block}
-\alert{The renormalisation term is not a correction to the principal term. It is the unlinked part of the principal term, counted once more with a minus sign, so that the two cancel and only the linked diagrams survive.}
+For shared orbital labels, independent sums also contain formal EPV pairings. We will track their exchange partners explicitly after the proof.
 \end{frame}
 
-\begin{frame}[shrink=8]{The two-level benchmark of week 44, re-read}
-Purely off-diagonal coupling \(\lambda\) between \(\ket{\Phi_1}\) and \(\ket{\Phi_2}\), \(V_{11}=V_{22}=0\):
+\begin{frame}{Factorisation for two open excitation histories}
+Fix the vertex order \emph{within} each of two independent pieces. Let $A_r$ and $B_s$ be their signed energy deficits after $r$ and $s$ vertices. Put $A_0=B_0=0$. Let $S_{rs}$ sum the denominator products of all interleavings of these prefixes, including their final cut.
 \[
-E^{(4)}=\underbrace{\av{VRVRVRV}}_{=0\ \text{since}\ QVQ=0}-E^{(2)}\av{VR^2V}=-\frac{\lambda^4}{D^3}>0 .
+ S_{r0}=\prod_{u=1}^r A_u^{-1},\quad S_{0s}=\prod_{v=1}^s B_v^{-1},\quad S_{00}=1.
 \]
-\begin{columns}[T]
-\column{0.5\textwidth}
-\begin{block}{In diagram language}
-With a single excited state there is \emph{no linked} fourth-order diagram. But there is an unlinked one: excite, de-excite, excite, de-excite -- the product of two second-order excursions, which \(Q\) does not kill because \dots
-\end{block}
-\column{0.48\textwidth}
-\begin{alertblock}{\dots because?}
-Because in a \emph{many-body} system the two excursions could overlap in time. Here they cannot (one state), so the unlinked piece in the principal term is absent, while the folded term still subtracts it. What the benchmark called ``the folded term is all there is'' is the theorem seen from its edge: the surviving term is a linked one -- an excitation of $\ket{\Phi_2}$ that is EPV in the many-body sense.
-\end{alertblock}
-\end{columns}
-\vspace{0.4em}
-\small This is also the origin of the quadratic scaling of pause \#1: a product of two closed pieces, each a sum over the whole system, grows like the square of the system size, and an energy cannot.
+The last vertex belongs to one of the pieces. Their deficits add on the common cut, so for $r,s>0$,
+\[
+ S_{rs}=\frac{S_{r-1,s}+S_{r,s-1}}{A_r+B_s}
+ =\frac{A_r+B_s}{A_r+B_s}
+   \prod_{u=1}^r\frac1{A_u}\prod_{v=1}^s\frac1{B_v}.
+\]
+The second equality uses the induction hypothesis. This proves factorisation for prefixes with nonzero denominators. At a closed energy graph's final vertex there is no final denominator. The preceding fourth-order example treated that endpoint explicitly.
 \end{frame}
 
-\begin{frame}[shrink=5]{Two points of rigour}
-\begin{columns}[T]
-\column{0.5\textwidth}
-\begin{block}{1. Exclusion-principle-violating terms}
-If the two pieces share an orbital, the product state \(\ket{\Phi_m}\otimes\ket{\Phi_n}\) does not exist (Pauli), so the principal term lacks those terms while \(E^{(2)}\av{WR_0^2W}\) contains them. Goldstone's resolution: include the \emph{EPV} unlinked diagrams in the sum anyway -- they cancel the folded term -- and keep the linked diagrams that violate the exclusion principle in their intermediate states. The bookkeeping is consistent; the proof is next week.
+\begin{frame}{The linked-diagram theorem for a single reference}
+Assume a finite orbital basis and a nondegenerate, gapped ground determinant $\ket{\ph}$ of $H_0$. Follow its ground-state branch for small coupling $\lambda$. As before,
+$H(\lambda)=H_0+\lambda(E^{(1)}+W)$ with $\av{W}=0$.
+\begin{block}{Energy}
+For $n\ge2$, sum the connected closed Wick diagrams of the indicated string.
+\[
+ E^{(n)}=\big[\av{W(R_0W)^{n-1}}\big]_{\rm connected},
+ \qquad E_0(\lambda)=\varepsilon_0+\lambda E^{(1)}+\sum_{n\ge2}\lambda^n E^{(n)} .
+\]
 \end{block}
-\column{0.48\textwidth}
-\begin{block}{2. The factorisation theorem (Frantz and Mills 1960)}
-Shown here for two pieces of two vertices. In general: the sum over all relative time orderings of two pieces, each with its own cuts, equals the product of the two denominator products. Proved by induction on the number of vertices; it is the engine of the general proof.
+\begin{block}{Wave operator}
+With $\braket{\ph}{\Psi_0(\lambda)}=1$, each component of a diagram for an excited-determinant amplitude must reach an external line. Several components may survive in the same amplitude if each reaches the projecting bra.
 \end{block}
-\end{columns}
-\vspace{0.3em}
+\end{frame}
+
+\begin{frame}{Proof 1. Projection onto the interacting ground state}
+Remove the scalar shift by writing $H'=H_0+\lambda W$. Define
+\[
+ U_T=e^{-T(H'-\varepsilon_0)},\qquad
+ Z(T)=\av{U_T}=\sum_\nu |\braket{\Psi'_\nu}{\ph}|^2 e^{-T(E'_\nu-\varepsilon_0)}.
+\]
+Here the spectral eigenvectors are unit normalised. The ground-state overlap is nonzero for sufficiently small $\lambda$. The gap suppresses the excited terms, giving
+\[
+ E'_0-\varepsilon_0=-\lim_{T\to\infty}\partial_T\log Z(T),\qquad
+ \ket{\Psi_0(\lambda)}=\lim_{T\to\infty}\frac{U_T\ket{\ph}}{Z(T)} .
+\]
+The ratio has reference overlap one at every $T$. Since
+$\bra{\ph}(H_0-\varepsilon_0)=0$, the energy also has a form with one marked, latest vertex:
+\[
+ -\partial_T\log Z(T)=\lambda\frac{\av{W U_T}}{Z(T)} .
+\]
+\end{frame}
+
+\begin{frame}{Proof 2. Independent vacuum components factorise}
+Let $W_I(t)=e^{tH_0}W e^{-tH_0}$ and let $\mathcal T$ put later times on the left. The Dyson series on the reference gives
+\[
+ Z(T)=\sum_{N\ge0}\frac{(-\lambda)^N}{N!}
+ \int_{[-T,0]^N}\!\dd^Nt\,
+ \av{\mathcal T W_I(t_1)\cdots W_I(t_N)} .
+\]
+Wick contractions partition the $N$ labelled vertices into connected components. If there is no line between two sets, their orbital labels are summed independently and their time variables are integrated over a product domain. The signed integrand factorises because every closed component has even fermion parity.
+\begin{block}{Relative time orderings}
+For two components the Cartesian product of their ordered time domains splits into all interleavings that preserve each internal ordering. One ordering on its own need not factorise. Integrating over their union gives the product of the two component integrals.
+\end{block}
+\end{frame}
+
+\begin{frame}{Proof 3. Counting the components produces an exponential}
+Group connected vacuum graphs by type $\alpha$. Write $C_\alpha(T)$ for the signed, integrated weight of one component, with its vertex factorial and internal symmetry factors. Suppose $m_\alpha$ components of type $\alpha$ occur, each with $r_\alpha$ vertices, so $N=\sum_\alpha m_\alpha r_\alpha$. The number of partitions of the vertex labels is
+\[
+ \frac{N!}{\prod_\alpha (r_\alpha!)^{m_\alpha}m_\alpha!}.
+\]
+The Dyson $1/N!$ cancels the numerator. Each $1/r_\alpha!$ belongs to one component. Permuting identical components leaves the factor $1/m_\alpha!$. Summing their multiplicities gives
+\[
+ Z(T)=\prod_\alpha\sum_{m\ge0}\frac{C_\alpha(T)^m}{m!}
+     =\exp\Bigl[\sum_\alpha C_\alpha(T)\Bigr].
+\]
+For example, $\av{W}=0$ implies $Z_1=0$. If $Z=1+\sum_n\lambda^n Z_n$, the fourth-order coefficient of $\log Z$ is $Z_4-Z_2^2/2$. The identical pair of second-order vacuum components cancels exactly.
+\end{frame}
+
+\begin{frame}{Proof 4. The energy selects one connected component}
+In $\av{W U_T}$, distinguish the vertex $W$ at time zero. Every fully contracted term has a unique component containing this vertex. All other components are ordinary vacuum components. For $N$ integrated vertices, choosing the $k$ that join the marked component gives
+\[
+ \frac{1}{N!}\binom Nk=\frac{1}{k!(N-k)!}.
+\]
+The unmarked vertices therefore generate exactly $Z(T)$. If $M(T)$ sums the components attached to the marked vertex, then
+\[
+ \av{W U_T}=M(T) Z(T),\qquad E'_0-\varepsilon_0=\lambda\lim_{T\to\infty}M(T).
+\]
+Every interaction in $M$ is joined to the marked vertex by a path of fermion lines and interactions. Closing the external state with the reference gives a connected vacuum diagram. Equivalently, $-\partial_T\log Z$ selects the same connected series.
+\end{frame}
+
+\begin{frame}{Proof 5. Imaginary-time intervals give the Goldstone denominators}
+Order the $n-1$ integrated vertices beneath the marked vertex $t_n=0$. During $s_k=t_{k+1}-t_k$ the free propagation supplies $e^{-\Delta_k s_k}$, with
+\[
+ \Delta_k=\sum_{a\ {\rm crossing}}\varepsilon_a-
+           \sum_{i\ {\rm crossing}}\varepsilon_i=-D_k>0.
+\]
+Every cut of a connected closed graph crosses a line. At finite $T$, $s_k\ge0$ and $\sum_k s_k\le T$. As $T\to\infty$ the ordered integral, including its Dyson signs, becomes
+\[
+ (-1)^{n-1}\int_{[0,\infty)^{n-1}}\prod_{k=1}^{n-1}e^{-\Delta_k s_k}\dd s_k
+ =\prod_{k=1}^{n-1}\frac{-1}{\Delta_k}=\prod_{k=1}^{n-1}\frac1{D_k}.
+\]
+Thus each connected, time-ordered graph has exactly the denominators, Wick sign and weight derived on Thursday. Adding $\lambda E^{(1)}$ restores the energy of $H(\lambda)$. The small-coupling ground-state expansion is unique, so these are the RS energy coefficients.
+\end{frame}
+
+\begin{frame}{Proof 6. Vacuum components cancel in the wave operator}
+Project onto an excited determinant and divide by the vacuum amplitude:
+\[
+ c_\mu(\lambda)=\lim_{T\to\infty}\frac{\mel{\Phi_\mu}{U_T}{\ph}}{Z(T)}.
+\]
+Represent the bra by its external annihilators and creators at time zero. In every numerator graph, separate the components that reach at least one external line from those that reach none. Choosing the vertices in the second set produces the same binomial factor as in the energy proof. Their sum is $Z(T)$ and cancels at finite $T$.
+\[
+ \ket{\Psi_0(\lambda)}=\ket{\ph}
+   +\sum_{n\ge1}\lambda^n\big[(R_0 W)^n\ket{\ph}\big]_{\rm linked}.
+\]
+Here brackets instruct us to retain the indicated Wick diagrams with their line denominators. The open graph has one more interval, between its last interaction and its external bra. This supplies the leftmost $R_0$. Distinct open components may end on different external legs.
+\end{frame}
+
+\begin{frame}{A disconnected contribution to a linked amplitude}
+Let $m$ and $n$ be independent double excitations on disjoint orbitals with deficits $D_m$ and $D_n$. Project onto their combined quadruple excitation and fix the same determinant phase in both time orderings. Even excitation operators on disjoint orbitals commute. The two terms have denominators
+\[
+ \frac{1}{D_m(D_m+D_n)}+\frac{1}{D_n(D_m+D_n)}
+ =\frac{1}{D_mD_n}.
+\]
+Multiplying by the two creation matrix elements gives the product of the first-order doubles amplitudes (with the chosen determinant phase). Each component reaches the quadruple bra. A detached vacuum bubble would instead multiply the numerator by a factor already present in $Z(T)$.
+\medskip
+
+\footnotesize Further reading: J. Goldstone, \href{https://doi.org/10.1098/rspa.1957.0037}{Proc. R. Soc. A \textbf{239} (1957)}. I. Shavitt and R. J. Bartlett, \emph{Many-Body Methods in Chemistry and Physics}, \S5.7.5 (EPV terms) and \href{https://doi.org/10.1017/CBO9780511596834.007}{chapter 6} (linked diagrams).
+\end{frame}
+
+\begin{frame}{Pauli exclusion at an intermediate cut}
+Consider two overlapping single excitations $X=\cre{a}\ann{i}$ and $Y=\cre{b}\ann{i}$, with $a\ne b$. Each excitation is allowed on its own. Together they would empty the same occupied spin orbital twice:
+\[
+ YX\ket{\ph}=\cre{b}\ann{i}\cre{a}\ann{i}\ket{\ph}
+ =-\cre{b}\cre{a}\ann{i}^{\,2}\ket{\ph}=0 .
+\]
+Creating two particles in the same virtual spin orbital also gives zero, since $(\cre{a})^2=0$. Reusing a label \emph{after} its line has ended can describe a legitimate excitation.
+\begin{block}{Where an exclusion-principle-violating (EPV) term enters}
+A determinant sum contains only admissible intermediate states. An individual Wick pairing sums the orbital labels of its lines independently. Two distinct lines present at the same cut can then acquire the same hole or particle label. The cut in that individual term does not represent a determinant.
+\end{block}
+\end{frame}
+
+\begin{frame}{Direct and exchanged hole lines at fourth order}
+Four one-body vertices create $a,b$ in turn and remove them in the same order. Both hole lines (teal) carry $i$ across the dotted cut. Crosses mark the vertices.
+\begin{center}
+\begin{tikzpicture}[x=1.25cm,y=.78cm,scale=1.12]
+  \foreach \shift/\ex in {0/0,3.9/1}{
+    \begin{scope}[shift={(\shift,0)}]
+    \coordinate (a) at (0,0); \coordinate (b) at (1.55,.85);
+    \coordinate (c) at (0,2); \coordinate (d) at (1.55,2.85);
+    \draw[pline] (a) to[bend right=21] node[right,dlab,pos=.38] {$a$} (c);
+    \draw[pline] (b) to[bend right=21] node[right,dlab,pos=.57] {$b$} (d);
+    \ifnum\ex=0
+      \draw[hline,teal!75!black] (a) to[bend left=28] node[left,dlab] {$i$} (c);
+      \draw[hline,teal!75!black] (b) to[bend left=28] node[left,dlab,pos=.71] {$i$} (d);
+      \node[dlab] at (.8,-.58) {direct: $l=2$};
+    \else
+      \draw[hline,teal!75!black] (a) .. controls (-.45,1.3) and (.7,2.5) .. (d); \node[dlab,teal!75!black] at (.34,2.43) {$i$};
+      \draw[hline,teal!75!black] (b) to[bend right=10] node[below,dlab,pos=.37] {$i$} (c);
+      \node[dlab] at (.8,-.58) {exchange: $l=1$};
+    \fi
+    \draw[dotted,teal] (-.53,1.36)--(2.16,1.36);
+    \foreach \v in {a,b,c,d}{\node[fvtx] at (\v) {};}
+    \end{scope}
+  }
+\end{tikzpicture}
+\end{center}
+\[
+ D_a=\varepsilon_i-\varepsilon_a,\quad D_b=\varepsilon_i-\varepsilon_b,\qquad
+ F=\frac{|\ftil{ai}\ftil{bi}|^2}{D_a(D_a+D_b)D_b}.
+\]
+Exchanging the upper hole endpoints leaves the numerator and cut energies unchanged. With $h=2$, the signs give $+F-F=0$, as required by $\ann{i}^2=0$. The middle deficit $D_a+D_b$ is a formal line sum.
+\end{frame}
+
+\begin{frame}{What happens to the exchange term after regrouping?}
+Fix a shared-hole assignment and include the relative time orderings needed for factorisation. Write $U_{\rm P}$ for the unlinked sum with Pauli-allowed overlaps, and $U_{\rm EPV}$ for its formal shared-label extension.
+\[
+ \underbrace{(U_{\rm P}+U_{\rm EPV})}_{\text{all unlinked pairings}}
+ +\underbrace{L_{\rm EPV}}_{\text{linked exchange partners}}
+ -\underbrace{(U_{\rm P}+U_{\rm EPV})}_{\text{folded subtraction}}
+ =L_{\rm EPV}.
+\]
+For the pair of contractions just drawn, $L_{\rm EPV}=-U_{\rm EPV}$ after summing matching orders. In the principal term alone, the forbidden occupation has zero net weight. Once the unlinked diagrams cancel against the folded subtraction, the linked exchange contribution remains in the energy.
+\begin{block}{How to perform the sums}
+Use Pauli-allowed determinants in the original resolvent formula. In the connected diagram formula, sum each line over its full orbital space. A separate veto on coincident labels across different vertices would erase the exchange contribution. Antisymmetry already gives $\vbar{a}{a}{i}{j}=\vbar{a}{b}{i}{i}=0$ at a single vertex.
+\end{block}
+\end{frame}
+
+\begin{frame}{The two-level benchmark separates the two calculations}
+Take one fermion in orbitals $i,a$ with $\Delta=\varepsilon_a-\varepsilon_i>0$, $D=-\Delta$, and off-diagonal mixing $g$. Exact diagonalisation gives
+\[
+ H=\begin{pmatrix}\varepsilon_i&g^*\\g&\varepsilon_a\end{pmatrix},
+ \qquad E_- -\varepsilon_i=
+ \frac{\Delta-\sqrt{\Delta^2+4|g|^2}}2
+ =-\frac{|g|^2}{\Delta}+\frac{|g|^4}{\Delta^3}+O(|g|^6).
+\]
+\begin{itemize}
+\item \textbf{Determinants.} $QWQ=0$, hence $\av{WR_0WR_0WR_0W}=0$. The folded term gives the entire fourth-order correction
+$-E^{(2)}\av{WR_0^2W}=-|g|^4/D^3>0$.
+\item \textbf{Wick contractions.} Two simultaneous excursions cannot form a physical state in this one-fermion model. In the unrestricted expansion, the direct and exchange pairings cancel in the principal term. Removing the unlinked sum against the folded term leaves the linked exchange sum with the same coefficient $+|g|^4/\Delta^3$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Counting the two-level diagrams gives the exact coefficient}
+For a single virtual orbital, the overlapping ordering creates the same excitation at vertices 1 and 2 and removes it at 3 and 4. The three cut deficits are $D,2D,D$. Before its Wick sign, each pairing has value $F=|g|^4/(2D^3)$.
+\begin{center}
+\begin{tabular}{lccc}
+\toprule
+Matching of particles and holes & pairings & loops & signed sum \\
+\midrule
+Both use the same matching & 2 & 2 & $+2F$ (unlinked) \\
+They use opposite matchings & 2 & 1 & $-2F$ (linked) \\
+\bottomrule
+\end{tabular}
+\end{center}
+Each species has two possible matchings between the lower and upper vertices. All four have $h=2$. The principal term gives $2F-2F=0$. The folded subtraction cancels $+2F$, leaving
+\[
+ E^{(4)}=-2F=-\frac{|g|^4}{D^3}=\frac{|g|^4}{\Delta^3}.
+\]
+Deleting the EPV assignments in the linked sum would incorrectly give zero.
 \end{frame}
 
 \begin{frame}{A numerical check: two non-interacting copies}
@@ -1154,41 +1361,18 @@ Shown here for two pieces of two vertices. In general: the sum over all relative
 \begin{frame}{Answer to pause \#5}
 \thinka{%
 \begin{enumerate}
-\item No. With \(d_m=D_m+\Delta E\) etc.\ the middle denominator is \(D_m+D_n+\Delta E\ne d_m+d_n\) (it is \(d_m+d_n-\Delta E\)), so \(\frac{1}{d_m(d_m+d_n-\Delta E)}\bigl(\frac1{d_n}+\frac1{d_m}\bigr)\ne\frac1{d_m^2d_n}\). The identity needs the \emph{unperturbed} energies, which add for disjoint excitations; the exact energy of the whole system does not split into pieces.
-\item Nothing cancels: a BW calculation truncated at any finite number of vertices keeps its unlinked diagrams, which scale as (size)\(^2\) -- the table of week 44/chapter 9 (two copies: BW error \(\ne0\), RS error \(10^{-15}\)). Only the full resummation is exact, and it is as expensive as diagonalisation. This is the linked-diagram theorem's verdict on Brillouin-Wigner.
+\item No. With \(d_m=D_m+\Delta E\) etc.\ the middle denominator is \(D_m+D_n+\Delta E\ne d_m+d_n\) (it is \(d_m+d_n-\Delta E\)), so \(\frac{1}{d_m(d_m+d_n-\Delta E)}\bigl(\frac1{d_n}+\frac1{d_m}\bigr)\ne\frac1{d_m^2d_n}\). The excursion deficits add for disjoint excitations in RS. BW inserts the same global energy shift once in each intermediate-state denominator.
+\item The cancellation used in the RS proof fails in general for self-consistent BW truncated at finite order. Spurious cross terms can spoil additivity for two independent copies, as in the week-44 example. The exact energies of two non-interacting copies are additive.
 \end{enumerate}}
 \end{frame}
 
-\begin{frame}[shrink=5]{The linked-diagram theorem}
-\begin{block}{Statement (Brueckner 1955, Goldstone 1957, Hugenholtz 1957)}
-\[
-\boxed{\Delta E=E^{(1)}+\sum_{n\ge1}\Bigl\langle W\bigl(R_0W\bigr)^{n-1}\Bigr\rangle_{\rm connected},
-\qquad
-\ket{\Psizero}=\sum_{n\ge0}\bigl(R_0W\bigr)^n\ket{\ph}\Big|_{\rm linked}.}
-\]
-The energy is the sum of all \alert{connected} closed diagrams, each evaluated with the four rules and \(R_0\) between successive vertices. The wave operator is the sum of all \alert{linked} diagrams: those with no closed disconnected part.
-\end{block}
-\begin{columns}[T]
-\column{0.5\textwidth}
-\begin{exampleblock}{Linked is not connected}
-An open diagram may consist of two disconnected pieces \emph{each with open lines} -- two independent pair excitations, the product of two first-order doubles, the leading quadruple of \(\Psi^{(2)}\). Disconnected but linked: \alert{kept}.
-\end{exampleblock}
-\column{0.48\textwidth}
-\begin{alertblock}{Unlinked}
-A closed piece hanging loose -- a vacuum fluctuation -- multiplies the rest by a number that has nothing to do with the state. \alert{Removed}, by the renormalisation terms. For the energy, where all lines are closed, linked = connected (Goldstone's form).
-\end{alertblock}
-\end{columns}
-\vspace{0.3em}
-\small Seen so far: third order, nothing to subtract once the vertices are normal ordered; fourth order, the folded term removes the unlinked part. The general proof -- induction on the order, factorisation theorem as the engine, EPV terms included -- is week 46.
-\end{frame}
-
-\begin{frame}[shrink=10]{Three consequences}
-\begin{enumerate}
-\item \textbf{Size extensivity.} Every connected diagram is a single sum over the system and scales linearly with its size. This is the theorem behind the two-copies table (RS error \(10^{-15}\) at every order), and behind pause \#1.
-\item \textbf{Brillouin-Wigner fails.} Its denominators contain \(E_0\) and do not factorise (pause \#5): a truncated BW energy keeps its unlinked diagrams and is not size extensive. Only RS -- equivalently, the linked-diagram expansion -- is used for many-body systems.
-\item \textbf{Organise by topology, not by order.} The ladders and rings of third order are the first members of infinite families, each summable to all orders \emph{because} the theorem guarantees that the pieces one sums are the ones that count: Brueckner \(G\)-matrix (ladders), RPA (rings), and coupled cluster, whose \(\exp(T)\) generates exactly the disconnected-but-linked products of amplitudes that the wave-operator form of the theorem keeps. Chapter 10 proves the same statement -- the linked-cluster theorem -- by a different route.
-\end{enumerate}
-\mbbox{What the diagrams do \emph{not} do: make the series converge. The ladders and rings of the pairing model at \(g=2\) are drawn exactly as at \(g=0.5\), and the divergence table of week 44 is unchanged. The theorem is about \emph{which} terms, not about their size.}
+\begin{frame}{Consequences for independent systems}
+\begin{itemize}
+\item \textbf{Additivity at each order.} For $H=H_A+H_B$ on disjoint non-interacting fragments and a product reference, $Z_{AB}=Z_A Z_B$. Thus $\log Z_{AB}=\log Z_A+\log Z_B$ and $E_{AB}^{(n)}=E_A^{(n)}+E_B^{(n)}$. For $M$ identical independent copies the coefficient is $M E_A^{(n)}$.
+\item \textbf{Truncated BW.} The global energy in the denominators spoils the RS factorisation identity in general. A finite self-consistent BW truncation can lose size extensivity.
+\item \textbf{Summation by topology.} Ladders and rings are families of connected energy graphs. In coupled cluster, products of excitations in $e^T\ket{\ph}$ supply the disconnected open pieces that survive in the wave function.
+\end{itemize}
+\small The theorem is an order-by-order identity. Convergence of the energy series at a particular coupling is a separate question.
 \end{frame}
 
 % ======================================================================
@@ -1217,13 +1401,13 @@ A closed piece hanging loose -- a vacuum fluctuation -- multiplies the rest by a
     \end{block}
   \end{columns}
   \vspace{0.3em}
-  \centering The renormalisation terms were never corrections: at third order they are the scalar part of a vertex, at fourth the unlinked diagrams -- in both cases something that was never there to begin with.
+  \centering Vacuum normalisation cancels detached closed pieces. Linked exchange terms with coincident labels remain in the unrestricted sums.
 \end{frame}
 
 \begin{frame}{Next week}
-  \begin{exampleblock}{Week 46, November 12--13: the proof of the linked-diagram theorem}
+  \begin{exampleblock}{Week 46, November 12--13: further developments}
     \small
-    The factorisation theorem of Frantz and Mills in general -- the sum over all relative time orderings of two pieces equals the product of their denominator products -- proved by induction on the number of vertices; the exclusion-principle-violating diagrams and why they must be summed; the proof of the theorem by induction on the order, for the energy and for the wave operator; the wave-operator form and the disconnected-but-linked diagrams of $\Omega$; the time-dependent (Gell-Mann--Low) route as a second proof. Then the organisation by topology that follows: ladders, rings, and the step to coupled-cluster theory (chapter 10).
+    Week 45 established the energy and wave-operator forms of the theorem by vacuum normalisation. Week 46 can revisit the time-independent recursion and the adiabatic Gell-Mann--Low construction, then use ladders and rings to motivate the coupled-cluster expansion of chapter 10.
   \end{exampleblock}
   \vspace{0.5em}
   \small
