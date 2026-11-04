@@ -1,13 +1,13 @@
 # FYS4480/FYS9480 – Week 45, November 5–6, 2026
 
-**Many-body perturbation theory: diagram rules, third order and the linked-diagram theorem**
+**Many-body perturbation theory: diagram rules and the third order**
 
 Lecturers: Cecilie Glittum and Morten Hjorth-Jensen
 
 - Thursday November 5: every contribution to the energy through fourth order and to the wave operator through third (the list from week 44), then the diagrams: contractions are lines, cuts are denominators, and the four rules – sums, denominators, ½ per pair of equivalent lines, (−1)^(h+l) – derived from Wick's theorem
-- Friday November 6: the fourteen third-order diagrams, MP3 and the pairing model diagram by diagram; unlinked diagrams at fourth order, the factorisation of denominators, and the linked-diagram theorem
+- Friday November 6: the fourteen third-order diagrams, Møller–Plesset third order, the pairing model diagram by diagram, a random Hamiltonian in which all fourteen are non-zero, and a look ahead at the unlinked diagrams of fourth order
 
-Reading: the slides; lecture notes chapter 9, section 9.15 (diagrammatic approach and the linked diagram theorem); Shavitt and Bartlett, chapters 4–5. Code: `BookPrograms/chapter09/diagrams.py`; notebook `week45.ipynb`.
+Reading: the slides; lecture notes chapter 9, section 9.15 through "Third order" (the perturbation drawn, where the rules come from, the fourteen diagrams); Shavitt and Bartlett, chapters 4–5. Code: `BookPrograms/chapter09/diagrams.py`; notebook `week45.ipynb`.
 
 Exercises: `Exercises/ExercisesWeek45.tex` (reproduced on the last two slides); answers on the week-46 slides. The answers to the week-44 exercises are on the slides before them (and in `Exercises/AnswersWeek44.tex`).
 
@@ -20,10 +20,10 @@ Exercises: `Exercises/ExercisesWeek45.tex` (reproduced on the last two slides); 
 - The weight (4^(n_V) relabellings, equivalent lines) and the sign (vertex ends, the permutation π, cycles are loops, (−1)^(K−l)(−1)^p = (−1)^(h+l)); open diagrams and quasi-loops
 - First and second order re-read with the rules
 
-### Friday November 6, 2 × 45 min: third order and the linked-diagram theorem
-- Third order by intermediate states: fourteen connected diagrams, three of them MP3 (pp ladder, hh ladder, ph ring); the pairing model diagram by diagram, −53/576 − 53/576 + 29/288 = −1/12 in units of g³; where the "renormalisation term" went
-- Fourth order: the unlinked diagrams, the factorisation of their denominators, and the folded term −E⁽²⁾⟨W R₀² W⟩ that removes them
-- The linked-diagram theorem: energy = connected closed diagrams, wave operator = linked diagrams; size extensivity, Brillouin–Wigner, partial summations. The proof: week 46
+### Friday November 6, 2 × 45 min: the third order, enumerated and evaluated
+- Lecture 3: third order by intermediate states – fourteen connected diagrams, three of them MP3 (pp ladder, hh ladder, ph ring), eleven with crosses; what each family means and where it is summed to all orders (ladders: Brueckner; rings: RPA; both: coupled cluster); diagrams 1–7 read off the drawings
+- Lecture 4: diagrams 8–14 and two sign checks; the pairing model diagram by diagram, −53/576 − 53/576 + 29/288 = −1/12 in units of g³, and where the "renormalisation term" went; a random Hamiltonian in which all fourteen are non-zero (agreement to 10⁻¹²); reading a diagram into code
+- A look ahead: at fourth order a complete contraction can fall into two closed pieces overlapping in time – the unlinked diagrams, and the linked-diagram theorem, are the subject of week 46
 
 ## Exercises, week 45
 
@@ -32,5 +32,6 @@ Exercises: `Exercises/ExercisesWeek45.tex` (reproduced on the last two slides); 
 
 ## Next week (week 46)
 
-- The proof of the linked-diagram theorem: the factorisation theorem of Frantz and Mills in general (the sum over all relative time orderings of two pieces equals the product of their denominator products), proved by induction; the exclusion-principle-violating diagrams and why they must be summed; the proof by induction on the order, for the energy and for the wave operator; the wave-operator form and the disconnected-but-linked diagrams of Ω; the time-dependent (Gell-Mann–Low) route as a second proof; then ladders, rings and the step to coupled-cluster theory (chapter 10).
-- Reading: chapter 9, section 9.15; Shavitt and Bartlett, chapters 4–5 (and 6 for the time-dependent proof). The week-45 exercises are discussed in the exercise session and answered on the week-46 slides.
+- Thursday (double lecture): the linked-diagram theorem. The wave operator drawn – linked, disconnected-but-linked and unlinked open diagrams at second and third order, and how closing them with a vertex turns them into connected and unlinked energy diagrams; the renormalisation terms as the unlinked diagrams with a minus sign; fourth order with normal-ordered vertices and the factorisation of denominators (Frantz–Mills); the theorem and its proof in imaginary time; exclusion-principle-violating diagrams and the two-level benchmark; consequences (size extensivity, Brillouin–Wigner, summation by topology).
+- Friday: coupled-cluster theory, chapter 10 – the exponential ansatz and why e^T is the linked-diagram theorem built into the wave function, the similarity-transformed Hamiltonian, why the expansion terminates, the CCD equations, coupled cluster as a resummation of perturbation theory, and the pairing model.
+- Reading: chapter 9, section 9.15 from "Unlinked diagrams and the linked-diagram theorem" to the end; chapter 10, sections 10.1–10.7; Shavitt and Bartlett, chapters 5–6 and 9. The week-45 exercises are discussed in the exercise session and answered on the week-46 slides.
