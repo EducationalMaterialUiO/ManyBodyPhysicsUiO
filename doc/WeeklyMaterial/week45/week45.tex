@@ -10,9 +10,7 @@
 %  diagram) and "Unlinked diagrams and the linked-diagram theorem".
 %  Thursday opens with the week-44 lecture 4 that was not delivered (every
 %  contribution to the energy through fourth order and to the wave operator
-%  through third order).  Friday is the third order, enumerated and evaluated.
-%  The unlinked diagrams and the linked-diagram theorem (originally Friday,
-%  lecture 4 of this deck) were moved to week46.tex, Thursday, on 2026-11-04.
+%  through third order).  Week 46 develops the linked-diagram theorem and its proof.
 %  Answers to the week-44 exercises (Exercises/AnswersWeek44.tex) and the
 %  week-45 exercises (Exercises/ExercisesWeek45.tex) are on the last frames.
 %  Companion program: BookPrograms/chapter09/diagrams.py; notebook week45.ipynb.
@@ -20,6 +18,9 @@
 %  those of book.tex, so the chapter's TikZ figures compile unchanged.
 %
 %  Build:  pdflatex week45.tex  (twice)
+%  Revised 2026-11-04 from week45_reviewed.tex: the E^(1)/W discussion
+%  expanded (slides 11-16), Pauli-forbidden labels, fixed vs summed doubles
+%  amplitude; the random-Hamiltonian results removed.
 % ======================================================================
 \documentclass[aspectratio=169,10pt]{beamer}
 
@@ -211,8 +212,8 @@ University of Oslo, Norway}
   \vfill
   \begin{center}\small
   Thursday: resolvents, Wick contractions, symmetry factors and fermion signs\\
-  Friday: the fourteen third-order diagrams, M\o{}ller-Plesset third order, and the pairing model diagram by diagram\\[0.55em]
-  {\footnotesize Reading: lecture notes chapter 9, section 9.15 through ``Third order'' (the perturbation drawn, where the rules come from, the fourteen diagrams); Shavitt and Bartlett, chapters 4--5. Code: \texttt{BookPrograms/chapter09/diagrams.py}; notebook \texttt{week45.ipynb}.\\[0.2em]
+  Friday: the fourteen third-order diagrams, M\o ller--Plesset third order, and the pairing model\\[0.55em]
+  {\footnotesize Reading: lecture notes chapter 9, section 9.15 (diagrammatic approach and the linked diagram theorem); Shavitt and Bartlett, chapters 2--5. Code: \texttt{BookPrograms/chapter09/diagrams.py}; notebook \texttt{week45.ipynb}.\\[0.2em]
   Answers to the week-44 exercises and the week-45 exercises: last frames.}
   \end{center}
 \end{frame}
@@ -221,17 +222,17 @@ University of Oslo, Norway}
   \begin{block}{Thursday, $2\times45$ min: the lists, and the rules derived}
     \begin{itemize}
       \item From week 44: the recursion, $\Omega^{(1,2,3)}$ and $E^{(1,2,3,4)}$ in resolvent form and in the determinant basis
-      \item Normal ordering the vertices, $H_I=E^{(1)}+W$, absorbs every renormalisation term with a factor $E^{(1)}$: $E^{(3)}=\av{WR_0WR_0W}$
+      \item The scalar separation $H_I=E^{(1)}I+W$ absorbs the explicit $E^{(1)}$ insertions in the recursion. $E^{(3)}=\av{WR_0WR_0W}$
       \item Contractions are lines; cuts are denominators ($[H_0,\cre{p}]=\varepsilon_p\cre{p}$); what $Q$ removes
       \item The weight ($4^{n_V}$ relabellings, equivalent lines) and the sign (vertex ends, the permutation $\pi$, $(-1)^{K-l}(-1)^p=(-1)^{h+l}$)
       \item First and second order re-read with the rules
     \end{itemize}
   \end{block}
-  \begin{block}{Friday, $2\times45$ min: the third order, enumerated and evaluated}
+  \begin{block}{Friday, $2\times45$ min. Third order, enumerated and evaluated}
     \begin{itemize}
-      \item Lecture 3: third order by intermediate states -- fourteen connected diagrams, three of them MP3 (pp ladder, hh ladder, ph ring), eleven with crosses; what each family means and where it is summed to all orders
-      \item Lecture 4: all fourteen read off the drawings with the rules, two sign checks; the pairing model diagram by diagram, $-\tfrac{53}{576}-\tfrac{53}{576}+\tfrac{29}{288}=-\tfrac1{12}$ (units of $g^3$), and where the ``renormalisation term'' went; a random Hamiltonian in which all fourteen are non-zero; reading a diagram into code
-      \item A look ahead: at fourth order a new kind of drawing appears -- the unlinked diagrams and the linked-diagram theorem are the subject of week 46
+      \item Lecture 3 enumerates fourteen connected diagrams. Three give MP3 (pp ladder, hh ladder, ph ring). Eleven carry one-body vertices.
+      \item Lecture 4 evaluates the diagrams for the pairing model. $-53/576-53/576+29/288=-1/12$ in units of $g^3$, and where the ``renormalisation term'' went; reading a diagram into code
+      \item A look ahead to unlinked fourth-order diagrams. Week 46 develops the linked-diagram theorem and coupled cluster.
     \end{itemize}
   \end{block}
 \end{frame}
@@ -251,8 +252,8 @@ University of Oslo, Norway}
       \begin{enumerate}
         \item The complete lists through fourth order
         \item The four rules, with proofs
-        \item Third order: fourteen diagrams, enumerated
-        \item Third order evaluated: MP3, the pairing model, a random Hamiltonian
+        \item Third order: fourteen diagrams
+        \item Third order evaluated in the pairing model
       \end{enumerate}
     \end{block}
   \end{columns}
@@ -265,7 +266,10 @@ University of Oslo, Norway}
 % ======================================================================
 
 \begin{frame}{The recursion that generates every order (week 44, lecture 4)}
-With \(R_0=Q/(\varepsilon_0-H_0)\) and \(\ket{\Psizero}=\sum_n\ket{\Psi^{(n)}}\), \(\ket{\Psi^{(0)}}=\ket{\ph}\), collecting powers of \(\eta\) in \(\ket{\Psizero}=\ket{\ph}+R_0(H_I-\Delta E)\ket{\Psizero}\) gives
+Introduce $H(\lambda)=H_0+\lambda H_I$, $\ket{\Psizero(\lambda)}=\sum_{n\ge0}\lambda^n\ket{\Psi^{(n)}}$ with $\ket{\Psi^{(0)}}=\ket{\ph}$, and $\Delta E(\lambda)=\sum_{n\ge1}\lambda^n E^{(n)}$. With $R_0=Q/(\varepsilon_0-H_0)$, collect powers in
+\[
+\ket{\Psizero(\lambda)}=\ket{\ph}+R_0[\lambda H_I-\Delta E(\lambda)]\ket{\Psizero(\lambda)}:
+\]
 \[
 \boxed{\ket{\Psi^{(n)}}=R_0\Bigl[H_I\ket{\Psi^{(n-1)}}-\sum_{k=1}^{n-1}E^{(k)}\ket{\Psi^{(n-k)}}\Bigr],
 \qquad
@@ -279,7 +283,7 @@ E^{(n+1)}=\mel{\ph}{H_I}{\Psi^{(n)}}.}
 \end{frame}
 
 \begin{frame}[shrink=5]{All contributions to the wave operator through third order}
-Write \(\ket{\Psizero}=\Omega\ket{\ph}\) with \(\Omega=1+\Omega^{(1)}+\Omega^{(2)}+\Omega^{(3)}+\cdots\), \(R\equiv R_0\), \(V\equiv H_I\):
+Write \(\ket{\Psizero}=\Omega\ket{\ph}\) with \(\Omega P=P+\Omega^{(1)}P+\Omega^{(2)}P+\Omega^{(3)}P+\cdots\), \(R\equiv R_0\), \(V\equiv H_I\):
 \begin{align*}
 \Omega^{(1)}&=RV,\\[2pt]
 \Omega^{(2)}&=RVRV\;-\;E^{(1)}R^2V,\\[2pt]
@@ -294,7 +298,7 @@ In the determinant basis, with \(V_{mn}=\mel{\Phi_m}{H_I}{\Phi_n}\) and \(D_m=\v
 +V_{00}^2\frac{V_{m0}}{D_m^3}
 -E^{(2)}\frac{V_{m0}}{D_m^2}.
 \end{align*}
-\small For a two-body \(H_I\): \(\Psi^{(1)}\) has singles (\(U_{ai}/(\varepsilon_i-\varepsilon_a)\)) and doubles (\(\vbar{a}{b}{i}{j}/(\varepsilon_i+\varepsilon_j-\varepsilon_a-\varepsilon_b)\)); \(\Psi^{(2)}\) reaches up to quadruples; \(\Psi^{(3)}\) up to sextuples. Rank is not order.
+\small The displayed operator expressions act on $P$. For a two-body \(H_I\), \(\Psi^{(1)}\) has singles (\(\ftil{ai}/(\varepsilon_i-\varepsilon_a)\)) and doubles (\(\vbar{a}{b}{i}{j}/(\varepsilon_i+\varepsilon_j-\varepsilon_a-\varepsilon_b)\)); \(\Psi^{(2)}\) reaches up to quadruples; \(\Psi^{(3)}\) up to sextuples. Rank is not order.
 \end{frame}
 
 \begin{frame}[shrink=5]{All contributions to the energy through fourth order}
@@ -310,30 +314,34 @@ In the determinant basis:
 E^{(1)}&=V_{00},\quad E^{(2)}=\sum_m\frac{V_{0m}V_{m0}}{D_m},\quad
 E^{(3)}=\sum_{mn}\frac{V_{0m}V_{mn}V_{n0}}{D_mD_n}-V_{00}\sum_m\frac{V_{0m}V_{m0}}{D_m^2},\\
 E^{(4)}&=\sum_{mnl}\frac{V_{0m}V_{mn}V_{nl}V_{l0}}{D_mD_nD_l}
--2V_{00}\sum_{mn}\frac{V_{0m}V_{mn}V_{n0}}{D_m^2D_n}
+-2V_{00}\operatorname{Re}\sum_{mn}\frac{V_{0m}V_{mn}V_{n0}}{D_m^2D_n}
 +V_{00}^2\sum_m\frac{V_{0m}V_{m0}}{D_m^3}
 -E^{(2)}\sum_m\frac{V_{0m}V_{m0}}{D_m^2}.
 \end{align*}
-\small (The two mixed terms are complex conjugates, equal for real matrix elements, hence the \(2\).) Every term with a factor \(E^{(k)}\) in front is a renormalisation term: the product of two separately evaluated pieces. Next week: these are the \emph{unlinked} diagrams, and they cancel against the unlinked parts of the principal term -- the linked-diagram theorem.
+\small All determinant indices exclude the reference. The two mixed terms are complex conjugates, giving $2\operatorname{Re}$. The real part can be omitted for real matrix elements. Terms containing $E^{(k)}$ are products of lower-order quantities. Week 46 develops their cancellation against the unlinked Wick diagrams.
 \end{frame}
 
-\begin{frame}[shrink=8]{The same list in the language of determinants, through second order}
-For \(H_0=\sum_p\varepsilon_p\cre{p}\ann{p}\) and \(H_I=E^{(1)}+U_N+V_N\):
+\begin{frame}{The one-body residual and the second-order energy}
+Let $H=\sum_{pq}h_{pq}\cre{p}\ann{q}+V_2$ and $H_0=\sum_p\varepsilon_p\cre{p}\ann{p}$. Define
+\[
+ u_{pq}=h_{pq}-\varepsilon_p\delta_{pq},\quad
+ U_{pq}=\sum_j\vbar{p}{j}{q}{j},\quad \ftil{pq}=u_{pq}+U_{pq}.
+\]
+Normal ordering gives $H_I=E^{(1)}+\sum_{pq}\ftil{pq}\no{\cre{p}\ann{q}}+(V_2)_N$, with
 \begin{align*}
-E^{(1)}&=\sum_{i}u_{ii}+\frac12\sum_{ij\in\mathrm{occ}}\vbar{i}{j}{i}{j}
-\quad(\text{with } u=0 \text{ for a diagonal } h_0),\\[2pt]
-E^{(2)}&=\underbrace{\sum_{ia}\frac{|U_{ai}|^2}{\varepsilon_i-\varepsilon_a}}_{1p1h}
-+\underbrace{\frac14\sum_{ijab}\frac{|\vbar{a}{b}{i}{j}|^2}{\varepsilon_i+\varepsilon_j-\varepsilon_a-\varepsilon_b}}_{2p2h},\\[2pt]
-\Omega^{(1)}\ket{\ph}&=\sum_{ia}\frac{U_{ai}}{\varepsilon_i-\varepsilon_a}\ket{\Phi_i^a}
-+\frac14\sum_{ijab}\frac{\vbar{a}{b}{i}{j}}{\varepsilon_i+\varepsilon_j-\varepsilon_a-\varepsilon_b}\ket{\Phi_{ij}^{ab}}.
+ E^{(1)}&=\sum_i u_{ii}+\frac12\sum_{ij}\vbar{i}{j}{i}{j},\\
+ E^{(2)}&=\sum_{ia}\frac{|\ftil{ai}|^2}{\varepsilon_i-\varepsilon_a}
+       +\frac14\sum_{ijab}\frac{|\vbar{a}{b}{i}{j}|^2}{D_{ij}^{ab}},\\
+ \ket{\Psi^{(1)}}&=\sum_{ia}\frac{\ftil{ai}}{\varepsilon_i-\varepsilon_a}\ket{\Phi_i^a}
+       +\frac14\sum_{ijab}\frac{\vbar{a}{b}{i}{j}}{D_{ij}^{ab}}\ket{\Phi_{ij}^{ab}}.
 \end{align*}
-\numbox{Four models, \texttt{mbpt.py}: the fourth order from the explicit formula and from the recursion agree to \(10^{-12}\). Hubbard (\(U=2\)): the four pieces are \(-0.191\), \(+0.303\), \(-0.151\), \(+0.032\) and the total \(-0.0076\). Pairing (\(g=0.5\)): \(E^{(3)}\) is \(-0.02300347-(-0.01258681)=-0.01041667\). The cancellations are severe, and they are the point of this week.}
+Here $D_{ij}^{ab}=\varepsilon_i+\varepsilon_j-\varepsilon_a-\varepsilon_b$. The special choice $h_0=h$ gives $u=0$ and $\ftil{ai}=U_{ai}$. Merely diagonalising $h_0$ does not imply $u=0$.
 \end{frame}
 
 \begin{frame}{Pause to think \#1}
 \thinkq{3}{Look at the list of fourth-order terms.
 \begin{enumerate}
-\item How many distinct terms does \(E^{(4)}\) have for a reference with \(E^{(1)}=0\) (Hartree-Fock partition with the mean field in \(H_0\))?
+\item How many distinct terms does \(E^{(4)}\) have when the chosen perturbation has \(E^{(1)}=\av{H_I}=0\)?
 \item In the third order, \(E^{(1)}\av{VR^2V}\) is the product of two quantities that are each sums over the whole system. If the system were two non-interacting copies of a smaller one, how would this product scale with the number of copies? And \(E^{(3)}\) itself?
 \end{enumerate}}
 \end{frame}
@@ -342,44 +350,120 @@ E^{(2)}&=\underbrace{\sum_{ia}\frac{|U_{ai}|^2}{\varepsilon_i-\varepsilon_a}}_{1
 \thinka{%
 \begin{enumerate}
 \item Two: the principal term \(\av{VRVRVRV}\) and the folded term \(-E^{(2)}\av{VR^2V}\). For the Lipkin model (\(E^{(1)}=0\)) \texttt{mbpt.py} gives \(-0.0036\) and \(+0.0072\), total \(+0.0036\).
-\item \(E^{(1)}\) and \(\av{VR^2V}\) each scale linearly with the number of copies, so their product scales \emph{quadratically} -- an energy cannot. The principal term \(\av{VRVRV}\) contains a quadratically scaling piece of its own, and the subtraction removes it exactly: \(E^{(3)}\) scales linearly. This is size extensivity, verified to machine precision in chapter 9, and next week it becomes the statement that only \emph{linked} diagrams contribute.
+\item \(E^{(1)}\) and \(\av{VR^2V}\) each scale linearly with the number of copies, so their product scales \emph{quadratically} -- an energy cannot. The principal term \(\av{VRVRV}\) contains a quadratically scaling piece of its own, and the subtraction removes it exactly: \(E^{(3)}\) scales linearly. This is size extensivity, verified to machine precision in chapter 9, and on Friday it becomes the statement that only \emph{linked} diagrams contribute.
 \end{enumerate}}
 \end{frame}
 
-\begin{frame}[shrink=5]{Step zero: normal ordering absorbs the \(E^{(1)}\) renormalisation terms}
-Write the perturbation in the normal-ordered form of week 44 (section 9.8), with a name for its non-scalar part:
+% Expanded replacement for original slides 11--12.
+\begin{frame}{Separating the reference scalar from the perturbation}
+Introduce $H(\lambda)=H_0+\lambda H_I$ and intermediate normalisation $\braket{\ph}{\Psi_0(\lambda)}=1$. Define
 \[
-H_I=E^{(1)}+W,\quad
-\boxed{W=\sum_{pq}\ftil{pq}\no{\cre{p}\ann{q}}+\frac14\sum_{pqrs}\vbar{p}{q}{r}{s}\no{\cre{p}\cre{q}\ann{s}\ann{r}},}
-\qquad
-\ftil{pq}=u_{pq}+U_{pq}=f_{pq}-\varepsilon_p\delta_{pq},
+ E^{(1)}=\av{H_I},\qquad W=H_I-E^{(1)}I,\qquad \av{W}=0.
 \]
-where \(f\) is the Fock matrix of week 39 and \(U_{pq}=\sum_{j}\vbar{p}{j}{q}{j}\) the mean field of the reference. \(\av{W}=0\), and every normal-ordered product has a vanishing reference expectation value.
-\begin{block}{Look at the recursion}
-The \(k=1\) term subtracts \(E^{(1)}\ket{\Psi^{(n-1)}}\) from \(H_I\ket{\Psi^{(n-1)}}\); the two combine into \(W\ket{\Psi^{(n-1)}}\). Since \(\braket{\ph}{\Psi^{(n)}}=0\) for \(n\ge1\), the energy formula may use \(W\) too:
+Normal ordering relative to the determinant gives this separation explicitly:
 \[
-\boxed{\ket{\Psi^{(n)}}=R_0\Bigl[W\ket{\Psi^{(n-1)}}-\sum_{k=2}^{n-1}E^{(k)}\ket{\Psi^{(n-k)}}\Bigr],\quad E^{(n+1)}=\mel{\ph}{W}{\Psi^{(n)}}\;(n\ge1).}
+ W=\sum_{pq}\ftil{pq}\no{\cre{p}\ann{q}}
+   +\frac14\sum_{pqrs}\vbar{p}{q}{r}{s}\no{\cre{p}\cre{q}\ann{s}\ann{r}},
+ \qquad \ftil{pq}=u_{pq}+U_{pq}=f_{pq}-\varepsilon_p\delta_{pq}.
 \]
-\end{block}
-\(E^{(1)}\) has disappeared from the recursion, and with it \emph{every} renormalisation term carrying a factor \(E^{(1)}\).
+Here $u=h-h_0$ and $U_{pq}=\sum_j\vbar{p}{j}{q}{j}$. The scalar is part of the total energy:
+\[
+ \boxed{E_0(\lambda)=\varepsilon_0+\lambda E^{(1)}+\sum_{n\ge2}\lambda^n E^{(n)}.}
+\]
+Subtracting $\lambda E^{(1)}I$ shifts every eigenvalue by the same amount. The eigenvectors and all energy coefficients of order $n\ge2$ are preserved. This scalar identity holds for any perturbation.
 \end{frame}
 
-\begin{frame}[shrink=10]{The orders with normal-ordered vertices}
+\begin{frame}{The scalar cancellation in the RS recursion}
+For $n\ge2$, isolate the $k=1$ term in the original recursion:
+\begin{align*}
+ \ket{\Psi^{(n)}}
+ &=R_0\left[(H_I-E^{(1)}I)\ket{\Psi^{(n-1)}}
+       -\sum_{k=2}^{n-1}E^{(k)}\ket{\Psi^{(n-k)}}\right]\\
+ &=R_0\left[W\ket{\Psi^{(n-1)}}
+       -\sum_{k=2}^{n-1}E^{(k)}\ket{\Psi^{(n-k)}}\right].
+\end{align*}
+At first order, $R_0\ket{\ph}=0$ gives $\ket{\Psi^{(1)}}=R_0H_I\ket{\ph}=R_0W\ket{\ph}$. For $n\ge1$,
 \[
-\boxed{E^{(2)}=\av{WR_0W},\qquad
-E^{(3)}=\av{WR_0WR_0W},\qquad
-E^{(4)}=\av{WR_0WR_0WR_0W}-E^{(2)}\av{WR_0^2W}.}
+ E^{(n+1)}=\mel{\ph}{H_I}{\Psi^{(n)}}
+ =\mel{\ph}{W}{\Psi^{(n)}}+E^{(1)}\underbrace{\braket{\ph}{\Psi^{(n)}}}_{0}.
 \]
-Third order: \emph{nothing to subtract}. Fourth order: only the folded term is left.
-\begin{block}{The identity behind it is one line}
-In the determinant basis \(W_{mn}=V_{mn}-V_{00}\delta_{mn}\), so
-\[
-\sum_{m,n\ne0}\frac{V_{0m}W_{mn}V_{n0}}{D_mD_n}
-=\sum_{m,n\ne0}\frac{V_{0m}V_{mn}V_{n0}}{D_mD_n}-V_{00}\sum_{m\ne0}\frac{V_{0m}V_{m0}}{D_m^2}:
-\]
-the renormalisation term of third order \emph{is} the scalar part of the middle vertex, removed by not putting it there.
+\begin{block}{Perturbative order}
+The subtraction proportional to $E^{(1)}$ first occurs in $\Psi^{(2)}$ and contributes to the energy at third order. Using $W$ absorbs these explicit scalar insertions into its matrix elements. Higher-order folded terms remain.
 \end{block}
-\numbox{Pairing model, \(g=0.5\): \(\av{WR_0WR_0W}=-0.01041667\), the whole third-order energy in one term. From here on every vertex is normal ordered: a cross carries \(\ftil{pq}\) (cross plus bubble of week 44), an interaction the antisymmetrised element.}
+\end{frame}
+
+\begin{frame}{The third-order subtraction is contained in the middle vertex}
+Put $V=H_I$, $V_{mn}=\mel{\Phi_m}{V}{\Phi_n}$, and $D_m=\varepsilon_0-\varepsilon_m$. Then
+\[
+ W_{mn}=V_{mn}-V_{00}\delta_{mn},\qquad
+ W_{m0}=V_{m0}\quad(m\ne0).
+\]
+Since $\ket{\Psi^{(2)}}=R_0WR_0W\ket{\ph}$, its energy contribution is
+\begin{align*}
+ E^{(3)}&=\av{WR_0WR_0W}
+       =\sum_{m,n\ne0}\frac{V_{0m}(V_{mn}-V_{00}\delta_{mn})V_{n0}}{D_mD_n}\\
+ &=\sum_{m,n\ne0}\frac{V_{0m}V_{mn}V_{n0}}{D_mD_n}
+      -V_{00}\sum_{m\ne0}\frac{|V_{m0}|^2}{D_m^2}.
+\end{align*}
+The last term is exactly the original RS renormalisation term. The shorter $W$ expression includes its effect. In particular, $\av{W}=0$ permits nonzero excited-state diagonal elements $W_{mm}=V_{mm}-V_{00}$.
+\end{frame}
+
+\begin{frame}{The folded term that survives at fourth order}
+The first three wave-function corrections in the shifted perturbation are
+\begin{align*}
+ \ket{\Psi^{(1)}}&=R_0W\ket{\ph},\\
+ \ket{\Psi^{(2)}}&=R_0WR_0W\ket{\ph},\\
+ \ket{\Psi^{(3)}}&=R_0WR_0WR_0W\ket{\ph}-E^{(2)}R_0^2W\ket{\ph}.
+\end{align*}
+Project with $\bra{\ph}W$:
+\[
+ \boxed{E^{(4)}=\av{WR_0WR_0WR_0W}-E^{(2)}\av{WR_0^2W}.}
+\]
+Since $W$ and $R_0$ are Hermitian,
+\[
+ \av{WR_0^2W}=\braket{\Psi^{(1)}}{\Psi^{(1)}}
+ =\sum_{m\ne0}\frac{|V_{m0}|^2}{D_m^2}\ge0.
+\]
+Thus the surviving folded term is $-E^{(2)}\|\Psi^{(1)}\|^2$. For a gapped ground-state reference, $E^{(2)}\le0$, so this contribution is nonnegative. It is required even when the reference expectation of the perturbation is zero.
+\end{frame}
+
+\begin{frame}{A two-level check with a nonzero first-order shift}
+Take a real perturbation and $\Delta>0$:
+\[
+ H_0=\begin{pmatrix}0&0\\0&\Delta\end{pmatrix},\qquad
+ V=\begin{pmatrix}c&t\\t&d\end{pmatrix},\qquad
+ W=V-cI=\begin{pmatrix}0&t\\t&d-c\end{pmatrix}.
+\]
+Direct expansion of the lower eigenvalue of $H_0+\lambda V$ gives
+\[
+ E_-(\lambda)=\lambda c-\lambda^2\frac{t^2}{\Delta}
+       +\lambda^3\frac{t^2(d-c)}{\Delta^2}+O(\lambda^4).
+\]
+Using the original perturbation, the third-order terms are
+\[
+ \av{VR_0VR_0V}=\frac{t^2d}{\Delta^2},\qquad
+ -E^{(1)}\av{VR_0^2V}=-\frac{ct^2}{\Delta^2}.
+\]
+Using $W$, the middle matrix element is $d-c$ and the single expression gives their sum. The first-order energy is still $c$ in the original partition.
+\end{frame}
+
+\begin{frame}{Hartree--Fock and the choice of reference energy}
+For $H_0=\sum_p\varepsilon_p\cre{p}\ann{p}$ with canonical HF orbital energies,
+\[
+ \varepsilon_0=\sum_i\varepsilon_i
+ =\sum_i h_{ii}+\sum_{ij}\vbar{i}{j}{i}{j},\qquad
+ E_{\rm HF}=\sum_i h_{ii}+\frac12\sum_{ij}\vbar{i}{j}{i}{j}.
+\]
+Consequently, in this partition
+\[
+ E^{(1)}=E_{\rm HF}-\varepsilon_0=-\frac12\sum_{ij}\vbar{i}{j}{i}{j},
+ \qquad \ftil{pq}=0.
+\]
+One can instead choose $H'_0=E_{\rm HF}+\sum_p\varepsilon_p\no{\cre{p}\ann{p}}=H_0+E^{(1)}I$ and perturb with $W$.
+Its zeroth-order energy is $E_{\rm HF}$ and its first-order correction is zero. The energy differences in $R_0$ and the coefficients at order two and higher agree in both partitions.
+\medskip
+
+\footnotesize See Shavitt and Bartlett, \emph{Many-Body Methods in Chemistry and Physics}, \S2.4.4 and \S3.6, for the shifted perturbation and normal ordering.
 \end{frame}
 
 \begin{frame}{The elements of a diagram (week 38, chapter 5)}
@@ -410,7 +494,7 @@ the renormalisation term of third order \emph{is} the scalar part of the middle 
 \item Every vertex is a product of \emph{ends}, an end being \(\cre{\rm out}\ann{\rm in}\): the cross is one end, the interaction two ends joined by the dashed line, with the pairing \((p,r)\), \((q,s)\) of the matrix element.
 \item New this week: between successive vertices sits \(R_0\); a horizontal \emph{cut} between them will give the denominator.
 \end{itemize}
-\small The four rules of week 38 (sums, denominators, \(\tfrac12\) per pair of equivalent lines, \((-1)^{h+l}\)) were stated and checked, not proved. Today they are proved.
+\small These are antisymmetrised Goldstone (ASG) diagrams. A two-body vertex, drawn as two ends and a dashed line, carries an antisymmetrised matrix element. Its exchange partners are already included.
 \end{frame}
 
 \begin{frame}[shrink=12]{A term of order \(n\) is a string, read from the bottom}
@@ -498,6 +582,20 @@ For $\ket{\Phi_{ij}^{ab}}=\cre{a}\cre{b}\ann{j}\ann{i}\ket{\ph}$ this gives
 A closed, time-ordered term with $n$ vertices has $n-1$ cuts. Multiply by $1/D_k$ at each cut. A cut with no crossing lines returns to the reference and $Q$ kills the term. Two independent excitations can overlap in time and survive this test.
 \end{frame}
 
+\begin{frame}{The denominator rule and Pauli-forbidden label assignments}
+The resolvent argument applies directly to a nonzero intermediate determinant. In the Wick expansion a single contraction instead assigns independent labels to all its lines. Some assignments represent a vanishing determinant. For instance,
+\[
+ (\cre{b}\ann{i})(\cre{a}\ann{i})\ket{\ph}
+ =-\cre{b}\cre{a}\ann{i}^{\,2}\ket{\ph}=0.
+\]
+For fixed operator labels, Wick's theorem cancels this zero among its different pairings. Their cut energies are the same because contracted operators wholly below a cut contribute opposite orbital energies.
+\begin{block}{Two valid forms of the calculation}
+In determinant sums, use only allowed states. In an unrestricted diagram expansion, retain all particle and hole labels and the complete exchange partners. A separate Pauli veto on individual diagrams can spoil the cancellations, especially after applying the linked-diagram theorem.
+\end{block}
+A return to the reference at an empty cut is removed by $Q$. Repeated labels require the fermionic cancellation just described.
+\end{frame}
+
+
 \begin{frame}{Counting contractions for antisymmetrised vertices}
 Each two-body vertex carries $1/(2!\,2!)$ and has two outgoing and two incoming slots. Exchanging two slots on one side reverses both the Wick sign and the sign of $\vbar{p}{q}{r}{s}$, leaving their product unchanged.
 \begin{block}{For a fixed ordering of the vertices}
@@ -505,11 +603,11 @@ At $n_V$ two-body vertices there are $4^{n_V}$ choices of slot labels.
 Two choices give the same pairing when they exchange parallel lines at \emph{both} endpoints. With at most two incoming and two outgoing slots, each pair of equivalent internal lines supplies two such choices.
 \end{block}
 \[
- \#\{\text{distinct pairings}\}=\frac{4^{n_V}}{2^{n_{\rm eq}}},
+ \#\{\text{pairings of this topology}\}=\frac{4^{n_V}}{2^{n_{\rm eq}}},
  \qquad
  w=\frac{1}{4^{n_V}}\frac{4^{n_V}}{2^{n_{\rm eq}}}=2^{-n_{\rm eq}} .
 \]
-Equivalent lines have the same two vertices and the same arrow direction. Throughout this count the orbital sums are unrestricted within the particle and hole spaces. Exchanging externally fixed labels gives a different amplitude ordering.
+Equivalent lines join the same two full interaction vertices in the same arrow direction. The vertex order is fixed. Internal orbital labels are summed without ordering restrictions. Distinct time orderings are counted separately, with no additional vertex factorial. The projecting bra fixes external labels in an amplitude.
 \end{frame}
 
 \begin{frame}{Four contractions at second order}
@@ -545,11 +643,11 @@ A particle line contracts an \(\cre{a}\) with an \(\ann{a}\), a hole line an \(\
 
 \begin{frame}[shrink=5]{The sign, 2: \((-1)^{K-l}(-1)^{p}=(-1)^{h+l}\)}
 \begin{block}{Step 1: bring every pair into the order (out, in)}
-Place each \(\cre{\rm out}\) immediately before the \(\ann{\rm in}\) it is contracted with. This permutes only the incoming operators among the incoming slots, by \(\pi\); a transposition of two annihilation operators costs one sign whatever stands between them. Cost: the parity of \(\pi\), \((-1)^{K-l}\) (a permutation of \(K\) objects with \(l\) cycles is a product of \(K-l\) transpositions).
+Fix one Wick pairing. In the alternating list of out and in slots, permute the incoming slots so that each creator sits next to its assigned annihilator. Its parity is $\operatorname{sgn}\pi=(-1)^{K-l}$. A cycle of length $r$ requires $r-1$ transpositions, so all cycles require $\sum_\gamma(r_\gamma-1)=K-l$. This counts the permutation sign of the selected contraction.
 \end{block}
 \begin{block}{Step 2: compare with the order Wick's theorem wants (first in the string = first in the pair)}
 Hole line: \(\cre{i}\) belongs to the later vertex and already stands left: value \(\mel{\ph}{\cre{i}\ann{i}}{\ph}=1\), no extra sign.\\
-Particle line: \(\ann{a}\) belongs to the later vertex and should stand left: one more transposition, then \(\mel{\ph}{\ann{a}\cre{a}}{\ph}=1\). Cost \((-1)^{p}\).
+Particle line: $\ann{a}$ belonged to the later vertex and originally stood first. Reverse that pair to its Wick order, contributing one extra minus sign and $\av{\ann{a}\cre{a}}=1$. Reordering complete two-operator pairs is even. Thus the orientation factor is $(-1)^p$.
 \end{block}
 \[
 \boxed{(-1)^{K-l}(-1)^{p}=(-1)^{h+p-l+p}=(-1)^{h+l}}\qquad\text{rule 4.}
@@ -581,6 +679,22 @@ Since $a,b$ are virtual and $i,j$ are occupied, moving $\ann{a}$ through the two
 \end{itemize}
 The projecting bra carries unit weight. A wave-function amplitude with $n$ physical vertices has an additional cut between the last vertex and the bra, for $n$ denominators in total.
 \end{frame}
+
+\begin{frame}{A fixed doubles amplitude and a summed wave function}
+For fixed distinct $i,j,a,b$ and the stated determinant ordering, all four contractions with the projecting bra give
+\[
+ c_{ij}^{ab,(1)}=\mel{\Phi_{ij}^{ab}}{R_0W}{\ph}
+ =\frac{\vbar{a}{b}{i}{j}}{\varepsilon_i+\varepsilon_j-\varepsilon_a-\varepsilon_b}.
+\]
+To construct the wave function, sum independent determinants once:
+\[
+ \ket{\Psi^{(1)}_{\rm doubles}}=
+ \sum_{i<j,\,a<b}c_{ij}^{ab,(1)}\ket{\Phi_{ij}^{ab}}
+ =\frac14\sum_{ijab}c_{ij}^{ab,(1)}\ket{\Phi_{ij}^{ab}}.
+\]
+Both the coefficient and determinant change sign when $a,b$ or $i,j$ are exchanged. Their product is invariant, giving four identical terms in the unrestricted sum. Thus a diagram for a fixed projected amplitude and a diagram for the full summed wave function have different external-label counting.
+\end{frame}
+
 
 \begin{frame}{Pause to think \#3}
 \thinkq{4}{Apply the two proofs to the second-order ring (interaction creating two pairs, interaction annihilating them) and to the two-cross diagram.
@@ -654,7 +768,7 @@ $\sum_i u_{ii}$ & $\tfrac12\sum_{ij}\vbar{i}{j}{i}{j}$ & $\sum_{ia}\dfrac{\ftil{
 \begin{itemize}
 \item First order uses the bare vertices. The two-body expectation is $\tfrac12\sum_{ij}\vbar{i}{j}{i}{j}$ from two Wick pairings times $1/4$. Both diagrams have positive Wick sign and no cut. Together they give $\Eref-\varepsilon_0$.
 \item Second order (normal-ordered vertices): the two diagrams of pause \#3.
-\item \alert{Hartree-Fock basis}: \(f\) is diagonal with eigenvalues \(\varepsilon_p\), so \(\ftil{pq}=0\) for all \(p,q\): every cross vanishes, every bubble with it (Brillouin), and only the ring survives -- MP2. Pairing model: \(\ftil{ai}=0\) in the pairing basis, ring \(=-\tfrac{7}{24}g^2\).
+\item \alert{Hartree-Fock basis}: \(f\) is diagonal with eigenvalues \(\varepsilon_p\), so \(\ftil{pq}=0\) for all \(p,q\): the bare one-body residual $u$ and the contracted mean field $U$ cancel in $\ftil{}$. Every effective cross vanishes and only the doubles diagram contributes to MP2. Pairing model: \(\ftil{ai}=0\) in the pairing basis, ring \(=-\tfrac{7}{24}g^2\).
 \end{itemize}
 \end{frame}
 
@@ -760,7 +874,7 @@ $\sum_i u_{ii}$ & $\tfrac12\sum_{ij}\vbar{i}{j}{i}{j}$ & $\sum_{ia}\dfrac{\ftil{
 \item Particle-particle ladder: the two excited particles scatter off each other once before they fall back. Hole-hole ladder: the same for the two holes. Ring: one particle-hole pair scatters into another.
 \item Each is the third-order member of an infinite family. Ladders of every length: Brueckner's \(G\)-matrix of nuclear physics. Rings of every length: the RPA of chapter 7 (week 40, and the stability matrix of week 39). Both at once, with the terms that mix them: coupled-cluster doubles, chapter 10.
 \end{itemize}
-\mbbox{Why one may sum a family to all orders and still get a meaningful answer is the content of the linked-diagram theorem (week 46): the pieces being summed are the ones that count, and no unlinked piece sneaks in.}
+\mbbox{The linked-diagram theorem (week 46) removes unlinked contributions to the energy. It motivates organising approximations by linked diagram families; it does not by itself establish the convergence or accuracy of a selected resummation.}
 \end{frame}
 
 \begin{frame}{The eleven diagrams with at least one cross}
@@ -934,9 +1048,7 @@ Ends \((a,i),(i,j),(j,a)\): \(\pi\) is one 3-cycle, \(l=1\); \(h=2\): sign \(-\)
 \end{block}
 \end{frame}
 
-% ======================================================================
 \section{Friday, lecture 4: Third order, evaluated}
-% ======================================================================
 
 \begin{frame}[shrink=8]{The full third order, read off the drawings: diagrams 8--14}
 \begin{align*}
@@ -997,26 +1109,6 @@ Pairing + particle-hole, \(g=0.5\), \(f=0.025\): ladders \(-0.0153905\) each, in
 \small The renormalisation term was never a correlation correction: it removes a mean-field contribution. (The two ladders are equal because the model has as many empty levels as filled ones at the same spacing.)
 \end{frame}
 
-\begin{frame}[shrink=5]{The rules put to the test: a random Hamiltonian in which all fourteen are non-zero}
-Eight spin-orbitals, four particles, \(\varepsilon_p\) increasing, random symmetric off-diagonal \(u_{pq}\), random Hermitian antisymmetrised \(\vbar{p}{q}{r}{s}\) (70 determinants). The fourteen diagrams are evaluated from the orbital-level elements with the rules; \(E^{(3)}\) from the recursion in the full determinant space.
-\begin{center}\small
-\begin{tabular}{lr@{\hspace{2em}}lr}
-\toprule
-1 particle insertion & \(0.029978687\) & 8 hole insertion & \(0.015920047\)\\
-2 hole insertion & \(0.222374016\) & 9 \(V\) closed by two crosses & \(0.064812430\)\\
-3 two crosses closed by \(V\) & \(0.064812430\) & 10 pp ladder & \(0.004426951\)\\
-4 particle-hole scattering & \(0.152115743\) & 11 hh ladder & \(0.002250487\)\\
-5 particle line into \(V\) & \(-0.023773776\) & 12 ph ring & \(0.008950096\)\\
-6 hole line into \(V\) & \(-0.061323558\) & 13 \(V\) to single via particles & \(-0.023773776\)\\
-7 particle insertion & \(0.004225746\) & 14 \(V\) to single via holes & \(-0.061323558\)\\
-\midrule
-sum of the fourteen & \(0.399671963\) & \(E^{(3)}\), determinant space & \(0.399671963\)\\
-\bottomrule
-\end{tabular}
-\end{center}
-\numbox{Agreement to \(10^{-12}\); principal \(-0.14176\), renormalisation \(-0.54143\), \(\av{WR_0WR_0W}=0.39967\). Second order: \((F,F)=-0.650749\), ring \(-0.146957\), sum \(=E^{(2)}=-0.797706\). A wrong sign or a wrong factor in any one of the fourteen would show up in the last line -- which is how diagram 4 was caught during the preparation of these slides.}
-\end{frame}
-
 \begin{frame}[fragile,shrink=10]{Reading a diagram into code: \texttt{diagrams.py}}
 With \texttt{eps}, \texttt{ftil}, \texttt{vbar} and the occupied/empty index lists \texttt{o}, \texttt{v}; \texttt{D1[i,a]} \(=\varepsilon_i-\varepsilon_a\), \texttt{D2[i,j,a,b]} \(=\varepsilon_{ij}^{ab}\):
 \begin{lstlisting}
@@ -1034,70 +1126,55 @@ ins  = -0.5 * np.einsum("kjab,ik,abij,ijab,kjab->", v_oovv, foo, v_vvoo, 1/D2, 1
 # 2   cross on a hole line: h = 2, l = 1 -> -
 d2   = -np.einsum("ja,ij,ai,ia,ja->", fov, foo, fvo, 1/D1, 1/D1)
 \end{lstlisting}
-\small Each line is one diagram: the matrix elements in the order top to bottom, one \(1/D\) per cut, the weight and the sign in front. \texttt{GeneralHamiltonian} builds the same Hamiltonian in the determinant space and runs the recursion of week 44, so the two routes can be compared for any \((\varepsilon,u,\bar v)\). The notebook \texttt{week45.ipynb} is self-contained and repeats every number on these frames.
+\small Each line is one diagram: the matrix elements in the order top to bottom, one \(1/D\) per cut, the weight and the sign in front. \texttt{GeneralHamiltonian} builds the same Hamiltonian in the determinant space and runs the recursion of week 44, so the two routes can be compared for any \((\varepsilon,u,\bar v)\); the fourteen diagrams and the determinant-space \(E^{(3)}\) agree to \(10^{-12}\) for every Hamiltonian tried. The notebook \texttt{week45.ipynb} is self-contained and repeats every number on these frames.
 \end{frame}
 
-\begin{frame}{A look ahead: fourth order brings a new kind of drawing}
+% ======================================================================
+\begin{frame}{A look ahead at the fourth-order diagrams}
 \[
 E^{(4)}=\av{WR_0WR_0WR_0W}-E^{(2)}\av{WR_0^2W}.
 \]
-With four normal-ordered vertices a complete contraction can fall into \alert{two closed pieces of two vertices each}:
+Four normal-ordered vertices can form two closed components, each with two vertices. For disjoint excitations $m,n$:
 \begin{center}
 \begin{tabular}{lll}
 \toprule
-pairing of vertices & intermediate states & \\
+vertex pairs & intermediate states & status\\
 \midrule
-\(1\)--\(3\) and \(2\)--\(4\) & \(m,\ m\otimes n,\ n\) & unlinked, overlapping in time\\
-\(1\)--\(4\) and \(2\)--\(3\) & \(m,\ m\otimes n,\ m\) & unlinked, overlapping in time\\
-\(1\)--\(2\) and \(3\)--\(4\) & \(m,\ \ph,\ n\) & \alert{zero}: no line crosses the middle cut, \(Q\) kills it\\
+$1$--$3$ and $2$--$4$ & $m,\ m\otimes n,\ n$ & unlinked, overlapping in time\\
+$1$--$4$ and $2$--$3$ & $m,\ m\otimes n,\ m$ & unlinked, overlapping in time\\
+$1$--$2$ and $3$--$4$ & $m,\ph,n$ & zero, the middle $Q$ removes the reference\\
 \bottomrule
 \end{tabular}
 \end{center}
-\begin{itemize}
-\item Each piece is a closed second-order diagram -- a ring, or two crosses. Such a drawing is \alert{unlinked}: it contains a closed part with no line connecting it to the rest.
-\item The folded term \(-E^{(2)}\av{WR_0^2W}\) is a product of two closed second-order pieces as well. Next Thursday: the two unlinked time orderings add up to exactly the folded term with the opposite sign -- the factorisation of denominators -- and this is the linked-diagram theorem in its smallest case. Then the theorem, its proof, and the Pauli principle in the intermediate states.
-\end{itemize}
+The folded term is also a product of two second-order quantities. Adding the overlapping time orderings permits its cancellation against the unlinked part of the principal term. Shared labels require the EPV exchange bookkeeping.
+\medskip
+
+Week 46 develops the factorisation, the linked-diagram theorem and its proof, the wave operator, and the Pauli principle in intermediate states.
 \end{frame}
 
-% ======================================================================
 \section{Summary}
 % ======================================================================
 
-\begin{frame}[shrink=5]{Summary of week 45}
-  \small
-  \begin{columns}[T]
-    \column{0.48\textwidth}
-    \begin{block}{Thursday: the rules, derived}
-      \begin{itemize}
-        \item The complete lists: \(\Omega^{(1,2,3)}\), \(E^{(1,2,3,4)}\), renormalisation terms as products of pieces
-        \item \(H_I=E^{(1)}+W\): the recursion in \(W\) has no \(E^{(1)}\) terms; \(E^{(3)}=\av{WR_0WR_0W}\), \(E^{(4)}=\av{WR_0WR_0WR_0W}-E^{(2)}\av{WR_0^2W}\)
-        \item Contractions are lines (two non-zero contractions, arrows); cuts are denominators (\([H_0,\cre{p}]=\varepsilon_p\cre{p}\)); \(Q\) kills time-separated pieces only
-        \item Weight: \(4^{n_V}\) relabellings against \((\tfrac14)^{n_V}\), equivalent lines halve the count. Sign: ends, \(\pi\), cycles = loops, \((-1)^{K-l}(-1)^p=(-1)^{h+l}\)
-      \end{itemize}
-    \end{block}
-    \column{0.48\textwidth}
-    \begin{block}{Friday: the third order}
-      \begin{itemize}
-        \item Fourteen connected third-order diagrams, enumerated by their intermediate states (singles, doubles); MP3 = pp ladder + hh ladder + ph ring, the eleven others carry crosses and vanish in a canonical HF basis
-        \item Each family is the third-order member of an infinite series: ladders (Brueckner), rings (RPA), both at once with the cross terms (coupled cluster)
-        \item Pairing model: \(-\tfrac{53}{576}-\tfrac{53}{576}+\tfrac{29}{288}=-\tfrac1{12}\) (\(g^3\)); the ladders are the principal term, the hole insertion is minus the renormalisation term; all fourteen checked to \(10^{-12}\) on a random Hamiltonian
-        \item Fourth order: two closed pieces overlapping in time -- the unlinked diagrams of next week
-      \end{itemize}
-    \end{block}
-  \end{columns}
-  \vspace{0.3em}
-  \centering A diagram is a Wick contraction with its resolvents read off the cuts; the rules are theorems, not conventions.
+\begin{frame}{Summary of week 45}
+\begin{itemize}
+\item The RS recursion generates the wave operator through third order and the energy through fourth order, including the folded terms.
+\item $W=H_I-E^{(1)}I$ absorbs the explicit first-order scalar insertions. $\varepsilon_0+E^{(1)}$ remains in the reference energy. The fourth-order subtraction is $-E^{(2)}\|\Psi^{(1)}\|^2$.
+\item For time-ordered antisymmetrised diagrams, Wick contractions give the label sums. The cuts give the resolvent denominators. Equivalent internal line pairs give $1/2$ each, and the Wick sign is $(-1)^{h+l}$.
+\item Fourteen connected third-order diagrams occur for general one- and two-body normal-ordered vertices. With a canonical HF partition only the pp ladder, hh ladder and ph ring survive.
+\item The pairing model illustrates how the original third-order subtraction enters through the diagonal matrix elements of $W$. At fourth order, unlinked graphs require the factorisation developed next week.
+\end{itemize}
 \end{frame}
 
 \begin{frame}{Next week}
-  \begin{exampleblock}{Week 46, November 12--13: the linked-diagram theorem, and coupled cluster}
-    \small
-    \textbf{Thursday} (double lecture): the wave operator drawn -- linked, disconnected-but-linked and unlinked open diagrams at second and third order, and how closing them with a vertex turns them into connected and unlinked energy diagrams; the renormalisation terms as the unlinked diagrams with a minus sign; fourth order with normal-ordered vertices, the factorisation of denominators (Frantz-Mills); the theorem and its proof in imaginary time; exclusion-principle-violating diagrams and the two-level benchmark; consequences.\\[0.3em]
-    \textbf{Friday}: coupled-cluster theory, chapter 10 -- the exponential ansatz and why \(e^{T}\) is the linked-diagram theorem built into the wave function, the similarity-transformed Hamiltonian, why the expansion terminates, the CCD equations and the pairing model.
-  \end{exampleblock}
-  \vspace{0.5em}
-  \small
-  Reading: chapter 9, section 9.15 from ``Unlinked diagrams and the linked-diagram theorem'' to the end; chapter 10, sections 10.1--10.7; Shavitt and Bartlett, chapters 5--6 and 9. The week-45 exercises (last frames, \texttt{Exercises/ExercisesWeek45.tex}) are discussed in the exercise session and answered on the week-46 slides.
+\begin{exampleblock}{Week 46, November 12--13. The linked-diagram theorem and coupled cluster}
+Thursday develops the wave operator and its linked and unlinked diagrams, fourth-order cancellation, denominator factorisation, the proof in imaginary time, and exclusion-principle-violating terms.
+\medskip
+
+Friday covers coupled-cluster theory, including the exponential ansatz, the similarity-transformed Hamiltonian, termination of the expansion, the CCD equations and the pairing model.
+\end{exampleblock}
+\medskip
+
+Reading is chapter 9, section 9.15 from the unlinked diagrams onward, chapter 10, sections 10.1--10.7, and Shavitt and Bartlett, chapters 5--6 and 9. The week-45 exercises are discussed in the exercise session and answered in the week-46 slides.
 \end{frame}
 
 % ======================================================================
@@ -1150,7 +1227,7 @@ The overlap has cancelled -- which is why one may set \(\braket{\phi_0}{\psi_0}=
 \[
 E_0=\varepsilon_0+V_{00}+\sum_{m\ne0}\frac{V_{0m}V_{m0}}{E_0-\varepsilon_m}+\sum_{m,n\ne0}\frac{V_{0m}V_{mn}V_{n0}}{(E_0-\varepsilon_m)(E_0-\varepsilon_n)}+\cdots
 \]
-Explicit and simple, but \(E_0\) in every denominator: implicit, self-consistent; a truncation after \(k\) vertices is \emph{not} a polynomial of degree \(k\) in the coupling. The full resummation (Feshbach partitioning, week 44) is exact. Finite truncations are not size extensive.
+Explicit and simple, but \(E_0\) in every denominator: implicit, self-consistent; a truncation after \(k\) vertices is \emph{not} a polynomial of degree \(k\) in the coupling. The full resummation (Feshbach partitioning, week 44) is exact. Finite self-consistent truncations can violate size extensivity.
 \end{block}
 \begin{exampleblock}{\(z=\varepsilon_0\): Rayleigh-Schr\"odinger}
 \(R_0=Q/(\varepsilon_0-H_0)\) is known, but \(z-E_0+V=V-\Delta E\) and \(\Delta E\) must be expanded too (\(R_0\Delta E\ket{\phi_0}=0\) removes the rightmost one); with \(D_m=\varepsilon_0-\varepsilon_m\),
@@ -1158,7 +1235,7 @@ Explicit and simple, but \(E_0\) in every denominator: implicit, self-consistent
 E^{(1)}=V_{00},\qquad E^{(2)}=\sum_{m\ne0}\frac{V_{0m}V_{m0}}{D_m},\qquad
 E^{(3)}=\sum_{m,n\ne0}\frac{V_{0m}V_{mn}V_{n0}}{D_mD_n}-V_{00}\sum_{m\ne0}\frac{V_{0m}V_{m0}}{D_m^2}.
 \]
-The first two orders are the BW terms with \(E_0\to\varepsilon_0\); the third carries the \emph{renormalisation} term, which has no BW counterpart.
+The first two orders use the BW terms with $E_0\to\varepsilon_0$. The third-order subtraction appears explicitly in RS and is implicit in the energy dependence of the BW denominators, as shown next.
 \end{exampleblock}
 \end{frame}
 
@@ -1178,8 +1255,8 @@ and insert it into the second-order BW term:
 \]
 \begin{itemize}
 \item Through third order the two schemes agree term by term once the BW denominators are expanded: the RS renormalisation terms \emph{are} the expanded energy dependence of the BW denominators.
-\item At a \emph{finite} order the difference is real: RS is a true polynomial in the coupling and size extensive (this week: the renormalisation terms cancel the unlinked diagrams); truncated BW contains partial resummations to all orders and is not.
-\item In a small problem BW often converges faster -- for the two-level model with purely off-diagonal coupling the two-vertex BW equation \(E_0-\varepsilon_1=V_{12}^2/(E_0-\varepsilon_2)\) is already the exact secular equation while RS needs all even orders -- but for many-body systems the wrong scaling with particle number is fatal, and RS (the linked-diagram expansion) is the one that is used.
+\item At a \emph{finite} order the difference is real: RS is a true polynomial in the coupling and size extensive (this week: the renormalisation terms cancel the unlinked diagrams); truncated self-consistent BW contains partial resummations to all orders and can violate additivity.
+\item In a small problem BW often converges faster -- for the two-level model with purely off-diagonal coupling the two-vertex BW equation \(E_0-\varepsilon_1=V_{12}^2/(E_0-\varepsilon_2)\) is already the exact secular equation while RS needs all even orders -- while a many-body approximation must also preserve additivity for independent fragments. The RS linked expansion ensures this order by order.
 \end{itemize}
 \end{frame}
 
@@ -1188,14 +1265,14 @@ Pair orbitals \(\ket{m,-m}\), \(m=\tfrac12,\dots,j\): \(\Omega=j+\tfrac12\ge2\) 
 \[
 H=-G\,J,\qquad J=\begin{pmatrix}1&\cdots&1\\\vdots&&\vdots\\1&\cdots&1\end{pmatrix}_{\Omega\times\Omega}.
 \]
-Reference \(\ket{\phi_0}=\ket{m_0,-m_0}\), \(\varepsilon_0=0\); \(V_{00}=V_{0m}=V_{mn}=-G\); every BW denominator is \(E_0-0=E_0\equiv x\). The term with \(k\) vertices has \(k\) factors \(-G\) and \(k-1\) free sums over the \(\Omega-1\) states of \(Q\):
+Assume $G>0$. Reference \(\ket{\phi_0}=\ket{m_0,-m_0}\), \(\varepsilon_0=0\); \(V_{00}=V_{0m}=V_{mn}=-G\); every BW denominator is \(E_0-0=E_0\equiv x\). The term with \(k\) vertices has \(k\) factors \(-G\) and \(k-1\) free sums over the \(\Omega-1\) states of \(Q\):
 \[
 x=-G\sum_{k=1}^\infty\Bigl[\frac{-(\Omega-1)G}{x}\Bigr]^{k-1}=\frac{-Gx}{x+(\Omega-1)G}
 \ \Longrightarrow\ x\,(x+\Omega G)=0
 \ \Longrightarrow\ \boxed{E_0=-\Omega G=-(j+\tfrac12)G,}
 \]
 and at this root \((\Omega-1)G/|x|=(\Omega-1)/\Omega<1\): the geometric series converges. The resummed form of week 44 gives it at once: \(v_0=(V_{m0})\) is an eigenvector of \(J_{\Omega-1}\) with eigenvalue \(\Omega-1\), so \(E_0=-G+(\Omega-1)G^2/(E_0+(\Omega-1)G)\), i.e.\ \(E_0(E_0+\Omega G)=0\).
-\warnbox{Naive fixed-point iteration \(E\leftarrow f(E)=-G+(\Omega-1)G^2/(E+(\Omega-1)G)\) converges to the \emph{unphysical} root \(0\): \(|f'(-\Omega G)|=\Omega-1>1\) (repelling), \(|f'(0)|=1/(\Omega-1)<1\) (attracting). Solve the implicit equation as an equation (bisection, Newton, or multiply out).}
+\warnbox{For $\Omega>2$, the fixed-point map $f(x)=-G+(\Omega-1)G^2/[x+(\Omega-1)G]$ has $|f'(-\Omega G)|=\Omega-1>1$ and $|f'(0)|=1/(\Omega-1)<1$. The root $0$ is a physical excited-state energy, outside the convergence domain of the displayed geometric series. For $\Omega=2$, both slopes have modulus one and $f(f(x))=x$ wherever defined. Select the negative ground-state root explicitly.}
 \end{frame}
 
 \begin{frame}[shrink=5]{Exercise 2 b): direct diagonalisation}

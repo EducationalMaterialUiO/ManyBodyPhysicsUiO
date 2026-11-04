@@ -5,9 +5,9 @@
 Lecturers: Cecilie Glittum and Morten Hjorth-Jensen
 
 - Thursday November 5: every contribution to the energy through fourth order and to the wave operator through third (the list from week 44), then the diagrams: contractions are lines, cuts are denominators, and the four rules – sums, denominators, ½ per pair of equivalent lines, (−1)^(h+l) – derived from Wick's theorem
-- Friday November 6: the fourteen third-order diagrams, Møller–Plesset third order, the pairing model diagram by diagram, a random Hamiltonian in which all fourteen are non-zero, and a look ahead at the unlinked diagrams of fourth order
+- Friday November 6: the fourteen third-order diagrams, Møller–Plesset third order, the pairing model diagram by diagram, and a look ahead at the unlinked diagrams of fourth order
 
-Reading: the slides; lecture notes chapter 9, section 9.15 through "Third order" (the perturbation drawn, where the rules come from, the fourteen diagrams); Shavitt and Bartlett, chapters 4–5. Code: `BookPrograms/chapter09/diagrams.py`; notebook `week45.ipynb`.
+Reading: the slides; lecture notes chapter 9, section 9.15 (diagrammatic approach and the linked diagram theorem); Shavitt and Bartlett, chapters 2–5. Code: `BookPrograms/chapter09/diagrams.py`; notebook `week45.ipynb`.
 
 Exercises: `Exercises/ExercisesWeek45.tex` (reproduced on the last two slides); answers on the week-46 slides. The answers to the week-44 exercises are on the slides before them (and in `Exercises/AnswersWeek44.tex`).
 
@@ -15,14 +15,14 @@ Exercises: `Exercises/ExercisesWeek45.tex` (reproduced on the last two slides); 
 
 ### Thursday November 5, 2 × 45 min: the lists, and the rules derived
 - From week 44: the recursion, Ω⁽¹⁾, Ω⁽²⁾, Ω⁽³⁾ and E⁽¹⁾ … E⁽⁴⁾ in resolvent form and in the determinant basis
-- Normal ordering the vertices, H_I = E⁽¹⁾ + W, absorbs every renormalisation term with a factor E⁽¹⁾: E⁽³⁾ = ⟨W R₀ W R₀ W⟩ with nothing to subtract
-- Contractions are lines; cuts are denominators ([H₀, a†_p] = ε_p a†_p); what Q removes
-- The weight (4^(n_V) relabellings, equivalent lines) and the sign (vertex ends, the permutation π, cycles are loops, (−1)^(K−l)(−1)^p = (−1)^(h+l)); open diagrams and quasi-loops
+- The scalar separation H_I = E⁽¹⁾ I + W absorbs the explicit E⁽¹⁾ insertions in the recursion: E⁽³⁾ = ⟨W R₀ W R₀ W⟩, while ε₀ + E⁽¹⁾ stays in the energy and the folded term −E⁽²⁾‖Ψ⁽¹⁾‖² survives at fourth order; Hartree–Fock and the choice of reference energy
+- Contractions are lines; cuts are denominators ([H₀, a†_p] = ε_p a†_p); what Q removes; Pauli-forbidden label assignments in determinant sums versus unrestricted diagram sums
+- The weight (4^(n_V) relabellings, equivalent lines) and the sign (vertex ends, the permutation π, cycles are loops, (−1)^(K−l)(−1)^p = (−1)^(h+l)); open diagrams and quasi-loops; a fixed doubles amplitude versus the ¼ of the summed wave function
 - First and second order re-read with the rules
 
 ### Friday November 6, 2 × 45 min: the third order, enumerated and evaluated
 - Lecture 3: third order by intermediate states – fourteen connected diagrams, three of them MP3 (pp ladder, hh ladder, ph ring), eleven with crosses; what each family means and where it is summed to all orders (ladders: Brueckner; rings: RPA; both: coupled cluster); diagrams 1–7 read off the drawings
-- Lecture 4: diagrams 8–14 and two sign checks; the pairing model diagram by diagram, −53/576 − 53/576 + 29/288 = −1/12 in units of g³, and where the "renormalisation term" went; a random Hamiltonian in which all fourteen are non-zero (agreement to 10⁻¹²); reading a diagram into code
+- Lecture 4: diagrams 8–14 and two sign checks; the pairing model diagram by diagram, −53/576 − 53/576 + 29/288 = −1/12 in units of g³, and where the "renormalisation term" went; reading a diagram into code
 - A look ahead: at fourth order a complete contraction can fall into two closed pieces overlapping in time – the unlinked diagrams, and the linked-diagram theorem, are the subject of week 46
 
 ## Exercises, week 45
