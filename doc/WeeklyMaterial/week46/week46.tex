@@ -1,0 +1,1556 @@
+% ======================================================================
+%  FYS4480/FYS9480  Quantum mechanics for many-particle systems
+%  Week 46, November 12-13, 2026
+%  Lecture slides (Beamer).  Thursday: 2 x 45 min,  Friday: 2 x 45 min.
+%
+%  Thursday (double lecture): the linked-diagram theorem.  The wave operator
+%  drawn -- linked, disconnected-but-linked and unlinked open diagrams at
+%  second and third order -- and how closing them gives connected and unlinked
+%  energy diagrams; the renormalisation terms as unlinked diagrams with a
+%  minus sign; fourth order with normal-ordered vertices and the factorisation
+%  of denominators; the theorem and its imaginary-time proof (chapter 9,
+%  sections 9.15.7-9.15.9); exclusion-principle-violating diagrams; the
+%  two-level benchmark.  These frames were originally Friday, lecture 4 of
+%  week45.tex (moved here 2026-11-04) plus new material.
+%  Friday: coupled-cluster theory, chapter 10, sections 10.1-10.7: the
+%  exponential ansatz, the similarity-transformed Hamiltonian, termination,
+%  the CCD equations, coupled cluster as a resummation, the pairing model.
+%  Answers to the week-45 exercises (Exercises/ExercisesWeek45.tex) and the
+%  week-46 exercises are on the last frames.
+%  Companion notebook: week46.ipynb (numpy only; diagrams.py machinery, the
+%  unlinked pieces, two copies, the two-level count, a CCD solver).
+%  Diagram styles (pline, hline, vint, vtx, fvtx, hloop, fcidiagram) are
+%  those of book.tex, so the chapter TikZ figures compile unchanged.
+%
+%  Build:  pdflatex week46.tex  (twice); figures via ../BookFigures/
+% ======================================================================
+\documentclass[aspectratio=169,10pt]{beamer}
+
+% ---------------------------------------------------------------- packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,bm,mathtools}
+\usepackage{booktabs}
+\usepackage[most]{tcolorbox}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows.meta,decorations.markings,shapes.misc}
+\usetikzlibrary{tikzmark}
+
+% ---------------------------------------------------------------- look
+\usetheme{default}
+\useinnertheme{rectangles}
+\setbeamertemplate{navigation symbols}{}
+\definecolor{uioblue}{RGB}{18,52,86}
+\definecolor{teal}{RGB}{0,128,128}
+\definecolor{warm}{RGB}{181,73,36}
+\definecolor{paleblue}{RGB}{232,240,248}
+\definecolor{paleteal}{RGB}{228,244,244}
+\definecolor{palewarm}{RGB}{252,238,230}
+\definecolor{palegreen}{RGB}{232,244,234}
+\setbeamercolor{structure}{fg=uioblue}
+\setbeamercolor{title}{fg=uioblue}
+\setbeamercolor{frametitle}{fg=uioblue,bg=white}
+\setbeamercolor{section in toc}{fg=uioblue}
+\setbeamercolor{alerted text}{fg=warm}
+\setbeamercolor{block title}{fg=white,bg=uioblue}
+\setbeamercolor{block body}{bg=paleblue}
+\setbeamercolor{block title example}{fg=white,bg=teal}
+\setbeamercolor{block body example}{bg=paleteal}
+\setbeamerfont{frametitle}{size=\large,series=\bfseries}
+\setbeamerfont{title}{size=\LARGE,series=\bfseries}
+\setbeamertemplate{frametitle}{%
+  \vspace*{0.6em}\insertframetitle\par
+  \vspace*{-0.2em}{\color{teal}\rule{\textwidth}{0.6pt}}}
+\setbeamertemplate{footline}{%
+  \hbox{\begin{beamercolorbox}[wd=\paperwidth,ht=2.4ex,dp=1.2ex,leftskip=1em,rightskip=1em]{structure}%
+  \footnotesize FYS4480/9480 -- Week 46 \hfill \insertsection \hfill \insertframenumber/\inserttotalframenumber
+  \end{beamercolorbox}}}
+\setbeamertemplate{itemize items}[circle]
+\setbeamertemplate{enumerate items}[default]
+\setbeamertemplate{section page}{%
+  \begin{centering}
+    {\usebeamerfont{section title}\usebeamercolor[fg]{title}\LARGE\bfseries\insertsection\par}
+    \vspace{0.5em}{\color{teal}\rule{0.5\textwidth}{1pt}}
+  \end{centering}}
+\AtBeginSection[]{\frame{\sectionpage}}
+
+% ---------------------------------------------------------------- boxes
+\newcounter{thinkctr}
+\newcommand{\thinkq}[2]{%
+  \stepcounter{thinkctr}%
+  \vfill
+  \begin{tcolorbox}[enhanced,colback=palewarm,colframe=warm,boxrule=1.2pt,arc=4pt,
+    grow to left by=6mm,grow to right by=6mm,
+    left=16pt,right=16pt,top=16pt,bottom=18pt,
+    fonttitle=\bfseries\Large,fontupper=\Large,
+    title={Pause to think \#\thethinkctr\hfill\mdseries\normalsize(about #1 min -- discuss with your neighbour)}]
+  #2
+  \end{tcolorbox}
+  \vfill}
+\newcommand{\thinka}[1]{%
+  \vfill
+  \begin{tcolorbox}[enhanced,colback=paleteal,colframe=teal,boxrule=1.2pt,arc=4pt,
+    grow to left by=6mm,grow to right by=6mm,
+    left=16pt,right=16pt,top=16pt,bottom=18pt,
+    fonttitle=\bfseries\Large,fontupper=\large,
+    title={Answer to pause \#\thethinkctr}]
+  #1
+  \end{tcolorbox}
+  \vfill}
+\newcommand{\mbbox}[1]{%
+  \begin{tcolorbox}[colback=paleblue,colframe=uioblue,title={\bfseries Many-body connection}]
+  #1
+  \end{tcolorbox}}
+\newcommand{\warnbox}[1]{%
+  \begin{tcolorbox}[colback=palewarm,colframe=warm,title={\bfseries A trap to avoid}]
+  #1
+  \end{tcolorbox}}
+\newcommand{\numbox}[1]{%
+  \begin{tcolorbox}[colback=palegreen,colframe=teal!70!black,title={\bfseries Measured}]
+  #1
+  \end{tcolorbox}}
+
+% ---------------------------------------------------------------- code
+\lstset{language=Python,basicstyle=\ttfamily\scriptsize,
+  keywordstyle=\color{uioblue}\bfseries,commentstyle=\color{teal},
+  stringstyle=\color{warm},showstringspaces=false,columns=fullflexible,
+  frame=single,rulecolor=\color{paleblue},backgroundcolor=\color{white},
+  breaklines=true}
+
+% ---------------------------------------------------------------- macros
+\newcommand{\ket}[1]{\vert #1\rangle}
+\newcommand{\bra}[1]{\langle #1\vert}
+\newcommand{\braket}[2]{\langle #1\vert #2\rangle}
+\newcommand{\element}[3]{\langle #1\vert #2\vert #3\rangle}
+\DeclareMathOperator{\tr}{tr}
+\newcommand{\bigO}{\mathcal{O}}
+\newcommand{\bmat}[1]{\bm{#1}}
+\newcommand{\Amat}[1]{\bm{A}^{#1}}
+\newcommand{\Bmat}[1]{\bm{B}^{#1}}
+\newcommand{\hH}{\hat{H}}
+\newcommand{\ad}[1]{a_{#1}^{\dagger}}
+\newcommand{\ketbra}[2]{\vert #1\rangle\langle #2\vert}
+% normal ordering with respect to the reference determinant |c> (as in week 40)
+\newcommand{\nc}[1]{\bigl\{#1\bigr\}}
+
+% ---------------------------------------------------------------- diagrams
+\tikzset{
+  tens/.style={draw=uioblue,fill=paleblue,thick,rounded corners=1pt,minimum size=7mm,font=\small},
+  mpo/.style={draw=warm,fill=palewarm,thick,rounded corners=1pt,minimum size=7mm,font=\small},
+  env/.style={draw=teal!70!black,fill=paleteal,thick,rounded corners=1pt,
+              minimum width=7mm,minimum height=14mm,font=\small},
+  leg/.style={thick,uioblue},
+  dlab/.style={font=\scriptsize},
+  every picture/.style={scale=0.8,baseline=(current bounding box.center)}
+}
+
+\graphicspath{{../BookFigures/}{./}}
+
+\newcommand{\dd}{\mathrm{d}}
+
+
+% ---------------------------------------------------------------- MBPT macros
+\newcommand{\mel}[3]{\langle #1\lvert #2\rvert #3\rangle}
+\newcommand{\av}[1]{\langle #1\rangle_0}
+\newcommand{\cre}[1]{a_{#1}^{\dagger}}
+\newcommand{\ann}[1]{a_{#1}}
+\newcommand{\no}[1]{\bigl\{#1\bigr\}}
+\newcommand{\vbar}[4]{\overline v_{#1#2#3#4}}
+\newcommand{\Eref}{E_{\mathrm{ref}}}
+\newcommand{\ph}{\Phi_0}
+\newcommand{\Psizero}{\Psi_0}
+\newcommand{\ord}[1]{\mathcal O(#1)}
+\newcommand{\Rzero}{R_0}
+\tikzset{fermion/.style={line width=.8pt,uioblue,postaction={decorate},decoration={markings,mark=at position .56 with {\arrow{Stealth}}}},
+  interaction/.style={dashed,line width=.8pt,warm},
+  vertex/.style={circle,fill=warm,inner sep=1.7pt}}
+% ---- the Goldstone-diagram styles of book.tex (chapter 5, 9 figures)
+\tikzset{
+  pline/.style={thick,uioblue,postaction={decorate},
+    decoration={markings,mark=at position 0.55 with {\arrow{Stealth[length=5pt]}}}},
+  hline/.style={thick,uioblue,postaction={decorate},
+    decoration={markings,mark=at position 0.55 with {\arrowreversed{Stealth[length=5pt]}}}},
+  vint/.style={dashed,thick,warm},
+  vtx/.style={circle,fill=warm,inner sep=1.4pt},
+  fvtx/.style={cross out,draw=warm,thick,minimum size=5pt,inner sep=0pt},
+  dlab/.style={font=\scriptsize},
+  hloop/.style={thick,uioblue,postaction={decorate},
+    decoration={markings,mark=at position 0.5 with {\arrow{Stealth[length=5pt]}}}},
+  fcidiagram/.style={scale=0.9,baseline=(current bounding box.center)}}
+\newcommand{\ftil}[1]{\tilde f_{#1}}
+\tikzset{amp/.style={line width=2.4pt,uioblue}}
+\newcommand{\Hbar}{\overline{H}}
+\newcommand{\as}[4]{\langle #1#2\Vert #3#4\rangle}
+\newcommand{\W}{W}
+\newcommand{\wickpattern}[1]{%
+\begin{tikzpicture}[x=.86cm,y=.72cm,every node/.style={font=\small,inner sep=1.3pt},scale=1,baseline=(current bounding box.center)]
+\node(p)at(0,0){\(\cre{p}\)};\node(q)at(1,0){\(\cre{q}\)};
+\node(s)at(2,0){\(\ann{s}\)};\node(r)at(3,0){\(\ann{r}\)};
+\node(a)at(4,0){\(\cre{a}\)};\node(b)at(5,0){\(\cre{b}\)};
+\node(j)at(6,0){\(\ann{j}\)};\node(i)at(7,0){\(\ann{i}\)};
+\draw[uioblue,line width=.6pt,rounded corners=3pt](p.north)--++(0,1.05)-|(i.north);
+\draw[uioblue,line width=.6pt,rounded corners=3pt](q.north)--++(0,.64)-|(j.north);
+\ifnum#1=1\relax
+\draw[teal,line width=.7pt,rounded corners=3pt](s.south)--++(0,-.9)-|(b.south);
+\draw[teal,line width=.7pt,rounded corners=3pt](r.south)--++(0,-.48)-|(a.south);
+\else
+\draw[teal,line width=.7pt,rounded corners=3pt](s.south)--++(0,-.9)-|(a.south);
+\draw[teal,line width=.7pt,rounded corners=3pt](r.south)--++(0,-.48)-|(b.south);
+\fi
+\end{tikzpicture}}
+
+
+% ---------------------------------------------------------------- title
+\title{The linked-diagram theorem, and coupled-cluster theory}
+\subtitle{FYS4480/FYS9480 -- Week 46, November 12--13, 2026}
+\author{Cecilie Glittum and Morten Hjorth-Jensen}
+\institute{Department of Physics,\\
+University of Oslo, Norway}
+\date{}
+
+
+\begin{document}
+
+\begin{frame}[plain]
+  \vspace*{-0.2em}{\setbeamerfont{title}{size=\Large,series=\bfseries}\titlepage}
+  \vfill
+  \begin{center}\small
+  Thursday: linked and unlinked diagrams, the factorisation of denominators, the linked-diagram theorem and its proof, Pauli exclusion in the intermediate states\\
+  Friday: coupled-cluster theory -- the exponential ansatz, the similarity-transformed Hamiltonian, the CCD equations and the pairing model\\[0.55em]
+  {\footnotesize Reading: lecture notes chapter 9, section 9.15 from ``Unlinked diagrams and the linked-diagram theorem'' to the end; chapter 10, sections 10.1--10.7. Shavitt and Bartlett, chapters 5--6 and 9. Code: \texttt{BookPrograms/chapter09/diagrams.py}, \texttt{BookPrograms/chapter10/coupledcluster.py}; notebook \texttt{week46.ipynb}.\\[0.2em]
+  Answers to the week-45 exercises and the week-46 exercises: last frames.}
+  \end{center}
+\end{frame}
+
+\begin{frame}[shrink=12]{Plan for week 46}
+  \begin{block}{Thursday, $2\times45$ min: the linked-diagram theorem}
+    \begin{itemize}
+      \item Lecture 1: the wave operator drawn with bare vertices -- connected, disconnected-but-linked and \alert{unlinked} open diagrams at second and third order; closing them with a vertex gives connected and unlinked energy diagrams; the renormalisation terms are the unlinked diagrams with a minus sign
+      \item Normal ordering removes the first-order closed pieces; the first surviving unlinked diagrams appear at fourth order, and the factorisation of their denominators, $\frac{1}{D_m(D_m+D_n)D_n}+\frac{1}{D_m(D_m+D_n)D_m}=\frac{1}{D_m^2D_n}$, turns them into the folded term
+      \item Lecture 2: the factorisation theorem (Frantz-Mills) by induction; the theorem for energy and wave operator and its proof in imaginary time; exclusion-principle-violating diagrams and why they are kept; the two-level benchmark; consequences
+    \end{itemize}
+  \end{block}
+  \begin{block}{Friday, $2\times45$ min: coupled-cluster theory, chapter 10}
+    \begin{itemize}
+      \item Lecture 3: $\ket{\Psi}=e^{T}\ket{\ph}$ -- why an exponential (the disconnected-but-linked diagrams of Thursday are $\tfrac12T_2^2$), the similarity-transformed Hamiltonian, why the Baker-Campbell-Hausdorff expansion terminates, the projected equations and the energy
+      \item Lecture 4: the CCD equations term by term and as diagrams, intermediates and cost, coupled cluster as a resummation of perturbation theory, the pairing model, size extensivity in one line
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}[shrink=8]{Where we are, and the route through this week}
+  \begin{columns}[T]
+    \column{0.5\textwidth}
+    \begin{block}{Done (weeks 44--45)}
+      \begin{itemize}
+        \item $P$, $Q$, $R_0=Q/(\varepsilon_0-H_0)$; BW versus RS; the recursion with its renormalisation terms
+        \item The four rules, proved: sums, $1/D$ per cut, $\tfrac12$ per pair of equivalent lines, $(-1)^{h+l}$
+        \item Normal-ordered vertices $W=H_I-E^{(1)}$; the fourteen third-order diagrams; MP3; the pairing model
+        \item Last Friday's look ahead: at fourth order a contraction can fall into two closed pieces
+      \end{itemize}
+    \end{block}
+    \column{0.5\textwidth}
+    \begin{block}{This week}
+      \begin{enumerate}
+        \item What ``linked'' means, on the wave operator
+        \item Unlinked diagrams versus renormalisation terms, order by order
+        \item The theorem, and a proof that works at all orders
+        \item The Pauli principle in the intermediate states
+        \item The exponential ansatz: $e^{T}$ as the theorem built in
+      \end{enumerate}
+    \end{block}
+  \end{columns}
+  \vspace{0.4em}
+  \mbbox{Notation as in weeks 44--45: $H=H_0+H_I$, $H_0=\sum_p\varepsilon_p\cre{p}\ann{p}$, reference $\ket{\ph}$ with $\varepsilon_0=\sum_i\varepsilon_i$, $R_0=Q/(\varepsilon_0-H_0)$, $D_m=\varepsilon_0-\varepsilon_m<0$, $\av{X}=\mel{\ph}{X}{\ph}$, $V_{mn}=\mel{\Phi_m}{H_I}{\Phi_n}$. $H_I=E^{(1)}+W$ with $W$ normal ordered, one-body vertex $\ftil{pq}=u_{pq}+U_{pq}$. Occupied $i,j,k,l$, empty $a,b,c,d$; $\vbar{p}{q}{r}{s}$ antisymmetrised.}
+\end{frame}
+
+% ======================================================================
+\section{Thursday, lecture 1: Linked and unlinked diagrams}
+% ======================================================================
+
+\begin{frame}[shrink=8]{Two bookkeepings for the same series}
+\begin{columns}[T]
+\column{0.5\textwidth}
+\begin{block}{Bare vertices $V=H_I$ (week 44)}
+\begin{align*}
+\Omega^{(1)}&=RV,\\
+\Omega^{(2)}&=RVRV-E^{(1)}R^2V,\\
+\Omega^{(3)}&=RVRVRV-E^{(1)}[RVR^2V+R^2VRV]\\&\quad+(E^{(1)})^2R^3V-E^{(2)}R^2V,\\
+E^{(n+1)}&=\av{V\Omega^{(n)}}.
+\end{align*}
+Every term with an $E^{(k)}$ in front is a \emph{renormalisation term}.
+\end{block}
+\column{0.5\textwidth}
+\begin{block}{Normal-ordered vertices $W=H_I-E^{(1)}$ (week 45)}
+\begin{align*}
+\Omega^{(1)}&=RW,\qquad \Omega^{(2)}=RWRW,\\
+\Omega^{(3)}&=RWRWRW-E^{(2)}R^2W,\\
+E^{(3)}&=\av{WRWRW},\\
+E^{(4)}&=\av{WRWRWRW}-E^{(2)}\av{WR^2W}.
+\end{align*}
+Fewer terms, same numbers. The first surviving renormalisation term is $-E^{(2)}R^2W$.
+\end{block}
+\end{columns}
+\vspace{0.4em}
+\begin{itemize}
+\item A diagram is a complete Wick contraction of the vertex string with one $1/D$ per cut (week 45). Today the question is: \alert{which drawings do the renormalisation terms correspond to, and why do they cancel?}
+\item We first draw with bare vertices, because there the cancellation is already visible at second order.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{The wave operator drawn: first order}
+\[
+\Omega^{(1)}\ket{\ph}=R_0H_I\ket{\ph}
+=\sum_{ia}\frac{u_{ai}+\sum_j\vbar{a}{j}{i}{j}}{\varepsilon_i-\varepsilon_a}\ket{\Phi_i^a}
++\frac14\sum_{ijab}\frac{\vbar{a}{b}{i}{j}}{\varepsilon_i+\varepsilon_j-\varepsilon_a-\varepsilon_b}\ket{\Phi_{ij}^{ab}}
+\]
+\begin{center}
+\begin{tikzpicture}[fcidiagram]
+  \node[fvtx] (f) at (0,0.5) {};
+  \draw[hline] (f) -- (-0.4,1.6); \draw[pline] (f) -- (0.4,1.6);
+  \draw[dotted] (-0.9,1.1) -- (0.9,1.1);
+  \node[dlab,above] at (-0.4,1.6) {$i$}; \node[dlab,above] at (0.4,1.6) {$a$};
+  \node[dlab,below] at (0,-0.3) {$\dfrac{u_{ai}}{\varepsilon_i-\varepsilon_a}$};
+\end{tikzpicture}
+\hspace{3em}
+\begin{tikzpicture}[fcidiagram]
+  \node[vtx] (v1) at (0,0.5) {}; \node[vtx] (v2) at (1.1,0.5) {}; \draw[vint] (v1) -- (v2);
+  \draw[hline] (v1) -- (-0.4,1.6); \draw[pline] (v1) -- (0.4,1.6);
+  \draw[hloop] (1.1,0.05) ++(0.45,0) arc (0:360:0.45);
+  \draw[dotted] (-0.9,1.1) -- (1.9,1.1);
+  \node[dlab,above] at (-0.4,1.6) {$i$}; \node[dlab,above] at (0.4,1.6) {$a$};
+  \node[dlab,right] at (1.6,0.05) {$j$};
+  \node[dlab,below] at (0.55,-0.6) {$\dfrac{\sum_j\vbar{a}{j}{i}{j}}{\varepsilon_i-\varepsilon_a}$};
+\end{tikzpicture}
+\hspace{3em}
+\begin{tikzpicture}[fcidiagram]
+  \node[vtx] (v1) at (0,0.5) {}; \node[vtx] (v2) at (1.2,0.5) {}; \draw[vint] (v1) -- (v2);
+  \draw[hline] (v1) -- (-0.4,1.6); \draw[pline] (v1) -- (0.4,1.6);
+  \draw[hline] (v2) -- (0.8,1.6); \draw[pline] (v2) -- (1.6,1.6);
+  \draw[dotted] (-0.9,1.1) -- (2.1,1.1);
+  \node[dlab,above] at (-0.4,1.6) {$i$}; \node[dlab,above] at (0.4,1.6) {$a$};
+  \node[dlab,above] at (0.8,1.6) {$j$}; \node[dlab,above] at (1.6,1.6) {$b$};
+  \node[dlab,below] at (0.6,-0.3) {$\dfrac{\vbar{a}{b}{i}{j}}{\varepsilon_i+\varepsilon_j-\varepsilon_a-\varepsilon_b}$};
+\end{tikzpicture}
+\end{center}
+\begin{itemize}
+\item \alert{Open} diagrams: lines leave through the top. The cut above the vertex is crossed by the open lines and gives the denominator; an amplitude with $n$ vertices has $n$ cuts.
+\item The first two are the Fock-matrix vertices, $u_{ai}+\sum_j\vbar{a}{j}{i}{j}=f_{ai}$ (Brillouin: zero in a HF basis); the third is the pair-creation vertex $B$ of the RPA. Chapter 5 drew these amplitudes as \emph{bars}; perturbation theory replaces the bar by the vertices that generate it.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[shrink=5]{Second order, 1: connected open diagrams}
+$\Omega^{(2)}=RVRV-E^{(1)}R^2V$. Put a second vertex on top of a first-order piece and contract at least one line between them. Three of the many:
+\begin{center}
+\begin{tabular}{@{}c@{\hspace{3em}}c@{\hspace{3em}}c@{}}
+\begin{tikzpicture}[fcidiagram]
+  \node[vtx] (b1) at (0,0) {}; \node[vtx] (b2) at (1.2,0) {}; \draw[vint] (b1) -- (b2);
+  \node[vtx] (m1) at (0,1.2) {}; \node[vtx] (m2) at (1.2,1.2) {}; \draw[vint] (m1) -- (m2);
+  \draw[pline] (b1.center) .. controls (0.3,0.4) and (0.3,0.8) .. (m1.center);
+  \draw[pline] (b2.center) .. controls (0.9,0.4) and (0.9,0.8) .. (m2.center);
+  \draw[pline] (m1.center) -- (-0.1,2.2); \draw[pline] (m2.center) -- (1.3,2.2);
+  \draw[hline] (b1.center) .. controls (-0.8,0.6) and (-0.8,1.6) .. (-0.7,2.2);
+  \draw[hline] (b2.center) .. controls (2.0,0.6) and (2.0,1.6) .. (1.9,2.2);
+  \draw[dotted] (-0.9,0.6) -- (2.1,0.6); \draw[dotted] (-0.9,1.8) -- (2.1,1.8);
+  \node[dlab,left] at (0.22,0.5) {$a$}; \node[dlab,right] at (0.98,0.5) {$b$};
+  \node[dlab,above] at (-0.1,2.2) {$c$}; \node[dlab,above] at (1.3,2.2) {$d$};
+  \node[dlab,above] at (-0.7,2.2) {$i$}; \node[dlab,above] at (1.9,2.2) {$j$};
+\end{tikzpicture}
+&
+\begin{tikzpicture}[fcidiagram]
+  \node[fvtx] (b) at (0,0) {}; \node[fvtx] (m) at (0.55,1.2) {};
+  \draw[hline] (b.center) .. controls (-0.7,0.6) and (-0.7,1.6) .. (-0.6,2.2);
+  \draw[pline] (b.center) .. controls (0.55,0.4) .. (m.center);
+  \draw[pline] (m.center) -- (0.6,2.2);
+  \draw[dotted] (-0.9,0.6) -- (1.1,0.6); \draw[dotted] (-0.9,1.8) -- (1.1,1.8);
+  \node[dlab,right] at (0.4,0.5) {$a$}; \node[dlab,above] at (0.6,2.2) {$b$}; \node[dlab,above] at (-0.6,2.2) {$i$};
+\end{tikzpicture}
+&
+\begin{tikzpicture}[fcidiagram]
+  \node[fvtx] (b) at (0,0) {};
+  \node[vtx] (t1) at (0.3,1.2) {}; \node[vtx] (t2) at (1.3,1.2) {}; \draw[vint] (t1) -- (t2);
+  \draw[hline] (b.center) .. controls (-0.6,0.6) and (-0.6,1.6) .. (-0.5,2.2);
+  \draw[pline] (b.center) .. controls (0.3,0.5) .. (t1.center);
+  \draw[pline] (t1.center) -- (0.3,2.2);
+  \draw[hline] (t2.center) -- (1.0,2.2); \draw[pline] (t2.center) -- (1.6,2.2);
+  \draw[dotted] (-0.9,0.6) -- (2.0,0.6); \draw[dotted] (-0.9,1.8) -- (2.0,1.8);
+  \node[dlab,right] at (0.25,0.45) {$a$};
+  \node[dlab,above] at (-0.5,2.2) {$i$}; \node[dlab,above] at (0.3,2.2) {$c$};
+  \node[dlab,above] at (1.0,2.2) {$j$}; \node[dlab,above] at (1.6,2.2) {$b$};
+\end{tikzpicture}
+\\[0.4em]
+pp ladder on a double & cross on the particle line & a double from a single and $V$
+\end{tabular}
+\end{center}
+\[
+\frac12\sum_{ab}\frac{\vbar{c}{d}{a}{b}\,\vbar{a}{b}{i}{j}}{\varepsilon_{ij}^{ab}\,\varepsilon_{ij}^{cd}},\qquad
+\frac{u_{ba}\,u_{ai}}{(\varepsilon_i-\varepsilon_a)(\varepsilon_i-\varepsilon_b)},\qquad\ldots
+\]
+\small These are \alert{connected}: a single piece. With a cut above the top vertex they are the amplitudes $\langle\Phi_{ij}^{cd}|\Psi^{(2)}\rangle$, $\langle\Phi_i^b|\Psi^{(2)}\rangle$, \dots\ -- the top vertex of a third-order \emph{energy} diagram would close them (frame after next). The third picture: $\cre{a}$ of the single is contracted into the interaction, which creates $(b,j)$; its value has the ring/cross structure of diagram 3 of week 45, opened.
+\end{frame}
+
+\begin{frame}[shrink=5]{Second order, 2: disconnected but linked}
+Two first-order pieces, \emph{no line between them}, both with open lines. Two time orderings, one drawing:
+\begin{center}
+\begin{tikzpicture}[fcidiagram]
+  \node[vtx] (a1) at (0,0) {}; \node[vtx] (a2) at (1.0,0) {}; \draw[vint] (a1) -- (a2);
+  \draw[hline] (a1.center) -- (-0.4,2.0); \draw[pline] (a1.center) -- (0.3,2.0);
+  \draw[hline] (a2.center) -- (0.7,2.0); \draw[pline] (a2.center) -- (1.4,2.0);
+  \node[vtx] (b1) at (2.6,0.9) {}; \node[vtx] (b2) at (3.6,0.9) {}; \draw[vint] (b1) -- (b2);
+  \draw[hline] (b1.center) -- (2.3,2.0); \draw[pline] (b1.center) -- (2.9,2.0);
+  \draw[hline] (b2.center) -- (3.3,2.0); \draw[pline] (b2.center) -- (3.9,2.0);
+  \draw[dotted] (-0.7,0.45) -- (4.2,0.45); \draw[dotted] (-0.7,1.5) -- (4.2,1.5);
+  \node[dlab,right] at (4.25,0.45) {$D_m$}; \node[dlab,right] at (4.25,1.5) {$D_m+D_n$};
+  \node[dlab,above] at (-0.4,2.0) {$i$}; \node[dlab,above] at (0.3,2.0) {$a$}; \node[dlab,above] at (0.7,2.0) {$j$}; \node[dlab,above] at (1.4,2.0) {$b$};
+  \node[dlab,above] at (2.3,2.0) {$k$}; \node[dlab,above] at (2.9,2.0) {$c$}; \node[dlab,above] at (3.3,2.0) {$l$}; \node[dlab,above] at (3.9,2.0) {$d$};
+  \node[dlab,below] at (1.8,-0.4) {$m$ first};
+\end{tikzpicture}
+\hspace{2em}
+\begin{tikzpicture}[fcidiagram]
+  \node[vtx] (a1) at (0,0.9) {}; \node[vtx] (a2) at (1.0,0.9) {}; \draw[vint] (a1) -- (a2);
+  \draw[hline] (a1.center) -- (-0.4,2.0); \draw[pline] (a1.center) -- (0.3,2.0);
+  \draw[hline] (a2.center) -- (0.7,2.0); \draw[pline] (a2.center) -- (1.4,2.0);
+  \node[vtx] (b1) at (2.6,0) {}; \node[vtx] (b2) at (3.6,0) {}; \draw[vint] (b1) -- (b2);
+  \draw[hline] (b1.center) -- (2.3,2.0); \draw[pline] (b1.center) -- (2.9,2.0);
+  \draw[hline] (b2.center) -- (3.3,2.0); \draw[pline] (b2.center) -- (3.9,2.0);
+  \draw[dotted] (-0.7,0.45) -- (4.2,0.45); \draw[dotted] (-0.7,1.5) -- (4.2,1.5);
+  \node[dlab,right] at (4.25,0.45) {$D_n$}; \node[dlab,right] at (4.25,1.5) {$D_m+D_n$};
+  \node[dlab,below] at (1.8,-0.4) {$n$ first};
+\end{tikzpicture}
+\end{center}
+\[
+\langle\Phi_{ijkl}^{abcd}|\Psi^{(2)}\rangle\ \ni\ \vbar{a}{b}{i}{j}\,\vbar{c}{d}{k}{l}\Bigl[\frac{1}{D_m(D_m+D_n)}+\frac{1}{D_n(D_m+D_n)}\Bigr]
+=\frac{\vbar{a}{b}{i}{j}}{D_m}\cdot\frac{\vbar{c}{d}{k}{l}}{D_n}=t_m\,t_n
+\]
+\centerline{\small with $D_m=\varepsilon_{ij}^{ab}$, $D_n=\varepsilon_{kl}^{cd}$ and the same determinant phase in both orderings.}
+\begin{itemize}
+\item Disjoint orbitals: the energies add on the common cut, $D_{m\otimes n}=D_m+D_n$, and the two orderings sum to the \alert{product of the two first-order amplitudes}. The leading quadruple of $\Psi^{(2)}$ is a product of doubles (chapter 5: CID lacks it, that is why CID is not size consistent).
+\item \alert{Disconnected but linked}: no piece is closed. Such terms belong to the wave function and are kept. (Friday: $e^{T}$ generates exactly these, as $\tfrac12T_2^2$.)
+\end{itemize}
+\end{frame}
+
+\begin{frame}[shrink=5]{Second order, 3: unlinked}
+Two pieces, no line between them, and \alert{one of them closed}: the first-order energy diagrams of week 45 (the $u$ loop, the two bubbles) floating next to an open first-order piece.
+\begin{center}
+\begin{tikzpicture}[fcidiagram]
+  \node[vtx] (a1) at (0,0) {}; \node[vtx] (a2) at (1.0,0) {}; \draw[vint] (a1) -- (a2);
+  \draw[hline] (a1.center) -- (-0.4,2.0); \draw[pline] (a1.center) -- (0.3,2.0);
+  \draw[hline] (a2.center) -- (0.7,2.0); \draw[pline] (a2.center) -- (1.4,2.0);
+  \node[vtx] (b1) at (2.6,1.0) {}; \node[vtx] (b2) at (3.8,1.0) {}; \draw[vint] (b1) -- (b2);
+  \draw[hloop] (2.6,0.55) ++(0.45,0) arc (0:360:0.45);
+  \draw[hloop] (3.8,0.55) ++(0.45,0) arc (0:360:0.45);
+  \node[dlab,left] at (2.1,0.55) {$k$}; \node[dlab,right] at (4.3,0.55) {$l$};
+  \draw[dotted] (-0.7,0.45) -- (4.6,0.45); \draw[dotted] (-0.7,1.5) -- (4.6,1.5);
+  \node[dlab,right] at (4.65,0.45) {$D_m$}; \node[dlab,right] at (4.65,1.5) {$D_m+0$};
+  \node[dlab,above] at (-0.4,2.0) {$i$}; \node[dlab,above] at (0.3,2.0) {$a$}; \node[dlab,above] at (0.7,2.0) {$j$}; \node[dlab,above] at (1.4,2.0) {$b$};
+\end{tikzpicture}
+\hspace{2.5em}
+\begin{tikzpicture}[fcidiagram]
+  \node[vtx] (a1) at (0,0) {}; \node[vtx] (a2) at (1.0,0) {}; \draw[vint] (a1) -- (a2);
+  \draw[hline] (a1.center) -- (-0.4,2.0); \draw[pline] (a1.center) -- (0.3,2.0);
+  \draw[hline] (a2.center) -- (0.7,2.0); \draw[pline] (a2.center) -- (1.4,2.0);
+  \node[fvtx] (f) at (2.9,1.45) {};
+  \draw[hloop] (2.9,1.0) ++(0.45,0) arc (0:360:0.45);
+  \node[dlab,left] at (2.4,1.0) {$k$};
+  \draw[dotted] (-0.7,0.45) -- (3.8,0.45); \draw[dotted] (-0.7,1.5) -- (3.8,1.5);
+\end{tikzpicture}
+\end{center}
+\begin{columns}[T]
+\column{0.55\textwidth}
+\begin{block}{Read with the rules}
+The closed piece adds no line to the second cut, so both denominators are $D_m$; its value is $\tfrac12\sum_{kl}\vbar{k}{l}{k}{l}$ or $\sum_k u_{kk}$, together $E^{(1)}=V_{00}$:
+\[
+\text{unlinked part of }\langle\Phi_m|RVRV|\ph\rangle=\frac{V_{00}\,V_{m0}}{D_m^2}.
+\]
+The closed piece cannot act \emph{first}: $R_0E^{(1)}\ket{\ph}=0$ ($Q$).
+\end{block}
+\column{0.45\textwidth}
+\begin{block}{The renormalisation term}
+\[
+-E^{(1)}R^2V\ket{\ph}\ \to\ -\frac{V_{00}V_{m0}}{D_m^2}.
+\]
+\alert{Exactly the unlinked diagram, with a minus sign.} What is left of $\Omega^{(2)}$ is linked: $\Omega^{(2)}=[RVRV]_{\rm linked}$.
+\end{block}
+\end{columns}
+\vspace{0.3em}
+\small Definitions. \emph{Connected}: one piece. \emph{Linked}: no closed piece hangs loose (disconnected open pieces allowed). \emph{Unlinked}: contains a closed piece with no line to the rest. For a closed (energy) diagram linked $=$ connected.
+\end{frame}
+
+\begin{frame}{Pause to think \#1}
+\thinkq{4}{Third order of the wave operator with bare vertices:
+\[
+\Omega^{(3)}=RVRVRV-E^{(1)}\bigl[RVR^2V+R^2VRV\bigr]+\bigl(E^{(1)}\bigr)^2R^3V-E^{(2)}R^2V.
+\]
+\begin{enumerate}
+\item Which unlinked drawings does $RVRVRV$ contain? (A closed piece can have one or two vertices; it must sit above the first open vertex.)
+\item Match each renormalisation term with one family of unlinked drawings. Where does the factor $(E^{(1)})^2$ come from with the sign $+$, and why does the $-E^{(2)}$ term need \emph{two} time orderings?
+\end{enumerate}}
+\end{frame}
+
+\begin{frame}[shrink=8]{Answer to pause \#1}
+\thinka{%
+Open first-order piece $m$ at the bottom (value $V_{m0}$), then:
+\begin{enumerate}
+\item \textbf{One closed one-vertex piece} $E^{(1)}$, either between the two open vertices or above both: denominators $D_m,D_m,D_{m'}$ or $D_m,D_{m'},D_{m'}$ -- exactly $E^{(1)}[R^2VRV+RVR^2V]$, removed by the two mixed terms.
+\item \textbf{Two closed one-vertex pieces}: $(E^{(1)})^2V_{m0}/D_m^3$ in the principal term; but the mixed terms contain it \emph{twice} (each $V$ in $RVR^2V$ still carries its $E^{(1)}$ part), so $+1-2=-1$, and $+(E^{(1)})^2R^3V$ restores zero.
+\item \textbf{One closed two-vertex piece} $n$ (a second-order energy diagram) beside the open piece: two orderings, $n$ opened after or before $m$,
+\[
+\frac{1}{D_m(D_m+D_n)D_m}+\frac{1}{D_n(D_m+D_n)D_m}=\frac{1}{D_m^2D_n}
+\quad\Longrightarrow\quad E^{(2)}\frac{V_{m0}}{D_m^2}:
+\]
+\alert{the factorisation of denominators}, and $-E^{(2)}R^2V$ removes it. (The ordering with $n$ opened and closed before $m$ starts is killed by $Q$.)
+\end{enumerate}
+Every renormalisation term is an unlinked drawing with a minus sign: $\Omega^{(3)}=[RVRVRV]_{\rm linked}$.}
+\end{frame}
+
+\begin{frame}[shrink=5]{From the wave operator to the energy: close with a vertex}
+$E^{(n+1)}=\av{V\Omega^{(n)}}$: put one more vertex on top and contract \emph{all} open lines into it.
+\begin{center}
+\begin{tabular}{@{}c@{\hspace{2.5em}}c@{\hspace{2.5em}}c@{}}
+\begin{tikzpicture}[fcidiagram]
+  \node[vtx] (b1) at (0,0) {}; \node[vtx] (b2) at (1.2,0) {}; \draw[vint] (b1) -- (b2);
+  \node[vtx] (m1) at (0,1.2) {}; \node[vtx] (m2) at (1.2,1.2) {}; \draw[vint] (m1) -- (m2);
+  \node[vtx] (t1) at (0,2.4) {}; \node[vtx] (t2) at (1.2,2.4) {}; \draw[vint,warm,very thick] (t1) -- (t2);
+  \draw[pline] (b1.center) .. controls (0.3,0.4) and (0.3,0.8) .. (m1.center);
+  \draw[pline] (b2.center) .. controls (0.9,0.4) and (0.9,0.8) .. (m2.center);
+  \draw[pline] (m1.center) .. controls (0.3,1.6) and (0.3,2.0) .. (t1.center);
+  \draw[pline] (m2.center) .. controls (0.9,1.6) and (0.9,2.0) .. (t2.center);
+  \draw[hline] (b1.center) .. controls (-0.8,0.6) and (-0.8,1.8) .. (t1.center);
+  \draw[hline] (b2.center) .. controls (2.0,0.6) and (2.0,1.8) .. (t2.center);
+  \draw[dotted] (-0.9,0.6) -- (2.1,0.6); \draw[dotted] (-0.9,1.8) -- (2.1,1.8);
+\end{tikzpicture}
+&
+\begin{tikzpicture}[fcidiagram]
+  \node[vtx] (a1) at (0,0) {}; \node[vtx] (a2) at (1.0,0) {}; \draw[vint] (a1) -- (a2);
+  \node[vtx] (t1) at (0,2.4) {}; \node[vtx] (t2) at (1.0,2.4) {}; \draw[vint,warm,very thick] (t1) -- (t2);
+  \draw[pline] (a1.center) .. controls (0.35,0.7) and (0.35,1.7) .. (t1.center);
+  \draw[hline] (a1.center) .. controls (-0.35,0.7) and (-0.35,1.7) .. (t1.center);
+  \draw[pline] (a2.center) .. controls (1.35,0.7) and (1.35,1.7) .. (t2.center);
+  \draw[hline] (a2.center) .. controls (0.65,0.7) and (0.65,1.7) .. (t2.center);
+  \node[vtx] (b1) at (2.4,1.55) {}; \node[vtx] (b2) at (3.5,1.55) {}; \draw[vint] (b1) -- (b2);
+  \draw[hloop] (2.4,1.2) ++(0.35,0) arc (0:360:0.35);
+  \draw[hloop] (3.5,1.2) ++(0.35,0) arc (0:360:0.35);
+  \draw[dotted] (-0.7,0.6) -- (4.2,0.6); \draw[dotted] (-0.7,1.8) -- (4.2,1.8);
+  \node[dlab,right] at (4.25,0.6) {$D_m$}; \node[dlab,right] at (4.25,1.8) {$D_m$};
+\end{tikzpicture}
+&
+\begin{tikzpicture}[fcidiagram]
+  \node[vtx] (a1) at (0,0) {}; \node[vtx] (a2) at (1.0,0) {}; \draw[vint] (a1) -- (a2);
+  \draw[hline] (a1.center) -- (-0.4,2.0); \draw[pline] (a1.center) -- (0.3,2.0);
+  \draw[hline] (a2.center) -- (0.7,2.0); \draw[pline] (a2.center) -- (1.4,2.0);
+  \node[vtx] (b1) at (2.4,0.9) {}; \node[vtx] (b2) at (3.4,0.9) {}; \draw[vint] (b1) -- (b2);
+  \draw[hline] (b1.center) -- (2.1,2.0); \draw[pline] (b1.center) -- (2.7,2.0);
+  \draw[hline] (b2.center) -- (3.1,2.0); \draw[pline] (b2.center) -- (3.7,2.0);
+  \node[dlab] at (1.7,2.5) {\alert{$\times$}};
+\end{tikzpicture}
+\\[0.3em]
+connected $\to$ connected closed & unlinked $\to$ \alert{unlinked closed} & \parbox{3.6cm}{\centering disconnected-but-linked $\to$ nothing:\\ one vertex cannot close eight lines}
+\end{tabular}
+\end{center}
+\begin{itemize}
+\item Middle: the third-order \emph{energy} diagram with a closed first-order piece between the cuts, $E^{(1)}\sum_m|V_{m0}|^2/D_m^2=E^{(1)}\av{VR^2V}$ -- the renormalisation term of $E^{(3)}$ with the opposite sign. Pairing model, $g=0.5$: $E^{(1)}=-g=-0.5$, $\av{VR^2V}=\tfrac{58}{2304}g^2=0.0251736$, unlinked diagram $-0.0125868$ = minus last week's ``$-0.01258681$''.
+\item Right: a quadruple cannot be closed by one interaction, so it contributes to $E^{(3)}$ nothing; a further vertex can bring it back to a double, and then it is the connected fourth-order diagram with two pairs created, scattered into each other, closed.
+\item \alert{So the renormalisation terms of the energy are the unlinked energy diagrams with a minus sign}, order by order. The theorem is the statement that this never fails.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Pause to think \#2}
+\thinkq{3}{Pairing model with bare vertices ($u=0$, so $E^{(1)}=\tfrac12\sum_{ij}\vbar{i}{j}{i}{j}=-g$ for two pairs).
+\begin{enumerate}
+\item Draw the unlinked third-order energy diagrams: which closed one-vertex pieces exist, and between which cuts can they sit?
+\item Last week the \emph{connected} third order was ``ladders $-0.0230035$ $+$ hole insertion $+0.0125868$'' with normal-ordered vertices. With bare vertices the hole insertion $\ftil{ii}=U_{ii}=-g/2$ is a bubble on a hole line. Where did the $+0.0125868$ come from, and where does the unlinked $-0.0125868$ go?
+\end{enumerate}}
+\end{frame}
+
+\begin{frame}[shrink=5]{Answer to pause \#2}
+\thinka{%
+\begin{enumerate}
+\item One closed piece: the two bubbles joined by an interaction, $\tfrac12\sum_{kl}\vbar{k}{l}{k}{l}=-g$ (there is no $u$ loop). It sits between the two cuts of a second-order ring, the only second-order diagram of the pairing model: one unlinked diagram per double $m$, worth $-g\,|V_{m0}|^2/D_m^2$, in total $-0.0125868$.
+\item With bare vertices the principal term $\av{VRVRV}=-0.0230035$ is the sum of \emph{four} families: pp ladder $-0.0115017$, hh ladder $-0.0115017$, bubbles on the two hole lines $+0.0125868$, and the unlinked diagram $-0.0125868$. For the pairing model the last two cancel each other exactly ($W_{mm}=V_{mm}-V_{00}=0$: the diagonal ladder elements $-g/2-g/2$ are undone by the two hole bubbles $+g/2+g/2$), which is why the principal term \emph{looks} like the ladders alone. The renormalisation term $-E^{(1)}\av{VR^2V}=+0.0125868$ removes the unlinked diagram, and what survives is connected: ladders $+$ hole bubbles $=-0.0104167=E^{(3)}$. Normal ordering does the same bookkeeping in one step: the bubble becomes the cross $\ftil{ii}=-g/2$ and the unlinked diagram never appears.
+\end{enumerate}}
+\end{frame}
+\begin{frame}[shrink=5]{Normal ordering removes the one-vertex closed pieces}
+Every closed piece with \emph{one} vertex is a reference expectation value, $\av{H_I}=E^{(1)}$. Writing $H_I=E^{(1)}+W$ with $W$ normal ordered (week 45, step zero):
+\begin{align*}
+\av{W}&=0,\qquad
+\Omega^{(2)}=RWRW,\qquad \Omega^{(3)}=RWRWRW-E^{(2)}R^2W,\\
+E^{(3)}&=\av{WRWRW},\qquad E^{(4)}=\av{WRWRWRW}-E^{(2)}\av{WR^2W}.
+\end{align*}
+\begin{itemize}
+\item A normal-ordered vertex has no contraction with itself: no bubbles, no $u$ loop, hence no closed one-vertex piece. The unlinked drawings of pause \#1 with $E^{(1)}$ pieces are gone, and so are the renormalisation terms that cancelled them.
+\item The smallest closed piece is now a \emph{second-order} energy diagram (ring, or two crosses), and the first place it can float beside something is $\Omega^{(3)}$ (pause \#1, item 3) and, for the energy, $E^{(4)}$.
+\item From here on all vertices are normal ordered: a cross is $\ftil{pq}=f_{pq}-\varepsilon_p\delta_{pq}$, an interaction is $\vbar{p}{q}{r}{s}$.
+\end{itemize}
+\numbox{Pairing, $g=0.5$: $\av{WR_0WR_0W}=-0.01041667=E^{(3)}$ in one term; two copies of a three-level system, next frames: $E^{(4)}_{AB}=2E^{(4)}_A$ only because the folded term cancels the unlinked fourth-order diagrams.}
+\end{frame}
+
+\begin{frame}{Fourth order: a new kind of drawing}
+\[
+E^{(4)}=\av{WR_0WR_0WR_0W}-E^{(2)}\av{WR_0^2W}.
+\]
+With four normal-ordered vertices a complete contraction can fall into \alert{two closed pieces of two vertices each}:
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+pairing of vertices & intermediate states & \\
+\midrule
+\(1\)--\(3\) and \(2\)--\(4\) & \(m,\ m\otimes n,\ n\) & unlinked, overlapping in time\\
+\(1\)--\(4\) and \(2\)--\(3\) & \(m,\ m\otimes n,\ m\) & unlinked, overlapping in time\\
+\(1\)--\(2\) and \(3\)--\(4\) & \(m,\ \ph,\ n\) & \alert{zero}: no line crosses the middle cut, \(Q\) kills it\\
+\bottomrule
+\end{tabular}
+\end{center}
+\begin{itemize}
+\item Each piece is a closed second-order diagram -- a ring, or two crosses.
+\item Such a drawing is \alert{unlinked}: it contains a closed part with no line connecting it to the rest.
+\item Everything else with four vertices is connected; the question is what the unlinked ones are worth -- and pause \#1 has already told us: the folded term $-E^{(2)}\av{WR_0^2W}$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{The two unlinked time orderings, drawn}
+\begin{center}
+\begin{tikzpicture}[fcidiagram]
+  % piece A: vertices 1 (y=0) and 3 (y=1.8); piece B: vertices 2 (y=0.9) and 4 (y=2.7)
+  \node[vtx] (a1) at (0,0) {}; \node[vtx] (a2) at (1.0,0) {}; \draw[vint] (a1) -- (a2);
+  \node[vtx] (a3) at (0,1.8) {}; \node[vtx] (a4) at (1.0,1.8) {}; \draw[vint] (a3) -- (a4);
+  \draw[pline] (a1.center) .. controls (0.35,0.5) and (0.35,1.3) .. (a3.center);
+  \draw[hline] (a1.center) .. controls (-0.35,0.5) and (-0.35,1.3) .. (a3.center);
+  \draw[pline] (a2.center) .. controls (1.35,0.5) and (1.35,1.3) .. (a4.center);
+  \draw[hline] (a2.center) .. controls (0.65,0.5) and (0.65,1.3) .. (a4.center);
+  \node[vtx] (b1) at (2.4,0.9) {}; \node[vtx] (b2) at (3.4,0.9) {}; \draw[vint] (b1) -- (b2);
+  \node[vtx] (b3) at (2.4,2.7) {}; \node[vtx] (b4) at (3.4,2.7) {}; \draw[vint] (b3) -- (b4);
+  \draw[pline] (b1.center) .. controls (2.75,1.4) and (2.75,2.2) .. (b3.center);
+  \draw[hline] (b1.center) .. controls (2.05,1.4) and (2.05,2.2) .. (b3.center);
+  \draw[pline] (b2.center) .. controls (3.75,1.4) and (3.75,2.2) .. (b4.center);
+  \draw[hline] (b2.center) .. controls (3.05,1.4) and (3.05,2.2) .. (b4.center);
+  \draw[dotted] (-0.7,0.45) -- (4.1,0.45); \draw[dotted] (-0.7,1.35) -- (4.1,1.35); \draw[dotted] (-0.7,2.25) -- (4.1,2.25);
+  \node[dlab,right] at (4.15,0.45) {$D_m$}; \node[dlab,right] at (4.15,1.35) {$D_m+D_n$}; \node[dlab,right] at (4.15,2.25) {$D_n$};
+  \node[dlab,left] at (-0.3,0.9) {$i$}; \node[dlab,right] at (0.3,0.9) {$a$};
+  \node[dlab,left] at (0.7,0.9) {$j$}; \node[dlab,right] at (1.3,0.9) {$b$};
+  \node[dlab,left] at (2.1,1.8) {$k$}; \node[dlab,right] at (2.7,1.8) {$c$};
+  \node[dlab,left] at (3.1,1.8) {$l$}; \node[dlab,right] at (3.7,1.8) {$d$};
+  \node[dlab,below] at (1.7,-0.4) {(a) vertices $1,3$ and $2,4$};
+\end{tikzpicture}
+\hspace{2.5em}
+\begin{tikzpicture}[fcidiagram]
+  % piece A: vertices 1 (y=0) and 4 (y=2.7); piece B: vertices 2 (y=0.9) and 3 (y=1.8)
+  \node[vtx] (a1) at (0,0) {}; \node[vtx] (a2) at (1.0,0) {}; \draw[vint] (a1) -- (a2);
+  \node[vtx] (a3) at (0,2.7) {}; \node[vtx] (a4) at (1.0,2.7) {}; \draw[vint] (a3) -- (a4);
+  \draw[pline] (a1.center) .. controls (0.35,0.7) and (0.35,2.0) .. (a3.center);
+  \draw[hline] (a1.center) .. controls (-0.35,0.7) and (-0.35,2.0) .. (a3.center);
+  \draw[pline] (a2.center) .. controls (1.35,0.7) and (1.35,2.0) .. (a4.center);
+  \draw[hline] (a2.center) .. controls (0.65,0.7) and (0.65,2.0) .. (a4.center);
+  \node[vtx] (b1) at (2.4,0.9) {}; \node[vtx] (b2) at (3.4,0.9) {}; \draw[vint] (b1) -- (b2);
+  \node[vtx] (b3) at (2.4,1.8) {}; \node[vtx] (b4) at (3.4,1.8) {}; \draw[vint] (b3) -- (b4);
+  \draw[pline] (b1.center) .. controls (2.75,1.2) and (2.75,1.5) .. (b3.center);
+  \draw[hline] (b1.center) .. controls (2.05,1.2) and (2.05,1.5) .. (b3.center);
+  \draw[pline] (b2.center) .. controls (3.75,1.2) and (3.75,1.5) .. (b4.center);
+  \draw[hline] (b2.center) .. controls (3.05,1.2) and (3.05,1.5) .. (b4.center);
+  \draw[dotted] (-0.7,0.45) -- (4.1,0.45); \draw[dotted] (-0.7,1.35) -- (4.1,1.35); \draw[dotted] (-0.7,2.25) -- (4.1,2.25);
+  \node[dlab,right] at (4.15,0.45) {$D_m$}; \node[dlab,right] at (4.15,1.35) {$D_m+D_n$}; \node[dlab,right] at (4.15,2.25) {$D_m$};
+  \node[dlab,left] at (-0.3,1.35) {$i$}; \node[dlab,right] at (0.3,1.35) {$a$};
+  \node[dlab,left] at (0.7,1.35) {$j$}; \node[dlab,right] at (1.3,1.35) {$b$};
+  \node[dlab,left] at (2.1,1.35) {$k$}; \node[dlab,right] at (2.7,1.35) {$c$};
+  \node[dlab,left] at (3.1,1.35) {$l$}; \node[dlab,right] at (3.7,1.35) {$d$};
+  \node[dlab,below] at (1.7,-0.4) {(b) vertices $1,4$ and $2,3$};
+\end{tikzpicture}
+\end{center}
+\small Two second-order rings, pairs \((ab,ij)\) and \((cd,kl)\) sharing no orbital; \(D_m=\varepsilon_{ij}^{ab}\), \(D_n=\varepsilon_{kl}^{cd}\) are the denominators of the rings on their own. The matrix elements, the weights and the signs of the two pieces simply \emph{multiply} (the line and loop counts add in the exponent). Only the denominators are not local to a piece: in the middle both rings are open, and the energies \emph{add} because the excitations involve different orbitals.
+\end{frame}
+
+\begin{frame}[shrink=6]{The factorisation of the denominators}
+Ordering (a): cuts \(D_m\), \(D_m+D_n\), \(D_n\). Ordering (b): \(D_m\), \(D_m+D_n\), \(D_m\). Add them:
+\[
+\boxed{\frac{1}{D_m(D_m+D_n)D_n}+\frac{1}{D_m(D_m+D_n)D_m}
+=\frac{1}{D_m(D_m+D_n)}\cdot\frac{D_m+D_n}{D_mD_n}
+=\frac{1}{D_m^2\,D_n}.}
+\]
+For fixed $m$ opened first, the two orders sum to $1/(D_m^2D_n)$. When $n$ opens first they give $1/(D_n^2D_m)$. An ordered double sum already includes the interchange of $m$ and $n$.
+\begin{block}{Compare with the folded term}
+\[
+E^{(2)}\av{WR_0^2W}=\sum_{m,n\ne0}\frac{W_{0n}W_{n0}}{D_n}\,\frac{W_{0m}W_{m0}}{D_m^2}
+\]
+This product enters $E^{(4)}$ with a minus sign. For disjoint excitations it cancels the sum of the two overlapping orderings for each ordered pair of excitations.
+\end{block}
+For shared orbital labels, independent sums also contain formal EPV pairings. We will track their exchange partners explicitly after the proof.
+\end{frame}
+
+% ======================================================================
+\section{Thursday, lecture 2: The theorem and its proof}
+% ======================================================================
+
+\begin{frame}{Factorisation for two open excitation histories}
+Fix the vertex order \emph{within} each of two independent pieces. Let $A_r$ and $B_s$ be their signed energy deficits after $r$ and $s$ vertices. Put $A_0=B_0=0$. Let $S_{rs}$ sum the denominator products of all interleavings of these prefixes, including their final cut.
+\[
+ S_{r0}=\prod_{u=1}^r A_u^{-1},\quad S_{0s}=\prod_{v=1}^s B_v^{-1},\quad S_{00}=1.
+\]
+The last vertex belongs to one of the pieces. Their deficits add on the common cut, so for $r,s>0$,
+\[
+ S_{rs}=\frac{S_{r-1,s}+S_{r,s-1}}{A_r+B_s}
+ =\frac{A_r+B_s}{A_r+B_s}
+   \prod_{u=1}^r\frac1{A_u}\prod_{v=1}^s\frac1{B_v}.
+\]
+The second equality uses the induction hypothesis. This proves factorisation for prefixes with nonzero denominators. At a closed energy graph's final vertex there is no final denominator. The preceding fourth-order example treated that endpoint explicitly.
+\end{frame}
+
+\begin{frame}{The linked-diagram theorem for a single reference}
+Assume a finite orbital basis and a nondegenerate, gapped ground determinant $\ket{\ph}$ of $H_0$. Follow its ground-state branch for small coupling $\lambda$. As before,
+$H(\lambda)=H_0+\lambda(E^{(1)}+W)$ with $\av{W}=0$.
+\begin{block}{Energy}
+For $n\ge2$, sum the connected closed Wick diagrams of the indicated string.
+\[
+ E^{(n)}=\big[\av{W(R_0W)^{n-1}}\big]_{\rm connected},
+ \qquad E_0(\lambda)=\varepsilon_0+\lambda E^{(1)}+\sum_{n\ge2}\lambda^n E^{(n)} .
+\]
+\end{block}
+\begin{block}{Wave operator}
+With $\braket{\ph}{\Psi_0(\lambda)}=1$, each component of a diagram for an excited-determinant amplitude must reach an external line. Several components may survive in the same amplitude if each reaches the projecting bra.
+\end{block}
+\end{frame}
+
+\begin{frame}{Proof 1. Projection onto the interacting ground state}
+Remove the scalar shift by writing $H'=H_0+\lambda W$. Define
+\[
+ U_T=e^{-T(H'-\varepsilon_0)},\qquad
+ Z(T)=\av{U_T}=\sum_\nu |\braket{\Psi'_\nu}{\ph}|^2 e^{-T(E'_\nu-\varepsilon_0)}.
+\]
+Here the spectral eigenvectors are unit normalised. The ground-state overlap is nonzero for sufficiently small $\lambda$. The gap suppresses the excited terms, giving
+\[
+ E'_0-\varepsilon_0=-\lim_{T\to\infty}\partial_T\log Z(T),\qquad
+ \ket{\Psi_0(\lambda)}=\lim_{T\to\infty}\frac{U_T\ket{\ph}}{Z(T)} .
+\]
+The ratio has reference overlap one at every $T$. Since
+$\bra{\ph}(H_0-\varepsilon_0)=0$, the energy also has a form with one marked, latest vertex:
+\[
+ -\partial_T\log Z(T)=\lambda\frac{\av{W U_T}}{Z(T)} .
+\]
+\end{frame}
+
+\begin{frame}{Proof 2. Independent vacuum components factorise}
+Let $W_I(t)=e^{tH_0}W e^{-tH_0}$ and let $\mathcal T$ put later times on the left. The Dyson series on the reference gives
+\[
+ Z(T)=\sum_{N\ge0}\frac{(-\lambda)^N}{N!}
+ \int_{[-T,0]^N}\!\dd^Nt\,
+ \av{\mathcal T W_I(t_1)\cdots W_I(t_N)} .
+\]
+Wick contractions partition the $N$ labelled vertices into connected components. If there is no line between two sets, their orbital labels are summed independently and their time variables are integrated over a product domain. The signed integrand factorises because every closed component has even fermion parity.
+\begin{block}{Relative time orderings}
+For two components the Cartesian product of their ordered time domains splits into all interleavings that preserve each internal ordering. One ordering on its own need not factorise. Integrating over their union gives the product of the two component integrals.
+\end{block}
+\end{frame}
+
+\begin{frame}{Proof 3. Counting the components produces an exponential}
+Group connected vacuum graphs by type $\alpha$. Write $C_\alpha(T)$ for the signed, integrated weight of one component, with its vertex factorial and internal symmetry factors. Suppose $m_\alpha$ components of type $\alpha$ occur, each with $r_\alpha$ vertices, so $N=\sum_\alpha m_\alpha r_\alpha$. The number of partitions of the vertex labels is
+\[
+ \frac{N!}{\prod_\alpha (r_\alpha!)^{m_\alpha}m_\alpha!}.
+\]
+The Dyson $1/N!$ cancels the numerator. Each $1/r_\alpha!$ belongs to one component. Permuting identical components leaves the factor $1/m_\alpha!$. Summing their multiplicities gives
+\[
+ Z(T)=\prod_\alpha\sum_{m\ge0}\frac{C_\alpha(T)^m}{m!}
+     =\exp\Bigl[\sum_\alpha C_\alpha(T)\Bigr].
+\]
+For example, $\av{W}=0$ implies $Z_1=0$. If $Z=1+\sum_n\lambda^n Z_n$, the fourth-order coefficient of $\log Z$ is $Z_4-Z_2^2/2$. The identical pair of second-order vacuum components cancels exactly.
+\end{frame}
+
+\begin{frame}{Proof 4. The energy selects one connected component}
+In $\av{W U_T}$, distinguish the vertex $W$ at time zero. Every fully contracted term has a unique component containing this vertex. All other components are ordinary vacuum components. For $N$ integrated vertices, choosing the $k$ that join the marked component gives
+\[
+ \frac{1}{N!}\binom Nk=\frac{1}{k!(N-k)!}.
+\]
+The unmarked vertices therefore generate exactly $Z(T)$. If $M(T)$ sums the components attached to the marked vertex, then
+\[
+ \av{W U_T}=M(T) Z(T),\qquad E'_0-\varepsilon_0=\lambda\lim_{T\to\infty}M(T).
+\]
+Every interaction in $M$ is joined to the marked vertex by a path of fermion lines and interactions. Closing the external state with the reference gives a connected vacuum diagram. Equivalently, $-\partial_T\log Z$ selects the same connected series.
+\end{frame}
+
+\begin{frame}{Proof 5. Imaginary-time intervals give the Goldstone denominators}
+Order the $n-1$ integrated vertices beneath the marked vertex $t_n=0$. During $s_k=t_{k+1}-t_k$ the free propagation supplies $e^{-\Delta_k s_k}$, with
+\[
+ \Delta_k=\sum_{a\ {\rm crossing}}\varepsilon_a-
+           \sum_{i\ {\rm crossing}}\varepsilon_i=-D_k>0.
+\]
+Every cut of a connected closed graph crosses a line. At finite $T$, $s_k\ge0$ and $\sum_k s_k\le T$. As $T\to\infty$ the ordered integral, including its Dyson signs, becomes
+\[
+ (-1)^{n-1}\int_{[0,\infty)^{n-1}}\prod_{k=1}^{n-1}e^{-\Delta_k s_k}\dd s_k
+ =\prod_{k=1}^{n-1}\frac{-1}{\Delta_k}=\prod_{k=1}^{n-1}\frac1{D_k}.
+\]
+Thus each connected, time-ordered graph has exactly the denominators, Wick sign and weight derived on Thursday. Adding $\lambda E^{(1)}$ restores the energy of $H(\lambda)$. The small-coupling ground-state expansion is unique, so these are the RS energy coefficients.
+\end{frame}
+
+\begin{frame}{Proof 6. Vacuum components cancel in the wave operator}
+Project onto an excited determinant and divide by the vacuum amplitude:
+\[
+ c_\mu(\lambda)=\lim_{T\to\infty}\frac{\mel{\Phi_\mu}{U_T}{\ph}}{Z(T)}.
+\]
+Represent the bra by its external annihilators and creators at time zero. In every numerator graph, separate the components that reach at least one external line from those that reach none. Choosing the vertices in the second set produces the same binomial factor as in the energy proof. Their sum is $Z(T)$ and cancels at finite $T$.
+\[
+ \ket{\Psi_0(\lambda)}=\ket{\ph}
+   +\sum_{n\ge1}\lambda^n\big[(R_0 W)^n\ket{\ph}\big]_{\rm linked}.
+\]
+Here brackets instruct us to retain the indicated Wick diagrams with their line denominators. The open graph has one more interval, between its last interaction and its external bra. This supplies the leftmost $R_0$. Distinct open components may end on different external legs.
+\end{frame}
+
+\begin{frame}{A disconnected contribution to a linked amplitude}
+Let $m$ and $n$ be independent double excitations on disjoint orbitals with deficits $D_m$ and $D_n$. Project onto their combined quadruple excitation and fix the same determinant phase in both time orderings. Even excitation operators on disjoint orbitals commute. The two terms have denominators
+\[
+ \frac{1}{D_m(D_m+D_n)}+\frac{1}{D_n(D_m+D_n)}
+ =\frac{1}{D_mD_n}.
+\]
+Multiplying by the two creation matrix elements gives the product of the first-order doubles amplitudes (with the chosen determinant phase). Each component reaches the quadruple bra. A detached vacuum bubble would instead multiply the numerator by a factor already present in $Z(T)$.
+\medskip
+
+\footnotesize Further reading: J. Goldstone, \href{https://doi.org/10.1098/rspa.1957.0037}{Proc. R. Soc. A \textbf{239} (1957)}. I. Shavitt and R. J. Bartlett, \emph{Many-Body Methods in Chemistry and Physics}, \S5.7.5 (EPV terms) and \href{https://doi.org/10.1017/CBO9780511596834.007}{chapter 6} (linked diagrams).
+\end{frame}
+
+\begin{frame}{Pauli exclusion at an intermediate cut}
+Consider two overlapping single excitations $X=\cre{a}\ann{i}$ and $Y=\cre{b}\ann{i}$, with $a\ne b$. Each excitation is allowed on its own. Together they would empty the same occupied spin orbital twice:
+\[
+ YX\ket{\ph}=\cre{b}\ann{i}\cre{a}\ann{i}\ket{\ph}
+ =-\cre{b}\cre{a}\ann{i}^{\,2}\ket{\ph}=0 .
+\]
+Creating two particles in the same virtual spin orbital also gives zero, since $(\cre{a})^2=0$. Reusing a label \emph{after} its line has ended can describe a legitimate excitation.
+\begin{block}{Where an exclusion-principle-violating (EPV) term enters}
+A determinant sum contains only admissible intermediate states. An individual Wick pairing sums the orbital labels of its lines independently. Two distinct lines present at the same cut can then acquire the same hole or particle label. The cut in that individual term does not represent a determinant.
+\end{block}
+\end{frame}
+
+\begin{frame}{Direct and exchanged hole lines at fourth order}
+Four one-body vertices create $a,b$ in turn and remove them in the same order. Both hole lines (teal) carry $i$ across the dotted cut. Crosses mark the vertices.
+\begin{center}
+\begin{tikzpicture}[x=1.25cm,y=.78cm,scale=1.12]
+  \foreach \shift/\ex in {0/0,3.9/1}{
+    \begin{scope}[shift={(\shift,0)}]
+    \coordinate (a) at (0,0); \coordinate (b) at (1.55,.85);
+    \coordinate (c) at (0,2); \coordinate (d) at (1.55,2.85);
+    \draw[pline] (a) to[bend right=21] node[right,dlab,pos=.38] {$a$} (c);
+    \draw[pline] (b) to[bend right=21] node[right,dlab,pos=.57] {$b$} (d);
+    \ifnum\ex=0
+      \draw[hline,teal!75!black] (a) to[bend left=28] node[left,dlab] {$i$} (c);
+      \draw[hline,teal!75!black] (b) to[bend left=28] node[left,dlab,pos=.71] {$i$} (d);
+      \node[dlab] at (.8,-.58) {direct: $l=2$};
+    \else
+      \draw[hline,teal!75!black] (a) .. controls (-.45,1.3) and (.7,2.5) .. (d); \node[dlab,teal!75!black] at (.34,2.43) {$i$};
+      \draw[hline,teal!75!black] (b) to[bend right=10] node[below,dlab,pos=.37] {$i$} (c);
+      \node[dlab] at (.8,-.58) {exchange: $l=1$};
+    \fi
+    \draw[dotted,teal] (-.53,1.36)--(2.16,1.36);
+    \foreach \v in {a,b,c,d}{\node[fvtx] at (\v) {};}
+    \end{scope}
+  }
+\end{tikzpicture}
+\end{center}
+\[
+ D_a=\varepsilon_i-\varepsilon_a,\quad D_b=\varepsilon_i-\varepsilon_b,\qquad
+ F=\frac{|\ftil{ai}\ftil{bi}|^2}{D_a(D_a+D_b)D_b}.
+\]
+Exchanging the upper hole endpoints leaves the numerator and cut energies unchanged. With $h=2$, the signs give $+F-F=0$, as required by $\ann{i}^2=0$. The middle deficit $D_a+D_b$ is a formal line sum.
+\end{frame}
+
+\begin{frame}{What happens to the exchange term after regrouping?}
+Fix a shared-hole assignment and include the relative time orderings needed for factorisation. Write $U_{\rm P}$ for the unlinked sum with Pauli-allowed overlaps, and $U_{\rm EPV}$ for its formal shared-label extension.
+\[
+ \underbrace{(U_{\rm P}+U_{\rm EPV})}_{\text{all unlinked pairings}}
+ +\underbrace{L_{\rm EPV}}_{\text{linked exchange partners}}
+ -\underbrace{(U_{\rm P}+U_{\rm EPV})}_{\text{folded subtraction}}
+ =L_{\rm EPV}.
+\]
+For the pair of contractions just drawn, $L_{\rm EPV}=-U_{\rm EPV}$ after summing matching orders. In the principal term alone, the forbidden occupation has zero net weight. Once the unlinked diagrams cancel against the folded subtraction, the linked exchange contribution remains in the energy.
+\begin{block}{How to perform the sums}
+Use Pauli-allowed determinants in the original resolvent formula. In the connected diagram formula, sum each line over its full orbital space. A separate veto on coincident labels across different vertices would erase the exchange contribution. Antisymmetry already gives $\vbar{a}{a}{i}{j}=\vbar{a}{b}{i}{i}=0$ at a single vertex.
+\end{block}
+\end{frame}
+
+\begin{frame}{The two-level benchmark separates the two calculations}
+Take one fermion in orbitals $i,a$ with $\Delta=\varepsilon_a-\varepsilon_i>0$, $D=-\Delta$, and off-diagonal mixing $g$. Exact diagonalisation gives
+\[
+ H=\begin{pmatrix}\varepsilon_i&g^*\\g&\varepsilon_a\end{pmatrix},
+ \qquad E_- -\varepsilon_i=
+ \frac{\Delta-\sqrt{\Delta^2+4|g|^2}}2
+ =-\frac{|g|^2}{\Delta}+\frac{|g|^4}{\Delta^3}+O(|g|^6).
+\]
+\begin{itemize}
+\item \textbf{Determinants.} $QWQ=0$, hence $\av{WR_0WR_0WR_0W}=0$. The folded term gives the entire fourth-order correction
+$-E^{(2)}\av{WR_0^2W}=-|g|^4/D^3>0$.
+\item \textbf{Wick contractions.} Two simultaneous excursions cannot form a physical state in this one-fermion model. In the unrestricted expansion, the direct and exchange pairings cancel in the principal term. Removing the unlinked sum against the folded term leaves the linked exchange sum with the same coefficient $+|g|^4/\Delta^3$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Counting the two-level diagrams gives the exact coefficient}
+For a single virtual orbital, the overlapping ordering creates the same excitation at vertices 1 and 2 and removes it at 3 and 4. The three cut deficits are $D,2D,D$. Before its Wick sign, each pairing has value $F=|g|^4/(2D^3)$.
+\begin{center}
+\begin{tabular}{lccc}
+\toprule
+Matching of particles and holes & pairings & loops & signed sum \\
+\midrule
+Both use the same matching & 2 & 2 & $+2F$ (unlinked) \\
+They use opposite matchings & 2 & 1 & $-2F$ (linked) \\
+\bottomrule
+\end{tabular}
+\end{center}
+Each species has two possible matchings between the lower and upper vertices. All four have $h=2$. The principal term gives $2F-2F=0$. The folded subtraction cancels $+2F$, leaving
+\[
+ E^{(4)}=-2F=-\frac{|g|^4}{D^3}=\frac{|g|^4}{\Delta^3}.
+\]
+Deleting the EPV assignments in the linked sum would incorrectly give zero.
+\end{frame}
+
+\begin{frame}{A numerical check: two non-interacting copies}
+\numbox{Two non-interacting copies \(A\), \(B\) of a three-level pairing system with one pair each, \(g=0.5\) (no shared orbitals, no EPV terms). Restricting the intermediate states of the principal fourth-order term to \((A,AB,B)\), \((A,AB,A)\), \((B,AB,A)\), \((B,AB,B)\): \(-0.00183105\). \(2E^{(2)}_A\langle WR_0^2W\rangle_A\): \(-0.00183105\). \(E^{(4)}_{AB}=0.00109863=2E^{(4)}_A\) to fourteen digits. (\texttt{diagrams.py}, \texttt{fourth\_order\_unlinked}; the \((A,AB,B)\) and \((A,AB,A)\) orderings alone are \(-0.000437\) and \(-0.000478\) -- neither is a product, only their sum is.)}
+\begin{itemize}
+\item With disjoint orbitals the unperturbed energies add, \(D_{m\otimes n}=D_m+D_n\), and matrix elements and signs factorise; the \((A,AB,B)\) and \((A,AB,A)\) patterns have the denominators of the factorisation identity.
+\item Their sum is \(\langle WR_0^2W\rangle_A\,E^{(2)}_B\); the other two give \(E^{(2)}_A\langle WR_0^2W\rangle_B\). The folded term of the two copies, \((E^{(2)}_A+E^{(2)}_B)(\langle WR_0^2W\rangle_A+\langle WR_0^2W\rangle_B)\), has exactly these cross terms: the cross-copy part of \(E^{(4)}\) cancels and \(E^{(4)}_{AB}=E^{(4)}_A+E^{(4)}_B\).
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Pause to think \#3}
+\thinkq{3}{Brillouin-Wigner theory uses \(R_E=Q/(E_0-H_0)\): the \emph{exact} energy in every denominator, and no renormalisation terms at all.
+\begin{enumerate}
+\item Redo the factorisation identity with \(D_m\to D_m+\Delta E\), \(D_n\to D_n+\Delta E\), \(D_m+D_n\to D_m+D_n+\Delta E\). Does it still factorise?
+\item What does this say about the unlinked diagrams of a truncated BW calculation, and about its scaling with system size?
+\end{enumerate}}
+\end{frame}
+
+\begin{frame}{Answer to pause \#3}
+\thinka{%
+\begin{enumerate}
+\item No. With \(d_m=D_m+\Delta E\) etc.\ the middle denominator is \(D_m+D_n+\Delta E\ne d_m+d_n\) (it is \(d_m+d_n-\Delta E\)), so \(\frac{1}{d_m(d_m+d_n-\Delta E)}\bigl(\frac1{d_n}+\frac1{d_m}\bigr)\ne\frac1{d_m^2d_n}\). The excursion deficits add for disjoint excitations in RS. BW inserts the same global energy shift once in each intermediate-state denominator.
+\item The cancellation used in the RS proof fails in general for self-consistent BW truncated at finite order. Spurious cross terms can spoil additivity for two independent copies, as in the week-44 example. The exact energies of two non-interacting copies are additive.
+\end{enumerate}}
+\end{frame}
+
+\begin{frame}{Consequences for independent systems}
+\begin{itemize}
+\item \textbf{Additivity at each order.} For $H=H_A+H_B$ on disjoint non-interacting fragments and a product reference, $Z_{AB}=Z_A Z_B$. Thus $\log Z_{AB}=\log Z_A+\log Z_B$ and $E_{AB}^{(n)}=E_A^{(n)}+E_B^{(n)}$. For $M$ identical independent copies the coefficient is $M E_A^{(n)}$.
+\item \textbf{Truncated BW.} The global energy in the denominators spoils the RS factorisation identity in general. A finite self-consistent BW truncation can lose size extensivity.
+\item \textbf{Summation by topology.} Ladders and rings are families of connected energy graphs. In coupled cluster, products of excitations in $e^T\ket{\ph}$ supply the disconnected open pieces that survive in the wave function.
+\end{itemize}
+\small The theorem is an order-by-order identity. Convergence of the energy series at a particular coupling is a separate question.
+\end{frame}
+
+\begin{frame}[shrink=5]{Summary of Thursday}
+\begin{columns}[T]
+\column{0.5\textwidth}
+\begin{block}{Linked and unlinked}
+\begin{itemize}
+\item Open diagrams: connected, disconnected-but-linked (products of amplitudes, kept), unlinked (a closed piece floats; removed)
+\item Closing with a vertex: connected $\to$ connected energy diagram; unlinked $\to$ unlinked; the renormalisation terms are the unlinked diagrams with a minus sign, order by order
+\item Normal ordering removes the one-vertex pieces; at fourth order $\frac1{D_m(D_m+D_n)D_n}+\frac1{D_m(D_m+D_n)D_m}=\frac1{D_m^2D_n}$ turns the unlinked diagrams into the folded term
+\end{itemize}
+\end{block}
+\column{0.5\textwidth}
+\begin{block}{The theorem}
+\begin{itemize}
+\item Frantz-Mills: all interleavings of two open histories $\to$ product of denominator products ($S_{rs}$ by induction)
+\item $\Delta E=$ connected closed diagrams; $\Psi_0=$ linked diagrams. Proof: $Z(T)=\av{e^{-T(H'-\varepsilon_0)}}$, Dyson series, connected pieces exponentiate, the marked vertex, intervals $\to1/D_k$
+\item EPV terms: the exchanged partners of unlinked drawings with coincident labels stay in the linked sum; two-level model: $+|g|^4/\Delta^3$ from them alone
+\item Consequences: extensivity ($Z_{AB}=Z_AZ_B$), BW fails, sum by topology $\to$ coupled cluster
+\end{itemize}
+\end{block}
+\end{columns}
+\end{frame}
+
+
+% ======================================================================
+\section{Friday, lecture 3: The exponential ansatz}
+% ======================================================================
+
+\begin{frame}[shrink=10]{Three defects, and one change of ansatz}
+\begin{columns}[T]
+\column{0.55\textwidth}
+\begin{block}{What we have}
+\begin{itemize}
+\item Truncated CI (chapter 5): variational, \alert{not size consistent} -- CID drops the quadruple that is a product of two doubles
+\item Perturbation theory (chapter 9): size extensive, \alert{not variational}, and the series need not converge (pairing $g\gtrsim1.5$)
+\item RPA (chapter 7): sums rings to all orders, collapses when the mean field goes unstable
+\end{itemize}
+\end{block}
+\column{0.45\textwidth}
+\begin{block}{Coupled cluster}
+\[
+\text{CI: }\ \ket{\Psi}=(1+C)\ket{\ph}
+\qquad
+\text{CC: }\ \boxed{\ket{\Psi}=e^{T}\ket{\ph}}
+\]
+Size extensive by construction, sums infinite classes of diagrams, systematically improvable, polynomial cost. Not variational -- the price.
+\end{block}
+\end{columns}
+\vspace{0.5em}
+\mbbox{Yesterday's theorem says the wave operator is the sum of the \emph{linked} diagrams, and that these include disconnected products of open pieces. The exponential is the operator that produces exactly such products from the connected pieces: $e^{T}$ is the linked-diagram theorem written into the ansatz.}
+\end{frame}
+
+\begin{frame}[shrink=14]{The cluster operator}
+\[
+T=T_1+T_2+\cdots+T_N:\quad
+T_1=\sum_{ia}t_i^a\,\cre{a}\ann{i},\quad
+T_2=\frac14\sum_{ijab}t_{ij}^{ab}\,\cre{a}\cre{b}\ann{j}\ann{i},\quad
+T_3=\frac1{36}\sum t_{ijk}^{abc}\,\cre{a}\cre{b}\cre{c}\ann{k}\ann{j}\ann{i},\ \ldots
+\]
+\vspace{-0.3em}
+amplitudes antisymmetric in the occupied and in the virtual labels; $\tfrac14$, $\tfrac1{36}$ compensate the $(2!)^2$, $(3!)^2$ repeated pairs.
+\begin{columns}[T]
+\column{0.5\textwidth}
+\begin{block}{The cluster operators commute}
+Every term contains only $\cre{a}$ ($a>F$) and $\ann{i}$ ($i\le F$), never the reverse: all anticommutators between two such strings vanish without a delta, so
+\[
+[T_m,T_n]=0 .
+\]
+\end{block}
+\column{0.5\textwidth}
+\begin{block}{Excitations cannot be undone}
+$T^n$ creates at least $n$ particle-hole pairs; on an $N$-particle determinant $T^n=0$ for $n>N$ (with $T=T_2$ already for $n>N/2$). The exponential is a \emph{finite} sum in every matrix element.
+\end{block}
+\end{columns}
+\vspace{0.4em}
+\begin{center}
+\begin{tikzpicture}[fcidiagram]
+  \draw[amp] (-0.5,0) -- (0.5,0);
+  \draw[hline] (-0.3,0) -- (-0.3,1.1); \draw[pline] (0.3,0) -- (0.3,1.1);
+  \node[dlab,above] at (-0.3,1.1) {$i$}; \node[dlab,above] at (0.3,1.1) {$a$};
+  \node[dlab,below] at (0,-0.2) {$t_i^a$};
+\end{tikzpicture}
+\hspace{3em}
+\begin{tikzpicture}[fcidiagram]
+  \draw[amp] (-0.9,0) -- (0.9,0);
+  \draw[hline] (-0.7,0) -- (-0.7,1.1); \draw[pline] (-0.25,0) -- (-0.25,1.1);
+  \draw[hline] (0.25,0) -- (0.25,1.1); \draw[pline] (0.7,0) -- (0.7,1.1);
+  \node[dlab,above] at (-0.7,1.1) {$i$}; \node[dlab,above] at (-0.25,1.1) {$a$};
+  \node[dlab,above] at (0.25,1.1) {$j$}; \node[dlab,above] at (0.7,1.1) {$b$};
+  \node[dlab,below] at (0,-0.2) {$t_{ij}^{ab}$};
+\end{tikzpicture}
+\hspace{3em}
+\small the amplitude bars of chapter 5 (week 38): in CC they are the unknowns; every open diagram of yesterday ends on bars like these.
+\end{center}
+\end{frame}
+
+\begin{frame}[shrink=5]{Why exponentiate at all?}
+\[
+e^{T}=1+T_1+\Bigl(T_2+\tfrac12T_1^2\Bigr)+\Bigl(T_3+T_1T_2+\tfrac16T_1^3\Bigr)+\Bigl(T_4+T_1T_3+\tfrac12T_2^2+\tfrac12T_1^2T_2+\tfrac1{24}T_1^4\Bigr)+\cdots
+\]
+Compare with CI, $\ket{\Psi}=(1+C_1+C_2+\cdots)\ket{\ph}$:
+\[
+C_1=T_1,\qquad C_2=T_2+\tfrac12T_1^2,\qquad C_3=T_3+T_1T_2+\tfrac16T_1^3,\qquad C_4\ni\tfrac12T_2^2 .
+\]
+\begin{itemize}
+\item Complete $T$ and complete $C$ are equivalent. The exponential \alert{reorganises}: high-rank coefficients are products of low-rank ones. When $T$ is truncated, that reorganisation is what survives.
+\item Truncate $C$ at doubles: the quadruples are gone, and a product of two doubles on separate subsystems \emph{is} a quadruple -- CID is not size consistent (week 38). Truncate $T$ at doubles: $\tfrac12T_2^2$ keeps it, with its amplitude fixed by the doubles.
+\item Yesterday, pause \#1 and ``disconnected but linked'': $\langle\Phi_{ijkl}^{abcd}|\Psi^{(2)}\rangle=t_mt_n$, a product of first-order doubles. That is $\tfrac12T_2^2$ at lowest order. The exponential generates every disconnected-but-linked diagram from the connected ones, and nothing else -- it is the wave-operator form of the theorem, $\Omega=[\,\cdot\,]_{\rm linked}$, as an ansatz.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Pause to think \#4}
+\thinkq{3}{Two non-interacting subsystems $A$ and $B$, reference $\ket{\ph}=\ket{\Phi_A}\ket{\Phi_B}$, no amplitude carries indices from both.
+\begin{enumerate}
+\item Show that $e^{T}\ket{\ph}=\bigl(e^{T_A}\ket{\Phi_A}\bigr)\bigl(e^{T_B}\ket{\Phi_B}\bigr)$. Which property of $T$ is used?
+\item Show that $(1+C_2^A+C_2^B)\ket{\ph}$ is \emph{not} a product, and name the missing term.
+\item What does 1.\ say about the energy of $A+B$ at any truncation of $T$?
+\end{enumerate}}
+\end{frame}
+
+\begin{frame}{Answer to pause \#4}
+\thinka{%
+\begin{enumerate}
+\item $T=T_A+T_B$ with $[T_A,T_B]=0$ (they commute: only $\cre{a}\ann{i}$ strings, disjoint orbitals), so $e^{T}=e^{T_A}e^{T_B}$, and since the two act on disjoint orbitals the state factorises.
+\item $(1+C_2^A)(1+C_2^B)=1+C_2^A+C_2^B+C_2^AC_2^B$: the cross term is a quadruple excitation, which CID has thrown away. One line, and it is section 5.9 of week 38.
+\item The energy of a product state under $H_A+H_B$ is $E_A+E_B$ -- at \emph{any} truncation, because $T_A$ and $T_B$ are truncated independently. Size extensivity is built in; chapter 10 checks it to $10^{-13}$ on three copies of a pairing system.
+\end{enumerate}}
+\end{frame}
+
+\begin{frame}[shrink=5]{The similarity-transformed Hamiltonian}
+Insert the ansatz into $H\ket{\Psi}=E\ket{\Psi}$ and multiply by $e^{-T}$:
+\[
+\boxed{\Hbar\ket{\ph}=E\ket{\ph},\qquad \Hbar\equiv e^{-T}He^{T}.}
+\]
+\begin{columns}[T]
+\column{0.5\textwidth}
+\begin{block}{What it does}
+\begin{itemize}
+\item A similarity transformation keeps the spectrum: $H\ket{E}=E\ket{E}\Rightarrow\Hbar\,e^{-T}\ket{E}=E\,e^{-T}\ket{E}$.
+\item It moves the correlation out of the state into the operator: CC looks for the $T$ that makes the \emph{uncorrelated} reference an exact eigenstate of $\Hbar$.
+\item $e^{T}$ is not unitary ($T$ is not anti-Hermitian): $\Hbar$ is \alert{not Hermitian}. Left and right eigenvectors differ; expectation values need both. A cost -- and the source of a large benefit (next frame).
+\end{itemize}
+\end{block}
+\column{0.5\textwidth}
+\begin{block}{Normal order first}
+$H=\Eref+H_N$ (week 37, 45),
+\[
+H_N=\sum_{pq}f_{pq}\no{\cre{p}\ann{q}}+\frac14\sum_{pqrs}\as{p}{q}{r}{s}\no{\cre{p}\cre{q}\ann{s}\ann{r}},
+\]
+$f$ the Fock matrix. $\Eref$ commutes with $T$, so
+\[
+\Hbar=\Eref+\Hbar_N,\qquad \Hbar_N=e^{-T}H_Ne^{T},
+\]
+and the equation becomes $\Hbar_N\ket{\ph}=\Delta E\ket{\ph}$ with $\Delta E=E-\Eref$ the correlation energy.
+\end{block}
+\end{columns}
+\end{frame}
+
+\begin{frame}[shrink=5]{Why the expansion terminates}
+Baker-Campbell-Hausdorff (week 39, Thouless):
+\[
+\Hbar_N=H_N+[H_N,T]+\frac1{2!}[[H_N,T],T]+\frac1{3!}[[[H_N,T],T],T]+\cdots
+\]
+\begin{itemize}
+\item In general an infinite series. Here: the $T$'s commute among themselves, so no commutator can be non-zero through a $T$ acting on another $T$ -- in the language of Wick's theorem, \alert{every $T$ must be contracted with $H_N$ directly}, i.e.\ be \emph{connected} to it.
+\item $H_N$ has at most four operators that can be contracted (its two-body part). Hence at most four $T$'s attach:
+\[
+\boxed{\Hbar_N=H_N+[H_N,T]+\frac1{2!}[[H_N,T],T]+\frac1{3!}[\cdots]+\frac1{4!}[\cdots]=\bigl(H_Ne^{T}\bigr)_c}
+\]
+and the series stops \emph{exactly} at the fourfold commutator. Subscript $c$: connected terms only.
+\item The non-Hermiticity that looked like a defect is what makes this finite: an anti-Hermitian $T$ (unitary CC) contains de-excitations, those do not commute among themselves, and the series never terminates -- the price paid in the quantum-computing chapters.
+\end{itemize}
+\mbbox{``Connected to $H_N$'' is the statement of the linked-diagram theorem for the energy, now exact and finite: $\Delta E$ and the amplitude equations are sums of connected diagrams with amplitude bars at the bottom and $H_N$ on top.}
+\end{frame}
+
+\begin{frame}[shrink=5]{The coupled-cluster equations, and the energy}
+Project $\Hbar_N\ket{\ph}=\Delta E\ket{\ph}$ onto the reference and onto the excited determinants:
+\[
+\Delta E=\mel{\ph}{\Hbar_N}{\ph},\qquad
+0=\mel{\Phi_i^a}{\Hbar_N}{\ph},\qquad
+0=\mel{\Phi_{ij}^{ab}}{\Hbar_N}{\ph},\qquad\ldots
+\]
+\begin{columns}[T]
+\column{0.5\textwidth}
+\begin{block}{Read physically}
+$\Hbar_N$ has \emph{no} matrix elements from the reference to $1p1h$ and $2p2h$ states: the reference is decoupled from the simple excitations. With $T=T_1+T_2$ it still couples to $3p3h$ and $4p4h$, and that residual coupling \emph{is} the error of CCSD.
+\end{block}
+\warnbox{Why is CCD not exact if the spectrum is preserved? Because we do not solve the transformed problem exactly either: with $T=T_2$ the full $\Hbar_N$ has up to six-body terms, and we only impose that its $2p2h$ block vanishes. CC at finite truncation is a similarity transformation \emph{plus} a projection; the projection is where the approximation lives.}
+\column{0.5\textwidth}
+\begin{block}{The energy is the easy part}
+Only terms that de-excite exactly what $T$ excites survive, so at most two cluster operators attach:
+\[
+\Delta E=\langle H_N(1+T_1+T_2+\tfrac12T_1^2)\rangle_c,
+\]
+\[
+\boxed{\begin{aligned}\Delta E={}&\textstyle\sum_{ia}f_{ia}t_i^a+\tfrac14\sum\as{i}{j}{a}{b}\,t_{ij}^{ab}\\&\textstyle+\tfrac12\sum\as{i}{j}{a}{b}\,t_i^at_j^b\end{aligned}}
+\]
+HF basis: $f_{ia}=0$ (Brillouin), the singles enter only quadratically. The form is the CI energy of week 38 with $C_{ij}^{ab}\to\tau_{ij}^{ab}=t_{ij}^{ab}+t_i^at_j^b-t_i^bt_j^a$.
+\end{block}
+\end{columns}
+\end{frame}
+
+% ======================================================================
+\section{Friday, lecture 4: CCD and the pairing model}
+% ======================================================================
+
+\begin{frame}[shrink=8]{Deriving the CCD equations: three groups of terms}
+$T=T_2$: $\mel{\Phi_{ij}^{ab}}{(H_N[1+T_2+\tfrac12T_2^2])_c}{\ph}=0$ -- a third $T_2$ would need more contractible operators than $H_N$ has. With $P(ij)X_{ij}=X_{ij}-X_{ji}$, $P(ab)X^{ab}=X^{ab}-X^{ba}$, repeated indices summed:
+\begin{block}{No $T$: the driving term}
+$\mel{\Phi_{ij}^{ab}}{H_N}{\ph}=\as{a}{b}{i}{j}$ (Condon-Slater). Without it every amplitude would vanish.
+\end{block}
+\begin{block}{One $T$: $H_N$ connected to the amplitude}
+\[
+P(ab)\,f_{bc}t_{ij}^{ac}-P(ij)\,f_{kj}t_{ik}^{ab}
++\underbrace{\tfrac12\as{a}{b}{c}{d}\,t_{ij}^{cd}}_{\text{pp ladder}}
++\underbrace{\tfrac12\as{k}{l}{i}{j}\,t_{kl}^{ab}}_{\text{hh ladder}}
++\underbrace{P(ij)P(ab)\as{k}{b}{c}{j}\,t_{ik}^{ac}}_{\text{ring}}
+\]
+$\tfrac12$: two equivalent contractions in each ladder; the ring has inequivalent lines and the full $P(ij)P(ab)$ instead.
+\end{block}
+\begin{block}{Two $T$'s: both connected to $H_N$ -- only $\as{k}{l}{c}{d}$ can do it}
+\[
+\tfrac14\as{k}{l}{c}{d}\,t_{ij}^{cd}t_{kl}^{ab}
++\tfrac12P(ij)P(ab)\as{k}{l}{c}{d}\,t_{ik}^{ac}t_{jl}^{bd}
+-\tfrac12P(ab)\as{k}{l}{c}{d}\,t_{ij}^{ac}t_{kl}^{bd}
+-\tfrac12P(ij)\as{k}{l}{c}{d}\,t_{ik}^{ab}t_{jl}^{cd}
+\]
+a hh ladder times a pp ladder; a ring on each side; one amplitude fully attached to the interaction, the other a spectator.
+\end{block}
+\end{frame}
+
+\begin{frame}[shrink=10]{The CCD amplitude equation, and how it is read}
+\begin{align*}
+D_{ij}^{ab}\,t_{ij}^{ab}={}&\as{a}{b}{i}{j}
++P(ab)f'_{bc}t_{ij}^{ac}-P(ij)f'_{kj}t_{ik}^{ab}
++\tfrac12\as{a}{b}{c}{d}t_{ij}^{cd}+\tfrac12\as{k}{l}{i}{j}t_{kl}^{ab}+P(ij)P(ab)\as{k}{b}{c}{j}t_{ik}^{ac}\\
+&+\tfrac14\as{k}{l}{c}{d}t_{ij}^{cd}t_{kl}^{ab}
++\tfrac12P(ij)P(ab)\as{k}{l}{c}{d}t_{ik}^{ac}t_{jl}^{bd}\\
+&-\tfrac12P(ab)\as{k}{l}{c}{d}t_{ij}^{ac}t_{kl}^{bd}
+-\tfrac12P(ij)\as{k}{l}{c}{d}t_{ik}^{ab}t_{jl}^{cd},
+\end{align*}
+$D_{ij}^{ab}=f_{ii}+f_{jj}-f_{aa}-f_{bb}$, $f'$ the off-diagonal Fock matrix (zero in a canonical HF basis).
+\begin{center}
+\begin{tabular}{@{}c@{\hspace{2.5em}}c@{\hspace{2.5em}}c@{\hspace{2.5em}}c@{}}
+\begin{tikzpicture}[fcidiagram]
+  \draw[amp] (-0.9,0) -- (0.9,0);
+  \node[vtx] (v1) at (-0.25,1.1) {}; \node[vtx] (v2) at (0.25,1.1) {}; \draw[vint] (v1) -- (v2);
+  \draw[hline] (-0.7,0) -- (-0.7,2.0); \draw[hline] (0.7,0) -- (0.7,2.0);
+  \draw[pline] (-0.25,0) -- (v1.center); \draw[pline] (0.25,0) -- (v2.center);
+  \draw[pline] (v1.center) -- (-0.25,2.0); \draw[pline] (v2.center) -- (0.25,2.0);
+  \node[dlab,below] at (0,-0.3) {pp ladder};
+\end{tikzpicture}
+&
+\begin{tikzpicture}[fcidiagram]
+  \draw[amp] (-0.9,0) -- (0.9,0);
+  \node[vtx] (v1) at (-0.7,1.1) {}; \node[vtx] (v2) at (0.7,1.1) {}; \draw[vint] (v1) -- (v2);
+  \draw[pline] (-0.25,0) -- (-0.25,2.0); \draw[pline] (0.25,0) -- (0.25,2.0);
+  \draw[hline] (-0.7,0) -- (v1.center); \draw[hline] (0.7,0) -- (v2.center);
+  \draw[hline] (v1.center) -- (-0.7,2.0); \draw[hline] (v2.center) -- (0.7,2.0);
+  \node[dlab,below] at (0,-0.3) {hh ladder};
+\end{tikzpicture}
+&
+\begin{tikzpicture}[fcidiagram]
+  \draw[amp] (-0.9,0) -- (0.9,0);
+  \node[vtx] (v1) at (0.1,1.1) {}; \node[vtx] (v2) at (1.3,1.1) {}; \draw[vint] (v1) -- (v2);
+  \draw[hline] (-0.7,0) -- (-0.7,2.0); \draw[pline] (-0.25,0) -- (-0.25,2.0);
+  \draw[pline] (0.25,0) .. controls (0.25,0.6) .. (v1.center); \draw[hline] (0.7,0) .. controls (0.6,0.6) .. (v1.center);
+  \draw[hline] (v2.center) -- (1.1,2.0); \draw[pline] (v2.center) -- (1.6,2.0);
+  \node[dlab,below] at (0.3,-0.3) {ring};
+\end{tikzpicture}
+&
+\begin{tikzpicture}[fcidiagram]
+  \draw[amp] (-1.3,0) -- (-0.1,0); \draw[amp] (0.3,0) -- (1.5,0);
+  \node[vtx] (v1) at (-0.4,1.1) {}; \node[vtx] (v2) at (0.6,1.1) {}; \draw[vint] (v1) -- (v2);
+  \draw[hline] (-1.1,0) -- (-1.1,2.0); \draw[pline] (-0.8,0) -- (-0.8,2.0);
+  \draw[hline] (-0.5,0) .. controls (-0.45,0.6) .. (v1.center); \draw[pline] (-0.2,0) .. controls (-0.3,0.6) .. (v1.center);
+  \draw[hline] (0.5,0) .. controls (0.55,0.6) .. (v2.center); \draw[pline] (0.8,0) .. controls (0.7,0.6) .. (v2.center);
+  \draw[hline] (1.1,0) -- (1.1,2.0); \draw[pline] (1.4,0) -- (1.4,2.0);
+  \node[dlab,below] at (0.1,-0.3) {$T_2^2$: two bars, one $V$};
+\end{tikzpicture}
+\end{tabular}
+\end{center}
+\small Bars at the bottom, $H_N$ on top, four open lines leaving: the third-order diagrams 10, 11, 12 of week 45 with their bottom vertex replaced by an amplitude. Iterating the ladder terms sums ladders to all orders (Brueckner), the ring term sums rings (RPA), the quadratic terms couple them: CCD is a self-consistent combination of both. The last picture is yesterday's disconnected-but-linked quadruple, closed back to a double by one interaction.
+\end{frame}
+
+\begin{frame}[shrink=12]{Solving it, and what it costs}
+\begin{columns}[T]
+\column{0.5\textwidth}
+\begin{block}{Iteration}
+Quadratic in the amplitudes: start from $t_{ij}^{ab}=\as{a}{b}{i}{j}/D_{ij}^{ab}$ (the first-order amplitude of week 44), evaluate the right-hand side, divide by $D$, repeat until $\Delta E$ stops changing. Twenty-odd steps for the pairing model.
+\end{block}
+\begin{block}{Intermediates}
+Naively the quadratic terms cost $\bigO(n^8)$. Built once per iteration,
+\begin{align*}
+\chi_{kj}&=\tfrac12\as{k}{l}{c}{d}t_{jl}^{cd},&
+\chi_{cb}&=-\tfrac12\as{k}{l}{c}{d}t_{kl}^{bd},\\
+\chi_{klij}&=\tfrac12\as{k}{l}{c}{d}t_{ij}^{cd},&
+\chi_{bkcj}&=\tfrac12\as{k}{l}{c}{d}t_{lj}^{db},
+\end{align*}
+turn them into four matrix products, $\bigO(n^6)$: this is what makes the method usable, and how every production code (and \texttt{coupledcluster.py}) does it.
+\end{block}
+\column{0.5\textwidth}
+\begin{block}{The pairing model: two gifts}
+\begin{itemize}
+\item The interaction moves whole pairs: no $1p1h$ element, $t_i^a=0$ identically, CCSD $=$ CCD.
+\item Only $\as{a}{b}{c}{d}$, $\as{a}{b}{i}{j}$, $\as{i}{j}{k}{l}$ are non-zero: the ring term vanishes; ladders and the quadratic terms remain.
+\item Fock matrix diagonal: $\varepsilon_i=\xi(p_i-1)-g/2$, $\varepsilon_a=\xi(p_a-1)$ -- the HF solution of week 38 (``HF does nothing'' except shift the occupied levels).
+\end{itemize}
+\end{block}
+\numbox{Four levels, four particles, $\xi=1$ (\texttt{week46.ipynb}, 40 lines of \texttt{einsum}):\\[0.2em]
+{\scriptsize\setlength{\tabcolsep}{3pt}\begin{tabular}{@{}rrrrr@{}}
+$g$ & CCD & FCI & error & it.\\
+0.25 & 1.73045621 & 1.73045985 & $-3.6\!\times\!10^{-6}$ & 13\\
+0.50 & 1.41663766 & 1.41677428 & $-1.4\!\times\!10^{-4}$ & 18\\
+1.00 & 0.63044275 & 0.63554847 & $-5.1\!\times\!10^{-3}$ & 26\\
+1.50 & $-0.38416526$ & $-0.34819051$ & $-3.6\!\times\!10^{-2}$ & 30\\
+2.00 & $-1.60959440$ & $-1.48965216$ & $-1.2\!\times\!10^{-1}$ & 31
+\end{tabular}}}
+\end{columns}
+\end{frame}
+
+\begin{frame}{The pairing model across the whole coupling range}
+\begin{center}
+\includegraphics[width=0.78\textwidth]{chapter10/cc_fig01}
+\end{center}
+\small Left: exact (circles), HF reference $2-g$ (dashed), MP2 (blue), CCD (red). Right: $|$error$|$ of MP2 and CCD on a log scale. CCD over-correlates, and the error grows with $g$: what is missing is the \emph{connected} quadruples -- $e^{T_2}$ supplies only the disconnected $\tfrac12T_2^2$. With $T_4$ the calculation would be exact (four particles: nothing beyond $4p4h$ exists).
+\end{frame}
+
+\begin{frame}[shrink=8]{Coupled cluster as a resummation of perturbation theory}
+The CCD equation is quadratic and nothing worse: $D\,t=C+L[t]+Q[t,t]$. Expand $t=\sum_kt^{(k)}$ in powers of the interaction ($L$, $Q$ each carry one power):
+\[
+D\,t^{(1)}=C,\qquad D\,t^{(k)}=L[t^{(k-1)}]+\sum_{i+j=k-1}Q[t^{(i)},t^{(j)}],\qquad E^{(k+1)}=\tfrac14\as{i}{j}{a}{b}\,t^{(k)}{}_{ij}^{ab}.
+\]
+\begin{columns}[T]
+\column{0.48\textwidth}
+\numbox{Pairing, M\o{}ller-Plesset partition (\texttt{week46.ipynb} vs.\ the determinant-space RS recursion of week 44):\\[0.2em]
+{\scriptsize\setlength{\tabcolsep}{3pt}\begin{tabular}{@{}rrrr@{}}
+$g$ & order & from CCD & from MBPT\\
+0.5 & 2 & $-0.0623931624$ & $-0.0623931624$\\
+    & 3 & $-0.0165183724$ & $-0.0165183724$\\
+    & 4 & $-0.0038210766$ & $-0.0038210766$\\
+1.0 & 2 & $-0.2190476190$ & $-0.2190476190$\\
+    & 3 & $-0.1004988662$ & $-0.1004988662$\\
+    & 4 & $-0.0403096858$ & $-0.0403096858$
+\end{tabular}}\\[0.3em]
+Sum of 16 orders: $-0.0833623$ / $-0.3695594$; CCD solved directly: $-0.0833623$ / $-0.3695572$.}
+\column{0.52\textwidth}
+\begin{itemize}
+\item MP2 and MP3 are reproduced by CCD in general (only doubles there). MP4 too \emph{here}, because the pairing interaction makes neither singles nor connected triples; in general MP4 has connected triples that CCD lacks.
+\item The series converges, slowly and with a sign change at seventh order; the iteration reaches the same number in twenty steps without any reference to orders. ``Infinite resummation'' means: the physics in the series is obtained without summing it.
+\item \alert{Partition warning}: these numbers are not those of week 45. There $H_0$ was the bare one-body operator, $E^{(2)}=-\tfrac7{24}g^2=-0.0729$ at $g=0.5$; here the Fock operator is in $H_0$ (occupied levels shifted by $-g/2$), $E^{(2)}=-\tfrac{g^2}{4}\bigl[\tfrac1{2+g}+\tfrac2{4+g}+\tfrac1{6+g}\bigr]=-0.0624$. A perturbative number without its partition is meaningless (week 44).
+\end{itemize}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Pause to think \#5}
+\thinkq{3}{
+\begin{enumerate}
+\item Yesterday the fourth-order energy was ``principal term minus folded term'', and the folded term was the unlinked part. Where is the folded term in the CCD recursion $D\,t^{(3)}=L[t^{(2)}]+Q[t^{(1)},t^{(1)}]$? (Hint: what does $\mel{\Phi_{ij}^{ab}}{(H_NT_2^2)_c}{\ph}$ contain that $\langle\Phi_{ij}^{ab}|RWRWRW|\ph\rangle$ does not, and the other way round?)
+\item A truncated Brillouin-Wigner calculation is not size extensive; a truncated CC calculation is. Both ``resum to all orders''. What is the difference?
+\end{enumerate}}
+\end{frame}
+
+\begin{frame}[shrink=8]{Answer to pause \#5}
+\thinka{%
+\begin{enumerate}
+\item Nowhere -- and that is the point. $(H_NT_2^2)_c$ contains only the terms in which the interaction connects the two amplitudes (the quadratic terms of the CCD equation: the quadruple closed back to a double). The principal term $RWRWRW$ projected on a double also contains the \emph{unlinked} drawings (a closed second-order piece floating beside a first-order double), and the renormalisation term $-E^{(2)}R^2W$ removes them. CC never generates them: the connected expansion $(H_Ne^{T})_c$ \emph{is} the linked-diagram theorem, so there is nothing to subtract. The order-by-order CCD energies agree with the RS energies because both are the sum of the connected diagrams.
+\item BW inserts the exact energy in every denominator, which spoils the factorisation of denominators (yesterday, pause \#3), so a truncated BW energy keeps part of its unlinked diagrams. CC sums \emph{connected} diagrams only, with RS denominators, at every truncation; $e^{T_A+T_B}=e^{T_A}e^{T_B}$ makes extensivity exact.
+\end{enumerate}}
+\end{frame}
+
+\begin{frame}[shrink=10]{Size extensivity in one line, and everything against everything}
+\begin{columns}[T]
+\column{0.42\textwidth}
+\begin{block}{One line}
+$T=T_A+T_B$, $[T_A,T_B]=0$:
+\[
+e^{T}\ket{\ph}=\bigl(e^{T_A}\ket{\Phi_A}\bigr)\bigl(e^{T_B}\ket{\Phi_B}\bigr),
+\]
+energies add at any truncation.
+\end{block}
+\column{0.56\textwidth}
+\numbox{Three-level pairing copies (chapter 10):\\
+\begin{tabular}{@{}rrr@{}}
+$g$ & $E(2)-2E(1)$ & $E(3)-3E(1)$\\
+0.25 & $0$ & $0$\\
+0.50 & $-2.1\!\times\!10^{-13}$ & $-3.2\!\times\!10^{-13}$\\
+1.00 & $5.6\!\times\!10^{-17}$ & $-3.0\!\times\!10^{-13}$
+\end{tabular}\\
+CID on the same copies (week 38): errors $6\times10^{-5}$ to $10^{-2}$.}
+\end{columns}
+\begin{block}{The pairing model by every method of the course}
+\centering\small\setlength{\tabcolsep}{5pt}
+\begin{tabular}{@{}rrrrrrrr@{}}
+\toprule
+$g$ & HF & MBPT2 & MBPT3 & CID & HF+RPA & CCD & FCI\\
+\midrule
+0.25 & 1.75000 & 1.73177 & 1.73047 & 1.73051 & 1.71635 & 1.73046 & 1.73046\\
+0.50 & 1.50000 & 1.42708 & 1.41667 & 1.41760 & 1.37450 & 1.41664 & 1.41677\\
+1.00 & 1.00000 & 0.70833 & 0.62500 & 0.64891 & 0.55459 & 0.63044 & 0.63555\\
+1.50 & 0.50000 & $-0.15625$ & $-0.43750$ & $-0.29113$ & $-0.40625$ & $-0.38417$ & $-0.34819$\\
+2.00 & 0.00000 & $-1.16667$ & $-1.83333$ & $-1.35209$ & $-1.47622$ & $-1.60959$ & $-1.48965$\\
+\bottomrule
+\end{tabular}
+\end{block}
+\small MBPT in the one-body partition of week 45 ($-\tfrac7{24}g^2$ at second order). CCD is the best of the approximate methods at every $g$ except the strongest coupling, where it over-correlates and MBPT3 happens to cross the exact curve. Only CID is variational.
+\end{frame}
+
+% ======================================================================
+\section{Summary}
+% ======================================================================
+
+\begin{frame}[shrink=5]{Summary of week 46}
+\begin{columns}[T]
+\column{0.5\textwidth}
+\begin{block}{Thursday: the linked-diagram theorem}
+\begin{itemize}
+\item Open diagrams come in three kinds: connected, disconnected-but-linked (products of amplitudes), unlinked (a closed piece floats). Closing with a vertex maps them to connected / nothing / unlinked energy diagrams
+\item Every renormalisation term is an unlinked drawing with a minus sign; normal ordering removes the one-vertex pieces; at fourth order the factorisation of denominators turns the rest into the folded term
+\item Theorem: $\Delta E=$ connected closed diagrams, $\Psi_0=$ linked diagrams; proof by imaginary time ($Z(T)$, Dyson, exponentiation, marked vertex, intervals $\to1/D$); EPV terms are kept; extensivity, BW, topology
+\end{itemize}
+\end{block}
+\column{0.5\textwidth}
+\begin{block}{Friday: coupled cluster}
+\begin{itemize}
+\item $\ket{\Psi}=e^{T}\ket{\ph}$: products of low-rank amplitudes replace independent high-rank ones; $\tfrac12T_2^2$ is yesterday's disconnected-but-linked quadruple; $e^{T_A+T_B}=e^{T_A}e^{T_B}$
+\item $\Hbar=e^{-T}He^{T}$: same spectrum, non-Hermitian, BCH stops at four commutators because every $T$ must connect to $H_N$: $(H_Ne^{T})_c$
+\item $\Delta E=\langle H_N(1+T_1+T_2+\tfrac12T_1^2)\rangle_c$; CCD: driving term, two ladders, a ring, four quadratic terms, $\bigO(n^6)$ with intermediates
+\item CCD contains MP2, MP3 (and MP4 for the pairing model) and sums them; pairing model: $3.6\times10^{-6}$ off at $g=0.25$, over-correlates at strong $g$ (missing connected quadruples)
+\end{itemize}
+\end{block}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Next week}
+  \begin{exampleblock}{Week 47, November 19--20: coupled cluster continued (chapter 10, sections 10.8--10.12)}
+    \small
+    Deriving the CCSD equations with intermediates $F_{ae}$, $F_{mi}$, $F_{me}$, $W_{mnij}$, $W_{abef}$, $W_{mbej}$; when singles matter -- the pairing plus particle-hole model on the bare and on the HF reference (Brillouin's theorem visible, CC not invariant under a change of reference); size extensivity verified; beyond CCSD: triples and CCSD(T); a diagrammatic derivation of the amplitude equations from the rules of weeks 45--46; a first look at unitary coupled cluster and why its expansion does not terminate.
+  \end{exampleblock}
+  \vspace{0.5em}
+  \small
+  Reading: chapter 10, sections 10.8--10.12; Shavitt and Bartlett, chapters 9--10. Code: \texttt{BookPrograms/chapter10/coupledcluster.py}. The week-46 exercises (last frame) are discussed in the exercise session and answered on the week-47 slides.
+\end{frame}
+
+% ======================================================================
+\section{Answers to the week-45 exercises}
+% ======================================================================
+
+\begin{frame}[shrink=5]{Exercise 1 a), b): the expansion for arbitrary $\omega$, and the two schemes}
+This is exercise 1 of week 44 with $z\to\omega$ and $V\to H_I$; the full answer is on the week-45 slides (and in \texttt{Exercises/AnswersWeek44.tex}). In short:
+\begin{itemize}
+\item Add and subtract $\omega\ket{\Psi_0}$: $(\omega-H_0)\ket{\Psi_0}=(\omega-E_0+H_I)\ket{\Psi_0}$; multiply by $Q$, invert $\omega-H_0$ on the $Q$ space (possible iff $\omega\ne\varepsilon_n$, $n\ne0$; at $\omega=\varepsilon_0$ this needs the non-degenerate reference), iterate the resulting implicit equation, insert into $E_0-\varepsilon_0=\mel{\ph}{H_I}{\Psi_0}/\braket{\ph}{\Psi_0}$: the overlap cancels and
+\[
+E_0=\varepsilon_0+\sum_{n=0}^\infty\mel{\ph}{H_I\Bigl(\frac{Q}{\omega-H_0}(\omega-E_0+H_I)\Bigr)^n}{\ph}.
+\]
+\item $\omega=E_0$ (BW): $\omega-E_0+H_I=H_I$, only interactions and resolvents $Q/(E_0-H_0)$ alternate; implicit, self-consistent, a truncation is not a polynomial in the coupling and not size extensive; its full resummation is exact (Feshbach).
+\item $\omega=\varepsilon_0$ (RS): fixed denominators, but $\omega-E_0+H_I=H_I-\Delta E$ must itself be expanded; $E^{(1)}=V_{00}$, $E^{(2)}=\sum V_{0m}V_{m0}/D_m$, $E^{(3)}=\sum V_{0m}V_{mn}V_{n0}/D_mD_n-V_{00}\sum|V_{0m}|^2/D_m^2$. Expanding a BW denominator $1/(D_m+\Delta E)$ reproduces the RS renormalisation term: the two agree term by term through third order; at finite order RS is a polynomial and size extensive (this week), BW is not.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[shrink=12]{Exercise 1 c): the Hamiltonian in normal-ordered form}
+Reference vacuum: the determinant $\ket{\ph}=\prod_{i\le F}\cre{i}\ket{0}$; $\no{\cdots}$ is normal ordering relative to it (week 37: $\cre{a}$, $\ann{i}$ to the left of $\ann{a}$, $\cre{i}$), and $\av{\no{\cdots}}=0$. Wick's theorem for the one-body term, with $\av{\cre{p}\ann{q}}=\delta_{pq}n_p$:
+\[
+\cre{p}\ann{q}=\no{\cre{p}\ann{q}}+\delta_{pq}n_p
+\ \Longrightarrow\
+H_0=\sum_{pq}\mel{p}{h_0}{q}\no{\cre{p}\ann{q}}+\sum_i\mel{i}{h_0}{i}.
+\]
+For the two-body term all contractions are between a creation and an annihilation operator; one contraction gives four terms, two contractions give two:
+\begin{align*}
+\cre{p}\cre{q}\ann{s}\ann{r}={}&\no{\cre{p}\cre{q}\ann{s}\ann{r}}
++\delta_{pr}n_p\no{\cre{q}\ann{s}}+\delta_{qs}n_q\no{\cre{p}\ann{r}}-\delta_{ps}n_p\no{\cre{q}\ann{r}}-\delta_{qr}n_q\no{\cre{p}\ann{s}}\\
+&+\delta_{pr}\delta_{qs}n_pn_q-\delta_{ps}\delta_{qr}n_pn_q .
+\end{align*}
+Contract with $\tfrac14\vbar{p}{q}{r}{s}$: the four one-body terms are equal by antisymmetry ($\vbar{p}{q}{r}{s}=-\vbar{q}{p}{r}{s}=\ldots$), $4\cdot\tfrac14\sum_{pqi}\vbar{p}{i}{q}{i}\no{\cre{p}\ann{q}}$; the two scalar terms give $2\cdot\tfrac14\sum_{ij}\vbar{i}{j}{i}{j}$:
+\[
+\boxed{H_I=\frac14\sum_{pqrs}\vbar{p}{q}{r}{s}\no{\cre{p}\cre{q}\ann{s}\ann{r}}+\sum_{pqi}\vbar{p}{i}{q}{i}\no{\cre{p}\ann{q}}+\frac12\sum_{ij}\vbar{i}{j}{i}{j}.}
+\]
+\begin{itemize}
+\item Symbols: $\mel{p}{h_0}{q}$ one-body matrix elements, $\vbar{p}{q}{r}{s}$ antisymmetrised two-body elements, $i,j$ occupied in the reference, $p,q,r,s$ any orbital; the sum of the two scalars is $\Eref=\mel{\ph}{H}{\ph}$, and the one-body parts combine into the Fock operator $f_{pq}=\mel{p}{h_0}{q}+\sum_i\vbar{p}{i}{q}{i}$.
+\item Diagrams (week 44, ``the perturbation drawn''): the one-body vertex as a cross with one line in and one out; the two-body vertex as a dashed line with two ends; the mean-field term as a vertex with one line \emph{closed into a bubble} (the hole loop $i$); the scalars as a cross with a closed loop and as two bubbles joined by the interaction.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[shrink=8]{Exercise 1 d): all energy diagrams to second order, with bare vertices}
+Reference energy (zeroth and first order) and $E^{(2)}=\sum_m|V_{0m}|^2/D_m$ with $m$ a single or a double:
+\begin{center}
+\begin{tabular}{@{}c@{\hspace{1.4em}}c@{\hspace{1.4em}}c@{\hspace{1.4em}}c@{\hspace{1.4em}}c@{\hspace{1.4em}}c@{\hspace{1.4em}}c@{}}
+\begin{tikzpicture}[fcidiagram]
+  \node[fvtx] (f) at (0,0.9) {}; \draw[hloop] (0.45,0.45) arc (0:360:0.45); \node[dlab,left] at (-0.5,0.45) {$i$};
+\end{tikzpicture}
+&
+\begin{tikzpicture}[fcidiagram]
+  \node[vtx] (v1) at (0,0) {}; \node[vtx] (v2) at (1.3,0) {}; \draw[vint] (v1) -- (v2);
+  \draw[hloop] (0,-0.45) ++(0.45,0) arc (0:360:0.45); \draw[hloop] (1.3,-0.45) ++(0.45,0) arc (0:360:0.45);
+\end{tikzpicture}
+&
+\begin{tikzpicture}[fcidiagram]
+  \node[fvtx] (f1) at (0,0) {}; \node[fvtx] (f2) at (0,1.5) {};
+  \draw[pline] (f1.center) .. controls (0.5,0.4) and (0.5,1.1) .. (f2.center);
+  \draw[hline] (f1.center) .. controls (-0.5,0.4) and (-0.5,1.1) .. (f2.center);
+  \draw[dotted] (-0.7,0.75) -- (0.7,0.75);
+\end{tikzpicture}
+&
+\begin{tikzpicture}[fcidiagram]
+  \node[fvtx] (f1) at (0,0) {}; \node[vtx] (t1) at (0,1.5) {}; \node[vtx] (t2) at (1.1,1.5) {}; \draw[vint] (t1) -- (t2);
+  \draw[pline] (f1.center) .. controls (0.5,0.4) and (0.5,1.1) .. (t1.center);
+  \draw[hline] (f1.center) .. controls (-0.5,0.4) and (-0.5,1.1) .. (t1.center);
+  \draw[hloop] (1.1,1.05) ++(0.45,0) arc (0:360:0.45);
+  \draw[dotted] (-0.7,0.75) -- (1.8,0.75);
+\end{tikzpicture}
+&
+\begin{tikzpicture}[fcidiagram]
+  \node[vtx] (b1) at (0,0) {}; \node[vtx] (b2) at (1.1,0) {}; \draw[vint] (b1) -- (b2); \node[fvtx] (f2) at (0,1.5) {};
+  \draw[pline] (b1.center) .. controls (0.5,0.4) and (0.5,1.1) .. (f2.center);
+  \draw[hline] (b1.center) .. controls (-0.5,0.4) and (-0.5,1.1) .. (f2.center);
+  \draw[hloop] (1.1,-0.45) ++(0.45,0) arc (0:360:0.45);
+  \draw[dotted] (-0.7,0.75) -- (1.8,0.75);
+\end{tikzpicture}
+&
+\begin{tikzpicture}[fcidiagram]
+  \node[vtx] (b1) at (0,0) {}; \node[vtx] (b2) at (1.1,0) {}; \draw[vint] (b1) -- (b2);
+  \node[vtx] (t1) at (0,1.5) {}; \node[vtx] (t2) at (1.1,1.5) {}; \draw[vint] (t1) -- (t2);
+  \draw[pline] (b1.center) .. controls (0.5,0.4) and (0.5,1.1) .. (t1.center);
+  \draw[hline] (b1.center) .. controls (-0.5,0.4) and (-0.5,1.1) .. (t1.center);
+  \draw[hloop] (1.1,-0.45) ++(0.45,0) arc (0:360:0.45); \draw[hloop] (1.1,1.05) ++(0.45,0) arc (0:360:0.45);
+  \draw[dotted] (-0.7,0.75) -- (1.8,0.75);
+\end{tikzpicture}
+&
+\begin{tikzpicture}[fcidiagram]
+  \node[vtx] (b1) at (0,0) {}; \node[vtx] (b2) at (1.3,0) {}; \draw[vint] (b1) -- (b2);
+  \node[vtx] (t1) at (0,1.5) {}; \node[vtx] (t2) at (1.3,1.5) {}; \draw[vint] (t1) -- (t2);
+  \draw[pline] (b1.center) .. controls (0.4,0.4) and (0.4,1.1) .. (t1.center); \draw[hline] (b1.center) .. controls (-0.4,0.4) and (-0.4,1.1) .. (t1.center);
+  \draw[pline] (b2.center) .. controls (1.7,0.4) and (1.7,1.1) .. (t2.center); \draw[hline] (b2.center) .. controls (0.9,0.4) and (0.9,1.1) .. (t2.center);
+  \draw[dotted] (-0.7,0.75) -- (2.0,0.75);
+\end{tikzpicture}
+\\[0.2em]
+$\sum_iu_{ii}$ & $\tfrac12\sum_{ij}\vbar{i}{j}{i}{j}$ & $\sum\frac{u_{ia}u_{ai}}{\varepsilon_i-\varepsilon_a}$ & $\sum\frac{U_{ia}u_{ai}}{\varepsilon_i-\varepsilon_a}$ & $\sum\frac{u_{ia}U_{ai}}{\varepsilon_i-\varepsilon_a}$ & $\sum\frac{U_{ia}U_{ai}}{\varepsilon_i-\varepsilon_a}$ & $\tfrac14\sum\frac{|\vbar{a}{b}{i}{j}|^2}{\varepsilon_{ij}^{ab}}$
+\end{tabular}
+\end{center}
+$U_{pq}=\sum_j\vbar{p}{j}{q}{j}$. Rules: sums; $1/D$ per cut (none in first order); $\tfrac12$ per pair of equivalent lines (two pairs in the ring, hence $\tfrac14$; the two-bubble diagram keeps a $\tfrac12$ because exchanging the two ends of the interaction gives the same drawing -- two Wick pairings against the vertex's $\tfrac14$); $(-1)^{h+l}$: every bubble adds one hole line \emph{and} one loop, so all seven are $+$. The four singles diagrams add up to $\sum_{ia}|f_{ai}|^2/(\varepsilon_i-\varepsilon_a)$ and vanish in a HF basis; the Hugenholtz form draws each interaction as a dot and merges the direct/exchange pairs.
+\end{frame}
+
+\begin{frame}[shrink=8]{Exercise 2 e), f): the one-particle system, normal ordered and drawn}
+$H_0=\sum_p\varepsilon_p\cre{p}\ann{p}$, $H_I=g\sum_{pq}\cre{p}\ann{q}$, reference $\ket{\ph}=\cre{1}\ket{0}$ (one hole label $i=1$, one particle label $a=2$). From c):
+\[
+H_0=\varepsilon_1+\sum_p\varepsilon_p\no{\cre{p}\ann{p}},\qquad
+H_I=\underbrace{g}_{E^{(1)}=u_{11}}+\;g\sum_{pq}\no{\cre{p}\ann{q}}
+=g+g\bigl[\no{\cre{a}\ann{i}}+\no{\cre{i}\ann{a}}+\no{\cre{a}\ann{a}}+\no{\cre{i}\ann{i}}\bigr].
+\]
+\begin{center}
+\begin{tabular}{@{}c@{\hspace{2.5em}}c@{\hspace{2.5em}}c@{\hspace{2.5em}}c@{\hspace{2.5em}}c@{}}
+\begin{tikzpicture}[fcidiagram]
+  \node[fvtx] (f) at (0,0.9) {}; \draw[hloop] (0.45,0.45) arc (0:360:0.45); \node[dlab,left] at (-0.5,0.45) {$i$};
+\end{tikzpicture}
+&
+\begin{tikzpicture}[fcidiagram]
+  \node[fvtx] (f) at (0,0.5) {}; \draw[hline] (f) -- (-0.4,1.5); \draw[pline] (f) -- (0.4,1.5);
+  \node[dlab,above] at (-0.4,1.5) {$i$}; \node[dlab,above] at (0.4,1.5) {$a$};
+\end{tikzpicture}
+&
+\begin{tikzpicture}[fcidiagram]
+  \node[fvtx] (f) at (0,1.0) {}; \draw[hline] (-0.4,0) -- (f); \draw[pline] (0.4,0) -- (f);
+  \node[dlab,below] at (-0.4,0) {$i$}; \node[dlab,below] at (0.4,0) {$a$};
+\end{tikzpicture}
+&
+\begin{tikzpicture}[fcidiagram]
+  \node[fvtx] (f) at (0,0.75) {}; \draw[pline] (0,0) -- (f); \draw[pline] (f) -- (0,1.5);
+  \node[dlab,right] at (0.05,0.3) {$a$}; \node[dlab,right] at (0.05,1.2) {$a$};
+\end{tikzpicture}
+&
+\begin{tikzpicture}[fcidiagram]
+  \node[fvtx] (f) at (0,0.75) {}; \draw[hline] (0,0) -- (f); \draw[hline] (f) -- (0,1.5);
+  \node[dlab,right] at (0.05,0.3) {$i$}; \node[dlab,right] at (0.05,1.2) {$i$};
+\end{tikzpicture}
+\\[0.2em]
+$g$ (closed) & $g$: creates $\ket{\Phi_i^a}$ & $g$: closes it & $g$ on the particle line & $g$ on the hole line
+\end{tabular}
+\end{center}
+\textbf{f)} In the basis $\{\ket{\ph},\ket{\Phi_i^a}\}$: $\mel{\ph}{H}{\ph}=\varepsilon_1+g$, $\mel{\Phi_i^a}{H}{\Phi_i^a}=\varepsilon_2+g$, off-diagonal $g$:
+\[
+H=\begin{pmatrix}\varepsilon_1+g&g\\ g&\varepsilon_2+g\end{pmatrix},\qquad
+E_-=\varepsilon_1+g+\frac{\Delta}{2}\Bigl(1-\sqrt{1+4g^2/\Delta^2}\Bigr)
+=\varepsilon_1+g-\frac{g^2}{\Delta}+0\cdot g^3+\frac{g^4}{\Delta^3}+\bigO{g^6},
+\]
+$\Delta=\varepsilon_2-\varepsilon_1>0$ -- the first variant of the week-44 benchmark.
+\end{frame}
+
+\begin{frame}[shrink=8]{Exercise 2 g): third order, drawn}
+With $D=\varepsilon_1-\varepsilon_2=-\Delta$ and $V_{00}=V_{mm}=V_{0m}=g$:
+\[
+E^{(1)}=g,\qquad E^{(2)}=\frac{g^2}{D}=-\frac{g^2}{\Delta},\qquad
+E^{(3)}=\frac{V_{0m}V_{mm}V_{m0}}{D^2}-V_{00}\frac{V_{0m}V_{m0}}{D^2}=\frac{g^3}{D^2}-\frac{g^3}{D^2}=0 .
+\]
+\begin{columns}[T]
+\column{0.55\textwidth}
+\begin{block}{The diagrams (bare vertex $u_{pq}=g$)}
+\begin{itemize}
+\item First order: the closed cross, $u_{11}=g$.
+\item Second order: cross below, cross above, a particle and a hole line between them, one cut: $u_{ia}u_{ai}/(\varepsilon_i-\varepsilon_a)=-g^2/\Delta$.
+\item Third order, \emph{connected}: the cross on the particle line ($+u_{aa}g^2/D^2=+g^3/D^2$, $h=1$, $l=1$) and the cross on the hole line ($-u_{ii}g^2/D^2=-g^3/D^2$, $h=2$, $l=1$): they cancel. \emph{Unlinked}: the closed cross floating between the two cuts, $+V_{00}g^2/D^2$ -- removed by the renormalisation term.
+\end{itemize}
+\end{block}
+\column{0.45\textwidth}
+\begin{block}{Comment}
+The principal term $V_{mm}g^2/D^2$ is the sum of three drawings, $u_{aa}-u_{ii}+u_{11}=g-g+g=g$; the renormalisation term is minus the third. The physical answer, $E^{(3)}=0$, comes from the two connected insertions cancelling because $u_{11}=u_{22}$ -- the exact expansion of f) has no $g^3$ term. With normal-ordered vertices ($\ftil{pq}=u_{pq}$ here) the unlinked drawing never appears and $E^{(3)}=\av{WRWRW}=\ftil{aa}g^2/D^2-\ftil{ii}g^2/D^2=0$ directly. Fourth order: $+g^4/\Delta^3$, all of it from the folded term (week 44) -- or, drawn, from the exclusion-principle-violating linked diagrams of Thursday.
+\end{block}
+\end{columns}
+\end{frame}
+
+% ======================================================================
+\section{Exercises, week 46}
+% ======================================================================
+
+\begin{frame}[shrink=5]{Exercises week 46}
+\begin{enumerate}
+\item[1.] \textbf{Linked and unlinked at third order.} Write out all unlinked drawings contained in $\langle\Phi_m|RVRVRV|\ph\rangle$ with bare vertices (pause \#1), evaluate each with the rules, and show that their sum is exactly minus the three renormalisation terms of $\Omega^{(3)}$. Then close every drawing with a top vertex and identify the four pieces of $E^{(4)}$ of week 44.
+\item[2.] \textbf{The factorisation theorem.} Prove $S_{rs}=\prod_u A_u^{-1}\prod_v B_v^{-1}$ by induction, and derive from the same recursion the closed-piece form $S_{r-1,s}|_{B_s=0}=\prod_{v<s}B_v^{-1}\prod_{u<r}A_u^{-1}\sum_{j<r}A_j^{-1}$. Check it for $r=3$, $s=2$ by listing the five allowed interleavings, and identify the fifth-order renormalisation terms it corresponds to.
+\item[3.] \textbf{Exclusion-principle-violating diagrams.} For the two-level model, list the four complete contractions of the fourth-order diagram with four crosses, their loops and signs, and show that the linked exchange terms alone give $+g^4/\Delta^3$. Redo the count for the pairing model with one pair in two levels: are there EPV terms, and does the answer change?
+\item[4.] \textbf{The exponential ansatz} (chapter 10, exercise 1). Prove $[T_m,T_n]=0$; derive $C_1,\dots,C_4$ in terms of $T$'s; show that $e^{T}$ factorises for two non-interacting subsystems while $1+C_2$ does not; explain why the series terminates on an $N$-particle determinant.
+\item[5.] \textbf{CCD for the pairing model.} Show that for the pairing interaction the ring term and $t_i^a$ vanish, that the amplitudes can be written as pair amplitudes $t_p^q$ (pair $p$ to pair $q$), and reduce the CCD equation to an equation for the $N_{\rm occ}\times N_{\rm vir}$ matrix $t_p^q$. Solve it by iteration for four levels, two pairs, $g=0.5$, and compare with the table of lecture 4 (\texttt{week46.ipynb} has a general spin-orbital solver to check against).
+\end{enumerate}
+\small Answers on the week-47 slides.
+\end{frame}
+
+\end{document}
