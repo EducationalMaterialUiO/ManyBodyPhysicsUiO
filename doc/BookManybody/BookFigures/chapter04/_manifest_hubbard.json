@@ -1,0 +1,17 @@
+[
+ {"base": "hubbard_fig01", "cell": 4, "size": [6.0, 6.0], "npanels": 1,
+  "suptitle": null,
+  "axes": [{"title": "4x4 square lattice, nearest (solid) and next-nearest (dashed) bonds",
+            "xlabel": "", "ylabel": "", "xscale": "linear", "yscale": "linear",
+            "nlines": 0, "labels": [],
+            "note": "site graph of the two-dimensional Hubbard/t-J lattice with periodic boundary conditions; sites numbered 0-15"}]},
+ {"base": "hubbard_fig02", "cell": 15, "size": [11.5, 4.2], "npanels": 2,
+  "suptitle": null,
+  "axes": [{"title": "half-filled 6-site ring", "xlabel": "$U/t$", "ylabel": "$E_0$ per site",
+            "xscale": "linear", "yscale": "linear", "nlines": 2,
+            "legend": ["Hubbard", "t-J, $J = 4t^2/U$"]},
+           {"title": "truncated ring-exchange terms",
+            "xlabel": "$U/t$", "ylabel": "$|E_0^{\\mathrm{Hub}} - E_0^{tJ}|$",
+            "xscale": "log", "yscale": "log", "nlines": 2,
+            "legend": ["", "$\\propto (t/U)^3$"]}]}
+]

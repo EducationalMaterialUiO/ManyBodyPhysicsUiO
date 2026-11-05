@@ -1,0 +1,316 @@
+[
+ {
+  "base": "gf_fig01",
+  "cell": 5,
+  "size": [
+   10.0,
+   3.9
+  ],
+  "npanels": 2,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "$g=0.5$",
+    "xlabel": "$\\omega$",
+    "ylabel": "$S_h(\\alpha,\\omega)$, $S_p(\\alpha,\\omega)$",
+    "xscale": "linear",
+    "yscale": "log",
+    "nlines": 4,
+    "labels": []
+   },
+   {
+    "title": "$g=1.0$",
+    "xlabel": "$\\omega$",
+    "ylabel": "",
+    "xscale": "linear",
+    "yscale": "log",
+    "nlines": 4,
+    "labels": [],
+    "legend": [
+     "level 1, hole part",
+     "level 1, particle part",
+     "level 2, hole part",
+     "level 2, particle part",
+     "level 3, hole part",
+     "level 3, particle part",
+     "level 4, hole part",
+     "level 4, particle part"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "gf_fig02",
+  "cell": 7,
+  "size": [
+   5.5,
+   3.6
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "Occupation numbers of the pairing model",
+    "xlabel": "$g$",
+    "ylabel": "$n_\\alpha$",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 5,
+    "labels": [
+     "level 1",
+     "level 2",
+     "level 3",
+     "level 4",
+     "$\\frac{1}{2}\\sum_\\alpha n_\\alpha$"
+    ],
+    "legend": [
+     "level 1",
+     "level 2",
+     "level 3",
+     "level 4",
+     "$\\frac{1}{2}\\sum_\\alpha n_\\alpha$"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "gf_fig03",
+  "cell": 11,
+  "size": [
+   10.0,
+   3.6
+  ],
+  "npanels": 2,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "hole strength of level 1, $g=1.0$",
+    "xlabel": "$\\omega$",
+    "ylabel": "$S_h(\\alpha,\\omega)$",
+    "xscale": "linear",
+    "yscale": "log",
+    "nlines": 0,
+    "labels": [],
+    "legend": [
+     "exact",
+     "GF2"
+    ]
+   },
+   {
+    "title": "hole strength of level 3, $g=1.0$",
+    "xlabel": "$\\omega$",
+    "ylabel": "",
+    "xscale": "linear",
+    "yscale": "log",
+    "nlines": 0,
+    "labels": []
+   }
+  ]
+ },
+ {
+  "base": "gf_fig04",
+  "cell": 13,
+  "size": [
+   7.0,
+   3.8
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "Self energy of the lowest hole orbital, pairing + ph model, $g=0.5$, $f=0.3$",
+    "xlabel": "$\\omega$",
+    "ylabel": "$\\Sigma_{11}(\\omega)$",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 3,
+    "labels": [
+     "exact, Re $\\Sigma_{11}$",
+     "second order, Re $\\Sigma_{11}$"
+    ],
+    "legend": [
+     "exact, Re $\\Sigma_{11}$",
+     "second order, Re $\\Sigma_{11}$"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "gf_fig05",
+  "cell": 20,
+  "size": [
+   6.5,
+   4.0
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "Pairing model, 4 levels, 4 particles",
+    "xlabel": "$g$",
+    "ylabel": "$E-E_{\\rm FCI}$",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 8,
+    "labels": [
+     "MP2",
+     "MP3",
+     "GF2",
+     "parquet",
+     "ladder-RPA",
+     "both-RPA",
+     "CCD"
+    ],
+    "legend": [
+     "MP2",
+     "MP3",
+     "GF2",
+     "parquet",
+     "ladder-RPA",
+     "both-RPA",
+     "CCD"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "gf_fig06",
+  "cell": 23,
+  "size": [
+   6.5,
+   4.0
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "Energy-independent parquet, pairing model, $g=0.5$",
+    "xlabel": "starting energy $E_{\\rm in}$",
+    "ylabel": "$E$",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 5,
+    "labels": [
+     "parquet, $\\eta=0.0$",
+     "parquet, $\\eta=0.5$",
+     "parquet, $\\eta=2.0$",
+     "GF2",
+     "FCI"
+    ],
+    "legend": [
+     "parquet, $\\eta=0.0$",
+     "parquet, $\\eta=0.5$",
+     "parquet, $\\eta=2.0$",
+     "GF2",
+     "FCI"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "gf_fig07",
+  "cell": 26,
+  "size": [
+   6.5,
+   4.0
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "Pairing + particle-hole model, $g=0.5$",
+    "xlabel": "$f$",
+    "ylabel": "$E-E_{\\rm FCI}$",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 7,
+    "labels": [
+     "MP2",
+     "GF2",
+     "parquet",
+     "ring-RPA",
+     "both-RPA",
+     "CCSD"
+    ],
+    "legend": [
+     "MP2",
+     "GF2",
+     "parquet",
+     "ring-RPA",
+     "both-RPA",
+     "CCSD"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "gf_fig08",
+  "cell": 29,
+  "size": [
+   6.5,
+   4.0
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "Lipkin model, $N=6$",
+    "xlabel": "$\\chi = V(N-1)/\\varepsilon$",
+    "ylabel": "$E-E_{\\rm exact}$",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 7,
+    "labels": [
+     "MP2",
+     "GF2",
+     "parquet",
+     "ring-RPA",
+     "both-RPA",
+     "CCD"
+    ],
+    "legend": [
+     "MP2",
+     "GF2",
+     "parquet",
+     "ring-RPA",
+     "both-RPA",
+     "CCD"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "gf_fig09",
+  "cell": 31,
+  "size": [
+   10.0,
+   3.6
+  ],
+  "npanels": 2,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "hole strength, lower level, $N=6$, $V=0.15$",
+    "xlabel": "$\\omega$",
+    "ylabel": "$S_h(\\alpha,\\omega)$",
+    "xscale": "linear",
+    "yscale": "log",
+    "nlines": 0,
+    "labels": [],
+    "legend": [
+     "exact",
+     "GF2"
+    ]
+   },
+   {
+    "title": "hole strength, upper level, $N=6$, $V=0.15$",
+    "xlabel": "$\\omega$",
+    "ylabel": "",
+    "xscale": "linear",
+    "yscale": "log",
+    "nlines": 0,
+    "labels": []
+   }
+  ]
+ }
+]

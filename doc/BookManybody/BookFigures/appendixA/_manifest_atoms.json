@@ -1,0 +1,136 @@
+[
+ {
+  "base": "atoms_fig01",
+  "cell": 13,
+  "size": [
+   9.0,
+   3.6
+  ],
+  "npanels": 2,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "helium: convergence of the Hartree-Fock iterations",
+    "xlabel": "iteration $k$",
+    "ylabel": "error (hartree)",
+    "xscale": "linear",
+    "yscale": "log",
+    "nlines": 4,
+    "labels": [
+     "$|E_k-E_{\\rm HF}|$",
+     "$|\\varepsilon_{1s}^{(k)}-\\varepsilon_{1s}|$",
+     "$|\\varepsilon_{2s}^{(k)}-\\varepsilon_{2s}|$",
+     "$|\\varepsilon_{3s}^{(k)}-\\varepsilon_{3s}|$"
+    ],
+    "legend": [
+     "$|E_k-E_{\\rm HF}|$",
+     "$|\\varepsilon_{1s}^{(k)}-\\varepsilon_{1s}|$",
+     "$|\\varepsilon_{2s}^{(k)}-\\varepsilon_{2s}|$",
+     "$|\\varepsilon_{3s}^{(k)}-\\varepsilon_{3s}|$"
+    ]
+   },
+   {
+    "title": "beryllium: convergence of the Hartree-Fock iterations",
+    "xlabel": "iteration $k$",
+    "ylabel": "error (hartree)",
+    "xscale": "linear",
+    "yscale": "log",
+    "nlines": 4,
+    "labels": [
+     "$|E_k-E_{\\rm HF}|$",
+     "$|\\varepsilon_{1s}^{(k)}-\\varepsilon_{1s}|$",
+     "$|\\varepsilon_{2s}^{(k)}-\\varepsilon_{2s}|$",
+     "$|\\varepsilon_{3s}^{(k)}-\\varepsilon_{3s}|$"
+    ],
+    "legend": [
+     "$|E_k-E_{\\rm HF}|$",
+     "$|\\varepsilon_{1s}^{(k)}-\\varepsilon_{1s}|$",
+     "$|\\varepsilon_{2s}^{(k)}-\\varepsilon_{2s}|$",
+     "$|\\varepsilon_{3s}^{(k)}-\\varepsilon_{3s}|$"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "atoms_fig02",
+  "cell": 19,
+  "size": [
+   9.0,
+   3.8
+  ],
+  "npanels": 2,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "helium: TDA and RPA against the exact spectrum",
+    "xlabel": "",
+    "ylabel": "excitation energy $\\omega_\\nu$ (hartree)",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 0,
+    "labels": []
+   },
+   {
+    "title": "beryllium: TDA and RPA against the exact spectrum",
+    "xlabel": "",
+    "ylabel": "excitation energy $\\omega_\\nu$ (hartree)",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 0,
+    "labels": []
+   }
+  ]
+ },
+ {
+  "base": "atoms_fig03",
+  "cell": 21,
+  "size": [
+   9.0,
+   3.8
+  ],
+  "npanels": 2,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "helium-like ions: distance from full CI",
+    "xlabel": "nuclear charge $Z$",
+    "ylabel": "$E-E_{\\rm FCI}$ (millihartree)",
+    "xscale": "linear",
+    "yscale": "symlog",
+    "nlines": 5,
+    "labels": [
+     "$E[\\Phi_0]$",
+     "$E_{\\rm HF}$",
+     "$E_{\\rm CIS}$ (hydrogenic)",
+     "$E_{\\rm HF}+E^{\\rm RPA}_{\\rm corr}$"
+    ],
+    "legend": [
+     "$E[\\Phi_0]$",
+     "$E_{\\rm HF}$",
+     "$E_{\\rm CIS}$ (hydrogenic)",
+     "$E_{\\rm HF}+E^{\\rm RPA}_{\\rm corr}$"
+    ]
+   },
+   {
+    "title": "beryllium-like ions: distance from full CI",
+    "xlabel": "nuclear charge $Z$",
+    "ylabel": "$E-E_{\\rm FCI}$ (millihartree)",
+    "xscale": "linear",
+    "yscale": "symlog",
+    "nlines": 5,
+    "labels": [
+     "$E[\\Phi_0]$",
+     "$E_{\\rm HF}$",
+     "$E_{\\rm CIS}$ (hydrogenic)",
+     "$E_{\\rm HF}+E^{\\rm RPA}_{\\rm corr}$"
+    ],
+    "legend": [
+     "$E[\\Phi_0]$",
+     "$E_{\\rm HF}$",
+     "$E_{\\rm CIS}$ (hydrogenic)",
+     "$E_{\\rm HF}+E^{\\rm RPA}_{\\rm corr}$"
+    ]
+   }
+  ]
+ }
+]

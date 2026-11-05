@@ -1,0 +1,162 @@
+[
+ {
+  "base": "qft_fig01",
+  "cell": 5,
+  "size": [
+   6.0,
+   6.0
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "amplitudes of $\\mathrm{QFT}_8|101\\rangle$ in the complex plane",
+    "xlabel": "",
+    "ylabel": "",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 10,
+    "labels": []
+   }
+  ]
+ },
+ {
+  "base": "qft_fig02",
+  "cell": 7,
+  "size": [
+   6.0,
+   4.0
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "the approximate QFT, $n=6$",
+    "xlabel": "controlled rotations kept",
+    "ylabel": "max amplitude error",
+    "xscale": "linear",
+    "yscale": "log",
+    "nlines": 1,
+    "labels": []
+   }
+  ]
+ },
+ {
+  "base": "qft_fig03",
+  "cell": 11,
+  "size": [
+   11.0,
+   3.8
+  ],
+  "npanels": 2,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "$m = 4$",
+    "xlabel": "estimated phase",
+    "ylabel": "probability",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 1,
+    "labels": [
+     "$\\phi = 0.3$"
+    ],
+    "legend": [
+     "$\\phi = 0.3$"
+    ]
+   },
+   {
+    "title": "$m = 8$",
+    "xlabel": "estimated phase",
+    "ylabel": "",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 1,
+    "labels": [
+     "$\\phi = 0.3$"
+    ],
+    "legend": [
+     "$\\phi = 0.3$"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "qft_fig04",
+  "cell": 16,
+  "size": [
+   6.0,
+   4.0
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "two errors, one budget",
+    "xlabel": "Trotter steps $r$",
+    "ylabel": "",
+    "xscale": "log",
+    "yscale": "log",
+    "nlines": 3,
+    "labels": [
+     "$\\|U_{\\rm Trotter} - U\\|$",
+     "energy error",
+     "$2^{-8}$ register floor"
+    ],
+    "legend": [
+     "$\\|U_{\\rm Trotter} - U\\|$",
+     "energy error",
+     "$2^{-8}$ register floor"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "qft_fig05",
+  "cell": 18,
+  "size": [
+   13.0,
+   3.0
+  ],
+  "npanels": 4,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "$|c_0|^2 = 1.0$",
+    "xlabel": "energy",
+    "ylabel": "probability",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 2,
+    "labels": []
+   },
+   {
+    "title": "$|c_0|^2 = 0.8$",
+    "xlabel": "energy",
+    "ylabel": "",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 2,
+    "labels": []
+   },
+   {
+    "title": "$|c_0|^2 = 0.6$",
+    "xlabel": "energy",
+    "ylabel": "",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 2,
+    "labels": []
+   },
+   {
+    "title": "$|c_0|^2 = 0.3$",
+    "xlabel": "energy",
+    "ylabel": "",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 2,
+    "labels": []
+   }
+  ]
+ }
+]

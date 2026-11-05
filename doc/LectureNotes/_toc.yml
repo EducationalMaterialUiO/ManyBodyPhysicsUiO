@@ -29,6 +29,7 @@ parts:
     chapters:
       - file: mbptheory.ipynb            # chapter 9
       - file: coupledcluster.ipynb       # chapter 10
+      - file: greensfunctions.ipynb      # the Green's function chapter (after chapter 10)
 
   - caption: Applications and stochastic methods
     numbered: true

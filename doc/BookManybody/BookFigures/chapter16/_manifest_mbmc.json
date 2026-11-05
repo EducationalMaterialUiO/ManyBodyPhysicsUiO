@@ -1,0 +1,113 @@
+[
+ {
+  "base": "mbmc_fig01",
+  "cell": 11,
+  "size": [
+   11.0,
+   3.6
+  ],
+  "npanels": 2,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "",
+    "xlabel": "iteration",
+    "ylabel": "energy",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 1,
+    "labels": []
+   },
+   {
+    "title": "",
+    "xlabel": "$\\alpha$",
+    "ylabel": "$\\beta$",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 2,
+    "labels": [
+     "scan minimum"
+    ],
+    "legend": [
+     "scan minimum"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "mbmc_fig02",
+  "cell": 20,
+  "size": [
+   7.0,
+   4.5
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "Equilibration and plateau of the variational local energy, six electrons",
+    "xlabel": "Metropolis sweep (one attempted move per electron)",
+    "ylabel": "local energy $\\langle E_L\\rangle$ (a.u.)",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 4,
+    "labels": [
+     "$\\langle E_L\\rangle$ over 120 walkers, one sweep",
+     "running mean from sweep 1",
+     "running mean, first 100 sweeps discarded",
+     "plateau, $E_{\\rm VMC} = 20.197$"
+    ],
+    "legend": [
+     "$\\langle E_L\\rangle$ over 120 walkers, one sweep",
+     "running mean from sweep 1",
+     "running mean, first 100 sweeps discarded",
+     "plateau, $E_{\\rm VMC} = 20.197$"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "mbmc_fig03",
+  "cell": 22,
+  "size": [
+   7.0,
+   3.2
+  ],
+  "npanels": 2,
+  "suptitle": "The Jastrow factor digs a correlation hole and swells the dot",
+  "axes": [
+   {
+    "title": "",
+    "xlabel": "distance from the centre of the trap $r$",
+    "ylabel": "radial density $\\rho(r)$",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 2,
+    "labels": [
+     "Slater determinant alone",
+     "Slater-Jastrow"
+    ],
+    "legend": [
+     "Slater determinant alone",
+     "Slater-Jastrow"
+    ]
+   },
+   {
+    "title": "",
+    "xlabel": "electron-electron separation $r_{ij}$",
+    "ylabel": "pair distribution $P(r_{ij})$",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 2,
+    "labels": [
+     "Slater determinant alone",
+     "Slater-Jastrow"
+    ],
+    "legend": [
+     "Slater determinant alone",
+     "Slater-Jastrow"
+    ]
+   }
+  ]
+ }
+]

@@ -1,0 +1,193 @@
+[
+ {
+  "base": "effective3b_fig01",
+  "cell": 12,
+  "size": [
+   9.0,
+   3.8
+  ],
+  "npanels": 3,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "$\\langle rs|v|pq\\rangle_{\\rm AS}$ in $P_2$",
+    "xlabel": "",
+    "ylabel": "",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 0,
+    "labels": []
+   },
+   {
+    "title": "$V^{(2)}_{\\rm eff}-v$",
+    "xlabel": "",
+    "ylabel": "",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 0,
+    "labels": []
+   },
+   {
+    "title": "",
+    "xlabel": "",
+    "ylabel": "",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 0,
+    "labels": []
+   }
+  ]
+ },
+ {
+  "base": "effective3b_fig02",
+  "cell": 16,
+  "size": [
+   5.2,
+   4.6
+  ],
+  "npanels": 2,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "induced three-body interaction $\\langle S|V^{(3)}_{\\rm eff}|P\\rangle$",
+    "xlabel": "",
+    "ylabel": "",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 0,
+    "labels": []
+   },
+   {
+    "title": "",
+    "xlabel": "",
+    "ylabel": "",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 0,
+    "labels": []
+   }
+  ]
+ },
+ {
+  "base": "effective3b_fig03",
+  "cell": 23,
+  "size": [
+   9.5,
+   3.8
+  ],
+  "npanels": 2,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "",
+    "xlabel": "$|V_0|$",
+    "ylabel": "Frobenius norm",
+    "xscale": "log",
+    "yscale": "log",
+    "nlines": 3,
+    "labels": [
+     "$\\|V^{(2)}_{\\rm eff}-v\\|$",
+     "$\\|V^{(3)}_{\\rm eff}\\|$",
+     "$\\propto V_0^2$"
+    ],
+    "legend": [
+     "$\\|V^{(2)}_{\\rm eff}-v\\|$",
+     "$\\|V^{(3)}_{\\rm eff}\\|$",
+     "$\\propto V_0^2$"
+    ]
+   },
+   {
+    "title": "",
+    "xlabel": "$|V_0|$",
+    "ylabel": "error in $E_0$, $N=4$",
+    "xscale": "log",
+    "yscale": "log",
+    "nlines": 2,
+    "labels": [
+     "$t+V^{(2)}_{\\rm eff}$",
+     "$t+V^{(2)}_{\\rm eff}+V^{(3)}_{\\rm eff}$"
+    ],
+    "legend": [
+     "$t+V^{(2)}_{\\rm eff}$",
+     "$t+V^{(2)}_{\\rm eff}+V^{(3)}_{\\rm eff}$"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "effective3b_fig04",
+  "cell": 26,
+  "size": [
+   5.5,
+   3.8
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "$n_P=14$ is the full space: all three vanish there",
+    "xlabel": "model-space orbitals $n_P$",
+    "ylabel": "",
+    "xscale": "linear",
+    "yscale": "log",
+    "nlines": 3,
+    "labels": [
+     "$\\max|V^{(2)}_{\\rm eff}-v|$",
+     "$\\max|V^{(3)}_{\\rm eff}|$",
+     "$|E_0^{(3)}(t+V^{(2)}_{\\rm eff})-E_0^{(3)}|$"
+    ],
+    "legend": [
+     "$\\max|V^{(2)}_{\\rm eff}-v|$",
+     "$\\max|V^{(3)}_{\\rm eff}|$",
+     "$|E_0^{(3)}(t+V^{(2)}_{\\rm eff})-E_0^{(3)}|$"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "effective3b_fig05",
+  "cell": 29,
+  "size": [
+   9.5,
+   3.8
+  ],
+  "npanels": 2,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "",
+    "xlabel": "shell gap $\\Delta$",
+    "ylabel": "$\\|V^{(3)}_{\\rm eff}\\|$",
+    "xscale": "linear",
+    "yscale": "log",
+    "nlines": 2,
+    "labels": [
+     "select = lowest",
+     "select = overlap"
+    ],
+    "legend": [
+     "select = lowest",
+     "select = overlap"
+    ]
+   },
+   {
+    "title": "",
+    "xlabel": "shell gap $\\Delta$",
+    "ylabel": "error in $E_0$, $N=4$",
+    "xscale": "linear",
+    "yscale": "log",
+    "nlines": 3,
+    "labels": [
+     "select = lowest, with $V^{(3)}_{\\rm eff}$",
+     "select = overlap, with $V^{(3)}_{\\rm eff}$",
+     "overlap, $V^{(2)}_{\\rm eff}$ only"
+    ],
+    "legend": [
+     "select = lowest, with $V^{(3)}_{\\rm eff}$",
+     "select = overlap, with $V^{(3)}_{\\rm eff}$",
+     "overlap, $V^{(2)}_{\\rm eff}$ only"
+    ]
+   }
+  ]
+ }
+]

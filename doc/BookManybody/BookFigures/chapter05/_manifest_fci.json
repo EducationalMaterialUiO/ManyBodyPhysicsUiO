@@ -1,0 +1,134 @@
+[
+ {
+  "base": "fci_fig01",
+  "cell": 30,
+  "size": [
+   7.0,
+   4.5
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "The exponential wall: dimension of the full CI space",
+    "xlabel": "number of single-particle states $n$",
+    "ylabel": "dimension of the full CI space $\\binom{n}{N}$",
+    "xscale": "linear",
+    "yscale": "log",
+    "nlines": 12,
+    "labels": [
+     "$N = 2$",
+     "$N = 4$",
+     "$N = 8$",
+     "$N = 16$",
+     "half filling, $N = n/2$"
+    ],
+    "legend": [
+     "$N = 2$",
+     "$N = 4$",
+     "$N = 8$",
+     "$N = 16$",
+     "half filling, $N = n/2$"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "fci_fig02",
+  "cell": 32,
+  "size": [
+   7.0,
+   3.2
+  ],
+  "npanels": 2,
+  "suptitle": "Truncated CI against full CI for the pairing model, six levels and six particles",
+  "axes": [
+   {
+    "title": "",
+    "xlabel": "interaction strength $g$",
+    "ylabel": "correlation energy $E - E_{\\mathrm{ref}}$",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 4,
+    "labels": [
+     "CIS",
+     "CISD",
+     "CISDTQ",
+     "FCI"
+    ],
+    "legend": [
+     "CIS",
+     "CISD",
+     "CISDTQ",
+     "FCI"
+    ]
+   },
+   {
+    "title": "",
+    "xlabel": "interaction strength $g$",
+    "ylabel": "error $E - E_{\\mathrm{FCI}}$",
+    "xscale": "linear",
+    "yscale": "log",
+    "nlines": 3,
+    "labels": [
+     "CIS",
+     "CISD",
+     "CISDTQ"
+    ],
+    "legend": [
+     "CIS",
+     "CISD",
+     "CISDTQ"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "fci_fig03",
+  "cell": 34,
+  "size": [
+   7.0,
+   3.2
+  ],
+  "npanels": 2,
+  "suptitle": "Size consistency: truncated CI drifts as copies are added, full CI does not",
+  "axes": [
+   {
+    "title": "$g = 1.0$",
+    "xlabel": "number of non-interacting copies $n$",
+    "ylabel": "$E(n) - n\\,E(1)$",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 4,
+    "labels": [
+     "CID",
+     "CISDTQ",
+     "FCI"
+    ],
+    "legend": [
+     "CID",
+     "CISDTQ",
+     "FCI"
+    ]
+   },
+   {
+    "title": "three copies",
+    "xlabel": "interaction strength $g$",
+    "ylabel": "$E(3) - 3\\,E(1)$",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 4,
+    "labels": [
+     "CID",
+     "CISDTQ",
+     "FCI"
+    ],
+    "legend": [
+     "CID",
+     "CISDTQ",
+     "FCI"
+    ]
+   }
+  ]
+ }
+]

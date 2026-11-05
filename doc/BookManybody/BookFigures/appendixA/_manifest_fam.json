@@ -1,0 +1,146 @@
+[
+ {
+  "base": "fam_fig01",
+  "cell": 6,
+  "size": [
+   6.0,
+   3.9
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "error of the finite-difference induced field, $g=1$, $f=0.5$",
+    "xlabel": "finite-amplitude parameter $\\eta$",
+    "ylabel": "$\\max\\,|\\delta h_{\\rm FAM}-\\delta h_{\\rm exact}|$",
+    "xscale": "log",
+    "yscale": "log",
+    "nlines": 4,
+    "labels": [
+     "forward difference",
+     "central difference",
+     "$\\propto\\eta$",
+     "$\\propto\\epsilon_{\\rm mach}/\\eta$"
+    ],
+    "legend": [
+     "forward difference",
+     "central difference",
+     "$\\propto\\eta$",
+     "$\\propto\\epsilon_{\\rm mach}/\\eta$"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "fam_fig02",
+  "cell": 10,
+  "size": [
+   12.0,
+   4.2
+  ],
+  "npanels": 2,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "$\\hat Q_0$ (level operator), $\\Gamma=0.1$",
+    "xlabel": "$\\omega$ [units of $\\xi$]",
+    "ylabel": "$dB(F;\\omega)/d\\omega$",
+    "xscale": "linear",
+    "yscale": "log",
+    "nlines": 7,
+    "labels": [
+     "exact",
+     "RPA matrix",
+     "FAM"
+    ],
+    "legend": [
+     "exact",
+     "RPA matrix",
+     "FAM"
+    ]
+   },
+   {
+    "title": "$\\hat Q_1$ (hopping operator), $\\Gamma=0.1$",
+    "xlabel": "$\\omega$ [units of $\\xi$]",
+    "ylabel": "$dB(F;\\omega)/d\\omega$",
+    "xscale": "linear",
+    "yscale": "log",
+    "nlines": 7,
+    "labels": [
+     "exact",
+     "RPA matrix",
+     "FAM"
+    ],
+    "legend": [
+     "exact",
+     "RPA matrix",
+     "FAM"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "fam_fig03",
+  "cell": 14,
+  "size": [
+   6.0,
+   3.9
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "locating the lowest RPA root by contour integration, $\\hat Q_1$",
+    "xlabel": "quadrature points on the circle",
+    "ylabel": "error",
+    "xscale": "linear",
+    "yscale": "log",
+    "nlines": 4,
+    "labels": [
+     "$|\\omega_1^{\\rm contour}-\\omega_1|$, forward",
+     "$|m_0^{\\rm contour}-|\\langle 1|\\hat Q_1|0\\rangle|^2|$, forward",
+     "$|\\omega_1^{\\rm contour}-\\omega_1|$, central",
+     "$|m_0^{\\rm contour}-|\\langle 1|\\hat Q_1|0\\rangle|^2|$, central"
+    ],
+    "legend": [
+     "$|\\omega_1^{\\rm contour}-\\omega_1|$, forward",
+     "$|m_0^{\\rm contour}-|\\langle 1|\\hat Q_1|0\\rangle|^2|$, forward",
+     "$|\\omega_1^{\\rm contour}-\\omega_1|$, central",
+     "$|m_0^{\\rm contour}-|\\langle 1|\\hat Q_1|0\\rangle|^2|$, central"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "fam_fig04",
+  "cell": 18,
+  "size": [
+   6.0,
+   3.9
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "cost of the FAM solution, $\\hat Q_1$, $g=1$, $f=0.5$",
+    "xlabel": "$\\omega$ [units of $\\xi$]",
+    "ylabel": "iterations to a relative residual of $10^{-6}$",
+    "xscale": "linear",
+    "yscale": "log",
+    "nlines": 8,
+    "labels": [
+     "plain iteration, $\\Gamma=0.5$",
+     "plain iteration, $\\Gamma=0.2$",
+     "plain iteration, $\\Gamma=0.05$",
+     "GMRES, $\\Gamma=0.5$"
+    ],
+    "legend": [
+     "plain iteration, $\\Gamma=0.5$",
+     "plain iteration, $\\Gamma=0.2$",
+     "plain iteration, $\\Gamma=0.05$",
+     "GMRES, $\\Gamma=0.5$"
+    ]
+   }
+  ]
+ }
+]

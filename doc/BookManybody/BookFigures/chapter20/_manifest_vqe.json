@@ -1,0 +1,91 @@
+[
+ {
+  "base": "vqe_fig01",
+  "cell": 6,
+  "size": [
+   6.0,
+   4.0
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "Shot noise is the dominant cost of VQE",
+    "xlabel": "shots per Pauli string",
+    "ylabel": "standard error of the energy",
+    "xscale": "log",
+    "yscale": "log",
+    "nlines": 2,
+    "labels": [
+     "measured standard error",
+     "$\\propto 1/\\sqrt{N}$"
+    ],
+    "legend": [
+     "measured standard error",
+     "$\\propto 1/\\sqrt{N}$"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "vqe_fig02",
+  "cell": 10,
+  "size": [
+   7.0,
+   4.0
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "$H = Z_1 Z_2$: the flat landscape and the fictitious one",
+    "xlabel": "$\\theta/\\pi$",
+    "ylabel": "energy",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 2,
+    "labels": [
+     "true $E(\\theta) = 1$",
+     "marginal estimate $\\cos^2 2\\theta$"
+    ],
+    "legend": [
+     "true $E(\\theta) = 1$",
+     "marginal estimate $\\cos^2 2\\theta$",
+     "spurious minima"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "vqe_fig03",
+  "cell": 22,
+  "size": [
+   7.0,
+   4.0
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "VQE convergence, two-qubit Hamiltonian",
+    "xlabel": "iteration",
+    "ylabel": "energy",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 4,
+    "labels": [
+     "1 layer(s), 4 parameters",
+     "2 layer(s), 8 parameters",
+     "3 layer(s), 12 parameters",
+     "exact $E_0$"
+    ],
+    "legend": [
+     "1 layer(s), 4 parameters",
+     "2 layer(s), 8 parameters",
+     "3 layer(s), 12 parameters",
+     "exact $E_0$"
+    ]
+   }
+  ]
+ }
+]

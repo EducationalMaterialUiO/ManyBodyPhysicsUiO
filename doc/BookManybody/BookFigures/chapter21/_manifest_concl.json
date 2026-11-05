@@ -1,0 +1,154 @@
+[
+ {
+  "base": "concl_fig01",
+  "cell": 8,
+  "size": [
+   7.0,
+   3.2
+  ],
+  "npanels": 2,
+  "suptitle": "The ordering of the methods is not stable in the coupling: the pairing model, four levels and four particles",
+  "axes": [
+   {
+    "title": "",
+    "xlabel": "pairing strength $g$",
+    "ylabel": "ground-state energy",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 7,
+    "labels": [
+     "exact (FCI)",
+     "Hartree-Fock",
+     "MBPT2",
+     "MBPT3",
+     "CID",
+     "RPA",
+     "CCD"
+    ],
+    "legend": [
+     "exact (FCI)",
+     "Hartree-Fock",
+     "MBPT2",
+     "MBPT3",
+     "CID",
+     "RPA",
+     "CCD"
+    ]
+   },
+   {
+    "title": "",
+    "xlabel": "pairing strength $g$",
+    "ylabel": "$|E - E_{\\mathrm{FCI}}|$",
+    "xscale": "linear",
+    "yscale": "log",
+    "nlines": 6,
+    "labels": [
+     "MBPT2",
+     "MBPT3",
+     "CID",
+     "RPA",
+     "CCD"
+    ],
+    "legend": [
+     "MBPT2",
+     "MBPT3",
+     "CID",
+     "RPA",
+     "CCD"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "concl_fig02",
+  "cell": 11,
+  "size": [
+   7.0,
+   4.5
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "The exponential wall: what the five bargains buy",
+    "xlabel": "number of single-particle states $n$",
+    "ylabel": "dimension of the full CI space, or operation count",
+    "xscale": "linear",
+    "yscale": "log",
+    "nlines": 10,
+    "labels": [
+     "full CI, half filling, $\\binom{n}{n/2}$",
+     "full CI, $N = 4$",
+     "full CI, $N = 8$",
+     "full CI, $N = 16$",
+     "VMC, $\\propto n^{3}$ per sweep",
+     "Hartree-Fock, $\\propto n^{4}$",
+     "MBPT2, $\\propto n^{5}$",
+     "CCSD, $\\propto n^{6}$"
+    ],
+    "legend": [
+     "full CI, half filling, $\\binom{n}{n/2}$",
+     "full CI, $N = 4$",
+     "full CI, $N = 8$",
+     "full CI, $N = 16$",
+     "VMC, $\\propto n^{3}$ per sweep",
+     "Hartree-Fock, $\\propto n^{4}$",
+     "MBPT2, $\\propto n^{5}$",
+     "CCSD, $\\propto n^{6}$"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "concl_fig03",
+  "cell": 16,
+  "size": [
+   7.0,
+   3.2
+  ],
+  "npanels": 2,
+  "suptitle": "Two electrons in a parabolic dot at $\\hbar\\omega=1$: convergence of the basis-set methods towards Taut's exact 3 a.u.",
+  "axes": [
+   {
+    "title": "",
+    "xlabel": "number of spin-orbitals $n$",
+    "ylabel": "ground-state energy (a.u.)",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 5,
+    "labels": [
+     "HF",
+     "MP2",
+     "CCSD",
+     "FCI (on top of CCSD)"
+    ],
+    "legend": [
+     "HF",
+     "MP2",
+     "CCSD",
+     "FCI (on top of CCSD)"
+    ]
+   },
+   {
+    "title": "",
+    "xlabel": "number of spin-orbitals $n$",
+    "ylabel": "$E - E_{\\mathrm{exact}}$ (a.u.)",
+    "xscale": "log",
+    "yscale": "log",
+    "nlines": 5,
+    "labels": [
+     "HF",
+     "MP2",
+     "CCSD",
+     "$\\propto n^{-0.80}$"
+    ],
+    "legend": [
+     "HF",
+     "MP2",
+     "CCSD",
+     "$\\propto n^{-0.80}$"
+    ]
+   }
+  ]
+ }
+]

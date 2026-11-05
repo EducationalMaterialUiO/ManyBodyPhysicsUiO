@@ -1,0 +1,196 @@
+[
+ {
+  "base": "ccdchannels_fig01",
+  "cell": 9,
+  "size": [
+   9.0,
+   3.8
+  ],
+  "npanels": 2,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "cost of one channel iteration",
+    "xlabel": "number of spin-orbitals",
+    "ylabel": "time per CCD iteration, channels (s)",
+    "xscale": "log",
+    "yscale": "log",
+    "nlines": 4,
+    "labels": [
+     "$N=2$",
+     "$N=6$",
+     "$N=12$",
+     "$N=20$"
+    ],
+    "legend": [
+     "$N=2$",
+     "$N=6$",
+     "$N=12$",
+     "$N=20$"
+    ]
+   },
+   {
+    "title": "speed-up of channels over dense contractions",
+    "xlabel": "number of spin-orbitals",
+    "ylabel": "dense time / (channel time per iteration $\\times$ 25)",
+    "xscale": "linear",
+    "yscale": "log",
+    "nlines": 4,
+    "labels": [
+     "$N=2$",
+     "$N=6$",
+     "$N=12$",
+     "$N=20$"
+    ],
+    "legend": [
+     "$N=2$",
+     "$N=6$",
+     "$N=12$",
+     "$N=20$"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "ccdchannels_fig02",
+  "cell": 11,
+  "size": [
+   9.0,
+   6.4
+  ],
+  "npanels": 4,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "$N=2$, $\\omega=1$",
+    "xlabel": "number of spin-orbitals",
+    "ylabel": "energy (a.u.)",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 5,
+    "labels": [
+     "$E_{\\rm HF}$",
+     "$E_{\\rm HF}+E_{\\rm MP2}$",
+     "$E_{\\rm HF}+E_{\\rm CCD}$",
+     "full CI",
+     "reference"
+    ],
+    "legend": [
+     "$E_{\\rm HF}$",
+     "$E_{\\rm HF}+E_{\\rm MP2}$",
+     "$E_{\\rm HF}+E_{\\rm CCD}$",
+     "full CI",
+     "reference"
+    ]
+   },
+   {
+    "title": "$N=6$, $\\omega=1$",
+    "xlabel": "number of spin-orbitals",
+    "ylabel": "energy (a.u.)",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 4,
+    "labels": [
+     "$E_{\\rm HF}$",
+     "$E_{\\rm HF}+E_{\\rm MP2}$",
+     "$E_{\\rm HF}+E_{\\rm CCD}$",
+     "reference"
+    ],
+    "legend": [
+     "$E_{\\rm HF}$",
+     "$E_{\\rm HF}+E_{\\rm MP2}$",
+     "$E_{\\rm HF}+E_{\\rm CCD}$",
+     "reference"
+    ]
+   },
+   {
+    "title": "$N=12$, $\\omega=1$",
+    "xlabel": "number of spin-orbitals",
+    "ylabel": "energy (a.u.)",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 4,
+    "labels": [
+     "$E_{\\rm HF}$",
+     "$E_{\\rm HF}+E_{\\rm MP2}$",
+     "$E_{\\rm HF}+E_{\\rm CCD}$",
+     "reference"
+    ],
+    "legend": [
+     "$E_{\\rm HF}$",
+     "$E_{\\rm HF}+E_{\\rm MP2}$",
+     "$E_{\\rm HF}+E_{\\rm CCD}$",
+     "reference"
+    ]
+   },
+   {
+    "title": "$N=20$, $\\omega=1$",
+    "xlabel": "number of spin-orbitals",
+    "ylabel": "energy (a.u.)",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 4,
+    "labels": [
+     "$E_{\\rm HF}$",
+     "$E_{\\rm HF}+E_{\\rm MP2}$",
+     "$E_{\\rm HF}+E_{\\rm CCD}$",
+     "reference"
+    ],
+    "legend": [
+     "$E_{\\rm HF}$",
+     "$E_{\\rm HF}+E_{\\rm MP2}$",
+     "$E_{\\rm HF}+E_{\\rm CCD}$",
+     "reference"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "ccdchannels_fig03",
+  "cell": 15,
+  "size": [
+   9.0,
+   3.8
+  ],
+  "npanels": 2,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "$N=2$: MP2, CCD and RPA against the confinement",
+    "xlabel": "$\\omega$",
+    "ylabel": "correlation energy (a.u.)",
+    "xscale": "log",
+    "yscale": "linear",
+    "nlines": 3,
+    "labels": [
+     "$E_{\\rm MP2}$",
+     "$E_{\\rm CCD}$",
+     "$E_{\\rm RPA}=E_{\\rm ring\\,CCD}$"
+    ],
+    "legend": [
+     "$E_{\\rm MP2}$",
+     "$E_{\\rm CCD}$",
+     "$E_{\\rm RPA}=E_{\\rm ring\\,CCD}$"
+    ]
+   },
+   {
+    "title": "$N=6$: MP2, CCD and RPA against the confinement",
+    "xlabel": "$\\omega$",
+    "ylabel": "correlation energy (a.u.)",
+    "xscale": "log",
+    "yscale": "linear",
+    "nlines": 3,
+    "labels": [
+     "$E_{\\rm MP2}$",
+     "$E_{\\rm CCD}$",
+     "$E_{\\rm RPA}=E_{\\rm ring\\,CCD}$"
+    ],
+    "legend": [
+     "$E_{\\rm MP2}$",
+     "$E_{\\rm CCD}$",
+     "$E_{\\rm RPA}=E_{\\rm ring\\,CCD}$"
+    ]
+   }
+  ]
+ }
+]

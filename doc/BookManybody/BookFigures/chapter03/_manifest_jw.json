@@ -1,0 +1,72 @@
+[
+ {
+  "base": "jw_fig01",
+  "cell": 23,
+  "size": [
+   7.0,
+   4.5
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "Pauli strings of the pairing Hamiltonian, full $2L$-qubit encoding",
+    "xlabel": "Pauli weight (number of non-identity factors)",
+    "ylabel": "number of Pauli strings",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 0,
+    "labels": [],
+    "legend": [
+     "$L = 1$ levels (2 qubits)",
+     "$L = 2$ levels (4 qubits)",
+     "$L = 3$ levels (6 qubits)"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "jw_fig02",
+  "cell": 25,
+  "size": [
+   7.0,
+   3.2
+  ],
+  "npanels": 2,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "Terms to be measured",
+    "xlabel": "number of levels $L$",
+    "ylabel": "number of Pauli strings",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 2,
+    "labels": [
+     "full space, $2L$ qubits",
+     "pair qubits, $L$ qubits"
+    ],
+    "legend": [
+     "full space, $2L$ qubits",
+     "pair qubits, $L$ qubits"
+    ]
+   },
+   {
+    "title": "Length of the longest string",
+    "xlabel": "number of levels $L$",
+    "ylabel": "largest Pauli weight",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 2,
+    "labels": [
+     "full space, $2L$ qubits",
+     "pair qubits, $L$ qubits"
+    ],
+    "legend": [
+     "full space, $2L$ qubits",
+     "pair qubits, $L$ qubits"
+    ]
+   }
+  ]
+ }
+]

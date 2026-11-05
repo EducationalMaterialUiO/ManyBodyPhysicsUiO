@@ -1,0 +1,172 @@
+[
+ {
+  "base": "dmrg_fig01",
+  "cell": 13,
+  "size": [
+   9.0,
+   3.7
+  ],
+  "npanels": 2,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "middle cut, $g=1$",
+    "xlabel": "Schmidt index $k$",
+    "ylabel": "Schmidt weight $\\sigma_k^2$",
+    "xscale": "linear",
+    "yscale": "log",
+    "nlines": 2,
+    "labels": [
+     "exact (Chapter 1)",
+     "DMRG, $\\chi=32$"
+    ],
+    "legend": [
+     "exact (Chapter 1)",
+     "DMRG, $\\chi=32$"
+    ]
+   },
+   {
+    "title": "entropy profile",
+    "xlabel": "bond $\\ell$ (levels $1\\ldots\\ell$ | $\\ell+1\\ldots 12$)",
+    "ylabel": "entanglement entropy $S_\\ell$",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 3,
+    "labels": [
+     "$g=0.5$",
+     "$g=1.0$",
+     "$g=2.0$"
+    ],
+    "legend": [
+     "$g=0.5$",
+     "$g=1.0$",
+     "$g=2.0$"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "dmrg_fig02",
+  "cell": 15,
+  "size": [
+   6.0,
+   3.9
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "",
+    "xlabel": "level $p$",
+    "ylabel": "occupation $\\langle \\hat n_p\\rangle$",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 5,
+    "labels": [
+     "$g=0.5$",
+     "$g=1.0$",
+     "$g=2.0$",
+     "$g=4.0$"
+    ],
+    "legend": [
+     "$g=0.5$",
+     "$g=1.0$",
+     "$g=2.0$",
+     "$g=4.0$"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "dmrg_fig03",
+  "cell": 20,
+  "size": [
+   9.0,
+   3.7
+  ],
+  "npanels": 2,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "",
+    "xlabel": "bond dimension $\\chi$",
+    "ylabel": "error",
+    "xscale": "log",
+    "yscale": "log",
+    "nlines": 2,
+    "labels": [
+     "$E_{\\rm DMRG}-E_0$",
+     "discarded weight $\\epsilon_\\chi$"
+    ],
+    "legend": [
+     "$E_{\\rm DMRG}-E_0$",
+     "discarded weight $\\epsilon_\\chi$"
+    ]
+   },
+   {
+    "title": "",
+    "xlabel": "discarded weight $\\epsilon_\\chi$  ($10^{-4}$)",
+    "ylabel": "$E_{\\rm DMRG}$",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 3,
+    "labels": [
+     "DMRG, $\\chi=16,32,64$",
+     "linear fit",
+     "exact"
+    ],
+    "legend": [
+     "DMRG, $\\chi=16,32,64$",
+     "linear fit",
+     "exact"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "dmrg_fig04",
+  "cell": 26,
+  "size": [
+   9.0,
+   3.7
+  ],
+  "npanels": 2,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "half filling, $U=4t$",
+    "xlabel": "$1/L$",
+    "ylabel": "$E/L$",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 3,
+    "labels": [
+     "DMRG, $\\chi=32$",
+     "quadratic fit",
+     "Lieb-Wu"
+    ],
+    "legend": [
+     "DMRG, $\\chi=32$",
+     "quadratic fit",
+     "Lieb-Wu"
+    ]
+   },
+   {
+    "title": "",
+    "xlabel": "bond $\\ell$",
+    "ylabel": "entanglement entropy $S_\\ell$",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 2,
+    "labels": [
+     "DMRG, $L=32$",
+     "$\\frac{1}{6}\\ln[\\frac{2L}{\\pi}\\sin\\frac{\\pi\\ell}{L}]+s_0$"
+    ],
+    "legend": [
+     "DMRG, $L=32$",
+     "$\\frac{1}{6}\\ln[\\frac{2L}{\\pi}\\sin\\frac{\\pi\\ell}{L}]+s_0$"
+    ]
+   }
+  ]
+ }
+]

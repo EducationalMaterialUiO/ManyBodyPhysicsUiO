@@ -1,0 +1,142 @@
+[
+ {
+  "base": "nqs_fig01",
+  "cell": 5,
+  "size": [
+   6.0,
+   3.8
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "one particle in 1D, two hidden units: variance during training",
+    "xlabel": "gradient step",
+    "ylabel": "$\\mathrm{var}(E_L)$",
+    "xscale": "linear",
+    "yscale": "log",
+    "nlines": 3,
+    "labels": [
+     "$\\eta=0.01$",
+     "$\\eta=0.05$",
+     "$\\eta=0.2$"
+    ],
+    "legend": [
+     "$\\eta=0.01$",
+     "$\\eta=0.05$",
+     "$\\eta=0.2$"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "nqs_fig02",
+  "cell": 8,
+  "size": [
+   9.0,
+   3.6
+  ],
+  "npanels": 2,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "blocking curves for the trained machine",
+    "xlabel": "block length",
+    "ylabel": "estimated error of the mean",
+    "xscale": "log",
+    "yscale": "linear",
+    "nlines": 4,
+    "labels": [
+     "brute force, step 0.25",
+     "brute force, step 1.0",
+     "importance, step 0.02",
+     "importance, step 0.5"
+    ],
+    "legend": [
+     "brute force, step 0.25",
+     "brute force, step 1.0",
+     "importance, step 0.02",
+     "importance, step 0.5"
+    ]
+   },
+   {
+    "title": "statistical error against the step",
+    "xlabel": "step $\\Delta$ or time step $\\delta t$",
+    "ylabel": "blocking error, 2000 cycles",
+    "xscale": "log",
+    "yscale": "log",
+    "nlines": 2,
+    "labels": [
+     "brute force",
+     "importance"
+    ],
+    "legend": [
+     "brute force",
+     "importance"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "nqs_fig03",
+  "cell": 10,
+  "size": [
+   6.0,
+   3.8
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "two electrons at $\\omega=1$: SGD against SR, four hidden units",
+    "xlabel": "optimisation step",
+    "ylabel": "$\\langle E_L\\rangle$",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 4,
+    "labels": [
+     "SGD, $\\eta=0.05$",
+     "SR, $\\eta=0.2$",
+     "SR, $\\sigma$ learned",
+     "exact (Taut)"
+    ],
+    "legend": [
+     "SGD, $\\eta=0.05$",
+     "SR, $\\eta=0.2$",
+     "SR, $\\sigma$ learned",
+     "exact (Taut)"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "nqs_fig04",
+  "cell": 12,
+  "size": [
+   9.0,
+   3.6
+  ],
+  "npanels": 2,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "RBM alone (SR): a one-sided tail",
+    "xlabel": "walker-averaged $E_L$",
+    "ylabel": "",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 1,
+    "labels": []
+   },
+   {
+    "title": "RBM $\\times$ Jastrow: a symmetric spike",
+    "xlabel": "walker-averaged $E_L$",
+    "ylabel": "",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 1,
+    "labels": []
+   }
+  ]
+ }
+]

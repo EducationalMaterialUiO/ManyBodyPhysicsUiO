@@ -1,0 +1,223 @@
+[
+ {
+  "base": "rpa_fig01",
+  "cell": 4,
+  "size": [
+   12.0,
+   4.2
+  ],
+  "npanels": 2,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "exact eigenvalues, $f = 0.05\\,g$",
+    "xlabel": "$g$",
+    "ylabel": "$E_k$",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 6,
+    "labels": []
+   },
+   {
+    "title": "exact eigenvalues, $f = 0.5\\,g$",
+    "xlabel": "$g$",
+    "ylabel": "$E_k$",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 6,
+    "labels": []
+   }
+  ]
+ },
+ {
+  "base": "rpa_fig02",
+  "cell": 12,
+  "size": [
+   12.0,
+   4.4
+  ],
+  "npanels": 2,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "ground state",
+    "xlabel": "$g$",
+    "ylabel": "ground-state energy",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 4,
+    "labels": [
+     "exact, $f = 0.05g$",
+     "HF+RPA, $f = 0.05g$",
+     "exact, $f = 0.5g$",
+     "HF+RPA, $f = 0.5g$"
+    ],
+    "legend": [
+     "exact, $f = 0.05g$",
+     "HF+RPA, $f = 0.05g$",
+     "exact, $f = 0.5g$",
+     "HF+RPA, $f = 0.5g$"
+    ]
+   },
+   {
+    "title": "lowest excitation",
+    "xlabel": "$g$",
+    "ylabel": "$\\omega_1$",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 6,
+    "labels": [
+     "exact, $f = 0.05g$",
+     "RPA, $f = 0.05g$",
+     "TDA, $f = 0.05g$",
+     "exact, $f = 0.5g$",
+     "RPA, $f = 0.5g$",
+     "TDA, $f = 0.5g$"
+    ],
+    "legend": [
+     "exact, $f = 0.05g$",
+     "RPA, $f = 0.05g$",
+     "TDA, $f = 0.05g$",
+     "exact, $f = 0.5g$",
+     "RPA, $f = 0.5g$",
+     "TDA, $f = 0.5g$"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "rpa_fig03",
+  "cell": 15,
+  "size": [
+   7.0,
+   4.2
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "",
+    "xlabel": "$g$",
+    "ylabel": "$\\omega_1$",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 4,
+    "labels": [
+     "TDA (computed)",
+     "$\\xi + g/2$",
+     "RPA (computed)",
+     "$\\sqrt{\\xi^2+g\\xi}$"
+    ],
+    "legend": [
+     "TDA (computed)",
+     "$\\xi + g/2$",
+     "RPA (computed)",
+     "$\\sqrt{\\xi^2+g\\xi}$"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "rpa_fig04",
+  "cell": 18,
+  "size": [
+   7.0,
+   4.2
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "Lipkin: stability and the soft mode",
+    "xlabel": "$\\chi$",
+    "ylabel": "",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 5,
+    "labels": [
+     "$\\lambda_{\\min}(\\hat M_{\\rm stab})$",
+     "lowest RPA root $\\omega_1$",
+     "$\\varepsilon\\sqrt{1-\\chi^2}$"
+    ],
+    "legend": [
+     "$\\lambda_{\\min}(\\hat M_{\\rm stab})$",
+     "lowest RPA root $\\omega_1$",
+     "$\\varepsilon\\sqrt{1-\\chi^2}$"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "rpa_fig05",
+  "cell": 21,
+  "size": [
+   12.0,
+   4.2
+  ],
+  "npanels": 2,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "pairing gap; $g_c = 1.07037$",
+    "xlabel": "$g$",
+    "ylabel": "$\\Delta$",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 2,
+    "labels": []
+   },
+   {
+    "title": "the transition is a mean-field artefact",
+    "xlabel": "$g$",
+    "ylabel": "ground-state energy",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 4,
+    "labels": [
+     "exact",
+     "Hartree-Fock",
+     "BCS"
+    ],
+    "legend": [
+     "exact",
+     "Hartree-Fock",
+     "BCS"
+    ]
+   }
+  ]
+ },
+ {
+  "base": "rpa_fig06",
+  "cell": 28,
+  "size": [
+   7.5,
+   4.8
+  ],
+  "npanels": 1,
+  "suptitle": null,
+  "axes": [
+   {
+    "title": "pure pairing, $N = L = 4$",
+    "xlabel": "$g$",
+    "ylabel": "ground-state energy",
+    "xscale": "linear",
+    "yscale": "linear",
+    "nlines": 5,
+    "labels": [
+     "exact",
+     "Hartree-Fock",
+     "HF + ph-RPA",
+     "BCS",
+     "BCS + QRPA"
+    ],
+    "legend": [
+     "exact",
+     "Hartree-Fock",
+     "HF + ph-RPA",
+     "BCS",
+     "BCS + QRPA"
+    ]
+   }
+  ]
+ }
+]
