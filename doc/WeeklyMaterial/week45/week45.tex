@@ -1129,6 +1129,194 @@ d2   = -np.einsum("ja,ij,ai,ia,ja->", fov, foo, fvo, 1/D1, 1/D1)
 \small Each line is one diagram: the matrix elements in the order top to bottom, one \(1/D\) per cut, the weight and the sign in front. \texttt{GeneralHamiltonian} builds the same Hamiltonian in the determinant space and runs the recursion of week 44, so the two routes can be compared for any \((\varepsilon,u,\bar v)\); the fourteen diagrams and the determinant-space \(E^{(3)}\) agree to \(10^{-12}\) for every Hamiltonian tried. The notebook \texttt{week45.ipynb} is self-contained and repeats every number on these frames.
 \end{frame}
 
+
+% ======================================================================
+\begin{frame}[shrink=12]{Summing one class of diagrams to all orders: the pair ladders}
+\textbf{The question.} Keep, at every order, only the diagrams whose intermediate states are \emph{two-particle-two-hole} states -- one pair lifted out of the reference and nothing else. What do they add up to?
+\medskip
+
+\begin{columns}[T]
+\column{0.56\textwidth}
+\textbf{The pair space} (four levels, two pairs, $\xi=1$). The interaction moves pairs, so such a term only visits the four determinants $\ket{\Phi_i^a}$, $i\in\{1,2\}$ emptied, $a\in\{3,4\}$ filled, with
+\[
+D_i^a=\varepsilon_0-\varepsilon_i^a=-2(a-i),\quad\text{i.e.}\ (-2,-4,-4,-6),
+\]
+all coupled to the reference by $w_m=\mel{\Phi_m}{W}{\ph}=\vbar{i}{\bar\imath}{a}{\bar a}=-g/2$.
+\medskip
+
+\textbf{The rungs.} $W_{mm}=V_{mm}-V_{00}=-g-(-g)=0$: the diagonal ladder parts cancel the hole insertions (Friday's result). Off the diagonal, $\mel{\Phi_i^b}{W}{\Phi_i^a}=-g/2$ is a \emph{pp rung}, $\mel{\Phi_j^a}{W}{\Phi_i^a}=-g/2$ an \emph{hh rung}, and $\mel{\Phi_j^b}{W}{\Phi_i^a}=0$ (two pairs would have to move).
+\column{0.42\textwidth}
+In the order $(\Phi_2^3,\Phi_1^3,\Phi_2^4,\Phi_1^4)$:
+\[
+W_{DD}=-\frac g2\begin{pmatrix}0&1&1&0\\1&0&0&1\\1&0&0&1\\0&1&1&0\end{pmatrix},
+\]
+and $R_0=\mathrm{diag}(1/D_m)$.
+The four states form a \emph{square}: each is a neighbour of the two that share one of its indices.
+\medskip
+
+Every term with $2p2h$ intermediates only is a chain
+\[
+w^{T}R_0\,(W_{DD}R_0)^{\,n-2}\,w ,
+\]
+one rung per factor of $W_{DD}R_0$.
+\end{columns}
+\end{frame}
+
+\begin{frame}[shrink=12]{Second, third and fourth order with $2p2h$ intermediate states only}
+\begin{columns}[T]
+\column{0.5\textwidth}
+\begin{align*}
+E^{(2)}&=\sum_m\frac{w_m^2}{D_m}=-\frac{g^2}{4}\Bigl(\tfrac12+\tfrac14+\tfrac14+\tfrac16\Bigr)=-\frac{7}{24}g^2,\\
+E^{(3)}&=\sum_{m\ne n}\frac{w_mW_{mn}w_n}{D_mD_n}
+=-\frac{g^3}{4}\Bigl(\tfrac1{8}+\tfrac1{8}+\tfrac1{24}+\tfrac1{24}\Bigr)\\&=-\frac{1}{12}g^3
+\end{align*}
+(at third order \emph{every} intermediate state is $2p2h$: this is Friday's $-\tfrac{53}{576}-\tfrac{53}{576}+\tfrac{29}{288}$, the diagonal parts already cancelled).
+\[
+E^{(4)}_{2p2h}=\sum_{m,n,k}\frac{w_mW_{mn}W_{nk}w_k}{D_mD_nD_k}=-\frac{7}{288}g^4 ,
+\]
+sixteen paths of length three on the square; e.g.\ $\Phi_2^3\to\Phi_1^3\to\Phi_2^3$ gives $(g/2)^4/((-2)(-4)(-2))=-g^4/256$.
+\column{0.5\textwidth}
+\begin{center}
+\begin{tikzpicture}[fcidiagram,scale=0.7]
+  \begin{scope}[shift={(0,0)}]
+    \foreach \y in {0,1,2,3} {\node[vtx] (l\y) at (-0.6,1.1*\y) {}; \node[vtx] (r\y) at (0.6,1.1*\y) {}; \draw[vint] (l\y) -- (r\y);}
+    \draw[pline] (l0.center) to[bend right=30] (l1.center); \draw[pline] (r0.center) to[bend left=30] (r1.center);
+    \draw[pline] (l1.center) to[bend right=30] (l2.center); \draw[pline] (r1.center) to[bend left=30] (r2.center);
+    \draw[pline] (l2.center) to[bend right=30] (l3.center); \draw[pline] (r2.center) to[bend left=30] (r3.center);
+    \draw[hline] (l0.center) to[bend left=38] (l3.center); \draw[hline] (r0.center) to[bend right=38] (r3.center);
+    \node[dlab,below] at (0,-0.45) {$pp\,pp$};
+  \end{scope}
+  \begin{scope}[shift={(2.6,0)}]
+    \foreach \y in {0,1,2,3} {\node[vtx] (l\y) at (-0.6,1.1*\y) {}; \node[vtx] (r\y) at (0.6,1.1*\y) {}; \draw[vint] (l\y) -- (r\y);}
+    \draw[pline] (l0.center) to[bend right=18] (l3.center); \draw[pline] (r0.center) to[bend left=18] (r3.center);
+    \draw[hline] (l0.center) to[bend left=50] (l1.center); \draw[hline] (r0.center) to[bend right=50] (r1.center);
+    \draw[hline] (l1.center) to[bend left=50] (l2.center); \draw[hline] (r1.center) to[bend right=50] (r2.center);
+    \draw[hline] (l2.center) to[bend left=50] (l3.center); \draw[hline] (r2.center) to[bend right=50] (r3.center);
+    \node[dlab,below] at (0,-0.45) {$hh\,hh$};
+  \end{scope}
+  \begin{scope}[shift={(5.2,0)}]
+    \foreach \y in {0,1,2,3} {\node[vtx] (l\y) at (-0.6,1.1*\y) {}; \node[vtx] (r\y) at (0.6,1.1*\y) {}; \draw[vint] (l\y) -- (r\y);}
+    \draw[pline] (l0.center) to[bend right=30] (l1.center); \draw[pline] (r0.center) to[bend left=30] (r1.center);
+    \draw[pline] (l1.center) to[bend right=18] (l3.center); \draw[pline] (r1.center) to[bend left=18] (r3.center);
+    \draw[hline] (l0.center) to[bend left=38] (l2.center); \draw[hline] (r0.center) to[bend right=38] (r2.center);
+    \draw[hline] (l2.center) to[bend left=50] (l3.center); \draw[hline] (r2.center) to[bend right=50] (r3.center);
+    \node[dlab,below] at (0,-0.45) {$pp\,hh$};
+  \end{scope}
+  \begin{scope}[shift={(7.8,0)}]
+    \foreach \y in {0,1,2,3} {\node[vtx] (l\y) at (-0.6,1.1*\y) {}; \node[vtx] (r\y) at (0.6,1.1*\y) {}; \draw[vint] (l\y) -- (r\y);}
+    \draw[pline] (l0.center) to[bend right=18] (l2.center); \draw[pline] (r0.center) to[bend left=18] (r2.center);
+    \draw[pline] (l2.center) to[bend right=30] (l3.center); \draw[pline] (r2.center) to[bend left=30] (r3.center);
+    \draw[hline] (l0.center) to[bend left=50] (l1.center); \draw[hline] (r0.center) to[bend right=50] (r1.center);
+    \draw[hline] (l1.center) to[bend left=38] (l3.center); \draw[hline] (r1.center) to[bend right=38] (r3.center);
+    \node[dlab,below] at (0,-0.45) {$hh\,pp$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+\small The four fourth-order diagrams with $2p2h$ intermediates: particle lines inside, hole lines outside; every cut crosses two particle and two hole lines. The pp and hh rungs can be stacked in four orders.
+\end{columns}
+\end{frame}
+
+\begin{frame}[shrink=12]{What the restriction leaves out at fourth order}
+\[
+E^{(4)}=\av{WR_0WR_0WR_0W}-E^{(2)}\av{WR_0^2W}
+\]
+\begin{columns}[T]
+\column{0.5\textwidth}
+\textbf{Through the $4p4h$ state.} Both pairs lifted, $D=-8$, coupled by $-g/2$ to each of the four pair states:
+\[
+E^{(4)}_{4p4h}=\frac{g^4}{16}\Bigl(\sum_m\frac1{D_m}\Bigr)^2\frac{1}{-8}=-\frac{49}{4608}g^4 .
+\]
+\textbf{The folded term.}
+\[
+-E^{(2)}\sum_m\frac{w_m^2}{D_m^2}=\frac{7}{24}g^2\cdot\frac{g^2}{4}\cdot\frac{29}{72}=+\frac{203}{6912}g^4 .
+\]
+\column{0.5\textwidth}
+\numbox{$g=0.5$:\\
+$2p2h$ ladders \(-0.00151910\)\\
+$4p4h$ \(-0.00066461\)\\
+folded \(+0.00183558\)\\
+sum \(-0.00034813=E^{(4)}\) (week-44 recursion)}
+\end{columns}
+\medskip
+\[
+E^{(4)}=\Bigl(-\tfrac{336}{13824}-\tfrac{147}{13824}+\tfrac{406}{13824}\Bigr)g^4=-\frac{77}{13824}g^4 .
+\]
+The two dropped pieces are each three to four times larger than their sum: the ladders alone overshoot the full fourth order by a factor of four. (In coupled-cluster language: the disconnected quadruple $\tfrac12T_2^2$ and the $-t\,\Delta E$ term -- week 46.)
+\end{frame}
+
+\begin{frame}[shrink=14]{Deriving the Bethe-Salpeter equation}
+\begin{columns}[T]
+\column{0.52\textwidth}
+\textbf{Sum the chains.} With $t^{(1)}=R_0w$ (first-order pair amplitudes) and $K=W_{DD}R_0$ (one rung, one propagation),
+\[
+\Delta E_{\rm lad}=w^{T}\bigl(1+K+K^2+\cdots\bigr)t^{(1)}=w^{T}(1-K)^{-1}t^{(1)} .
+\]
+\textbf{Equivalently}, $t=(1-K)^{-1}t^{(1)}$ obeys $t=t^{(1)}+Kt$:
+\[
+\boxed{\;t_m=\frac{1}{D_m}\Bigl[w_m+\sum_nW_{mn}t_n\Bigr],\quad \Delta E_{\rm lad}=\sum_mw_mt_m\;}
+\]
+a \emph{linear} equation: kernel = the interaction inside the pair space, inhomogeneous term = the coupling to the reference, propagator $1/D_m$ between the rungs. A Bethe-Salpeter (Lippmann-Schwinger) equation with the intermediate states restricted to one lifted pair and the starting energy frozen at $\varepsilon_0$. In terms of $H$ ($\varepsilon_0+D_m-W_{mm}=E_{\rm ref}-H_{mm}$): $\Delta E_{\rm lad}=H_{0D}(E_{\rm ref}-H_{DD})^{-1}H_{D0}$.
+\column{0.46\textwidth}
+\textbf{Solve it by hand.} Apply $K$ twice to $t^{(1)}=\tfrac g2(\tfrac12,\tfrac14,\tfrac14,\tfrac16)$:
+\begin{align*}
+W_{DD}t^{(1)}&=-g^2(\tfrac18,\tfrac16,\tfrac16,\tfrac18),\\
+R_0W_{DD}t^{(1)}&=g^2(\tfrac1{16},\tfrac1{24},\tfrac1{24},\tfrac1{48}),\\
+W_{DD}R_0W_{DD}t^{(1)}&=-\tfrac{g^3}{24}(1,1,1,1)\propto w,
+\end{align*}
+so $K^2t^{(1)}=\dfrac{g^2}{12}\,t^{(1)}$: even and odd orders are each geometric with ratio $g^2/12$,
+\[
+\boxed{\;\Delta E_{\rm lad}(g)=\frac{-\tfrac{7}{24}g^2-\tfrac1{12}g^3}{1-g^2/12}=-\frac{g^2(7+2g)}{2(12-g^2)}\;}
+\]
+$=-\tfrac{7}{24}g^2-\tfrac1{12}g^3-\tfrac{7}{288}g^4-\tfrac1{144}g^5-\cdots$, with a pole at $g=2\sqrt3$. (\texttt{mbpt.pair\_ladder\_sum} checks the coefficients to eighth order in exact arithmetic.)
+\end{columns}
+\end{frame}
+
+\begin{frame}[shrink=8]{The ladder sum against CID, CCD and FCI}
+\begin{center}
+\small
+\begin{tabular}{rrrrr}
+\toprule
+$g$ & ladders $\infty$ & CID & CCD & FCI\\
+\midrule
+$0.25$ & $1.730366$ & $1.730507$ & $1.730456$ & $1.730460$\\
+$0.50$ & $1.414894$ & $1.417596$ & $1.416638$ & $1.416774$\\
+$1.00$ & $0.590909$ & $0.648907$ & $0.630443$ & $0.635548$\\
+$1.50$ & $-0.653846$ & $-0.291132$ & $-0.384165$ & $-0.348191$\\
+$2.00$ & $-2.750000$ & $-1.352087$ & $-1.609594$ & $-1.489652$\\
+\bottomrule
+\end{tabular}
+
+\includegraphics[width=0.78\textwidth]{chapter09/mbpt_fig05}
+\end{center}
+\small Four levels, four particles, $\xi=1$; ladder column $=E_{\rm ref}-g^2(7+2g)/(2(12-g^2))$ (\texttt{mbpt.pair\_ladder\_sum}). Right panel: the error of the ladder series truncated order by order and of the full sum -- all smooth through $g_c\simeq1.58$, where the full Rayleigh-Schr\"odinger series diverges.
+\end{frame}
+
+\begin{frame}[shrink=5]{What the closed form says}
+\begin{enumerate}
+\item \textbf{It is CID with the energy frozen.} $\Delta E_{\rm CID}=H_{0D}(E_{\rm ref}+\Delta E_{\rm CID}-H_{DD})^{-1}H_{D0}$: the only difference is $\Delta E$ in the denominator, and expanding it generates exactly the \emph{folded} diagrams. Iterating the energy reproduces CID to every digit; without the folds (positive) the sum lies below CID.
+\item \textbf{Convergence is not inherited.} The full series diverges beyond $g_c\simeq1.58$; the ladder series converges up to $g=2\sqrt3\approx3.46$ -- and is wrong there ($-2.75$ vs $-1.49$ at $g=2$). Its pole is where $E_{\rm ref}$ meets an eigenvalue of $H_{DD}$, not where the exact spectrum does anything.
+\item \textbf{Not better at weak coupling either}: at $g=0.25$ the error is $9\times10^{-5}$ against $9\times10^{-6}$ for third order -- the dropped $4p4h$ and folded pieces outweigh the kept fourth-order ladder. What the sum buys is a \emph{finite} effective interaction when the low orders are not: the Brueckner $G$-matrix (pp rungs only, each pair at its own starting energy $2\varepsilon_i$) gives $1.7311$, $1.4214$, $0.6584$ at $g=0.25,0.5,1$.
+\end{enumerate}
+\medskip
+\textbf{Where this goes.} Week 46: CCD keeps the same linear ladder kernel and adds the folds and the quadruples non-linearly, and stays finite. Chapter 11 (Green's functions): the same equation with an energy-dependent propagator and rings in the kernel -- the parquet summation.
+\end{frame}
+
+\begin{frame}[shrink=1]{Pause to think \#5}
+\thinkq{3}{The restricted ladder sum solves $t=R_0(w+W_{DD}t)$ with $R_0=1/D_m$ fixed.
+\begin{enumerate}
+\item Replace $R_0$ by $1/(D_m+\Delta E)$ with the \emph{exact} $\Delta E$ and iterate: which scheme of week 44 is this, and why does it reproduce CID rather than the exact energy?
+\item The pure pp ladders are above the exact energy at every $g$ in the table, the pp+hh ladders below it. What does the hh rung do to the denominators that makes the difference grow with $g$?
+\end{enumerate}}
+\end{frame}
+
+\begin{frame}[shrink=8]{Answer to pause \#5}
+\thinka{%
+\begin{enumerate}
+\item Brillouin-Wigner, restricted to the pair space: the denominators carry the exact (self-consistent) energy and there are no folded terms to subtract -- the folds \emph{are} the expansion of $\Delta E$ in the denominator. Iterating $\Delta E=H_{0D}(E_{\rm ref}+\Delta E-H_{DD})^{-1}H_{D0}$ is the eigenvalue condition of $H$ in the space $\{\ph,\Phi_m\}$, i.e.\ CID, not FCI, because the $4p4h$ state is still excluded; Brillouin-Wigner in the \emph{full} space would be exact (week 44).
+\item An hh rung keeps the lifted pair in $a$ and moves the hole pair from $i$ to $j$; the propagator stays $1/D_j^a$, frozen at the reference energy, whereas in the true $2p2h$ energetics the moved hole pair sits in a state whose energy relative to the ground state already contains the correlation shift. Freezing the energy makes the hh chains too attractive, and the more so the closer $E_{\rm ref}$ comes to the lowest eigenvalue of $H_{DD}$ -- the pole at $g=2\sqrt3$. The pp rungs at the pair's own starting energy $2\varepsilon_i$ do not have this problem and stay above the exact answer, like a variational-looking $G$-matrix.
+\end{enumerate}}
+\end{frame}
+
 % ======================================================================
 \begin{frame}{A look ahead at the fourth-order diagrams}
 \[
@@ -1155,13 +1343,14 @@ Week 46 develops the factorisation, the linked-diagram theorem and its proof, th
 \section{Summary}
 % ======================================================================
 
-\begin{frame}{Summary of week 45}
+\begin{frame}[shrink=8]{Summary of week 45}
 \begin{itemize}
 \item The RS recursion generates the wave operator through third order and the energy through fourth order, including the folded terms.
 \item $W=H_I-E^{(1)}I$ absorbs the explicit first-order scalar insertions. $\varepsilon_0+E^{(1)}$ remains in the reference energy. The fourth-order subtraction is $-E^{(2)}\|\Psi^{(1)}\|^2$.
 \item For time-ordered antisymmetrised diagrams, Wick contractions give the label sums. The cuts give the resolvent denominators. Equivalent internal line pairs give $1/2$ each, and the Wick sign is $(-1)^{h+l}$.
 \item Fourteen connected third-order diagrams occur for general one- and two-body normal-ordered vertices. With a canonical HF partition only the pp ladder, hh ladder and ph ring survive.
 \item The pairing model illustrates how the original third-order subtraction enters through the diagonal matrix elements of $W$. At fourth order, unlinked graphs require the factorisation developed next week.
+\item The pair ladders of the pairing model -- all diagrams with $2p2h$ intermediate states -- form a geometric series with ratio $g^2/12$ and sum to $-g^2(7+2g)/(2(12-g^2))$; they solve a restricted Bethe-Salpeter equation, which is doubles CI with the energy frozen, and the folded diagrams are the difference.
 \end{itemize}
 \end{frame}
 

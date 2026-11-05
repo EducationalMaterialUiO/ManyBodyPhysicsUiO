@@ -476,7 +476,8 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-pairing-plus-particle-hole-model">10.10. 10. The pairing plus particle-hole model</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#does-the-partition-matter">10.11. 11. Does the partition matter?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#everything-against-everything">10.12. 12. Everything against everything</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-full-program">10.13. The full program</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pair-ladders-to-all-orders-a-restricted-bethe-salpeter-equation">10.13. 13. Pair ladders to all orders: a restricted Bethe-Salpeter equation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-full-program">10.14. The full program</a></li>
 </ul>
             </nav>
         </div>
@@ -1253,9 +1254,7 @@ determinant to the next.  There the two partitions do disagree:
     g      f   one-body: +E2          +E3     E-N: +E2          +E3          FCI
  0.50   0.25      0.60208333   0.51930556   0.62435065   0.51885823   0.55119157
  1.00   0.50     -1.59166667  -2.25388889  -1.44791667  -2.25694444  -1.69173670
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 1.50   0.75     -4.58125000  -6.81625000  -4.17225275  -6.82273352  -4.34336785
+ 1.50   0.75     -4.58125000  -6.81625000  -4.17225275  -6.82273352  -4.34336785
 
 Both partitions sum to the same exact answer, but at any finite
 order they disagree, and neither is uniformly better: at second
@@ -1286,19 +1285,15 @@ The pairing model with four levels and four particles, the one
 system every chapter has now treated.
 
      g         HF       MBPT2       MBPT3         CID      HF+RPA         FCI
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0.25    1.75000    1.731771    1.730469    1.730507    1.716347    1.730460
+  0.25    1.75000    1.731771    1.730469    1.730507    1.716347    1.730460
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0.50    1.50000    1.427083    1.416667    1.417596    1.374502    1.416774
+  1.00    1.00000    0.708333    0.625000    0.648907    0.554589    0.635548
+  1.50    0.50000   -0.156250   -0.437500   -0.291132   -0.406248   -0.348191
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1.00    1.00000    0.708333    0.625000    0.648907    0.554589    0.635548
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1.50    0.50000   -0.156250   -0.437500   -0.291132   -0.406248   -0.348191
-  2.00    0.00000   -1.166667   -1.833333   -1.352087   -1.476223   -1.489652
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  2.00    0.00000   -1.166667   -1.833333   -1.352087   -1.476223   -1.489652
 
 The same table as errors, which is where the interest lies:
      g       MBPT2       MBPT3         CID      HF+RPA
@@ -1323,10 +1318,100 @@ answer, and it alone degrades gracefully.
 </div>
 </div>
 </section>
+<section id="pair-ladders-to-all-orders-a-restricted-bethe-salpeter-equation">
+<h2><span class="section-number">10.13. </span>13. Pair ladders to all orders: a restricted Bethe-Salpeter equation<a class="headerlink" href="#pair-ladders-to-all-orders-a-restricted-bethe-salpeter-equation" title="Link to this heading">#</a></h2>
+<p>Keep, at every order, only the diagrams whose intermediate states are
+two-particle-two-hole pair states — one pair lifted out of the reference
+and nothing else.  For four levels and four particles that is a space of four
+determinants <span class="math notranslate nohighlight">\(|\Phi_i^a\rangle\)</span> with excitation energies <span class="math notranslate nohighlight">\(D=(2,4,4,6)\)</span>,
+couplings <span class="math notranslate nohighlight">\(w_m=-g/2\)</span> to the reference and a block <span class="math notranslate nohighlight">\(W_{mn}\)</span> of
+<span class="math notranslate nohighlight">\(\hat W=\hat H_I-\Delta E^{(1)}\)</span> that is <span class="math notranslate nohighlight">\(-g/2\)</span> between neighbours on a square
+(a particle-particle or a hole-hole rung) and zero otherwise.  The terms with
+<span class="math notranslate nohighlight">\(2p2h\)</span> intermediate states are then the chains
+<span class="math notranslate nohighlight">\(w^T R\,(W_{DD}R)^{n-2}\,w\)</span> with <span class="math notranslate nohighlight">\(R=-1/D\)</span>, and they form a geometric series
+with ratio <span class="math notranslate nohighlight">\(g^2/12\)</span> that sums to</p>
+<div class="math notranslate nohighlight">
+\[\Delta E_{\rm lad}(g)=-\frac{g^2(7+2g)}{2(12-g^2)},\]</div>
+<p>the solution of the restricted Bethe-Salpeter equation
+<span class="math notranslate nohighlight">\(t_m=\frac{1}{-D_m}\bigl[w_m+\sum_n W_{mn}t_n\bigr]\)</span>, <span class="math notranslate nohighlight">\(\Delta E=\sum_m w_m t_m\)</span>.
+The demonstration prints the exact rational coefficients, splits the fourth
+order into its <span class="math notranslate nohighlight">\(2p2h\)</span>, <span class="math notranslate nohighlight">\(4p4h\)</span> and folded pieces, and compares the sum with
+doubles CI (the same equation with <span class="math notranslate nohighlight">\(E_{\rm ref}+\Delta E\)</span> in the denominator,
+i.e. with the folded diagrams) and with the exact energy.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mbpt</span><span class="o">.</span><span class="n">demo_pair_ladders</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">18</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">mbpt</span><span class="o">.</span><span class="n">demo_pair_ladders</span><span class="p">()</span>
+
+<span class="ne">AttributeError</span>: module &#39;mbpt&#39; has no attribute &#39;demo_pair_ladders&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>The sum of the restricted class converges up to <span class="math notranslate nohighlight">\(g=2\sqrt3\approx3.46\)</span>, where
+the closed form has a pole, although the full series diverges beyond
+<span class="math notranslate nohighlight">\(g\approx1.58\)</span>; and where it converges it is not accurate, because the
+<span class="math notranslate nohighlight">\(4p4h\)</span> term and the folded term it drops are larger than the fourth-order term
+it keeps.  The figure follows the partial sums through fourth order, the
+all-order sum, CID and the exact energy.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">3.3</span><span class="p">,</span> <span class="mi">66</span><span class="p">)</span>
+<span class="n">e_ref</span><span class="p">,</span> <span class="n">lad2</span><span class="p">,</span> <span class="n">lad3</span><span class="p">,</span> <span class="n">lad4</span><span class="p">,</span> <span class="n">lad_inf</span><span class="p">,</span> <span class="n">cid</span><span class="p">,</span> <span class="n">exact</span><span class="p">,</span> <span class="n">rs4</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">gs</span><span class="p">:</span>
+    <span class="n">part</span><span class="p">,</span> <span class="n">model</span> <span class="o">=</span> <span class="n">mbpt</span><span class="o">.</span><span class="n">pairing_partition</span><span class="p">(</span><span class="n">g</span><span class="o">=</span><span class="n">g</span><span class="p">)</span>
+    <span class="n">r0</span> <span class="o">=</span> <span class="n">part</span><span class="o">.</span><span class="n">reference_energy</span>
+    <span class="n">e</span> <span class="o">=</span> <span class="n">mbpt</span><span class="o">.</span><span class="n">pair_ladder_orders</span><span class="p">(</span><span class="n">part</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+    <span class="n">e_ref</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r0</span><span class="p">)</span>
+    <span class="n">lad2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r0</span> <span class="o">+</span> <span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span> <span class="n">lad3</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r0</span> <span class="o">+</span> <span class="nb">sum</span><span class="p">(</span><span class="n">e</span><span class="p">[:</span><span class="mi">2</span><span class="p">]));</span> <span class="n">lad4</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r0</span> <span class="o">+</span> <span class="nb">sum</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+    <span class="n">lad_inf</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r0</span> <span class="o">+</span> <span class="n">mbpt</span><span class="o">.</span><span class="n">pair_ladder_sum</span><span class="p">(</span><span class="n">part</span><span class="p">,</span> <span class="n">model</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">cid</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">energies</span><span class="p">(</span><span class="mi">2</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">exact</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">part</span><span class="o">.</span><span class="n">exact</span><span class="p">())</span>
+    <span class="n">rs4</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r0</span> <span class="o">+</span> <span class="nb">sum</span><span class="p">(</span><span class="n">mbpt</span><span class="o">.</span><span class="n">rayleigh_schrodinger</span><span class="p">(</span><span class="n">part</span><span class="p">,</span> <span class="mi">4</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]))</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mf">4.4</span><span class="p">))</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gs</span><span class="p">,</span> <span class="n">exact</span><span class="p">,</span> <span class="s2">&quot;k-&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;exact (FCI)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gs</span><span class="p">,</span> <span class="n">cid</span><span class="p">,</span> <span class="s2">&quot;C2-&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;CID&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gs</span><span class="p">,</span> <span class="n">lad2</span><span class="p">,</span> <span class="s2">&quot;C0:&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;ladders through 2nd&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gs</span><span class="p">,</span> <span class="n">lad3</span><span class="p">,</span> <span class="s2">&quot;C0--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;ladders through 3rd&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gs</span><span class="p">,</span> <span class="n">lad4</span><span class="p">,</span> <span class="s2">&quot;C0-.&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;ladders through 4th&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gs</span><span class="p">,</span> <span class="n">lad_inf</span><span class="p">,</span> <span class="s2">&quot;C3-&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;ladders to all orders&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gs</span><span class="p">,</span> <span class="n">rs4</span><span class="p">,</span> <span class="s2">&quot;C7--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;RS through 4th&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C3&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">8</span><span class="p">,</span> <span class="mf">2.2</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;$g$&quot;</span><span class="p">);</span> <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;ground-state energy&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">err</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">e</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">exact</span><span class="p">))</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">gs</span><span class="p">,</span> <span class="n">err</span><span class="p">(</span><span class="n">cid</span><span class="p">),</span> <span class="s2">&quot;C2-&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;CID&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">gs</span><span class="p">,</span> <span class="n">err</span><span class="p">(</span><span class="n">lad2</span><span class="p">),</span> <span class="s2">&quot;C0:&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;ladders through 2nd&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">gs</span><span class="p">,</span> <span class="n">err</span><span class="p">(</span><span class="n">lad3</span><span class="p">),</span> <span class="s2">&quot;C0--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;ladders through 3rd&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">gs</span><span class="p">,</span> <span class="n">err</span><span class="p">(</span><span class="n">lad4</span><span class="p">),</span> <span class="s2">&quot;C0-.&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;ladders through 4th&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">gs</span><span class="p">,</span> <span class="n">err</span><span class="p">(</span><span class="n">lad_inf</span><span class="p">),</span> <span class="s2">&quot;C3-&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;ladders to all orders&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">gs</span><span class="p">,</span> <span class="n">err</span><span class="p">(</span><span class="n">rs4</span><span class="p">),</span> <span class="s2">&quot;C7--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;RS through 4th&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C3&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;$g$&quot;</span><span class="p">);</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$|E - E_{\rm FCI}|$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/6d4429cce725da97105f6a2890cb4f1d19733deff9164facd041e5f719463aa3.png" src="_images/6d4429cce725da97105f6a2890cb4f1d19733deff9164facd041e5f719463aa3.png" />
+</div>
+</div>
+</section>
 <section id="the-full-program">
-<h2><span class="section-number">10.13. </span>The full program<a class="headerlink" href="#the-full-program" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">10.14. </span>The full program<a class="headerlink" href="#the-full-program" title="Link to this heading">#</a></h2>
 <p>Everything above lives in <code class="docutils literal notranslate"><span class="pre">BookManybody/BookPrograms/chapter09/mbpt.py</span></code>, which
-runs as a script and prints all eleven demonstrations of the chapter.</p>
+runs as a script and prints all twelve demonstrations of the chapter.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">mbpt</span><span class="o">.</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
@@ -1376,6 +1461,14 @@ chapter 5.
                           convergence is |2 v_12 / Delta| = 1
     reduced_resolvent_demo -- the numerical check that Q/(omega - H_0) is a
                           diagonal matrix in the eigenbasis of H_0 (section 9.2)
+    pair_ladder_space, pair_ladder_orders, pair_ladder_sum,
+    pair_ladder_self_consistent, pair_ladder_closed_form,
+    fourth_order_pieces_pairing
+                       -- the pairing-model terms whose intermediate states
+                          are all 2p2h pair states, order by order and summed
+                          to all orders as a geometric series (a restricted
+                          Bethe-Salpeter equation), and the split of the
+                          fourth order into 2p2h, 4p4h and folded pieces
 
 Author: Morten Hjorth-Jensen
 &quot;&quot;&quot;
@@ -1738,6 +1831,106 @@ def copies_partition(g=0.5, xi=1.0, subsystems=2, scheme=&quot;one_body&quot;):
 
 
 # ---------------------------------------------------------------------------
+#  Pair ladders: the two-particle intermediate states summed to all orders
+# ---------------------------------------------------------------------------
+def pair_ladder_space(partition, model):
+    &quot;&quot;&quot;The 2p2h pair space of a pairing partition.
+
+    Returns the indices of the seniority-zero determinants in which exactly
+    one pair has been moved out of the reference, their unperturbed
+    excitation energies D_m = W_m - W_0, the couplings w_m = &lt;Phi_m|W|Phi_0&gt;
+    to the reference and the block W_mn of W = V - V_00 within the space.
+    For four levels and four particles the space has four states, the
+    couplings are all -g/2, the diagonal of W_mn vanishes and the
+    off-diagonal elements are -g/2 when the two states differ by one pair
+    move (a particle-particle or a hole-hole ladder rung) and zero when
+    both pairs would have to move.
+    &quot;&quot;&quot;
+    states = model.basis.states
+    n_orb = model.basis.n_orbitals
+    ref = partition.reference
+    refstate = states[ref]
+
+    def seniority_zero(s):
+        return all(((s &gt;&gt; (2 * l)) &amp; 1) == ((s &gt;&gt; (2 * l + 1)) &amp; 1)
+                   for l in range(n_orb // 2))
+
+    idx = np.array([i for i, s in enumerate(states)
+                    if seniority_zero(s) and bin(s ^ refstate).count(&quot;1&quot;) == 4])
+    V = partition.V
+    W = V - V[ref, ref] * np.eye(partition.dim)
+    D = partition.w[idx] - partition.w0
+    return dict(indices=idx, D=D, w=W[ref, idx], W=W[np.ix_(idx, idx)])
+
+
+def pair_ladder_orders(partition, model, order=4):
+    &quot;&quot;&quot;E^(n)_{2p2h} = &lt;w| R (W_DD R)^{n-2} |w&gt;, n = 2, ..., order: the
+    Rayleigh-Schrodinger terms whose intermediate states are all 2p2h pair
+    states, i.e. the ladders (particle-particle, hole-hole and mixed) with
+    no folded term.  Returns the list indexed from n = 2.&quot;&quot;&quot;
+    sp = pair_ladder_space(partition, model)
+    R = -1.0 / sp[&quot;D&quot;]
+    t = R * sp[&quot;w&quot;]
+    out = []
+    for n in range(2, order + 1):
+        out.append(float(sp[&quot;w&quot;] @ t))
+        t = R * (sp[&quot;W&quot;] @ t)
+    return out
+
+
+def pair_ladder_sum(partition, model):
+    &quot;&quot;&quot;The geometric series of pair ladders summed to all orders: the
+    solution of the restricted Bethe-Salpeter (Lippmann-Schwinger) equation
+
+        t = R (w + W_DD t),      E_lad = w . t,
+
+    with R = -1/D the resolvent on the 2p2h space, which is
+    E_lad = w^T (-D - W_DD)^{-1} w = H_{0D} (E_ref - H_{DD})^{-1} H_{D0}:
+    the doubles-CI equations with the energy frozen at the reference energy.
+    Returns the energy and the amplitude vector t.&quot;&quot;&quot;
+    sp = pair_ladder_space(partition, model)
+    t = np.linalg.solve(-np.diag(sp[&quot;D&quot;]) - sp[&quot;W&quot;], sp[&quot;w&quot;])
+    return float(sp[&quot;w&quot;] @ t), t
+
+
+def pair_ladder_self_consistent(partition, model, tol=1e-13, max_iter=1000):
+    &quot;&quot;&quot;The same equation with E_ref + E in the denominator, iterated to
+    self-consistency: E = w^T (E - D - W_DD)^{-1} w.  This is the doubles-CI
+    energy, and the difference from pair_ladder_sum is the sum of all the
+    folded diagrams with 2p2h intermediate states.&quot;&quot;&quot;
+    sp = pair_ladder_space(partition, model)
+    E = float(sp[&quot;w&quot;] @ (-sp[&quot;w&quot;] / sp[&quot;D&quot;]))
+    for _ in range(max_iter):
+        new = float(sp[&quot;w&quot;] @ np.linalg.solve(
+            E * np.eye(len(sp[&quot;D&quot;])) - np.diag(sp[&quot;D&quot;]) - sp[&quot;W&quot;], sp[&quot;w&quot;]))
+        if abs(new - E) &lt; tol:
+            return new
+        E = new
+    return E
+
+
+def pair_ladder_closed_form(g, xi=1.0):
+    &quot;&quot;&quot;Four levels, four particles: the ladder series is geometric with
+    ratio g^2/12 and sums to  -g^2 (7 + 2 g) / (2 (12 - g^2))  (xi = 1).&quot;&quot;&quot;
+    g = np.asarray(g, dtype=float) / xi
+    return -xi * g**2 * (7 + 2 * g) / (2 * (12 - g**2))
+
+
+def fourth_order_pieces_pairing(partition, model):
+    &quot;&quot;&quot;Delta E^(4) of the pairing model split into the part with only 2p2h
+    intermediate states, the part that passes through the 4p4h state, and
+    the folded term -Delta E^(2) &lt;Psi^(1)|Psi^(1)&gt;.&quot;&quot;&quot;
+    sp = pair_ladder_space(partition, model)
+    R = -1.0 / sp[&quot;D&quot;]
+    e2 = float(sp[&quot;w&quot;] @ (R * sp[&quot;w&quot;]))
+    e4_2p2h = pair_ladder_orders(partition, model, 4)[2]
+    folded = -e2 * float(np.sum(sp[&quot;w&quot;]**2 * R**2))
+    total = rayleigh_schrodinger(partition, 4)[3]
+    return dict(E4_2p2h=e4_2p2h, E4_4p4h=total - e4_2p2h - folded,
+                folded=folded, total=total)
+
+
+# ---------------------------------------------------------------------------
 #  Demonstrations
 # ---------------------------------------------------------------------------
 def demo_recursion():
@@ -1820,6 +2013,63 @@ def demo_pairing():
     print(&quot;it does.  Compare with CID, which is variational and therefore&quot;)
     print(&quot;always above, and with RPA, which sums a particular class of&quot;)
     print(&quot;contributions to all orders.&quot;)
+
+
+def demo_pair_ladders():
+    from fractions import Fraction
+    print(&quot;=&quot; * 74)
+    print(&quot;3b. Pair ladders: the 2p2h intermediate states summed to all orders&quot;)
+    print(&quot;=&quot; * 74)
+    part, model = pairing_partition(g=1.0)
+    sp = pair_ladder_space(part, model)
+    print(&quot;The 2p2h pair space of the four-level, four-particle model:&quot;)
+    print(&quot;  excitation energies D_m :&quot;, sp[&quot;D&quot;])
+    print(&quot;  couplings w_m = &lt;m|W|0&gt; :&quot;, sp[&quot;w&quot;])
+    print(&quot;  block W_mn (g = 1):&quot;)
+    print(sp[&quot;W&quot;])
+    # exact rational coefficients of g^n
+    w = [Fraction(-1, 2)] * 4
+    D = [Fraction(int(d)) for d in sp[&quot;D&quot;]]
+    Wm = [[Fraction(int(round(2 * x)), 2) for x in row] for row in sp[&quot;W&quot;]]
+    t = [-w[m] / D[m] for m in range(4)]
+    coefficients = []
+    for n in range(2, 9):
+        coefficients.append(sum(w[m] * t[m] for m in range(4)))
+        t = [-sum(t[k] * Wm[k][m] for k in range(4)) / D[m] for m in range(4)]
+    print(&quot;  coefficients c_n of E^(n)_{2p2h} = c_n g^n:&quot;)
+    for k, c in enumerate(coefficients):
+        n = k + 2
+        ratio = f&quot;c_{n}/c_{n-2} = {coefficients[k] / coefficients[k - 2]}&quot; if k &gt;= 2 else &quot;&quot;
+        print(f&quot;    n = {n}: {str(c):&gt;10s}   {ratio}&quot;)
+    print(&quot;  every second coefficient is 1/12 of the one two orders below:&quot;)
+    print(&quot;  the series is geometric with ratio g^2/12 and sums to&quot;)
+    print(&quot;  E_lad(g) = -g^2 (7 + 2g) / (2 (12 - g^2)), with a pole at g = 2 sqrt(3).&quot;)
+    print()
+    print(f&quot;{&#39;g&#39;:&gt;6s} {&#39;E2&#39;:&gt;12s} {&#39;E3&#39;:&gt;12s} {&#39;E4_2p2h&#39;:&gt;12s} {&#39;E4_4p4h&#39;:&gt;12s} &quot;
+          f&quot;{&#39;folded&#39;:&gt;12s} {&#39;E4 total&#39;:&gt;12s}&quot;)
+    for g in (0.25, 0.5, 1.0, 1.5, 2.0):
+        part, model = pairing_partition(g=g)
+        e = pair_ladder_orders(part, model, 4)
+        p = fourth_order_pieces_pairing(part, model)
+        print(f&quot;{g:6.2f} {e[0]:12.8f} {e[1]:12.8f} {p[&#39;E4_2p2h&#39;]:12.8f} &quot;
+              f&quot;{p[&#39;E4_4p4h&#39;]:12.8f} {p[&#39;folded&#39;]:12.8f} {p[&#39;total&#39;]:12.8f}&quot;)
+    print()
+    print(f&quot;{&#39;g&#39;:&gt;6s} {&#39;E_ref&#39;:&gt;8s} {&#39;+ladders(4)&#39;:&gt;12s} {&#39;+ladders(inf)&#39;:&gt;13s} &quot;
+          f&quot;{&#39;closed form&#39;:&gt;12s} {&#39;CID&#39;:&gt;12s} {&#39;self-cons.&#39;:&gt;12s} {&#39;FCI&#39;:&gt;12s}&quot;)
+    for g in (0.25, 0.5, 1.0, 1.5, 2.0, 3.0):
+        part, model = pairing_partition(g=g)
+        e = pair_ladder_orders(part, model, 4)
+        ref = part.reference_energy
+        elad, _ = pair_ladder_sum(part, model)
+        print(f&quot;{g:6.2f} {ref:8.3f} {ref + sum(e):12.8f} {ref + elad:13.8f} &quot;
+              f&quot;{ref + pair_ladder_closed_form(g):12.8f} &quot;
+              f&quot;{model.energies(2)[0]:12.8f} &quot;
+              f&quot;{ref + pair_ladder_self_consistent(part, model):12.8f} &quot;
+              f&quot;{part.exact():12.8f}&quot;)
+    print()
+    print(&quot;The restricted series is the doubles-CI equation with the energy&quot;)
+    print(&quot;frozen at E_ref; putting E_ref + E back in the denominator, which&quot;)
+    print(&quot;is what the folded diagrams do, gives CID exactly.&quot;)
 
 
 def demo_orders():
@@ -2241,7 +2491,8 @@ def reduced_resolvent_demo(n=5, omega=0.3, seed=1, verbose=True):
 
 
 def _demo():
-    for f in (demo_recursion, demo_two_level, demo_pairing, demo_orders,
+    for f in (demo_recursion, demo_two_level, demo_pairing, demo_pair_ladders,
+              demo_orders,
               demo_lipkin, demo_size_extensivity, demo_brillouin_wigner,
               demo_hubbard, demo_pairing_ph, demo_partitions,
               demo_comparison, reduced_resolvent_demo):
@@ -2334,7 +2585,8 @@ if __name__ == &quot;__main__&quot;:
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-pairing-plus-particle-hole-model">10.10. 10. The pairing plus particle-hole model</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#does-the-partition-matter">10.11. 11. Does the partition matter?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#everything-against-everything">10.12. 12. Everything against everything</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-full-program">10.13. The full program</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pair-ladders-to-all-orders-a-restricted-bethe-salpeter-equation">10.13. 13. Pair ladders to all orders: a restricted Bethe-Salpeter equation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-full-program">10.14. The full program</a></li>
 </ul>
   </nav></div>
 
