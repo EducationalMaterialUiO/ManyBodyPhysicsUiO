@@ -205,30 +205,31 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="mbptheory.html">10. Many-body perturbation theory</a></li>
 <li class="toctree-l1"><a class="reference internal" href="coupledcluster.html">11. Coupled cluster theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="greensfunctions.html">12. Green’s functions</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Applications and stochastic methods</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="quantumdots.html">12. Quantum dots: a realistic Hamiltonian</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dmrg.html">13. The density matrix renormalisation group</a></li>
-<li class="toctree-l1"><a class="reference internal" href="statistics.html">14. Elements from statistics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="variationalmc.html">15. Variational Monte Carlo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="optimisation.html">16. Optimization and resampling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="diffusionmc.html">17. Diffusion Monte Carlo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="manybodymc.html">18. Applications to many-body systems: six electrons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quantumdots.html">13. Quantum dots: a realistic Hamiltonian</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dmrg.html">14. The density matrix renormalisation group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="statistics.html">15. Elements from statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variationalmc.html">16. Variational Monte Carlo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimisation.html">17. Optimization and resampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diffusionmc.html">18. Diffusion Monte Carlo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manybodymc.html">19. Applications to many-body systems: six electrons</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine learning approaches</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="boltzmannmachines.html">19. Boltzmann machines and generative models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pinns.html">20. Neural quantum states and physics-informed neural networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="boltzmannmachines.html">20. Boltzmann machines and generative models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pinns.html">21. Neural quantum states and physics-informed neural networks</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum computing</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="quantumfourier.html">21. The quantum Fourier transform and phase estimation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="vqe.html">22. The variational quantum eigensolver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quantumfourier.html">22. The quantum Fourier transform and phase estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vqe.html">23. The variational quantum eigensolver</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Concluding remarks</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="conclusions.html">23. Concluding remarks and perspectives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conclusions.html">24. Concluding remarks and perspectives</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
 <ul class="nav bd-sidenav">
@@ -523,20 +524,6 @@ iteration, and every check a production calculation should pass is run.</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">12</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span>         <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">_d</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="kn">import</span> <span class="nn">dft</span>
-<span class="ne">---&gt; </span><span class="mi">12</span> <span class="kn">import</span> <span class="nn">densitymatrices</span>
-<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="kn">import</span> <span class="nn">kohnsham1d</span>
-<span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;densitymatrices&#39;
-</pre></div>
-</div>
-</div>
 </div>
 <section id="densities-and-density-matrices">
 <h2><span class="section-number">9.1. </span>1. Densities and density matrices<a class="headerlink" href="#densities-and-density-matrices" title="Link to this heading">#</a></h2>
@@ -574,16 +561,16 @@ number that should vanish, or a trace that should be N or N(N-1):
 
    int n dx                      = 4.000000000000   (N = 4)
    int int P dx dy               = 12.000000000000   (N(N-1) = 12)
-   max |int P(x,y) dy - (N-1) n(x)| = 2.2e-15
+   max |int P(x,y) dy - (N-1) n(x)| = 2.7e-15
    max |P(x,x)|                  = 0.0e+00
-   max |gamma^2 - gamma|         = 1.8e-15
-   max |int n_x(x,y) dy + 1|     = 1.1e-15   (exchange-hole sum rule, every x with n &gt; 1e-6)
+   max |gamma^2 - gamma|         = 1.7e-15
+   max |int n_x(x,y) dy + 1|     = 1.6e-15   (exchange-hole sum rule, every x with n &gt; 1e-6)
 
 Three ways of writing the same interaction energy:
    from n and gamma:   E_H = 6.4240836707   E_x = -2.9422795525   sum = 3.4818041182
    from J and K:       E_H = 6.4240836707   E_x = -2.9422795525   sum = 3.4818041182
    from &lt;ij|v|ij&gt;_AS of chapter 6:                       sum = 3.4818041182
-   max |J_ii - K_ii| = 2.2e-16   (every self-pair cancels)
+   max |J_ii - K_ii| = 3.3e-16   (every self-pair cancels)
 
 The exchange hole around a particle at the centre and at x = 1.5:
    x =  0.0: n(x) = 0.7346,  depth n_x(x,x) = -0.7346,  int n_x dy = -1.000000
@@ -660,7 +647,7 @@ gamma, n, P and lambda = P - [n n - |gamma|^2] on the grid:
 
    natural occupations           [0.999162 0.999162 0.000831 0.000831] ...
    int int P                     = 2.0000000000   (N(N-1) = 2)
-   max |int lambda dy - (gamma^2 - gamma)(x;x)| = 8.7e-16
+   max |int lambda dy - (gamma^2 - gamma)(x;x)| = 1.6e-15
    int int lambda                = -0.0033485311   = tr(gamma^2 - gamma) = -0.0033485311
 
 The exact energy decomposed as T + E_H + E_x + E_lambda:
@@ -721,7 +708,7 @@ and only their sum with E_lambda is the exact answer.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/de0a2c1c3fa436cb18a62e20b47a6de6a835f3113f4f4c0ecad4c0b994c3416e.png" src="_images/de0a2c1c3fa436cb18a62e20b47a6de6a835f3113f4f4c0ecad4c0b994c3416e.png" />
+<img alt="_images/9c8b4435bda7120aeb0be24ac1c702b896429bd66ad38ff290954bd3b1ea20d4.png" src="_images/9c8b4435bda7120aeb0be24ac1c702b896429bd66ad38ff290954bd3b1ea20d4.png" />
 </div>
 </div>
 </section>
@@ -791,7 +778,7 @@ the volume:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/7017029412edc2eca3d4c2bcf95196872493a42487eb962ca5a524dca9ad8cef.png" src="_images/7017029412edc2eca3d4c2bcf95196872493a42487eb962ca5a524dca9ad8cef.png" />
+<img alt="_images/93ed2e21f4939f9966aa1ca588333f1f375b3bcdfde3360ee4667d092e50e1a1.png" src="_images/93ed2e21f4939f9966aa1ca588333f1f375b3bcdfde3360ee4667d092e50e1a1.png" />
 </div>
 </div>
 </section>
@@ -839,12 +826,25 @@ which is the sum rule that any decent approximate functional must
 respect.  Checking it numerically:
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   (4 / 3 pi) int dy y^2 [g(y) - 1] = -0.997615
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">dft</span><span class="o">.</span><span class="n">demo_exchange_hole</span><span class="p">()</span>
 
-The exact value of the integral is -pi/6 times 9/2, and the
-prefactor turns it into exactly -1.  Local functionals are built
-to satisfy this sum rule even when they get the shape of the hole
-wrong, which is a large part of why they work at all.
+<span class="nn">File ~/Teaching/ManyBodyPhysicsUiO/doc/LectureNotes/../BookManybody/BookPrograms/chapter08/dft.py:483,</span> in <span class="ni">demo_exchange_hole</span><span class="nt">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">481</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">1e-8</span><span class="p">,</span> <span class="mf">400.0</span><span class="p">,</span> <span class="mi">4000001</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">482</span> <span class="n">integrand</span> <span class="o">=</span> <span class="n">y</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">exchange_hole</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">-</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">483</span> <span class="n">total</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">trapezoid</span><span class="p">(</span><span class="n">integrand</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="o">*</span> <span class="mf">4.0</span> <span class="o">/</span> <span class="p">(</span><span class="mf">3.0</span> <span class="o">*</span> <span class="n">pi</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">484</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   (4 / 3 pi) int dy y^2 [g(y) - 1] = </span><span class="si">{</span><span class="n">total</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">485</span> <span class="nb">print</span><span class="p">()</span>
+
+<span class="nn">File ~/miniforge3/envs/myenv/lib/python3.9/site-packages/numpy/__init__.py:315,</span> in <span class="ni">__getattr__</span><span class="nt">(attr)</span>
+<span class="g g-Whitespace">    </span><span class="mi">312</span>     <span class="kn">from</span> <span class="nn">.testing</span> <span class="kn">import</span> <span class="n">Tester</span>
+<span class="g g-Whitespace">    </span><span class="mi">313</span>     <span class="k">return</span> <span class="n">Tester</span>
+<span class="ne">--&gt; </span><span class="mi">315</span> <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;module </span><span class="si">{!r}</span><span class="s2"> has no attribute &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">316</span>                      <span class="s2">&quot;</span><span class="si">{!r}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">attr</span><span class="p">))</span>
+
+<span class="ne">AttributeError</span>: module &#39;numpy&#39; has no attribute &#39;trapezoid&#39;
 </pre></div>
 </div>
 </div>

@@ -205,30 +205,31 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="mbptheory.html">10. Many-body perturbation theory</a></li>
 <li class="toctree-l1"><a class="reference internal" href="coupledcluster.html">11. Coupled cluster theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="greensfunctions.html">12. Green’s functions</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Applications and stochastic methods</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="quantumdots.html">12. Quantum dots: a realistic Hamiltonian</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dmrg.html">13. The density matrix renormalisation group</a></li>
-<li class="toctree-l1"><a class="reference internal" href="statistics.html">14. Elements from statistics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="variationalmc.html">15. Variational Monte Carlo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="optimisation.html">16. Optimization and resampling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="diffusionmc.html">17. Diffusion Monte Carlo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="manybodymc.html">18. Applications to many-body systems: six electrons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quantumdots.html">13. Quantum dots: a realistic Hamiltonian</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dmrg.html">14. The density matrix renormalisation group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="statistics.html">15. Elements from statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variationalmc.html">16. Variational Monte Carlo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimisation.html">17. Optimization and resampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diffusionmc.html">18. Diffusion Monte Carlo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manybodymc.html">19. Applications to many-body systems: six electrons</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine learning approaches</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="boltzmannmachines.html">19. Boltzmann machines and generative models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pinns.html">20. Neural quantum states and physics-informed neural networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="boltzmannmachines.html">20. Boltzmann machines and generative models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pinns.html">21. Neural quantum states and physics-informed neural networks</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum computing</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="quantumfourier.html">21. The quantum Fourier transform and phase estimation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="vqe.html">22. The variational quantum eigensolver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quantumfourier.html">22. The quantum Fourier transform and phase estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vqe.html">23. The variational quantum eigensolver</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Concluding remarks</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="conclusions.html">23. Concluding remarks and perspectives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conclusions.html">24. Concluding remarks and perspectives</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
 <ul class="current nav bd-sidenav">
@@ -557,7 +558,7 @@ one-dimensional harmonic oscillator with a Gaussian interaction.</p>
 <p>The Hamiltonian is the usual one- plus two-body operator of chapter 3,</p>
 <div class="math notranslate nohighlight">
 \[
-\hat H=\sum_{pq}h_{pq}\,a^\dagger_p a_q+\frac14\sum_{pqrs}\langle pq|\hat v|rs\rangle_{\rm AS}\,a^\dagger_p a^\dagger_q a_s a_r ,
+\hat H=\sum_{pq}h_{pq}\,a^\dagger_p a_q+\frac14\sum_{pqrs}\overline{v}_{pqrs}\,a^\dagger_p a^\dagger_q a_s a_r ,
 \]</div>
 <p>in a single-particle basis of <span class="math notranslate nohighlight">\(n\)</span> orbitals.  For <span class="math notranslate nohighlight">\(N\)</span> particles the full
 space is the FCI space of chapter 5: the <span class="math notranslate nohighlight">\(\binom{n}{N}\)</span> determinants
@@ -745,7 +746,7 @@ whole formula is exactly what <code class="docutils literal notranslate"><span c
 <code class="docutils literal notranslate"><span class="pre">annihilate</span></code> and <code class="docutils literal notranslate"><span class="pre">create</span></code> routines of <code class="docutils literal notranslate"><span class="pre">fci.py</span></code>, for any <span class="math notranslate nohighlight">\(k\)</span>.  The
 Condon-Slater rules of chapter 3 are the special cases <span class="math notranslate nohighlight">\(k=1\)</span> and <span class="math notranslate nohighlight">\(k=2\)</span>:
 the one-body Hamiltonian is <span class="math notranslate nohighlight">\(k=1\)</span> with matrix <span class="math notranslate nohighlight">\(h_{pq}\)</span>, the bare
-interaction is <span class="math notranslate nohighlight">\(k=2\)</span> with <span class="math notranslate nohighlight">\(\langle rs|\hat v|pq\rangle_{\rm AS}\)</span>, and the
+interaction is <span class="math notranslate nohighlight">\(k=2\)</span> with <span class="math notranslate nohighlight">\(\overline{v}_{rspq}\)</span>, and the
 band structure of the FCI matrix in chapter 5 is the statement that the
 formula vanishes when <span class="math notranslate nohighlight">\(D\)</span> and <span class="math notranslate nohighlight">\(D'\)</span> differ by more than <span class="math notranslate nohighlight">\(k\)</span> orbitals.  The
 effective three-body interaction we are after will be a <span class="math notranslate nohighlight">\(k=3\)</span> operator
@@ -906,7 +907,7 @@ a few antisymmetrised matrix elements &lt;pq|v|rs&gt;_AS:
 <p>The bare Hamiltonian is assembled from the one- and two-body operators by the
 embedding routine of Section 3.  As a check on the machinery we compare the
 diagonal matrix element of a determinant with the Condon-Slater rule of chapter 3
-<span class="math notranslate nohighlight">\(\langle D|\hat H|D\rangle=\sum_{p\in D}h_{pp}+\sum_{p&lt;q\in D}\langle pq|v|pq\rangle_{\rm AS}\)</span>
+<span class="math notranslate nohighlight">\(\langle D|\hat H|D\rangle=\sum_{p\in D}h_{pp}+\sum_{p&lt;q\in D}\overline{v}_{pqpq}\)</span>
 and confirm that the matrix is symmetric.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -988,7 +989,7 @@ while <span class="math notranslate nohighlight">\(P\hat HP\)</span> with the ba
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mf">3.8</span><span class="p">))</span>
 <span class="n">vmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">ch</span><span class="o">.</span><span class="n">V2_eff</span><span class="o">.</span><span class="n">matrix</span><span class="p">))</span>
 <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">d</span><span class="p">))</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">B2P</span><span class="o">.</span><span class="n">dets</span><span class="p">]</span>
-<span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">title</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="p">[(</span><span class="n">ch</span><span class="o">.</span><span class="n">V2_bare</span><span class="o">.</span><span class="n">matrix</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;$\langle rs|v|pq\rangle_{\rm AS}$ in $P_2$&quot;</span><span class="p">),</span>
+<span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">title</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="p">[(</span><span class="n">ch</span><span class="o">.</span><span class="n">V2_bare</span><span class="o">.</span><span class="n">matrix</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;$\overline</span><span class="si">{v}</span><span class="s2">_</span><span class="si">{rspq}</span><span class="s2">$ in $P_2$&quot;</span><span class="p">),</span>
                               <span class="p">((</span><span class="n">ch</span><span class="o">.</span><span class="n">V2_eff</span> <span class="o">-</span> <span class="n">ch</span><span class="o">.</span><span class="n">V2_bare</span><span class="p">)</span><span class="o">.</span><span class="n">matrix</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;$V^{(2)}_{\rm eff}-v$&quot;</span><span class="p">)]):</span>
     <span class="n">im</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;RdBu_r&quot;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="n">vmax</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">)</span>
     <span class="n">a</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
@@ -1008,7 +1009,7 @@ while <span class="math notranslate nohighlight">\(P\hat HP\)</span> with the ba
 ||V2_bare|| = 2.7350, ||V2_eff|| = 2.8199, ||V2_eff - V2_bare|| = 0.1198
 </pre></div>
 </div>
-<img alt="_images/626daf1027235f12f75cab27c2a4ea4186e3e58d45bb38f3916427816700b40d.png" src="_images/626daf1027235f12f75cab27c2a4ea4186e3e58d45bb38f3916427816700b40d.png" />
+<img alt="_images/e877e06bfc67594da124086cd28815c82ced73a2666880d5e9524c55b98cedc5.png" src="_images/e877e06bfc67594da124086cd28815c82ced73a2666880d5e9524c55b98cedc5.png" />
 </div>
 </div>
 </section>
@@ -1147,9 +1148,7 @@ errors in the ground-state energy:
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>||V2_eff|| = 2.8199  ||V3_eff|| = 0.1843  ||V4_eff|| = 0.1009
 largest elements: 0.7102  0.0367  0.0348
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>with V4_eff the four-particle spectrum is exact: True
+with V4_eff the four-particle spectrum is exact: True
 </pre></div>
 </div>
 </div>
@@ -1203,18 +1202,24 @@ when the coupling becomes strong.</p>
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>V0 = -0.1250: ||V2_eff - v|| = 4.561e-04  ||V3_eff|| = 6.599e-04  N=4 error with V2: 8.14e-05, with V2+V3: 2.00e-07
-V0 = -0.2500: ||V2_eff - v|| = 1.827e-03  ||V3_eff|| = 2.650e-03  N=4 error with V2: 3.31e-04, with V2+V3: 1.48e-06
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>V0 = -0.2500: ||V2_eff - v|| = 1.827e-03  ||V3_eff|| = 2.650e-03  N=4 error with V2: 3.31e-04, with V2+V3: 1.48e-06
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>V0 = -0.5000: ||V2_eff - v|| = 7.330e-03  ||V3_eff|| = 1.069e-02  N=4 error with V2: 1.35e-03, with V2+V3: 9.73e-06
-V0 = -1.0000: ||V2_eff - v|| = 2.951e-02  ||V3_eff|| = 4.350e-02  N=4 error with V2: 5.39e-03, with V2+V3: 3.65e-05
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>V0 = -1.0000: ||V2_eff - v|| = 2.951e-02  ||V3_eff|| = 4.350e-02  N=4 error with V2: 5.39e-03, with V2+V3: 3.65e-05
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>V0 = -2.0000: ||V2_eff - v|| = 1.198e-01  ||V3_eff|| = 1.843e-01  N=4 error with V2: 1.78e-02, with V2+V3: 3.89e-04
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>V0 = -4.0000: ||V2_eff - v|| = 4.984e-01  ||V3_eff|| = 8.213e-01  N=4 error with V2: 2.03e-02, with V2+V3: 2.16e-02
-V0 = -8.0000: ||V2_eff - v|| = 2.235e+00  ||V3_eff|| = 1.079e+01  N=4 error with V2: 1.29e-01, with V2+V3: 3.06e-01
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>V0 = -8.0000: ||V2_eff - v|| = 2.235e+00  ||V3_eff|| = 1.079e+01  N=4 error with V2: 1.29e-01, with V2+V3: 3.06e-01
 </pre></div>
 </div>
 <img alt="_images/00a315e9b8f6025613860757a763a80923629a711d4156da3b1b189ebb413ea9.png" src="_images/00a315e9b8f6025613860757a763a80923629a711d4156da3b1b189ebb413ea9.png" />
@@ -1273,10 +1278,10 @@ to supply.</p>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n_P =  3: dim P_3 =    1  max|V2_eff - v| = 4.88e-02  max|V3_eff| = 1.45e-03  E_0(N=3) error with V2_eff only = 1.45e-03
 n_P =  4: dim P_3 =    4  max|V2_eff - v| = 5.01e-02  max|V3_eff| = 4.09e-02  E_0(N=3) error with V2_eff only = 1.46e-04
 n_P =  5: dim P_3 =   10  max|V2_eff - v| = 4.75e-02  max|V3_eff| = 4.05e-02  E_0(N=3) error with V2_eff only = 5.53e-03
-n_P =  6: dim P_3 =   20  max|V2_eff - v| = 4.64e-02  max|V3_eff| = 3.67e-02  E_0(N=3) error with V2_eff only = 2.71e-03
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n_P =  7: dim P_3 =   35  max|V2_eff - v| = 4.47e-02  max|V3_eff| = 5.08e-02  E_0(N=3) error with V2_eff only = 2.07e-03
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n_P =  6: dim P_3 =   20  max|V2_eff - v| = 4.64e-02  max|V3_eff| = 3.67e-02  E_0(N=3) error with V2_eff only = 2.71e-03
+n_P =  7: dim P_3 =   35  max|V2_eff - v| = 4.47e-02  max|V3_eff| = 5.08e-02  E_0(N=3) error with V2_eff only = 2.07e-03
 n_P =  8: dim P_3 =   56  max|V2_eff - v| = 4.25e-02  max|V3_eff| = 5.69e-02  E_0(N=3) error with V2_eff only = 9.65e-04
 </pre></div>
 </div>

@@ -205,30 +205,31 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="mbptheory.html">10. Many-body perturbation theory</a></li>
 <li class="toctree-l1"><a class="reference internal" href="coupledcluster.html">11. Coupled cluster theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="greensfunctions.html">12. Green’s functions</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Applications and stochastic methods</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="quantumdots.html">12. Quantum dots: a realistic Hamiltonian</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dmrg.html">13. The density matrix renormalisation group</a></li>
-<li class="toctree-l1"><a class="reference internal" href="statistics.html">14. Elements from statistics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="variationalmc.html">15. Variational Monte Carlo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="optimisation.html">16. Optimization and resampling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="diffusionmc.html">17. Diffusion Monte Carlo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="manybodymc.html">18. Applications to many-body systems: six electrons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quantumdots.html">13. Quantum dots: a realistic Hamiltonian</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dmrg.html">14. The density matrix renormalisation group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="statistics.html">15. Elements from statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variationalmc.html">16. Variational Monte Carlo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimisation.html">17. Optimization and resampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diffusionmc.html">18. Diffusion Monte Carlo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manybodymc.html">19. Applications to many-body systems: six electrons</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine learning approaches</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="boltzmannmachines.html">19. Boltzmann machines and generative models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pinns.html">20. Neural quantum states and physics-informed neural networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="boltzmannmachines.html">20. Boltzmann machines and generative models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pinns.html">21. Neural quantum states and physics-informed neural networks</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum computing</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="quantumfourier.html">21. The quantum Fourier transform and phase estimation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="vqe.html">22. The variational quantum eigensolver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quantumfourier.html">22. The quantum Fourier transform and phase estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vqe.html">23. The variational quantum eigensolver</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Concluding remarks</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="conclusions.html">23. Concluding remarks and perspectives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conclusions.html">24. Concluding remarks and perspectives</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
 <ul class="current nav bd-sidenav">
@@ -532,12 +533,12 @@ approximation of chapter 7, which turns out to be a piece of CCD.</p>
 labelled by <span class="math notranslate nohighlight">\((n,m,m_s)\)</span> with energy <span class="math notranslate nohighlight">\(\varepsilon=\omega(2n+|m|+1)\)</span>; the
 shell <span class="math notranslate nohighlight">\(N_s=2n+|m|\)</span> holds <span class="math notranslate nohighlight">\(2(N_s+1)\)</span> electrons, and the closed shells are
 <span class="math notranslate nohighlight">\(N=2,6,12,20,30,\ldots\)</span>  <code class="docutils literal notranslate"><span class="pre">quantumdot.py</span></code> supplies the antisymmetrised
-Coulomb elements <span class="math notranslate nohighlight">\(\langle pq|\hat v|rs\rangle_{\rm AS}\)</span>, which vanish
+Coulomb elements <span class="math notranslate nohighlight">\(\overline{v}_{pqrs}\)</span>, which vanish
 unless <span class="math notranslate nohighlight">\(m_p+m_q=m_r+m_s\)</span> and <span class="math notranslate nohighlight">\(m_{s_p}+m_{s_q}=m_{s_r}+m_{s_s}\)</span>.</p>
 <p>The Hartree-Fock equations of chapter 6 are solved with the Fock matrix
 diagonalised block by block in <span class="math notranslate nohighlight">\((m,m_s)\)</span>, so that every orbital keeps
 its quantum numbers; the reference energy
-<span class="math notranslate nohighlight">\(E_{\rm ref}=\sum_i\langle i|\hat h|i\rangle+\frac12\sum_{ij}\langle ij|\hat v|ij\rangle_{\rm AS}\)</span>
+<span class="math notranslate nohighlight">\(E_{\rm ref}=\sum_i\langle i|\hat h|i\rangle+\frac12\sum_{ij}\overline{v}_{ijij}\)</span>
 evaluated with the transformed matrix elements must reproduce the
 Hartree-Fock energy, and the occupied-virtual block of the Fock matrix
 must vanish (Brillouin’s theorem).  That is the first test of a
@@ -577,19 +578,19 @@ N = 20: E_0 =  60.0000, E_ref(osc.) = 177.96329742, E_HF = 161.33972067 (25 iter
 <section id="the-ccd-equations-as-they-stand">
 <h2>2. The CCD equations as they stand<a class="headerlink" href="#the-ccd-equations-as-they-stand" title="Link to this heading">#</a></h2>
 <p>With <span class="math notranslate nohighlight">\(\hat T\approx\hat T_2=\frac14\sum t_{ij}^{ab}a^\dagger_aa^\dagger_ba_ja_i\)</span>
-the energy is <span class="math notranslate nohighlight">\(E_{\rm CCD}=E_{\rm ref}+\frac14\sum_{ijab}\langle ij|\hat v|ab\rangle t_{ij}^{ab}\)</span>
+the energy is <span class="math notranslate nohighlight">\(E_{\rm CCD}=E_{\rm ref}+\frac14\sum_{ijab}\overline{v}_{ijab} t_{ij}^{ab}\)</span>
 and the amplitudes solve, for all <span class="math notranslate nohighlight">\(i&gt;j\)</span>, <span class="math notranslate nohighlight">\(a&gt;b\)</span>,</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{aligned}
-0={}&amp;\langle ab|\hat v|ij\rangle+(\varepsilon_a+\varepsilon_b-\varepsilon_i-\varepsilon_j)t_{ij}^{ab}
-+\tfrac12\sum_{cd}\langle ab|\hat v|cd\rangle t_{ij}^{cd}
-+\tfrac12\sum_{kl}\langle kl|\hat v|ij\rangle t_{kl}^{ab}
-+\hat P(ij|ab)\sum_{kc}\langle kb|\hat v|cj\rangle t_{ik}^{ac}\\
-&amp;+\tfrac14\sum_{klcd}\langle kl|\hat v|cd\rangle t_{ij}^{cd}t_{kl}^{ab}
-+\hat P(ij)\sum_{klcd}\langle kl|\hat v|cd\rangle t_{ik}^{ac}t_{jl}^{bd}
--\tfrac12\hat P(ij)\sum_{klcd}\langle kl|\hat v|cd\rangle t_{ik}^{dc}t_{lj}^{ab}
--\tfrac12\hat P(ab)\sum_{klcd}\langle kl|\hat v|cd\rangle t_{lk}^{ac}t_{ij}^{db},
+0={}&amp;\overline{v}_{abij}+(\varepsilon_a+\varepsilon_b-\varepsilon_i-\varepsilon_j)t_{ij}^{ab}
++\tfrac12\sum_{cd}\overline{v}_{abcd} t_{ij}^{cd}
++\tfrac12\sum_{kl}\overline{v}_{klij} t_{kl}^{ab}
++\hat P(ij|ab)\sum_{kc}\overline{v}_{kbcj} t_{ik}^{ac}\\
+&amp;+\tfrac14\sum_{klcd}\overline{v}_{klcd} t_{ij}^{cd}t_{kl}^{ab}
++\hat P(ij)\sum_{klcd}\overline{v}_{klcd} t_{ik}^{ac}t_{jl}^{bd}
+-\tfrac12\hat P(ij)\sum_{klcd}\overline{v}_{klcd} t_{ik}^{dc}t_{lj}^{ab}
+-\tfrac12\hat P(ab)\sum_{klcd}\overline{v}_{klcd} t_{lk}^{ac}t_{ij}^{db},
 \end{aligned}
 \end{split}\]</div>
 <p>with antisymmetrised matrix elements throughout.  The function
@@ -645,8 +646,8 @@ the ladder terms into a block-diagonal one, and the contractions into small
 matrix products:</p>
 <div class="math notranslate nohighlight">
 \[
-\sum_{c&lt;d}\langle ab|\hat v|cd\rangle t_{ij}^{cd}\to \mathbf V_{pp}^{(M,S)}\mathbf T^{(M,S)},\qquad
-\sum_{k&lt;l}t_{kl}^{ab}\langle kl|\hat v|ij\rangle\to \mathbf T^{(M,S)}\mathbf V_{hh}^{(M,S)},\qquad
+\sum_{c&lt;d}\overline{v}_{abcd} t_{ij}^{cd}\to \mathbf V_{pp}^{(M,S)}\mathbf T^{(M,S)},\qquad
+\sum_{k&lt;l}t_{kl}^{ab}\overline{v}_{klij}\to \mathbf T^{(M,S)}\mathbf V_{hh}^{(M,S)},\qquad
 \tfrac14\sum_{klcd}\to \mathbf T^{(M,S)}\big(\mathbf V_{hhpp}^{(M,S)}\mathbf T^{(M,S)}\big).
 \]</div>
 <p>The ring terms couple a particle to a hole instead.  Re-sorting the
@@ -654,13 +655,13 @@ amplitudes as <span class="math notranslate nohighlight">\(\tilde t_{(ai),(ck)}=
 <span class="math notranslate nohighlight">\((a,i)\)</span> carries <span class="math notranslate nohighlight">\((m_a-m_i,\,m_{s_a}-m_{s_i})\)</span>, and</p>
 <div class="math notranslate nohighlight">
 \[
-\sum_{kc}t_{ik}^{ac}\langle kb|\hat v|cj\rangle\to\tilde{\mathbf T}\,\mathbf W,\qquad
-\sum_{klcd}\langle kl|\hat v|cd\rangle t_{ik}^{ac}t_{jl}^{bd}\to
+\sum_{kc}t_{ik}^{ac}\overline{v}_{kbcj}\to\tilde{\mathbf T}\,\mathbf W,\qquad
+\sum_{klcd}\overline{v}_{klcd} t_{ik}^{ac}t_{jl}^{bd}\to
 \tilde{\mathbf T}\,\mathbf X\,\tilde{\mathbf T}^{\rm T},
 \]</div>
 <p>again block by block.  The two remaining quadratic terms are products with
-the one-body intermediates <span class="math notranslate nohighlight">\(F_{li}=\frac12\sum_{kcd}\langle kl|\hat v|cd\rangle t_{ik}^{cd}\)</span>
-and <span class="math notranslate nohighlight">\(G_{ad}=\frac12\sum_{klc}\langle kl|\hat v|cd\rangle t_{kl}^{ac}\)</span> – the
+the one-body intermediates <span class="math notranslate nohighlight">\(F_{li}=\frac12\sum_{kcd}\overline{v}_{klcd} t_{ik}^{cd}\)</span>
+and <span class="math notranslate nohighlight">\(G_{ad}=\frac12\sum_{klc}\overline{v}_{klcd} t_{kl}^{ac}\)</span> – the
 <span class="math notranslate nohighlight">\(F_{mi}\)</span> and <span class="math notranslate nohighlight">\(F_{ae}\)</span> of the Stanton-Gauss-Watts-Bartlett intermediates in
 chapter 10.  The class <code class="docutils literal notranslate"><span class="pre">ChannelCCD</span></code> does exactly this, and agrees with the
 dense solver of chapter 10 to machine precision.</p>
@@ -698,7 +699,7 @@ dense solver of chapter 10 to machine precision.</p>
 </div>
 </div>
 <p>The channel code is faster by a large factor because it never touches the
-zeros: with <span class="math notranslate nohighlight">\(42\)</span> spin-orbitals the dense <span class="math notranslate nohighlight">\(\langle pq|\hat v|rs\rangle_{\rm AS}\)</span>
+zeros: with <span class="math notranslate nohighlight">\(42\)</span> spin-orbitals the dense <span class="math notranslate nohighlight">\(\overline{v}_{pqrs}\)</span>
 has <span class="math notranslate nohighlight">\(42^4\approx3\times10^6\)</span> entries of which only a few per cent are
 non-zero, and the pair blocks are at most a few tens of rows.  The price
 is bookkeeping, and the reward, beyond speed, is that the ladder and ring

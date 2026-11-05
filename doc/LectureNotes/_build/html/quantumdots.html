@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>12. Quantum dots: a realistic Hamiltonian &#8212; Quantum Mechanics for Many-Particle Systems: from standard methods to quantum computing and machine learning</title>
+    <title>13. Quantum dots: a realistic Hamiltonian &#8212; Quantum Mechanics for Many-Particle Systems: from standard methods to quantum computing and machine learning</title>
   
   
   
@@ -62,8 +62,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'quantumdots';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="13. The density matrix renormalisation group" href="dmrg.html" />
-    <link rel="prev" title="11. Coupled cluster theory" href="coupledcluster.html" />
+    <link rel="next" title="14. The density matrix renormalisation group" href="dmrg.html" />
+    <link rel="prev" title="12. Green’s functions" href="greensfunctions.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -205,30 +205,31 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="mbptheory.html">10. Many-body perturbation theory</a></li>
 <li class="toctree-l1"><a class="reference internal" href="coupledcluster.html">11. Coupled cluster theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="greensfunctions.html">12. Green’s functions</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Applications and stochastic methods</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">12. Quantum dots: a realistic Hamiltonian</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dmrg.html">13. The density matrix renormalisation group</a></li>
-<li class="toctree-l1"><a class="reference internal" href="statistics.html">14. Elements from statistics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="variationalmc.html">15. Variational Monte Carlo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="optimisation.html">16. Optimization and resampling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="diffusionmc.html">17. Diffusion Monte Carlo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="manybodymc.html">18. Applications to many-body systems: six electrons</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">13. Quantum dots: a realistic Hamiltonian</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dmrg.html">14. The density matrix renormalisation group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="statistics.html">15. Elements from statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variationalmc.html">16. Variational Monte Carlo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimisation.html">17. Optimization and resampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diffusionmc.html">18. Diffusion Monte Carlo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manybodymc.html">19. Applications to many-body systems: six electrons</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine learning approaches</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="boltzmannmachines.html">19. Boltzmann machines and generative models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pinns.html">20. Neural quantum states and physics-informed neural networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="boltzmannmachines.html">20. Boltzmann machines and generative models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pinns.html">21. Neural quantum states and physics-informed neural networks</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum computing</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="quantumfourier.html">21. The quantum Fourier transform and phase estimation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="vqe.html">22. The variational quantum eigensolver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quantumfourier.html">22. The quantum Fourier transform and phase estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vqe.html">23. The variational quantum eigensolver</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Concluding remarks</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="conclusions.html">23. Concluding remarks and perspectives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conclusions.html">24. Concluding remarks and perspectives</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
 <ul class="nav bd-sidenav">
@@ -463,19 +464,19 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-basis-and-the-magic-numbers">12.1. 1. The basis and the magic numbers</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-coulomb-matrix-element">12.2. 2. The Coulomb matrix element</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hartree-fock-and-the-size-of-the-basis">12.3. 3. Hartree-Fock and the size of the basis</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-hierarchy-of-methods">12.4. 4. The hierarchy of methods</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-singles-amplitudes-do-not-vanish">12.4.1. The singles amplitudes do not vanish</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-basis-and-the-magic-numbers">13.1. 1. The basis and the magic numbers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-coulomb-matrix-element">13.2. 2. The Coulomb matrix element</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hartree-fock-and-the-size-of-the-basis">13.3. 3. Hartree-Fock and the size of the basis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-hierarchy-of-methods">13.4. 4. The hierarchy of methods</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-singles-amplitudes-do-not-vanish">13.4.1. The singles amplitudes do not vanish</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-electrons-against-the-exact-answer">12.5. 5. Two electrons against the exact answer</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#six-electrons-against-exact-diagonalisation">12.6. 6. Six electrons against exact diagonalisation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dependence-on-the-confinement">12.7. 7. Dependence on the confinement</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unitary-coupled-cluster-for-two-electrons">12.8. 8. Unitary coupled cluster for two electrons</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trotterising-the-unitary-ansatz">12.9. 9. Trotterising the unitary ansatz</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-the-realistic-system-taught-us">12.10. What the realistic system taught us</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-electrons-against-the-exact-answer">13.5. 5. Two electrons against the exact answer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#six-electrons-against-exact-diagonalisation">13.6. 6. Six electrons against exact diagonalisation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dependence-on-the-confinement">13.7. 7. Dependence on the confinement</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unitary-coupled-cluster-for-two-electrons">13.8. 8. Unitary coupled cluster for two electrons</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trotterising-the-unitary-ansatz">13.9. 9. Trotterising the unitary ansatz</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-the-realistic-system-taught-us">13.10. What the realistic system taught us</a></li>
 </ul>
             </nav>
         </div>
@@ -488,7 +489,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="quantum-dots-a-realistic-hamiltonian">
-<h1><span class="section-number">12. </span>Quantum dots: a realistic Hamiltonian<a class="headerlink" href="#quantum-dots-a-realistic-hamiltonian" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">13. </span>Quantum dots: a realistic Hamiltonian<a class="headerlink" href="#quantum-dots-a-realistic-hamiltonian" title="Link to this heading">#</a></h1>
 <p>Executable companion to chapter 11.</p>
 <p>Every system so far has been a model with one or two parameters.  This one is
 not: <span class="math notranslate nohighlight">\(N\)</span> electrons confined to two dimensions by a parabolic trap and
@@ -531,7 +532,7 @@ chapter 10, applied here unchanged.</p>
 </div>
 </div>
 <section id="the-basis-and-the-magic-numbers">
-<h2><span class="section-number">12.1. </span>1. The basis and the magic numbers<a class="headerlink" href="#the-basis-and-the-magic-numbers" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">13.1. </span>1. The basis and the magic numbers<a class="headerlink" href="#the-basis-and-the-magic-numbers" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dot</span> <span class="o">=</span> <span class="n">qd</span><span class="o">.</span><span class="n">QuantumDot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">shells</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
@@ -563,7 +564,7 @@ chapter 10, applied here unchanged.</p>
 </div>
 </section>
 <section id="the-coulomb-matrix-element">
-<h2><span class="section-number">12.2. </span>2. The Coulomb matrix element<a class="headerlink" href="#the-coulomb-matrix-element" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">13.2. </span>2. The Coulomb matrix element<a class="headerlink" href="#the-coulomb-matrix-element" title="Link to this heading">#</a></h2>
 <p>Two exact statements do more for us than the closed form itself.  Angular
 momentum is conserved, <span class="math notranslate nohighlight">\(m_p+m_q = m_r+m_s\)</span>, which kills most of the index
 combinations before any work is done; and the whole frequency dependence is a
@@ -615,7 +616,7 @@ angular-momentum conservation:
 </div>
 </section>
 <section id="hartree-fock-and-the-size-of-the-basis">
-<h2><span class="section-number">12.3. </span>3. Hartree-Fock and the size of the basis<a class="headerlink" href="#hartree-fock-and-the-size-of-the-basis" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">13.3. </span>3. Hartree-Fock and the size of the basis<a class="headerlink" href="#hartree-fock-and-the-size-of-the-basis" title="Link to this heading">#</a></h2>
 <p>Adding a shell can only lower the energy: the Hartree-Fock state gains
 variational freedom and nothing is taken away.  Note that some shells change
 nothing at all for <span class="math notranslate nohighlight">\(N=2\)</span> — the occupied orbital has <span class="math notranslate nohighlight">\(m=0\)</span> and can only mix
@@ -659,7 +660,7 @@ with other <span class="math notranslate nohighlight">\(m=0\)</span> states, whi
 </div>
 </section>
 <section id="the-hierarchy-of-methods">
-<h2><span class="section-number">12.4. </span>4. The hierarchy of methods<a class="headerlink" href="#the-hierarchy-of-methods" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">13.4. </span>4. The hierarchy of methods<a class="headerlink" href="#the-hierarchy-of-methods" title="Link to this heading">#</a></h2>
 <p>Hartree-Fock, MP2, CCD and CCSD in the full 42-orbital basis at
 <span class="math notranslate nohighlight">\(\hbar\omega=1\)</span>.</p>
 <div class="cell docutils container">
@@ -709,7 +710,7 @@ N = 6: SCF 24 iterations, CCD 19, CCSD 28, max|t_1| = 8.38e-03
 </div>
 </div>
 <section id="the-singles-amplitudes-do-not-vanish">
-<h3><span class="section-number">12.4.1. </span>The singles amplitudes do not vanish<a class="headerlink" href="#the-singles-amplitudes-do-not-vanish" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">13.4.1. </span>The singles amplitudes do not vanish<a class="headerlink" href="#the-singles-amplitudes-do-not-vanish" title="Link to this heading">#</a></h3>
 <p>It is often said that Brillouin’s theorem makes <span class="math notranslate nohighlight">\(T_1 = 0\)</span> for a closed-shell
 Hartree-Fock reference, so that CCSD reduces to CCD.  That is wrong.
 Brillouin’s theorem gives <span class="math notranslate nohighlight">\(f_{ai}=0\)</span>, which is why MP2 has no singles
@@ -727,7 +728,7 @@ identically has a bug in its singles equation.</p>
 </section>
 </section>
 <section id="two-electrons-against-the-exact-answer">
-<h2><span class="section-number">12.5. </span>5. Two electrons against the exact answer<a class="headerlink" href="#two-electrons-against-the-exact-answer" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">13.5. </span>5. Two electrons against the exact answer<a class="headerlink" href="#two-electrons-against-the-exact-answer" title="Link to this heading">#</a></h2>
 <p>With <span class="math notranslate nohighlight">\(N=2\)</span> the determinant space is small enough to diagonalise, and singles
 and doubles <em>exhaust</em> the excitations available to two particles — so CCSD
 must be exact within the basis.  Checking that is a far stronger test of the
@@ -792,7 +793,7 @@ Coulomb cusp.</p>
 </div>
 </section>
 <section id="six-electrons-against-exact-diagonalisation">
-<h2><span class="section-number">12.6. </span>6. Six electrons against exact diagonalisation<a class="headerlink" href="#six-electrons-against-exact-diagonalisation" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">13.6. </span>6. Six electrons against exact diagonalisation<a class="headerlink" href="#six-electrons-against-exact-diagonalisation" title="Link to this heading">#</a></h2>
 <p>At 42 orbitals the six-electron space has <span class="math notranslate nohighlight">\(\binom{42}{6} = 5\,245\,786\)</span>
 determinants and is out of reach.  In the two-shell basis it is only
 <span class="math notranslate nohighlight">\(\binom{12}{6} = 924\)</span>, and there the truncation of the cluster operator
@@ -845,7 +846,7 @@ exact diagonalisation           21.42058830    0.00e+00      100.00%
 </div>
 </section>
 <section id="dependence-on-the-confinement">
-<h2><span class="section-number">12.7. </span>7. Dependence on the confinement<a class="headerlink" href="#dependence-on-the-confinement" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">13.7. </span>7. Dependence on the confinement<a class="headerlink" href="#dependence-on-the-confinement" title="Link to this heading">#</a></h2>
 <p>Kinetic energy scales as <span class="math notranslate nohighlight">\(\omega\)</span> and the Coulomb energy as <span class="math notranslate nohighlight">\(\sqrt{\omega}\)</span>,
 so a shallow trap is strongly correlated and a steep one is nearly free.  This
 is the same story the pairing model told through <span class="math notranslate nohighlight">\(g\)</span>, now told by a parameter
@@ -921,7 +922,7 @@ N = 6, shells 0-3
 </div>
 </section>
 <section id="unitary-coupled-cluster-for-two-electrons">
-<h2><span class="section-number">12.8. </span>8. Unitary coupled cluster for two electrons<a class="headerlink" href="#unitary-coupled-cluster-for-two-electrons" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">13.8. </span>8. Unitary coupled cluster for two electrons<a class="headerlink" href="#unitary-coupled-cluster-for-two-electrons" title="Link to this heading">#</a></h2>
 <p>For two particles everything collapses: UCCSD, CCSD and full diagonalisation
 coincide because singles and doubles span the whole space.  Less obviously,
 UCCD coincides with CCD — with two particles <span class="math notranslate nohighlight">\(T_2T_2\)</span> annihilates the
@@ -963,7 +964,7 @@ bites — which is what section 6 showed for six electrons.</p>
 </div>
 </section>
 <section id="trotterising-the-unitary-ansatz">
-<h2><span class="section-number">12.9. </span>9. Trotterising the unitary ansatz<a class="headerlink" href="#trotterising-the-unitary-ansatz" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">13.9. </span>9. Trotterising the unitary ansatz<a class="headerlink" href="#trotterising-the-unitary-ansatz" title="Link to this heading">#</a></h2>
 <p>A quantum computer cannot apply <span class="math notranslate nohighlight">\(e^{\hat\sigma}\)</span> in one step; it applies the
 generators one at a time, and the splitting error is the Trotter error of
 section 6.9.  The number of steps <span class="math notranslate nohighlight">\(n\)</span> is the circuit depth.</p>
@@ -1020,7 +1021,7 @@ section 6.9.  The number of steps <span class="math notranslate nohighlight">\(n
 </div>
 </section>
 <section id="what-the-realistic-system-taught-us">
-<h2><span class="section-number">12.10. </span>What the realistic system taught us<a class="headerlink" href="#what-the-realistic-system-taught-us" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">13.10. </span>What the realistic system taught us<a class="headerlink" href="#what-the-realistic-system-taught-us" title="Link to this heading">#</a></h2>
 <p>The methods survived the move from a one-parameter model to a real interaction
 without modification — the same routines, handed a different pair of matrices.
 Three things did change:</p>
@@ -1074,12 +1075,12 @@ against.</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="coupledcluster.html"
+       href="greensfunctions.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">11. </span>Coupled cluster theory</p>
+        <p class="prev-next-title"><span class="section-number">12. </span>Green’s functions</p>
       </div>
     </a>
     <a class="right-next"
@@ -1087,7 +1088,7 @@ against.</p>
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">13. </span>The density matrix renormalisation group</p>
+        <p class="prev-next-title"><span class="section-number">14. </span>The density matrix renormalisation group</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1107,19 +1108,19 @@ against.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-basis-and-the-magic-numbers">12.1. 1. The basis and the magic numbers</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-coulomb-matrix-element">12.2. 2. The Coulomb matrix element</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hartree-fock-and-the-size-of-the-basis">12.3. 3. Hartree-Fock and the size of the basis</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-hierarchy-of-methods">12.4. 4. The hierarchy of methods</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-singles-amplitudes-do-not-vanish">12.4.1. The singles amplitudes do not vanish</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-basis-and-the-magic-numbers">13.1. 1. The basis and the magic numbers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-coulomb-matrix-element">13.2. 2. The Coulomb matrix element</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hartree-fock-and-the-size-of-the-basis">13.3. 3. Hartree-Fock and the size of the basis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-hierarchy-of-methods">13.4. 4. The hierarchy of methods</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-singles-amplitudes-do-not-vanish">13.4.1. The singles amplitudes do not vanish</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-electrons-against-the-exact-answer">12.5. 5. Two electrons against the exact answer</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#six-electrons-against-exact-diagonalisation">12.6. 6. Six electrons against exact diagonalisation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dependence-on-the-confinement">12.7. 7. Dependence on the confinement</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unitary-coupled-cluster-for-two-electrons">12.8. 8. Unitary coupled cluster for two electrons</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trotterising-the-unitary-ansatz">12.9. 9. Trotterising the unitary ansatz</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-the-realistic-system-taught-us">12.10. What the realistic system taught us</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-electrons-against-the-exact-answer">13.5. 5. Two electrons against the exact answer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#six-electrons-against-exact-diagonalisation">13.6. 6. Six electrons against exact diagonalisation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dependence-on-the-confinement">13.7. 7. Dependence on the confinement</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unitary-coupled-cluster-for-two-electrons">13.8. 8. Unitary coupled cluster for two electrons</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trotterising-the-unitary-ansatz">13.9. 9. Trotterising the unitary ansatz</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-the-realistic-system-taught-us">13.10. What the realistic system taught us</a></li>
 </ul>
   </nav></div>
 

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>13. The density matrix renormalisation group &#8212; Quantum Mechanics for Many-Particle Systems: from standard methods to quantum computing and machine learning</title>
+    <title>14. The density matrix renormalisation group &#8212; Quantum Mechanics for Many-Particle Systems: from standard methods to quantum computing and machine learning</title>
   
   
   
@@ -62,8 +62,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'dmrg';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="14. Elements from statistics" href="statistics.html" />
-    <link rel="prev" title="12. Quantum dots: a realistic Hamiltonian" href="quantumdots.html" />
+    <link rel="next" title="15. Elements from statistics" href="statistics.html" />
+    <link rel="prev" title="13. Quantum dots: a realistic Hamiltonian" href="quantumdots.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -205,30 +205,31 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="mbptheory.html">10. Many-body perturbation theory</a></li>
 <li class="toctree-l1"><a class="reference internal" href="coupledcluster.html">11. Coupled cluster theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="greensfunctions.html">12. Green’s functions</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Applications and stochastic methods</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="quantumdots.html">12. Quantum dots: a realistic Hamiltonian</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">13. The density matrix renormalisation group</a></li>
-<li class="toctree-l1"><a class="reference internal" href="statistics.html">14. Elements from statistics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="variationalmc.html">15. Variational Monte Carlo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="optimisation.html">16. Optimization and resampling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="diffusionmc.html">17. Diffusion Monte Carlo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="manybodymc.html">18. Applications to many-body systems: six electrons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quantumdots.html">13. Quantum dots: a realistic Hamiltonian</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">14. The density matrix renormalisation group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="statistics.html">15. Elements from statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variationalmc.html">16. Variational Monte Carlo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimisation.html">17. Optimization and resampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diffusionmc.html">18. Diffusion Monte Carlo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manybodymc.html">19. Applications to many-body systems: six electrons</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine learning approaches</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="boltzmannmachines.html">19. Boltzmann machines and generative models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pinns.html">20. Neural quantum states and physics-informed neural networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="boltzmannmachines.html">20. Boltzmann machines and generative models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pinns.html">21. Neural quantum states and physics-informed neural networks</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum computing</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="quantumfourier.html">21. The quantum Fourier transform and phase estimation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="vqe.html">22. The variational quantum eigensolver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quantumfourier.html">22. The quantum Fourier transform and phase estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vqe.html">23. The variational quantum eigensolver</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Concluding remarks</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="conclusions.html">23. Concluding remarks and perspectives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conclusions.html">24. Concluding remarks and perspectives</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
 <ul class="nav bd-sidenav">
@@ -463,21 +464,21 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sites-modes-and-jordan-wigner-strings">13.1. 1. Sites, modes and Jordan-Wigner strings</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-product-operators-of-the-three-models">13.2. 2. Matrix product operators of the three models</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-pairing-model">13.3. 3. The pairing model</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-four-level-model-of-chapter-4">13.3.1. The four-level model of Chapter 4</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#twelve-levels-six-pairs-the-entropy-of-chapter-1">13.3.2. Twelve levels, six pairs: the entropy of Chapter 1</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#occupation-numbers">13.3.3. Occupation numbers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sites-modes-and-jordan-wigner-strings">14.1. 1. Sites, modes and Jordan-Wigner strings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-product-operators-of-the-three-models">14.2. 2. Matrix product operators of the three models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-pairing-model">14.3. 3. The pairing model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-four-level-model-of-chapter-4">14.3.1. The four-level model of Chapter 4</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#twelve-levels-six-pairs-the-entropy-of-chapter-1">14.3.2. Twelve levels, six pairs: the entropy of Chapter 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#occupation-numbers">14.3.3. Occupation numbers</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-pairing-plus-particle-hole-model">13.4. 4. The pairing plus particle-hole model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-hubbard-chain">13.5. 5. The Hubbard chain</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-four-site-ring-of-chapter-4">13.5.1. The four-site ring of Chapter 4</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#open-chains-towards-the-thermodynamic-limit">13.5.2. Open chains: towards the thermodynamic limit</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-pairing-plus-particle-hole-model">14.4. 4. The pairing plus particle-hole model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-hubbard-chain">14.5. 5. The Hubbard chain</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-four-site-ring-of-chapter-4">14.5.1. The four-site ring of Chapter 4</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#open-chains-towards-the-thermodynamic-limit">14.5.2. Open chains: towards the thermodynamic limit</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">13.6. Exercises</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">14.6. Exercises</a></li>
 </ul>
             </nav>
         </div>
@@ -490,7 +491,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="the-density-matrix-renormalisation-group">
-<h1><span class="section-number">13. </span>The density matrix renormalisation group<a class="headerlink" href="#the-density-matrix-renormalisation-group" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">14. </span>The density matrix renormalisation group<a class="headerlink" href="#the-density-matrix-renormalisation-group" title="Link to this heading">#</a></h1>
 <p>Companion notebook to the chapter on the density matrix renormalisation
 group of <em>Quantum mechanics for many-particle systems</em>.  The code is the
 same as in <code class="docutils literal notranslate"><span class="pre">BookManybody/BookPrograms/chapterdmrg/dmrg.py</span></code>.</p>
@@ -550,7 +551,7 @@ two methods are guaranteed to solve the same problem.</p>
 </div>
 </div>
 <section id="sites-modes-and-jordan-wigner-strings">
-<h2><span class="section-number">13.1. </span>1. Sites, modes and Jordan-Wigner strings<a class="headerlink" href="#sites-modes-and-jordan-wigner-strings" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">14.1. </span>1. Sites, modes and Jordan-Wigner strings<a class="headerlink" href="#sites-modes-and-jordan-wigner-strings" title="Link to this heading">#</a></h2>
 <p>A site carries two modes, <span class="math notranslate nohighlight">\(a\)</span> (spin up, or the time-reversal partner
 <span class="math notranslate nohighlight">\(+\)</span> of the pairing model) and <span class="math notranslate nohighlight">\(b\)</span> (spin down, or <span class="math notranslate nohighlight">\(-\)</span>), so the local space
 is <span class="math notranslate nohighlight">\(d=4\)</span>.  Inside the site the creation operators are
@@ -592,7 +593,7 @@ two sites: {c_0, c_1} = 0 with the string: True   without the string: False
 </div>
 </section>
 <section id="matrix-product-operators-of-the-three-models">
-<h2><span class="section-number">13.2. </span>2. Matrix product operators of the three models<a class="headerlink" href="#matrix-product-operators-of-the-three-models" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">14.2. </span>2. Matrix product operators of the three models<a class="headerlink" href="#matrix-product-operators-of-the-three-models" title="Link to this heading">#</a></h2>
 <p>Every Hamiltonian of the chapter is a list of terms, each a coefficient
 and a string of creation and annihilation operators on the <span class="math notranslate nohighlight">\(2L\)</span> modes.
 <code class="docutils literal notranslate"><span class="pre">build_mpo</span></code> converts the list into an MPO: each string becomes a product
@@ -655,9 +656,9 @@ Hermitian: max |H - H^T| = 2.2e-15
 </div>
 </section>
 <section id="the-pairing-model">
-<h2><span class="section-number">13.3. </span>3. The pairing model<a class="headerlink" href="#the-pairing-model" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">14.3. </span>3. The pairing model<a class="headerlink" href="#the-pairing-model" title="Link to this heading">#</a></h2>
 <section id="the-four-level-model-of-chapter-4">
-<h3><span class="section-number">13.3.1. </span>The four-level model of Chapter 4<a class="headerlink" href="#the-four-level-model-of-chapter-4" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">14.3.1. </span>The four-level model of Chapter 4<a class="headerlink" href="#the-four-level-model-of-chapter-4" title="Link to this heading">#</a></h3>
 <p>The DMRG works in the full Fock space of the chain, <span class="math notranslate nohighlight">\(4^L\)</span> states, and is
 told the particle number only through the penalty
 <span class="math notranslate nohighlight">\(\lambda(\hat N-N_0)^2\)</span> added to the MPO.  For four levels and four
@@ -689,7 +690,7 @@ told that the ground state has seniority zero.</p>
 </div>
 </section>
 <section id="twelve-levels-six-pairs-the-entropy-of-chapter-1">
-<h3><span class="section-number">13.3.2. </span>Twelve levels, six pairs: the entropy of Chapter 1<a class="headerlink" href="#twelve-levels-six-pairs-the-entropy-of-chapter-1" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">14.3.2. </span>Twelve levels, six pairs: the entropy of Chapter 1<a class="headerlink" href="#twelve-levels-six-pairs-the-entropy-of-chapter-1" title="Link to this heading">#</a></h3>
 <p>Chapter 1 computed the Schmidt spectrum of the exact ground state of the
 twelve-level pairing model across the cut between levels 6 and 7
 (<span class="math notranslate nohighlight">\(\delta=1\)</span>, <span class="math notranslate nohighlight">\(g=0.5\)</span> in the convention of Chapter 1, which is <span class="math notranslate nohighlight">\(\xi=1\)</span>,
@@ -875,7 +876,7 @@ g = 1.0:  E = 24.83917275   S(middle cut) = 0.9238   max S = 0.9238
 </div>
 </section>
 <section id="occupation-numbers">
-<h3><span class="section-number">13.3.3. </span>Occupation numbers<a class="headerlink" href="#occupation-numbers" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">14.3.3. </span>Occupation numbers<a class="headerlink" href="#occupation-numbers" title="Link to this heading">#</a></h3>
 <p>The DMRG state conserves the particle number exactly (the penalty
 enforces it), so the occupation numbers <span class="math notranslate nohighlight">\(\langle\hat n_p\rangle\)</span> of the
 twelve levels show the correlated smearing of the Fermi surface without
@@ -921,7 +922,7 @@ g = 2.0:  n_p = [1.7554 1.6932 1.6081 1.4907 1.3299 1.1201 0.8799 0.6701 0.5093 
 </section>
 </section>
 <section id="the-pairing-plus-particle-hole-model">
-<h2><span class="section-number">13.4. </span>4. The pairing plus particle-hole model<a class="headerlink" href="#the-pairing-plus-particle-hole-model" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">14.4. </span>4. The pairing plus particle-hole model<a class="headerlink" href="#the-pairing-plus-particle-hole-model" title="Link to this heading">#</a></h2>
 <p>The particle-hole interaction of Chapter 7 breaks pairs, so the ground
 state is no longer of seniority zero and the exact diagonalisation has to
 be done in the full <span class="math notranslate nohighlight">\(S_z=0\)</span> sector.  Four levels and four particles first,
@@ -1056,9 +1057,9 @@ ratio  error / discarded weight: [45.8 31.5 26.8 22.7 20.6]
 </div>
 </section>
 <section id="the-hubbard-chain">
-<h2><span class="section-number">13.5. </span>5. The Hubbard chain<a class="headerlink" href="#the-hubbard-chain" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">14.5. </span>5. The Hubbard chain<a class="headerlink" href="#the-hubbard-chain" title="Link to this heading">#</a></h2>
 <section id="the-four-site-ring-of-chapter-4">
-<h3><span class="section-number">13.5.1. </span>The four-site ring of Chapter 4<a class="headerlink" href="#the-four-site-ring-of-chapter-4" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">14.5.1. </span>The four-site ring of Chapter 4<a class="headerlink" href="#the-four-site-ring-of-chapter-4" title="Link to this heading">#</a></h3>
 <p>A ring is awkward for an MPS – the bond between the last and the first
 site is carried through the whole chain – but for four sites <span class="math notranslate nohighlight">\(\chi=16\)</span>
 is exact and the DMRG reproduces every entry of Table 4.3, energies and
@@ -1093,7 +1094,7 @@ has a degenerate ground state and its double occupancy is not unique.)</p>
 </div>
 </section>
 <section id="open-chains-towards-the-thermodynamic-limit">
-<h3><span class="section-number">13.5.2. </span>Open chains: towards the thermodynamic limit<a class="headerlink" href="#open-chains-towards-the-thermodynamic-limit" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">14.5.2. </span>Open chains: towards the thermodynamic limit<a class="headerlink" href="#open-chains-towards-the-thermodynamic-limit" title="Link to this heading">#</a></h3>
 <p>With open ends the chain is what the MPS wants, and we can leave exact
 diagonalisation behind.  The check that replaces it is the Bethe ansatz:
 Lieb and Wu solved the infinite half-filled chain exactly, with the energy
@@ -1212,7 +1213,7 @@ Calabrese-Cardy fit with c = 1 through the even bonds: s_0 = 0.5439, rms deviati
 </section>
 </section>
 <section id="exercises">
-<h2><span class="section-number">13.6. </span>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">14.6. </span>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
 <p>The exercises of the chapter can all be done with the functions of this
 notebook: the Schmidt spectrum and the entropy across every bond come from
 <code class="docutils literal notranslate"><span class="pre">DMRG.entropies</span></code> and <code class="docutils literal notranslate"><span class="pre">MPS.schmidt_values</span></code>, the extrapolation in the
@@ -1262,7 +1263,7 @@ ordering as well as on the state.</p>
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">12. </span>Quantum dots: a realistic Hamiltonian</p>
+        <p class="prev-next-title"><span class="section-number">13. </span>Quantum dots: a realistic Hamiltonian</p>
       </div>
     </a>
     <a class="right-next"
@@ -1270,7 +1271,7 @@ ordering as well as on the state.</p>
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">14. </span>Elements from statistics</p>
+        <p class="prev-next-title"><span class="section-number">15. </span>Elements from statistics</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1290,21 +1291,21 @@ ordering as well as on the state.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sites-modes-and-jordan-wigner-strings">13.1. 1. Sites, modes and Jordan-Wigner strings</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-product-operators-of-the-three-models">13.2. 2. Matrix product operators of the three models</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-pairing-model">13.3. 3. The pairing model</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-four-level-model-of-chapter-4">13.3.1. The four-level model of Chapter 4</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#twelve-levels-six-pairs-the-entropy-of-chapter-1">13.3.2. Twelve levels, six pairs: the entropy of Chapter 1</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#occupation-numbers">13.3.3. Occupation numbers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sites-modes-and-jordan-wigner-strings">14.1. 1. Sites, modes and Jordan-Wigner strings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-product-operators-of-the-three-models">14.2. 2. Matrix product operators of the three models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-pairing-model">14.3. 3. The pairing model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-four-level-model-of-chapter-4">14.3.1. The four-level model of Chapter 4</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#twelve-levels-six-pairs-the-entropy-of-chapter-1">14.3.2. Twelve levels, six pairs: the entropy of Chapter 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#occupation-numbers">14.3.3. Occupation numbers</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-pairing-plus-particle-hole-model">13.4. 4. The pairing plus particle-hole model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-hubbard-chain">13.5. 5. The Hubbard chain</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-four-site-ring-of-chapter-4">13.5.1. The four-site ring of Chapter 4</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#open-chains-towards-the-thermodynamic-limit">13.5.2. Open chains: towards the thermodynamic limit</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-pairing-plus-particle-hole-model">14.4. 4. The pairing plus particle-hole model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-hubbard-chain">14.5. 5. The Hubbard chain</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-four-site-ring-of-chapter-4">14.5.1. The four-site ring of Chapter 4</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#open-chains-towards-the-thermodynamic-limit">14.5.2. Open chains: towards the thermodynamic limit</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">13.6. Exercises</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">14.6. Exercises</a></li>
 </ul>
   </nav></div>
 

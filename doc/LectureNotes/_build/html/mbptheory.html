@@ -205,30 +205,31 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">10. Many-body perturbation theory</a></li>
 <li class="toctree-l1"><a class="reference internal" href="coupledcluster.html">11. Coupled cluster theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="greensfunctions.html">12. Green’s functions</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Applications and stochastic methods</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="quantumdots.html">12. Quantum dots: a realistic Hamiltonian</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dmrg.html">13. The density matrix renormalisation group</a></li>
-<li class="toctree-l1"><a class="reference internal" href="statistics.html">14. Elements from statistics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="variationalmc.html">15. Variational Monte Carlo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="optimisation.html">16. Optimization and resampling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="diffusionmc.html">17. Diffusion Monte Carlo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="manybodymc.html">18. Applications to many-body systems: six electrons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quantumdots.html">13. Quantum dots: a realistic Hamiltonian</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dmrg.html">14. The density matrix renormalisation group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="statistics.html">15. Elements from statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variationalmc.html">16. Variational Monte Carlo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimisation.html">17. Optimization and resampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diffusionmc.html">18. Diffusion Monte Carlo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manybodymc.html">19. Applications to many-body systems: six electrons</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine learning approaches</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="boltzmannmachines.html">19. Boltzmann machines and generative models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pinns.html">20. Neural quantum states and physics-informed neural networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="boltzmannmachines.html">20. Boltzmann machines and generative models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pinns.html">21. Neural quantum states and physics-informed neural networks</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum computing</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="quantumfourier.html">21. The quantum Fourier transform and phase estimation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="vqe.html">22. The variational quantum eigensolver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quantumfourier.html">22. The quantum Fourier transform and phase estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vqe.html">23. The variational quantum eigensolver</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Concluding remarks</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="conclusions.html">23. Concluding remarks and perspectives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conclusions.html">24. Concluding remarks and perspectives</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
 <ul class="nav bd-sidenav">
@@ -576,14 +577,24 @@ the same operator is a full matrix.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">diag</span> <span class="o">=</span> <span class="n">mbpt</span><span class="o">.</span><span class="n">reduced_resolvent_demo</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">omega</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="c1"># the same operator in the basis in which H_0 was generated: a full matrix</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-
-<span class="ne">AttributeError</span>: module &#39;mbpt&#39; has no attribute &#39;reduced_resolvent_demo&#39;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Reduced resolvent: the four steps
+  eigenvalues W            : [-2.965 -1.3   -0.668 -0.382  0.895]
+  (i)   [Q, H_0] = 0       : True
+  (ii)  Q R = R Q, QRQ = QR: True True
+  (iii)-(iv) U^T (Q R) U   :
+[[ 0.    -0.    -0.    -0.    -0.   ]
+ [-0.     0.625 -0.    -0.    -0.   ]
+ [-0.     0.     1.033 -0.    -0.   ]
+ [-0.    -0.    -0.     1.466  0.   ]
+ [-0.    -0.    -0.     0.    -1.681]]
+  expected 1/(omega - W_m) : [ 0.625  1.033  1.466 -1.681]
+  (W_0 - H_0) R_Q = Q      : True
+Q G_0 in the original basis:
+[[-0.732 -1.064 -0.828  0.126 -0.16 ]
+ [-1.064  0.413 -0.089  0.41  -0.153]
+ [-0.828 -0.089  0.734  0.073  0.046]
+ [ 0.126  0.41   0.073  0.977  0.219]
+ [-0.16  -0.153  0.046  0.219  0.051]]
 </pre></div>
 </div>
 </div>
@@ -764,7 +775,7 @@ the radius: the terms simply stop decreasing.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/be4e2bee2644789d668877bb4e9483013c2280716f0b087bc885bc741dacb735.png" src="_images/be4e2bee2644789d668877bb4e9483013c2280716f0b087bc885bc741dacb735.png" />
+<img alt="_images/0277917b075e4abb7d6f446c80606f5e247288217d14af7220690326a1c9887d.png" src="_images/0277917b075e4abb7d6f446c80606f5e247288217d14af7220690326a1c9887d.png" />
 </div>
 </div>
 </section>
@@ -847,7 +858,7 @@ contributions to all orders.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/b27fb3febe95ffc30aac158c640657b444ec3b27f9bf361090afede9547b6075.png" src="_images/b27fb3febe95ffc30aac158c640657b444ec3b27f9bf361090afede9547b6075.png" />
+<img alt="_images/284535e134e38a4577b084134f5ce96415c93625d739806e84d2c01454e22e34.png" src="_images/284535e134e38a4577b084134f5ce96415c93625d739806e84d2c01454e22e34.png" />
 </div>
 </div>
 <p>The error panel is the interesting one.  At small <span class="math notranslate nohighlight">\(g\)</span> third-order perturbation
@@ -919,7 +930,7 @@ interaction deteriorate in chapter 5, seen from a third direction.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/abc63580a5bdc09b51c838959bde7f8c6cf0fb7e07d00cdecec6a87e0dff84e5.png" src="_images/abc63580a5bdc09b51c838959bde7f8c6cf0fb7e07d00cdecec6a87e0dff84e5.png" />
+<img alt="_images/e2a567042434ecbf0f35ad71a9f4eab065c08246168c0143ec5001dcbebef5f9.png" src="_images/e2a567042434ecbf0f35ad71a9f4eab065c08246168c0143ec5001dcbebef5f9.png" />
 </div>
 </div>
 <p>At <span class="math notranslate nohighlight">\(g=0.5\)</span> and <span class="math notranslate nohighlight">\(g=1\)</span> the terms fall away steadily.  At <span class="math notranslate nohighlight">\(g=2\)</span> they grow without
@@ -1059,7 +1070,7 @@ Wigner theory is not used for many-body problems.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/16dee770244905b3a716289e50527293246449b8b708db05fc0efcbcc873f0d2.png" src="_images/16dee770244905b3a716289e50527293246449b8b708db05fc0efcbcc873f0d2.png" />
+<img alt="_images/7574f65a91f911677bc52b366753e93702c1814b8bca8be56c5d6c5cb9e77eef.png" src="_images/7574f65a91f911677bc52b366753e93702c1814b8bca8be56c5d6c5cb9e77eef.png" />
 </div>
 </div>
 </section>
@@ -1227,7 +1238,9 @@ choices of H_0 differ by a constant, which cancels in every
 energy denominator.
 
          model   spread of diag(V)
-       pairing            1.000000
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       pairing            1.000000
         Lipkin            0.000000
        Hubbard            0.000000
  pairing + p-h            2.000000
@@ -1240,7 +1253,9 @@ determinant to the next.  There the two partitions do disagree:
     g      f   one-body: +E2          +E3     E-N: +E2          +E3          FCI
  0.50   0.25      0.60208333   0.51930556   0.62435065   0.51885823   0.55119157
  1.00   0.50     -1.59166667  -2.25388889  -1.44791667  -2.25694444  -1.69173670
- 1.50   0.75     -4.58125000  -6.81625000  -4.17225275  -6.82273352  -4.34336785
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 1.50   0.75     -4.58125000  -6.81625000  -4.17225275  -6.82273352  -4.34336785
 
 Both partitions sum to the same exact answer, but at any finite
 order they disagree, and neither is uniformly better: at second
@@ -1277,13 +1292,13 @@ system every chapter has now treated.
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0.50    1.50000    1.427083    1.416667    1.417596    1.374502    1.416774
-  1.00    1.00000    0.708333    0.625000    0.648907    0.554589    0.635548
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1.00    1.00000    0.708333    0.625000    0.648907    0.554589    0.635548
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1.50    0.50000   -0.156250   -0.437500   -0.291132   -0.406248   -0.348191
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  2.00    0.00000   -1.166667   -1.833333   -1.352087   -1.476223   -1.489652
+  2.00    0.00000   -1.166667   -1.833333   -1.352087   -1.476223   -1.489652
 
 The same table as errors, which is where the interest lies:
      g       MBPT2       MBPT3         CID      HF+RPA
@@ -1359,6 +1374,8 @@ chapter 5.
                        -- the two-level benchmark of the text, where every
                           order is known in closed form and the radius of
                           convergence is |2 v_12 / Delta| = 1
+    reduced_resolvent_demo -- the numerical check that Q/(omega - H_0) is a
+                          diagonal matrix in the eigenbasis of H_0 (section 9.2)
 
 Author: Morten Hjorth-Jensen
 &quot;&quot;&quot;
@@ -2192,11 +2209,42 @@ def demo_comparison():
     print(&quot;answer, and it alone degrades gracefully.&quot;)
 
 
+def reduced_resolvent_demo(n=5, omega=0.3, seed=1, verbose=True):
+    &quot;&quot;&quot;The four steps of section 9.2: Q/(omega - H_0) is a diagonal matrix.
+
+    H_0 is generated in a basis in which it is *not* diagonal, so that the
+    diagonal form appears only after the change to its eigenbasis U.
+    Returns the matrix U^T (Q R) U, whose entries should be
+    diag(0, 1/(omega - W_1), ..., 1/(omega - W_{n-1})).
+    &quot;&quot;&quot;
+    rng = np.random.default_rng(seed)
+    A = rng.normal(size=(n, n)); H0 = (A + A.T)/2      # H_0 in an arbitrary basis
+    W, U = np.linalg.eigh(H0)                           # H_0 U = U diag(W)
+    Q = np.eye(n) - np.outer(U[:, 0], U[:, 0])          # 1 - |Phi_0&gt;&lt;Phi_0|
+    step1 = np.allclose(Q @ H0, H0 @ Q)                 # (i)   [Q, H_0] = 0
+    R = np.linalg.inv(omega*np.eye(n) - H0)             # the full resolvent
+    step2 = (np.allclose(Q @ R, R @ Q),                 # (ii)  Q R = R Q
+             np.allclose(Q @ R @ Q, Q @ R))             #       Q R Q = Q R
+    diag = U.T @ (Q @ R) @ U                            # (iii)-(iv): diagonal, first entry 0
+    RQ = sum(np.outer(U[:, m], U[:, m])/(W[0] - W[m]) for m in range(1, n))
+    at_pole = np.allclose((W[0]*np.eye(n) - H0) @ RQ, Q)   # (W_0 - H_0) R_Q = Q at omega = W_0
+    if verbose:
+        print(&quot;Reduced resolvent: the four steps&quot;)
+        print(&quot;  eigenvalues W            :&quot;, np.round(W, 3))
+        print(&quot;  (i)   [Q, H_0] = 0       :&quot;, step1)
+        print(&quot;  (ii)  Q R = R Q, QRQ = QR:&quot;, *step2)
+        print(&quot;  (iii)-(iv) U^T (Q R) U   :&quot;)
+        print(np.round(diag, 3))
+        print(&quot;  expected 1/(omega - W_m) :&quot;, np.round(1/(omega - W[1:]), 3))
+        print(&quot;  (W_0 - H_0) R_Q = Q      :&quot;, at_pole)
+    return diag
+
+
 def _demo():
     for f in (demo_recursion, demo_two_level, demo_pairing, demo_orders,
               demo_lipkin, demo_size_extensivity, demo_brillouin_wigner,
               demo_hubbard, demo_pairing_ph, demo_partitions,
-              demo_comparison):
+              demo_comparison, reduced_resolvent_demo):
         f()
         print()
 

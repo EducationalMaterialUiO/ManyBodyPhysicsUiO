@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>20. Neural quantum states and physics-informed neural networks &#8212; Quantum Mechanics for Many-Particle Systems: from standard methods to quantum computing and machine learning</title>
+    <title>21. Neural quantum states and physics-informed neural networks &#8212; Quantum Mechanics for Many-Particle Systems: from standard methods to quantum computing and machine learning</title>
   
   
   
@@ -62,8 +62,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'pinns';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="21. The quantum Fourier transform and phase estimation" href="quantumfourier.html" />
-    <link rel="prev" title="19. Boltzmann machines and generative models" href="boltzmannmachines.html" />
+    <link rel="next" title="22. The quantum Fourier transform and phase estimation" href="quantumfourier.html" />
+    <link rel="prev" title="20. Boltzmann machines and generative models" href="boltzmannmachines.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -205,30 +205,31 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="mbptheory.html">10. Many-body perturbation theory</a></li>
 <li class="toctree-l1"><a class="reference internal" href="coupledcluster.html">11. Coupled cluster theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="greensfunctions.html">12. Green’s functions</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Applications and stochastic methods</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="quantumdots.html">12. Quantum dots: a realistic Hamiltonian</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dmrg.html">13. The density matrix renormalisation group</a></li>
-<li class="toctree-l1"><a class="reference internal" href="statistics.html">14. Elements from statistics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="variationalmc.html">15. Variational Monte Carlo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="optimisation.html">16. Optimization and resampling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="diffusionmc.html">17. Diffusion Monte Carlo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="manybodymc.html">18. Applications to many-body systems: six electrons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quantumdots.html">13. Quantum dots: a realistic Hamiltonian</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dmrg.html">14. The density matrix renormalisation group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="statistics.html">15. Elements from statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variationalmc.html">16. Variational Monte Carlo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimisation.html">17. Optimization and resampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diffusionmc.html">18. Diffusion Monte Carlo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manybodymc.html">19. Applications to many-body systems: six electrons</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine learning approaches</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="boltzmannmachines.html">19. Boltzmann machines and generative models</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">20. Neural quantum states and physics-informed neural networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="boltzmannmachines.html">20. Boltzmann machines and generative models</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">21. Neural quantum states and physics-informed neural networks</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum computing</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="quantumfourier.html">21. The quantum Fourier transform and phase estimation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="vqe.html">22. The variational quantum eigensolver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quantumfourier.html">22. The quantum Fourier transform and phase estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vqe.html">23. The variational quantum eigensolver</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Concluding remarks</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="conclusions.html">23. Concluding remarks and perspectives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conclusions.html">24. Concluding remarks and perspectives</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
 <ul class="nav bd-sidenav">
@@ -463,21 +464,21 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#automatic-differentiation-done-by-hand">20.1. 1. Automatic differentiation, done by hand</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#does-a-pinn-respect-the-variational-principle">20.2. 2. Does a PINN respect the variational principle?</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#and-without-normalisation-worse">20.2.1. And without normalisation, worse</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#automatic-differentiation-done-by-hand">21.1. 1. Automatic differentiation, done by hand</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#does-a-pinn-respect-the-variational-principle">21.2. 2. Does a PINN respect the variational principle?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#and-without-normalisation-worse">21.2.1. And without normalisation, worse</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-ansatz-and-an-exact-reference">20.3. 3. The ansatz, and an exact reference</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#backflow">20.4. 4. Backflow</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-backflow-does-to-the-nodes-and-where-it-cannot">20.4.1. What backflow does to the nodes — and where it cannot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-ansatz-and-an-exact-reference">21.3. 3. The ansatz, and an exact reference</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#backflow">21.4. 4. Backflow</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-backflow-does-to-the-nodes-and-where-it-cannot">21.4.1. What backflow does to the nodes — and where it cannot</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-left">20.5. What is left</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#three-pictures">20.6. Three pictures</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-two-objectives-on-the-same-parameter-axis">20.6.1. The two objectives on the same parameter axis</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-amplitude-collapse">20.6.2. The amplitude collapse</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#where-backflow-can-move-a-node-and-where-it-cannot">20.6.3. Where backflow can move a node, and where it cannot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-left">21.5. What is left</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#three-pictures">21.6. Three pictures</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-two-objectives-on-the-same-parameter-axis">21.6.1. The two objectives on the same parameter axis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-amplitude-collapse">21.6.2. The amplitude collapse</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#where-backflow-can-move-a-node-and-where-it-cannot">21.6.3. Where backflow can move a node, and where it cannot</a></li>
 </ul>
 </li>
 </ul>
@@ -492,7 +493,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="neural-quantum-states-and-physics-informed-neural-networks">
-<h1><span class="section-number">20. </span>Neural quantum states and physics-informed neural networks<a class="headerlink" href="#neural-quantum-states-and-physics-informed-neural-networks" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">21. </span>Neural quantum states and physics-informed neural networks<a class="headerlink" href="#neural-quantum-states-and-physics-informed-neural-networks" title="Link to this heading">#</a></h1>
 <p>Executable companion to chapter 18.</p>
 <p>Chapter 17 ended with a Boltzmann machine that reached 3.082 where the exact
 answer is 3, and with a diagnosis: no physics in the ansatz, no cusp, and a
@@ -529,7 +530,7 @@ matters a great deal.</p></li>
 </div>
 </div>
 <section id="automatic-differentiation-done-by-hand">
-<h2><span class="section-number">20.1. </span>1. Automatic differentiation, done by hand<a class="headerlink" href="#automatic-differentiation-done-by-hand" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">21.1. </span>1. Automatic differentiation, done by hand<a class="headerlink" href="#automatic-differentiation-done-by-hand" title="Link to this heading">#</a></h2>
 <p>A PINN needs second derivatives of a network with respect to its <strong>inputs</strong>.
 For layers <span class="math notranslate nohighlight">\(a' = \varphi(Wa+b)\)</span> the forward-mode recursion is</p>
 <div class="math notranslate nohighlight">
@@ -576,7 +577,7 @@ parameters d f / d theta        3.31e-11
 </div>
 </section>
 <section id="does-a-pinn-respect-the-variational-principle">
-<h2><span class="section-number">20.2. </span>2. Does a PINN respect the variational principle?<a class="headerlink" href="#does-a-pinn-respect-the-variational-principle" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">21.2. </span>2. Does a PINN respect the variational principle?<a class="headerlink" href="#does-a-pinn-respect-the-variational-principle" title="Link to this heading">#</a></h2>
 <p>For any admissible trial state,</p>
 <div class="math notranslate nohighlight">
 \[
@@ -672,7 +673,7 @@ not a Rayleigh quotient: the measure is the collocation measure, not
 obvious PINN loss for the Schrödinger equation and sampling collocation points
 uniformly over a box — the default in most PINN tutorials.</p>
 <section id="and-without-normalisation-worse">
-<h3><span class="section-number">20.2.1. </span>And without normalisation, worse<a class="headerlink" href="#and-without-normalisation-worse" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">21.2.1. </span>And without normalisation, worse<a class="headerlink" href="#and-without-normalisation-worse" title="Link to this heading">#</a></h3>
 <p>The raw residual <span class="math notranslate nohighlight">\(\|(H-E)\psi\|^2\)</span> has a trivial global minimum at <span class="math notranslate nohighlight">\(\psi = 0\)</span>,
 for <strong>any</strong> <span class="math notranslate nohighlight">\(E\)</span> whatever.</p>
 <div class="cell docutils container">
@@ -710,7 +711,7 @@ stochastic-reconfiguration tail on the energy to restore the bound.</p>
 </section>
 </section>
 <section id="the-ansatz-and-an-exact-reference">
-<h2><span class="section-number">20.3. </span>3. The ansatz, and an exact reference<a class="headerlink" href="#the-ansatz-and-an-exact-reference" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">21.3. </span>3. The ansatz, and an exact reference<a class="headerlink" href="#the-ansatz-and-an-exact-reference" title="Link to this heading">#</a></h2>
 <div class="math notranslate nohighlight">
 \[
 \Psi_{\theta,\beta}(R) = \underbrace{\mathrm{SD}(R')}_{\text{antisymmetry}}
@@ -838,7 +839,7 @@ parameters alone.
 </div>
 </section>
 <section id="backflow">
-<h2><span class="section-number">20.4. </span>4. Backflow<a class="headerlink" href="#backflow" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">21.4. </span>4. Backflow<a class="headerlink" href="#backflow" title="Link to this heading">#</a></h2>
 <p>The Jastrow factor <span class="math notranslate nohighlight">\(e^J\)</span> is symmetric and <strong>positive</strong>.  It can reshape the
 wave function anywhere but cannot change where it <em>vanishes</em>: the nodes of
 <span class="math notranslate nohighlight">\(\Psi\)</span> are the nodes of the determinant, wherever <span class="math notranslate nohighlight">\(J\)</span> puts its weight.  Since
@@ -882,7 +883,7 @@ energy it reports -- and nothing in a training curve will tell you.
 </div>
 </div>
 <section id="what-backflow-does-to-the-nodes-and-where-it-cannot">
-<h3><span class="section-number">20.4.1. </span>What backflow does to the nodes — and where it cannot<a class="headerlink" href="#what-backflow-does-to-the-nodes-and-where-it-cannot" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">21.4.1. </span>What backflow does to the nodes — and where it cannot<a class="headerlink" href="#what-backflow-does-to-the-nodes-and-where-it-cannot" title="Link to this heading">#</a></h3>
 <p>Drag one particle of a three-electron configuration along a line and locate
 the first zero of the determinant.</p>
 <div class="cell docutils container">
@@ -939,7 +940,7 @@ something a better-tuned <span class="math notranslate nohighlight">\(\eta\)</sp
 </section>
 </section>
 <section id="what-is-left">
-<h2><span class="section-number">20.5. </span>What is left<a class="headerlink" href="#what-is-left" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">21.5. </span>What is left<a class="headerlink" href="#what-is-left" title="Link to this heading">#</a></h2>
 <p>The chapter benchmarks this machinery on quantum dots with <span class="math notranslate nohighlight">\(N = 2\)</span> to <span class="math notranslate nohighlight">\(20\)</span>
 electrons across five orders of magnitude in confinement, against diffusion
 Monte Carlo and exact diagonalisation, with agreement to <span class="math notranslate nohighlight">\(\lesssim 0.05\%\)</span> and
@@ -953,14 +954,14 @@ decide whether such a calculation means anything:</p>
 </ul>
 </section>
 <section id="three-pictures">
-<h2><span class="section-number">20.6. </span>Three pictures<a class="headerlink" href="#three-pictures" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">21.6. </span>Three pictures<a class="headerlink" href="#three-pictures" title="Link to this heading">#</a></h2>
 <p>Three claims carry this notebook: that the residual objective is not
 variational, that an unnormalised residual can be driven to zero by doing
 nothing whatever to the physics, and that backflow moves a node where a Jastrow
 factor cannot.  Each was settled above by a table, and each is worth a picture.
 None of them involves sampling, so all three cells run in a few seconds.</p>
 <section id="the-two-objectives-on-the-same-parameter-axis">
-<h3><span class="section-number">20.6.1. </span>The two objectives on the same parameter axis<a class="headerlink" href="#the-two-objectives-on-the-same-parameter-axis" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">21.6.1. </span>The two objectives on the same parameter axis<a class="headerlink" href="#the-two-objectives-on-the-same-parameter-axis" title="Link to this heading">#</a></h3>
 <p>We stay with the quartic oscillator and the one-parameter family
 <span class="math notranslate nohighlight">\(\psi_a = e^{-ax^2/2}\)</span>, and we plot both objectives against the <em>same</em> <span class="math notranslate nohighlight">\(a\)</span>:
 the Rayleigh quotient <span class="math notranslate nohighlight">\(E(a) = a/4 + 3/(8a^2)\)</span>, and the energy <span class="math notranslate nohighlight">\(E^*(a)\)</span> that the
@@ -1047,7 +1048,7 @@ above <span class="math notranslate nohighlight">\(E_0\)</span>.  Nothing in the
 <span class="math notranslate nohighlight">\(|\psi|^2\)</span>.</p>
 </section>
 <section id="the-amplitude-collapse">
-<h3><span class="section-number">20.6.2. </span>The amplitude collapse<a class="headerlink" href="#the-amplitude-collapse" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">21.6.2. </span>The amplitude collapse<a class="headerlink" href="#the-amplitude-collapse" title="Link to this heading">#</a></h3>
 <p>The other failure mode needs no optimiser at all.  The raw residual
 <span class="math notranslate nohighlight">\(\|(H-E)\psi\|^2\)</span> of an unnormalised trial function has a global minimum at
 <span class="math notranslate nohighlight">\(\psi = 0\)</span> for any <span class="math notranslate nohighlight">\(E\)</span> whatever, so a network can reduce its loss by orders of
@@ -1111,7 +1112,7 @@ The energy quotient is invariant under it identically, which is the practical
 argument for making the energy the primary objective.</p>
 </section>
 <section id="where-backflow-can-move-a-node-and-where-it-cannot">
-<h3><span class="section-number">20.6.3. </span>Where backflow can move a node, and where it cannot<a class="headerlink" href="#where-backflow-can-move-a-node-and-where-it-cannot" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">21.6.3. </span>Where backflow can move a node, and where it cannot<a class="headerlink" href="#where-backflow-can-move-a-node-and-where-it-cannot" title="Link to this heading">#</a></h3>
 <p>Finally the nodes.  We drag one electron of a three-electron configuration along
 a line, locate the first zero of the determinant, and watch that zero as the
 backflow strength is turned up from nothing,</p>
@@ -1228,7 +1229,7 @@ instead of assembling it from pair vectors.</p>
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">19. </span>Boltzmann machines and generative models</p>
+        <p class="prev-next-title"><span class="section-number">20. </span>Boltzmann machines and generative models</p>
       </div>
     </a>
     <a class="right-next"
@@ -1236,7 +1237,7 @@ instead of assembling it from pair vectors.</p>
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">21. </span>The quantum Fourier transform and phase estimation</p>
+        <p class="prev-next-title"><span class="section-number">22. </span>The quantum Fourier transform and phase estimation</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1256,21 +1257,21 @@ instead of assembling it from pair vectors.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#automatic-differentiation-done-by-hand">20.1. 1. Automatic differentiation, done by hand</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#does-a-pinn-respect-the-variational-principle">20.2. 2. Does a PINN respect the variational principle?</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#and-without-normalisation-worse">20.2.1. And without normalisation, worse</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#automatic-differentiation-done-by-hand">21.1. 1. Automatic differentiation, done by hand</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#does-a-pinn-respect-the-variational-principle">21.2. 2. Does a PINN respect the variational principle?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#and-without-normalisation-worse">21.2.1. And without normalisation, worse</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-ansatz-and-an-exact-reference">20.3. 3. The ansatz, and an exact reference</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#backflow">20.4. 4. Backflow</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-backflow-does-to-the-nodes-and-where-it-cannot">20.4.1. What backflow does to the nodes — and where it cannot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-ansatz-and-an-exact-reference">21.3. 3. The ansatz, and an exact reference</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#backflow">21.4. 4. Backflow</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-backflow-does-to-the-nodes-and-where-it-cannot">21.4.1. What backflow does to the nodes — and where it cannot</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-left">20.5. What is left</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#three-pictures">20.6. Three pictures</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-two-objectives-on-the-same-parameter-axis">20.6.1. The two objectives on the same parameter axis</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-amplitude-collapse">20.6.2. The amplitude collapse</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#where-backflow-can-move-a-node-and-where-it-cannot">20.6.3. Where backflow can move a node, and where it cannot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-left">21.5. What is left</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#three-pictures">21.6. Three pictures</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-two-objectives-on-the-same-parameter-axis">21.6.1. The two objectives on the same parameter axis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-amplitude-collapse">21.6.2. The amplitude collapse</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#where-backflow-can-move-a-node-and-where-it-cannot">21.6.3. Where backflow can move a node, and where it cannot</a></li>
 </ul>
 </li>
 </ul>
