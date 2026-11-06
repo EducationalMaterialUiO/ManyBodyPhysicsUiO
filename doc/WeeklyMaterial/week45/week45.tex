@@ -872,7 +872,7 @@ $\sum_i u_{ii}$ & $\tfrac12\sum_{ij}\vbar{i}{j}{i}{j}$ & $\sum_{ia}\dfrac{\ftil{
 \begin{itemize}
 \item In a canonical Hartree-Fock basis \(\ftil{pq}=f_{pq}-\varepsilon_p\delta_{pq}=0\): every diagram with a cross vanishes, and the three are the \emph{only} third-order diagrams -- the M\o{}ller-Plesset third-order energy.
 \item Particle-particle ladder: the two excited particles scatter off each other once before they fall back. Hole-hole ladder: the same for the two holes. Ring: one particle-hole pair scatters into another.
-\item Each is the third-order member of an infinite family. Ladders of every length: Brueckner's \(G\)-matrix of nuclear physics. Rings of every length: the RPA of chapter 7 (week 40, and the stability matrix of week 39). Both at once, with the terms that mix them: coupled-cluster doubles, chapter 10.
+\item Each is the third-order member of an infinite family. Iterating the pp channel with a Pauli-projected two-particle propagator gives Brueckner's \(G\)-matrix. Rings of every length: the RPA of chapter 7 (week 40, and the stability matrix of week 39). Both at once, with the terms that mix them: coupled-cluster doubles, chapter 10.
 \end{itemize}
 \mbbox{The linked-diagram theorem (week 46) removes unlinked contributions to the energy. It motivates organising approximations by linked diagram families; it does not by itself establish the convergence or accuracy of a selected resummation.}
 \end{frame}
@@ -1131,8 +1131,8 @@ d2   = -np.einsum("ja,ij,ai,ia,ja->", fov, foo, fvo, 1/D1, 1/D1)
 
 
 % ======================================================================
-\begin{frame}[shrink=12]{Summing one class of diagrams to all orders: the pair ladders}
-\textbf{The question.} Keep, at every order, only the diagrams whose intermediate states are \emph{two-particle-two-hole} states -- one pair lifted out of the reference and nothing else. What do they add up to?
+\begin{frame}[shrink=12]{Which pair ladders are we summing?}
+\textbf{The question.} Promote one pair, scatter it within the four $2p2h$ determinants, then return to the reference. What do these \emph{unfolded chains} sum to when the energy in every propagator is fixed?
 \medskip
 
 \begin{columns}[T]
@@ -1154,15 +1154,15 @@ and $R_0=\mathrm{diag}(1/D_m)$.
 The four states form a \emph{square}: each is a neighbour of the two that share one of its indices.
 \medskip
 
-Every term with $2p2h$ intermediates only is a chain
+At order $n\geq 2$ the unfolded chain contributes
 \[
 w^{T}R_0\,(W_{DD}R_0)^{\,n-2}\,w ,
 \]
-one rung per factor of $W_{DD}R_0$.
+with $n-2$ internal rungs and $n-1$ propagators. Energy feedback produces folded terms starting at fourth order.
 \end{columns}
 \end{frame}
 
-\begin{frame}[shrink=12]{Second, third and fourth order with $2p2h$ intermediate states only}
+\begin{frame}[shrink=12]{Unfolded pair chains through fourth order}
 \begin{columns}[T]
 \column{0.5\textwidth}
 \begin{align*}
@@ -1174,7 +1174,6 @@ E^{(3)}&=\sum_{m\ne n}\frac{w_mW_{mn}w_n}{D_mD_n}
 \[
 E^{(4)}_{2p2h}=\sum_{m,n,k}\frac{w_mW_{mn}W_{nk}w_k}{D_mD_nD_k}=-\frac{7}{288}g^4 ,
 \]
-sixteen paths of length three on the square; e.g.\ $\Phi_2^3\to\Phi_1^3\to\Phi_2^3$ gives $(g/2)^4/((-2)(-4)(-2))=-g^4/256$.
 \column{0.5\textwidth}
 \begin{center}
 \begin{tikzpicture}[fcidiagram,scale=0.7]
@@ -1212,7 +1211,8 @@ sixteen paths of length three on the square; e.g.\ $\Phi_2^3\to\Phi_1^3\to\Phi_2
   \end{scope}
 \end{tikzpicture}
 \end{center}
-\small The four fourth-order diagrams with $2p2h$ intermediates: particle lines inside, hole lines outside; every cut crosses two particle and two hole lines. The pp and hh rungs can be stacked in four orders.
+\small The two internal rungs have four pp/hh orderings. Every cut between vertices crosses two particle lines and two hole lines. The weights on the left use the net matrix elements of $W_{DD}$ after the diagonal cancellation.
+\par\medskip There are $4\cdot2^2=16$ walks: four starting determinants and two choices at each of two steps. Each walk visits three determinants, with repetitions allowed. For example, $\Phi_2^3\to\Phi_1^3\to\Phi_2^3$ gives $(g/2)^4/((-2)(-4)(-2))=-g^4/256$.
 \end{columns}
 \end{frame}
 
@@ -1241,80 +1241,111 @@ sum \(-0.00034813=E^{(4)}\) (week-44 recursion)}
 \[
 E^{(4)}=\Bigl(-\tfrac{336}{13824}-\tfrac{147}{13824}+\tfrac{406}{13824}\Bigr)g^4=-\frac{77}{13824}g^4 .
 \]
-The two dropped pieces are each three to four times larger than their sum: the ladders alone overshoot the full fourth order by a factor of four. (In coupled-cluster language: the disconnected quadruple $\tfrac12T_2^2$ and the $-t\,\Delta E$ term -- week 46.)
+The $4p4h$ and folded terms partially cancel. Together they add $259g^4/13824$ to the unfolded chain. The chain alone has $336/77=48/11\simeq4.36$ times the magnitude of the full fourth-order correction.
 \end{frame}
 
-\begin{frame}[shrink=14]{Deriving the Bethe-Salpeter equation}
-\begin{columns}[T]
-\column{0.52\textwidth}
-\textbf{Sum the chains.} With $t^{(1)}=R_0w$ (first-order pair amplitudes) and $K=W_{DD}R_0$ (one rung, one propagation),
+\begin{frame}[shrink=8]{A Bethe--Salpeter-type ladder equation in the restricted pair space}
+\begin{columns}[T,onlytextwidth]
+\column{0.49\textwidth}
+\textbf{From chains to pair amplitudes.}
+Write $t^{(1)}=R_0w$. Associativity gives
 \[
-\Delta E_{\rm lad}=w^{T}\bigl(1+K+K^2+\cdots\bigr)t^{(1)}=w^{T}(1-K)^{-1}t^{(1)} .
+ R_0(W_{DD}R_0)^k=(R_0W_{DD})^kR_0 .
 \]
-\textbf{Equivalently}, $t=(1-K)^{-1}t^{(1)}$ obeys $t=t^{(1)}+Kt$:
+Hence the kernel acting on an amplitude is $K=R_0W_{DD}$. Summing the iterates gives
 \[
-\boxed{\;t_m=\frac{1}{D_m}\Bigl[w_m+\sum_nW_{mn}t_n\Bigr],\quad \Delta E_{\rm lad}=\sum_mw_mt_m\;}
+ t=(I-K)^{-1}t^{(1)},\qquad
+ \Delta E_{\rm lad}=w^Tt.
 \]
-a \emph{linear} equation: kernel = the interaction inside the pair space, inhomogeneous term = the coupling to the reference, propagator $1/D_m$ between the rungs. A Bethe-Salpeter (Lippmann-Schwinger) equation with the intermediate states restricted to one lifted pair and the starting energy frozen at $\varepsilon_0$. In terms of $H$ ($\varepsilon_0+D_m-W_{mm}=E_{\rm ref}-H_{mm}$): $\Delta E_{\rm lad}=H_{0D}(E_{\rm ref}-H_{DD})^{-1}H_{D0}$.
-\column{0.46\textwidth}
-\textbf{Solve it by hand.} Apply $K$ twice to $t^{(1)}=\tfrac g2(\tfrac12,\tfrac14,\tfrac14,\tfrac16)$:
+The amplitude satisfies
+\[
+ \boxed{\displaystyle t_m=\frac{w_m+\sum_n W_{mn}t_n}{D_m}.}
+\]
+Since $E_{\rm ref}-H_{mm}=D_m-W_{mm}$,
+\[
+ \Delta E_{\rm lad}=H_{0D}(E_{\rm ref}I-H_{DD})^{-1}H_{D0}.
+\]
+\column{0.49\textwidth}
+\textbf{Why every second order repeats.}
+In the ordering of the four pair determinants,
 \begin{align*}
-W_{DD}t^{(1)}&=-g^2(\tfrac18,\tfrac16,\tfrac16,\tfrac18),\\
-R_0W_{DD}t^{(1)}&=g^2(\tfrac1{16},\tfrac1{24},\tfrac1{24},\tfrac1{48}),\\
-W_{DD}R_0W_{DD}t^{(1)}&=-\tfrac{g^3}{24}(1,1,1,1)\propto w,
+ t^{(1)}&=g(\tfrac14,\tfrac18,\tfrac18,\tfrac1{12})^T,\\
+ Kt^{(1)}&=g^2(\tfrac1{16},\tfrac1{24},\tfrac1{24},\tfrac1{48})^T,\\
+ K^2t^{(1)}&=\tfrac{g^2}{12}\,t^{(1)}.
 \end{align*}
-so $K^2t^{(1)}=\dfrac{g^2}{12}\,t^{(1)}$: even and odd orders are each geometric with ratio $g^2/12$,
+Thus $E_{\rm lad}^{(n+2)}=(g^2/12)E_{\rm lad}^{(n)}$. The even and odd subsequences are separately geometric. Adding them gives
 \[
-\boxed{\;\Delta E_{\rm lad}(g)=\frac{-\tfrac{7}{24}g^2-\tfrac1{12}g^3}{1-g^2/12}=-\frac{g^2(7+2g)}{2(12-g^2)}\;}
+ \boxed{\displaystyle
+ \Delta E_{\rm lad}=
+ \frac{-7g^2/24-g^3/12}{1-g^2/12}
+ =-\frac{g^2(7+2g)}{2(12-g^2)}.}
 \]
-$=-\tfrac{7}{24}g^2-\tfrac1{12}g^3-\tfrac{7}{288}g^4-\tfrac1{144}g^5-\cdots$, with a pole at $g=2\sqrt3$. (\texttt{mbpt.pair\_ladder\_sum} checks the coefficients to eighth order in exact arithmetic.)
+The series converges for $|g|<2\sqrt{3}$. Its fourth- and fifth-order terms are $-7g^4/288$ and $-g^5/144$.
 \end{columns}
 \end{frame}
 
-\begin{frame}[shrink=8]{The ladder sum against CID, CCD and FCI}
+\begin{frame}[shrink=14]{Pair ladders compared with CID, CCD and FCI}
 \begin{center}
 \small
-\begin{tabular}{rrrrr}
+\begin{tabular}{rrrrrr}
 \toprule
-$g$ & ladders $\infty$ & CID & CCD & FCI\\
+$g$ & pp only & pp+hh chains & CID & CCD & FCI\\
 \midrule
-$0.25$ & $1.730366$ & $1.730507$ & $1.730456$ & $1.730460$\\
-$0.50$ & $1.414894$ & $1.417596$ & $1.416638$ & $1.416774$\\
-$1.00$ & $0.590909$ & $0.648907$ & $0.630443$ & $0.635548$\\
-$1.50$ & $-0.653846$ & $-0.291132$ & $-0.384165$ & $-0.348191$\\
-$2.00$ & $-2.750000$ & $-1.352087$ & $-1.609594$ & $-1.489652$\\
+$0.25$ & $1.731092$ & $1.730366$ & $1.730507$ & $1.730456$ & $1.730460$\\
+$0.50$ & $1.421404$ & $1.414894$ & $1.417596$ & $1.416638$ & $1.416774$\\
+$1.00$ & $0.658404$ & $0.590909$ & $0.648907$ & $0.630443$ & $0.635548$\\
+$1.50$ & $-0.343227$ & $-0.653846$ & $-0.291132$ & $-0.384165$ & $-0.348191$\\
+$2.00$ & $-1.664596$ & $-2.750000$ & $-1.352087$ & $-1.609594$ & $-1.489652$\\
 \bottomrule
 \end{tabular}
 
-\includegraphics[width=0.78\textwidth]{chapter09/mbpt_fig05}
+\includegraphics[width=0.66\textwidth]{chapter09/mbpt_fig05}
 \end{center}
-\small Four levels, four particles, $\xi=1$; ladder column $=E_{\rm ref}-g^2(7+2g)/(2(12-g^2))$ (\texttt{mbpt.pair\_ladder\_sum}). Right panel: the error of the ladder series truncated order by order and of the full sum -- all smooth through $g_c\simeq1.58$, where the full Rayleigh-Schr\"odinger series diverges.
+\small All entries are total energies ($E_{\rm ref}=2-g$). The pp-only column keeps the off-diagonal pp moves of $W_{DD}$ with the same fixed denominators. The plotted ladder curves include pp and hh moves; the red dotted line marks their pole at $2\sqrt{3}$.
 \end{frame}
 
-\begin{frame}[shrink=5]{What the closed form says}
-\begin{enumerate}
-\item \textbf{It is CID with the energy frozen.} $\Delta E_{\rm CID}=H_{0D}(E_{\rm ref}+\Delta E_{\rm CID}-H_{DD})^{-1}H_{D0}$: the only difference is $\Delta E$ in the denominator, and expanding it generates exactly the \emph{folded} diagrams. Iterating the energy reproduces CID to every digit; without the folds (positive) the sum lies below CID.
-\item \textbf{Convergence is not inherited.} The full series diverges beyond $g_c\simeq1.58$; the ladder series converges up to $g=2\sqrt3\approx3.46$ -- and is wrong there ($-2.75$ vs $-1.49$ at $g=2$). Its pole is where $E_{\rm ref}$ meets an eigenvalue of $H_{DD}$, not where the exact spectrum does anything.
-\item \textbf{Not better at weak coupling either}: at $g=0.25$ the error is $9\times10^{-5}$ against $9\times10^{-6}$ for third order -- the dropped $4p4h$ and folded pieces outweigh the kept fourth-order ladder. What the sum buys is a \emph{finite} effective interaction when the low orders are not: the Brueckner $G$-matrix (pp rungs only, each pair at its own starting energy $2\varepsilon_i$) gives $1.7311$, $1.4214$, $0.6584$ at $g=0.25,0.5,1$.
-\end{enumerate}
+\begin{frame}[shrink=5]{Frozen denominators, CID and the convergence radius}
+\textbf{Restoring energy feedback.} In the same reference-plus-doubles space, eliminating the doubles gives the CID ground-state equation
+\[
+ \Delta E_{\rm CID}
+ =H_{0D}\big[(E_{\rm ref}+\Delta E_{\rm CID})I-H_{DD}\big]^{-1}H_{D0}.
+\]
+Freezing the energy argument at $E_{\rm ref}$ gives the pp+hh chain sum. Expanding the CID resolvent in $\Delta E_{\rm CID}$ generates the folded terms. The first fold is $-E^{(2)}w^TR_0^2w$.
 \medskip
-\textbf{Where this goes.} Week 46: CCD keeps the same linear ladder kernel and adds the folds and the quadruples non-linearly, and stays finite. Chapter 11 (Green's functions): the same equation with an energy-dependent propagator and rings in the kernel -- the parquet summation.
+
+\textbf{Why the full series has a smaller radius.}
+For $y=E+g-6$ the ground-state branch of the full pairing Hamiltonian satisfies
+\[
+ p(y,g)=y^4-(20+3g^2)y^2+2g^3y+64+20g^2=0,\qquad y(0)=-4 .
+\]
+The nearest coalescences on this branch satisfy $p=\partial_y p=0$ at $g\simeq0.679965\pm1.360006\,i$. Their modulus gives the full Rayleigh--Schr\"odinger radius $R_{\rm RS}\simeq1.52052$. The frozen chain has poles at $g=\pm2\sqrt{3}$, where $E_{\rm ref}I-H_{DD}$ is singular.
+\medskip
+
+At $g=2$ the chain series converges to $E=-2.750000$, while FCI gives $-1.489652$. Even at $g=0.25$ its absolute error is $9.3\times10^{-5}$, compared with $8.9\times10^{-6}$ for third order.
 \end{frame}
 
-\begin{frame}[shrink=1]{Pause to think \#5}
-\thinkq{3}{The restricted ladder sum solves $t=R_0(w+W_{DD}t)$ with $R_0=1/D_m$ fixed.
+\begin{frame}{Pause to think \#5}
+\thinkq{3}{The restricted pair equation uses $R_0=\operatorname{diag}(1/D_m)$.
 \begin{enumerate}
-\item Replace $R_0$ by $1/(D_m+\Delta E)$ with the \emph{exact} $\Delta E$ and iterate: which scheme of week 44 is this, and why does it reproduce CID rather than the exact energy?
-\item The pure pp ladders are above the exact energy at every $g$ in the table, the pp+hh ladders below it. What does the hh rung do to the denominators that makes the difference grow with $g$?
+\item Replace $1/D_m$ by $1/(D_m+\Delta E)$ and solve for $\Delta E$ self-consistently. Which eigenvalue problem does this solve? Which determinant would be needed for FCI?
+\item A pp rung keeps the hole pair $i$ fixed. For each $i$, the excited pair can occupy $a=3$ or $4$. Use the pp-only and FCI columns at $g=1.5$ and $g=2$ to test whether the pp-only energy provides an upper bound.
 \end{enumerate}}
 \end{frame}
 
-\begin{frame}[shrink=8]{Answer to pause \#5}
+\begin{frame}[shrink=5]{Answer to pause \#5}
 \thinka{%
 \begin{enumerate}
-\item Brillouin-Wigner, restricted to the pair space: the denominators carry the exact (self-consistent) energy and there are no folded terms to subtract -- the folds \emph{are} the expansion of $\Delta E$ in the denominator. Iterating $\Delta E=H_{0D}(E_{\rm ref}+\Delta E-H_{DD})^{-1}H_{D0}$ is the eigenvalue condition of $H$ in the space $\{\ph,\Phi_m\}$, i.e.\ CID, not FCI, because the $4p4h$ state is still excluded; Brillouin-Wigner in the \emph{full} space would be exact (week 44).
-\item An hh rung keeps the lifted pair in $a$ and moves the hole pair from $i$ to $j$; the propagator stays $1/D_j^a$, frozen at the reference energy, whereas in the true $2p2h$ energetics the moved hole pair sits in a state whose energy relative to the ground state already contains the correlation shift. Freezing the energy makes the hh chains too attractive, and the more so the closer $E_{\rm ref}$ comes to the lowest eigenvalue of $H_{DD}$ -- the pole at $g=2\sqrt3$. The pp rungs at the pair's own starting energy $2\varepsilon_i$ do not have this problem and stay above the exact answer, like a variational-looking $G$-matrix.
+\item This is the Brillouin--Wigner equation in the reference-plus-doubles space. Its ground-state root is CID. Including the determinant in which both pairs have been promoted extends this space to the full paired sector.
+\item Put $v=-g/2$. For each fixed $i$, inverting the two-state pp block gives
+\[
+ \begin{pmatrix}D_i^3&-v\\-v&D_i^4\end{pmatrix}
+ \binom{t_i^3}{t_i^4}=v\binom11,\qquad
+ \Delta E_{\rm pp}
+ =\sum_{i=1}^2 v^2\,\frac{D_i^3+D_i^4+2v}{D_i^3D_i^4-v^2}.
+\]
+At $g=1.5$ the pp energy lies above FCI by $0.004964$. At $g=2$ it lies below FCI by $0.174944$. The fixed-energy resolvent therefore gives no variational upper bound.
 \end{enumerate}}
+\small Here \emph{pp only} refers to the pp moves of the model's zero-diagonal $W_{DD}$. The conventional Brueckner $G$-matrix iterates a two-body interaction with a Pauli-projected two-particle propagator at the incoming pair's starting energy.
 \end{frame}
 
 % ======================================================================
@@ -1350,7 +1381,7 @@ Week 46 develops the factorisation, the linked-diagram theorem and its proof, th
 \item For time-ordered antisymmetrised diagrams, Wick contractions give the label sums. The cuts give the resolvent denominators. Equivalent internal line pairs give $1/2$ each, and the Wick sign is $(-1)^{h+l}$.
 \item Fourteen connected third-order diagrams occur for general one- and two-body normal-ordered vertices. With a canonical HF partition only the pp ladder, hh ladder and ph ring survive.
 \item The pairing model illustrates how the original third-order subtraction enters through the diagonal matrix elements of $W$. At fourth order, unlinked graphs require the factorisation developed next week.
-\item The pair ladders of the pairing model -- all diagrams with $2p2h$ intermediate states -- form a geometric series with ratio $g^2/12$ and sum to $-g^2(7+2g)/(2(12-g^2))$; they solve a restricted Bethe-Salpeter equation, which is doubles CI with the energy frozen, and the folded diagrams are the difference.
+\item At fixed reference energy, the unfolded pp+hh chains through the four $2p2h$ determinants solve $t=R_0w+R_0W_{DD}t$. Even and odd orders are separately geometric with ratio $g^2/12$, giving $\Delta E_{\rm lad}=-g^2(7+2g)/[2(12-g^2)]$. Restoring the energy dependence generates the CID folded terms.
 \end{itemize}
 \end{frame}
 

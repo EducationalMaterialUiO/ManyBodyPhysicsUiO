@@ -897,7 +897,9 @@ by ten orders of magnitude between the tenth and the fortieth --
 and the partial sums are meaningless.  Somewhere between g = 1 and
 g = 2 lies the radius of convergence, and g = 1.5 sits close to
 it: the terms there decrease so slowly that no finite number of
-them settles the question.
+them settles the question.  (The exact radius, 1.5205, follows
+from the branch points of the energy: pairing_convergence_radius
+and demonstration 3b.)
 
 This is worth taking seriously.  Perturbation theory is an
 expansion about the reference determinant, and once the true
@@ -1102,7 +1104,9 @@ energy.  For the pairing model:
      g         BW(2)         BW(3)      BW exact           FCI  iterations
   0.25    1.73328927    1.73091635    1.73045985    1.73045985          41
   0.50    1.43866884    1.42314335    1.41677428    1.41677428          41
-  1.00    0.79140813    0.70800963    0.63554847    0.63554847          36
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1.00    0.79140813    0.70800963    0.63554847    0.63554847          36
   1.50    0.09433209   -0.10095126   -0.34819051   -0.34819051          27
   2.00   -0.63318105   -0.96772735   -1.48965216   -1.48965216          20
 
@@ -1239,9 +1243,7 @@ choices of H_0 differ by a constant, which cancels in every
 energy denominator.
 
          model   spread of diag(V)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       pairing            1.000000
+       pairing            1.000000
         Lipkin            0.000000
        Hubbard            0.000000
  pairing + p-h            2.000000
@@ -1253,7 +1255,9 @@ determinant to the next.  There the two partitions do disagree:
 
     g      f   one-body: +E2          +E3     E-N: +E2          +E3          FCI
  0.50   0.25      0.60208333   0.51930556   0.62435065   0.51885823   0.55119157
- 1.00   0.50     -1.59166667  -2.25388889  -1.44791667  -2.25694444  -1.69173670
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 1.00   0.50     -1.59166667  -2.25388889  -1.44791667  -2.25694444  -1.69173670
  1.50   0.75     -4.58125000  -6.81625000  -4.17225275  -6.82273352  -4.34336785
 
 Both partitions sum to the same exact answer, but at any finite
@@ -1285,12 +1289,16 @@ The pairing model with four levels and four particles, the one
 system every chapter has now treated.
 
      g         HF       MBPT2       MBPT3         CID      HF+RPA         FCI
-  0.25    1.75000    1.731771    1.730469    1.730507    1.716347    1.730460
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0.50    1.50000    1.427083    1.416667    1.417596    1.374502    1.416774
-  1.00    1.00000    0.708333    0.625000    0.648907    0.554589    0.635548
-  1.50    0.50000   -0.156250   -0.437500   -0.291132   -0.406248   -0.348191
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0.25    1.75000    1.731771    1.730469    1.730507    1.716347    1.730460
+  0.50    1.50000    1.427083    1.416667    1.417596    1.374502    1.416774
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1.00    1.00000    0.708333    0.625000    0.648907    0.554589    0.635548
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1.50    0.50000   -0.156250   -0.437500   -0.291132   -0.406248   -0.348191
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  2.00    0.00000   -1.166667   -1.833333   -1.352087   -1.476223   -1.489652
@@ -1320,24 +1328,36 @@ answer, and it alone degrades gracefully.
 </section>
 <section id="pair-ladders-to-all-orders-a-restricted-bethe-salpeter-equation">
 <h2><span class="section-number">10.13. </span>13. Pair ladders to all orders: a restricted Bethe-Salpeter equation<a class="headerlink" href="#pair-ladders-to-all-orders-a-restricted-bethe-salpeter-equation" title="Link to this heading">#</a></h2>
-<p>Keep, at every order, only the diagrams whose intermediate states are
-two-particle-two-hole pair states — one pair lifted out of the reference
-and nothing else.  For four levels and four particles that is a space of four
-determinants <span class="math notranslate nohighlight">\(|\Phi_i^a\rangle\)</span> with excitation energies <span class="math notranslate nohighlight">\(D=(2,4,4,6)\)</span>,
+<p>Keep, at every order, the <em>unfolded chains</em>: one pair is promoted out of the
+reference, scattered among the four two-particle-two-hole determinants
+<span class="math notranslate nohighlight">\(|\Phi_i^a\rangle\)</span> by the interaction, and returned to the reference once,
+with the energy in every propagator fixed at the reference energy.  For four
+levels and four particles the pair space has excitation energies <span class="math notranslate nohighlight">\(D=(2,4,4,6)\)</span>,
 couplings <span class="math notranslate nohighlight">\(w_m=-g/2\)</span> to the reference and a block <span class="math notranslate nohighlight">\(W_{mn}\)</span> of
 <span class="math notranslate nohighlight">\(\hat W=\hat H_I-\Delta E^{(1)}\)</span> that is <span class="math notranslate nohighlight">\(-g/2\)</span> between neighbours on a square
-(a particle-particle or a hole-hole rung) and zero otherwise.  The terms with
-<span class="math notranslate nohighlight">\(2p2h\)</span> intermediate states are then the chains
-<span class="math notranslate nohighlight">\(w^T R\,(W_{DD}R)^{n-2}\,w\)</span> with <span class="math notranslate nohighlight">\(R=-1/D\)</span>, and they form a geometric series
-with ratio <span class="math notranslate nohighlight">\(g^2/12\)</span> that sums to</p>
+(a particle-particle rung keeps the hole pair, a hole-hole rung keeps the
+particle pair) and zero otherwise.  The chain of order <span class="math notranslate nohighlight">\(n\)</span> is
+<span class="math notranslate nohighlight">\(w^T R_0\,(W_{DD}R_0)^{n-2}\,w\)</span> with <span class="math notranslate nohighlight">\(R_0=-1/D\)</span>: <span class="math notranslate nohighlight">\(n-2\)</span> internal rungs and <span class="math notranslate nohighlight">\(n-1\)</span>
+propagators.  Through third order this is the whole series; from fourth order
+on the full series also contains the chain through the <span class="math notranslate nohighlight">\(4p4h\)</span> state and the
+folded terms <span class="math notranslate nohighlight">\(-\Delta E^{(2)}w^TR_0^2w+\ldots\)</span> generated by the energy
+dependence — whose intermediate states are the same <span class="math notranslate nohighlight">\(2p2h\)</span> determinants, which
+is why the restriction has to be stated as one on the structure of the terms.</p>
+<p>With <span class="math notranslate nohighlight">\(t^{(1)}=R_0w\)</span> and <span class="math notranslate nohighlight">\(K=R_0W_{DD}\)</span> (associativity:
+<span class="math notranslate nohighlight">\(R_0(W_{DD}R_0)^k=(R_0W_{DD})^kR_0\)</span>) the chains sum to <span class="math notranslate nohighlight">\(w^T(1-K)^{-1}t^{(1)}\)</span>,
+and <span class="math notranslate nohighlight">\(K^2t^{(1)}=(g^2/12)\,t^{(1)}\)</span> makes the even and the odd orders separately
+geometric,</p>
 <div class="math notranslate nohighlight">
-\[\Delta E_{\rm lad}(g)=-\frac{g^2(7+2g)}{2(12-g^2)},\]</div>
+\[\Delta E_{\rm lad}(g)=\frac{-7g^2/24-g^3/12}{1-g^2/12}=-\frac{g^2(7+2g)}{2(12-g^2)},\]</div>
 <p>the solution of the restricted Bethe-Salpeter equation
-<span class="math notranslate nohighlight">\(t_m=\frac{1}{-D_m}\bigl[w_m+\sum_n W_{mn}t_n\bigr]\)</span>, <span class="math notranslate nohighlight">\(\Delta E=\sum_m w_m t_m\)</span>.
+<span class="math notranslate nohighlight">\(t_m=\frac{1}{-D_m}\bigl[w_m+\sum_n W_{mn}t_n\bigr]\)</span>, <span class="math notranslate nohighlight">\(\Delta E=\sum_m w_m t_m\)</span>,
+i.e. <span class="math notranslate nohighlight">\(\Delta E=H_{0D}(E_{\rm ref}-H_{DD})^{-1}H_{D0}\)</span>.
 The demonstration prints the exact rational coefficients, splits the fourth
-order into its <span class="math notranslate nohighlight">\(2p2h\)</span>, <span class="math notranslate nohighlight">\(4p4h\)</span> and folded pieces, and compares the sum with
-doubles CI (the same equation with <span class="math notranslate nohighlight">\(E_{\rm ref}+\Delta E\)</span> in the denominator,
-i.e. with the folded diagrams) and with the exact energy.</p>
+order into its chain, <span class="math notranslate nohighlight">\(4p4h\)</span> and folded pieces, compares the sum with the
+chains that keep particle-particle rungs only, with doubles CI (the same
+equation with <span class="math notranslate nohighlight">\(E_{\rm ref}+\Delta E\)</span> in the denominator, i.e. with the folded
+terms) and with the exact energy, and finds the exact radius of convergence of
+the full series from the branch points of the ground-state energy.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mbpt</span><span class="o">.</span><span class="n">demo_pair_ladders</span><span class="p">()</span>
@@ -1345,22 +1365,90 @@ i.e. with the folded diagrams) and with the exact energy.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">18</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">mbpt</span><span class="o">.</span><span class="n">demo_pair_ladders</span><span class="p">()</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>==========================================================================
+3b. Pair ladders: the unfolded 2p2h chains summed to all orders
+==========================================================================
+The 2p2h pair space of the four-level, four-particle model:
+  hole level i / particle level a : [2 1 2 1] / [3 3 4 4]
+  excitation energies D_m         : [2. 4. 4. 6.]
+  couplings w_m = &lt;m|W|0&gt;         : [-0.5 -0.5 -0.5 -0.5]
+  block W_mn (g = 1):
+[[ 0.  -0.5 -0.5  0. ]
+ [-0.5  0.   0.  -0.5]
+ [-0.5  0.   0.  -0.5]
+ [ 0.  -0.5 -0.5  0. ]]
+  coefficients c_n of the unfolded chain E^(n)_lad = c_n g^n:
+    n = 2:      -7/24   
+    n = 3:      -1/12   
+    n = 4:     -7/288   c_4/c_2 = 1/12
+    n = 5:     -1/144   c_5/c_3 = 1/12
+    n = 6:    -7/3456   c_6/c_4 = 1/12
+    n = 7:    -1/1728   c_7/c_5 = 1/12
+    n = 8:   -7/41472   c_8/c_6 = 1/12
+  every second coefficient is 1/12 of the one two orders below
+  (K^2 t1 = g^2/12 t1 with K = R W_DD): the even and the odd orders
+  are each geometric with ratio g^2/12 and the chain sums to
+  E_lad(g) = -g^2 (7 + 2g) / (2 (12 - g^2)), with poles at g = +-2 sqrt(3).
 
-<span class="ne">AttributeError</span>: module &#39;mbpt&#39; has no attribute &#39;demo_pair_ladders&#39;
+Fourth order: the unfolded chain, the chain through the 4p4h state
+and the folded term -E2 w^T R^2 w (also 2p2h intermediate states,
+but not a chain):
+     g           E2           E3     E4 chain      E4 4p4h       folded     E4 total
+  0.25  -0.01822917  -0.00130208  -0.00009494  -0.00004154   0.00011472  -0.00002176
+  0.50  -0.07291667  -0.01041667  -0.00151910  -0.00066461   0.00183558  -0.00034813
+  1.00  -0.29166667  -0.08333333  -0.02430556  -0.01063368   0.02936921  -0.00557002
+  1.50  -0.65625000  -0.28125000  -0.12304688  -0.05383301   0.14868164  -0.02819824
+  2.00  -1.16666667  -0.66666667  -0.38888889  -0.17013889   0.46990741  -0.08912037
+  in units of g^4: chain -7/288 = -336/13824, 4p4h -49/4608 =
+  -147/13824, folded +203/6912 = +406/13824, total -77/13824; the
+  two dropped pieces partially cancel to +259/13824 and the chain
+  alone is 336/77 = 48/11 = 4.36 times the full fourth order.
+
+     g    E_ref      pp only    +chain(4)   +chain(inf)  closed form          CID   self-cons.          FCI
+  0.25    1.750   1.73109156   1.73037381    1.73036649   1.73036649   1.73050700   1.73050700   1.73045985
+  0.50    1.500   1.42140375   1.41514757    1.41489362   1.41489362   1.41759645   1.41759645   1.41677428
+  1.00    1.000   0.65840407   0.60069444    0.59090909   0.59090909   0.64890655   0.64890655   0.63554847
+  1.50    0.500  -0.34322689  -0.56054688   -0.65384615  -0.65384615  -0.29113175  -0.29113175  -0.34819051
+  2.00    0.000  -1.66459627  -2.22222222   -2.75000000  -2.75000000  -1.35208670  -1.35208670  -1.48965216
+  3.00   -1.000  -5.86656672  -7.84375000  -20.50000000 -20.50000000  -3.67443087  -3.67443087  -4.05346902
+
+The chain sum is the doubles-CI equation with the energy frozen at
+E_ref; putting E_ref + E back in the denominator, which is what the
+folded terms do, gives CID exactly.  The pp-only column keeps the
+particle-particle rungs of W_DD with the same fixed denominators;
+it lies above FCI at g &lt;= 1.5 and below it at g = 2, so the fixed-
+energy resolvent gives no variational bound.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Radius of convergence of the full series: the ground-state energy
+is a root of p(y, g) = y^4 - (20 + 3g^2) y^2 + 2g^3 y + 64 + 20g^2,
+y = E + g - 6 (check at g = 1: p = -7.1e-14).  Its
+branch points p = dp/dy = 0 are the zeros of the discriminant; the
+nearest ones on the ground-state branch are
+  g = 0.679965+1.360006j, 0.679965-1.360006j,   |g| = 1.520516
+  (the other zeros of the discriminant, -0.68 +- 1.36 i and
+  +-1.75 i, are coalescences of other branches and are discarded),
+  arg g = 63.4 deg, period 2 pi / arg g = 5.67 orders.
+The series in g converges for |g| &lt; 1.5205, not for the 1.58 that a
+straight-line fit of log|E^(n)| suggests: a square-root branch point
+gives E^(n) ~ (g/g_c)^n n^(-3/2) cos(n arg g_c + phi), and the n^(-3/2)
+steepens any finite-window slope.  The chain sum converges for
+|g| &lt; 2 sqrt(3) = 3.46, where E_ref hits an eigenvalue of H_DD.
 </pre></div>
 </div>
 </div>
 </div>
-<p>The sum of the restricted class converges up to <span class="math notranslate nohighlight">\(g=2\sqrt3\approx3.46\)</span>, where
-the closed form has a pole, although the full series diverges beyond
-<span class="math notranslate nohighlight">\(g\approx1.58\)</span>; and where it converges it is not accurate, because the
-<span class="math notranslate nohighlight">\(4p4h\)</span> term and the folded term it drops are larger than the fourth-order term
-it keeps.  The figure follows the partial sums through fourth order, the
-all-order sum, CID and the exact energy.</p>
+<p>The chain sum converges up to <span class="math notranslate nohighlight">\(|g|=2\sqrt3\approx3.46\)</span>, where the closed form
+has its poles (<span class="math notranslate nohighlight">\(E_{\rm ref}\)</span> meets an eigenvalue of <span class="math notranslate nohighlight">\(H_{DD}\)</span>), although the
+full series converges only for <span class="math notranslate nohighlight">\(|g|&lt;1.5205\)</span>, the distance to the nearest
+branch points <span class="math notranslate nohighlight">\(g=0.680\pm1.360\,i\)</span> of the exact energy; and where the chain
+sum converges it is not accurate, because the <span class="math notranslate nohighlight">\(4p4h\)</span> term and the folded term
+it drops together outweigh the fourth-order chain it keeps (at <span class="math notranslate nohighlight">\(g=2\)</span> it gives
+<span class="math notranslate nohighlight">\(-2.75\)</span> against the exact <span class="math notranslate nohighlight">\(-1.49\)</span>).  The chains with particle-particle rungs
+only lie above the exact energy up to <span class="math notranslate nohighlight">\(g=1.5\)</span> and below it at <span class="math notranslate nohighlight">\(g=2\)</span>: a sum
+with a fixed-energy resolvent gives no variational bound.  The figure follows
+the partial sums through fourth order, the all-order sum, CID and the exact
+energy.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">3.3</span><span class="p">,</span> <span class="mi">66</span><span class="p">)</span>
@@ -1404,7 +1492,7 @@ all-order sum, CID and the exact energy.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/6d4429cce725da97105f6a2890cb4f1d19733deff9164facd041e5f719463aa3.png" src="_images/6d4429cce725da97105f6a2890cb4f1d19733deff9164facd041e5f719463aa3.png" />
+<img alt="_images/4096d204cf219cd01860dda6b63bcc2711042484311b5dd761e36acdaf78d908.png" src="_images/4096d204cf219cd01860dda6b63bcc2711042484311b5dd761e36acdaf78d908.png" />
 </div>
 </div>
 </section>
@@ -1831,7 +1919,8 @@ def copies_partition(g=0.5, xi=1.0, subsystems=2, scheme=&quot;one_body&quot;):
 
 
 # ---------------------------------------------------------------------------
-#  Pair ladders: the two-particle intermediate states summed to all orders
+#  Pair ladders: the unfolded chains through the 2p2h pair space summed to
+#  all orders at a fixed (reference) energy
 # ---------------------------------------------------------------------------
 def pair_ladder_space(partition, model):
     &quot;&quot;&quot;The 2p2h pair space of a pairing partition.
@@ -1839,12 +1928,14 @@ def pair_ladder_space(partition, model):
     Returns the indices of the seniority-zero determinants in which exactly
     one pair has been moved out of the reference, their unperturbed
     excitation energies D_m = W_m - W_0, the couplings w_m = &lt;Phi_m|W|Phi_0&gt;
-    to the reference and the block W_mn of W = V - V_00 within the space.
-    For four levels and four particles the space has four states, the
-    couplings are all -g/2, the diagonal of W_mn vanishes and the
-    off-diagonal elements are -g/2 when the two states differ by one pair
-    move (a particle-particle or a hole-hole ladder rung) and zero when
-    both pairs would have to move.
+    to the reference, the block W_mn of W = V - V_00 within the space, and
+    for each state the level emptied (&#39;holes&#39;) and the level filled
+    (&#39;particles&#39;).  For four levels and four particles the space has four
+    states, the couplings are all -g/2, the diagonal of W_mn vanishes and
+    the off-diagonal elements are -g/2 when the two states differ by one
+    pair move -- the same hole level, a particle-particle rung, or the same
+    particle level, a hole-hole rung -- and zero when both pairs would have
+    to move.
     &quot;&quot;&quot;
     states = model.basis.states
     n_orb = model.basis.n_orbitals
@@ -1860,14 +1951,22 @@ def pair_ladder_space(partition, model):
     V = partition.V
     W = V - V[ref, ref] * np.eye(partition.dim)
     D = partition.w[idx] - partition.w0
-    return dict(indices=idx, D=D, w=W[ref, idx], W=W[np.ix_(idx, idx)])
+    holes = np.array([((refstate &amp; ~states[i]).bit_length() - 1) // 2 for i in idx])
+    particles = np.array([((states[i] &amp; ~refstate).bit_length() - 1) // 2 for i in idx])
+    return dict(indices=idx, D=D, w=W[ref, idx], W=W[np.ix_(idx, idx)],
+                holes=holes, particles=particles)
 
 
 def pair_ladder_orders(partition, model, order=4):
-    &quot;&quot;&quot;E^(n)_{2p2h} = &lt;w| R (W_DD R)^{n-2} |w&gt;, n = 2, ..., order: the
-    Rayleigh-Schrodinger terms whose intermediate states are all 2p2h pair
-    states, i.e. the ladders (particle-particle, hole-hole and mixed) with
-    no folded term.  Returns the list indexed from n = 2.&quot;&quot;&quot;
+    &quot;&quot;&quot;E^(n)_lad = w^T R (W_DD R)^{n-2} w, n = 2, ..., order: the unfolded
+    chains through the 2p2h pair space -- one pair promoted, scattered by
+    n-2 rungs (particle-particle, hole-hole or mixed) and returned to the
+    reference, every one of the n-1 propagators R = -1/D carrying the
+    reference energy.  Through third order this is the whole series; from
+    fourth order on the full series also contains the 4p4h state and the
+    folded terms generated by the energy dependence, which also have 2p2h
+    intermediate states but are not chains.  Returns the list indexed
+    from n = 2.&quot;&quot;&quot;
     sp = pair_ladder_space(partition, model)
     R = -1.0 / sp[&quot;D&quot;]
     t = R * sp[&quot;w&quot;]
@@ -1878,26 +1977,62 @@ def pair_ladder_orders(partition, model, order=4):
     return out
 
 
-def pair_ladder_sum(partition, model):
-    &quot;&quot;&quot;The geometric series of pair ladders summed to all orders: the
-    solution of the restricted Bethe-Salpeter (Lippmann-Schwinger) equation
+def pair_ladder_sum(partition, model, rungs=&quot;pp+hh&quot;):
+    &quot;&quot;&quot;The unfolded pair chains summed to all orders: the solution of the
+    restricted Bethe-Salpeter (Lippmann-Schwinger) equation
 
-        t = R (w + W_DD t),      E_lad = w . t,
+        t = t1 + K t,   t1 = R w,   K = R W_DD,      E_lad = w . t,
 
-    with R = -1/D the resolvent on the 2p2h space, which is
+    i.e. t_m = (w_m + sum_n W_mn t_n) / (-D_m) with R = -1/D the resolvent
+    on the 2p2h space at the fixed reference energy, which is
     E_lad = w^T (-D - W_DD)^{-1} w = H_{0D} (E_ref - H_{DD})^{-1} H_{D0}:
     the doubles-CI equations with the energy frozen at the reference energy.
-    Returns the energy and the amplitude vector t.&quot;&quot;&quot;
+    rungs=&quot;pp&quot; keeps only the particle-particle rungs of W_DD (the hole pair
+    stays where it is) with the same fixed denominators, rungs=&quot;hh&quot; only the
+    hole-hole rungs.  Returns the energy and the amplitude vector t.&quot;&quot;&quot;
     sp = pair_ladder_space(partition, model)
-    t = np.linalg.solve(-np.diag(sp[&quot;D&quot;]) - sp[&quot;W&quot;], sp[&quot;w&quot;])
+    W = pair_ladder_rungs(sp, rungs)
+    t = np.linalg.solve(-np.diag(sp[&quot;D&quot;]) - W, sp[&quot;w&quot;])
     return float(sp[&quot;w&quot;] @ t), t
+
+
+def pair_ladder_rungs(space, rungs=&quot;pp+hh&quot;):
+    &quot;&quot;&quot;The block W_DD restricted to the requested rungs: &quot;pp&quot; keeps the
+    elements between states with the same hole level, &quot;hh&quot; those with the
+    same particle level, &quot;pp+hh&quot; everything.&quot;&quot;&quot;
+    W = space[&quot;W&quot;].copy()
+    if rungs == &quot;pp&quot;:
+        W *= (space[&quot;holes&quot;][:, None] == space[&quot;holes&quot;][None, :])
+    elif rungs == &quot;hh&quot;:
+        W *= (space[&quot;particles&quot;][:, None] == space[&quot;particles&quot;][None, :])
+    elif rungs != &quot;pp+hh&quot;:
+        raise ValueError(f&quot;unknown rungs {rungs!r}&quot;)
+    return W
+
+
+def pair_ladder_pp_closed_form(g, xi=1.0):
+    &quot;&quot;&quot;Four levels, four particles, particle-particle rungs only at the
+    fixed reference energy: for each hole pair i the two-state block
+    inverts by hand,
+
+        E_pp = sum_i v^2 (-D_i^3 - D_i^4 + 2 v) / (D_i^3 D_i^4 - v^2),
+
+    with v = -g/2 and D_i^a = 2 (a - i) xi.&quot;&quot;&quot;
+    g = np.asarray(g, dtype=float)
+    v = -g / 2
+    E = np.zeros_like(g)
+    for i in (1, 2):
+        D3, D4 = 2 * (3 - i) * xi, 2 * (4 - i) * xi
+        E = E + v**2 * (-D3 - D4 + 2 * v) / (D3 * D4 - v**2)
+    return E
 
 
 def pair_ladder_self_consistent(partition, model, tol=1e-13, max_iter=1000):
     &quot;&quot;&quot;The same equation with E_ref + E in the denominator, iterated to
     self-consistency: E = w^T (E - D - W_DD)^{-1} w.  This is the doubles-CI
-    energy, and the difference from pair_ladder_sum is the sum of all the
-    folded diagrams with 2p2h intermediate states.&quot;&quot;&quot;
+    (Brillouin-Wigner in the reference-plus-doubles space) energy, and the
+    difference from pair_ladder_sum is the sum of all the folded terms that
+    the energy dependence generates, -E2 w^T R^2 w at fourth order.&quot;&quot;&quot;
     sp = pair_ladder_space(partition, model)
     E = float(sp[&quot;w&quot;] @ (-sp[&quot;w&quot;] / sp[&quot;D&quot;]))
     for _ in range(max_iter):
@@ -1910,16 +2045,22 @@ def pair_ladder_self_consistent(partition, model, tol=1e-13, max_iter=1000):
 
 
 def pair_ladder_closed_form(g, xi=1.0):
-    &quot;&quot;&quot;Four levels, four particles: the ladder series is geometric with
-    ratio g^2/12 and sums to  -g^2 (7 + 2 g) / (2 (12 - g^2))  (xi = 1).&quot;&quot;&quot;
+    &quot;&quot;&quot;Four levels, four particles, pp and hh rungs: the even and the odd
+    orders of the chain series are each geometric with ratio g^2/12
+    (K^2 t1 = g^2/12 t1) and the sum is  -g^2 (7 + 2 g) / (2 (12 - g^2))
+    (xi = 1), with poles at g = +-2 sqrt(3).&quot;&quot;&quot;
     g = np.asarray(g, dtype=float) / xi
     return -xi * g**2 * (7 + 2 * g) / (2 * (12 - g**2))
 
 
 def fourth_order_pieces_pairing(partition, model):
-    &quot;&quot;&quot;Delta E^(4) of the pairing model split into the part with only 2p2h
-    intermediate states, the part that passes through the 4p4h state, and
-    the folded term -Delta E^(2) &lt;Psi^(1)|Psi^(1)&gt;.&quot;&quot;&quot;
+    &quot;&quot;&quot;Delta E^(4) of the pairing model split into the unfolded chain
+    through the 2p2h states (E4_2p2h), the chain that passes through the
+    4p4h state (E4_4p4h), and the folded term -Delta E^(2) &lt;Psi^(1)|Psi^(1)&gt;
+    = -E2 w^T R^2 w, whose intermediate states are also 2p2h but which is a
+    product of two second-order pieces rather than a chain.  For four
+    levels, four particles and xi = 1 the three are -7/288, -49/4608 and
+    +203/6912 g^4, total -77/13824 g^4.&quot;&quot;&quot;
     sp = pair_ladder_space(partition, model)
     R = -1.0 / sp[&quot;D&quot;]
     e2 = float(sp[&quot;w&quot;] @ (R * sp[&quot;w&quot;]))
@@ -1928,6 +2069,59 @@ def fourth_order_pieces_pairing(partition, model):
     total = rayleigh_schrodinger(partition, 4)[3]
     return dict(E4_2p2h=e4_2p2h, E4_4p4h=total - e4_2p2h - folded,
                 folded=folded, total=total)
+
+
+def pairing_ground_state_polynomial(g):
+    &quot;&quot;&quot;The quartic whose root is the exact ground-state energy of the
+    four-level, four-particle pairing model (xi = 1).  The seniority-zero
+    Hamiltonian is 6 x 6; its characteristic polynomial factorises as
+    (E + g - 6)^2 p(y, g) with y = E + g - 6 and
+
+        p(y, g) = y^4 - (20 + 3 g^2) y^2 + 2 g^3 y + 64 + 20 g^2,
+
+    the ground state being the branch with y(0) = -4.  Returns the four
+    coefficients of p in y, highest power first.&quot;&quot;&quot;
+    return np.array([1.0, 0.0, -(20 + 3 * g**2), 2 * g**3, 64 + 20 * g**2])
+
+
+def pairing_branch_points(ground_state_only=True):
+    &quot;&quot;&quot;The singularities of the exact ground-state energy E(g) in the
+    complex coupling plane: the coalescences p = dp/dy = 0 of two roots of
+    pairing_ground_state_polynomial.  Eliminating y gives the discriminant
+    of the quartic, 256 (117 g^8 + 5740 g^6 + 31168 g^4 + 72000 g^2 + 82944),
+    whose eight zeros come in +- pairs.  Only some of them lie on the
+    ground-state branch y(0) = -4: following that branch from g = 0 to each
+    zero and testing dp/dy there keeps g = 0.679965 +- 1.360006 i (modulus
+    1.520516, the radius of convergence of the Rayleigh-Schrodinger series
+    in g; the phase arg g = 63.4 degrees sets the period 2 pi / arg g = 5.67
+    orders of the sign blocks of the series) and g = +- 6.573916 i, and
+    discards -0.679965 +- 1.360006 i and +- 1.751836 i, which belong to
+    other branches.  Returns the zeros sorted by modulus.&quot;&quot;&quot;
+    roots = np.roots([117, 0, 5740, 0, 31168, 0, 72000, 0, 82944])
+    roots = roots[np.argsort(np.abs(roots))]
+    if not ground_state_only:
+        return roots
+
+    def on_ground_branch(gc, steps=4000):
+        y = -4.0 + 0j
+        for s in np.linspace(0.0, 1.0, steps + 1)[1:]:
+            g = gc * s
+            for _ in range(50):
+                c = pairing_ground_state_polynomial(g)
+                f, df = np.polyval(c, y), np.polyval(np.polyder(c), y)
+                if abs(df) &lt; 1e-13:
+                    break
+                y -= f / df
+        return abs(np.polyval(np.polyder(pairing_ground_state_polynomial(gc)),
+                              y)) &lt; 1e-3
+
+    return np.array([r for r in roots if on_ground_branch(r)])
+
+
+def pairing_convergence_radius():
+    &quot;&quot;&quot;The exact radius of convergence of the pairing-model series at
+    xi = 1, |g_c| = 1.520516..., from the nearest branch points.&quot;&quot;&quot;
+    return float(np.abs(pairing_branch_points()[0]))
 
 
 # ---------------------------------------------------------------------------
@@ -2018,13 +2212,15 @@ def demo_pairing():
 def demo_pair_ladders():
     from fractions import Fraction
     print(&quot;=&quot; * 74)
-    print(&quot;3b. Pair ladders: the 2p2h intermediate states summed to all orders&quot;)
+    print(&quot;3b. Pair ladders: the unfolded 2p2h chains summed to all orders&quot;)
     print(&quot;=&quot; * 74)
     part, model = pairing_partition(g=1.0)
     sp = pair_ladder_space(part, model)
     print(&quot;The 2p2h pair space of the four-level, four-particle model:&quot;)
-    print(&quot;  excitation energies D_m :&quot;, sp[&quot;D&quot;])
-    print(&quot;  couplings w_m = &lt;m|W|0&gt; :&quot;, sp[&quot;w&quot;])
+    print(&quot;  hole level i / particle level a :&quot;, sp[&quot;holes&quot;] + 1, &quot;/&quot;,
+          sp[&quot;particles&quot;] + 1)
+    print(&quot;  excitation energies D_m         :&quot;, sp[&quot;D&quot;])
+    print(&quot;  couplings w_m = &lt;m|W|0&gt;         :&quot;, sp[&quot;w&quot;])
     print(&quot;  block W_mn (g = 1):&quot;)
     print(sp[&quot;W&quot;])
     # exact rational coefficients of g^n
@@ -2035,17 +2231,21 @@ def demo_pair_ladders():
     coefficients = []
     for n in range(2, 9):
         coefficients.append(sum(w[m] * t[m] for m in range(4)))
-        t = [-sum(t[k] * Wm[k][m] for k in range(4)) / D[m] for m in range(4)]
-    print(&quot;  coefficients c_n of E^(n)_{2p2h} = c_n g^n:&quot;)
+        t = [-sum(Wm[m][k] * t[k] for k in range(4)) / D[m] for m in range(4)]
+    print(&quot;  coefficients c_n of the unfolded chain E^(n)_lad = c_n g^n:&quot;)
     for k, c in enumerate(coefficients):
         n = k + 2
         ratio = f&quot;c_{n}/c_{n-2} = {coefficients[k] / coefficients[k - 2]}&quot; if k &gt;= 2 else &quot;&quot;
         print(f&quot;    n = {n}: {str(c):&gt;10s}   {ratio}&quot;)
-    print(&quot;  every second coefficient is 1/12 of the one two orders below:&quot;)
-    print(&quot;  the series is geometric with ratio g^2/12 and sums to&quot;)
-    print(&quot;  E_lad(g) = -g^2 (7 + 2g) / (2 (12 - g^2)), with a pole at g = 2 sqrt(3).&quot;)
+    print(&quot;  every second coefficient is 1/12 of the one two orders below&quot;)
+    print(&quot;  (K^2 t1 = g^2/12 t1 with K = R W_DD): the even and the odd orders&quot;)
+    print(&quot;  are each geometric with ratio g^2/12 and the chain sums to&quot;)
+    print(&quot;  E_lad(g) = -g^2 (7 + 2g) / (2 (12 - g^2)), with poles at g = +-2 sqrt(3).&quot;)
     print()
-    print(f&quot;{&#39;g&#39;:&gt;6s} {&#39;E2&#39;:&gt;12s} {&#39;E3&#39;:&gt;12s} {&#39;E4_2p2h&#39;:&gt;12s} {&#39;E4_4p4h&#39;:&gt;12s} &quot;
+    print(&quot;Fourth order: the unfolded chain, the chain through the 4p4h state&quot;)
+    print(&quot;and the folded term -E2 w^T R^2 w (also 2p2h intermediate states,&quot;)
+    print(&quot;but not a chain):&quot;)
+    print(f&quot;{&#39;g&#39;:&gt;6s} {&#39;E2&#39;:&gt;12s} {&#39;E3&#39;:&gt;12s} {&#39;E4 chain&#39;:&gt;12s} {&#39;E4 4p4h&#39;:&gt;12s} &quot;
           f&quot;{&#39;folded&#39;:&gt;12s} {&#39;E4 total&#39;:&gt;12s}&quot;)
     for g in (0.25, 0.5, 1.0, 1.5, 2.0):
         part, model = pairing_partition(g=g)
@@ -2053,23 +2253,55 @@ def demo_pair_ladders():
         p = fourth_order_pieces_pairing(part, model)
         print(f&quot;{g:6.2f} {e[0]:12.8f} {e[1]:12.8f} {p[&#39;E4_2p2h&#39;]:12.8f} &quot;
               f&quot;{p[&#39;E4_4p4h&#39;]:12.8f} {p[&#39;folded&#39;]:12.8f} {p[&#39;total&#39;]:12.8f}&quot;)
+    print(&quot;  in units of g^4: chain -7/288 = -336/13824, 4p4h -49/4608 =&quot;)
+    print(&quot;  -147/13824, folded +203/6912 = +406/13824, total -77/13824; the&quot;)
+    print(&quot;  two dropped pieces partially cancel to +259/13824 and the chain&quot;)
+    print(&quot;  alone is 336/77 = 48/11 = 4.36 times the full fourth order.&quot;)
     print()
-    print(f&quot;{&#39;g&#39;:&gt;6s} {&#39;E_ref&#39;:&gt;8s} {&#39;+ladders(4)&#39;:&gt;12s} {&#39;+ladders(inf)&#39;:&gt;13s} &quot;
-          f&quot;{&#39;closed form&#39;:&gt;12s} {&#39;CID&#39;:&gt;12s} {&#39;self-cons.&#39;:&gt;12s} {&#39;FCI&#39;:&gt;12s}&quot;)
+    print(f&quot;{&#39;g&#39;:&gt;6s} {&#39;E_ref&#39;:&gt;8s} {&#39;pp only&#39;:&gt;12s} {&#39;+chain(4)&#39;:&gt;12s} &quot;
+          f&quot;{&#39;+chain(inf)&#39;:&gt;13s} {&#39;closed form&#39;:&gt;12s} {&#39;CID&#39;:&gt;12s} &quot;
+          f&quot;{&#39;self-cons.&#39;:&gt;12s} {&#39;FCI&#39;:&gt;12s}&quot;)
     for g in (0.25, 0.5, 1.0, 1.5, 2.0, 3.0):
         part, model = pairing_partition(g=g)
         e = pair_ladder_orders(part, model, 4)
         ref = part.reference_energy
         elad, _ = pair_ladder_sum(part, model)
-        print(f&quot;{g:6.2f} {ref:8.3f} {ref + sum(e):12.8f} {ref + elad:13.8f} &quot;
+        epp, _ = pair_ladder_sum(part, model, rungs=&quot;pp&quot;)
+        assert abs(epp - pair_ladder_pp_closed_form(g)) &lt; 1e-12
+        print(f&quot;{g:6.2f} {ref:8.3f} {ref + epp:12.8f} {ref + sum(e):12.8f} &quot;
+              f&quot;{ref + elad:13.8f} &quot;
               f&quot;{ref + pair_ladder_closed_form(g):12.8f} &quot;
               f&quot;{model.energies(2)[0]:12.8f} &quot;
               f&quot;{ref + pair_ladder_self_consistent(part, model):12.8f} &quot;
               f&quot;{part.exact():12.8f}&quot;)
     print()
-    print(&quot;The restricted series is the doubles-CI equation with the energy&quot;)
-    print(&quot;frozen at E_ref; putting E_ref + E back in the denominator, which&quot;)
-    print(&quot;is what the folded diagrams do, gives CID exactly.&quot;)
+    print(&quot;The chain sum is the doubles-CI equation with the energy frozen at&quot;)
+    print(&quot;E_ref; putting E_ref + E back in the denominator, which is what the&quot;)
+    print(&quot;folded terms do, gives CID exactly.  The pp-only column keeps the&quot;)
+    print(&quot;particle-particle rungs of W_DD with the same fixed denominators;&quot;)
+    print(&quot;it lies above FCI at g &lt;= 1.5 and below it at g = 2, so the fixed-&quot;)
+    print(&quot;energy resolvent gives no variational bound.&quot;)
+    print()
+    roots = pairing_branch_points()
+    gc = pairing_convergence_radius()
+    part, model = pairing_partition(g=1.0)
+    y = part.exact() + 1.0 - 6.0
+    print(&quot;Radius of convergence of the full series: the ground-state energy&quot;)
+    print(&quot;is a root of p(y, g) = y^4 - (20 + 3g^2) y^2 + 2g^3 y + 64 + 20g^2,&quot;)
+    print(f&quot;y = E + g - 6 (check at g = 1: p = &quot;
+          f&quot;{np.polyval(pairing_ground_state_polynomial(1.0), y):.1e}).  Its&quot;)
+    print(&quot;branch points p = dp/dy = 0 are the zeros of the discriminant; the&quot;)
+    print(&quot;nearest ones on the ground-state branch are&quot;)
+    print(f&quot;  g = {roots[0]:.6f}, {roots[1]:.6f},   |g| = {gc:.6f}&quot;)
+    print(&quot;  (the other zeros of the discriminant, -0.68 +- 1.36 i and&quot;)
+    print(&quot;  +-1.75 i, are coalescences of other branches and are discarded),&quot;)
+    print(f&quot;  arg g = {np.degrees(abs(np.angle(roots[0]))):.1f} deg, &quot;
+          f&quot;period 2 pi / arg g = {2 * np.pi / abs(np.angle(roots[0])):.2f} orders.&quot;)
+    print(&quot;The series in g converges for |g| &lt; 1.5205, not for the 1.58 that a&quot;)
+    print(&quot;straight-line fit of log|E^(n)| suggests: a square-root branch point&quot;)
+    print(&quot;gives E^(n) ~ (g/g_c)^n n^(-3/2) cos(n arg g_c + phi), and the n^(-3/2)&quot;)
+    print(&quot;steepens any finite-window slope.  The chain sum converges for&quot;)
+    print(&quot;|g| &lt; 2 sqrt(3) = 3.46, where E_ref hits an eigenvalue of H_DD.&quot;)
 
 
 def demo_orders():
@@ -2098,7 +2330,9 @@ def demo_orders():
     print(&quot;and the partial sums are meaningless.  Somewhere between g = 1 and&quot;)
     print(&quot;g = 2 lies the radius of convergence, and g = 1.5 sits close to&quot;)
     print(&quot;it: the terms there decrease so slowly that no finite number of&quot;)
-    print(&quot;them settles the question.&quot;)
+    print(&quot;them settles the question.  (The exact radius, 1.5205, follows&quot;)
+    print(&quot;from the branch points of the energy: pairing_convergence_radius&quot;)
+    print(&quot;and demonstration 3b.)&quot;)
     print()
     print(&quot;This is worth taking seriously.  Perturbation theory is an&quot;)
     print(&quot;expansion about the reference determinant, and once the true&quot;)
